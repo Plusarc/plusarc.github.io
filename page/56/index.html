@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -118,7 +118,7 @@
   <link rel="canonical" href="http://yoursite.com/page/56/"/>
 
 
-  <title> Plusaber's Blog </title>
+  <title> Plusaber's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
@@ -126,7 +126,7 @@
   
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -260,6 +260,308 @@
             
               
                 
+                <a class="post-title-link" href="/2015/05/16/WebService_Programmable Web及其分类/" itemprop="url">
+                  REST_Programmable Web及其分类
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-05-16T00:00:00+09:00" content="2015-05-16">
+              2015-05-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/WebService/" itemprop="url" rel="index">
+                    <span itemprop="name">WebService</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/05/16/WebService_Programmable Web及其分类/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/05/16/WebService_Programmable Web及其分类/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Programmable-Web及其分类"><a href="#Programmable-Web及其分类" class="headerlink" title="Programmable Web及其分类"></a>Programmable Web及其分类</h1><p>在编写计算机程序时，我们经常需要使用第三方库中的算法。但是有时我们需要获得由数据驱动的而且数据无法容易获得的服务，这时我们需要依赖于programmable web。这里programmable web是跟human web相对的。human web指的是传统的面向人类使用的web，如人们浏览的网站返回HTML文档显式供人类查看，而programmable web指的是面向计算机程序使用的web，比如web服务等，一般返回更加规则的结果，如XML文档，JSON文档等作为程序的输入。本质上programmable web在工作方式上跟human web是一致的，都是发送请求后，获得所需要的输出或操作。</p>
+<p>programmable web是基于HTTP和XML技术的，虽然HTML,JSON等也在使用，但是使用较多的还是XML。</p>
+<p>programmable web分类主要是指可以根据调用web服务的方式和形式不同的技术进行分类，如基于RPC(SOAP+WSDL), REST, REST-RPC混合等方式。到这里还是非常的抽象，要对programmable web进行分类，首先来回顾一下programmable web的一些技术。</p>
+<h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><p>HTTP是一种基于文档的协议。客户端把文档放在信封里，然后发送给服务器。接收到请求后，服务器解析请求并作为回应，把相应文档放在信封里，然后发送给客户端。HTTP对信封格式有严格标准，但是并不关心信封里面的内容，一般是有客户端或服务端解析。</p>
+<p>一个HTTP GET请求：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">GET /index.html HTTP/1.1</div><div class="line">Host: www.plusaber.net</div><div class="line">User-Ageent: Mozilla/5.0....</div><div class="line">...</div></pre></td></tr></table></figure>
+<p>HTTP请求主要有下面几个组成部分：</p>
+<p><strong>HTTP方法</strong>：表示客户端希望服务器如何处理该信封。<br><strong>路径</strong>：这里是URI里主机名(hostname)后面的部分。<br><strong>请求报头</strong>：一组key-value pairs，作为元数据。<br><strong>实体主体，也就是文档</strong>，这里GET请求是没有主体的，POST请求会将请求参数放在这里，而GET请求会请求参数以键值对形式直接放在URI中。</p>
+<p>HTTP相应也是一个放在信封里的文档，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 200 OK</div><div class="line">Date: Fri....</div><div class="line">Server: Aparche...</div><div class="line">......</div><div class="line"></div><div class="line">&lt;!DOCTYPE html...&gt;</div><div class="line">&lt;head&gt;</div><div class="line">...</div><div class="line">&lt;title&gt;Hello, world&lt;/title&gt;</div><div class="line">......</div></pre></td></tr></table></figure>
+<p>HTTP响应可分为三个部分：</p>
+<p><strong>HTTP响应代码</strong><br><strong>响应报头</strong><br><strong>实体主体</strong></p>
+<h2 id="方法信息"><a href="#方法信息" class="headerlink" title="方法信息"></a>方法信息</h2><p>HTTP是Programmable Web上所有服务所共有的。而Web服务之间的差别的形成，是由于在两个问题上的做法有所不同。只要了解一个Web服务器是如何处理这两个问题的，就可以清楚地直到该服务是否跟Web的理念保持一致。</p>
+<p><strong>第一个问题是：客户端如何把自己的意图传达给服务器，也就是客户希望进行什么操作，如获取数据、删除数据还是改写数据。</strong>这种关于对数据采取什么操作的信息，称为方法信息(method information)。</p>
+<p>RESTful Web Services的方式是把它放在HTTP方法中(HTTP method)，包括主要的GET, HEAD, PUT, DELETE和POST。通过这些方法足以分辨操作类型，标准化的名称是一个很好的优点。</p>
+<p>RPC方式是通过提供另外的方法描述提供method information，如在URI中的参数(RPC-REST混合模式)，在SOAP信封中调用WSDS中定义的方法(SOAP-RPC)。而不关注请求时的HTTP method，RPC-REST混合模式中可能总是使用GET，尽管实际的操作可能是DELETE，SOAP-RPC可能总是使用POST(需要包含SOAP信息进行服务调用)，尽管实际的操作可能是PUT。</p>
+<p>Google搜索服务的WSDL文档片断：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;operation name=&quot;doGoogleSearch&quot;&gt;</div><div class="line">	&lt;input message=&quot;typens:doGoogleSearch&quot;&gt;</div><div class="line">	&lt;output message=&quot;typens:doGoogleSearchRespnse&quot;&gt;</div><div class="line">&lt;/operation&gt;</div></pre></td></tr></table></figure>
+<p>一个SOAP RPC调用的HTTP请求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">POST search/beta2 HTTP/1.1</div><div class="line">Host:...</div><div class="line">...</div><div class="line"></div><div class="line">&lt;?xml version=&quot;1.0&quot;...&gt;</div><div class="line">&lt;soap:Envelop xmln:soap=&quot;UTF-8&quot;&gt;</div><div class="line">	&lt;soap:body&gt;</div><div class="line">		&lt;gs:doGoogleSearch&gt;</div><div class="line">			&lt;q&gt;plusaber&lt;/q&gt;</div><div class="line">		&lt;/gs:doGoogleSearch&gt;</div><div class="line">	&lt;/soap:Body&gt;</div><div class="line">&lt;/soap:Envelope&gt;</div></pre></td></tr></table></figure>
+<p><strong>第二个问题是：客户端如何告诉服务器对哪些数据进行操作。</strong>也就是作用域信息(scoping information)。</p>
+<h2 id="作用域信息"><a href="#作用域信息" class="headerlink" title="作用域信息"></a>作用域信息</h2><p>很多Web服务器都把作用域信息放在URI路径里。<br>另一种选择是把作用域信息放在实体主体里，SOAP Web服务通常采用这种方式。</p>
+<p>采用了什么样的服务设计，决定了哪些信息属于方法信息，哪些信息属于作用域信息，即使功能相同。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">请求(GET)  http://flickr.com/photos/tags/penguin</div><div class="line">请求(GET)  http://api.flickr.com/services/rest/?method=flickr.photos.search&amp;tags=penguin</div></pre></td></tr></table></figure>
+<p>两者实现的功能相同，请求也都是GET，但是后者在uri参数中制定了调用的方法名flickr.photos.search，令HTTP的GET方法失去了原本用意，也就是实际上的操作并不不受GET或POST影响。前一个例子中Google SOAP API中也是如此，在SOAP信封中制定了调用的方法甚至参数。</p>
+<h2 id="相互竞争的服务架构"><a href="#相互竞争的服务架构" class="headerlink" title="相互竞争的服务架构"></a>相互竞争的服务架构</h2><p>不同Web服务会有不同做法，目前主要有三种常见的Web服务架构：REST式架构、RPC式架构和REST-RPC混合架构。</p>
+<p>RPC式架构通过一个复杂的、编程语言式的接口，来暴露其内部算法。而ROA则通过一个简单的、文档处理接口，来暴露其内部数据。</p>
+<h3 id="REST式、面向资源的机构-Resource-Oriented-Architectures"><a href="#REST式、面向资源的机构-Resource-Oriented-Architectures" class="headerlink" title="REST式、面向资源的机构(Resource-Oriented Architectures)"></a>REST式、面向资源的机构(Resource-Oriented Architectures)</h3><p>REST式架构意味着，方法信息都在HTTP方法里；面向资源的架构(ROA)意味着，作用域信息都在URI里，二者结合起来可以非常强大。一个面向资源的REST式Web服务，通过HTTP请求第一行就能基本了解客户端需要做什么了。如果HTTP方法跟方法信息对不上，那么服务就不算事RESTful的；如果作用域信息不放在URI里，那么服务就不是面向资源的。</p>
+<h3 id="RPC式架构-RPC-Style-Architectures"><a href="#RPC式架构-RPC-Style-Architectures" class="headerlink" title="RPC式架构(RPC-Style Architectures)"></a>RPC式架构(RPC-Style Architectures)</h3><p>RPC式Web服务通常从客户端收到一个包括方法信息和作用域信息的信封，然后发回回复信封。一种常用的信封格式是SOAP，进一步封装杂HTTP信封中。SOAP信封内容随着调用方法和参数不同有所变化，但是HTTP信封格式总是不变的，同样的uri，同样的HTTP method(一般总是POST)。SOAP-RPC服务为采用HTTP的很多特性，只暴露一个URI，并且只支持一种HTTP方法(POST方法)。而REST服务为不同的作用域信息暴露不同的URI。</p>
+<p>除了SOAP RPC，更宽泛的是XML-RPC，SOAP其实就是基于XML，不过多了一系列规范和相应的技术栈，包括WSDL,UDDI.</p>
+<h3 id="REST-RPC混合架构"><a href="#REST-RPC混合架构" class="headerlink" title="REST-RPC混合架构"></a>REST-RPC混合架构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://api.flickr.com/services/rest/?method=flickr.photos.search&amp;tags=penguin</div></pre></td></tr></table></figure>
+<p>这里的服务调用将作用域信息放在URI中，有些类似于REST，但是不同的是其将方法信息也放在URI中了，所以本质上是一个RPC式服务，只是将URI当做信封格式来用。</p>
+<p>许多只读的Web服务，尽管起初是按照RPC风格设计的，但都可以被认为是完全REST式和面向资源的。但是如果服务允许DELETE等操作的话，就会出现客户端所使用的HTTP方法与正在想执行的操作不一致的情况，就失去了REST的特征，所以称为REST-RPC混合服务。</p>
+<h2 id="Programmable-Web涉及的技术"><a href="#Programmable-Web涉及的技术" class="headerlink" title="Programmable Web涉及的技术"></a>Programmable Web涉及的技术</h2><h3 id="HTTP-1"><a href="#HTTP-1" class="headerlink" title="HTTP"></a>HTTP</h3><p>所有Web服务都用HTTP，只是使用方式有所不同。</p>
+<h3 id="URI"><a href="#URI" class="headerlink" title="URI"></a>URI</h3><p>同样的，所有Web服务都用HTTP，但使用方式有所不同。一个REST服务为客户端可能操作的每一个数据暴露一个URI；一个REST-RPC混合服务为客户端可行进行的每个操作暴露一个URI；一个RPC服务为每个远程处理暴露一个相同的URI，即服务的端点(endpoint)。</p>
+<h3 id="XML-RPC"><a href="#XML-RPC" class="headerlink" title="XML-RPC"></a>XML-RPC</h3><p>用XML表达函数调用及其返回值，专门用于RPC式Web服务，现在已经逐渐被更完善的SOAP技术栈所替代。</p>
+<h3 id="SOAP"><a href="#SOAP" class="headerlink" title="SOAP"></a>SOAP</h3><p>基于XML的信封格式，同样是为RPC提供方法信息和作用域信息。</p>
+<h3 id="WSDL"><a href="#WSDL" class="headerlink" title="WSDL"></a>WSDL</h3><p>WSDL(web service description language)，web服务描述语言，是一套用于描述SOAP WEB服务的XML词汇。客户端可以通过参考WSDL文档，可以确切的知道可以调用哪些RPC式方法，需要哪些参数，以及返回值数据类型。SOAP的服务都发布有WSDL文档，否则很难使用。</p>
+<h3 id="WADL"><a href="#WADL" class="headerlink" title="WADL"></a>WADL</h3><p>WADL(web applicaiotn description language), web应用描述语言，是一套用于描述REST式服务的XML词汇。提供的功能与WSDL类似，但是由于REST式服务接口比较简单，其必要性没有像WSDL至于SOAP-RPC那么大。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/05/01/Design Pattern_State pattern/" itemprop="url">
+                  State pattern
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-05-01T00:00:00+09:00" content="2015-05-01">
+              2015-05-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Design-Pattern/" itemprop="url" rel="index">
+                    <span itemprop="name">Design Pattern</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/05/01/Design Pattern_State pattern/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/05/01/Design Pattern_State pattern/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="State-pattern"><a href="#State-pattern" class="headerlink" title="State pattern"></a>State pattern</h1><h2 id="问题定义"><a href="#问题定义" class="headerlink" title="问题定义"></a>问题定义</h2><p>假设我们需要制造一台糖果机，其操作如下:</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_state_1.png" alt="Design_pattern_state_1"></p>
+<p>我们可以分清楚各个状态以及状态的转换，当做一个简单的状态机来实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GumballMachine</span> </span>&#123;</div><div class="line"> </div><div class="line">	<span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span> SOLD_OUT = <span class="number">0</span>;</div><div class="line">	<span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span> NO_QUARTER = <span class="number">1</span>;</div><div class="line">	<span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span> HAS_QUARTER = <span class="number">2</span>;</div><div class="line">	<span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span> SOLD = <span class="number">3</span>;</div><div class="line"> </div><div class="line">	<span class="keyword">int</span> state = SOLD_OUT;</div><div class="line">	<span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">  </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">GumballMachine</span><span class="params">(<span class="keyword">int</span> count)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.count = count;</div><div class="line">		<span class="keyword">if</span> (count &gt; <span class="number">0</span>) &#123;</div><div class="line">			state = NO_QUARTER;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">  </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertQuarter</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (state == HAS_QUARTER) &#123;</div><div class="line">			System.out.println(<span class="string">"You can't insert another quarter"</span>);</div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (state == NO_QUARTER) &#123;</div><div class="line">			state = HAS_QUARTER;</div><div class="line">			System.out.println(<span class="string">"You inserted a quarter"</span>);</div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (state == SOLD_OUT) &#123;</div><div class="line">			System.out.println(<span class="string">"You can't insert a quarter, the machine is sold out"</span>);</div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (state == SOLD) &#123;</div><div class="line">        	System.out.println(<span class="string">"Please wait, we're already giving you a gumball"</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ejectQuarter</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (state == HAS_QUARTER) &#123;</div><div class="line">			System.out.println(<span class="string">"Quarter returned"</span>);</div><div class="line">			state = NO_QUARTER;</div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (state == NO_QUARTER) &#123;</div><div class="line">			System.out.println(<span class="string">"You haven't inserted a quarter"</span>);</div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (state == SOLD) &#123;</div><div class="line">			System.out.println(<span class="string">"Sorry, you already turned the crank"</span>);</div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (state == SOLD_OUT) &#123;</div><div class="line">        	System.out.println(<span class="string">"You can't eject, you haven't inserted a quarter yet"</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line"></div><div class="line"> </div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">turnCrank</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (state == SOLD) &#123;</div><div class="line">			System.out.println(<span class="string">"Turning twice doesn't get you another gumball!"</span>);</div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (state == NO_QUARTER) &#123;</div><div class="line">			System.out.println(<span class="string">"You turned but there's no quarter"</span>);</div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (state == SOLD_OUT) &#123;</div><div class="line">			System.out.println(<span class="string">"You turned, but there are no gumballs"</span>);</div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (state == HAS_QUARTER) &#123;</div><div class="line">			System.out.println(<span class="string">"You turned..."</span>);</div><div class="line">			state = SOLD;</div><div class="line">			dispense();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dispense</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (state == SOLD) &#123;</div><div class="line">			System.out.println(<span class="string">"A gumball comes rolling out the slot"</span>);</div><div class="line">			count = count - <span class="number">1</span>;</div><div class="line">			<span class="keyword">if</span> (count == <span class="number">0</span>) &#123;</div><div class="line">				System.out.println(<span class="string">"Oops, out of gumballs!"</span>);</div><div class="line">				state = SOLD_OUT;</div><div class="line">			&#125; <span class="keyword">else</span> &#123;</div><div class="line">				state = NO_QUARTER;</div><div class="line">			&#125;</div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (state == NO_QUARTER) &#123;</div><div class="line">			System.out.println(<span class="string">"You need to pay first"</span>);</div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (state == SOLD_OUT) &#123;</div><div class="line">			System.out.println(<span class="string">"No gumball dispensed"</span>);</div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (state == HAS_QUARTER) &#123;</div><div class="line">			System.out.println(<span class="string">"No gumball dispensed"</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">refill</span><span class="params">(<span class="keyword">int</span> numGumBalls)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.count = numGumBalls;</div><div class="line">		state = NO_QUARTER;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		StringBuffer result = <span class="keyword">new</span> StringBuffer();</div><div class="line">		result.append(<span class="string">"\nMighty Gumball, Inc."</span>);</div><div class="line">		result.append(<span class="string">"\nJava-enabled Standing Gumball Model #2004\n"</span>);</div><div class="line">		result.append(<span class="string">"Inventory: "</span> + count + <span class="string">" gumball"</span>);</div><div class="line">		<span class="keyword">if</span> (count != <span class="number">1</span>) &#123;</div><div class="line">			result.append(<span class="string">"s"</span>);</div><div class="line">		&#125;</div><div class="line">		result.append(<span class="string">"\nMachine is "</span>);</div><div class="line">		<span class="keyword">if</span> (state == SOLD_OUT) &#123;</div><div class="line">			result.append(<span class="string">"sold out"</span>);</div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (state == NO_QUARTER) &#123;</div><div class="line">			result.append(<span class="string">"waiting for quarter"</span>);</div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (state == HAS_QUARTER) &#123;</div><div class="line">			result.append(<span class="string">"waiting for turn of crank"</span>);</div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (state == SOLD) &#123;</div><div class="line">			result.append(<span class="string">"delivering a gumball"</span>);</div><div class="line">		&#125;</div><div class="line">		result.append(<span class="string">"\n"</span>);</div><div class="line">		<span class="keyword">return</span> result.toString();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GumballMachineTestDrive</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		GumballMachine gumballMachine = <span class="keyword">new</span> GumballMachine(<span class="number">5</span>);</div><div class="line"></div><div class="line">		System.out.println(gumballMachine);</div><div class="line"></div><div class="line">		gumballMachine.insertQuarter();</div><div class="line">		gumballMachine.turnCrank();</div><div class="line"></div><div class="line">		System.out.println(gumballMachine);</div><div class="line"></div><div class="line">		gumballMachine.insertQuarter();</div><div class="line">		gumballMachine.ejectQuarter();</div><div class="line">		gumballMachine.turnCrank();</div><div class="line"></div><div class="line">		System.out.println(gumballMachine);</div><div class="line"></div><div class="line">		gumballMachine.insertQuarter();</div><div class="line">		gumballMachine.turnCrank();</div><div class="line">		gumballMachine.insertQuarter();</div><div class="line">		gumballMachine.turnCrank();</div><div class="line">		gumballMachine.ejectQuarter();</div><div class="line"></div><div class="line">		System.out.println(gumballMachine);</div><div class="line"></div><div class="line">		gumballMachine.insertQuarter();</div><div class="line">		gumballMachine.insertQuarter();</div><div class="line">		gumballMachine.turnCrank();</div><div class="line">		gumballMachine.insertQuarter();</div><div class="line">		gumballMachine.turnCrank();</div><div class="line">		gumballMachine.insertQuarter();</div><div class="line">		gumballMachine.turnCrank();</div><div class="line"></div><div class="line">		System.out.println(gumballMachine);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当需要增加功能时，这份代码将十分难以修改和扩展，比如现在我们需要当曲柄被转动时，有10%的记录掉下两颗糖果。</p>
+<p>更好的设计是：</p>
+<ol>
+<li>定义一个state接口。在这个接口内，糖果机的每个动作都有一个对应的方法。</li>
+<li>然后为机器的每个状态实现状态类。这些类将入则在对应状态下进行机器的行为。</li>
+<li>将动作委托到状态类。</li>
+</ol>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_state_2.png" alt="Design_pattern_state_2"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">State</span> </span>&#123;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertQuarter</span><span class="params">()</span></span>;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ejectQuarter</span><span class="params">()</span></span>;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">turnCrank</span><span class="params">()</span></span>;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dispense</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NoQuarterState</span> <span class="keyword">implements</span> <span class="title">State</span> </span>&#123;</div><div class="line">    GumballMachine gumballMachine;</div><div class="line"> </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">NoQuarterState</span><span class="params">(GumballMachine gumballMachine)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.gumballMachine = gumballMachine;</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertQuarter</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"You inserted a quarter"</span>);</div><div class="line">		gumballMachine.setState(gumballMachine.getHasQuarterState());</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ejectQuarter</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"You haven't inserted a quarter"</span>);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">turnCrank</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"You turned, but there's no quarter"</span>);</div><div class="line">	 &#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dispense</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"You need to pay first"</span>);</div><div class="line">	&#125; </div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="string">"waiting for quarter"</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HasQuarterState</span> <span class="keyword">implements</span> <span class="title">State</span> </span>&#123;</div><div class="line">	GumballMachine gumballMachine;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">HasQuarterState</span><span class="params">(GumballMachine gumballMachine)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.gumballMachine = gumballMachine;</div><div class="line">	&#125;</div><div class="line">  </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertQuarter</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"You can't insert another quarter"</span>);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ejectQuarter</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Quarter returned"</span>);</div><div class="line">		gumballMachine.setState(gumballMachine.getNoQuarterState());</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">turnCrank</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"You turned..."</span>);</div><div class="line">		gumballMachine.setState(gumballMachine.getSoldState());</div><div class="line">	&#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dispense</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"No gumball dispensed"</span>);</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="string">"waiting for turn of crank"</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SoldState</span> <span class="keyword">implements</span> <span class="title">State</span> </span>&#123;</div><div class="line"> </div><div class="line">    GumballMachine gumballMachine;</div><div class="line"> </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SoldState</span><span class="params">(GumballMachine gumballMachine)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.gumballMachine = gumballMachine;</div><div class="line">    &#125;</div><div class="line">       </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertQuarter</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Please wait, we're already giving you a gumball"</span>);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ejectQuarter</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Sorry, you already turned the crank"</span>);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">turnCrank</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Turning twice doesn't get you another gumball!"</span>);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dispense</span><span class="params">()</span> </span>&#123;</div><div class="line">		gumballMachine.releaseBall();</div><div class="line">		<span class="keyword">if</span> (gumballMachine.getCount() &gt; <span class="number">0</span>) &#123;</div><div class="line">			gumballMachine.setState(gumballMachine.getNoQuarterState());</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			System.out.println(<span class="string">"Oops, out of gumballs!"</span>);</div><div class="line">			gumballMachine.setState(gumballMachine.getSoldOutState());</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="string">"dispensing a gumball"</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SoldOutState</span> <span class="keyword">implements</span> <span class="title">State</span> </span>&#123;</div><div class="line">    GumballMachine gumballMachine;</div><div class="line"> </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SoldOutState</span><span class="params">(GumballMachine gumballMachine)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.gumballMachine = gumballMachine;</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertQuarter</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"You can't insert a quarter, the machine is sold out"</span>);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ejectQuarter</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"You can't eject, you haven't inserted a quarter yet"</span>);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">turnCrank</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"You turned, but there are no gumballs"</span>);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dispense</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"No gumball dispensed"</span>);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="string">"sold out"</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GumballMachine</span> </span>&#123;</div><div class="line"> </div><div class="line">	State soldOutState;</div><div class="line">	State noQuarterState;</div><div class="line">	State hasQuarterState;</div><div class="line">	State soldState;</div><div class="line"> </div><div class="line">	State state = soldOutState;</div><div class="line">	<span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">GumballMachine</span><span class="params">(<span class="keyword">int</span> numberGumballs)</span> </span>&#123;</div><div class="line">		soldOutState = <span class="keyword">new</span> SoldOutState(<span class="keyword">this</span>);</div><div class="line">		noQuarterState = <span class="keyword">new</span> NoQuarterState(<span class="keyword">this</span>);</div><div class="line">		hasQuarterState = <span class="keyword">new</span> HasQuarterState(<span class="keyword">this</span>);</div><div class="line">		soldState = <span class="keyword">new</span> SoldState(<span class="keyword">this</span>);</div><div class="line"></div><div class="line">		<span class="keyword">this</span>.count = numberGumballs;</div><div class="line"> 		<span class="keyword">if</span> (numberGumballs &gt; <span class="number">0</span>) &#123;</div><div class="line">			state = noQuarterState;</div><div class="line">		&#125; </div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertQuarter</span><span class="params">()</span> </span>&#123;</div><div class="line">		state.insertQuarter();</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ejectQuarter</span><span class="params">()</span> </span>&#123;</div><div class="line">		state.ejectQuarter();</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">turnCrank</span><span class="params">()</span> </span>&#123;</div><div class="line">		state.turnCrank();</div><div class="line">		state.dispense();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setState</span><span class="params">(State state)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.state = state;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">releaseBall</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"A gumball comes rolling out the slot..."</span>);</div><div class="line">		<span class="keyword">if</span> (count != <span class="number">0</span>) &#123;</div><div class="line">			count = count - <span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">int</span> <span class="title">getCount</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> count;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">refill</span><span class="params">(<span class="keyword">int</span> count)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.count = count;</div><div class="line">		state = noQuarterState;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> State <span class="title">getState</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> state;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> State <span class="title">getSoldOutState</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> soldOutState;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> State <span class="title">getNoQuarterState</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> noQuarterState;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> State <span class="title">getHasQuarterState</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> hasQuarterState;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> State <span class="title">getSoldState</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> soldState;</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		StringBuffer result = <span class="keyword">new</span> StringBuffer();</div><div class="line">		result.append(<span class="string">"\nMighty Gumball, Inc."</span>);</div><div class="line">		result.append(<span class="string">"\nJava-enabled Standing Gumball Model #2004"</span>);</div><div class="line">		result.append(<span class="string">"\nInventory: "</span> + count + <span class="string">" gumball"</span>);</div><div class="line">		<span class="keyword">if</span> (count != <span class="number">1</span>) &#123;</div><div class="line">			result.append(<span class="string">"s"</span>);</div><div class="line">		&#125;</div><div class="line">		result.append(<span class="string">"\n"</span>);</div><div class="line">		result.append(<span class="string">"Machine is "</span> + state + <span class="string">"\n"</span>);</div><div class="line">		<span class="keyword">return</span> result.toString();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GumballMachineTestDrive</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		GumballMachine gumballMachine = <span class="keyword">new</span> GumballMachine(<span class="number">5</span>);</div><div class="line"></div><div class="line">		System.out.println(gumballMachine);</div><div class="line"></div><div class="line">		gumballMachine.insertQuarter();</div><div class="line">		gumballMachine.turnCrank();</div><div class="line"></div><div class="line">		System.out.println(gumballMachine);</div><div class="line"></div><div class="line">		gumballMachine.insertQuarter();</div><div class="line">		gumballMachine.turnCrank();</div><div class="line">		gumballMachine.insertQuarter();</div><div class="line">		gumballMachine.turnCrank();</div><div class="line"></div><div class="line">		System.out.println(gumballMachine);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="定义状态模式"><a href="#定义状态模式" class="headerlink" title="定义状态模式"></a>定义状态模式</h2><p>状态模式允许对象在内部状态改变时改变它的行为，对象看起来好像修改了它的类。</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_state_3.png" alt="Design_pattern_state_3"></p>
+<p>状态模式跟策略模式形式上很相似，但是，意图不同！</p>
+<p>状态模式将一群行为封装在状态对象中，运行过程中当前状态在状态对象集合中游走改变，但是客户端对于状态对象完全不了解。状态模式一般是用来避免在context中放置许多条件判断的替代方案，以便于扩展。</p>
+<p>而策略模式中，通常是客户主动指定所需要的策略对象，以满足所需要的行为。策略模式是除继承之外一种弹性替代方案，可以避免被父类的行为困住，我们可以通过组合不同的对象来改变行为。</p>
+<h2 id="解决扩展问题"><a href="#解决扩展问题" class="headerlink" title="解决扩展问题"></a>解决扩展问题</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GumballMachine</span> </span>&#123;</div><div class="line"> </div><div class="line">	State soldOutState;</div><div class="line">	State noQuarterState;</div><div class="line">	State hasQuarterState;</div><div class="line">	State soldState;</div><div class="line">	State winnerState;</div><div class="line"> </div><div class="line">	State state = soldOutState;</div><div class="line">	<span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">GumballMachine</span><span class="params">(<span class="keyword">int</span> numberGumballs)</span> </span>&#123;</div><div class="line">		soldOutState = <span class="keyword">new</span> SoldOutState(<span class="keyword">this</span>);</div><div class="line">		noQuarterState = <span class="keyword">new</span> NoQuarterState(<span class="keyword">this</span>);</div><div class="line">		hasQuarterState = <span class="keyword">new</span> HasQuarterState(<span class="keyword">this</span>);</div><div class="line">		soldState = <span class="keyword">new</span> SoldState(<span class="keyword">this</span>);</div><div class="line">		winnerState = <span class="keyword">new</span> WinnerState(<span class="keyword">this</span>);</div><div class="line"></div><div class="line">		<span class="keyword">this</span>.count = numberGumballs;</div><div class="line"> 		<span class="keyword">if</span> (numberGumballs &gt; <span class="number">0</span>) &#123;</div><div class="line">			state = noQuarterState;</div><div class="line">		&#125; </div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertQuarter</span><span class="params">()</span> </span>&#123;</div><div class="line">		state.insertQuarter();</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ejectQuarter</span><span class="params">()</span> </span>&#123;</div><div class="line">		state.ejectQuarter();</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">turnCrank</span><span class="params">()</span> </span>&#123;</div><div class="line">		state.turnCrank();</div><div class="line">		state.dispense();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setState</span><span class="params">(State state)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.state = state;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">releaseBall</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"A gumball comes rolling out the slot..."</span>);</div><div class="line">		<span class="keyword">if</span> (count != <span class="number">0</span>) &#123;</div><div class="line">			count = count - <span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">int</span> <span class="title">getCount</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> count;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">refill</span><span class="params">(<span class="keyword">int</span> count)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.count = count;</div><div class="line">		state = noQuarterState;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> State <span class="title">getState</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> state;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> State <span class="title">getSoldOutState</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> soldOutState;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> State <span class="title">getNoQuarterState</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> noQuarterState;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> State <span class="title">getHasQuarterState</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> hasQuarterState;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> State <span class="title">getSoldState</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> soldState;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> State <span class="title">getWinnerState</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> winnerState;</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		StringBuffer result = <span class="keyword">new</span> StringBuffer();</div><div class="line">		result.append(<span class="string">"\nMighty Gumball, Inc."</span>);</div><div class="line">		result.append(<span class="string">"\nJava-enabled Standing Gumball Model #2004"</span>);</div><div class="line">		result.append(<span class="string">"\nInventory: "</span> + count + <span class="string">" gumball"</span>);</div><div class="line">		<span class="keyword">if</span> (count != <span class="number">1</span>) &#123;</div><div class="line">			result.append(<span class="string">"s"</span>);</div><div class="line">		&#125;</div><div class="line">		result.append(<span class="string">"\n"</span>);</div><div class="line">		result.append(<span class="string">"Machine is "</span> + state + <span class="string">"\n"</span>);</div><div class="line">		<span class="keyword">return</span> result.toString();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WinnerState</span> <span class="keyword">implements</span> <span class="title">State</span> </span>&#123;</div><div class="line">    GumballMachine gumballMachine;</div><div class="line"> </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">WinnerState</span><span class="params">(GumballMachine gumballMachine)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.gumballMachine = gumballMachine;</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertQuarter</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Please wait, we're already giving you a Gumball"</span>);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ejectQuarter</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Please wait, we're already giving you a Gumball"</span>);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">turnCrank</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Turning again doesn't get you another gumball!"</span>);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dispense</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"YOU'RE A WINNER! You get two gumballs for your quarter"</span>);</div><div class="line">		gumballMachine.releaseBall();</div><div class="line">		<span class="keyword">if</span> (gumballMachine.getCount() == <span class="number">0</span>) &#123;</div><div class="line">			gumballMachine.setState(gumballMachine.getSoldOutState());</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			gumballMachine.releaseBall();</div><div class="line">			<span class="keyword">if</span> (gumballMachine.getCount() &gt; <span class="number">0</span>) &#123;</div><div class="line">				gumballMachine.setState(gumballMachine.getNoQuarterState());</div><div class="line">			&#125; <span class="keyword">else</span> &#123;</div><div class="line">            	System.out.println(<span class="string">"Oops, out of gumballs!"</span>);</div><div class="line">				gumballMachine.setState(gumballMachine.getSoldOutState());</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="string">"despensing two gumballs for your quarter, because YOU'RE A WINNER!"</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> headfirst.state.gumballstatewinner;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GumballMachineTestDrive</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		GumballMachine gumballMachine = </div><div class="line">			<span class="keyword">new</span> GumballMachine(<span class="number">10</span>);</div><div class="line"></div><div class="line">		System.out.println(gumballMachine);</div><div class="line"></div><div class="line">		gumballMachine.insertQuarter();</div><div class="line">		gumballMachine.turnCrank();</div><div class="line">		gumballMachine.insertQuarter();</div><div class="line">		gumballMachine.turnCrank();</div><div class="line"></div><div class="line">		System.out.println(gumballMachine);</div><div class="line"></div><div class="line">		gumballMachine.insertQuarter();</div><div class="line">		gumballMachine.turnCrank();</div><div class="line">		gumballMachine.insertQuarter();</div><div class="line">		gumballMachine.turnCrank();</div><div class="line"></div><div class="line">		System.out.println(gumballMachine);</div><div class="line"></div><div class="line">		gumballMachine.insertQuarter();</div><div class="line">		gumballMachine.turnCrank();</div><div class="line">		gumballMachine.insertQuarter();</div><div class="line">		gumballMachine.turnCrank();</div><div class="line"></div><div class="line">		System.out.println(gumballMachine);</div><div class="line"></div><div class="line">		gumballMachine.insertQuarter();</div><div class="line">		gumballMachine.turnCrank();</div><div class="line">		gumballMachine.insertQuarter();</div><div class="line">		gumballMachine.turnCrank();</div><div class="line"></div><div class="line">		System.out.println(gumballMachine);</div><div class="line"></div><div class="line">		gumballMachine.insertQuarter();</div><div class="line">		gumballMachine.turnCrank();</div><div class="line">		gumballMachine.insertQuarter();</div><div class="line">		gumballMachine.turnCrank();</div><div class="line"></div><div class="line">		System.out.println(gumballMachine);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/04/17/Design Pattern_Iterator pattern/" itemprop="url">
                   Iterator pattern
                 </a>
@@ -362,132 +664,6 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Menu</span> <span class="keyword">extends</span> <span class="title">MenuComponent</span> </span>&#123;</div><div class="line">  	<span class="comment">// 其他部分不需要改动</span></div><div class="line">	<span class="function"><span class="keyword">public</span> Iterator <span class="title">createIterator</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> CompositeIterator(menuComponents.iterator());</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NullIterator</span> <span class="keyword">implements</span> <span class="title">Iterator</span> </span>&#123;</div><div class="line">   </div><div class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">next</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">	&#125;</div><div class="line">  </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">	&#125;</div><div class="line">   </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CompositeIterator</span> <span class="keyword">implements</span> <span class="title">Iterator</span> </span>&#123;</div><div class="line">	Stack stack = <span class="keyword">new</span> Stack();</div><div class="line">   </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">CompositeIterator</span><span class="params">(Iterator iterator)</span> </span>&#123;</div><div class="line">		stack.push(iterator);</div><div class="line">	&#125;</div><div class="line">   </div><div class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">next</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (hasNext()) &#123;</div><div class="line">			Iterator iterator = (Iterator) stack.peek();</div><div class="line">			MenuComponent component = (MenuComponent) iterator.next();</div><div class="line">			<span class="keyword">if</span> (component <span class="keyword">instanceof</span> Menu) &#123;</div><div class="line">				stack.push(component.createIterator());</div><div class="line">			&#125; </div><div class="line">			<span class="keyword">return</span> component;</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">  </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (stack.empty()) &#123;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			Iterator iterator = (Iterator) stack.peek();</div><div class="line">			<span class="keyword">if</span> (!iterator.hasNext()) &#123;</div><div class="line">				stack.pop();</div><div class="line">				<span class="keyword">return</span> hasNext();</div><div class="line">			&#125; <span class="keyword">else</span> &#123;</div><div class="line">				<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">   </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/03/21/DSA_最长公共子序列（LCS）问题/" itemprop="url">
-                  最长公共子序列（LCS）问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-03-21T00:00:00+09:00" content="2015-03-21">
-              2015-03-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/DSA/" itemprop="url" rel="index">
-                    <span itemprop="name">DSA</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/03/21/DSA_最长公共子序列（LCS）问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/03/21/DSA_最长公共子序列（LCS）问题/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="最长公共子序列（LCS）问题"><a href="#最长公共子序列（LCS）问题" class="headerlink" title="最长公共子序列（LCS）问题"></a><a href="http://songlee24.github.io/2014/11/27/dynamic-programming/" target="_blank" rel="external">最长公共子序列（LCS）问题</a></h1><p><a href="http://songlee24.github.io/2014/11/27/dynamic-programming/" target="_blank" rel="external">最长公共子序列（LCS）问题</a></p>
-<p>设 <code>[i,j] = |LCS(x[1...i],y[1...j])|</code>，即<code>C[i,j]</code>表示序列<code>X[1...i]</code>和<code>Y[1...j]</code>的最长公共子序列的长度，则<code>C[m,n] = |LCS(x,y)|</code>就是问题的解。</p>
-<p>递归推导式：</p>
-<p><img src="http://img.blog.csdn.net/20141127164356104?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGlzb25nbGlzb25nbGlzb25n/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
-<p>Rescursive solution</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 简单的递归求解LCS问题</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">return</span> (a&gt;b)? a:b;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Return the length of LCS for X[0...m-1] and Y[0...n-1]</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">lcs</span><span class="params">(<span class="built_in">string</span> &amp;X, <span class="built_in">string</span> &amp;Y, <span class="keyword">int</span> m, <span class="keyword">int</span> n)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">if</span> (m == <span class="number">0</span> || n == <span class="number">0</span>)</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	<span class="keyword">if</span> (X[m<span class="number">-1</span>] == Y[n<span class="number">-1</span>])</div><div class="line">		<span class="keyword">return</span> lcs(X, Y, m<span class="number">-1</span>, n<span class="number">-1</span>) + <span class="number">1</span>;</div><div class="line">	<span class="keyword">else</span></div><div class="line">		<span class="keyword">return</span> max(lcs(X, Y, m, n<span class="number">-1</span>), lcs(X, Y, m<span class="number">-1</span>, n));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="built_in">string</span> X = <span class="string">"ABCBDAB"</span>;</div><div class="line">	<span class="built_in">string</span> Y = <span class="string">"BDCABA"</span>;</div><div class="line"></div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"The length of LCS is "</span> &lt;&lt; lcs(X, Y, X.length(), Y.length());</div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line"></div><div class="line">	getchar();</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>DP solution</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 动态规划求解LCS问题</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">return</span> (a&gt;b)? a:b;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 返回X[0...m-1]和Y[0...n-1]的LCS的长度 </div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">lcs</span><span class="params">(<span class="built_in">string</span> &amp;X, <span class="built_in">string</span> &amp;Y, <span class="keyword">int</span> m, <span class="keyword">int</span> n)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="comment">// 动态规划表，大小(m+1)*(n+1)</span></div><div class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; table(m+<span class="number">1</span>,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(n+<span class="number">1</span>));  </div><div class="line"></div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;m+<span class="number">1</span>; ++i)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;n+<span class="number">1</span>; ++j)</div><div class="line">		&#123;</div><div class="line">			<span class="comment">// 第一行和第一列置0</span></div><div class="line">			<span class="keyword">if</span> (i == <span class="number">0</span> || j == <span class="number">0</span>)</div><div class="line">				table[i][j] = <span class="number">0</span>;</div><div class="line"></div><div class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(X[i<span class="number">-1</span>] == Y[j<span class="number">-1</span>])</div><div class="line">				table[i][j] = table[i<span class="number">-1</span>][j<span class="number">-1</span>] + <span class="number">1</span>;</div><div class="line"></div><div class="line">			<span class="keyword">else</span></div><div class="line">				table[i][j] = max(table[i<span class="number">-1</span>][j], table[i][j<span class="number">-1</span>]);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">return</span> table[m][n];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="built_in">string</span> X = <span class="string">"ABCBDAB"</span>;</div><div class="line">	<span class="built_in">string</span> Y = <span class="string">"BDCABA"</span>;</div><div class="line"></div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"The length of LCS is "</span> &lt;&lt; lcs(X, Y, X.length(), Y.length());</div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line"></div><div class="line">	getchar();</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           
         
       
@@ -681,8 +857,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/03/15/DSA_区间调度问题/" itemprop="url">
-                  区间调度问题详解
+                <a class="post-title-link" href="/2015/03/21/DSA_最长公共子序列（LCS）问题/" itemprop="url">
+                  最长公共子序列（LCS）问题
                 </a>
               
             
@@ -695,8 +871,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-03-15T00:00:00+09:00" content="2015-03-15">
-              2015-03-15
+            <time itemprop="dateCreated" datetime="2015-03-21T00:00:00+09:00" content="2015-03-21">
+              2015-03-21
             </time>
           </span>
 
@@ -725,8 +901,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/03/15/DSA_区间调度问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/03/15/DSA_区间调度问题/" itemprop="commentsCount"></span>
+                <a href="/2015/03/21/DSA_最长公共子序列（LCS）问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/03/21/DSA_最长公共子序列（LCS）问题/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -751,181 +927,14 @@
       
         
           
-            <h1 id="区间调度问题详解"><a href="#区间调度问题详解" class="headerlink" title="区间调度问题详解"></a><a href="http://blog.csdn.net/yutianzuijin/article/details/45116705" target="_blank" rel="external">区间调度问题详解</a></h1><p>这里是一个区间调度问题的总结学习，主要参考<a href="http://blog.csdn.net/yutianzuijin/article/details/45116705" target="_blank" rel="external">区间调度问题详解</a>，思路方面原文已经非常清晰，这里就不在赘述，请直接参考原文。</p>
-<h2 id="最多区间调度"><a href="#最多区间调度" class="headerlink" title="最多区间调度"></a>最多区间调度</h2><p>Greedy</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX_N=<span class="number">100000</span>;</div><div class="line"><span class="comment">//输入</span></div><div class="line"><span class="keyword">int</span> N,S[MAX_N],T[MAX_N];</div><div class="line"></div><div class="line"><span class="comment">//用于对工作排序的pair数组</span></div><div class="line">pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; itv[MAX_N];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="comment">//对pair进行的是字典序比较，为了让结束时间早的工作排在前面，把T存入first，//把S存入second</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)</div><div class="line">    &#123;</div><div class="line">	    itv[i].first=T[i];</div><div class="line">	    itv[i].second=S[i];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    sort(itv,itv+N);</div><div class="line"></div><div class="line">    <span class="comment">//t是最后所选工作的结束时间</span></div><div class="line">    <span class="keyword">int</span> ans=<span class="number">0</span>,t=<span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)</div><div class="line">    &#123;</div><div class="line">	    <span class="keyword">if</span>(t&lt;itv[i].second)<span class="comment">//判断区间是否重叠</span></div><div class="line">	    &#123;</div><div class="line">		    ans++;</div><div class="line">		    t=itv[i].first;</div><div class="line">	    &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(“%d\n”,ans);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>DP</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="comment">//1. 对所有的区间进行排序</span></div><div class="line">	sort_all_intervals();</div><div class="line"></div><div class="line">	<span class="comment">//2. 按照动态规划求最优解</span></div><div class="line">	dp[<span class="number">0</span>]=<span class="number">1</span>;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; intervals.size(); i++) </div><div class="line">       &#123;</div><div class="line">		<span class="comment">//1. 选择第i个区间</span></div><div class="line">		k=find_nonoverlap_pos();</div><div class="line">		<span class="keyword">if</span>(k&gt;=<span class="number">0</span>) dp[i]=dp[k]+<span class="number">1</span>;</div><div class="line">		<span class="comment">//2. 不选择第i个区间</span></div><div class="line">		dp[i]=max&#123;dp[i],dp[j]&#125;;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="最大区间调度"><a href="#最大区间调度" class="headerlink" title="最大区间调度"></a>最大区间调度</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getMaxWorkingTime</span><span class="params">(List&lt;Interval&gt; intervals)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span>(intervals==<span class="keyword">null</span> || intervals.size()==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">		Collections.sort(intervals, <span class="keyword">new</span> Comparator&lt;Interval&gt;() &#123;</div><div class="line">			<span class="meta">@Override</span></div><div class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Interval i1, Interval i2)</span> </span>&#123;</div><div class="line">				<span class="keyword">return</span> i1.getEndHour() != i2.getEndHour() ? i1.getEndHour() - i2.getEndHour() : i1.getEndMinute() - i2.getEndMinute();</div><div class="line">			&#125;</div><div class="line">		&#125;);</div><div class="line">		<span class="keyword">int</span>[] maxTimes = <span class="keyword">new</span> <span class="keyword">int</span>[intervals.size()];</div><div class="line">		<span class="keyword">int</span> max = Integer.MIN_VALUE;</div><div class="line">		</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;intervals.size(); i++) &#123;</div><div class="line">			Interval interval = intervals.get(i);</div><div class="line">			<span class="keyword">int</span> passMax = i&gt;<span class="number">0</span> ? maxTimes[i-<span class="number">1</span>] : <span class="number">0</span>;</div><div class="line">			<span class="keyword">int</span> takeMax = interval.getIntervalMinute();</div><div class="line">			<span class="keyword">int</span> lastIndex = binarySearchLastNorConflict(intervals, i-<span class="number">1</span>, interval.getBeginMinuteUnit());</div><div class="line">			takeMax += (lastIndex&gt;=<span class="number">0</span> ? maxTimes[lastIndex] : <span class="number">0</span>);</div><div class="line">			maxTimes[i] = Math.max(passMax, takeMax);</div><div class="line">			<span class="keyword">if</span>(maxTimes[i]&gt;max) max = maxTimes[i];</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> max;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">binarySearchLastNorConflict</span><span class="params">(List&lt;Interval&gt; intervals, <span class="keyword">int</span> right, <span class="keyword">int</span> time)</span> </span>&#123;</div><div class="line">		<span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">		<span class="keyword">while</span>(left&lt;=right) &#123;</div><div class="line">			<span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</div><div class="line">			<span class="keyword">if</span>(intervals.get(mid).getEndMinuteUnit()&lt;=time) left = mid + <span class="number">1</span>;</div><div class="line">			<span class="keyword">else</span> right = mid - <span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> right;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
-<h2 id="带权的区间调度"><a href="#带权的区间调度" class="headerlink" title="带权的区间调度"></a>带权的区间调度</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX_N=<span class="number">100000</span>;</div><div class="line"><span class="comment">//输入</span></div><div class="line"><span class="keyword">int</span> N,S[MAX_N],T[MAX_N];</div><div class="line"></div><div class="line"><span class="comment">//用于对工作排序的pair数组</span></div><div class="line">pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; itv[MAX_N];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="comment">//对pair进行的是字典序比较，为了让结束时间早的工作排在前面，把T存入first，//把S存入second</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)</div><div class="line">    &#123;</div><div class="line">	    itv[i].first=T[i];</div><div class="line">	    itv[i].second=S[i];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    sort(itv,itv+N);</div><div class="line"></div><div class="line">    dp[<span class="number">0</span>] = (itv[<span class="number">0</span>].first-itv[<span class="number">0</span>].second)*V[<span class="number">0</span>];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N; i++)</div><div class="line">    &#123;</div><div class="line">	    <span class="keyword">int</span> max;</div><div class="line"></div><div class="line">	    <span class="comment">//select the ith interval</span></div><div class="line">	    <span class="keyword">int</span> nonOverlap = lower_bound(itv, itv[i].second)<span class="number">-1</span>;</div><div class="line">	    <span class="keyword">if</span> (nonOverlap &gt;= <span class="number">0</span>)</div><div class="line">		    max = dp[nonOverlap] + (itv[i].first-itv[i].second)*V[i];</div><div class="line">	    <span class="keyword">else</span></div><div class="line">		    max = (itv[i].first-itv[i].second)*V[i];</div><div class="line"></div><div class="line">	    <span class="comment">//do not select the ith interval</span></div><div class="line">	    dp[i] = max&gt;dp[i<span class="number">-1</span>]?max:dp[i<span class="number">-1</span>];</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(“%d\n”,dp[N<span class="number">-1</span>]);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="最小区间覆盖"><a href="#最小区间覆盖" class="headerlink" title="最小区间覆盖"></a>最小区间覆盖</h2><p>将剩余的区间和新的左端点比较并选择右端点最大的区间，修改左端点，这时左端点就会变为end4，I4添加到最小覆盖区间中。依次处理剩余的区间，我们就获得了最优解</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX_N=<span class="number">100000</span>;</div><div class="line"><span class="comment">//输入</span></div><div class="line"><span class="keyword">int</span> N,S[MAX_N],T[MAX_N];</div><div class="line"></div><div class="line"><span class="comment">//用于对工作排序的pair数组</span></div><div class="line">pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; itv[MAX_N];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">solve</span><span class="params">(<span class="keyword">int</span> s,<span class="keyword">int</span> t)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)</div><div class="line">    &#123;</div><div class="line">	    itv[i].first=S[i];</div><div class="line">	    itv[i].second=T[i];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//按照开始时间排序</span></div><div class="line">    sort(itv,itv+N);</div><div class="line"></div><div class="line">    <span class="keyword">int</span> ans=<span class="number">0</span>,max_right=<span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; )</div><div class="line">    &#123;</div><div class="line">	    <span class="comment">//从开始时间在s左侧的区间中挑出最大的结束时间</span></div><div class="line">	    <span class="keyword">while</span>(itv[i].first&lt;=s)</div><div class="line">	    &#123;</div><div class="line">		    <span class="keyword">if</span>(max_right&lt;itv[i].end) max_right=itv[i].end;</div><div class="line">		    i++;</div><div class="line">	    &#125;	</div><div class="line"></div><div class="line">	    <span class="keyword">if</span>(max_right&gt;s) </div><div class="line">        &#123;</div><div class="line">             s=max_right;</div><div class="line">             ans++;</div><div class="line">            <span class="keyword">if</span>(s&gt;=t) <span class="keyword">return</span> ans;</div><div class="line">        &#125;</div><div class="line">	    <span class="keyword">else</span> <span class="comment">//如果分界线左侧的区间不能覆盖s，则不可能有区间组合覆盖给定范围</span></div><div class="line">	    &#123;</div><div class="line">                <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">	    &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="最大区间重叠（最少工人调度）"><a href="#最大区间重叠（最少工人调度）" class="headerlink" title="最大区间重叠（最少工人调度）"></a>最大区间重叠（最少工人调度）</h2><p>这里实际的代码是leetcode的minimal meeting room问题，但本质上就是最大区间重叠问题。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minMeetingRooms</span><span class="params">(Interval[] intervals)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(intervals == <span class="keyword">null</span> || intervals.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        Arrays.sort(intervals, <span class="keyword">new</span> Comparator&lt;Interval&gt;()&#123;</div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Interval i1, Interval i2)</span></span>&#123;</div><div class="line">                <span class="keyword">return</span> i1.start - i2.start;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        <span class="comment">// 用堆来管理房间的结束时间</span></div><div class="line">        PriorityQueue&lt;Integer&gt; endTimes = <span class="keyword">new</span> PriorityQueue&lt;Integer&gt;();</div><div class="line">        endTimes.offer(intervals[<span class="number">0</span>].end);</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; intervals.length; i++)&#123;</div><div class="line">            <span class="comment">// 如果当前时间段的开始时间大于最早结束的时间，则可以更新这个最早的结束时间为当前时间段的结束时间，如果小于的话，就加入一个新的结束时间，表示新的房间</span></div><div class="line">            <span class="keyword">if</span>(intervals[i].start &gt;= endTimes.peek())&#123;</div><div class="line">                endTimes.poll();</div><div class="line">            &#125;</div><div class="line">            endTimes.offer(intervals[i].end);</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 有多少结束时间就有多少房间</span></div><div class="line">        <span class="keyword">return</span> endTimes.size();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/03/10/Design Pattern_Adapter pattern/" itemprop="url">
-                  Adapter pattern
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-03-10T00:00:00+09:00" content="2015-03-10">
-              2015-03-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Design-Pattern/" itemprop="url" rel="index">
-                    <span itemprop="name">Design Pattern</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/03/10/Design Pattern_Adapter pattern/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/03/10/Design Pattern_Adapter pattern/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h1><p>适配器模式是个相当好理解的模式，可以参考生活中的电源适配器。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_1.png" alt="Design_pattern_adapter_1"></p>
-<p>假设已有一个软件系统，我们希望它能和一个新的厂商类库搭配使用，但是这个新厂商所设计的接口和旧厂商的接口不同。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_2.png" alt="Design_pattern_adapter_2"></p>
-<p>这时我们就可以写一个类，实现新厂商接口，但真正提供服务是被封装的旧厂商(反过来也可以，甚至是双向适配器)。外部客户只需要调用新厂商接口，而不需要直到内部是谁实现的。这个适配器相当于一个中间人，将客户锁发出的请求转成厂商类所能理解的请求。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_3.png" alt="Design_pattern_adapter_3"></p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_4.png" alt="Design_pattern_adapter_4"></p>
-<p>假设我们缺少鸭子对象，需要使用火鸡对象来冒充鸭子。我们可以这样做：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Duck</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quack</span><span class="params">()</span></span>;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MallardDuck</span> <span class="keyword">implements</span> <span class="title">Duck</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quack</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Quack"</span>);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"I'm flying"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Turkey</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gobble</span><span class="params">()</span></span>;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WildTurkey</span> <span class="keyword">implements</span> <span class="title">Turkey</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gobble</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Gobble gobble"</span>);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"I'm flying a short distance"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>写个适配器：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TurkeyAdapter</span> <span class="keyword">implements</span> <span class="title">Duck</span> </span>&#123;</div><div class="line">	Turkey turkey;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">TurkeyAdapter</span><span class="params">(Turkey turkey)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.turkey = turkey;</div><div class="line">	&#125;</div><div class="line">    </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quack</span><span class="params">()</span> </span>&#123;</div><div class="line">		turkey.gobble();</div><div class="line">	&#125;</div><div class="line">  </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</div><div class="line">			turkey.fly();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DuckTestDrive</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		MallardDuck duck = <span class="keyword">new</span> MallardDuck();</div><div class="line"> </div><div class="line">		WildTurkey turkey = <span class="keyword">new</span> WildTurkey();</div><div class="line">		Duck turkeyAdapter = <span class="keyword">new</span> TurkeyAdapter(turkey);</div><div class="line">   </div><div class="line">		System.out.println(<span class="string">"The Turkey says..."</span>);</div><div class="line">		turkey.gobble();</div><div class="line">		turkey.fly();</div><div class="line"> </div><div class="line">		System.out.println(<span class="string">"\nThe Duck says..."</span>);</div><div class="line">		testDuck(duck);</div><div class="line">  </div><div class="line">		System.out.println(<span class="string">"\nThe TurkeyAdapter says..."</span>);</div><div class="line">		testDuck(turkeyAdapter);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testDuck</span><span class="params">(Duck duck)</span> </span>&#123;</div><div class="line">		duck.quack();</div><div class="line">		duck.fly();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这里鸭子是目标接口，火鸡就是被适配者。</p>
-<p>客户使用适配器的过程如下：</p>
-<ul>
-<li>客户通过目标接口调用适配器的方法对适配器发出请求。</li>
-<li>适配器使用陪被适配者接口执行请求。</li>
-<li>客户收到调用的结果，但并未察觉这一切是适配器在起转换作用。</li>
-</ul>
-<p>同样的，我们也可以写一个适配器将鸭子转为火鸡。</p>
-<h2 id="定义适配器模式"><a href="#定义适配器模式" class="headerlink" title="定义适配器模式"></a>定义适配器模式</h2><p>适配器模式将一个类的接口，转换为客户期望的另一个接口。适配器让原本接口不兼容的类可以互相合作。</p>
-<p>同样适配器可以将改变的部分封装起来，被适配者接口改变时，客户端代码也不需要修改。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_5.png" alt="Design_pattern_adapter_5"></p>
-<h2 id="对象适配器和类适配器"><a href="#对象适配器和类适配器" class="headerlink" title="对象适配器和类适配器"></a>对象适配器和类适配器</h2><p>适配器主要有两类：对象适配器和类适配器。前面在鸭子的例子使用的是对象适配器。对象适配器使用的是组合，而类适配器使用的是继承(多继承)。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_6.png" alt="Design_pattern_adapter_6"></p>
-<h2 id="Java的枚举器"><a href="#Java的枚举器" class="headerlink" title="Java的枚举器"></a>Java的枚举器</h2><p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_7.png" alt="Design_pattern_adapter_7"></p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_8.png" alt="Design_pattern_adapter_8"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EnumerationIterator</span> <span class="keyword">implements</span> <span class="title">Iterator</span> </span>&#123;</div><div class="line">	Enumeration enumeration;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">EnumerationIterator</span><span class="params">(Enumeration enumeration)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.enumeration = enumeration;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> enumeration.hasMoreElements();</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">next</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> enumeration.nextElement();</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EnumerationIteratorTestDrive</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span> <span class="params">(String args[])</span> </span>&#123;</div><div class="line">		Vector v = <span class="keyword">new</span> Vector(Arrays.asList(args));</div><div class="line">		Iterator iterator = <span class="keyword">new</span> EnumerationIterator(v.elements());</div><div class="line">		<span class="keyword">while</span> (iterator.hasNext()) &#123;</div><div class="line">			System.out.println(iterator.next());</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>比较装饰器、适配器和外观：</p>
-<p>装饰者：不改变接口，但加入责任<br>适配器：将一个接口转成另一个接口<br>外观：让接口更简单</p>
-<h1 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h1><p>外观模式的意图是简化接口，而适配器的意图是将接口转换。使用外观模式，我们通过创建一个接口简化而统一的类，用来包装子系统中一个或多个复杂的类。</p>
-<p>外观模式提供了一个统一的接口，用来访问子系统中的一群接口。外观定义了一个高层接口，让子系统更容易使用。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_10.png" alt="Design_pattern_adapter_10"></p>
-<p>这也符合了OO的另一个设计原则：最少知识原则<br><strong>最少知识原则：只和你的密友谈话。</strong></p>
-<p>这个原则希望我们在设计中，不要让太多的类耦合在一起，免得修改系统中的一部分，会信息到更多的部分。我们需要尽量使类对其他类对象的依赖尽可能的少。除了上面的外观模式，另一个指导原则就是：就任何对象而言，在该对象的方法内，我们只应该调用属于一下范围的方法：</p>
-<ul>
-<li>该对象本身</li>
-<li>被当做方法的参数而传递进来的对象</li>
-<li>此方法所创建或实例化的任何对象</li>
-<li>对象的任何组件(组合方式的成员变量)</li>
-</ul>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_11.png" alt="Design_pattern_adapter_11"></p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_12.png" alt="Design_pattern_adapter_12"></p>
-
+            <h1 id="最长公共子序列（LCS）问题"><a href="#最长公共子序列（LCS）问题" class="headerlink" title="最长公共子序列（LCS）问题"></a><a href="http://songlee24.github.io/2014/11/27/dynamic-programming/" target="_blank" rel="external">最长公共子序列（LCS）问题</a></h1><p><a href="http://songlee24.github.io/2014/11/27/dynamic-programming/" target="_blank" rel="external">最长公共子序列（LCS）问题</a></p>
+<p>设 <code>[i,j] = |LCS(x[1...i],y[1...j])|</code>，即<code>C[i,j]</code>表示序列<code>X[1...i]</code>和<code>Y[1...j]</code>的最长公共子序列的长度，则<code>C[m,n] = |LCS(x,y)|</code>就是问题的解。</p>
+<p>递归推导式：</p>
+<p><img src="http://img.blog.csdn.net/20141127164356104?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGlzb25nbGlzb25nbGlzb25n/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>Rescursive solution</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 简单的递归求解LCS问题</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">return</span> (a&gt;b)? a:b;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Return the length of LCS for X[0...m-1] and Y[0...n-1]</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">lcs</span><span class="params">(<span class="built_in">string</span> &amp;X, <span class="built_in">string</span> &amp;Y, <span class="keyword">int</span> m, <span class="keyword">int</span> n)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">if</span> (m == <span class="number">0</span> || n == <span class="number">0</span>)</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	<span class="keyword">if</span> (X[m<span class="number">-1</span>] == Y[n<span class="number">-1</span>])</div><div class="line">		<span class="keyword">return</span> lcs(X, Y, m<span class="number">-1</span>, n<span class="number">-1</span>) + <span class="number">1</span>;</div><div class="line">	<span class="keyword">else</span></div><div class="line">		<span class="keyword">return</span> max(lcs(X, Y, m, n<span class="number">-1</span>), lcs(X, Y, m<span class="number">-1</span>, n));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="built_in">string</span> X = <span class="string">"ABCBDAB"</span>;</div><div class="line">	<span class="built_in">string</span> Y = <span class="string">"BDCABA"</span>;</div><div class="line"></div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"The length of LCS is "</span> &lt;&lt; lcs(X, Y, X.length(), Y.length());</div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line"></div><div class="line">	getchar();</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>DP solution</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 动态规划求解LCS问题</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">return</span> (a&gt;b)? a:b;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 返回X[0...m-1]和Y[0...n-1]的LCS的长度 </div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">lcs</span><span class="params">(<span class="built_in">string</span> &amp;X, <span class="built_in">string</span> &amp;Y, <span class="keyword">int</span> m, <span class="keyword">int</span> n)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="comment">// 动态规划表，大小(m+1)*(n+1)</span></div><div class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; table(m+<span class="number">1</span>,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(n+<span class="number">1</span>));  </div><div class="line"></div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;m+<span class="number">1</span>; ++i)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;n+<span class="number">1</span>; ++j)</div><div class="line">		&#123;</div><div class="line">			<span class="comment">// 第一行和第一列置0</span></div><div class="line">			<span class="keyword">if</span> (i == <span class="number">0</span> || j == <span class="number">0</span>)</div><div class="line">				table[i][j] = <span class="number">0</span>;</div><div class="line"></div><div class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(X[i<span class="number">-1</span>] == Y[j<span class="number">-1</span>])</div><div class="line">				table[i][j] = table[i<span class="number">-1</span>][j<span class="number">-1</span>] + <span class="number">1</span>;</div><div class="line"></div><div class="line">			<span class="keyword">else</span></div><div class="line">				table[i][j] = max(table[i<span class="number">-1</span>][j], table[i][j<span class="number">-1</span>]);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">return</span> table[m][n];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="built_in">string</span> X = <span class="string">"ABCBDAB"</span>;</div><div class="line">	<span class="built_in">string</span> Y = <span class="string">"BDCABA"</span>;</div><div class="line"></div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"The length of LCS is "</span> &lt;&lt; lcs(X, Y, X.length(), Y.length());</div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line"></div><div class="line">	getchar();</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           
         
       
@@ -957,7 +966,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/55/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/55/">55</a><span class="page-number current">56</span><a class="page-number" href="/page/57/">57</a><span class="space">&hellip;</span><a class="page-number" href="/page/65/">65</a><a class="extend next" rel="next" href="/page/57/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/55/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/55/">55</a><span class="page-number current">56</span><a class="page-number" href="/page/57/">57</a><span class="space">&hellip;</span><a class="page-number" href="/page/66/">66</a><a class="extend next" rel="next" href="/page/57/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -998,7 +1007,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">325</span>
+              <span class="site-state-item-count">327</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -1006,7 +1015,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分類</span>
               </a>
             </div>
@@ -1217,7 +1226,24 @@
       }
     });
   </script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
   

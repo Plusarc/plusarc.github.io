@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -118,7 +118,7 @@
   <link rel="canonical" href="http://yoursite.com/"/>
 
 
-  <title> Plusaber's Blog </title>
+  <title> Plusaber's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
@@ -126,7 +126,7 @@
   
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -434,6 +434,299 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/13/NLP_Statistical Machine Translation IBM Models 1 and 2/" itemprop="url">
+                  Statistical Machine Translation IBM Models 1 and 2
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-07-13T00:00:00+09:00" content="2016-07-13">
+              2016-07-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/NLP/" itemprop="url" rel="index">
+                    <span itemprop="name">NLP</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/13/NLP_Statistical Machine Translation IBM Models 1 and 2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/13/NLP_Statistical Machine Translation IBM Models 1 and 2/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>IBM model是统计机器翻译(statistical machine translation, SMT)非常经典的模型，虽然到现在已经非常古老了，但是其中的一些核心idea到现在还在被使用与翻译系统中，比如alignment模型。之前上京都大学的自然语言处理的课程时就有接触过，最近研究中有个子问题可能可以借鉴IBM model的一些idea，所以又IBM model翻出来重新看了一遍，这里做一个记录和总结，主要参考Columbia University由Michael Collins主讲的课程COMS W4705: Natural Language Processing的notes。</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>IBM model被提出时主要是用于解决翻译<code>French</code>到<code>English</code>。</p>
+<p>$f = f_1, f_2…f_m $表示一个French句子，长度为$m$，$f_i$ for $j \in {1…m}$ 表示句子中第$i$个词。</p>
+<p>同样的，定义$e = e_1, e_2…e_l$表示一个英语句子。</p>
+<p>在SMT系统中，假设我们有一个训练数据集，也就是一些翻译的例子，每个例子也就是French句子以及对应的翻译的English句子，$(f^{(k)}, e^{(k)})$，表示第<code>k</code>个翻译例子。</p>
+<span>$$\begin{aligned}
+f^{(k)} = f_{1}^{(k)}, f_{2}^{(k)}...f_{m_k}^{(k)} \\
+e^{(k)} = e_{1}^{(k)}, e_{2}^{(k)}...e_{l_k}^{(k)}
+\end{aligned}$$</span><!-- Has MathJax -->
+<h2 id="The-Nosiy-Channel-Approch-消息信道模型"><a href="#The-Nosiy-Channel-Approch-消息信道模型" class="headerlink" title="The Nosiy-Channel Approch(消息信道模型)"></a>The Nosiy-Channel Approch(消息信道模型)</h2><p>IBM model也是使用noisy-channel模型的一个例子，主要包括两个部分：</p>
+<ol>
+<li>A language model， 用于计算任何英语句子$e$存在的概率$p(e)$，比如我们可以用trigram language model来计算，或者最简单直接的unigram language model。一般language model可以通过大量的English corpus就能直接估计出来。</li>
+<li>A translation model，用于计算给定一个English句子$e$，对应的French句子是$f$的条件概率$p(f|e)$。这个概率的计算方法会在后面的内容介绍，一般是从给定的翻译例子的训练数据中估计出来。给定了English句子$e$后，$p(f|e)$主要由两个选择决定：first，the length of French sentence: $m$；second, a choice of the $m$ words $f_1…f_m$。</li>
+</ol>
+<p>这里可能会有很多觉得奇怪，任务不是给定法语句子，要翻译为英语句子嘛，为什么前面的translation model是先给定英语句子，其对应法语句子为$f$的概率。下面会给出解释：</p>
+<p>我们最直接的任务的表示是($E$表示所有的英语句子)：</p>
+<span>$$\begin{aligned}
+arg \max_{e\in E} p(e | f)
+\end{aligned}$$</span><!-- Has MathJax -->
+<p>通过贝叶斯规则我们可以转换问题为：</p>
+<span>$$\begin{aligned}
+arg \max_{e\in E} p(e|f) &amp;=  arg \max_{e\in E} \frac{p(e, f)}{p(f)}\\
+ &amp;= arg \max_{e\in E} \frac {p(e)p(f|e)}{\sum_{e} p(e)p(f|e)} \\ 
+ &amp;= arg \max_{e\in E} p(e)p(f|e)
+\end{aligned}$$</span><!-- Has MathJax -->
+<p>所以问题就转换为了求：</p>
+<span>$$\begin{aligned}
+e^{*} = arg \max_{e\in E} p(e)p(f|e)
+\end{aligned}$$</span><!-- Has MathJax -->
+<p>也就是前面定义的language model和translation model可以解决的问题。一个可能的翻译$e$的score分为两部分：first，the language-model score $p(e)$，给出一个先验概率用于估计这个句子是个合法的英语句子的概率。second，the translation-model score $p(f|e)$，也就是$f$是$e$的翻译的概率。</p>
+<p>之所以把原来的问题转换为求：$e^{*} = arg \max_{e\in E} p(e)p(f|e)$（也就是noisy-channel approach），主要的一个好处是可以引入language model。可以有效的改进翻译结果的fluency和语法的合法程度。</p>
+<p>只要解决了提到的两个model的参数估计，就可以得到问题的solution。language-model的score一般比较直接，通过分析大规模的English corpus生成的gram model就可以得到，比如trigram model，bigram model。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/13/NLP_Statistical Machine Translation IBM Models 1 and 2/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/07/09/Research_Topic Segmentation and alignment of multiple documents.mmd/" itemprop="url">
+                  Topic Segmentation and alignment of multiple documents
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-07-09T00:00:00+09:00" content="2016-07-09">
+              2016-07-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/research/" itemprop="url" rel="index">
+                    <span itemprop="name">research</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/09/Research_Topic Segmentation and alignment of multiple documents.mmd/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/09/Research_Topic Segmentation and alignment of multiple documents.mmd/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>对于网页文档进行更细粒度的分析可以有效改进检索的精度。一般来说一个文档都是有一个主题的，同时一篇文档中可能包含多个sub-topic，比如一篇关于分析日元汇率上升的文档中，可能包含近期日元的走势及分析，进一步可能包含英国脱欧的分析，对日本旅游业的影响，制造业的影响，与其他货币的比较等内容。尽管这篇文档整体主题是关于经济的，然是具体其中也包含了各个子话题。如果可以识别划分关于不同子话题的段落，可以有效的改进检索。同样的，多个文档可能包含这些子话题的段落，如果能将这些文档的段落中具有相同子话题的文档关联起来，可以进一步挖掘文档间的关系用于改进检索，因为有些用户只是关注文档中某一特定子话题的内容。</p>
+<p>这个任务就是identifying similar segments from multiple similar documents，一个直观的展示是：</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/topic_segment_alignment.png" alt=""></p>
+<p>论文Topic Segmentation with Shared Topic Detection and Alignment of Multiple Documents给出了一个基于Mutual information(MI)的解决方法，以及带有term weights的Weighted mutual information(WMI)的解决方案。</p>
+<p>问题可以定义为：</p>
+<p>terms集合 $T=\lbrace t_1, t_2, …, t_l\rbrace $<br>documents集合 $D=\lbrace d_1, d_2, …, d_n\rbrace $<br>文档 $d$ 的sentences $S_d=\lbrace s_1, s_2, …, s_m\rbrace$,其中$m$表示文档 $d$的sentences的个数。<br>Segments集合（准确的说是topic集合，这里的每个segment不是各个文档的片段，而是一个全局topic）$\widehat{S}=\lbrace \widehat{s_1}, \widehat{s_2}, …, \widehat{s_p}\rbrace $ ,也就是每个文档的$\widehat{s_1}$的topic都是相同的，尽管有些documents的$\widehat{s_1}$是空的，也就是不存在对应的sentence。也就是正如前面所说的，论文中这里指的segment其实就是topic（比较迷惑），而topic数目是要预定义的（尽管这个数字一般是没法确定，取一个大的数字是比较合适的，但是增加计算复杂度。）</p>
+<p>所要解决的问题就是对每个文档进行segmentation以及找出多个文档中各个segment的alignment：<br><span>$$\begin{aligned}
+Seg_d : \lbrace s_1, s_2, ..., s_{n_d}\rbrace  \to \lbrace \widehat{s_{d1}}, \widehat{s_{d2}}, ..., \widehat{s_{?}}\rbrace
+\end{aligned}$$</span><!-- Has MathJax --></p>
+<span>$\lbrace \widehat{s_{d1}}, \widehat{s_{d2}}, ..., \widehat{s_{?}}\rbrace$</span><!-- Has MathJax -->  表示这个文档的segmentation，其中每个$\widehat{s}$表示文档的片段。<br><br>以及各个文档的segmentation的alignment，也就是对于每个文档：<br><span>$$\begin{aligned}
+Ali_d=\lbrace \widehat{s_{d1}}, \widehat{s_{d2}}, ..., \widehat{s_{?}}\rbrace  \to \lbrace \widehat{s_1}, \widehat{s_2}, ..., \widehat{s_p}\rbrace
+\end{aligned}$$</span><!-- Has MathJax -->
+<p>(这里原文的表述和公式相当让人迷惑，所以做了调整)</p>
+<p>其基本假设本质上还是把sentence作为bag of words处理，并假设term和各个topic关联程度不同。比如toyota会和汽车topic关联比较紧密（也就是在关于汽车topic的段落中toyota出现可能性会比关于文学topic的段落中大，也就是topic-model的基本假设），以此定义了mutual inforamtion(MI)，其实就是clustering中MI的定义。<br><span>$$\begin{aligned}
+I(X;Y) = \sum_{x\in X}\sum_{y\in Y}p(x, y)log\frac{p(x,y)}{p(x)p(y)}
+\end{aligned}$$</span><!-- Has MathJax --></p>
+<p>对多个文档进行segmentation以及alignment的问题也就变成了如何划分每个文档以及alignment，使得最终的MI取得最大值，也就是MI就是这个问题的目标函数。具体在这问题中，MI也就是：<br><span>$$\begin{aligned}
+I(\widehat{T};\widehat{S}) = \sum_{\widehat{t}\in \widehat{T}}\sum_{\widehat{s}\in \widehat{S}}p(\widehat{t}, \widehat{s})log\frac{p(\widehat{t},\widehat{s})}{p(\widehat{t})p(\widehat{s})}
+\end{aligned}$$</span><!-- Has MathJax --></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/09/Research_Topic Segmentation and alignment of multiple documents.mmd/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/06/JobHunting_Summary/" itemprop="url">
                   Job hunting Summary
                 </a>
@@ -669,275 +962,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/02/01/System Design_大型网站伸缩性架构c6/" itemprop="url">
-                  System Design_大型网站伸缩性架构
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2016-02-01T00:00:00+09:00" content="2016-02-01">
-              2016-02-01
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/System-design/" itemprop="url" rel="index">
-                    <span itemprop="name">System design</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/02/01/System Design_大型网站伸缩性架构c6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/02/01/System Design_大型网站伸缩性架构c6/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="网站架构的伸缩性设计"><a href="#网站架构的伸缩性设计" class="headerlink" title="网站架构的伸缩性设计"></a>网站架构的伸缩性设计</h1><p>网站的伸缩性是指不需要改变网站的软硬件设计，仅仅通过增减部署的服务器数量就可以扩大或缩小网站的服务处理能力。这样就可以做到通过不断简单地向集群中添加服务器来增强整个集群的能力。</p>
-<p>一般说来，网站的伸缩性设计可分为两类，一类是根据功能进行物理分离是实现伸缩，一类是单一功能通过集群实现伸缩。前者是不同的服务器部署不同的服务，提供不同的功能；后者是集群内的多台服务器部署相同的服务，提供相同的功能。</p>
-<h2 id="不同功能进行物理分离实现伸缩"><a href="#不同功能进行物理分离实现伸缩" class="headerlink" title="不同功能进行物理分离实现伸缩"></a>不同功能进行物理分离实现伸缩</h2><p>使用新增的服务器处理某种特定服务，通过物理上分离不同的功能，实现网站伸缩。<br><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_1.png" alt="System_design_c6_1"></p>
-<p>具体又可分为如下两种情况：</p>
-<p>纵向分离（垂直分割）：将业务处理流程上的不同部分分离部署，实现系统伸缩性。<br><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_2.png" alt="System_design_c6_2"></p>
-<p>横向分离（功能分割）：将不同的业务模块分离部署，实现系统伸缩性。<br><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_3.png" alt="System_design_c6_3"></p>
-<h2 id="单一功能通过集群实现伸缩"><a href="#单一功能通过集群实现伸缩" class="headerlink" title="单一功能通过集群实现伸缩"></a>单一功能通过集群实现伸缩</h2><p>将不同功能分离部署可以实现一定程度的伸缩性，但是随着网站并发访问逐步增加，单一的功能独立部署在独立的服务器上也不能满足业务规模的要求。因此必须使用服务器集群，即将相同服务部署在多台服务器上构成一个集群整体对外提供服务。</p>
-<p>集群伸缩又具体可分为应用服务器集群伸缩性和数据服务器伸缩性，技术实现差别很大。而数据服务器集群也可分为缓存数据服务器集群和存储数据服务器集群，其伸缩性设计也很不一样。</p>
-<h1 id="应用服务器集群的伸缩性设计"><a href="#应用服务器集群的伸缩性设计" class="headerlink" title="应用服务器集群的伸缩性设计"></a>应用服务器集群的伸缩性设计</h1><p>在构建高可用的架构时曾提到，应用服务器应该设计成无状态的，即应用服务器不存储请求上下文信息，这样每次用户请求可以由任意一台服务器处理，而不会影响结果。</p>
-<p>如果HTTP请求分发装置可以感知或配置集群的服务器数量，及时发现集群中新上线或下线的服务器，并分发请求，就实现了应用服务器集群的伸缩性。</p>
-<p>这里，这个HTTP请求分发装置被称为负载均衡服务器。</p>
-<p>负载均衡是网站必不可少的基础技术手段，不但可以实现网站的伸缩性，同时还可改善网站的可用性，</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_4.png" alt="System_design_c6_4"></p>
-<h2 id="HTTP重定向负载均衡"><a href="#HTTP重定向负载均衡" class="headerlink" title="HTTP重定向负载均衡"></a>HTTP重定向负载均衡</h2><p>使用HTTP重定向协议实现负载均衡。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_5.png" alt="System_design_c6_5"></p>
-<p>HTTP重定向服务器是一台普通的应用服务器，功能是更具用户的HTTP请求计算一台真实的Web服务器地址，并使浏览器重定向到该服务器。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/02/01/System Design_大型网站伸缩性架构c6/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/20/Research_WordNet/" itemprop="url">
-                  WordNet
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2016-01-20T00:00:00+09:00" content="2016-01-20">
-              2016-01-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/research/" itemprop="url" rel="index">
-                    <span itemprop="name">research</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/20/Research_WordNet/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/20/Research_WordNet/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="WordNet的Synset"><a href="#WordNet的Synset" class="headerlink" title="WordNet的Synset"></a>WordNet的Synset</h3><p>WordNet是一个英语词汇库。名词、动词、形容词、副词以及词组以同义group的形式放在一起，称为synsets，也就是一个概念(concept)。下面是一个称为synsets的例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mileage</div><div class="line">fuel consumption rate</div><div class="line">gasoline mileage</div><div class="line">gas mileage</div></pre></td></tr></table></figure>
-<p>这就是一个synset，表示汽车的汽油里程数概念，同一个synset里的词可以看做是表达同一种意思，也就是同义词(synonym)。Synset也通过概念语义link连接在一起，使得整个Wordnet组成一个具有语义的网络。</p>
-<p>另外，WordNet中每一个synset包含一个简短的解释gloss，多个例子短句。</p>
-<p>需要注意的是，WordNet不是通过词的形式(string, letter)聚集在一起，而是根据词的语义意思。同样的，当一个词form具有多种不同含义时，该词form会出现在多个synset中。</p>
-<h3 id="WordNet中Synset之间关系"><a href="#WordNet中Synset之间关系" class="headerlink" title="WordNet中Synset之间关系"></a>WordNet中Synset之间关系</h3><p>synset之间最常见的关系是super-subordinate relation(上下级关系，也成为hyperonymy，hyponymy，ISA relation)，比如较抽象的synset之间的关系{furniture}, piece_of_furniture}，比较具体的synset之间的关系{bed},{bunkbed}，所有名词都有一个最上级{entity}。hyperonymy关系是具有传递性的。WordNet区分了不同目录的具体实例（实例为叶子节点），比如一般名词，人物，地点等。例如armchair是一种chair，Barack Obama是一个人名。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/20/Research_WordNet/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/65/">65</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/66/">66</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -978,7 +1007,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">325</span>
+              <span class="site-state-item-count">327</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -986,7 +1015,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分類</span>
               </a>
             </div>
@@ -1197,7 +1226,24 @@
       }
     });
   </script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
   

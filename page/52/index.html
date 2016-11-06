@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -118,7 +118,7 @@
   <link rel="canonical" href="http://yoursite.com/page/52/"/>
 
 
-  <title> Plusaber's Blog </title>
+  <title> Plusaber's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
@@ -126,7 +126,7 @@
   
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -260,8 +260,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/06/15/Leetcode_Plus One/" itemprop="url">
-                  Plus One
+                <a class="post-title-link" href="/2015/06/15/Leetcode_Balanced Binary Tree/" itemprop="url">
+                  Balanced Binary Tree
                 </a>
               
             
@@ -304,8 +304,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/06/15/Leetcode_Plus One/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/15/Leetcode_Plus One/" itemprop="commentsCount"></span>
+                <a href="/2015/06/15/Leetcode_Balanced Binary Tree/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/15/Leetcode_Balanced Binary Tree/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -330,12 +330,11 @@
       
         
           
-            <h1 id="Plus-One"><a href="#Plus-One" class="headerlink" title="Plus One"></a><a href="https://leetcode.com/problems/plus-one/" target="_blank" rel="external">Plus One</a></h1><blockquote>
-<p>Given a non-negative number represented as an array of digits, plus one to the number.</p>
-<p>The digits are stored such that the most significant digit is at the head of the list.</p>
+            <h1 id="Balanced-Binary-Tree"><a href="#Balanced-Binary-Tree" class="headerlink" title="Balanced Binary Tree"></a><a href="https://leetcode.com/submissions/detail/35757307/" target="_blank" rel="external">Balanced Binary Tree</a></h1><blockquote>
+<p>Given a binary tree, determine if it is height-balanced.</p>
+<p>For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of every node never differ by more than 1.</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>注意处理进位问题和最后长度可能增加一位的问题。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] plusOne(<span class="keyword">int</span>[] digits) &#123;</div><div class="line">        <span class="keyword">int</span> remain = <span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=digits.length-<span class="number">1</span>; i&gt;=<span class="number">0</span>; i--) &#123;</div><div class="line">            <span class="keyword">int</span> nr = (digits[i]+remain) / <span class="number">10</span>;</div><div class="line">            digits[i] = (digits[i]+remain) % <span class="number">10</span>;</div><div class="line">            remain = nr;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(remain==<span class="number">0</span>) <span class="keyword">return</span> digits;</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">int</span> [] res = <span class="keyword">new</span> <span class="keyword">int</span>[digits.length+<span class="number">1</span>];</div><div class="line">            res[<span class="number">0</span>] = remain;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;res.length; i++) res[i] = digits[i-<span class="number">1</span>];</div><div class="line">            <span class="keyword">return</span> res;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isBalanced</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> recBalanced(root) &gt;= <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">recBalanced</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> leftDepth = recBalanced(root.left);</div><div class="line">        <span class="keyword">if</span>(leftDepth&lt;<span class="number">0</span>) <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> rightDepth = recBalanced(root.right);</div><div class="line">        <span class="keyword">if</span>(rightDepth&lt;<span class="number">0</span>) <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(Math.abs(leftDepth - rightDepth)&gt;<span class="number">1</span>) <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span> + Math.max(leftDepth, rightDepth);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -509,8 +508,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/06/15/Leetcode_Balanced Binary Tree/" itemprop="url">
-                  Balanced Binary Tree
+                <a class="post-title-link" href="/2015/06/15/Leetcode_Count and Say/" itemprop="url">
+                  Count and Say
                 </a>
               
             
@@ -553,8 +552,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/06/15/Leetcode_Balanced Binary Tree/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/15/Leetcode_Balanced Binary Tree/" itemprop="commentsCount"></span>
+                <a href="/2015/06/15/Leetcode_Count and Say/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/15/Leetcode_Count and Say/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -579,11 +578,14 @@
       
         
           
-            <h1 id="Balanced-Binary-Tree"><a href="#Balanced-Binary-Tree" class="headerlink" title="Balanced Binary Tree"></a><a href="https://leetcode.com/submissions/detail/35757307/" target="_blank" rel="external">Balanced Binary Tree</a></h1><blockquote>
-<p>Given a binary tree, determine if it is height-balanced.</p>
-<p>For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of every node never differ by more than 1.</p>
+            <h1 id="Count-and-Say"><a href="#Count-and-Say" class="headerlink" title="Count and Say"></a><a href="https://leetcode.com/problems/count-and-say/" target="_blank" rel="external">Count and Say</a></h1><blockquote>
+<p>The count-and-say sequence is the sequence of integers beginning as follows:<br><code>1, 11, 21, 1211, 111221, ...</code></p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isBalanced</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> recBalanced(root) &gt;= <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">recBalanced</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> leftDepth = recBalanced(root.left);</div><div class="line">        <span class="keyword">if</span>(leftDepth&lt;<span class="number">0</span>) <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> rightDepth = recBalanced(root.right);</div><div class="line">        <span class="keyword">if</span>(rightDepth&lt;<span class="number">0</span>) <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(Math.abs(leftDepth - rightDepth)&gt;<span class="number">1</span>) <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span> + Math.max(leftDepth, rightDepth);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>1</code> is read off as <code>&quot;one 1&quot; or 11</code>.<br><code>11</code> is read off as <code>&quot;two 1s&quot; or 21</code>.<br><code>21</code> is read off as <code>&quot;one 2, then one 1&quot; or 1211</code>.<br>Given an integer n, generate the nth sequence.</p>
+<p>Note: The sequence of integers will be represented as a string.</p>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>注意题目题目意思，其参数<code>n</code>是指<code>第n个</code> <code>count and say number</code>。</p>
+<p>对于原数字，统计每个数字个数，并输出个数和这个数字。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">countAndSay</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    	<span class="keyword">if</span>(n&lt;=<span class="number">0</span>) <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">    	</div><div class="line">    	String snum = <span class="string">"1"</span>;</div><div class="line">    	</div><div class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>; i&lt;=n; i++) &#123;</div><div class="line">    		snum = OneCountAndSay(snum);</div><div class="line">    	&#125;</div><div class="line">    	</div><div class="line">    	<span class="keyword">return</span> snum;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">OneCountAndSay</span><span class="params">(String snum)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">        </div><div class="line">        StringBuffer result = <span class="keyword">new</span> StringBuffer();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;snum.length(); i++) &#123;</div><div class="line">            count ++;</div><div class="line">            <span class="keyword">if</span>(i==snum.length()-<span class="number">1</span> || snum.charAt(i)!=snum.charAt(i+<span class="number">1</span>)) &#123;</div><div class="line">                result.append(<span class="string">""</span>+count+snum.charAt(i));</div><div class="line">                count = <span class="number">0</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> result.toString();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -633,8 +635,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/06/15/Leetcode_Swap Nodes in Pairs/" itemprop="url">
-                  Swap Nodes in Pairs
+                <a class="post-title-link" href="/2015/06/15/Leetcode_Plus One/" itemprop="url">
+                  Plus One
                 </a>
               
             
@@ -677,8 +679,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/06/15/Leetcode_Swap Nodes in Pairs/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/15/Leetcode_Swap Nodes in Pairs/" itemprop="commentsCount"></span>
+                <a href="/2015/06/15/Leetcode_Plus One/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/15/Leetcode_Plus One/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -703,13 +705,12 @@
       
         
           
-            <h1 id="Swap-Nodes-in-Pairs"><a href="#Swap-Nodes-in-Pairs" class="headerlink" title="Swap Nodes in Pairs"></a><a href="">Swap Nodes in Pairs</a></h1><blockquote>
-<p>Given a linked list, swap every two adjacent nodes and return its head.</p>
-<p>For example,<br>Given 1-&gt;2-&gt;3-&gt;4, you should return the list as 2-&gt;1-&gt;4-&gt;3.</p>
-<p>Your algorithm should use only constant space. You may not modify the values in the list, only nodes itself can be changed.</p>
+            <h1 id="Plus-One"><a href="#Plus-One" class="headerlink" title="Plus One"></a><a href="https://leetcode.com/problems/plus-one/" target="_blank" rel="external">Plus One</a></h1><blockquote>
+<p>Given a non-negative number represented as an array of digits, plus one to the number.</p>
+<p>The digits are stored such that the most significant digit is at the head of the list.</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>设置pos记录当前node的位置，如果是偶数则将当前node指向前一个node，跳到下一个node。如果是奇数，一般来说是将其next设置为下下下个node，也就是下下个个偶数节点，因为两个相邻的两个对都要反转。同时要注意处理几种特殊情况，如果下一个node为空，则不做操作，因为当前节点无需做翻转，是最后一个node。如果下下个node为空，则将当前node的next设置为null，也就是其实翻转后，当前节点就是最后一个节点。如果下下下个node为空，则将当前node的next设置为下下个node，也就是下一个奇数节点。中间设置合适的变量记录这些关系。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">swapPairs</span><span class="params">(ListNode head)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span> || head.next==<span class="keyword">null</span>) <span class="keyword">return</span> head;</div><div class="line">        ListNode nextStart = head.next.next;</div><div class="line">        ListNode newHead = head.next;</div><div class="line">        head.next.next = head;</div><div class="line">        head.next = swapPairs(nextStart);</div><div class="line">        <span class="keyword">return</span> newHead;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>注意处理进位问题和最后长度可能增加一位的问题。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] plusOne(<span class="keyword">int</span>[] digits) &#123;</div><div class="line">        <span class="keyword">int</span> remain = <span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=digits.length-<span class="number">1</span>; i&gt;=<span class="number">0</span>; i--) &#123;</div><div class="line">            <span class="keyword">int</span> nr = (digits[i]+remain) / <span class="number">10</span>;</div><div class="line">            digits[i] = (digits[i]+remain) % <span class="number">10</span>;</div><div class="line">            remain = nr;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(remain==<span class="number">0</span>) <span class="keyword">return</span> digits;</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">int</span> [] res = <span class="keyword">new</span> <span class="keyword">int</span>[digits.length+<span class="number">1</span>];</div><div class="line">            res[<span class="number">0</span>] = remain;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;res.length; i++) res[i] = digits[i-<span class="number">1</span>];</div><div class="line">            <span class="keyword">return</span> res;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -759,8 +760,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/06/14/Leetcode_Minimum Depth of Binary Tree/" itemprop="url">
-                  Minimum Depth of Binary Tree
+                <a class="post-title-link" href="/2015/06/15/Leetcode_Two Sum/" itemprop="url">
+                  Leetcode_Two Sum
                 </a>
               
             
@@ -773,8 +774,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-06-14T00:00:00+09:00" content="2015-06-14">
-              2015-06-14
+            <time itemprop="dateCreated" datetime="2015-06-15T00:00:00+09:00" content="2015-06-15">
+              2015-06-15
             </time>
           </span>
 
@@ -803,8 +804,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/06/14/Leetcode_Minimum Depth of Binary Tree/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/14/Leetcode_Minimum Depth of Binary Tree/" itemprop="commentsCount"></span>
+                <a href="/2015/06/15/Leetcode_Two Sum/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/15/Leetcode_Two Sum/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -829,16 +830,30 @@
       
         
           
-            <h1 id="Minimum-Depth-of-Binary-Tree"><a href="#Minimum-Depth-of-Binary-Tree" class="headerlink" title="Minimum Depth of Binary Tree"></a><a href="https://leetcode.com/problems/minimum-depth-of-binary-tree/" target="_blank" rel="external">Minimum Depth of Binary Tree</a></h1><blockquote>
-<p>Given a binary tree, find its minimum depth.</p>
-<p>The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.</p>
+            <h1 id="Two-Sum"><a href="#Two-Sum" class="headerlink" title="Two Sum"></a><a href="https://leetcode.com/problems/two-sum/" target="_blank" rel="external">Two Sum</a></h1><blockquote>
+<p>Given an array of integers, find two numbers such that they add up to a specific target number.</p>
+<p>The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.</p>
+<p>You may assume that each input would have exactly one solution.</p>
+<p><strong>Input</strong>: numbers={2, 7, 11, 15}, target=9<br><strong>Output</strong>: index1=1, index2=2</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>递归处理，选择左右子树深度较小的一个结合当前节点返回。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><p>DFS method</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minDepth</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">if</span>(root.left==<span class="keyword">null</span> &amp;&amp; root.right==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> ld = root.left!=<span class="keyword">null</span> ? minDepth(root.left) : Integer.MAX_VALUE;</div><div class="line">        <span class="keyword">int</span> rd = root.right!=<span class="keyword">null</span> ? minDepth(root.right) : Integer.MAX_VALUE;</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span> + ((ld&lt;=rd) ? ld : rd); </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>BFS method</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minDepth</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        Queue&lt;TreeNode&gt; queue = <span class="keyword">new</span> LinkedList&lt;TreeNode&gt;();</div><div class="line">        queue.offer(root);</div><div class="line">        <span class="keyword">int</span> depth = <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> levelSize = <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(!queue.isEmpty()) &#123;</div><div class="line">            TreeNode node = queue.poll();</div><div class="line">            levelSize --;</div><div class="line">            <span class="keyword">if</span>(node.left==<span class="keyword">null</span> &amp;&amp; node.right==<span class="keyword">null</span>) <span class="keyword">return</span> depth;</div><div class="line">            <span class="keyword">if</span>(node.left!=<span class="keyword">null</span>) queue.offer(node.left);</div><div class="line">            <span class="keyword">if</span>(node.right!=<span class="keyword">null</span>) queue.offer(node.right);</div><div class="line">            <span class="keyword">if</span>(levelSize==<span class="number">0</span>) &#123;</div><div class="line">                depth ++;</div><div class="line">                levelSize = queue.size();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h3 id="Naive-method"><a href="#Naive-method" class="headerlink" title="Naive method"></a>Naive method</h3><p>暴力穷举法，选择第一个元素，依次选择与后面每个元素求和，看是否等于target，再选择第二个元素，依次选择与后面每个元素求和，直到找到solution。复杂度为O(n^2)</p>
+<blockquote>
+<p>loop1: a[0]+a[1]==target?  a[0]+a[2]==target? … a[0]+a[n-1]==target?<br>loop2: a[1]+a[2]==target? a[1]+a[3]==target? … a[1]+a[n-1]==target?<br>loop..</p>
+</blockquote>
+<h3 id="Two-pointer"><a href="#Two-pointer" class="headerlink" title="Two pointer"></a>Two pointer</h3><p>先对数组进行排序，然后设立左指针left指向第一个元素，右指针right指向最后一个元素。对左右指针元素求和：</p>
+<ul>
+<li>if sum==target，return solution</li>
+<li>if sum&lt;target，left++</li>
+<li>if sum&gt;target，right–</li>
+</ul>
+<p>直到right&lt;left, 则没有solution。复杂度O(n*log(n))。</p>
+<h3 id="HashMap-method"><a href="#HashMap-method" class="headerlink" title="HashMap method"></a>HashMap method</h3><p>把遍历过的元素及其下标都存入hashmap，对于当前遍历的元素ele，判断(target-ele)是否在hashmap，若存在，则返回solution，若不存在，则将(key=ele, value=pos)存入hashmap。</p>
+<p>使用空间换时间的策略，使用hashmap记录所有遍历过的元素，一次遍历。复杂度O(n)。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><p><strong>HashMap method</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</div><div class="line">        </div><div class="line">        HashMap&lt;Integer, Integer&gt; record = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nums.length; i++)&#123;</div><div class="line">            <span class="keyword">if</span>(record.containsKey(target-nums[i])) &#123;</div><div class="line">                <span class="keyword">int</span> [] index = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</div><div class="line">                index[<span class="number">0</span>] = record.get(target-nums[i]);</div><div class="line">                index[<span class="number">1</span>] = i;</div><div class="line">                <span class="keyword">return</span> index;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                record.put(nums[i], i);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Two-pointer-solution"><a href="#Two-pointer-solution" class="headerlink" title="Two pointer solution"></a>Two pointer solution</h3><p>这里解法并不是完整的，题目中要求的是解的index，而不是value，排序后index和value的原来关系已经变化，还需要加一个步骤记录原来index，value关系，或则扫描数组得到对应index。</p>
+<p>这一题solution 1有着明显的优势，所以这里没有给出完整的实现。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</div><div class="line">        <span class="keyword">int</span> [] res = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</div><div class="line">        Arrays.sort(nums, <span class="number">0</span>, nums.length);</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> right = nums.length - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(left&lt;right) &#123;</div><div class="line">            <span class="keyword">int</span> sum = nums[left] + nums[right];</div><div class="line">            <span class="keyword">if</span>(sum&lt;target) left ++;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(sum&gt;target) right --;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(sum==target) &#123;</div><div class="line">                res[<span class="number">0</span>] = nums[left];</div><div class="line">                res[<span class="number">1</span>] = nums[right];</div><div class="line">                <span class="keyword">return</span> res;</div><div class="line">            &#125; </div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           
         
       
@@ -870,7 +885,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/51/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/51/">51</a><span class="page-number current">52</span><a class="page-number" href="/page/53/">53</a><span class="space">&hellip;</span><a class="page-number" href="/page/65/">65</a><a class="extend next" rel="next" href="/page/53/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/51/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/51/">51</a><span class="page-number current">52</span><a class="page-number" href="/page/53/">53</a><span class="space">&hellip;</span><a class="page-number" href="/page/66/">66</a><a class="extend next" rel="next" href="/page/53/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -911,7 +926,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">325</span>
+              <span class="site-state-item-count">327</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -919,7 +934,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分類</span>
               </a>
             </div>
@@ -1130,7 +1145,24 @@
       }
     });
   </script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
   

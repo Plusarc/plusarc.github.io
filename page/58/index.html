@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -118,7 +118,7 @@
   <link rel="canonical" href="http://yoursite.com/page/58/"/>
 
 
-  <title> Plusaber's Blog </title>
+  <title> Plusaber's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
@@ -126,7 +126,7 @@
   
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -238,6 +238,266 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/02/09/Java_awt的review/" itemprop="url">
+                  Java awt的review以及netbean打包jar包
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-02-09T00:00:00+09:00" content="2015-02-09">
+              2015-02-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/02/09/Java_awt的review/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/02/09/Java_awt的review/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>好久没做java界面开发，几乎全忘了。。最近帮同学开发一个简单的用于通过按键计算时间的程序，重新回顾了一下java awt和swing，这里记录遇到的两个问题。</p>
+<ol>
+<li>key press事件在key被push后会一直发生，被监听组件收到，而不是按下去时的一个事件。一直push的过程中，大概几毫秒到几百毫秒间会触发一个keypressed事件。</li>
+<li>获得focus的组件才会得到事件的通知，一般为上一个有action的能获得focus的组件。可以通过binding绑定到其他组件上，这样就可以获得其他组件收到的事件通知。</li>
+</ol>
+<p>另外是关于netbean打包jar包的问题，记录如下：</p>
+<ol>
+<li>Click on Properties</li>
+<li>Click on Compress JAR File</li>
+<li>Accept changes, click ok</li>
+<li>Click the button in the ribbon tab with the hammer/broom. (clean and build project)</li>
+<li>Go to the directory where your project is stored</li>
+<li>Look in the dist folder</li>
+</ol>
+<p>参考<a href="http://stackoverflow.com/questions/9681876/how-to-create-a-jar-file-in-netbeans" target="_blank" rel="external">How to create a Jar file in Netbeans.</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/02/06/Java_Maven, Ant在Mac的配置/" itemprop="url">
+                  Maven, Ant在Mac的配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-02-06T00:00:00+09:00" content="2015-02-06">
+              2015-02-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/02/06/Java_Maven, Ant在Mac的配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/02/06/Java_Maven, Ant在Mac的配置/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>下载Ant和Maven。</li>
+<li>解压包到<code>/urs/local</code>下（任何目录都可以，选择自己需要的路径）</li>
+<li>对于Ant，需要设置<code>ANT_HOME</code>环境变量指向前面解压的Ant包的bin目录，并加入系统<code>PATH</code>中。对于Maven，需要配置<code>M2_HOME</code>（Maven 2后使用的路径），<code>MAVEN_HOME</code>（部分旧的项目可能使用），都设置为指向前面解压的Maven包的bin目录。配置完成，可以使用<code>which ant</code>, <code>which mvn</code>查看安装的路径是否正确。</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ANT_HOME=/usr/<span class="built_in">local</span>/apache-ant-1.9.6</div><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$ANT_HOME</span>/bin:<span class="variable">$PATH</span></div><div class="line"></div><div class="line">M2_HOME=/usr/<span class="built_in">local</span>/apache-maven-3.3.9</div><div class="line">MAVEN_HOME=/usr/<span class="built_in">local</span>/apache-maven-3.3.9</div><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$M2_HOME</span>/bin:<span class="variable">$PATH</span></div></pre></td></tr></table></figure>
+<p>关于配置环境变量的方法，可以参考<a href="http://plusaber.net/2014/07/02/Developing_Linux环境变量配置/" target="_blank" rel="external">Linux环境变量配置</a>.</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -720,411 +980,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/02/02/Java_时间格式化/" itemprop="url">
-                  Java中的时间格式化
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-02-02T00:00:00+09:00" content="2015-02-02">
-              2015-02-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/02/02/Java_时间格式化/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/02/02/Java_时间格式化/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Java中的时间格式化"><a href="#Java中的时间格式化" class="headerlink" title="Java中的时间格式化"></a>Java中的时间格式化</h1><p>通过java.util.Date我们可以简单的获取当前时间：<br><code>Data date = new Date()</code><br>通过Data对象我们可以获取很多关于目前时间的信息和操作方法，其中<code>getTime()</code>方法可以获得当前时间的毫秒数，与<code>System.currentTimeMills()</code>方法相同。</p>
-<p>Date类提供的一些方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">after</span><span class="params">(Date date)</span></span></div><div class="line"><span class="keyword">boolean</span> <span class="title">before</span><span class="params">(Date date)</span></div><div class="line"><span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Date date)</span> <span class="comment">// equal-0, before-minus</span></div><div class="line"><span class="keyword">long</span> <span class="title">getTime</span><span class="params">()</span></div></pre></td></tr></table></figure>
-<p>很多时候我们需要将时间以某种特定格式输出或使用，这是我们可以使用<code>java.text.SimpleDateFormat</code>类。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd-HH:mm:ss.SSS"</span>);</div><div class="line">String currentTime = sdf.format(<span class="keyword">new</span> Date());</div></pre></td></tr></table></figure>
-<p>其中yyyy等对应着时间里的元素，具体如下：</p>
-<table>
-<thead>
-<tr>
-<th>letter</th>
-<th>meaning</th>
-<th>text</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>G</td>
-<td>Era designator</td>
-<td>Text</td>
-</tr>
-<tr>
-<td>y</td>
-<td>Year</td>
-<td>Year</td>
-</tr>
-<tr>
-<td>M</td>
-<td>Month in year</td>
-<td>Month</td>
-</tr>
-<tr>
-<td>w</td>
-<td>Week in year</td>
-<td>Number</td>
-</tr>
-<tr>
-<td>W</td>
-<td>Week in month</td>
-<td>Number</td>
-</tr>
-<tr>
-<td>D</td>
-<td>Day in year</td>
-<td>Number</td>
-</tr>
-<tr>
-<td>d</td>
-<td>Day in month</td>
-<td>Number</td>
-</tr>
-<tr>
-<td>F</td>
-<td>Day of week in month</td>
-<td>Number</td>
-</tr>
-<tr>
-<td>E</td>
-<td>Day in week</td>
-<td>Text</td>
-</tr>
-<tr>
-<td>a</td>
-<td>Am/pm marker</td>
-<td>Text</td>
-</tr>
-<tr>
-<td>H</td>
-<td>Hour in day (0-23)</td>
-<td>Number</td>
-</tr>
-<tr>
-<td>k</td>
-<td>Hour in day (1-24)</td>
-<td>Number</td>
-</tr>
-<tr>
-<td>K</td>
-<td>Hour in am/pm (0-11)</td>
-<td>Number</td>
-</tr>
-<tr>
-<td>h</td>
-<td>Hour in am/pm (1-12)</td>
-<td>Number</td>
-</tr>
-<tr>
-<td>m</td>
-<td>Minute in hour</td>
-<td>Number</td>
-</tr>
-<tr>
-<td>s</td>
-<td>Second in minute</td>
-<td>Number</td>
-</tr>
-<tr>
-<td>S</td>
-<td>Millisecond</td>
-<td>Number</td>
-</tr>
-<tr>
-<td>z</td>
-<td>Time zone</td>
-<td>General time zone</td>
-</tr>
-<tr>
-<td>Z</td>
-<td>Time zone</td>
-<td>RFC 822 time zone</td>
-</tr>
-</tbody>
-</table>
-<p>SimpleDateFormat除了可以将Date时间格式化，还提供parse()方法将字符串解析为Date。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat (<span class="string">"yyyy-MM-dd:hh:mm"</span>);</div><div class="line">String time = <span class="string">"2015-02-02:08:23"</span>;</div><div class="line">Date date = sdf.parse(time);</div></pre></td></tr></table></figure>
-<p>另外如果需要设置时间等操作，可以使用Calendar类，这里不再进行扩展。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/01/17/Refactoring_Some principles/" itemprop="url">
-                  Some principles
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-01-17T00:00:00+09:00" content="2015-01-17">
-              2015-01-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Refactoring/" itemprop="url" rel="index">
-                    <span itemprop="name">Refactoring</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/01/17/Refactoring_Some principles/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/01/17/Refactoring_Some principles/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>参考《重构–改善既有代码的设计》(《Refactoring–Improving the Design of Existing Code》).</p>
-<h1 id="重构-Refactoring"><a href="#重构-Refactoring" class="headerlink" title="重构(Refactoring)"></a>重构(Refactoring)</h1><p>所谓重构是这样一个过程：在不改变代码外在行为的前提下，对代码做出修改，以改进程序的内部结构。本质上说，重构就是在代码写好之后改进它的设计。</p>
-<p>『在代码写好后改进它的设计』，似乎不是合理的方式，按照目前对软件开发的理解，我们要相信先设计再编码。但是在开始是很难完全预测后面可能会出现的变更，在设计前期使用模式常常导致过度工程(over-engineering)，随着时间流逝，人们不断修改代码，则会导致系统原来的设计不可避免的混乱。</p>
-<p>重构则与此相反。即使目前是一堆混乱的代码，我们也可以借由重构将其加工成设计良好的代码。<strong>重构的目的是使软件更容易被理解和修改。</strong></p>
-<p>重构定义：</p>
-<ul>
-<li>名词：对软件内部结构的一种调整，目的是在不改变软件可观察行为的前提下，提高其可理解性，降低其修改成本。</li>
-<li>动词：使用一系列重构手法，在不改变软件可观察行为的前提下，调整其结构。</li>
-</ul>
-<p>使用重构技术开发软件时，你应该把时间分配给两种截然不同的行为：添加新功能，以及重构。添加新功能时，你不应该修改既有代码，只管添加新功能，通过测试。重构时就不能同时添加新功能。</p>
-<h1 id="Why-refactoring"><a href="#Why-refactoring" class="headerlink" title="Why refactoring"></a>Why refactoring</h1><ul>
-<li><p>重构改进软件设计<br>如果没有重构，程序的设计会逐渐腐败变质。</p>
-</li>
-<li><p>重构是代码更容易理解<br>所谓程序设计，很大程度上就是与计算机交谈。很多时候我们需要补上或修改想要它做什么。而这种编程模式的核心就是『准确说出我想要的』，让代码更易读。</p>
-</li>
-<li><p>重构帮助找到bug</p>
-</li>
-<li>重构提高编程速度</li>
-</ul>
-<p>系统当下的行为，只是故事的一部分。如果只是为今天工作，明天可能无法继续下去。重构是一条摆脱困境的道路。</p>
-<p>下面的程序将会使改动困难重重，导致代码僵化并死亡：</p>
-<ul>
-<li>难以阅读的程序，难以修改</li>
-<li>逻辑重复的程序，难以修改</li>
-<li>添加新行为时需要修改已有代码的程序，难以修改</li>
-<li>带复杂条件逻辑的程序，难以修改</li>
-</ul>
-<p>我们希望程序：（1）容易阅读  （2）所有逻辑都只在唯一的位置指定，没有重复  （3）新的改动不会危及现有行为   （4）尽可能简单表达条件逻辑、</p>
-<p>重构可以帮助我们在不改变程序行为的前期下使其具有上述美好性质，使我们更能够继续保持高速开发。</p>
-<h1 id="When-refactoring"><a href="#When-refactoring" class="headerlink" title="When refactoring"></a>When refactoring</h1><p>第一次做某件事尽管去做；第二次做类似的事如果产生反感，但还是可以去做；第三次再做类似的事，你就应该重构，</p>
-<ul>
-<li><p>添加功能时重构<br>如果不能轻松天骄所需要的新功能</p>
-</li>
-<li><p>修补错误时重构<br>如果难以找出程序的bug。</p>
-</li>
-<li><p>复审代码时重构</p>
-</li>
-</ul>
-<h1 id="Refactoring-and-Design"><a href="#Refactoring-and-Design" class="headerlink" title="Refactoring and Design"></a>Refactoring and Design</h1><p>重构肩负一项特殊使命：它和设计彼此互补。如果没有重构，你就必须保证预先做出的设计正确无误，但这个难度太大了，过度的预先设计往往反而会导致程序的难以编写。如果选择重构，问题的重点就转变了。你仍然可以预先设计，但是不必找到正确的解决方案（事实上也是不可能的），而是一个足够合理的解决方案就够了。</p>
-<p>预先设计往往要预测后面可能的变化，力求得到灵活的解决方案。但是很难预测所有的变化，变化其实可能出现系统各处，如果在所有可能出现变化的地方都建立起灵活性，则往往需要建立许多中间层，反而使系统复杂且难以理解和维护。如果最后发现所有这些灵活性其实毫无必要，才是最大的失败。</p>
-<p>重构可以带来更简单的设计，同时不损失灵活性，这也降低了设计过程的难度，减轻设计压力。</p>
-<h1 id="Some-pricinples"><a href="#Some-pricinples" class="headerlink" title="Some pricinples:"></a>Some pricinples:</h1><ul>
-<li>如果你发现自己需要为程序添加一个特性，而代码结构使你无法很方便地达成目的，那就先重构哪个程序，是特性的添加比较容易进行，然后在添加特性。</li>
-<li>重构的第一步：建立一组可靠的测试机制，这些测试必须有自我校验能力。</li>
-<li>好的代码应该清楚表达出自己的功能，变量名称是代码清晰的关键。</li>
-<li>尽量不要使用临时变量，它们会导致大量参数传来传去，难以追踪，导致冗长的函数。</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/57/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/57/">57</a><span class="page-number current">58</span><a class="page-number" href="/page/59/">59</a><span class="space">&hellip;</span><a class="page-number" href="/page/65/">65</a><a class="extend next" rel="next" href="/page/59/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/57/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/57/">57</a><span class="page-number current">58</span><a class="page-number" href="/page/59/">59</a><span class="space">&hellip;</span><a class="page-number" href="/page/66/">66</a><a class="extend next" rel="next" href="/page/59/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1165,7 +1025,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">325</span>
+              <span class="site-state-item-count">327</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -1173,7 +1033,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分類</span>
               </a>
             </div>
@@ -1384,7 +1244,24 @@
       }
     });
   </script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
   

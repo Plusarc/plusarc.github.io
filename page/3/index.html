@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -118,7 +118,7 @@
   <link rel="canonical" href="http://yoursite.com/page/3/"/>
 
 
-  <title> Plusaber's Blog </title>
+  <title> Plusaber's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
@@ -126,7 +126,7 @@
   
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -238,6 +238,272 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/09/Leetcode_Serialize and Deserialize Binary Tree/" itemprop="url">
+                  Serialize and Deserialize Binary Tree
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-01-09T00:00:00+09:00" content="2016-01-09">
+              2016-01-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/09/Leetcode_Serialize and Deserialize Binary Tree/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/09/Leetcode_Serialize and Deserialize Binary Tree/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Serialize-and-Deserialize-Binary-Tree"><a href="#Serialize-and-Deserialize-Binary-Tree" class="headerlink" title="Serialize and Deserialize Binary Tree"></a><a href="https://leetcode.com/problems/serialize-and-deserialize-binary-tree/" target="_blank" rel="external">Serialize and Deserialize Binary Tree</a></h1><blockquote>
+<p>Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.</p>
+<p>Design an algorithm to serialize and deserialize a binary tree. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that a binary tree can be serialized to a string and this string can be deserialized to the original tree structure.</p>
+<p>For example, you may serialize the following tree</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">  1</div><div class="line"> / \</div><div class="line">2   3</div><div class="line">   / \</div><div class="line">  4   5</div></pre></td></tr></table></figure>
+<blockquote>
+<p>as <code>&quot;[1,2,3,null,null,4,5]&quot;</code>, just the same as how LeetCode OJ serializes a binary tree. You do not necessarily need to follow this format, so please be creative and come up with different approaches yourself.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>前序遍历，把所有空节点当做“#”来标示。空节点无需再展开。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">    1</div><div class="line">   / \</div><div class="line">  2   3</div><div class="line"> / \  / \</div><div class="line">#  # 4    5</div><div class="line">    / \  / \</div><div class="line">    #  # #  #</div></pre></td></tr></table></figure>
+<p>程序中需要记录当前数组中移动到的位置，由于java本质上都是传值，并没有c++中的传指针和传引用，使用int是无法保持记录，而所有的wrapper都是immutation的，包括Integer。所以这里在程序中新建立一个包装类。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"> </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Position</span> </span>&#123;</div><div class="line">     <span class="keyword">int</span> pos;</div><div class="line">     <span class="function"><span class="keyword">public</span> <span class="title">Position</span><span class="params">(<span class="keyword">int</span> pos)</span> </span>&#123;</div><div class="line">         <span class="keyword">this</span>.pos = pos;</div><div class="line">     &#125;</div><div class="line"> &#125;</div><div class="line"> </div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Codec</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// Encodes a tree to a single string.</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">serialize</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">        StringBuffer sb = <span class="keyword">new</span> StringBuffer();</div><div class="line">        serialize(root, sb);</div><div class="line">        <span class="keyword">return</span> sb.toString().substring(<span class="number">1</span>, sb.length());</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">serialize</span><span class="params">(TreeNode root, StringBuffer sb)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>) sb.append(<span class="string">","</span> + <span class="string">"#"</span>);</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            sb.append(<span class="string">","</span> + root.val);</div><div class="line">            serialize(root.left, sb);</div><div class="line">            serialize(root.right, sb);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Decodes your encoded data to tree.</span></div><div class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">deserialize</span><span class="params">(String data)</span> </span>&#123;</div><div class="line">        String[] nodes = data.split(<span class="string">","</span>);</div><div class="line">        <span class="keyword">return</span> deserialize(nodes, <span class="keyword">new</span> Position(<span class="number">0</span>));</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> TreeNode <span class="title">deserialize</span><span class="params">(String[] nodes, Position position)</span> </span>&#123;</div><div class="line">        TreeNode node = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">if</span>(!nodes[position.pos].equals(<span class="string">"#"</span>)) &#123;</div><div class="line">            node = <span class="keyword">new</span> TreeNode(Integer.parseInt(nodes[position.pos]));</div><div class="line">            position.pos ++;</div><div class="line">            node.left = deserialize(nodes, position);</div><div class="line">            position.pos ++;</div><div class="line">            node.right = deserialize(nodes, position);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> node;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/05/Developing_Elastic Search(1)配置/" itemprop="url">
+                  Elasticsearch配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-01-05T00:00:00+09:00" content="2016-01-05">
+              2016-01-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Developing/" itemprop="url" rel="index">
+                    <span itemprop="name">Developing</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/05/Developing_Elastic Search(1)配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/05/Developing_Elastic Search(1)配置/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Elasticsearch配置"><a href="#Elasticsearch配置" class="headerlink" title="Elasticsearch配置"></a>Elasticsearch配置</h1><p>Elasticsearch是一个实时分布式搜索和分析引擎，基于REST，我们可以使用Elasticsearch快速的实现全文搜索、结构化搜索、分析。和Apache Solr一样，Elastic Search同样使用Apache Lucene作为核心实现索引和检索功能。</p>
+<p>这里首先介绍Elasticsearch的安装。由于Elasticsearch仍处于快速发展阶段，所以每个版本的安装方式可能会有不同。这里使用的Elasticsearch版本是2.1.1，Elasticsearch无需安装，只需要直接下载解压，然后运行bin/elasticsearch即可启动Elasticsearch，并默认在9200端口提供RESTful服务。</p>
+<ol>
+<li>下载<a href="https://www.elastic.co/downloads/elasticsearch" target="_blank" rel="external">Elastisearch</a></li>
+<li>解压，<code>tar -zxvf 文件</code>。</li>
+<li>运行<code>bin/elasticsearch</code>。</li>
+</ol>
+<p><code>curl &#39;http://localhost:9200/?pretty&#39;</code>，我们会得到：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"name"</span> : <span class="string">"Namorita"</span>,</div><div class="line">  <span class="attr">"cluster_name"</span> : <span class="string">"elasticsearch"</span>,</div><div class="line">  <span class="attr">"version"</span> : &#123;</div><div class="line">    <span class="attr">"number"</span> : <span class="string">"2.1.1"</span>,</div><div class="line">    <span class="attr">"build_hash"</span> : <span class="string">"40e2c53a6b6c2972b3d13846e450e66f4375bd71"</span>,</div><div class="line">    <span class="attr">"build_timestamp"</span> : <span class="string">"2015-12-15T13:05:55Z"</span>,</div><div class="line">    <span class="attr">"build_snapshot"</span> : <span class="literal">false</span>,</div><div class="line">    <span class="attr">"lucene_version"</span> : <span class="string">"5.3.1"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">"tagline"</span> : <span class="string">"You Know, for Search"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>另外一个常用的工具是<a href="https://www.elastic.co/downloads/marvel" target="_blank" rel="external">Marvel</a>，Elasticsearch的管理和监控工具，目前的最新的版本是2.1，目前版本似乎是要结合数据可视化工具Kibana运行。下面是完整的步骤：</p>
+<p>Step 1: 在Elasticsearch安装Marvel：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">bin/plugin install license</div><div class="line">bin/plugin install marvel-agent</div></pre></td></tr></table></figure>
+<p>Step 2: 下载<a href="https://www.elastic.co/downloads/kibana" target="_blank" rel="external">Kibana</a>并解压。<br>Step 3: 在Kibana中安装Marvel，<code>bin/kibana plugin --install elasticsearch/marvel/latest</code><br>Step 4: 启动Elasticsearch 和 Kibana</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">bin/elasticsearch</div><div class="line">bin/kibana</div></pre></td></tr></table></figure>
+<p>Step 5: 访问<code>http://localhost:5601/app/marvel</code>查看运行的Elasticsearch服务。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -635,274 +901,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/27/Leetcode_Remove Duplicate Letters/" itemprop="url">
-                  Remove Duplicate Letters
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-12-27T00:00:00+09:00" content="2015-12-27">
-              2015-12-27
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/12/27/Leetcode_Remove Duplicate Letters/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/12/27/Leetcode_Remove Duplicate Letters/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Remove-Duplicate-Letters"><a href="#Remove-Duplicate-Letters" class="headerlink" title="Remove Duplicate Letters"></a><a href="https://leetcode.com/problems/remove-duplicate-letters/" target="_blank" rel="external">Remove Duplicate Letters</a></h1><blockquote>
-<p>Given a string which contains only lowercase letters, remove duplicate letters so that every letter appear once and only once. You must make sure your result is the smallest in lexicographical order among all possible results.</p>
-<p>Example:<br>Given <code>&quot;bcabc&quot;</code><br>Return <code>&quot;abc&quot;</code></p>
-<p>Given <code>&quot;cbacdcbc&quot;</code><br>Return <code>&quot;acdb&quot;</code></p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>Refer to:<br><a href="https://leetcode.com/discuss/75738/java-solution-using-stack-with-comments" target="_blank" rel="external">Java solution using Stack with comments</a><br><a href="https://leetcode.com/discuss/83225/clean-easy-understand-java-stack-solution-with-explanation" target="_blank" rel="external">Clean and Easy Understand Java Stack Solution with Explanation</a></p>
-<p>The basic idea is to go through the given string char by char. If the current char has been used in the solution string, continue our loop to next char; If not, keep replacing the last char of current solution string with our current char being considered if the current character is smaller, then add current char to solution string.</p>
-<p>The process requires an int array and a Boolean array to store the appearances and status(used or not) of each letter. And a stack is used to conveniently push and pop chars.</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">removeDuplicateLetters</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        Stack&lt;Character&gt; stack = <span class="keyword">new</span> Stack&lt;Character&gt;();</div><div class="line">        <span class="comment">// appearance count</span></div><div class="line">        <span class="keyword">int</span>[] count = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">26</span>];</div><div class="line">        <span class="comment">// used or not;</span></div><div class="line">        <span class="keyword">boolean</span>[] added = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="number">26</span>];</div><div class="line"></div><div class="line">        <span class="comment">// count appearances</span></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> ch : s.toCharArray())</div><div class="line">            count[ch - <span class="string">'a'</span>]++;</div><div class="line"></div><div class="line">        <span class="comment">// go through each char</span></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> ch : s.toCharArray()) &#123;</div><div class="line">            count[ch - <span class="string">'a'</span>]--;</div><div class="line">            <span class="keyword">if</span> (added[ch - <span class="string">'a'</span>]) <span class="keyword">continue</span>;</div><div class="line">            <span class="comment">// poping out the char which is bigger and still has some left in behind</span></div><div class="line">            <span class="keyword">while</span> (!stack.isEmpty() &amp;&amp; stack.peek() &gt; ch &amp;&amp; count[stack.peek() - <span class="string">'a'</span>] &gt; <span class="number">0</span>)</div><div class="line">                added[stack.pop() - <span class="string">'a'</span>] = <span class="keyword">false</span>;</div><div class="line">            <span class="comment">// add current one</span></div><div class="line">            stack.push(ch);</div><div class="line">            added[ch - <span class="string">'a'</span>] = <span class="keyword">true</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">       <span class="comment">// move from stack to string</span></div><div class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</div><div class="line">        <span class="keyword">while</span> (!stack.isEmpty()) sb.append(stack.pop());</div><div class="line">        <span class="keyword">return</span> sb.reverse().toString();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">removeDuplicateLetters</span><span class="params">(String sr)</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">26</span>]; <span class="comment">//will contain number of occurences of character (i+'a')</span></div><div class="line">    <span class="keyword">boolean</span>[] visited = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="number">26</span>]; <span class="comment">//will contain if character (i+'a') is present in current result Stack</span></div><div class="line">    <span class="keyword">char</span>[] ch = sr.toCharArray();</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">char</span> c: ch)&#123;  <span class="comment">//count number of occurences of character </span></div><div class="line">        res[c-<span class="string">'a'</span>]++;</div><div class="line">    &#125;</div><div class="line">    Stack&lt;Character&gt; st = <span class="keyword">new</span> Stack&lt;&gt;(); <span class="comment">// answer stack</span></div><div class="line">    <span class="keyword">int</span> index;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">char</span> s:ch)&#123; </div><div class="line">        index= s-<span class="string">'a'</span>;</div><div class="line">        res[index]--;   <span class="comment">//decrement number of characters remaining in the string to be analysed</span></div><div class="line">        <span class="keyword">if</span>(visited[index]) <span class="comment">//if character is already present in stack, dont bother</span></div><div class="line">            <span class="keyword">continue</span>;</div><div class="line">        <span class="comment">//if current character is smaller than last character in stack which occurs later in the string again</span></div><div class="line">        <span class="comment">//it can be removed and  added later e.g stack = bc remaining string abc then a can pop b and then c</span></div><div class="line">        <span class="keyword">while</span>(!st.isEmpty() &amp;&amp; s&lt;st.peek() &amp;&amp; res[st.peek()-<span class="string">'a'</span>]!=<span class="number">0</span>)&#123; </div><div class="line">            visited[st.pop()-<span class="string">'a'</span>]=<span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">        st.push(s); <span class="comment">//add current character and mark it as visited</span></div><div class="line">        visited[index]=<span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    StringBuilder sb = <span class="keyword">new</span> StringBuilder();</div><div class="line">    <span class="comment">//pop character from stack and build answer string from back</span></div><div class="line">    <span class="keyword">while</span>(!st.isEmpty())&#123;</div><div class="line">        sb.insert(<span class="number">0</span>,st.pop());</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> sb.toString();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/26/Leetcode_Verify Preorder Serialization of a Binary Tree/" itemprop="url">
-                  Verify Preorder Serialization of a Binary Tree
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-12-26T00:00:00+09:00" content="2015-12-26">
-              2015-12-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/12/26/Leetcode_Verify Preorder Serialization of a Binary Tree/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/12/26/Leetcode_Verify Preorder Serialization of a Binary Tree/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Verify-Preorder-Serialization-of-a-Binary-Tree"><a href="#Verify-Preorder-Serialization-of-a-Binary-Tree" class="headerlink" title="Verify Preorder Serialization of a Binary Tree"></a><a href="https://leetcode.com/problems/increasing-triplet-subsequence/" target="_blank" rel="external">Verify Preorder Serialization of a Binary Tree</a></h1><blockquote>
-<p>One way to serialize a binary tree is to use pre-order traversal. When we encounter a non-null node, we record the node’s value. If it is a null node, we record using a sentinel value such as #.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">     _9_</div><div class="line">    /   \</div><div class="line">   3     2</div><div class="line">  / \   / \</div><div class="line"> 4   1  #  6</div><div class="line">/ \ / \   / \</div><div class="line"># # # #   # #</div></pre></td></tr></table></figure>
-<p>For example, the above binary tree can be serialized to the string <code>&quot;9,3,4,#,#,1,#,#,2,#,6,#,#&quot;</code>, where <code>#</code> represents a <code>null</code> node.</p>
-</blockquote>
-<p>Given a string of comma separated values, verify whether it is a correct preorder traversal serialization of a binary tree. Find an algorithm without reconstructing the tree.</p>
-<p>Each comma separated value in the string must be either an integer or a character <code>&#39;#&#39;</code> representing <code>null</code> pointer.</p>
-<p>You may assume that the input format is always valid, for example it could never contain two consecutive commas such as “1,,3”.</p>
-<blockquote>
-<p>Example 1:<br><code>&quot;9,3,4,#,#,1,#,#,2,#,6,#,#&quot;</code><br>Return <code>true</code></p>
-<p>Example 2:<br><code>&quot;1,#&quot;</code><br>Return <code>false</code></p>
-<p>Example 3:<br><code>&quot;9,#,#,1&quot;</code><br>Return <code>false</code></p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>按照前序遍历解析，判断条件是解析成功的长度是否正好是serilization序列的长度。如果解析过程中越界或者解析完成时仍有剩余没有被解析，则不是合理的serilization序列。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> pos = -<span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isValidSerialization</span><span class="params">(String preorder)</span> </span>&#123;</div><div class="line">        String[] nodes = preorder.split(<span class="string">","</span>);</div><div class="line">        travel(nodes);</div><div class="line">        <span class="keyword">return</span> pos == nodes.length - <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">travel</span><span class="params">(String[] nodes)</span> </span>&#123;</div><div class="line">        pos ++;</div><div class="line">        <span class="keyword">if</span>(pos&gt;=nodes.length) <span class="keyword">return</span>;</div><div class="line">        String node = nodes[pos];</div><div class="line">        <span class="keyword">if</span>(node.equals(<span class="string">"#"</span>)) &#123;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            travel(nodes);</div><div class="line">            travel(nodes);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/65/">65</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/66/">66</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -943,7 +946,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">325</span>
+              <span class="site-state-item-count">327</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -951,7 +954,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分類</span>
               </a>
             </div>
@@ -1162,7 +1165,24 @@
       }
     });
   </script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
   

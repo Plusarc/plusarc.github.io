@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -118,7 +118,7 @@
   <link rel="canonical" href="http://yoursite.com/page/47/"/>
 
 
-  <title> Plusaber's Blog </title>
+  <title> Plusaber's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
@@ -126,7 +126,7 @@
   
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -238,6 +238,281 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/06/28/Leetcode_Binary Tree Paths/" itemprop="url">
+                  Binary Tree Paths
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-06-28T00:00:00+09:00" content="2015-06-28">
+              2015-06-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/06/28/Leetcode_Binary Tree Paths/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/28/Leetcode_Binary Tree Paths/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Binary-Tree-Paths"><a href="#Binary-Tree-Paths" class="headerlink" title="Binary Tree Paths"></a><a href="https://leetcode.com/problems/binary-tree-paths/" target="_blank" rel="external">Binary Tree Paths</a></h1><blockquote>
+<p>Given a binary tree, return all root-to-leaf paths.</p>
+<p>For example, given the following binary tree:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">   1</div><div class="line"> /   \</div><div class="line">2     3</div><div class="line"> \</div><div class="line">  5</div></pre></td></tr></table></figure>
+<blockquote>
+<p>All root-to-leaf paths are:</p>
+<p>[“1-&gt;2-&gt;5”, “1-&gt;3”]</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>递归解决。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">binaryTreePaths</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">        List&lt;String&gt; res = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span> res;</div><div class="line">        recPath(root, res, <span class="string">""</span>);</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recPath</span><span class="params">(TreeNode root, List&lt;String&gt; res, String record)</span> </span>&#123;</div><div class="line">        record = record.length()==<span class="number">0</span> ? (record + root.val) : (record + <span class="string">"-&gt;"</span> + root.val);</div><div class="line">        <span class="keyword">if</span>(root.left==<span class="keyword">null</span> &amp;&amp; root.right==<span class="keyword">null</span>) &#123;</div><div class="line">            res.add(record);</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">if</span>(root.left!=<span class="keyword">null</span>) recPath(root.left, res, record);</div><div class="line">            <span class="keyword">if</span>(root.right!=<span class="keyword">null</span>) recPath(root.right, res, record);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/06/27/Leetcode_Number of Digit One/" itemprop="url">
+                  Number of Digit One
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-06-27T00:00:00+09:00" content="2015-06-27">
+              2015-06-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/06/27/Leetcode_Number of Digit One/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/27/Leetcode_Number of Digit One/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Number-of-Digit-One"><a href="#Number-of-Digit-One" class="headerlink" title="Number of Digit One"></a><a href="https://leetcode.com/problems/number-of-digit-one/" target="_blank" rel="external">Number of Digit One</a></h1><blockquote>
+<p>Given an integer n, count the total number of digit 1 appearing in all non-negative integers less than or equal to n.</p>
+<p>For example:<br>Given n = 13,<br>Return 6, because digit 1 occurred in the following numbers: 1, 10, 11, 12, 13.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h3 id="Naive-method"><a href="#Naive-method" class="headerlink" title="Naive method"></a>Naive method</h3><p>对于1..n的每一个数判断包含1的个数，求和。</p>
+<h3 id="Method-Noname"><a href="#Method-Noname" class="headerlink" title="Method Noname"></a>Method Noname</h3><p><strong>表达欠佳，建议直接参考下一个方法。</strong></p>
+<p>把求1的个数的问题考虑为求每个位出现1的次数，然后求和。如211，个位数1出现的次数为22，10位数1出现的次数为22，百位数1出现的次数为100.那么如何计算这各个位1出现的个数？观察一下211：</p>
+<blockquote>
+<p>个位数1出现的次数为(211/10)*1 + 0-1范围1在个位数出现的次数，也就是1.<br>十位数1出现的次数为(211/100)*10 + 200-211范围1在十位数出现的次数，也就是210-211<br>百位数1出现的次数为(211/1000)*100 + 0-211范围内1在百位数出现的次数，也就是100-199</p>
+</blockquote>
+<p>如果是256：</p>
+<blockquote>
+<p>个位数1出现的次数为(256/10)*1 + 0-6范围1在个位数出现的次数，也就是1.<br>十位数1出现的次数为(256/100)*10 + 200-256范围1在十位数出现的次数，也就是210-219<br>百位数1出现的次数为(256/1000)*100 + 0-256范围内1在百位数出现的次数，也就是100-199</p>
+</blockquote>
+<p>对于每个位数剩余部分次数取决于其自己与其低位数组成的数与base和2*base-1范围的关系，如211中十位数的计算，11与10, 19的关系，10=<11<19出现1的范围,所以次数为11-10+1。如果是256十位数的计算，则是56与10，19的关系，56>=19,所以次数为base=10，指的是10-19。如果是207十位数的计算，则是7与10，19的关系，7&lt;10,所以次数为0.</11<19出现1的范围,所以次数为11-10+1。如果是256十位数的计算，则是56与10，19的关系，56></p>
+<p><strong>Code</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countDigitOne</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    List&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">    <span class="keyword">int</span> num = n;</div><div class="line">    <span class="keyword">while</span>(num!=<span class="number">0</span>) &#123;</div><div class="line">        num = num/<span class="number">10</span>;</div><div class="line">        res.add(num);</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    <span class="keyword">int</span> compare = <span class="number">2</span>;</div><div class="line">    <span class="keyword">int</span> base = <span class="number">1</span>;</div><div class="line">    num = n;</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> backsum = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;res.size(); i++) &#123;</div><div class="line">    	backsum = (num%<span class="number">10</span>)*base + backsum;</div><div class="line">        <span class="keyword">if</span>(backsum&gt;=compare-<span class="number">1</span>) &#123;</div><div class="line">        	res.set(i, (res.get(i)+<span class="number">1</span>)*base);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(backsum&gt;=base)&#123;</div><div class="line">        	res.set(i, res.get(i)*base + backsum-base+<span class="number">1</span>);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">        	res.set(i, res.get(i)*base);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        num = num/<span class="number">10</span>;</div><div class="line">        compare = compare * <span class="number">10</span>;</div><div class="line">        base = base * <span class="number">10</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;res.size(); i++) &#123;</div><div class="line">        sum += res.get(i);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> sum;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Other-method"><a href="#Other-method" class="headerlink" title="Other method"></a>Other method</h3><p><a href="http://yuanhsh.iteye.com/blog/2227478" target="_blank" rel="external">另一种分析方式和解决方法</a>，本质上是一样的,不过选择了从高位到低位处理，比较巧妙清晰。</p>
+<p>For example ‘8192’:</p>
+<p>1-999 -&gt; countDigitOne(999)<br>1000-1999 -&gt; 1000 of 1s + countDigitOne(999)<br>2000-2999 -&gt; countDigitOne(999)<br>…<br>7000-7999 -&gt; countDigitOne(999)<br>8000-8192 -&gt; countDigitOne(192)</p>
+<p>Count of 1s : countDigitOne(999)*8 + 1000 + countDigitOne(192)</p>
+<p><strong>Noticed that, if the target is ‘1192’:</strong><br>Count of 1s : countDigitOne(999)*1 + (1192 - 1000 + 1) + countDigitOne(192)<br>(1192 - 1000 + 1) is the 1s in thousands from 1000 to 1192.</p>
+<p>递归解法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countDigitOne</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;  </div><div class="line">    <span class="keyword">if</span>(n &lt;= <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;  </div><div class="line">    <span class="keyword">if</span>(n &lt; <span class="number">10</span>) <span class="keyword">return</span> <span class="number">1</span>;  </div><div class="line">    <span class="keyword">int</span> base = (<span class="keyword">int</span>)Math.pow(<span class="number">10</span>, (n+<span class="string">""</span>).length() - <span class="number">1</span>);  </div><div class="line">    <span class="keyword">int</span> k = n / base;  </div><div class="line">    <span class="keyword">return</span> countDigitOne(base - <span class="number">1</span>) * k +   </div><div class="line">            (k == <span class="number">1</span> ? (n-base+<span class="number">1</span>) : base) +   </div><div class="line">            countDigitOne(n % base);  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>非递归解法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">countDigitOne</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;  </div><div class="line">    <span class="keyword">int</span> result = <span class="number">0</span>;  </div><div class="line">    <span class="keyword">int</span> digit = <span class="number">1</span>, num = n;  </div><div class="line">    <span class="keyword">while</span> (num) &#123;  </div><div class="line">        <span class="keyword">int</span> mod = num % <span class="number">10</span>;  </div><div class="line">        <span class="keyword">int</span> sign = mod &gt; <span class="number">0</span> ? <span class="number">1</span> : <span class="number">0</span>;  </div><div class="line">        num /= <span class="number">10</span>;  </div><div class="line">        <span class="keyword">int</span> a = num * digit;  </div><div class="line">        <span class="keyword">int</span> b = sign * (mod == <span class="number">1</span> ? n % digit + <span class="number">1</span>: digit);  </div><div class="line">        result += a + b;  </div><div class="line">        digit *= <span class="number">10</span>;  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">return</span> result;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -518,130 +793,6 @@
             
               
                 
-                <a class="post-title-link" href="/2015/06/25/Leetcode_Contains Duplicate/" itemprop="url">
-                  Contains Duplicate
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-06-25T00:00:00+09:00" content="2015-06-25">
-              2015-06-25
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/06/25/Leetcode_Contains Duplicate/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/25/Leetcode_Contains Duplicate/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Contains-Duplicate"><a href="#Contains-Duplicate" class="headerlink" title="Contains Duplicate"></a><a href="https://leetcode.com/problems/contains-duplicate/" target="_blank" rel="external">Contains Duplicate</a></h1><blockquote>
-<p>Given an array of integers, find if the array contains any duplicates. Your function should return true if any value appears at least twice in the array, and it should return false if every element is distinct.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>使用hash记录访问过的值。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">containsDuplicate</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        Set&lt;Integer&gt; records = <span class="keyword">new</span> HashSet&lt;Integer&gt;();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nums.length; i++) &#123;</div><div class="line">            <span class="keyword">if</span>(records.contains(nums[i])) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            records.add(nums[i]);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2015/06/25/Leetcode_Contains Duplicate III/" itemprop="url">
                   Contains Duplicate III
                 </a>
@@ -748,146 +899,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/06/24/Leetcode_Path Sum/" itemprop="url">
-                  Path Sum
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-06-24T00:00:00+09:00" content="2015-06-24">
-              2015-06-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/06/24/Leetcode_Path Sum/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/24/Leetcode_Path Sum/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Path-Sum"><a href="#Path-Sum" class="headerlink" title="Path Sum"></a><a href="">Path Sum</a></h1><blockquote>
-<p>Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum.</p>
-<p>For example:<br>Given the below binary tree and sum = 22,</p>
-</blockquote>
-<pre><code>      5
-     / \
-    4   8
-   /   / \
-  11  13  4
- /  \      \
-7    2      1
-</code></pre><blockquote>
-<p>return true, as there exist a root-to-leaf path 5-&gt;4-&gt;11-&gt;2 which sum is 22.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>DFS递归搜索。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasPathSum</span><span class="params">(TreeNode root, <span class="keyword">int</span> sum)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(root.left==<span class="keyword">null</span> &amp;&amp; root.right==<span class="keyword">null</span>) <span class="keyword">return</span> (sum-root.val==<span class="number">0</span>);</div><div class="line">        <span class="keyword">return</span> hasPathSum(root.left, sum-root.val) || hasPathSum(root.right, sum-root.val);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/46/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/46/">46</a><span class="page-number current">47</span><a class="page-number" href="/page/48/">48</a><span class="space">&hellip;</span><a class="page-number" href="/page/65/">65</a><a class="extend next" rel="next" href="/page/48/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/46/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/46/">46</a><span class="page-number current">47</span><a class="page-number" href="/page/48/">48</a><span class="space">&hellip;</span><a class="page-number" href="/page/66/">66</a><a class="extend next" rel="next" href="/page/48/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -928,7 +944,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">325</span>
+              <span class="site-state-item-count">327</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -936,7 +952,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分類</span>
               </a>
             </div>
@@ -1147,7 +1163,24 @@
       }
     });
   </script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
   

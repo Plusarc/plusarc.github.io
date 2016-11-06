@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -118,7 +118,7 @@
   <link rel="canonical" href="http://yoursite.com/page/35/"/>
 
 
-  <title> Plusaber's Blog </title>
+  <title> Plusaber's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
@@ -126,7 +126,7 @@
   
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -260,8 +260,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/08/13/Leetcode_Convert Sorted Array to Binary Search Tree/" itemprop="url">
-                  Convert Sorted Array to Binary Search Tree
+                <a class="post-title-link" href="/2015/08/14/Leetcode_Maximum Subarray/" itemprop="url">
+                  Maximum Subarray
                 </a>
               
             
@@ -274,8 +274,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-08-13T00:00:00+09:00" content="2015-08-13">
-              2015-08-13
+            <time itemprop="dateCreated" datetime="2015-08-14T00:00:00+09:00" content="2015-08-14">
+              2015-08-14
             </time>
           </span>
 
@@ -304,8 +304,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/08/13/Leetcode_Convert Sorted Array to Binary Search Tree/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/13/Leetcode_Convert Sorted Array to Binary Search Tree/" itemprop="commentsCount"></span>
+                <a href="/2015/08/14/Leetcode_Maximum Subarray/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/14/Leetcode_Maximum Subarray/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -330,12 +330,140 @@
       
         
           
-            <h1 id="Convert-Sorted-Array-to-Binary-Search-Tree"><a href="#Convert-Sorted-Array-to-Binary-Search-Tree" class="headerlink" title="Convert Sorted Array to Binary Search Tree"></a><a href="">Convert Sorted Array to Binary Search Tree</a></h1><blockquote>
-<p>Given an array where elements are sorted in ascending order, convert it to a height balanced BST.</p>
+            <h1 id="Maximum-Subarray"><a href="#Maximum-Subarray" class="headerlink" title="Maximum Subarray "></a><a href="https://leetcode.com/problems/maximum-subarray/" target="_blank" rel="external">Maximum Subarray </a></h1><blockquote>
+<p>Find the contiguous subarray within an array (containing at least one number) which has the largest sum.</p>
+<p>For example, given the array <code>[−2,1,−3,4,−1,2,1,−5,4]</code>,<br>the contiguous subarray <code>[4,−1,2,1]</code> has the largest <code>sum = 6</code>.</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>递归解决，每次选取当前数组的中心作为根节点，左边的子数组递归构建左子树，右边的子数组递归构建右子树。</p>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>进阶：矩阵A中有N*N个数，求A的最大的子矩阵。<br>进阶：枚举最大子矩阵的上下边界x和y，将第x行到第y行每一列的数叠加成为一个数。然后就成为了一个初阶的问题。时间复杂度O(n^3)。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> largest = Integer.MIN_VALUE;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> ele : nums) &#123;</div><div class="line">            <span class="keyword">if</span>(sum&gt;=<span class="number">0</span>) sum += ele;</div><div class="line">            <span class="keyword">else</span> sum = ele;</div><div class="line">            largest = Math.max(largest, sum);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> largest;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/08/14/Leetcode_Implement Queue using Stacks/" itemprop="url">
+                  Implement Queue using Stacks
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-08-14T00:00:00+09:00" content="2015-08-14">
+              2015-08-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/08/14/Leetcode_Implement Queue using Stacks/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/14/Leetcode_Implement Queue using Stacks/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Implement-Queue-using-Stacks"><a href="#Implement-Queue-using-Stacks" class="headerlink" title="Implement Queue using Stacks "></a><a href="https://leetcode.com/problems/implement-queue-using-stacks/" target="_blank" rel="external">Implement Queue using Stacks </a></h1><blockquote>
+<p>mplement the following operations of a queue using stacks.</p>
+<p>push(x) – Push element x to the back of queue.<br>pop() – Removes the element from in front of queue.<br>peek() – Get the front element.<br>empty() – Return whether the queue is empty.</p>
+<p>Notes:<br>You must use only standard operations of a stack – which means only push to top, peek/pop from top, size, and is empty operations are valid.<br>Depending on your language, stack may not be supported natively. You may simulate a stack by using a list or deque (double-ended queue), as long as you use only standard operations of a stack.<br>You may assume that all operations are valid (for example, no pop or peek operations will be called on an empty queue).</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>使用两个栈，一个inStack，一个outStack。push的元素都放入inStack，需要pop或peek时，判断outStack是否为空，若为空则pop所有inStack中的元素并push到outStack中，然后pop或peek outStack的栈顶元素，若不为空，则直接pop或peek outStack的栈顶元素。</p>
+<p>第二种方法是每次push时，使用一个辅助数组或辅助栈保存当前栈pop出的所有元素，当前栈为空，然后放入push的元素，再将辅助数组或辅助栈保存的元素按照正确顺序放回当前栈中。</p>
 <p>##Code</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">sortedArrayToBST</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> recBuild(nums, <span class="number">0</span>, nums.length-<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">recBuild</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(begin&gt;end) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">if</span>(begin==end) <span class="keyword">return</span> <span class="keyword">new</span> TreeNode(nums[begin]);</div><div class="line">        <span class="keyword">int</span> mid = begin + (end-begin) / <span class="number">2</span>;</div><div class="line">        TreeNode root = <span class="keyword">new</span> TreeNode(nums[mid]);</div><div class="line">        root.left = recBuild(nums, begin, mid-<span class="number">1</span>);</div><div class="line">        root.right = recBuild(nums, mid+<span class="number">1</span>, end);</div><div class="line">        <span class="keyword">return</span> root;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyQueue</span> </span>&#123;</div><div class="line">    <span class="comment">// Push element x to the back of queue.</span></div><div class="line">    Stack&lt;Integer&gt; in;</div><div class="line">    Stack&lt;Integer&gt; out;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyQueue</span><span class="params">()</span> </span>&#123;</div><div class="line">        in = <span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">        out = <span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">        in.push(x);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Removes the element from in front of queue.</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(out.isEmpty()) transfer();</div><div class="line">        out.pop();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Get the front element.</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">peek</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(out.isEmpty()) transfer();</div><div class="line">        <span class="keyword">return</span> out.peek();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">transfer</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">while</span>(!in.isEmpty()) out.push(in.pop());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Return whether the queue is empty.</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">empty</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> in.isEmpty() &amp;&amp; out.isEmpty();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -512,6 +640,131 @@
             
               
                 
+                <a class="post-title-link" href="/2015/08/13/Leetcode_Convert Sorted Array to Binary Search Tree/" itemprop="url">
+                  Convert Sorted Array to Binary Search Tree
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-08-13T00:00:00+09:00" content="2015-08-13">
+              2015-08-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/08/13/Leetcode_Convert Sorted Array to Binary Search Tree/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/13/Leetcode_Convert Sorted Array to Binary Search Tree/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Convert-Sorted-Array-to-Binary-Search-Tree"><a href="#Convert-Sorted-Array-to-Binary-Search-Tree" class="headerlink" title="Convert Sorted Array to Binary Search Tree"></a><a href="">Convert Sorted Array to Binary Search Tree</a></h1><blockquote>
+<p>Given an array where elements are sorted in ascending order, convert it to a height balanced BST.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>递归解决，每次选取当前数组的中心作为根节点，左边的子数组递归构建左子树，右边的子数组递归构建右子树。</p>
+<p>##Code</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">sortedArrayToBST</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> recBuild(nums, <span class="number">0</span>, nums.length-<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">recBuild</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(begin&gt;end) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">if</span>(begin==end) <span class="keyword">return</span> <span class="keyword">new</span> TreeNode(nums[begin]);</div><div class="line">        <span class="keyword">int</span> mid = begin + (end-begin) / <span class="number">2</span>;</div><div class="line">        TreeNode root = <span class="keyword">new</span> TreeNode(nums[mid]);</div><div class="line">        root.left = recBuild(nums, begin, mid-<span class="number">1</span>);</div><div class="line">        root.right = recBuild(nums, mid+<span class="number">1</span>, end);</div><div class="line">        <span class="keyword">return</span> root;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/08/12/Leetcode_Word Break/" itemprop="url">
                   Leetcode_Word Break
                 </a>
@@ -621,275 +874,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/08/12/Leetcode_Implement strStr()/" itemprop="url">
-                  Implement strStr()
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-08-12T00:00:00+09:00" content="2015-08-12">
-              2015-08-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/08/12/Leetcode_Implement strStr()/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/12/Leetcode_Implement strStr()/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Implement-strStr"><a href="#Implement-strStr" class="headerlink" title="Implement strStr()"></a><a href="">Implement strStr()</a></h1><blockquote>
-<p>Implement strStr().</p>
-<p>Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><p>Naive method</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">strStr</span><span class="params">(String haystack, String needle)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(needle.length()==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">if</span>(haystack.length()&lt;needle.length()) <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(haystack.length()==needle.length()) &#123;</div><div class="line">            <span class="keyword">if</span>(haystack.equals(needle)) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;=haystack.length()-needle.length(); i++) &#123;</div><div class="line">            <span class="keyword">int</span> prefixLength = <span class="number">0</span>;</div><div class="line">            <span class="keyword">while</span>(prefixLength &lt; needle.length() &amp;&amp; haystack.charAt(i+prefixLength)==needle.charAt(prefixLength)) &#123;</div><div class="line">                prefixLength ++;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>(prefixLength==needle.length()) <span class="keyword">return</span> i;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">strStr</span><span class="params">(String haystack, String needle)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(haystack==<span class="keyword">null</span> || needle==<span class="keyword">null</span>) <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(haystack.length()&lt;needle.length()) <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(needle.length()==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;=haystack.length()-needle.length(); i++) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;=needle.length(); j++) &#123;</div><div class="line">                <span class="keyword">if</span>(j==needle.length()) <span class="keyword">return</span> i;</div><div class="line">                <span class="keyword">if</span>(haystack.charAt(i+j)!=needle.charAt(j)) <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>KMP</p>
-<p>参考：<br><a href="http://www.cnblogs.com/yjiyjige/p/3263858.html" target="_blank" rel="external">详解KMP算法</a><br><a href="http://segmentfault.com/a/1190000003707284" target="_blank" rel="external">Implement strStr()</a><br><a href="http://www.cnblogs.com/tangzhengyue/p/4315393.html" target="_blank" rel="external">KMP算法的Next数组详解</a></p>
-<p><a href="http://www.cppblog.com/cxiaojia/archive/2011/09/20/kmp.html" target="_blank" rel="external">KMP算法中关于next数组的探究</a></p>
-<p>second time</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">strStr</span><span class="params">(String haystack, String needle)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(haystack==<span class="keyword">null</span> || needle==<span class="keyword">null</span>) <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(haystack.length()&lt;needle.length()) <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(needle.length()==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span>[] next = getNext(needle);</div><div class="line">        <span class="keyword">while</span>(i&lt;haystack.length() &amp;&amp; j&lt;needle.length()) &#123;</div><div class="line">            <span class="keyword">if</span>(j==-<span class="number">1</span> || haystack.charAt(i)==needle.charAt(j)) &#123;</div><div class="line">                i ++;</div><div class="line">                j ++;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                j = next[j];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> needle.length() == j ? (i - j) : -<span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] getNext(String str) &#123;</div><div class="line">        <span class="keyword">int</span>[] next = <span class="keyword">new</span> <span class="keyword">int</span>[str.length()];</div><div class="line">        next[<span class="number">0</span>] = -<span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> j = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> k = -<span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(j&lt;next.length-<span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">if</span>(k==-<span class="number">1</span> || str.charAt(j)==str.charAt(k)) &#123;</div><div class="line">                next[++j] = ++k;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                k = next[k];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> next;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">strStr</span><span class="params">(String haystack, String needle)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(needle.length() == <span class="number">0</span>)&#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span>[] next = <span class="keyword">new</span> <span class="keyword">int</span>[needle.length()];</div><div class="line">        <span class="comment">// 得到next数组</span></div><div class="line">        getNextArr(next, needle);</div><div class="line">        <span class="comment">// i是匹配串haystack的指针，j是模式串needle的指针</span></div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</div><div class="line">        <span class="comment">// 双指针开始匹配</span></div><div class="line">        <span class="keyword">while</span>(i &lt; haystack.length() &amp;&amp; j &lt; needle.length())&#123;</div><div class="line">            <span class="comment">// 如果j=-1意味着刚刚失配过，下标+1后，下一轮就可以开始匹配各自的第一个了</span></div><div class="line">            <span class="comment">// 如果指向的字母相同，则下一轮匹配各自的下一个</span></div><div class="line">            <span class="keyword">if</span>(j == -<span class="number">1</span> || haystack.charAt(i) == needle.charAt(j))&#123;</div><div class="line">                i++;</div><div class="line">                j++;</div><div class="line">            <span class="comment">// 如果失配，则将更新j为next[j]</span></div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                j = next[j];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> j == needle.length() ? i - j : -<span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">getNextArr</span><span class="params">(<span class="keyword">int</span>[] next, String needle)</span></span>&#123;</div><div class="line">        <span class="comment">// k是前缀中相同部分的末尾，同时也是相同部分的长度，因为长度等于k-0。</span></div><div class="line">        <span class="comment">// j是后缀的末尾，即后缀相同部分的末尾 </span></div><div class="line">        <span class="keyword">int</span> k = -<span class="number">1</span>, j = <span class="number">0</span>;</div><div class="line">        next[<span class="number">0</span>] = -<span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(j &lt; needle.length() - <span class="number">1</span>)&#123;</div><div class="line">            <span class="comment">// 如果k=-1，说明刚刚失配了，则重新开始计算前缀和后缀相同的长度</span></div><div class="line">            <span class="comment">// 如果两个字符相等，则在上次前缀和后缀相同的长度加1就行了</span></div><div class="line">            <span class="keyword">if</span> (k == -<span class="number">1</span> || needle.charAt(j) == needle.charAt(k))&#123;</div><div class="line">                next[++j] = ++k;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="comment">// 否则，前缀长度缩短为next[k]</span></div><div class="line">                k = next[k];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/08/11/Leetcode_Intersection of Two Linked Lists/" itemprop="url">
-                  Intersection of Two Linked Lists
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-08-11T00:00:00+09:00" content="2015-08-11">
-              2015-08-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/08/11/Leetcode_Intersection of Two Linked Lists/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/11/Leetcode_Intersection of Two Linked Lists/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Intersection-of-Two-Linked-Lists"><a href="#Intersection-of-Two-Linked-Lists" class="headerlink" title="Intersection of Two Linked Lists"></a><a href="https://leetcode.com/problems/intersection-of-two-linked-lists/" target="_blank" rel="external">Intersection of Two Linked Lists</a></h1><blockquote>
-<p>Write a program to find the node at which the intersection of two singly linked lists begins.</p>
-<p>For example, the following two linked lists:</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">A:          a1 → a2</div><div class="line">                   ↘</div><div class="line">                     c1 → c2 → c3</div><div class="line">                   ↗            </div><div class="line">B:     b1 → b2 → b3</div></pre></td></tr></table></figure>
-<blockquote>
-<p>begin to intersect at node c1.</p>
-<p>Notes:</p>
-<p>If the two linked lists have no intersection at all, return null.<br>The linked lists must retain their original structure after the function returns.<br>You may assume there are no cycles anywhere in the entire linked structure.<br>Your code should preferably run in <code>O(n)</code> time and use only <code>O(1)</code> memory.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>遍历两个list并记录长度，计算出长度差。</p>
-<p>对于较长的那个list在从开头到长度差的范围内不可能是intersecion point，否则长度差会更小。<br>所以先让较长list在从开头移动到长度差处，两个list再同时开始遍历，直到出现相等的节点或都到达节点末尾，返回结果或null。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * public class ListNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     ListNode next;</div><div class="line"> *     ListNode(int x) &#123;</div><div class="line"> *         val = x;</div><div class="line"> *         next = null;</div><div class="line"> *     &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">getIntersectionNode</span><span class="params">(ListNode headA, ListNode headB)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> lengthA = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> lengthB = <span class="number">0</span>;</div><div class="line">        ListNode currentA = headA;</div><div class="line">        ListNode currentB = headB;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(currentA!=<span class="keyword">null</span> || currentB!=<span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">if</span>(currentA!=<span class="keyword">null</span>) &#123;</div><div class="line">                lengthA ++;</div><div class="line">                currentA = currentA.next;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>(currentB!=<span class="keyword">null</span>) &#123;</div><div class="line">                lengthB ++;</div><div class="line">                currentB = currentB.next;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        ListNode longHead, shortHead;</div><div class="line">        longHead = lengthA&gt;=lengthB ? headA : headB;</div><div class="line">        shortHead = lengthA&lt;lengthB ? headA : headB;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;Math.abs(lengthA-lengthB); i++) longHead = longHead.next;</div><div class="line">        <span class="keyword">while</span>(longHead!=<span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">if</span>(longHead==shortHead) <span class="keyword">return</span> longHead;</div><div class="line">            longHead = longHead.next;</div><div class="line">            shortHead = shortHead.next;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/34/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><span class="page-number current">35</span><a class="page-number" href="/page/36/">36</a><span class="space">&hellip;</span><a class="page-number" href="/page/65/">65</a><a class="extend next" rel="next" href="/page/36/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/34/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><span class="page-number current">35</span><a class="page-number" href="/page/36/">36</a><span class="space">&hellip;</span><a class="page-number" href="/page/66/">66</a><a class="extend next" rel="next" href="/page/36/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -930,7 +919,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">325</span>
+              <span class="site-state-item-count">327</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -938,7 +927,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分類</span>
               </a>
             </div>
@@ -1149,7 +1138,24 @@
       }
     });
   </script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
   

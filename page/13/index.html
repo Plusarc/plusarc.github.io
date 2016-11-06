@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -118,7 +118,7 @@
   <link rel="canonical" href="http://yoursite.com/page/13/"/>
 
 
-  <title> Plusaber's Blog </title>
+  <title> Plusaber's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
@@ -126,7 +126,7 @@
   
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -260,8 +260,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/09/28/Leetcode_Find the Duplicate Number/" itemprop="url">
-                  Find the Duplicate Number
+                <a class="post-title-link" href="/2015/09/30/Leetcode_Insert Interval/" itemprop="url">
+                  Insert Interval
                 </a>
               
             
@@ -274,8 +274,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-28T00:00:00+09:00" content="2015-09-28">
-              2015-09-28
+            <time itemprop="dateCreated" datetime="2015-09-30T00:00:00+09:00" content="2015-09-30">
+              2015-09-30
             </time>
           </span>
 
@@ -304,8 +304,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/09/28/Leetcode_Find the Duplicate Number/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/28/Leetcode_Find the Duplicate Number/" itemprop="commentsCount"></span>
+                <a href="/2015/09/30/Leetcode_Insert Interval/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/30/Leetcode_Insert Interval/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -330,18 +330,142 @@
       
         
           
-            <h1 id="Find-the-Duplicate-Number"><a href="#Find-the-Duplicate-Number" class="headerlink" title="Find the Duplicate Number"></a><a href="https://leetcode.com/problems/find-the-duplicate-number/" target="_blank" rel="external">Find the Duplicate Number</a></h1><blockquote>
-<p>Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist. Assume that there is only one duplicate number, find the duplicate one.</p>
-<p>Note:<br>You must not modify the array (assume the array is read only).<br>You must use only constant, <code>O(1)</code> extra space.<br>Your runtime complexity should be less than <code>O(n^2)</code>.<br>There is only one duplicate number in the array, but it could be repeated more than once.</p>
+            <h1 id="Insert-Interval"><a href="#Insert-Interval" class="headerlink" title="Insert Interval"></a><a href="https://leetcode.com/problems/insert-interval/" target="_blank" rel="external">Insert Interval</a></h1><blockquote>
+<p>Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).</p>
+<p>You may assume that the intervals were initially sorted according to their start times.</p>
+<p>Example 1:<br>Given intervals <code>[1,3],[6,9]</code>, insert and merge <code>[2,5]</code> in as <code>[1,5],[6,9]</code>.</p>
+<p>Example 2:<br>Given <code>[1,2],[3,5],[6,7],[8,10],[12,16]</code>, insert and merge <code>[4,9]</code> in as <code>[1,2]</code>,[3,10],[12,16].</p>
+<p>This is because the new interval <code>[4,9]</code> overlaps with <code>[3,5],[6,7],[8,10]</code>.</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h3 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution 1"></a>Solution 1</h3><p>因为这个数组的特点非常明显，元素的大小是在1到n之间，而且只有一个元素是重复出现的。那么如果我们存储nums[i] = i + 1，那么对于重复的那个元素j，两个元素都想存放在nums[j-1]中。所以我们可以将元素放入它应该放的位置，比如k应该放在数组的下标k-1的位置。我们遍历数组，将扫描到的数字k放到它应该放的位置k-1，可以将当前元素与nums[k-1]交换，继续将当前位置上交换得到的值放到它应该出现的位置。循环的终止条件是当前位置存放的值就是应该存放的数字，或者当前位置想把数字k交换到它的指定位置时，发现那个位置已经存放了一个k，如果是遇到这个终止条件，那么将需要返回这个值k。 </p>
-<p>参考:<br><a href="http://blog.csdn.net/u014673347/article/details/48783485" target="_blank" rel="external">[leetcode] 287.Find the Duplicate Number</a></p>
-<h3 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution 2"></a>Solution 2</h3><p>二分枚举检索。</p>
-<p>在区别<code>[1, n]</code>中搜索，首先求出中点<code>mid</code>，然后遍历整个数组，统计所有小于等于<code>mid</code>的数的个数，如果个数大于<code>mid</code>，则说明重复值在<code>[mid+1, n]</code>之间，反之，重复值应在<code>[1, mid-1]</code>之间，然后依次类推，知道搜索完成，此时的<code>low</code>就是我们要求的重复值.</p>
-<h3 id="Solution-3"><a href="#Solution-3" class="headerlink" title="Solution 3"></a>Solution 3</h3><p>参考：<br><a href="http://keithschwarz.com/interesting/code/find-duplicate/FindDuplicate.python.html" target="_blank" rel="external">An algorithm for solving the (classic) hard interview problem</a><br><a href="https://leetcode.com/discuss/60852/ac-c-code-with-o-n-time-and-o-1-space" target="_blank" rel="external">AC c++ code with O(n) time and O(1) space.</a><br><a href="http://blog.csdn.net/er_plough/article/details/48783645" target="_blank" rel="external">[leetcode 287]Find the Duplicate Number</a></p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="Solution-1-1"><a href="#Solution-1-1" class="headerlink" title="Solution 1"></a>Solution 1</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findDuplicate</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nums.length; i++) &#123;</div><div class="line">            <span class="keyword">while</span>(nums[i]!=i+<span class="number">1</span> &amp;&amp; nums[nums[i]-<span class="number">1</span>]!=nums[i]) &#123;</div><div class="line">            	<span class="keyword">int</span> temp = nums[nums[i]-<span class="number">1</span>];</div><div class="line">                nums[nums[i]-<span class="number">1</span>] = nums[i];</div><div class="line">                nums[i] = temp;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>(nums[i]!=i+<span class="number">1</span>) <span class="keyword">return</span> nums[i];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Solution-2-1"><a href="#Solution-2-1" class="headerlink" title="Solution 2"></a>Solution 2</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findDuplicate</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> right = nums.length - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(left&lt;=right) &#123;</div><div class="line">        	<span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</div><div class="line">        	<span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">        	<span class="keyword">for</span>(<span class="keyword">int</span> ele: nums) &#123;</div><div class="line">        		<span class="keyword">if</span>(ele&lt;=mid) count ++;</div><div class="line">        	&#125;</div><div class="line">        	<span class="keyword">if</span>(count&lt;=mid) left = mid + <span class="number">1</span>;</div><div class="line">        	<span class="keyword">else</span> right = mid - <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> left;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Solution-3-1"><a href="#Solution-3-1" class="headerlink" title="Solution 3"></a>Solution 3</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findDuplicate</span><span class="params">(<span class="keyword">int</span> [] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> slow =<span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> fast =<span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span>(<span class="number">1</span>) &#123;</div><div class="line">            slow = nums[slow];</div><div class="line">            fast = nums[nums[fast]];</div><div class="line">            <span class="keyword">if</span>(slow == fast)</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        fast = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span>(<span class="number">1</span>) &#123;</div><div class="line">            slow =n ums[slow];</div><div class="line">            fast = nums[fast];</div><div class="line">            <span class="keyword">if</span>(slow == fast) <span class="keyword">return</span> slow;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h3 id="Binary-Search-Solution"><a href="#Binary-Search-Solution" class="headerlink" title="Binary Search Solution"></a>Binary Search Solution</h3><p>先二分法搜索到最后一个开始位置小于等于newInterval的开始位置的interval，然后按照merge interval中的方法merge这个以及之后的interval，直到出现间隔。</p>
+<p>注意处理边界情况，例如空列表，只有一个元素的列表等情况。</p>
+<h3 id="Sort-Solution"><a href="#Sort-Solution" class="headerlink" title="Sort Solution"></a>Sort Solution</h3><p>自定义排序，根据end元素大小进行排序，然后merge end元素在newInterval之间的interval，并具体更新新的start和end。这里暂时没有给出实现。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="Binary-Search-Solution-1"><a href="#Binary-Search-Solution-1" class="headerlink" title="Binary Search Solution"></a>Binary Search Solution</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for an interval.</div><div class="line"> * public class Interval &#123;</div><div class="line"> *     int start;</div><div class="line"> *     int end;</div><div class="line"> *     Interval() &#123; start = 0; end = 0; &#125;</div><div class="line"> *     Interval(int s, int e) &#123; start = s; end = e; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;Interval&gt; <span class="title">insert</span><span class="params">(List&lt;Interval&gt; intervals, Interval newInterval)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(newInterval==<span class="keyword">null</span>) <span class="keyword">return</span> intervals;</div><div class="line">        List&lt;Interval&gt; res = <span class="keyword">new</span> ArrayList&lt;Interval&gt;();</div><div class="line">        <span class="keyword">if</span>(intervals==<span class="keyword">null</span> || intervals.size()==<span class="number">0</span>) &#123;</div><div class="line">            res.add(newInterval);</div><div class="line">            <span class="keyword">return</span> res;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> right = intervals.size() - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(left&lt;=right) &#123;</div><div class="line">            <span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</div><div class="line">            <span class="keyword">if</span>(intervals.get(mid).start&gt;newInterval.start) right = mid - <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> left = mid + <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> sp = right;</div><div class="line">        <span class="keyword">int</span> start = Math.min(sp&gt;=<span class="number">0</span> ? intervals.get(sp).start : Integer.MAX_VALUE, newInterval.start);</div><div class="line">        <span class="keyword">int</span> end = Math.max(sp&gt;=<span class="number">0</span> ? intervals.get(sp).end : Integer.MIN_VALUE, newInterval.end);</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(sp&gt;=<span class="number">0</span> &amp;&amp; intervals.get(sp).end&lt;newInterval.start) &#123;</div><div class="line">            sp ++;</div><div class="line">            start = newInterval.start;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;sp; i++) res.add(intervals.get(i));</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;sp; i++) res.add(intervals.get(i));</div><div class="line">            sp ++;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(sp&lt;intervals.size() &amp;&amp; end&gt;=intervals.get(sp).start) &#123;</div><div class="line">            <span class="keyword">if</span>(intervals.get(sp).end &gt; end) end = intervals.get(sp).end;</div><div class="line">            sp ++;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        res.add(<span class="keyword">new</span> Interval(start, end));</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(sp&lt;<span class="number">0</span>) sp = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=sp; i&lt;intervals.size(); i++) res.add(intervals.get(i));</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/09/29/Leetcode_Merge Intervals/" itemprop="url">
+                  Merge Intervals
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-09-29T00:00:00+09:00" content="2015-09-29">
+              2015-09-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/29/Leetcode_Merge Intervals/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/29/Leetcode_Merge Intervals/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Merge-Intervals"><a href="#Merge-Intervals" class="headerlink" title="Merge Intervals"></a><a href="https://leetcode.com/problems/merge-intervals/" target="_blank" rel="external">Merge Intervals</a></h1><blockquote>
+<p>Given a collection of intervals, merge all overlapping intervals.</p>
+<p>For example,<br>Given <code>[1,3],[2,6],[8,10],[15,18]</code>,<br>return <code>[1,6],[8,10],[15,18]</code>.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>对interval自定义排序(根据start值)，然后merge序列。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for an interval.</div><div class="line"> * public class Interval &#123;</div><div class="line"> *     int start;</div><div class="line"> *     int end;</div><div class="line"> *     Interval() &#123; start = 0; end = 0; &#125;</div><div class="line"> *     Interval(int s, int e) &#123; start = s; end = e; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;Interval&gt; <span class="title">merge</span><span class="params">(List&lt;Interval&gt; intervals)</span> </span>&#123;</div><div class="line">        List&lt;Interval&gt; res = <span class="keyword">new</span> ArrayList&lt;Interval&gt;();</div><div class="line">        <span class="keyword">if</span>(intervals==<span class="keyword">null</span> || intervals.size()==<span class="number">0</span>) <span class="keyword">return</span> res;</div><div class="line">        </div><div class="line">        Collections.sort(intervals, <span class="keyword">new</span> MyComparator());</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;intervals.size(); i++) &#123;</div><div class="line">        	<span class="keyword">int</span> start = intervals.get(i).start;</div><div class="line">        	<span class="keyword">int</span> end = intervals.get(i).end;</div><div class="line">        	<span class="keyword">while</span>(i+<span class="number">1</span>&lt;intervals.size() &amp;&amp; end&gt;=intervals.get(i+<span class="number">1</span>).start) &#123;</div><div class="line">        	    i++;</div><div class="line">        	    <span class="keyword">if</span>(intervals.get(i).end&gt;end) end = intervals.get(i).end;</div><div class="line">        	&#125;</div><div class="line">        	res.add(<span class="keyword">new</span> Interval(start, end));</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyComparator</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">Interval</span>&gt; </span>&#123;  </div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Interval i1, Interval i2)</span> </span>&#123;  </div><div class="line">            <span class="keyword">if</span>(i1.start&gt;i2.start) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(i1.start==i2.start) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">        &#125;  </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -517,8 +641,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/09/26/Leetcode_Shortest Palindrome/" itemprop="url">
-                  Shortest Palindrome
+                <a class="post-title-link" href="/2015/09/28/Leetcode_Find the Duplicate Number/" itemprop="url">
+                  Find the Duplicate Number
                 </a>
               
             
@@ -531,8 +655,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-26T00:00:00+09:00" content="2015-09-26">
-              2015-09-26
+            <time itemprop="dateCreated" datetime="2015-09-28T00:00:00+09:00" content="2015-09-28">
+              2015-09-28
             </time>
           </span>
 
@@ -561,8 +685,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/09/26/Leetcode_Shortest Palindrome/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/26/Leetcode_Shortest Palindrome/" itemprop="commentsCount"></span>
+                <a href="/2015/09/28/Leetcode_Find the Duplicate Number/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/28/Leetcode_Find the Duplicate Number/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -587,14 +711,18 @@
       
         
           
-            <h1 id="Shortest-Palindrome"><a href="#Shortest-Palindrome" class="headerlink" title="Shortest Palindrome"></a><a href="https://leetcode.com/problems/shortest-palindrome/" target="_blank" rel="external">Shortest Palindrome</a></h1><blockquote>
-<p>Given a string S, you are allowed to convert it to a palindrome by adding characters in front of it. Find and return the shortest palindrome you can find by performing this transformation.</p>
-<p>For example:</p>
-<p>Given <code>&quot;aacecaaa&quot;</code>, return <code>&quot;aaacecaaa&quot;</code>.</p>
-<p>Given <code>&quot;abcd&quot;</code>, return <code>&quot;dcbabcd&quot;</code>.</p>
+            <h1 id="Find-the-Duplicate-Number"><a href="#Find-the-Duplicate-Number" class="headerlink" title="Find the Duplicate Number"></a><a href="https://leetcode.com/problems/find-the-duplicate-number/" target="_blank" rel="external">Find the Duplicate Number</a></h1><blockquote>
+<p>Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist. Assume that there is only one duplicate number, find the duplicate one.</p>
+<p>Note:<br>You must not modify the array (assume the array is read only).<br>You must use only constant, <code>O(1)</code> extra space.<br>Your runtime complexity should be less than <code>O(n^2)</code>.<br>There is only one duplicate number in the array, but it could be repeated more than once.</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p><a href="http://pisxw.com/algorithm/Shortest-Palindrome.html" target="_blank" rel="external">LeetCode-Shortest Palindrome</a><br><a href="http://pisxw.com/algorithm/Implement-strStr%28%29.html" target="_blank" rel="external">LeetCode-Implement strStr()</a><br><a href="http://blog.csdn.net/v_july_v/article/details/7041827" target="_blank" rel="external">从头到尾彻底理解KMP</a><br><a href="http://segmentfault.com/a/1190000003059361" target="_blank" rel="external">Shortest Palindrome@LeetCode（以及关于KMP的理解)</a><br><a href="https://leetcode.com/discuss/36807/c-8-ms-kmp-based-o-n-time-%26-o-n-memory-solution" target="_blank" rel="external">C++ 8 ms KMP-based O(n) time &amp; O(n) memory solution</a></p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">shortestPalindrome</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        StringBuilder builder = <span class="keyword">new</span> StringBuilder(s);</div><div class="line">        <span class="keyword">return</span> builder.reverse().substring(<span class="number">0</span>, s.length() - getCommonLength(s)) + s;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">getCommonLength</span><span class="params">(String str)</span> </span>&#123;</div><div class="line">        StringBuilder builder = <span class="keyword">new</span> StringBuilder(str);</div><div class="line">        String rev = <span class="keyword">new</span> StringBuilder(str).reverse().toString();</div><div class="line">        builder.append(<span class="string">"#"</span>).append(rev);</div><div class="line">        <span class="keyword">int</span>[] p = <span class="keyword">new</span> <span class="keyword">int</span>[builder.length()];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; p.length; i++) &#123;</div><div class="line">            <span class="keyword">int</span> j = p[i - <span class="number">1</span>];</div><div class="line">            <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; builder.charAt(i) != builder.charAt(j)) j = p[j - <span class="number">1</span>];</div><div class="line">            p[i] = j == <span class="number">0</span> ? (builder.charAt(i) == builder.charAt(<span class="number">0</span>) ? <span class="number">1</span> : <span class="number">0</span>) : j + <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> p[p.length - <span class="number">1</span>];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h3 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution 1"></a>Solution 1</h3><p>因为这个数组的特点非常明显，元素的大小是在1到n之间，而且只有一个元素是重复出现的。那么如果我们存储nums[i] = i + 1，那么对于重复的那个元素j，两个元素都想存放在nums[j-1]中。所以我们可以将元素放入它应该放的位置，比如k应该放在数组的下标k-1的位置。我们遍历数组，将扫描到的数字k放到它应该放的位置k-1，可以将当前元素与nums[k-1]交换，继续将当前位置上交换得到的值放到它应该出现的位置。循环的终止条件是当前位置存放的值就是应该存放的数字，或者当前位置想把数字k交换到它的指定位置时，发现那个位置已经存放了一个k，如果是遇到这个终止条件，那么将需要返回这个值k。 </p>
+<p>参考:<br><a href="http://blog.csdn.net/u014673347/article/details/48783485" target="_blank" rel="external">[leetcode] 287.Find the Duplicate Number</a></p>
+<h3 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution 2"></a>Solution 2</h3><p>二分枚举检索。</p>
+<p>在区别<code>[1, n]</code>中搜索，首先求出中点<code>mid</code>，然后遍历整个数组，统计所有小于等于<code>mid</code>的数的个数，如果个数大于<code>mid</code>，则说明重复值在<code>[mid+1, n]</code>之间，反之，重复值应在<code>[1, mid-1]</code>之间，然后依次类推，知道搜索完成，此时的<code>low</code>就是我们要求的重复值.</p>
+<h3 id="Solution-3"><a href="#Solution-3" class="headerlink" title="Solution 3"></a>Solution 3</h3><p>参考：<br><a href="http://keithschwarz.com/interesting/code/find-duplicate/FindDuplicate.python.html" target="_blank" rel="external">An algorithm for solving the (classic) hard interview problem</a><br><a href="https://leetcode.com/discuss/60852/ac-c-code-with-o-n-time-and-o-1-space" target="_blank" rel="external">AC c++ code with O(n) time and O(1) space.</a><br><a href="http://blog.csdn.net/er_plough/article/details/48783645" target="_blank" rel="external">[leetcode 287]Find the Duplicate Number</a></p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="Solution-1-1"><a href="#Solution-1-1" class="headerlink" title="Solution 1"></a>Solution 1</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findDuplicate</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nums.length; i++) &#123;</div><div class="line">            <span class="keyword">while</span>(nums[i]!=i+<span class="number">1</span> &amp;&amp; nums[nums[i]-<span class="number">1</span>]!=nums[i]) &#123;</div><div class="line">            	<span class="keyword">int</span> temp = nums[nums[i]-<span class="number">1</span>];</div><div class="line">                nums[nums[i]-<span class="number">1</span>] = nums[i];</div><div class="line">                nums[i] = temp;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>(nums[i]!=i+<span class="number">1</span>) <span class="keyword">return</span> nums[i];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Solution-2-1"><a href="#Solution-2-1" class="headerlink" title="Solution 2"></a>Solution 2</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findDuplicate</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> right = nums.length - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(left&lt;=right) &#123;</div><div class="line">        	<span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</div><div class="line">        	<span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">        	<span class="keyword">for</span>(<span class="keyword">int</span> ele: nums) &#123;</div><div class="line">        		<span class="keyword">if</span>(ele&lt;=mid) count ++;</div><div class="line">        	&#125;</div><div class="line">        	<span class="keyword">if</span>(count&lt;=mid) left = mid + <span class="number">1</span>;</div><div class="line">        	<span class="keyword">else</span> right = mid - <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> left;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Solution-3-1"><a href="#Solution-3-1" class="headerlink" title="Solution 3"></a>Solution 3</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findDuplicate</span><span class="params">(<span class="keyword">int</span> [] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> slow =<span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> fast =<span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span>(<span class="number">1</span>) &#123;</div><div class="line">            slow = nums[slow];</div><div class="line">            fast = nums[nums[fast]];</div><div class="line">            <span class="keyword">if</span>(slow == fast)</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        fast = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span>(<span class="number">1</span>) &#123;</div><div class="line">            slow =n ums[slow];</div><div class="line">            fast = nums[fast];</div><div class="line">            <span class="keyword">if</span>(slow == fast) <span class="keyword">return</span> slow;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 
           
         
@@ -644,8 +772,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/09/26/Leetcode_Recover Binary Search Tree/" itemprop="url">
-                  Recover Binary Search Tree
+                <a class="post-title-link" href="/2015/09/26/Leetcode_Binary Tree Maximum Path Sum/" itemprop="url">
+                  Binary Tree Maximum Path Sum
                 </a>
               
             
@@ -688,8 +816,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/09/26/Leetcode_Recover Binary Search Tree/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/26/Leetcode_Recover Binary Search Tree/" itemprop="commentsCount"></span>
+                <a href="/2015/09/26/Leetcode_Binary Tree Maximum Path Sum/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/26/Leetcode_Binary Tree Maximum Path Sum/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -714,145 +842,16 @@
       
         
           
-            <h1 id="Recover-Binary-Search-Tree"><a href="#Recover-Binary-Search-Tree" class="headerlink" title="Recover Binary Search Tree"></a><a href="https://leetcode.com/problems/recover-binary-search-tree/" target="_blank" rel="external">Recover Binary Search Tree</a></h1><blockquote>
-<p>Two elements of a binary search tree (BST) are swapped by mistake.</p>
-<p>Recover the tree without changing its structure.</p>
+            <h1 id="Binary-Tree-Maximum-Path-Sum"><a href="#Binary-Tree-Maximum-Path-Sum" class="headerlink" title="Binary Tree Maximum Path Sum"></a><a href="https://leetcode.com/problems/binary-tree-maximum-path-sum/" target="_blank" rel="external">Binary Tree Maximum Path Sum</a></h1><blockquote>
+<p>Given a binary tree, find the maximum path sum.</p>
+<p>For this problem, a path is defined as any sequence of nodes from some starting node to any node in the tree along the parent-child connections. The path does not need to go through the root.</p>
+<p>For example:<br>Given the below binary tree,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">       1</div><div class="line">      / \</div><div class="line">     2   3</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+<p>Return <code>6</code>.</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>BST中序遍历输出有序序列，当BST的两个节点被交换后，中序遍历必然会出现不连续的情况，也就是后面的一个值可能会大于前一个节点的值，也就是异常节点，如果交换的两个节点在中序遍历中是紧挨着，这个异常会出现一次，如果不是紧挨着，则这个异常会出现两次。记录异常出现的节点位置，交换其值。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    TreeNode last = <span class="keyword">null</span>;</div><div class="line">    TreeNode abnormal = <span class="keyword">null</span>;</div><div class="line">    TreeNode secondAbnormal = <span class="keyword">null</span>;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recoverTree</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">        recFind(root);</div><div class="line">        <span class="keyword">int</span> abnormalValue = abnormal.val;</div><div class="line">        abnormal.val = secondAbnormal.val;</div><div class="line">        secondAbnormal.val = abnormalValue;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recFind</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">        recFind(root.left);</div><div class="line">        <span class="keyword">if</span>(last!=<span class="keyword">null</span> &amp;&amp;  root.val&lt;=last.val) &#123;</div><div class="line">            <span class="keyword">if</span>(abnormal==<span class="keyword">null</span>) &#123;</div><div class="line">                abnormal = last;</div><div class="line">                secondAbnormal = root;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                secondAbnormal = root;   </div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        last = root;</div><div class="line">        recFind(root.right);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/09/26/Leetcode_Valid Number/" itemprop="url">
-                  Valid Number
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-26T00:00:00+09:00" content="2015-09-26">
-              2015-09-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/26/Leetcode_Valid Number/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/26/Leetcode_Valid Number/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Valid-Number"><a href="#Valid-Number" class="headerlink" title="Valid Number"></a><a href="https://leetcode.com/problems/valid-number/" target="_blank" rel="external">Valid Number</a></h1><blockquote>
-<p>Validate if a given string is numeric.</p>
-<p>Some examples:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; &quot;0&quot; =&gt; true</div><div class="line">&quot; 0.1 &quot; =&gt; true</div><div class="line">&quot;abc&quot; =&gt; false</div><div class="line">&quot;1 a&quot; =&gt; false</div><div class="line">&quot;2e10&quot; =&gt; true</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-<p>Note: It is intended for the problem statement to be ambiguous. You should gather all requirements up front before implementing one.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>比较trivial的题，关键是使逻辑尽量简洁。</p>
-<p>自己的实现比较繁琐，这里参考一种比较简洁的逻辑情况处理：</p>
-<p>设置3个FLAG: <code>num, exp, dot</code>.</p>
-<p>有以下情况：<br>(1). 出现了<code>e</code>，则前面要有digit,不能有<code>e</code>. 并且后面要有digit.<br>(2). 出现了<code>.</code> 那么是一个小数，那么前面不可以有<code>.</code>和<code>e</code><br>(3). 出现了<code>+, -</code> 那么它必须是第一个，或者前一个是e，比如<code>&quot; 005047e+6&quot;</code></p>
-<p>参考:<br><a href="http://www.yanyulin.info/pages/2014/10/38958011441714.html" target="_blank" rel="external">Valid Number</a></p>
-<p>或者可以直接利用正则表达式匹配。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="Logic-solution"><a href="#Logic-solution" class="headerlink" title="Logic solution"></a>Logic solution</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isNumber</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> len = s.length();</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, e = len - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span> (i &lt;= e &amp;&amp; Character.isWhitespace(s.charAt(i))) i++;</div><div class="line">        <span class="keyword">if</span> (i &gt; len - <span class="number">1</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">while</span> (e &gt;= i &amp;&amp; Character.isWhitespace(s.charAt(e))) e--;</div><div class="line">        <span class="comment">// skip leading +/-</span></div><div class="line">        <span class="keyword">if</span> (s.charAt(i) == <span class="string">'+'</span> || s.charAt(i) == <span class="string">'-'</span>) i++;</div><div class="line">        <span class="keyword">boolean</span> num = <span class="keyword">false</span>; <span class="comment">// is a digit</span></div><div class="line">        <span class="keyword">boolean</span> dot = <span class="keyword">false</span>; <span class="comment">// is a '.'</span></div><div class="line">        <span class="keyword">boolean</span> exp = <span class="keyword">false</span>; <span class="comment">// is a 'e'</span></div><div class="line">        <span class="keyword">while</span> (i &lt;= e) &#123;</div><div class="line">            <span class="keyword">char</span> c = s.charAt(i);</div><div class="line">            <span class="keyword">if</span> (Character.isDigit(c)) &#123;</div><div class="line">                num = <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (c == <span class="string">'.'</span>) &#123;</div><div class="line">                <span class="keyword">if</span>(exp || dot) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">                dot = <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (c == <span class="string">'e'</span>) &#123;</div><div class="line">                <span class="keyword">if</span>(exp || num == <span class="keyword">false</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">                exp = <span class="keyword">true</span>;</div><div class="line">                num = <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (c == <span class="string">'+'</span> || c == <span class="string">'-'</span>) &#123;</div><div class="line">                <span class="keyword">if</span> (s.charAt(i - <span class="number">1</span>) != <span class="string">'e'</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line">            i++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> num;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Regex-Solution"><a href="#Regex-Solution" class="headerlink" title="Regex Solution"></a>Regex Solution</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isNumber</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(s.trim().isEmpty())&#123;  </div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;  </div><div class="line">        &#125;  </div><div class="line">        String regex = <span class="string">"[-+]?(\\d+\\.?|\\.\\d+)\\d*(e[-+]?\\d+)?"</span>;  </div><div class="line">        <span class="keyword">if</span>(s.trim().matches(regex))&#123;  </div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;  </div><div class="line">        &#125;<span class="keyword">else</span>&#123;  </div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;  </div><div class="line">        &#125;  </div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>后序遍历二叉树，遍历后更新节点值为从叶子节点到当前节点路径的最大值，同时返回当前子树存在的路径的最大值。</p>
+<p>具体逻辑参考代码。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxPathSum</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> leftMax = Integer.MIN_VALUE;</div><div class="line">        <span class="keyword">int</span> rightMax = Integer.MIN_VALUE;</div><div class="line">        <span class="keyword">if</span>(root.left!=<span class="keyword">null</span>) leftMax = maxPathSum(root.left);</div><div class="line">        <span class="keyword">if</span>(root.right!=<span class="keyword">null</span>) rightMax = maxPathSum(root.right);</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> currentMax = root.val;</div><div class="line">        <span class="keyword">if</span>(getValue(root.left)&gt;<span class="number">0</span>) currentMax += getValue(root.left);</div><div class="line">        <span class="keyword">if</span>(getValue(root.right)&gt;<span class="number">0</span>) currentMax += getValue(root.right);</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> pathMax = getValue(root.left)&gt;=getValue(root.right) ? getValue(root.left) : getValue(root.right);</div><div class="line">        </div><div class="line">        root.val = root.val + (pathMax&gt;<span class="number">0</span>? pathMax : <span class="number">0</span>);</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> Math.max(currentMax, Math.max(leftMax, rightMax));</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getValue</span><span class="params">(TreeNode node)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(node==<span class="keyword">null</span>) <span class="keyword">return</span> Integer.MIN_VALUE;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">return</span> node.val;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -885,7 +884,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/65/">65</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/66/">66</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -926,7 +925,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">325</span>
+              <span class="site-state-item-count">327</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -934,7 +933,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分類</span>
               </a>
             </div>
@@ -1145,7 +1144,24 @@
       }
     });
   </script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
   

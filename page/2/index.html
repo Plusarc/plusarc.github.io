@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -118,7 +118,7 @@
   <link rel="canonical" href="http://yoursite.com/page/2/"/>
 
 
-  <title> Plusaber's Blog </title>
+  <title> Plusaber's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
@@ -126,7 +126,7 @@
   
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -260,6 +260,270 @@
             
               
                 
+                <a class="post-title-link" href="/2016/02/01/System Design_大型网站伸缩性架构c6/" itemprop="url">
+                  System Design_大型网站伸缩性架构
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-02-01T00:00:00+09:00" content="2016-02-01">
+              2016-02-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/System-design/" itemprop="url" rel="index">
+                    <span itemprop="name">System design</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/02/01/System Design_大型网站伸缩性架构c6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/02/01/System Design_大型网站伸缩性架构c6/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="网站架构的伸缩性设计"><a href="#网站架构的伸缩性设计" class="headerlink" title="网站架构的伸缩性设计"></a>网站架构的伸缩性设计</h1><p>网站的伸缩性是指不需要改变网站的软硬件设计，仅仅通过增减部署的服务器数量就可以扩大或缩小网站的服务处理能力。这样就可以做到通过不断简单地向集群中添加服务器来增强整个集群的能力。</p>
+<p>一般说来，网站的伸缩性设计可分为两类，一类是根据功能进行物理分离是实现伸缩，一类是单一功能通过集群实现伸缩。前者是不同的服务器部署不同的服务，提供不同的功能；后者是集群内的多台服务器部署相同的服务，提供相同的功能。</p>
+<h2 id="不同功能进行物理分离实现伸缩"><a href="#不同功能进行物理分离实现伸缩" class="headerlink" title="不同功能进行物理分离实现伸缩"></a>不同功能进行物理分离实现伸缩</h2><p>使用新增的服务器处理某种特定服务，通过物理上分离不同的功能，实现网站伸缩。<br><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_1.png" alt="System_design_c6_1"></p>
+<p>具体又可分为如下两种情况：</p>
+<p>纵向分离（垂直分割）：将业务处理流程上的不同部分分离部署，实现系统伸缩性。<br><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_2.png" alt="System_design_c6_2"></p>
+<p>横向分离（功能分割）：将不同的业务模块分离部署，实现系统伸缩性。<br><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_3.png" alt="System_design_c6_3"></p>
+<h2 id="单一功能通过集群实现伸缩"><a href="#单一功能通过集群实现伸缩" class="headerlink" title="单一功能通过集群实现伸缩"></a>单一功能通过集群实现伸缩</h2><p>将不同功能分离部署可以实现一定程度的伸缩性，但是随着网站并发访问逐步增加，单一的功能独立部署在独立的服务器上也不能满足业务规模的要求。因此必须使用服务器集群，即将相同服务部署在多台服务器上构成一个集群整体对外提供服务。</p>
+<p>集群伸缩又具体可分为应用服务器集群伸缩性和数据服务器伸缩性，技术实现差别很大。而数据服务器集群也可分为缓存数据服务器集群和存储数据服务器集群，其伸缩性设计也很不一样。</p>
+<h1 id="应用服务器集群的伸缩性设计"><a href="#应用服务器集群的伸缩性设计" class="headerlink" title="应用服务器集群的伸缩性设计"></a>应用服务器集群的伸缩性设计</h1><p>在构建高可用的架构时曾提到，应用服务器应该设计成无状态的，即应用服务器不存储请求上下文信息，这样每次用户请求可以由任意一台服务器处理，而不会影响结果。</p>
+<p>如果HTTP请求分发装置可以感知或配置集群的服务器数量，及时发现集群中新上线或下线的服务器，并分发请求，就实现了应用服务器集群的伸缩性。</p>
+<p>这里，这个HTTP请求分发装置被称为负载均衡服务器。</p>
+<p>负载均衡是网站必不可少的基础技术手段，不但可以实现网站的伸缩性，同时还可改善网站的可用性，</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_4.png" alt="System_design_c6_4"></p>
+<h2 id="HTTP重定向负载均衡"><a href="#HTTP重定向负载均衡" class="headerlink" title="HTTP重定向负载均衡"></a>HTTP重定向负载均衡</h2><p>使用HTTP重定向协议实现负载均衡。</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_5.png" alt="System_design_c6_5"></p>
+<p>HTTP重定向服务器是一台普通的应用服务器，功能是更具用户的HTTP请求计算一台真实的Web服务器地址，并使浏览器重定向到该服务器。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/02/01/System Design_大型网站伸缩性架构c6/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/20/Research_WordNet/" itemprop="url">
+                  WordNet
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-01-20T00:00:00+09:00" content="2016-01-20">
+              2016-01-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/research/" itemprop="url" rel="index">
+                    <span itemprop="name">research</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/20/Research_WordNet/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/20/Research_WordNet/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="WordNet的Synset"><a href="#WordNet的Synset" class="headerlink" title="WordNet的Synset"></a>WordNet的Synset</h3><p>WordNet是一个英语词汇库。名词、动词、形容词、副词以及词组以同义group的形式放在一起，称为synsets，也就是一个概念(concept)。下面是一个称为synsets的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mileage</div><div class="line">fuel consumption rate</div><div class="line">gasoline mileage</div><div class="line">gas mileage</div></pre></td></tr></table></figure>
+<p>这就是一个synset，表示汽车的汽油里程数概念，同一个synset里的词可以看做是表达同一种意思，也就是同义词(synonym)。Synset也通过概念语义link连接在一起，使得整个Wordnet组成一个具有语义的网络。</p>
+<p>另外，WordNet中每一个synset包含一个简短的解释gloss，多个例子短句。</p>
+<p>需要注意的是，WordNet不是通过词的形式(string, letter)聚集在一起，而是根据词的语义意思。同样的，当一个词form具有多种不同含义时，该词form会出现在多个synset中。</p>
+<h3 id="WordNet中Synset之间关系"><a href="#WordNet中Synset之间关系" class="headerlink" title="WordNet中Synset之间关系"></a>WordNet中Synset之间关系</h3><p>synset之间最常见的关系是super-subordinate relation(上下级关系，也成为hyperonymy，hyponymy，ISA relation)，比如较抽象的synset之间的关系{furniture}, piece_of_furniture}，比较具体的synset之间的关系{bed},{bunkbed}，所有名词都有一个最上级{entity}。hyperonymy关系是具有传递性的。WordNet区分了不同目录的具体实例（实例为叶子节点），比如一般名词，人物，地点等。例如armchair是一种chair，Barack Obama是一个人名。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/20/Research_WordNet/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/01/18/Leetcode_Top K Frequent Elements/" itemprop="url">
                   Top K Frequent Elements
                 </a>
@@ -341,147 +605,6 @@
 <p>refer to<a href="http://blog.csdn.net/itismelzp/article/details/51353832" target="_blank" rel="external">LeetCode:Top K Frequent Elements</a></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">topKFrequent</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</div><div class="line">        </div><div class="line">        </div><div class="line">        Map&lt;Integer,Integer&gt; map = <span class="keyword">new</span> HashMap&lt;Integer,Integer&gt;();</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> len = nums.length;</div><div class="line">        List&lt;Integer&gt;[] bucket = <span class="keyword">new</span> List[len+<span class="number">1</span>];</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> num:nums) &#123;</div><div class="line">            map.put(num, map.getOrDefault(num, <span class="number">0</span>)+<span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> key:map.keySet()) &#123;</div><div class="line">            <span class="keyword">int</span> value = map.get(key);</div><div class="line">            <span class="keyword">if</span>(<span class="keyword">null</span> == bucket[value]) bucket[value] = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">            </div><div class="line">            bucket[value].add(key);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        List&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=bucket.length-<span class="number">1</span>;i&gt;=<span class="number">0</span> &amp;&amp; res.size()&lt;k;i--) &#123;</div><div class="line">            <span class="keyword">if</span>(bucket[i] != <span class="keyword">null</span>) &#123;</div><div class="line">                res.addAll(bucket[i]);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/17/System Design_大型网站可扩展架构c7/" itemprop="url">
-                  System Design_大型网站可扩展架构
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2016-01-17T00:00:00+09:00" content="2016-01-17">
-              2016-01-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/System-design/" itemprop="url" rel="index">
-                    <span itemprop="name">System design</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/17/System Design_大型网站可扩展架构c7/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/17/System Design_大型网站可扩展架构c7/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="构建可扩展的网站架构"><a href="#构建可扩展的网站架构" class="headerlink" title="构建可扩展的网站架构"></a>构建可扩展的网站架构</h1><p><strong>扩展性</strong></p>
-<p>指对对现有系统影响下，系统功能可持续扩展或提升的能力。表现在系统基础设置稳定不需要经常变更，应用之间较少依赖和耦合，对需求变更可以敏捷响应。也就是系统架构设计层面的开闭原则（对扩展开放，对修改关闭），架构设计考虑未来功能扩展，当系统增加新功能时，不需要对现有系统的结构和代码进行修改。</p>
-<p><strong>伸缩性</strong></p>
-<p>指系统能够通过增加（减少）自身资源规模的方式增强（减少）自己计算处理事务的能力。如果这种增减是成比例的，就被称作线性伸缩性。在网站架构中，通常指利用集群的方式增加服务器数量、提高系统的整体事务吞吐能力。</p>
-<p>低耦合系统更容易扩展和复用。软件架构师的关键能力在于能够将一个大系统分成N个低耦合的子模块，这些子模块包含横向的业务模块，也包含纵向的基础基础模块。</p>
-<p>设计网站可扩展架构的核心思想是模块化，并在此基础上，降低模块间的耦合性，提高模块的复用性。前面提到使用分层和分割的方式进行架构伸缩，分层和分割也是模块化设计的重要手段，利用分层和分割的方式将软件分割为若干个低耦合的独立的组件模块，这些组件模块以消息传递及依赖调用的方式聚合成一个完整的系统。</p>
-<p>在大型网站中，这些模块通过分布式部署的方式，独立的模块部署在独立的服务器（集群）上，从物理上分离模块之间的耦合关系，进一步降低耦合性，提高复用性。</p>
-<p>模块分布式部署后具体聚合方式主要有分布式消息队列和分布式服务。</p>
-<h1 id="利用分布式消息队列降低系统耦合性"><a href="#利用分布式消息队列降低系统耦合性" class="headerlink" title="利用分布式消息队列降低系统耦合性"></a>利用分布式消息队列降低系统耦合性</h1><p>如果模块之间不存在直接调用，那么新增模块或者修改模块就对其他模块影响最小，这样可以实现很高的可扩展性。</p>
-<h2 id="事件驱动架构-Event-Driven-Architecture"><a href="#事件驱动架构-Event-Driven-Architecture" class="headerlink" title="事件驱动架构(Event Driven Architecture)"></a>事件驱动架构(Event Driven Architecture)</h2><p>指通过在低耦合的模块之间传输时间消息，以保持模块的松散耦合，并借助事件消息的通信完成模块间合作，典型的EDA架构就是操作系统中常见的生产者消费者模式。在大型网站架构中，具体实现手段有很多，最常用的是分布式消息队列。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c7_01.png" alt="System_design_c7_01"></p>
-<p>消息队列利用发布-订阅模式工作，消息发送者发布消息，一个或多个消息接收者订阅消息。发送者和接收者没有直接耦合，可以新增业务为发布者或者接收者而无需影响原有系统业务，从而实现网站业务的可扩展设计。</p>
-<p>另外由于消息发送者不需要等待消息接收者处理数据就可以返回，系统具有更好的响应延迟，同时，在网站访问高峰，消息可以暂时存储在消息队列中等待消息接收者根据自身负载处理能力控制消息处理速度，减轻数据库等后端存储的负载压力。</p>
-<h2 id="分布式消息队列"><a href="#分布式消息队列" class="headerlink" title="分布式消息队列"></a>分布式消息队列</h2><p>队列是一种先进先出的数据结构，分布式消息队列可以看做这种数据结构的分布式部署到独立服务器上，应用程序可以通过远程访问接口使用分布式消息队列，进行消息存取操作，进而实现分布式的异步调用。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c7_02.png" alt="System_design_c7_02"></p>
-<p>消息生产者通过远程接口将消息推送给消息队列服务器随后返回，消息队列服务器根据消息订阅列表查找订阅该消息的消费者程序，将消息队列中的消息按照先进先出FIFO将消息通过远程通信端口发送给消费者程序。</p>
-<p>目前开源的分布式消息队列产品有Apache ActiveMQ等，这些产品另外也对可用性、伸缩性、数据一致性、性能也做了很多改善。</p>
-<p>在伸缩性方面，由于消息队列服务器上的数据可以看做是无状态的，伸缩性设计比较简单。将服务器加入分布式消息队列集群中，通知生产者服务器更改消息队列服务器列表即可。</p>
-<p>在可用性方面，为了避免消费者进行处理缓慢，分布式消息队列服务器内存空间不足造成的问题，如果内存队列已满，会将消息写入磁盘。内存队列消息处理完后，将磁盘内容加载到内存队列继续处理。</p>
-<p>分布式消息队列可以很复杂，比如说支持ESB，SOA；也可以很简单，如用MySQL也可以当做分布式消息队列。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/17/System Design_大型网站可扩展架构c7/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
-          </div>
         
       
     </div>
@@ -659,8 +782,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/01/09/Leetcode_Serialize and Deserialize Binary Tree/" itemprop="url">
-                  Serialize and Deserialize Binary Tree
+                <a class="post-title-link" href="/2016/01/17/System Design_大型网站可扩展架构c7/" itemprop="url">
+                  System Design_大型网站可扩展架构
                 </a>
               
             
@@ -673,8 +796,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2016-01-09T00:00:00+09:00" content="2016-01-09">
-              2016-01-09
+            <time itemprop="dateCreated" datetime="2016-01-17T00:00:00+09:00" content="2016-01-17">
+              2016-01-17
             </time>
           </span>
 
@@ -687,8 +810,8 @@
               <span class="post-meta-item-text">分類於</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
+                  <a href="/categories/System-design/" itemprop="url" rel="index">
+                    <span itemprop="name">System design</span>
                   </a>
                 </span>
 
@@ -703,8 +826,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/01/09/Leetcode_Serialize and Deserialize Binary Tree/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/09/Leetcode_Serialize and Deserialize Binary Tree/" itemprop="commentsCount"></span>
+                <a href="/2016/01/17/System Design_大型网站可扩展架构c7/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/17/System Design_大型网站可扩展架构c7/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -728,156 +851,31 @@
 
       
         
-          
-            <h1 id="Serialize-and-Deserialize-Binary-Tree"><a href="#Serialize-and-Deserialize-Binary-Tree" class="headerlink" title="Serialize and Deserialize Binary Tree"></a><a href="https://leetcode.com/problems/serialize-and-deserialize-binary-tree/" target="_blank" rel="external">Serialize and Deserialize Binary Tree</a></h1><blockquote>
-<p>Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.</p>
-<p>Design an algorithm to serialize and deserialize a binary tree. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that a binary tree can be serialized to a string and this string can be deserialized to the original tree structure.</p>
-<p>For example, you may serialize the following tree</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">  1</div><div class="line"> / \</div><div class="line">2   3</div><div class="line">   / \</div><div class="line">  4   5</div></pre></td></tr></table></figure>
-<blockquote>
-<p>as <code>&quot;[1,2,3,null,null,4,5]&quot;</code>, just the same as how LeetCode OJ serializes a binary tree. You do not necessarily need to follow this format, so please be creative and come up with different approaches yourself.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>前序遍历，把所有空节点当做“#”来标示。空节点无需再展开。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">    1</div><div class="line">   / \</div><div class="line">  2   3</div><div class="line"> / \  / \</div><div class="line">#  # 4    5</div><div class="line">    / \  / \</div><div class="line">    #  # #  #</div></pre></td></tr></table></figure>
-<p>程序中需要记录当前数组中移动到的位置，由于java本质上都是传值，并没有c++中的传指针和传引用，使用int是无法保持记录，而所有的wrapper都是immutation的，包括Integer。所以这里在程序中新建立一个包装类。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"> </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Position</span> </span>&#123;</div><div class="line">     <span class="keyword">int</span> pos;</div><div class="line">     <span class="function"><span class="keyword">public</span> <span class="title">Position</span><span class="params">(<span class="keyword">int</span> pos)</span> </span>&#123;</div><div class="line">         <span class="keyword">this</span>.pos = pos;</div><div class="line">     &#125;</div><div class="line"> &#125;</div><div class="line"> </div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Codec</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// Encodes a tree to a single string.</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">serialize</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">        StringBuffer sb = <span class="keyword">new</span> StringBuffer();</div><div class="line">        serialize(root, sb);</div><div class="line">        <span class="keyword">return</span> sb.toString().substring(<span class="number">1</span>, sb.length());</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">serialize</span><span class="params">(TreeNode root, StringBuffer sb)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>) sb.append(<span class="string">","</span> + <span class="string">"#"</span>);</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            sb.append(<span class="string">","</span> + root.val);</div><div class="line">            serialize(root.left, sb);</div><div class="line">            serialize(root.right, sb);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Decodes your encoded data to tree.</span></div><div class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">deserialize</span><span class="params">(String data)</span> </span>&#123;</div><div class="line">        String[] nodes = data.split(<span class="string">","</span>);</div><div class="line">        <span class="keyword">return</span> deserialize(nodes, <span class="keyword">new</span> Position(<span class="number">0</span>));</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> TreeNode <span class="title">deserialize</span><span class="params">(String[] nodes, Position position)</span> </span>&#123;</div><div class="line">        TreeNode node = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">if</span>(!nodes[position.pos].equals(<span class="string">"#"</span>)) &#123;</div><div class="line">            node = <span class="keyword">new</span> TreeNode(Integer.parseInt(nodes[position.pos]));</div><div class="line">            position.pos ++;</div><div class="line">            node.left = deserialize(nodes, position);</div><div class="line">            position.pos ++;</div><div class="line">            node.right = deserialize(nodes, position);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> node;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/05/Developing_Elastic Search(1)配置/" itemprop="url">
-                  Elasticsearch配置
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2016-01-05T00:00:00+09:00" content="2016-01-05">
-              2016-01-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Developing/" itemprop="url" rel="index">
-                    <span itemprop="name">Developing</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/05/Developing_Elastic Search(1)配置/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/05/Developing_Elastic Search(1)配置/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Elasticsearch配置"><a href="#Elasticsearch配置" class="headerlink" title="Elasticsearch配置"></a>Elasticsearch配置</h1><p>Elasticsearch是一个实时分布式搜索和分析引擎，基于REST，我们可以使用Elasticsearch快速的实现全文搜索、结构化搜索、分析。和Apache Solr一样，Elastic Search同样使用Apache Lucene作为核心实现索引和检索功能。</p>
-<p>这里首先介绍Elasticsearch的安装。由于Elasticsearch仍处于快速发展阶段，所以每个版本的安装方式可能会有不同。这里使用的Elasticsearch版本是2.1.1，Elasticsearch无需安装，只需要直接下载解压，然后运行bin/elasticsearch即可启动Elasticsearch，并默认在9200端口提供RESTful服务。</p>
-<ol>
-<li>下载<a href="https://www.elastic.co/downloads/elasticsearch" target="_blank" rel="external">Elastisearch</a></li>
-<li>解压，<code>tar -zxvf 文件</code>。</li>
-<li>运行<code>bin/elasticsearch</code>。</li>
-</ol>
-<p><code>curl &#39;http://localhost:9200/?pretty&#39;</code>，我们会得到：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"name"</span> : <span class="string">"Namorita"</span>,</div><div class="line">  <span class="attr">"cluster_name"</span> : <span class="string">"elasticsearch"</span>,</div><div class="line">  <span class="attr">"version"</span> : &#123;</div><div class="line">    <span class="attr">"number"</span> : <span class="string">"2.1.1"</span>,</div><div class="line">    <span class="attr">"build_hash"</span> : <span class="string">"40e2c53a6b6c2972b3d13846e450e66f4375bd71"</span>,</div><div class="line">    <span class="attr">"build_timestamp"</span> : <span class="string">"2015-12-15T13:05:55Z"</span>,</div><div class="line">    <span class="attr">"build_snapshot"</span> : <span class="literal">false</span>,</div><div class="line">    <span class="attr">"lucene_version"</span> : <span class="string">"5.3.1"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">"tagline"</span> : <span class="string">"You Know, for Search"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>另外一个常用的工具是<a href="https://www.elastic.co/downloads/marvel" target="_blank" rel="external">Marvel</a>，Elasticsearch的管理和监控工具，目前的最新的版本是2.1，目前版本似乎是要结合数据可视化工具Kibana运行。下面是完整的步骤：</p>
-<p>Step 1: 在Elasticsearch安装Marvel：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">bin/plugin install license</div><div class="line">bin/plugin install marvel-agent</div></pre></td></tr></table></figure>
-<p>Step 2: 下载<a href="https://www.elastic.co/downloads/kibana" target="_blank" rel="external">Kibana</a>并解压。<br>Step 3: 在Kibana中安装Marvel，<code>bin/kibana plugin --install elasticsearch/marvel/latest</code><br>Step 4: 启动Elasticsearch 和 Kibana</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">bin/elasticsearch</div><div class="line">bin/kibana</div></pre></td></tr></table></figure>
-<p>Step 5: 访问<code>http://localhost:5601/app/marvel</code>查看运行的Elasticsearch服务。</p>
-
-          
+          <h1 id="构建可扩展的网站架构"><a href="#构建可扩展的网站架构" class="headerlink" title="构建可扩展的网站架构"></a>构建可扩展的网站架构</h1><p><strong>扩展性</strong></p>
+<p>指对对现有系统影响下，系统功能可持续扩展或提升的能力。表现在系统基础设置稳定不需要经常变更，应用之间较少依赖和耦合，对需求变更可以敏捷响应。也就是系统架构设计层面的开闭原则（对扩展开放，对修改关闭），架构设计考虑未来功能扩展，当系统增加新功能时，不需要对现有系统的结构和代码进行修改。</p>
+<p><strong>伸缩性</strong></p>
+<p>指系统能够通过增加（减少）自身资源规模的方式增强（减少）自己计算处理事务的能力。如果这种增减是成比例的，就被称作线性伸缩性。在网站架构中，通常指利用集群的方式增加服务器数量、提高系统的整体事务吞吐能力。</p>
+<p>低耦合系统更容易扩展和复用。软件架构师的关键能力在于能够将一个大系统分成N个低耦合的子模块，这些子模块包含横向的业务模块，也包含纵向的基础基础模块。</p>
+<p>设计网站可扩展架构的核心思想是模块化，并在此基础上，降低模块间的耦合性，提高模块的复用性。前面提到使用分层和分割的方式进行架构伸缩，分层和分割也是模块化设计的重要手段，利用分层和分割的方式将软件分割为若干个低耦合的独立的组件模块，这些组件模块以消息传递及依赖调用的方式聚合成一个完整的系统。</p>
+<p>在大型网站中，这些模块通过分布式部署的方式，独立的模块部署在独立的服务器（集群）上，从物理上分离模块之间的耦合关系，进一步降低耦合性，提高复用性。</p>
+<p>模块分布式部署后具体聚合方式主要有分布式消息队列和分布式服务。</p>
+<h1 id="利用分布式消息队列降低系统耦合性"><a href="#利用分布式消息队列降低系统耦合性" class="headerlink" title="利用分布式消息队列降低系统耦合性"></a>利用分布式消息队列降低系统耦合性</h1><p>如果模块之间不存在直接调用，那么新增模块或者修改模块就对其他模块影响最小，这样可以实现很高的可扩展性。</p>
+<h2 id="事件驱动架构-Event-Driven-Architecture"><a href="#事件驱动架构-Event-Driven-Architecture" class="headerlink" title="事件驱动架构(Event Driven Architecture)"></a>事件驱动架构(Event Driven Architecture)</h2><p>指通过在低耦合的模块之间传输时间消息，以保持模块的松散耦合，并借助事件消息的通信完成模块间合作，典型的EDA架构就是操作系统中常见的生产者消费者模式。在大型网站架构中，具体实现手段有很多，最常用的是分布式消息队列。</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c7_01.png" alt="System_design_c7_01"></p>
+<p>消息队列利用发布-订阅模式工作，消息发送者发布消息，一个或多个消息接收者订阅消息。发送者和接收者没有直接耦合，可以新增业务为发布者或者接收者而无需影响原有系统业务，从而实现网站业务的可扩展设计。</p>
+<p>另外由于消息发送者不需要等待消息接收者处理数据就可以返回，系统具有更好的响应延迟，同时，在网站访问高峰，消息可以暂时存储在消息队列中等待消息接收者根据自身负载处理能力控制消息处理速度，减轻数据库等后端存储的负载压力。</p>
+<h2 id="分布式消息队列"><a href="#分布式消息队列" class="headerlink" title="分布式消息队列"></a>分布式消息队列</h2><p>队列是一种先进先出的数据结构，分布式消息队列可以看做这种数据结构的分布式部署到独立服务器上，应用程序可以通过远程访问接口使用分布式消息队列，进行消息存取操作，进而实现分布式的异步调用。</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c7_02.png" alt="System_design_c7_02"></p>
+<p>消息生产者通过远程接口将消息推送给消息队列服务器随后返回，消息队列服务器根据消息订阅列表查找订阅该消息的消费者程序，将消息队列中的消息按照先进先出FIFO将消息通过远程通信端口发送给消费者程序。</p>
+<p>目前开源的分布式消息队列产品有Apache ActiveMQ等，这些产品另外也对可用性、伸缩性、数据一致性、性能也做了很多改善。</p>
+<p>在伸缩性方面，由于消息队列服务器上的数据可以看做是无状态的，伸缩性设计比较简单。将服务器加入分布式消息队列集群中，通知生产者服务器更改消息队列服务器列表即可。</p>
+<p>在可用性方面，为了避免消费者进行处理缓慢，分布式消息队列服务器内存空间不足造成的问题，如果内存队列已满，会将消息写入磁盘。内存队列消息处理完后，将磁盘内容加载到内存队列继续处理。</p>
+<p>分布式消息队列可以很复杂，比如说支持ESB，SOA；也可以很简单，如用MySQL也可以当做分布式消息队列。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/17/System Design_大型网站可扩展架构c7/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -908,7 +906,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/65/">65</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/66/">66</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -949,7 +947,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">325</span>
+              <span class="site-state-item-count">327</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -957,7 +955,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分類</span>
               </a>
             </div>
@@ -1168,7 +1166,24 @@
       }
     });
   </script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
   

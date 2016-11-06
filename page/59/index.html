@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -118,7 +118,7 @@
   <link rel="canonical" href="http://yoursite.com/page/59/"/>
 
 
-  <title> Plusaber's Blog </title>
+  <title> Plusaber's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
@@ -126,7 +126,7 @@
   
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -238,6 +238,406 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/02/02/Java_时间格式化/" itemprop="url">
+                  Java中的时间格式化
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-02-02T00:00:00+09:00" content="2015-02-02">
+              2015-02-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/02/02/Java_时间格式化/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/02/02/Java_时间格式化/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Java中的时间格式化"><a href="#Java中的时间格式化" class="headerlink" title="Java中的时间格式化"></a>Java中的时间格式化</h1><p>通过java.util.Date我们可以简单的获取当前时间：<br><code>Data date = new Date()</code><br>通过Data对象我们可以获取很多关于目前时间的信息和操作方法，其中<code>getTime()</code>方法可以获得当前时间的毫秒数，与<code>System.currentTimeMills()</code>方法相同。</p>
+<p>Date类提供的一些方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">after</span><span class="params">(Date date)</span></span></div><div class="line"><span class="keyword">boolean</span> <span class="title">before</span><span class="params">(Date date)</span></div><div class="line"><span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Date date)</span> <span class="comment">// equal-0, before-minus</span></div><div class="line"><span class="keyword">long</span> <span class="title">getTime</span><span class="params">()</span></div></pre></td></tr></table></figure>
+<p>很多时候我们需要将时间以某种特定格式输出或使用，这是我们可以使用<code>java.text.SimpleDateFormat</code>类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd-HH:mm:ss.SSS"</span>);</div><div class="line">String currentTime = sdf.format(<span class="keyword">new</span> Date());</div></pre></td></tr></table></figure>
+<p>其中yyyy等对应着时间里的元素，具体如下：</p>
+<table>
+<thead>
+<tr>
+<th>letter</th>
+<th>meaning</th>
+<th>text</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>G</td>
+<td>Era designator</td>
+<td>Text</td>
+</tr>
+<tr>
+<td>y</td>
+<td>Year</td>
+<td>Year</td>
+</tr>
+<tr>
+<td>M</td>
+<td>Month in year</td>
+<td>Month</td>
+</tr>
+<tr>
+<td>w</td>
+<td>Week in year</td>
+<td>Number</td>
+</tr>
+<tr>
+<td>W</td>
+<td>Week in month</td>
+<td>Number</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Day in year</td>
+<td>Number</td>
+</tr>
+<tr>
+<td>d</td>
+<td>Day in month</td>
+<td>Number</td>
+</tr>
+<tr>
+<td>F</td>
+<td>Day of week in month</td>
+<td>Number</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Day in week</td>
+<td>Text</td>
+</tr>
+<tr>
+<td>a</td>
+<td>Am/pm marker</td>
+<td>Text</td>
+</tr>
+<tr>
+<td>H</td>
+<td>Hour in day (0-23)</td>
+<td>Number</td>
+</tr>
+<tr>
+<td>k</td>
+<td>Hour in day (1-24)</td>
+<td>Number</td>
+</tr>
+<tr>
+<td>K</td>
+<td>Hour in am/pm (0-11)</td>
+<td>Number</td>
+</tr>
+<tr>
+<td>h</td>
+<td>Hour in am/pm (1-12)</td>
+<td>Number</td>
+</tr>
+<tr>
+<td>m</td>
+<td>Minute in hour</td>
+<td>Number</td>
+</tr>
+<tr>
+<td>s</td>
+<td>Second in minute</td>
+<td>Number</td>
+</tr>
+<tr>
+<td>S</td>
+<td>Millisecond</td>
+<td>Number</td>
+</tr>
+<tr>
+<td>z</td>
+<td>Time zone</td>
+<td>General time zone</td>
+</tr>
+<tr>
+<td>Z</td>
+<td>Time zone</td>
+<td>RFC 822 time zone</td>
+</tr>
+</tbody>
+</table>
+<p>SimpleDateFormat除了可以将Date时间格式化，还提供parse()方法将字符串解析为Date。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat (<span class="string">"yyyy-MM-dd:hh:mm"</span>);</div><div class="line">String time = <span class="string">"2015-02-02:08:23"</span>;</div><div class="line">Date date = sdf.parse(time);</div></pre></td></tr></table></figure>
+<p>另外如果需要设置时间等操作，可以使用Calendar类，这里不再进行扩展。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/01/17/Refactoring_Some principles/" itemprop="url">
+                  Some principles
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-01-17T00:00:00+09:00" content="2015-01-17">
+              2015-01-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Refactoring/" itemprop="url" rel="index">
+                    <span itemprop="name">Refactoring</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/01/17/Refactoring_Some principles/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/01/17/Refactoring_Some principles/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>参考《重构–改善既有代码的设计》(《Refactoring–Improving the Design of Existing Code》).</p>
+<h1 id="重构-Refactoring"><a href="#重构-Refactoring" class="headerlink" title="重构(Refactoring)"></a>重构(Refactoring)</h1><p>所谓重构是这样一个过程：在不改变代码外在行为的前提下，对代码做出修改，以改进程序的内部结构。本质上说，重构就是在代码写好之后改进它的设计。</p>
+<p>『在代码写好后改进它的设计』，似乎不是合理的方式，按照目前对软件开发的理解，我们要相信先设计再编码。但是在开始是很难完全预测后面可能会出现的变更，在设计前期使用模式常常导致过度工程(over-engineering)，随着时间流逝，人们不断修改代码，则会导致系统原来的设计不可避免的混乱。</p>
+<p>重构则与此相反。即使目前是一堆混乱的代码，我们也可以借由重构将其加工成设计良好的代码。<strong>重构的目的是使软件更容易被理解和修改。</strong></p>
+<p>重构定义：</p>
+<ul>
+<li>名词：对软件内部结构的一种调整，目的是在不改变软件可观察行为的前提下，提高其可理解性，降低其修改成本。</li>
+<li>动词：使用一系列重构手法，在不改变软件可观察行为的前提下，调整其结构。</li>
+</ul>
+<p>使用重构技术开发软件时，你应该把时间分配给两种截然不同的行为：添加新功能，以及重构。添加新功能时，你不应该修改既有代码，只管添加新功能，通过测试。重构时就不能同时添加新功能。</p>
+<h1 id="Why-refactoring"><a href="#Why-refactoring" class="headerlink" title="Why refactoring"></a>Why refactoring</h1><ul>
+<li><p>重构改进软件设计<br>如果没有重构，程序的设计会逐渐腐败变质。</p>
+</li>
+<li><p>重构是代码更容易理解<br>所谓程序设计，很大程度上就是与计算机交谈。很多时候我们需要补上或修改想要它做什么。而这种编程模式的核心就是『准确说出我想要的』，让代码更易读。</p>
+</li>
+<li><p>重构帮助找到bug</p>
+</li>
+<li>重构提高编程速度</li>
+</ul>
+<p>系统当下的行为，只是故事的一部分。如果只是为今天工作，明天可能无法继续下去。重构是一条摆脱困境的道路。</p>
+<p>下面的程序将会使改动困难重重，导致代码僵化并死亡：</p>
+<ul>
+<li>难以阅读的程序，难以修改</li>
+<li>逻辑重复的程序，难以修改</li>
+<li>添加新行为时需要修改已有代码的程序，难以修改</li>
+<li>带复杂条件逻辑的程序，难以修改</li>
+</ul>
+<p>我们希望程序：（1）容易阅读  （2）所有逻辑都只在唯一的位置指定，没有重复  （3）新的改动不会危及现有行为   （4）尽可能简单表达条件逻辑、</p>
+<p>重构可以帮助我们在不改变程序行为的前期下使其具有上述美好性质，使我们更能够继续保持高速开发。</p>
+<h1 id="When-refactoring"><a href="#When-refactoring" class="headerlink" title="When refactoring"></a>When refactoring</h1><p>第一次做某件事尽管去做；第二次做类似的事如果产生反感，但还是可以去做；第三次再做类似的事，你就应该重构，</p>
+<ul>
+<li><p>添加功能时重构<br>如果不能轻松天骄所需要的新功能</p>
+</li>
+<li><p>修补错误时重构<br>如果难以找出程序的bug。</p>
+</li>
+<li><p>复审代码时重构</p>
+</li>
+</ul>
+<h1 id="Refactoring-and-Design"><a href="#Refactoring-and-Design" class="headerlink" title="Refactoring and Design"></a>Refactoring and Design</h1><p>重构肩负一项特殊使命：它和设计彼此互补。如果没有重构，你就必须保证预先做出的设计正确无误，但这个难度太大了，过度的预先设计往往反而会导致程序的难以编写。如果选择重构，问题的重点就转变了。你仍然可以预先设计，但是不必找到正确的解决方案（事实上也是不可能的），而是一个足够合理的解决方案就够了。</p>
+<p>预先设计往往要预测后面可能的变化，力求得到灵活的解决方案。但是很难预测所有的变化，变化其实可能出现系统各处，如果在所有可能出现变化的地方都建立起灵活性，则往往需要建立许多中间层，反而使系统复杂且难以理解和维护。如果最后发现所有这些灵活性其实毫无必要，才是最大的失败。</p>
+<p>重构可以带来更简单的设计，同时不损失灵活性，这也降低了设计过程的难度，减轻设计压力。</p>
+<h1 id="Some-pricinples"><a href="#Some-pricinples" class="headerlink" title="Some pricinples:"></a>Some pricinples:</h1><ul>
+<li>如果你发现自己需要为程序添加一个特性，而代码结构使你无法很方便地达成目的，那就先重构哪个程序，是特性的添加比较容易进行，然后在添加特性。</li>
+<li>重构的第一步：建立一组可靠的测试机制，这些测试必须有自我校验能力。</li>
+<li>好的代码应该清楚表达出自己的功能，变量名称是代码清晰的关键。</li>
+<li>尽量不要使用临时变量，它们会导致大量参数传来传去，难以追踪，导致冗长的函数。</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -660,316 +1060,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/12/23/Developing_MySQL记录/" itemprop="url">
-                  MySQL记录
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2014-12-23T00:00:00+09:00" content="2014-12-23">
-              2014-12-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Developing/" itemprop="url" rel="index">
-                    <span itemprop="name">Developing</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/12/23/Developing_MySQL记录/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/12/23/Developing_MySQL记录/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Mac设置mysql命令行"><a href="#Mac设置mysql命令行" class="headerlink" title="Mac设置mysql命令行"></a>Mac设置mysql命令行</h3><p>在系统环境加上mysql的路径，关于PATH设置方法可以参考<a href="http://plusaber.net/2014/07/02/Developing_Linux环境变量配置/" target="_blank" rel="external">Linux环境变量配置</a></p>
-<p><code>PATH=&quot;$PATH&quot;:/usr/local/mysql/bin</code></p>
-<h3 id="修改root密码的几种方法："><a href="#修改root密码的几种方法：" class="headerlink" title="修改root密码的几种方法："></a>修改root密码的几种方法：</h3><ul>
-<li><p>登录mysql以后，使用<br><code>set password for &#39;root&#39;@&#39;localhost&#39; = PASSWORD(&#39;***&#39;);</code></p>
-</li>
-<li><p>用mysqladmin命令<br><code>mysqladmin -u root password &quot;***&quot;</code></p>
-</li>
-<li><p>直接update mysql数据库的user表<br><code>update user set Password = PASSWORD(&#39;***&#39;) where user = &#39;root&#39;;</code></p>
-</li>
-</ul>
-<h3 id="备份与导入"><a href="#备份与导入" class="headerlink" title="备份与导入"></a>备份与导入</h3><h4 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h4><ul>
-<li><p>导出数据库<br><code>mysqldump -u 用户名 -p 数据库名 &gt; 导出的文件名</code></p>
-</li>
-<li><p>导出具体表<br><code>mysqldump -u 用户名 -p 数据库名 表名 &gt; 导出的文件名</code></p>
-</li>
-<li><p>导出一个数据库结构<br><code>mysqldump -u 用户名 -p 数据库名 -d &gt; 导出的文件名</code><br>-d表示不导出数据</p>
-</li>
-<li><p>导出具体表结构<br><code>mysqldump -u 用户名 -p -d 数据库名 表名 &gt; 导出的文件名</code></p>
-</li>
-</ul>
-<h4 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h4><p>使用source语句</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">use aol_log;</div><div class="line">set names utf8;  #设置字符</div><div class="line">source /home/chen/Desktop/logbk.sql;</div></pre></td></tr></table></figure>
-<p>参考:<br><a href="http://blog.51yip.com/mysql/139.html" target="_blank" rel="external">Linux 简单的mysql备份和导入，以及文件的备份和导入</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/12/12/Design Pattern_Factory pattern/" itemprop="url">
-                  Factory Pattern
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2014-12-12T00:00:00+09:00" content="2014-12-12">
-              2014-12-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Design-Pattern/" itemprop="url" rel="index">
-                    <span itemprop="name">Design Pattern</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/12/12/Design Pattern_Factory pattern/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/12/12/Design Pattern_Factory pattern/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在策略模式曾提到过，我们需要面向接口编程，而不是具体类。但是无法避免的是，我们需要使用new方法来创建对象，这时我们不得不使用具体类。例如:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(picnic) &#123;</div><div class="line">	duck = <span class="keyword">new</span> MalldarDuck();</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span>(hunting) &#123;</div><div class="line">	duck = <span class="keyword">new</span> DecoyDuck();</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">	duck = <span class="keyword">new</span> RubberDuck();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这样一旦有变化或扩展，我们需要修改所有这些引用了具体类new对象的代码，造成系统难以维护和修改。代码无法对修改关闭。</p>
-<p>同样的，我们应该分离变化的部分。在这里new对象部分是可能发生变化的部分，例如新增具体累，删除具体类，或者构造函数变化等。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_factory_1.png" alt="Design_pattern_factory_1"></p>
-<h1 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h1><p>最直接的方法就是将创建对象移到一个专职创建披萨的对象中，称这个对象为工厂。工厂(factory)处理创建对象的细节，这个如果客户需要使用产品，只需要通过工厂来获得产品直接使用，不需要自己使用具体类来进行创建。创建代码集中到一个工厂类中，也方便集中同一管理。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimplePizzaFactory</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> Pizza <span class="title">createPizza</span><span class="params">(String type)</span> </span>&#123;</div><div class="line">		Pizza pizza = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">		<span class="keyword">if</span> (type.equals(<span class="string">"cheese"</span>)) &#123;</div><div class="line">			pizza = <span class="keyword">new</span> CheesePizza();</div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (type.equals(<span class="string">"pepperoni"</span>)) &#123;</div><div class="line">			pizza = <span class="keyword">new</span> PepperoniPizza();</div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (type.equals(<span class="string">"clam"</span>)) &#123;</div><div class="line">			pizza = <span class="keyword">new</span> ClamPizza();</div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (type.equals(<span class="string">"veggie"</span>)) &#123;</div><div class="line">			pizza = <span class="keyword">new</span> VeggiePizza();</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> pizza;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PizzaStore</span> </span>&#123;</div><div class="line">	SimplePizzaFactory factory;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">PizzaStore</span><span class="params">(SimplePizzaFactory factory)</span> </span>&#123; </div><div class="line">		<span class="keyword">this</span>.factory = factory;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> Pizza <span class="title">orderPizza</span><span class="params">(String type)</span> </span>&#123;</div><div class="line">		Pizza pizza;</div><div class="line"> </div><div class="line">		pizza = factory.createPizza(type);</div><div class="line"> </div><div class="line">		pizza.prepare();</div><div class="line">		pizza.bake();</div><div class="line">		pizza.cut();</div><div class="line">		pizza.box();</div><div class="line"></div><div class="line">		<span class="keyword">return</span> pizza;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="定义简单工厂"><a href="#定义简单工厂" class="headerlink" title="定义简单工厂"></a>定义简单工厂</h2><p>上面用到的是简单工厂，其实并不是一个设计模式。因为其只是将问题搬到了另一个对象，当需要新增实现类时，仍然需要修改这个工厂类。但是由于其简单性，在变化有限的情况下仍是很好的选择。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_factory_2.png" alt="Design_pattern_factory_2"></p>
-<h1 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h1><p>在上面的简单工厂模式中，但需要新增产品类时，我们任然需要修改简单工厂类，对修改没有关闭。这里介绍的工厂方法模式可以帮助我们满足开闭原则。</p>
-<p>对于工厂方法模式，所有工厂模式都用来封装对象的创建。工厂方法模式(Factory Method Pattern)让子类决定该创建的对象是什么，来达到将对象创建的过程封装的目的。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_factory_3.png" alt="Design_pattern_factory_3"></p>
-<p>另一种理解方式是，平行的类层级。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_factory_5.png" alt="Design_pattern_factory_5"></p>
-<h2 id="定义工厂方法模式"><a href="#定义工厂方法模式" class="headerlink" title="定义工厂方法模式"></a>定义工厂方法模式</h2><p>工厂方法模式定义了一个创建对象的接口，但由其子类决定具体实例化的是哪一个产品。工厂方法让类把实例化推迟到子类。我们选择那个子类工厂，也就是选择了需要获得产品类。</p>
-<p>这样当我们需要新增产品时，只需要实现这个产品类(也可是多个产品类，但是同属于一个基类，比如都是pizza)，然后实现生产这个产品的工厂类，继承自工厂方法模式。就可以通过这个工厂获得这个新产品，无需修改抽象工厂类和任何其他类的代码。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_factory_6.png" alt="Design_pattern_factory_6"></p>
-<p>定义工厂方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">PizzaStore</span> </span>&#123;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">abstract</span> Pizza <span class="title">createPizza</span><span class="params">(String item)</span></span>;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> Pizza <span class="title">orderPizza</span><span class="params">(String type)</span> </span>&#123;</div><div class="line">		Pizza pizza = createPizza(type);</div><div class="line">		System.out.println(<span class="string">"--- Making a "</span> + pizza.getName() + <span class="string">" ---"</span>);</div><div class="line">		pizza.prepare();</div><div class="line">		pizza.bake();</div><div class="line">		pizza.cut();</div><div class="line">		pizza.box();</div><div class="line">		<span class="keyword">return</span> pizza;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Pizza</span> </span>&#123;</div><div class="line">	String name;</div><div class="line">	String dough;</div><div class="line">	String sauce;</div><div class="line">	ArrayList toppings = <span class="keyword">new</span> ArrayList();</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">prepare</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Preparing "</span> + name);</div><div class="line">		System.out.println(<span class="string">"Tossing dough..."</span>);</div><div class="line">		System.out.println(<span class="string">"Adding sauce..."</span>);</div><div class="line">		System.out.println(<span class="string">"Adding toppings: "</span>);</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; toppings.size(); i++) &#123;</div><div class="line">			System.out.println(<span class="string">"   "</span> + toppings.get(i));</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">  </div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">bake</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Bake for 25 minutes at 350"</span>);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">cut</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Cutting the pizza into diagonal slices"</span>);</div><div class="line">	&#125;</div><div class="line">  </div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">box</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Place pizza in official PizzaStore box"</span>);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		StringBuffer display = <span class="keyword">new</span> StringBuffer();</div><div class="line">		display.append(<span class="string">"---- "</span> + name + <span class="string">" ----\n"</span>);</div><div class="line">		display.append(dough + <span class="string">"\n"</span>);</div><div class="line">		display.append(sauce + <span class="string">"\n"</span>);</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; toppings.size(); i++) &#123;</div><div class="line">			display.append((String )toppings.get(i) + <span class="string">"\n"</span>);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> display.toString();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NYPizzaStore</span> <span class="keyword">extends</span> <span class="title">PizzaStore</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function">Pizza <span class="title">createPizza</span><span class="params">(String item)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (item.equals(<span class="string">"cheese"</span>)) &#123;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">new</span> NYStyleCheesePizza();</div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (item.equals(<span class="string">"veggie"</span>)) &#123;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">new</span> NYStyleVeggiePizza();</div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (item.equals(<span class="string">"clam"</span>)) &#123;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">new</span> NYStyleClamPizza();</div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (item.equals(<span class="string">"pepperoni"</span>)) &#123;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">new</span> NYStylePepperoniPizza();</div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ChicagoPizzaStore</span> <span class="keyword">extends</span> <span class="title">PizzaStore</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function">Pizza <span class="title">createPizza</span><span class="params">(String item)</span> </span>&#123;</div><div class="line">        	<span class="keyword">if</span> (item.equals(<span class="string">"cheese"</span>)) &#123;</div><div class="line">            		<span class="keyword">return</span> <span class="keyword">new</span> ChicagoStyleCheesePizza();</div><div class="line">        	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (item.equals(<span class="string">"veggie"</span>)) &#123;</div><div class="line">        	    	<span class="keyword">return</span> <span class="keyword">new</span> ChicagoStyleVeggiePizza();</div><div class="line">        	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (item.equals(<span class="string">"clam"</span>)) &#123;</div><div class="line">        	    	<span class="keyword">return</span> <span class="keyword">new</span> ChicagoStyleClamPizza();</div><div class="line">        	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (item.equals(<span class="string">"pepperoni"</span>)) &#123;</div><div class="line">            		<span class="keyword">return</span> <span class="keyword">new</span> ChicagoStylePepperoniPizza();</div><div class="line">        	&#125; <span class="keyword">else</span> <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ChicagoStylePepperoniPizza</span> <span class="keyword">extends</span> <span class="title">Pizza</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">ChicagoStylePepperoniPizza</span><span class="params">()</span> </span>&#123;</div><div class="line">		name = <span class="string">"Chicago Style Pepperoni Pizza"</span>;</div><div class="line">		dough = <span class="string">"Extra Thick Crust Dough"</span>;</div><div class="line">		sauce = <span class="string">"Plum Tomato Sauce"</span>;</div><div class="line"> </div><div class="line">		toppings.add(<span class="string">"Shredded Mozzarella Cheese"</span>);</div><div class="line">		toppings.add(<span class="string">"Black Olives"</span>);</div><div class="line">		toppings.add(<span class="string">"Spinach"</span>);</div><div class="line">		toppings.add(<span class="string">"Eggplant"</span>);</div><div class="line">		toppings.add(<span class="string">"Sliced Pepperoni"</span>);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">cut</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Cutting the pizza into square slices"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ChicagoStyleCheesePizza</span> <span class="keyword">extends</span> <span class="title">Pizza</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">ChicagoStyleCheesePizza</span><span class="params">()</span> </span>&#123; </div><div class="line">		name = <span class="string">"Chicago Style Deep Dish Cheese Pizza"</span>;</div><div class="line">		dough = <span class="string">"Extra Thick Crust Dough"</span>;</div><div class="line">		sauce = <span class="string">"Plum Tomato Sauce"</span>;</div><div class="line"> </div><div class="line">		toppings.add(<span class="string">"Shredded Mozzarella Cheese"</span>);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">cut</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Cutting the pizza into square slices"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ChicagoStyleClamPizza</span> <span class="keyword">extends</span> <span class="title">Pizza</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">ChicagoStyleClamPizza</span><span class="params">()</span> </span>&#123;</div><div class="line">		name = <span class="string">"Chicago Style Clam Pizza"</span>;</div><div class="line">		dough = <span class="string">"Extra Thick Crust Dough"</span>;</div><div class="line">		sauce = <span class="string">"Plum Tomato Sauce"</span>;</div><div class="line"> </div><div class="line">		toppings.add(<span class="string">"Shredded Mozzarella Cheese"</span>);</div><div class="line">		toppings.add(<span class="string">"Frozen Clams from Chesapeake Bay"</span>);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">cut</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Cutting the pizza into square slices"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NYStylePepperoniPizza</span> <span class="keyword">extends</span> <span class="title">Pizza</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">NYStylePepperoniPizza</span><span class="params">()</span> </span>&#123;</div><div class="line">		name = <span class="string">"NY Style Pepperoni Pizza"</span>;</div><div class="line">		dough = <span class="string">"Thin Crust Dough"</span>;</div><div class="line">		sauce = <span class="string">"Marinara Sauce"</span>;</div><div class="line"> </div><div class="line">		toppings.add(<span class="string">"Grated Reggiano Cheese"</span>);</div><div class="line">		toppings.add(<span class="string">"Sliced Pepperoni"</span>);</div><div class="line">		toppings.add(<span class="string">"Garlic"</span>);</div><div class="line">		toppings.add(<span class="string">"Onion"</span>);</div><div class="line">		toppings.add(<span class="string">"Mushrooms"</span>);</div><div class="line">		toppings.add(<span class="string">"Red Pepper"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NYStyleCheesePizza</span> <span class="keyword">extends</span> <span class="title">Pizza</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">NYStyleCheesePizza</span><span class="params">()</span> </span>&#123; </div><div class="line">		name = <span class="string">"NY Style Sauce and Cheese Pizza"</span>;</div><div class="line">		dough = <span class="string">"Thin Crust Dough"</span>;</div><div class="line">		sauce = <span class="string">"Marinara Sauce"</span>;</div><div class="line"> </div><div class="line">		toppings.add(<span class="string">"Grated Reggiano Cheese"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NYStyleClamPizza</span> <span class="keyword">extends</span> <span class="title">Pizza</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">NYStyleClamPizza</span><span class="params">()</span> </span>&#123;</div><div class="line">		name = <span class="string">"NY Style Clam Pizza"</span>;</div><div class="line">		dough = <span class="string">"Thin Crust Dough"</span>;</div><div class="line">		sauce = <span class="string">"Marinara Sauce"</span>;</div><div class="line"> </div><div class="line">		toppings.add(<span class="string">"Grated Reggiano Cheese"</span>);</div><div class="line">		toppings.add(<span class="string">"Fresh Clams from Long Island Sound"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>另外可以对比一下，不使用工厂方法的实现，尽管代码上可能没有上面的抽象复杂，但是其在系统变化是非常难以维护。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DependentPizzaStore</span> </span>&#123;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> Pizza <span class="title">createPizza</span><span class="params">(String style, String type)</span> </span>&#123;</div><div class="line">		Pizza pizza = <span class="keyword">null</span>;</div><div class="line">		<span class="keyword">if</span> (style.equals(<span class="string">"NY"</span>)) &#123;</div><div class="line">			<span class="keyword">if</span> (type.equals(<span class="string">"cheese"</span>)) &#123;</div><div class="line">				pizza = <span class="keyword">new</span> NYStyleCheesePizza();</div><div class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (type.equals(<span class="string">"veggie"</span>)) &#123;</div><div class="line">				pizza = <span class="keyword">new</span> NYStyleVeggiePizza();</div><div class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (type.equals(<span class="string">"clam"</span>)) &#123;</div><div class="line">				pizza = <span class="keyword">new</span> NYStyleClamPizza();</div><div class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (type.equals(<span class="string">"pepperoni"</span>)) &#123;</div><div class="line">				pizza = <span class="keyword">new</span> NYStylePepperoniPizza();</div><div class="line">			&#125;</div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (style.equals(<span class="string">"Chicago"</span>)) &#123;</div><div class="line">			<span class="keyword">if</span> (type.equals(<span class="string">"cheese"</span>)) &#123;</div><div class="line">				pizza = <span class="keyword">new</span> ChicagoStyleCheesePizza();</div><div class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (type.equals(<span class="string">"veggie"</span>)) &#123;</div><div class="line">				pizza = <span class="keyword">new</span> ChicagoStyleVeggiePizza();</div><div class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (type.equals(<span class="string">"clam"</span>)) &#123;</div><div class="line">				pizza = <span class="keyword">new</span> ChicagoStyleClamPizza();</div><div class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (type.equals(<span class="string">"pepperoni"</span>)) &#123;</div><div class="line">				pizza = <span class="keyword">new</span> ChicagoStylePepperoniPizza();</div><div class="line">			&#125;</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			System.out.println(<span class="string">"Error: invalid type of pizza"</span>);</div><div class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">		&#125;</div><div class="line">		pizza.prepare();</div><div class="line">		pizza.bake();</div><div class="line">		pizza.cut();</div><div class="line">		pizza.box();</div><div class="line">		<span class="keyword">return</span> pizza;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="审视对象依赖"><a href="#审视对象依赖" class="headerlink" title="审视对象依赖"></a>审视对象依赖</h2><p>当我们直接实例化一个类是，就是在依赖它的具体类。如果把上面的代码依赖画成一张图：</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_factory_7.png" alt="Design_pattern_factory_7"></p>
-<p>设计原则：<br><strong>要依赖抽象，不要依赖具体类。</strong></p>
-<p>在应用工厂方法后，类图会变成如下。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_factory_8.png" alt="Design_pattern_factory_8"></p>
-<h1 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h1><p>抽象工厂本质上就是一中工厂方法模式的加强版。在工厂方法中，一个工厂方法抽象了一种基类型产品的建立，并交给具体子类负责创建产品。也就是一个工厂方法负责一类基类型产品创建。在有的时候，会有一系列基类型产品同属于一个产品家族，并且最好由一个具体工厂来创建。抽象工厂模式就提供了这种解决方案。</p>
-<p><strong>抽象工厂模式¥提供了一个接口(设计模式中接口即可以指实际的接口，也可指抽象类)，用于创建相关或依赖对象的家族，而不需要明确指定具体类。</strong></p>
-<p>也就是抽象工厂申明了几个工厂方法，各个工厂方法创建的类型属于同一个产品族。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_factory_9.png" alt="Design_pattern_factory_9"></p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_factory_10.png" alt="Design_pattern_factory_10"></p>
-<p>定义抽象工厂</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">PizzaIngredientFactory</span> </span>&#123;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> Dough <span class="title">createDough</span><span class="params">()</span></span>;</div><div class="line">	<span class="function"><span class="keyword">public</span> Sauce <span class="title">createSauce</span><span class="params">()</span></span>;</div><div class="line">	<span class="function"><span class="keyword">public</span> Cheese <span class="title">createCheese</span><span class="params">()</span></span>;</div><div class="line">	<span class="keyword">public</span> Veggies[] createVeggies();</div><div class="line">	<span class="function"><span class="keyword">public</span> Pepperoni <span class="title">createPepperoni</span><span class="params">()</span></span>;</div><div class="line">	<span class="function"><span class="keyword">public</span> Clams <span class="title">createClam</span><span class="params">()</span></span>;</div><div class="line"> </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NYPizzaIngredientFactory</span> <span class="keyword">implements</span> <span class="title">PizzaIngredientFactory</span> </span>&#123;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> Dough <span class="title">createDough</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> ThinCrustDough();</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> Sauce <span class="title">createSauce</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> MarinaraSauce();</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> Cheese <span class="title">createCheese</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> ReggianoCheese();</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="keyword">public</span> Veggies[] createVeggies() &#123;</div><div class="line">		Veggies veggies[] = &#123; <span class="keyword">new</span> Garlic(), <span class="keyword">new</span> Onion(), <span class="keyword">new</span> Mushroom(), <span class="keyword">new</span> RedPepper() &#125;;</div><div class="line">		<span class="keyword">return</span> veggies;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> Pepperoni <span class="title">createPepperoni</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> SlicedPepperoni();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> Clams <span class="title">createClam</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> FreshClams();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Pizza</span> </span>&#123;</div><div class="line">	String name;</div><div class="line"></div><div class="line">	Dough dough;</div><div class="line">	Sauce sauce;</div><div class="line">	Veggies veggies[];</div><div class="line">	Cheese cheese;</div><div class="line">	Pepperoni pepperoni;</div><div class="line">	Clams clam;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">prepare</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">bake</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Bake for 25 minutes at 350"</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">cut</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Cutting the pizza into diagonal slices"</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">box</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Place pizza in official PizzaStore box"</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.name = name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function">String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		StringBuffer result = <span class="keyword">new</span> StringBuffer();</div><div class="line">		result.append(<span class="string">"---- "</span> + name + <span class="string">" ----\n"</span>);</div><div class="line">		<span class="keyword">if</span> (dough != <span class="keyword">null</span>) &#123;</div><div class="line">			result.append(dough);</div><div class="line">			result.append(<span class="string">"\n"</span>);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> (sauce != <span class="keyword">null</span>) &#123;</div><div class="line">			result.append(sauce);</div><div class="line">			result.append(<span class="string">"\n"</span>);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> (cheese != <span class="keyword">null</span>) &#123;</div><div class="line">			result.append(cheese);</div><div class="line">			result.append(<span class="string">"\n"</span>);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> (veggies != <span class="keyword">null</span>) &#123;</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; veggies.length; i++) &#123;</div><div class="line">				result.append(veggies[i]);</div><div class="line">				<span class="keyword">if</span> (i &lt; veggies.length-<span class="number">1</span>) &#123;</div><div class="line">					result.append(<span class="string">", "</span>);</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			result.append(<span class="string">"\n"</span>);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> (clam != <span class="keyword">null</span>) &#123;</div><div class="line">			result.append(clam);</div><div class="line">			result.append(<span class="string">"\n"</span>);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> (pepperoni != <span class="keyword">null</span>) &#123;</div><div class="line">			result.append(pepperoni);</div><div class="line">			result.append(<span class="string">"\n"</span>);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> result.toString();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CheesePizza</span> <span class="keyword">extends</span> <span class="title">Pizza</span> </span>&#123;</div><div class="line">	PizzaIngredientFactory ingredientFactory;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">CheesePizza</span><span class="params">(PizzaIngredientFactory ingredientFactory)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.ingredientFactory = ingredientFactory;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">prepare</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Preparing "</span> + name);</div><div class="line">		dough = ingredientFactory.createDough();</div><div class="line">		sauce = ingredientFactory.createSauce();</div><div class="line">		cheese = ingredientFactory.createCheese();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClamPizza</span> <span class="keyword">extends</span> <span class="title">Pizza</span> </span>&#123;</div><div class="line">	PizzaIngredientFactory ingredientFactory;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">ClamPizza</span><span class="params">(PizzaIngredientFactory ingredientFactory)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.ingredientFactory = ingredientFactory;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">prepare</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Preparing "</span> + name);</div><div class="line">		dough = ingredientFactory.createDough();</div><div class="line">		sauce = ingredientFactory.createSauce();</div><div class="line">		cheese = ingredientFactory.createCheese();</div><div class="line">		clam = ingredientFactory.createClam();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NYPizzaStore</span> <span class="keyword">extends</span> <span class="title">PizzaStore</span> </span>&#123;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">protected</span> Pizza <span class="title">createPizza</span><span class="params">(String item)</span> </span>&#123;</div><div class="line">		Pizza pizza = <span class="keyword">null</span>;</div><div class="line">		PizzaIngredientFactory ingredientFactory = </div><div class="line">			<span class="keyword">new</span> NYPizzaIngredientFactory();</div><div class="line"> </div><div class="line">		<span class="keyword">if</span> (item.equals(<span class="string">"cheese"</span>)) &#123;</div><div class="line">  </div><div class="line">			pizza = <span class="keyword">new</span> CheesePizza(ingredientFactory);</div><div class="line">			pizza.setName(<span class="string">"New York Style Cheese Pizza"</span>);</div><div class="line">  </div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (item.equals(<span class="string">"veggie"</span>)) &#123;</div><div class="line"> </div><div class="line">			pizza = <span class="keyword">new</span> VeggiePizza(ingredientFactory);</div><div class="line">			pizza.setName(<span class="string">"New York Style Veggie Pizza"</span>);</div><div class="line"> </div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (item.equals(<span class="string">"clam"</span>)) &#123;</div><div class="line"> </div><div class="line">			pizza = <span class="keyword">new</span> ClamPizza(ingredientFactory);</div><div class="line">			pizza.setName(<span class="string">"New York Style Clam Pizza"</span>);</div><div class="line"> </div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (item.equals(<span class="string">"pepperoni"</span>)) &#123;</div><div class="line"></div><div class="line">			pizza = <span class="keyword">new</span> PepperoniPizza(ingredientFactory);</div><div class="line">			pizza.setName(<span class="string">"New York Style Pepperoni Pizza"</span>);</div><div class="line"> </div><div class="line">		&#125; </div><div class="line">		<span class="keyword">return</span> pizza;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="比较工厂方法和抽象工厂"><a href="#比较工厂方法和抽象工厂" class="headerlink" title="比较工厂方法和抽象工厂"></a>比较工厂方法和抽象工厂</h2><p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_factory_11.png" alt="Design_pattern_factory_11"></p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_factory_12.png" alt="Design_pattern_factory_12"></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/58/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/58/">58</a><span class="page-number current">59</span><a class="page-number" href="/page/60/">60</a><span class="space">&hellip;</span><a class="page-number" href="/page/65/">65</a><a class="extend next" rel="next" href="/page/60/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/58/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/58/">58</a><span class="page-number current">59</span><a class="page-number" href="/page/60/">60</a><span class="space">&hellip;</span><a class="page-number" href="/page/66/">66</a><a class="extend next" rel="next" href="/page/60/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1010,7 +1105,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">325</span>
+              <span class="site-state-item-count">327</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -1018,7 +1113,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分類</span>
               </a>
             </div>
@@ -1229,7 +1324,24 @@
       }
     });
   </script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
   

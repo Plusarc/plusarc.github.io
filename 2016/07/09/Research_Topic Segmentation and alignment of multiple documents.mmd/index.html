@@ -1,0 +1,733 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="google88d81a02a91db82f" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="对于网页文档进行更细粒度的分析可以有效改进检索的精度。一般来说一个文档都是有一个主题的，同时一篇文档中可能包含多个sub-topic，比如一篇关于分析日元汇率上升的文档中，可能包含近期日元的走势及分析，进一步可能包含英国脱欧的分析，对日本旅游业的影响，制造业的影响，与其他货币的比较等内容。尽管这篇文档整体主题是关于经济的，然是具体其中也包含了各个子话题。如果可以识别划分关于不同子话题的段落，可以有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Topic Segmentation and alignment of multiple documents">
+<meta property="og:url" content="http://yoursite.com/2016/07/09/Research_Topic Segmentation and alignment of multiple documents.mmd/index.html">
+<meta property="og:site_name" content="Plusaber's Blog">
+<meta property="og:description" content="对于网页文档进行更细粒度的分析可以有效改进检索的精度。一般来说一个文档都是有一个主题的，同时一篇文档中可能包含多个sub-topic，比如一篇关于分析日元汇率上升的文档中，可能包含近期日元的走势及分析，进一步可能包含英国脱欧的分析，对日本旅游业的影响，制造业的影响，与其他货币的比较等内容。尽管这篇文档整体主题是关于经济的，然是具体其中也包含了各个子话题。如果可以识别划分关于不同子话题的段落，可以有">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/topic_segment_alignment.png">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/topic_segment_alignment_algorithm.png">
+<meta property="og:updated_time" content="2016-07-14T08:46:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Topic Segmentation and alignment of multiple documents">
+<meta name="twitter:description" content="对于网页文档进行更细粒度的分析可以有效改进检索的精度。一般来说一个文档都是有一个主题的，同时一篇文档中可能包含多个sub-topic，比如一篇关于分析日元汇率上升的文档中，可能包含近期日元的走势及分析，进一步可能包含英国脱欧的分析，对日本旅游业的影响，制造业的影响，与其他货币的比较等内容。尽管这篇文档整体主题是关于经济的，然是具体其中也包含了各个子话题。如果可以识别划分关于不同子话题的段落，可以有">
+<meta name="twitter:image" content="http://7xs07u.com1.z0.glb.clouddn.com/topic_segment_alignment.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/07/09/Research_Topic Segmentation and alignment of multiple documents.mmd/"/>
+
+
+  <title> Topic Segmentation and alignment of multiple documents | Plusaber's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
+
+  
+
+
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-79158075-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Plusaber's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Topic Segmentation and alignment of multiple documents
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-07-09T00:00:00+09:00" content="2016-07-09">
+              2016-07-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/research/" itemprop="url" rel="index">
+                    <span itemprop="name">research</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/09/Research_Topic Segmentation and alignment of multiple documents.mmd/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/09/Research_Topic Segmentation and alignment of multiple documents.mmd/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>对于网页文档进行更细粒度的分析可以有效改进检索的精度。一般来说一个文档都是有一个主题的，同时一篇文档中可能包含多个sub-topic，比如一篇关于分析日元汇率上升的文档中，可能包含近期日元的走势及分析，进一步可能包含英国脱欧的分析，对日本旅游业的影响，制造业的影响，与其他货币的比较等内容。尽管这篇文档整体主题是关于经济的，然是具体其中也包含了各个子话题。如果可以识别划分关于不同子话题的段落，可以有效的改进检索。同样的，多个文档可能包含这些子话题的段落，如果能将这些文档的段落中具有相同子话题的文档关联起来，可以进一步挖掘文档间的关系用于改进检索，因为有些用户只是关注文档中某一特定子话题的内容。</p>
+<p>这个任务就是identifying similar segments from multiple similar documents，一个直观的展示是：</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/topic_segment_alignment.png" alt=""></p>
+<p>论文Topic Segmentation with Shared Topic Detection and Alignment of Multiple Documents给出了一个基于Mutual information(MI)的解决方法，以及带有term weights的Weighted mutual information(WMI)的解决方案。</p>
+<p>问题可以定义为：</p>
+<p>terms集合 $T=\lbrace t_1, t_2, …, t_l\rbrace $<br>documents集合 $D=\lbrace d_1, d_2, …, d_n\rbrace $<br>文档 $d$ 的sentences $S_d=\lbrace s_1, s_2, …, s_m\rbrace$,其中$m$表示文档 $d$的sentences的个数。<br>Segments集合（准确的说是topic集合，这里的每个segment不是各个文档的片段，而是一个全局topic）$\widehat{S}=\lbrace \widehat{s_1}, \widehat{s_2}, …, \widehat{s_p}\rbrace $ ,也就是每个文档的$\widehat{s_1}$的topic都是相同的，尽管有些documents的$\widehat{s_1}$是空的，也就是不存在对应的sentence。也就是正如前面所说的，论文中这里指的segment其实就是topic（比较迷惑），而topic数目是要预定义的（尽管这个数字一般是没法确定，取一个大的数字是比较合适的，但是增加计算复杂度。）</p>
+<p>所要解决的问题就是对每个文档进行segmentation以及找出多个文档中各个segment的alignment：<br><span>$$\begin{aligned}
+Seg_d : \lbrace s_1, s_2, ..., s_{n_d}\rbrace  \to \lbrace \widehat{s_{d1}}, \widehat{s_{d2}}, ..., \widehat{s_{?}}\rbrace
+\end{aligned}$$</span><!-- Has MathJax --></p>
+<span>$\lbrace \widehat{s_{d1}}, \widehat{s_{d2}}, ..., \widehat{s_{?}}\rbrace$</span><!-- Has MathJax -->  表示这个文档的segmentation，其中每个$\widehat{s}$表示文档的片段。<br><br>以及各个文档的segmentation的alignment，也就是对于每个文档：<br><span>$$\begin{aligned}
+Ali_d=\lbrace \widehat{s_{d1}}, \widehat{s_{d2}}, ..., \widehat{s_{?}}\rbrace  \to \lbrace \widehat{s_1}, \widehat{s_2}, ..., \widehat{s_p}\rbrace
+\end{aligned}$$</span><!-- Has MathJax -->
+<p>(这里原文的表述和公式相当让人迷惑，所以做了调整)</p>
+<p>其基本假设本质上还是把sentence作为bag of words处理，并假设term和各个topic关联程度不同。比如toyota会和汽车topic关联比较紧密（也就是在关于汽车topic的段落中toyota出现可能性会比关于文学topic的段落中大，也就是topic-model的基本假设），以此定义了mutual inforamtion(MI)，其实就是clustering中MI的定义。<br><span>$$\begin{aligned}
+I(X;Y) = \sum_{x\in X}\sum_{y\in Y}p(x, y)log\frac{p(x,y)}{p(x)p(y)}
+\end{aligned}$$</span><!-- Has MathJax --></p>
+<p>对多个文档进行segmentation以及alignment的问题也就变成了如何划分每个文档以及alignment，使得最终的MI取得最大值，也就是MI就是这个问题的目标函数。具体在这问题中，MI也就是：<br><span>$$\begin{aligned}
+I(\widehat{T};\widehat{S}) = \sum_{\widehat{t}\in \widehat{T}}\sum_{\widehat{s}\in \widehat{S}}p(\widehat{t}, \widehat{s})log\frac{p(\widehat{t},\widehat{s})}{p(\widehat{t})p(\widehat{s})}
+\end{aligned}$$</span><!-- Has MathJax --></p>
+ <a id="more"></a>
+<p>需要注意的是$\widehat{T}$可以直接是原来定义的$T$，也可以是term的cluster集合，也就是term-clustering。term-clustering经常用于改进document cluster，也就是把相近的term放到一个cluster中，然后分析时基于这些term cluster，而不是原来单个单个的terms。这篇论文在计算最优的segmentation和alignment同时也可以考虑term-clustering，并且生成term clustering。此外论文还考虑到terms的类型不同而应该具有不同的权重，并很巧妙将其融入到MI中从而得到Weighted Mutual Information，并设计了巧妙的算法用于估计term的权重，以实现最终优化segmentation和alignment。关于term-clustering和weighted mutual information具体思想及算法可以参考原文。</p>
+<p>为了求得最佳组合以得到best目标函数值，最直接的计算方法当然是对于每个文档，每个sentence，划分到各个segment中，取使得terms和segments(topics)的MI（或WMI）最大的组合作为最优segmentation和alignment。</p>
+<p>然而如果列举每种组合，这个就是NP-hard问题了，在文档数量比较大时或者topic数量比较多时计算代价会非常高甚至不可计算。所以论文中进一步提出了一个Iterative greedy的算法用于计算local optimal segmentation and alignment（但不能保证是全局最佳）用于使得问题可计算，并在计算过程中使用dynamic programming等进行优化。具体算法如下，其中分为了各个阶段和步骤，可以根据是否是只有一个文档，是否需要进行term-clustering，是否需要进行term weight estimation进行不同步骤的选择。</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/topic_segment_alignment_algorithm.png" alt=""></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/06/JobHunting_Summary/" rel="next" title="Job hunting Summary">
+                <i class="fa fa-chevron-left"></i> Job hunting Summary
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/13/NLP_Statistical Machine Translation IBM Models 1 and 2/" rel="prev" title="Statistical Machine Translation IBM Models 1 and 2">
+                Statistical Machine Translation IBM Models 1 and 2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/plusaber.jpg"
+               alt="Plusaber" />
+          <p class="site-author-name" itemprop="name">Plusaber</p>
+          <p class="site-description motion-element" itemprop="description">Plusaber's Blog</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">327</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://leetcode.com/problemset/algorithms/" title="Leetcode" target="_blank">Leetcode</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.kaggle.com" title="Kaggle" target="_blank">Kaggle</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jp.linkedin.com/in/zebangchen" title="LinkedIn" target="_blank">LinkedIn</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://portal.qiniu.com" title="Qiniu" target="_blank">Qiniu</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目錄</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Plusaber</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'plusaber';
+      var disqus_identifier = '2016/07/09/Research_Topic Segmentation and alignment of multiple documents.mmd/';
+      var disqus_title = "Topic Segmentation and alignment of multiple documents";
+      var disqus_url = 'http://yoursite.com/2016/07/09/Research_Topic Segmentation and alignment of multiple documents.mmd/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

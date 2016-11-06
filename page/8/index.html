@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -118,7 +118,7 @@
   <link rel="canonical" href="http://yoursite.com/page/8/"/>
 
 
-  <title> Plusaber's Blog </title>
+  <title> Plusaber's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
@@ -126,7 +126,7 @@
   
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -260,8 +260,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/10/22/Leetcode_Find Median from Data Stream/" itemprop="url">
-                  Find Median from Data Stream
+                <a class="post-title-link" href="/2015/10/22/Leetcode_Sudoku Solver/" itemprop="url">
+                  Sudoku Solver
                 </a>
               
             
@@ -304,8 +304,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/10/22/Leetcode_Find Median from Data Stream/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/22/Leetcode_Find Median from Data Stream/" itemprop="commentsCount"></span>
+                <a href="/2015/10/22/Leetcode_Sudoku Solver/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/22/Leetcode_Sudoku Solver/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -330,20 +330,14 @@
       
         
           
-            <h1 id="Find-Median-from-Data-Stream"><a href="#Find-Median-from-Data-Stream" class="headerlink" title="Find Median from Data Stream"></a><a href="https://leetcode.com/problems/find-median-from-data-stream/" target="_blank" rel="external">Find Median from Data Stream</a></h1><blockquote>
-<p>Median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value. So the median is the mean of the two middle value.</p>
-<p>Examples:<br><code>[2,3,4]</code> , the median is <code>3</code></p>
-<p><code>[2,3]</code>, the median is <code>(2 + 3) / 2 = 2.5</code></p>
-<p>Design a data structure that supports the following two operations:</p>
-<ul>
-<li>void addNum(int num) - Add a integer number from the data stream to the data structure.</li>
-<li>double findMedian() - Return the median of all elements so far.<br>For example:</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; add(1)</div><div class="line">add(2)</div><div class="line">findMedian() -&gt; 1.5</div><div class="line">add(3) </div><div class="line">findMedian() -&gt; 2</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+            <h1 id="Sudoku-Solver"><a href="#Sudoku-Solver" class="headerlink" title="Sudoku Solver"></a><a href="https://leetcode.com/problems/sudoku-solver/" target="_blank" rel="external">Sudoku Solver</a></h1><blockquote>
+<p>Write a program to solve a Sudoku puzzle by filling the empty cells.</p>
+<p>Empty cells are indicated by the character <code>&#39;.&#39;</code>.</p>
+<p>You may assume that there will be only one unique solution.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Sudoku-by-L2G-20050714.svg/250px-Sudoku-by-L2G-20050714.svg.png" alt=""><br>A sudoku puzzle…<br><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Sudoku-by-L2G-20050714_solution.svg/250px-Sudoku-by-L2G-20050714_solution.svg.png" alt=""><br>..and its solution numbers marked in red.</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MedianFinder</span> </span>&#123;</div><div class="line">    Queue&lt;Integer&gt; minStack;</div><div class="line">    Queue&lt;Integer&gt; maxStack;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MedianFinder</span><span class="params">()</span> </span>&#123;</div><div class="line">        minStack = <span class="keyword">new</span> PriorityQueue&lt;Integer&gt;();</div><div class="line">        maxStack = <span class="keyword">new</span> PriorityQueue&lt;Integer&gt;(<span class="number">11</span>, Collections.reverseOrder());</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// Adds a number into the data structure.</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addNum</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(minStack.size()==<span class="number">0</span> || num&lt;minStack.peek()) &#123;</div><div class="line">            maxStack.add(num);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            minStack.add(num);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(maxStack.size()-minStack.size()&gt;=<span class="number">2</span>) minStack.add(maxStack.poll());</div><div class="line">        <span class="keyword">if</span>(minStack.size()&gt;maxStack.size()) maxStack.add(minStack.poll());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Returns the median of current data stream</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">findMedian</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(minStack.size()==maxStack.size()) <span class="keyword">return</span> (<span class="keyword">double</span>) (minStack.peek() + maxStack.peek()) / <span class="number">2</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">return</span> maxStack.peek();</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// Your MedianFinder object will be instantiated and called as such:</span></div><div class="line"><span class="comment">// MedianFinder mf = new MedianFinder();</span></div><div class="line"><span class="comment">// mf.addNum(1);</span></div><div class="line"><span class="comment">// mf.findMedian();</span></div></pre></td></tr></table></figure>
-<p>second time solution</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MedianFinder</span> </span>&#123;</div><div class="line">    PriorityQueue&lt;Integer&gt; minHeap;</div><div class="line">    PriorityQueue&lt;Integer&gt; maxHeap;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MedianFinder</span><span class="params">()</span> </span>&#123;</div><div class="line">        minHeap = <span class="keyword">new</span> PriorityQueue();</div><div class="line">        maxHeap = <span class="keyword">new</span> PriorityQueue(<span class="number">10</span>, Collections.reverseOrder());</div><div class="line"></div><div class="line">		<span class="comment">//maxHeap = new PriorityQueue&lt;Integer&gt;(11, new Comparator&lt;Integer&gt;()&#123;</span></div><div class="line">        <span class="comment">//	@Override</span></div><div class="line">        <span class="comment">//	public int compare(Integer i1, Integer i2) &#123;</span></div><div class="line">        <span class="comment">//    	return i2 - i1;</span></div><div class="line">        <span class="comment">//	&#125;</span></div><div class="line">    	<span class="comment">//&#125;);</span></div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">// Adds a number into the data structure.</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addNum</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(maxHeap.isEmpty() || num&lt;=maxHeap.peek()) maxHeap.offer(num);</div><div class="line">        <span class="keyword">else</span> minHeap.offer(num);</div><div class="line">        <span class="keyword">while</span>((maxHeap.size()-minHeap.size())&gt;=<span class="number">2</span>) minHeap.offer(maxHeap.poll());</div><div class="line">        <span class="keyword">while</span>((minHeap.size()-maxHeap.size())&gt;=<span class="number">2</span>) maxHeap.offer(minHeap.poll());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Returns the median of current data stream</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">findMedian</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(maxHeap.size()==minHeap.size()) <span class="keyword">return</span> (<span class="keyword">double</span>)(maxHeap.peek()+minHeap.peek()) / <span class="number">2</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">return</span> maxHeap.size()&gt;minHeap.size() ? maxHeap.peek() : minHeap.peek();</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p><a href="http://huangyawu.com/leetcode-sudoku-solver-java/" target="_blank" rel="external">Sudoku Solver@LeetCode</a></p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">solveSudoku</span><span class="params">(<span class="keyword">char</span>[][] board)</span> </span>&#123;</div><div class="line">        solve(board);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">solve</span><span class="params">(<span class="keyword">char</span>[][] board)</span></span>&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">9</span>; i++)</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;<span class="number">9</span>; j++)&#123;</div><div class="line">                <span class="keyword">if</span>(board[i][j] ==  <span class="string">'.'</span>)&#123;</div><div class="line">                    <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">1</span>; k&lt;=<span class="number">9</span>; k++)&#123;</div><div class="line">                        board[i][j] = (<span class="keyword">char</span>) (<span class="string">'0'</span> + k);</div><div class="line">                        <span class="keyword">if</span>(isValid(board, i, j) &amp;&amp; solve(board))</div><div class="line">                            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">                        board[i][j] = <span class="string">'.'</span>;</div><div class="line">                    &#125;</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isValid</span><span class="params">(<span class="keyword">char</span>[][] board, <span class="keyword">int</span> row, <span class="keyword">int</span> col)</span></span>&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">9</span>; i++)&#123;</div><div class="line">            <span class="keyword">if</span>(i!=row &amp;&amp; board[i][col] == board[row][col]) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            <span class="keyword">if</span>(i!=col &amp;&amp; board[row][i] == board[row][col]) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">         </div><div class="line">        <span class="keyword">int</span> r = row / <span class="number">3</span> * <span class="number">3</span>;</div><div class="line">        <span class="keyword">int</span> c = col / <span class="number">3</span> * <span class="number">3</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">3</span>; i++)</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;<span class="number">3</span>; j++)&#123;</div><div class="line">                <span class="keyword">if</span>(r + i != row &amp;&amp; c + j != col </div><div class="line">                        &amp;&amp; board[r+i][c+j] == board[row][col])</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -393,8 +387,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/10/18/Leetcode_Word Pattern/" itemprop="url">
-                  Word Pattern
+                <a class="post-title-link" href="/2015/10/22/Leetcode_Interleaving String/" itemprop="url">
+                  Interleaving String
                 </a>
               
             
@@ -407,8 +401,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-10-18T00:00:00+09:00" content="2015-10-18">
-              2015-10-18
+            <time itemprop="dateCreated" datetime="2015-10-22T00:00:00+09:00" content="2015-10-22">
+              2015-10-22
             </time>
           </span>
 
@@ -437,8 +431,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/10/18/Leetcode_Word Pattern/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/18/Leetcode_Word Pattern/" itemprop="commentsCount"></span>
+                <a href="/2015/10/22/Leetcode_Interleaving String/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/22/Leetcode_Interleaving String/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -463,12 +457,141 @@
       
         
           
-            <h1 id="Word-Pattern"><a href="#Word-Pattern" class="headerlink" title="Word Pattern"></a><a href="https://leetcode.com/problems/word-pattern/" target="_blank" rel="external">Word Pattern</a></h1><blockquote>
-<p>Given a <code>pattern</code> and a string <code>str</code>, find if <code>str</code> follows the same pattern.</p>
+            <h1 id="Interleaving-String"><a href="#Interleaving-String" class="headerlink" title="Interleaving String"></a><a href="https://leetcode.com/problems/interleaving-string/" target="_blank" rel="external">Interleaving String</a></h1><blockquote>
+<p>Given s1, s2, s3, find whether s3 is formed by the interleaving of s1 and s2.</p>
+<p>For example,<br>Given:<br><code>s1 = &quot;aabcc&quot;</code>,<br><code>s2 = &quot;dbbca&quot;</code>,</p>
+<p>When <code>s3 = &quot;aadbbcbcac&quot;</code>, return true.<br>When <code>s3 = &quot;aadbbbaccc&quot;</code>, return false.</p>
 </blockquote>
-<p>Here follow means a full match, such that there is a bijection between a letter in <code>pattern</code> and a non-empty word in <code>str</code>.</p>
-<p>Examples:<br>pattern = <code>&quot;abba&quot;</code>, str = <code>&quot;dog cat cat dog&quot;</code> should return true.<br>pattern = <code>&quot;abba&quot;</code>, str = <code>&quot;dog cat cat fish&quot;</code> should return false.<br>pattern = “aaaa”, str = <code>&quot;dog cat cat dog&quot;</code> should return false.<br>pattern = “abba”, str = <code>&quot;dog dog dog dog&quot;</code> should return false.<br>Notes:<br>You may assume <code>pattern</code> contains only lowercase letters, and <code>str</code> contains lowercase letters separated by a single space.</p>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">wordPattern</span><span class="params">(String pattern, String str)</span> </span>&#123;</div><div class="line">        <span class="keyword">boolean</span> [] used = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="number">26</span>];</div><div class="line">        String [] words = str.split(<span class="string">" "</span>);</div><div class="line">        <span class="keyword">if</span>(pattern.length()!=words.length) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        </div><div class="line">        Map&lt;String, Character&gt; map = <span class="keyword">new</span> HashMap&lt;String, Character&gt;();</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;words.length; i++) &#123;</div><div class="line">            <span class="keyword">if</span>(map.containsKey(words[i])) &#123;</div><div class="line">                <span class="keyword">if</span>(map.get(words[i])!=pattern.charAt(i)) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">if</span>(used[pattern.charAt(i)-<span class="string">'a'</span>]) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">                <span class="keyword">else</span> &#123;</div><div class="line">                    map.put(words[i], pattern.charAt(i));</div><div class="line">                    used[pattern.charAt(i)-<span class="string">'a'</span>] = <span class="keyword">true</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>test case:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">bcg     bce    bcgbce</div><div class="line">bg      bbe    bbge</div><div class="line">bg      bbe    bbgbe</div><div class="line">bg      bbe    bbbeg</div></pre></td></tr></table></figure>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isInterleave</span><span class="params">(String s1, String s2, String s3)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(s1==<span class="keyword">null</span> || s2==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">if</span>(s3.length() != s1.length() + s2.length()) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">if</span>(s1.length()==<span class="number">0</span>) <span class="keyword">return</span> s2.equals(s3);</div><div class="line">        <span class="keyword">if</span>(s2.length()==<span class="number">0</span>) <span class="keyword">return</span> s1.equals(s3);</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> [][] record = <span class="keyword">new</span> <span class="keyword">int</span>[s1.length()+<span class="number">1</span>][s2.length()+<span class="number">1</span>];</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=s2.length(); i++) &#123;</div><div class="line">            <span class="keyword">if</span>(s2.charAt(i-<span class="number">1</span>)==s3.charAt(i-<span class="number">1</span>)) record[<span class="number">0</span>][i] = i;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=s1.length(); i++) &#123;</div><div class="line">            <span class="keyword">if</span>(s1.charAt(i-<span class="number">1</span>)==s3.charAt(i-<span class="number">1</span>)) record[i][<span class="number">0</span>] = i;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=s1.length(); i++) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;=s2.length(); j++) &#123;</div><div class="line">            	<span class="keyword">if</span>(record[i-<span class="number">1</span>][j]!=<span class="number">0</span>) &#123;</div><div class="line">            		<span class="keyword">if</span>(s1.charAt(i-<span class="number">1</span>)==s3.charAt(i+j-<span class="number">1</span>)) record[i][j] = i + j;</div><div class="line">            	&#125;</div><div class="line">                <span class="keyword">if</span>(record[i][j-<span class="number">1</span>]!=<span class="number">0</span>) &#123;</div><div class="line">                    <span class="keyword">if</span>(s2.charAt(j-<span class="number">1</span>)==s3.charAt(i+j-<span class="number">1</span>)) record[i][j] = i + j;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> record[s1.length()][s2.length()] == s3.length();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/10/22/Leetcode_Wiggle Sort I and II/" itemprop="url">
+                  Wiggle Sort
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-10-22T00:00:00+09:00" content="2015-10-22">
+              2015-10-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/10/22/Leetcode_Wiggle Sort I and II/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/22/Leetcode_Wiggle Sort I and II/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Wiggle-Sort-I"><a href="#Wiggle-Sort-I" class="headerlink" title="Wiggle Sort I"></a><a href="https://leetcode.com/problems/wiggle-sort-ii/" target="_blank" rel="external">Wiggle Sort I</a></h1><blockquote>
+<p>Given an unsorted array nums, reorder it in-place such that nums[0] &lt;= nums[1] &gt;= nums[2] &lt;= nums[3]….</p>
+<p>For example, given <code>nums = [3, 5, 2, 1, 6, 4]</code>, one possible answer is <code>[1, 6, 2, 5, 3, 4]</code>.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>Locked problem, refer to <a href="http://buttercola.blogspot.jp/2015/09/leetcode-wiggle-sort.html" target="_blank" rel="external">Leetcode: Wiggle Sort</a></p>
+<p>A[0] &lt;= A[1] &gt;= A[2] &lt;= A[3] &gt;= A[4] &lt;= A[5]<br>So we could actually observe that there is pattern that<br>A[even] &lt;= A[odd],<br>A[odd] &gt;= A[even].</p>
+<p>Therefore we could go through the array and check this condition does not hold, just swap.</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">wiggleSort</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length &lt;= <span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">         </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length - <span class="number">1</span>; i++) &#123;</div><div class="line">            <span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>) &#123;</div><div class="line">                <span class="keyword">if</span> (nums[i] &gt; nums[i + <span class="number">1</span>]) &#123;</div><div class="line">                    swap(nums, i, i + <span class="number">1</span>);</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">if</span> (nums[i] &lt; nums[i + <span class="number">1</span>]) &#123;</div><div class="line">                    swap(nums, i, i + <span class="number">1</span>);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">     </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> temp = nums[i];</div><div class="line">        nums[i] = nums[j];</div><div class="line">        nums[j] = temp;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -644,8 +767,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/10/17/Leetcode_Minimum Window Substring/" itemprop="url">
-                  Minimum Window Substring
+                <a class="post-title-link" href="/2015/10/18/Leetcode_Word Pattern/" itemprop="url">
+                  Word Pattern
                 </a>
               
             
@@ -658,8 +781,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-10-17T00:00:00+09:00" content="2015-10-17">
-              2015-10-17
+            <time itemprop="dateCreated" datetime="2015-10-18T00:00:00+09:00" content="2015-10-18">
+              2015-10-18
             </time>
           </span>
 
@@ -688,8 +811,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/10/17/Leetcode_Minimum Window Substring/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/17/Leetcode_Minimum Window Substring/" itemprop="commentsCount"></span>
+                <a href="/2015/10/18/Leetcode_Word Pattern/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/18/Leetcode_Word Pattern/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -714,144 +837,12 @@
       
         
           
-            <h1 id="Minimum-Window-Substring"><a href="#Minimum-Window-Substring" class="headerlink" title="Minimum Window Substring"></a><a href="https://leetcode.com/problems/minimum-window-substring/" target="_blank" rel="external">Minimum Window Substring</a></h1><blockquote>
-<p>Given a string S and a string T, find the minimum window in S which will contain all the characters in T in complexity O(n).</p>
-<p>For example,<br>S = <code>&quot;ADOBECODEBANC&quot;</code><br>T = <code>&quot;ABC&quot;</code><br>Minimum window is <code>&quot;BANC&quot;</code>.</p>
-<p>Note:<br>If there is no such window in S that covers all characters in T, return the empty string <code>&quot;&quot;</code>.</p>
-<p>If there are multiple such windows, you are guaranteed that there will always be only one unique minimum window in S.</p>
+            <h1 id="Word-Pattern"><a href="#Word-Pattern" class="headerlink" title="Word Pattern"></a><a href="https://leetcode.com/problems/word-pattern/" target="_blank" rel="external">Word Pattern</a></h1><blockquote>
+<p>Given a <code>pattern</code> and a string <code>str</code>, find if <code>str</code> follows the same pattern.</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">minWindow</span><span class="params">(String s, String t)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(s==<span class="keyword">null</span> || s.length()==<span class="number">0</span> || t==<span class="keyword">null</span> || t.length()==<span class="number">0</span>) <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">        Map&lt;Character, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;Character, Integer&gt;();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">char</span> c: t.toCharArray()) &#123;</div><div class="line">            <span class="keyword">if</span>(map.containsKey(c)) map.put(c, map.get(c)+<span class="number">1</span>);</div><div class="line">            <span class="keyword">else</span> map.put(c, <span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> needCount = map.size();</div><div class="line">        <span class="keyword">int</span> start = -<span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> minLength = Integer.MAX_VALUE;</div><div class="line">        <span class="keyword">int</span> lastPos = <span class="number">0</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;s.length(); i++) &#123;</div><div class="line">            <span class="keyword">char</span> c = s.charAt(i);</div><div class="line">            <span class="keyword">if</span>(map.containsKey(c)) &#123;</div><div class="line">                map.put(c, map.get(c)-<span class="number">1</span>);</div><div class="line">                <span class="keyword">if</span>(map.get(c)==<span class="number">0</span>) needCount --;</div><div class="line">                <span class="keyword">if</span>(needCount==<span class="number">0</span>) &#123;</div><div class="line">                    <span class="keyword">int</span> j = lastPos;</div><div class="line">                    <span class="keyword">while</span>(needCount==<span class="number">0</span> &amp;&amp; j&lt;=i) &#123;</div><div class="line">                        <span class="keyword">char</span> remove = s.charAt(j);</div><div class="line">                        <span class="keyword">if</span>(map.containsKey(remove)) &#123;</div><div class="line">                            map.put(remove, map.get(remove)+<span class="number">1</span>);</div><div class="line">                            <span class="keyword">if</span>(map.get(remove)&gt;<span class="number">0</span>) needCount ++;</div><div class="line">                        &#125;</div><div class="line">                        j ++;</div><div class="line">                    &#125;</div><div class="line">                    </div><div class="line">                    lastPos = j;</div><div class="line">                    j --;</div><div class="line">                    </div><div class="line">                    <span class="keyword">if</span>(i-j+<span class="number">1</span>&lt;minLength) &#123;</div><div class="line">                    	start = j;</div><div class="line">                        minLength = i - j + <span class="number">1</span>;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(minLength==Integer.MAX_VALUE) <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">return</span> s.substring(start, start + minLength);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/10/16/Python_MongoDB/" itemprop="url">
-                  Python_MongoDB
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-10-16T00:00:00+09:00" content="2015-10-16">
-              2015-10-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/10/16/Python_MongoDB/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/16/Python_MongoDB/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a><a href="https://docs.mongodb.org/getting-started/python/client/" target="_blank" rel="external">基本操作</a></h1><p>1.Install PyMongo(MongoDB的python driver)<br><code>pip install pymongo</code></p>
-<p>2.Import pymongo</p>
-<p><code>from pymongo import MongoClient</code></p>
-<p>3.Create a connection</p>
-<p><code>client = MongoClient()</code><br>如果没有具体参数配置，则会默认连接到本地端口27017启动的mongodb实例，也就是mongodb启动的默认服务端口。</p>
-<p><code>client = MongoClient(&quot;mongodb://mongodb0.example.net:27019&quot;)</code></p>
-<p>4.Access Database Objects<br>取得数据库实例，数据库也就是多个mongodb集合(collection)的组合。可以直接指定不存在数据库名然后插入数据，就相当于直接创建了该数据库以及相应集合。</p>
-<p><code>db = client.noexist</code><br><code>db.blog.insert({&quot;title&quot;: &quot;this is the first blog&quot;})</code></p>
-<p>也可以通过字典形式获得¥数据库实例：<br><code>db = client[&#39;primer&#39;]</code></p>
-<p>5.Access Collection Objects</p>
-<p>Collection(集合)也就相当于传统数据库的表，存放无确定模式的一组文档(document)，文档就相当于传统数据库的行，但是没有确定的模式，可以缺省键，也可以随时新增键。</p>
-<p><code>table = db.blog</code><br><code>table = db[&#39;blog&#39;]</code></p>
+<p>Here follow means a full match, such that there is a bijection between a letter in <code>pattern</code> and a non-empty word in <code>str</code>.</p>
+<p>Examples:<br>pattern = <code>&quot;abba&quot;</code>, str = <code>&quot;dog cat cat dog&quot;</code> should return true.<br>pattern = <code>&quot;abba&quot;</code>, str = <code>&quot;dog cat cat fish&quot;</code> should return false.<br>pattern = “aaaa”, str = <code>&quot;dog cat cat dog&quot;</code> should return false.<br>pattern = “abba”, str = <code>&quot;dog dog dog dog&quot;</code> should return false.<br>Notes:<br>You may assume <code>pattern</code> contains only lowercase letters, and <code>str</code> contains lowercase letters separated by a single space.</p>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">wordPattern</span><span class="params">(String pattern, String str)</span> </span>&#123;</div><div class="line">        <span class="keyword">boolean</span> [] used = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="number">26</span>];</div><div class="line">        String [] words = str.split(<span class="string">" "</span>);</div><div class="line">        <span class="keyword">if</span>(pattern.length()!=words.length) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        </div><div class="line">        Map&lt;String, Character&gt; map = <span class="keyword">new</span> HashMap&lt;String, Character&gt;();</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;words.length; i++) &#123;</div><div class="line">            <span class="keyword">if</span>(map.containsKey(words[i])) &#123;</div><div class="line">                <span class="keyword">if</span>(map.get(words[i])!=pattern.charAt(i)) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">if</span>(used[pattern.charAt(i)-<span class="string">'a'</span>]) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">                <span class="keyword">else</span> &#123;</div><div class="line">                    map.put(words[i], pattern.charAt(i));</div><div class="line">                    used[pattern.charAt(i)-<span class="string">'a'</span>] = <span class="keyword">true</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -884,7 +875,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/65/">65</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/66/">66</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -925,7 +916,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">325</span>
+              <span class="site-state-item-count">327</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -933,7 +924,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分類</span>
               </a>
             </div>
@@ -1144,7 +1135,24 @@
       }
     });
   </script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
   

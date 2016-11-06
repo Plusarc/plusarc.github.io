@@ -1,0 +1,839 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="google88d81a02a91db82f" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="IBM model是统计机器翻译(statistical machine translation, SMT)非常经典的模型，虽然到现在已经非常古老了，但是其中的一些核心idea到现在还在被使用与翻译系统中，比如alignment模型。之前上京都大学的自然语言处理的课程时就有接触过，最近研究中有个子问题可能可以借鉴IBM model的一些idea，所以又IBM model翻出来重新看了一遍，这里做一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Statistical Machine Translation IBM Models 1 and 2">
+<meta property="og:url" content="http://yoursite.com/2016/07/13/NLP_Statistical Machine Translation IBM Models 1 and 2/index.html">
+<meta property="og:site_name" content="Plusaber's Blog">
+<meta property="og:description" content="IBM model是统计机器翻译(statistical machine translation, SMT)非常经典的模型，虽然到现在已经非常古老了，但是其中的一些核心idea到现在还在被使用与翻译系统中，比如alignment模型。之前上京都大学的自然语言处理的课程时就有接触过，最近研究中有个子问题可能可以借鉴IBM model的一些idea，所以又IBM model翻出来重新看了一遍，这里做一">
+<meta property="og:updated_time" content="2016-08-08T06:41:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Statistical Machine Translation IBM Models 1 and 2">
+<meta name="twitter:description" content="IBM model是统计机器翻译(statistical machine translation, SMT)非常经典的模型，虽然到现在已经非常古老了，但是其中的一些核心idea到现在还在被使用与翻译系统中，比如alignment模型。之前上京都大学的自然语言处理的课程时就有接触过，最近研究中有个子问题可能可以借鉴IBM model的一些idea，所以又IBM model翻出来重新看了一遍，这里做一">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/07/13/NLP_Statistical Machine Translation IBM Models 1 and 2/"/>
+
+
+  <title> Statistical Machine Translation IBM Models 1 and 2 | Plusaber's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
+
+  
+
+
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-79158075-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Plusaber's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Statistical Machine Translation IBM Models 1 and 2
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-07-13T00:00:00+09:00" content="2016-07-13">
+              2016-07-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/NLP/" itemprop="url" rel="index">
+                    <span itemprop="name">NLP</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/13/NLP_Statistical Machine Translation IBM Models 1 and 2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/13/NLP_Statistical Machine Translation IBM Models 1 and 2/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>IBM model是统计机器翻译(statistical machine translation, SMT)非常经典的模型，虽然到现在已经非常古老了，但是其中的一些核心idea到现在还在被使用与翻译系统中，比如alignment模型。之前上京都大学的自然语言处理的课程时就有接触过，最近研究中有个子问题可能可以借鉴IBM model的一些idea，所以又IBM model翻出来重新看了一遍，这里做一个记录和总结，主要参考Columbia University由Michael Collins主讲的课程COMS W4705: Natural Language Processing的notes。</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>IBM model被提出时主要是用于解决翻译<code>French</code>到<code>English</code>。</p>
+<p>$f = f_1, f_2…f_m $表示一个French句子，长度为$m$，$f_i$ for $j \in {1…m}$ 表示句子中第$i$个词。</p>
+<p>同样的，定义$e = e_1, e_2…e_l$表示一个英语句子。</p>
+<p>在SMT系统中，假设我们有一个训练数据集，也就是一些翻译的例子，每个例子也就是French句子以及对应的翻译的English句子，$(f^{(k)}, e^{(k)})$，表示第<code>k</code>个翻译例子。</p>
+<span>$$\begin{aligned}
+f^{(k)} = f_{1}^{(k)}, f_{2}^{(k)}...f_{m_k}^{(k)} \\
+e^{(k)} = e_{1}^{(k)}, e_{2}^{(k)}...e_{l_k}^{(k)}
+\end{aligned}$$</span><!-- Has MathJax -->
+<h2 id="The-Nosiy-Channel-Approch-消息信道模型"><a href="#The-Nosiy-Channel-Approch-消息信道模型" class="headerlink" title="The Nosiy-Channel Approch(消息信道模型)"></a>The Nosiy-Channel Approch(消息信道模型)</h2><p>IBM model也是使用noisy-channel模型的一个例子，主要包括两个部分：</p>
+<ol>
+<li>A language model， 用于计算任何英语句子$e$存在的概率$p(e)$，比如我们可以用trigram language model来计算，或者最简单直接的unigram language model。一般language model可以通过大量的English corpus就能直接估计出来。</li>
+<li>A translation model，用于计算给定一个English句子$e$，对应的French句子是$f$的条件概率$p(f|e)$。这个概率的计算方法会在后面的内容介绍，一般是从给定的翻译例子的训练数据中估计出来。给定了English句子$e$后，$p(f|e)$主要由两个选择决定：first，the length of French sentence: $m$；second, a choice of the $m$ words $f_1…f_m$。</li>
+</ol>
+<p>这里可能会有很多觉得奇怪，任务不是给定法语句子，要翻译为英语句子嘛，为什么前面的translation model是先给定英语句子，其对应法语句子为$f$的概率。下面会给出解释：</p>
+<p>我们最直接的任务的表示是($E$表示所有的英语句子)：</p>
+<span>$$\begin{aligned}
+arg \max_{e\in E} p(e | f)
+\end{aligned}$$</span><!-- Has MathJax -->
+<p>通过贝叶斯规则我们可以转换问题为：</p>
+<span>$$\begin{aligned}
+arg \max_{e\in E} p(e|f) &amp;=  arg \max_{e\in E} \frac{p(e, f)}{p(f)}\\
+ &amp;= arg \max_{e\in E} \frac {p(e)p(f|e)}{\sum_{e} p(e)p(f|e)} \\ 
+ &amp;= arg \max_{e\in E} p(e)p(f|e)
+\end{aligned}$$</span><!-- Has MathJax -->
+<p>所以问题就转换为了求：</p>
+<span>$$\begin{aligned}
+e^{*} = arg \max_{e\in E} p(e)p(f|e)
+\end{aligned}$$</span><!-- Has MathJax -->
+<p>也就是前面定义的language model和translation model可以解决的问题。一个可能的翻译$e$的score分为两部分：first，the language-model score $p(e)$，给出一个先验概率用于估计这个句子是个合法的英语句子的概率。second，the translation-model score $p(f|e)$，也就是$f$是$e$的翻译的概率。</p>
+<p>之所以把原来的问题转换为求：$e^{*} = arg \max_{e\in E} p(e)p(f|e)$（也就是noisy-channel approach），主要的一个好处是可以引入language model。可以有效的改进翻译结果的fluency和语法的合法程度。</p>
+<p>只要解决了提到的两个model的参数估计，就可以得到问题的solution。language-model的score一般比较直接，通过分析大规模的English corpus生成的gram model就可以得到，比如trigram model，bigram model。</p>
+ <a id="more"></a>
+<p>所以接下来主要要介绍的是：</p>
+<ol>
+<li>如何定义translation model $p(f|e)$</li>
+<li>如果从翻译例子集中估计出translation model的参数。</li>
+</ol>
+<h2 id="The-IBM-Models"><a href="#The-IBM-Models" class="headerlink" title="The IBM Models"></a>The IBM Models</h2><h3 id="Alignments"><a href="#Alignments" class="headerlink" title="Alignments"></a>Alignments</h3><p>现在我们来解决modeling条件概率$p(f|e)$的问题，$f=f_1…f_m$以及$e=e_1…e_l$。</p>
+<p>前面我们提到过，$p(f|e)$主要由两个选择决定：first，the length of French sentence: $m$；second, a choice of the $m$ words $f_1…f_m$。</p>
+<p>为了简化问题，这里我们先假设我们已经有了$p(m|l)$的分布（后面会再次引入并介绍如何估计）。从这里开始，我们固定$m$，然后主要考虑modeling下面的分布：</p>
+<span>$$\begin{aligned}
+p(f_1...f_m|e_1...e_l,m)
+\end{aligned}$$</span><!-- Has MathJax -->
+<p>也就是$e=e_1…e_m$并且Frence句子长度为$m$的条件下，翻译为$f=f_1…f_m$的条件概率。</p>
+<p>直接model $p(f_1…f_m|e_1…e_l,m)$是非常难的。IBM model的一个核心idea是引入alignment variables。alignment variables用于将French句子中的每个位置（词）alignment到English sentence的一个位置，$a_1, a_2…a_m$，$a_1=2$表示关联French sentence的第一个位置关联到English sentence的第二个位置。每个alignment variable的取值范围即是English句子的所有位置，也就是$a\in {0,1,…,l}$。本质上alignment variables是用于为每个French word指定其对应的English sentence（可以多个French words可以关联到同一个English word）。</p>
+<p>因为直接model $p(f_1…f_m|e_1…e_l,m)$是非常难的，所以我们先定义：</p>
+<span>$$\begin{aligned}
+p(f_1...f_m,a_1...a_m \ |\ e_1...e_l,m)
+\end{aligned}$$</span><!-- Has MathJax -->
+<p>进一步我们可以得到：</p>
+<span>$$\begin{aligned}
+p(f_1...f_m|e_1...e_l,m) = \sum_{a_1=0}^{l}\sum_{a_2=0}^{l}\sum_{a_3=0}^{l}...\sum_{a_m=0}^{l} p(f_1...f_m,a_1...a_m|e_1...e_l) 
+\end{aligned}$$</span><!-- Has MathJax -->
+<p>$a_j$用于指定$f_j$ is aligned to $e_i, i=a_j$，直观上也就是$f_j$是由$e_i, i=a_j$翻译而来的。注意$e_0$指定的是特殊的$NULL$ word。</p>
+<h3 id="Alignment-Models-IBM-Model-2"><a href="#Alignment-Models-IBM-Model-2" class="headerlink" title="Alignment Models: IBM Model 2"></a>Alignment Models: IBM Model 2</h3><p>这里我们开始具体介绍如何model上面定义的带有隐含变量(hidden variables)的条件分布：</p>
+<span>$$\begin{aligned}
+p(f_1...f_m|e_1...e_l,m)
+\end{aligned}$$</span><!-- Has MathJax -->
+<p>如何model这个条件分布决定了IBM Model 1和2的不同，IBM Model 1其实是IBM Model 2的一个特例。所以首先我们介绍IBM Model 2。</p>
+<p>$E$是一个English words的集合<br>$F$是一个French words的集合<br>$X$和$Y$分别用于表示French句子的最大可能长度和English句子的最大可能长度。</p>
+<ul>
+<li>$t(f|e)\text{ for any }f\in F, e\in E\cup{NULL}$，也就是也就是$f$是从$e$生成的条件概率。</li>
+<li>$q(j|i,l,m)\text{ for any }l\in {1…X}, m\in{1…Y}, i\in {1…m}$。$q(j|i,l,m)$可以理解为在English sentence长度为$l$, French句子长度为$m$的条件下，alignment variable $a_i$取值为$j$的条件概率。</li>
+</ul>
+<p>这里先给出最终的model，根据IBM Model 2的一些假设（后面会介绍），我们可以得到：</p>
+<span>$$\begin{aligned}
+p(f_1...f_m,a_1...a_m|e_1...e_l,m)=\prod_{i=1}^{m}q(a_i|i,l,m)t(f_i|e_{a_i})
+\end{aligned}$$</span><!-- Has MathJax -->
+<h3 id="Independence-Assumptions-in-IBM-Model-2"><a href="#Independence-Assumptions-in-IBM-Model-2" class="headerlink" title="Independence Assumptions in IBM Model 2"></a>Independence Assumptions in IBM Model 2</h3><p>$L$为一个随机变量，对应着English sentence的长度。<br>$M$为一个随机变量，对应着French sentence的长度。<br>$F_1…F_m$是French句子的words。<br>$A_1…A_m$是French句子的alignment variables。</p>
+<p>我们要model的是：</p>
+<span>$$\begin{aligned}
+p(f_1...f_m,a_1...a_m|e_1...e_l,m)
+\end{aligned}$$</span><!-- Has MathJax -->
+<p>也就是：</p>
+<span>$$\begin{aligned}
+P(F_1=f_1...F_m=f_m,A_1=a_1...A_m=a_m|E_1=e_1...E_l=e_l,L=l,M=m)
+\end{aligned}$$</span><!-- Has MathJax -->
+<p>根据概率chain rule，可以转换为：</p>
+<span>$$\begin{aligned}
+P(F_1=f_1...F_m=f_m,A_1=a_1...A_m=a_m|E_1=e_1...E_l=e_l,L=l,M=m)\\
+=P(A_1=a_1...A_m=a_m|E_1=e_1...E_l=e_l,L=l,M=m) \\
+\times P(F_1=f_1...F_m=f_m|A_1=a_1...A_m=a_m, E_1=e_1...E_l=e_l,L=l,M=m)
+\end{aligned}$$</span><!-- Has MathJax -->
+<p>进一步的，如果我们假设各个word的alignment是独立的，也就是只依赖于$M$和$L$,<br>，则可以有：</p>
+<span>$$\begin{aligned}
+P(A_1=a_1...A_m=a_m|E_1=e_1...E_l=e_l,L=l,M=m) \\
+= \prod_{i=1}^{m} P(A_i=a_i|A_1=a_1...A_{i-1}=a_{i-1},E_1=e_1...E_l=e_l,L=l,M=m)\\
+ = \prod_{i=1}^{m} P(A_i=a_i|L=l,M=m）
+\end{aligned}$$</span><!-- Has MathJax -->
+<span>$$\begin{aligned}
+\prod_{i=1}^{m} P(A_i=a_i|L=l,M=m）= q(a_i|i,l,m)
+\end{aligned}$$</span><!-- Has MathJax -->
+<p>如果我们假设$F_i$的值只依赖于$E_j, j={a_i}$，那么我们有；</p>
+<span>$$\begin{aligned}
+P(F_1=f_1...F_m=f_m|A_1=a_1...A_m=a_m, E_1=e_1...E_l=e_l,L=l,M=m) \\
+= \prod_{i=1}^{m} P(F_i=f_i|F_1=f_1...F_{i-1}=f_{i-1}|A_1=a_1...A_m=a_m, E_1=e_1...E_l=e_l,L=l,M=m) \\
+= \prod_{i=1}^{m} P(F_i=f_i|E_{a_i}=e_{a_i})
+\end{aligned}$$</span><!-- Has MathJax -->
+<span>$$\begin{aligned}
+P(F_i=f_i|E_{a_i}=e_{a_i}) = t(f_i|e_{a_i})
+\end{aligned}$$</span><!-- Has MathJax -->
+<p>这样我们就完成了对前面$p(f_1…f_m,a_1…a_m|e_1…e_l,m)$的model（基于IBM Model 2的一些假设），得到：</p>
+<span>$$\begin{aligned}
+p(f_1...f_m,a_1...a_m|e_1...e_l,m)=\prod_{i=1}^{m}q(a_i|i,l,m)t(f_i|e_{a_i})
+\end{aligned}$$</span><!-- Has MathJax -->
+<p>剩下的问题就是我们如何从翻译例子训练集中估计出参数$q(a_i|i,l,m)$和$t(f<em>i|e</em>{a_i})$。</p>
+<h3 id="Applying-IBM-Model-2"><a href="#Applying-IBM-Model-2" class="headerlink" title="Applying IBM Model 2"></a>Applying IBM Model 2</h3><p>前面我们以及介绍了IBM Model 2，在进一步介绍如何估计参数之前，我们回顾一下我们将如何应用IBM Model 2用于机器翻译问题。</p>
+<p>在第一节我们推导过，我们最终的目标是：</p>
+<span>$$\begin{aligned}
+e^{*} = arg \max_{e\in E} p(e)p(f|e)
+\end{aligned}$$</span><!-- Has MathJax -->
+<p>$p(e)$也就是language model，可以简单的通过分析英语语料库的gram model得到。<br>$p(f|e)$是translation model，也就是我们前面一直在介绍的如何定义和计算这个model。</p>
+<p>通过引入alignment model，我们得到：</p>
+<span>$$\begin{aligned}
+p(f|e) = \sum_{a}p(f,a|e)
+\end{aligned}$$</span><!-- Has MathJax -->
+<p>进一步我们需要model $p(f,a|e)$的分布以及计算方式，也就是我们上一节介绍的，我们根据IBM Model 2的假设最终得到：</p>
+<span>$$\begin{aligned}
+p(f_1...f_m,a_1...a_m|e_1...e_l,m)=\prod_{i=1}^{m}q(a_i|i,l,m)t(f_i|e_{a_i})
+\end{aligned}$$</span><!-- Has MathJax -->
+<p>当然，下面的问题是NP hard的，但是有多种估计方法：</p>
+<span>$$\begin{aligned}
+e^{*} = arg \max_{e\in E} p(e)p(f|e)
+\end{aligned}$$</span><!-- Has MathJax -->
+<p>除了上面的翻译问题，我们还可以利用IBM Model 2用于找到最有可能的alignment。假设我们已经估计得到参数$t(f|e)$和$q(j|i,l,m)$，给定一个新的翻译例子，我们可以利用前面得到的参数估计最有可能的alignment：</p>
+<span>$$\begin{aligned}
+arg \max{a_1...a_m} p(a1_1...a_m|f_1...f_m,e_1...e_l,m)
+\end{aligned}$$</span><!-- Has MathJax -->
+<p>IBM Model 2的idependent假设使得我们可以很直接的计算的到最有可能的alignment，也就是对于每个alignment variable：</p>
+<span>$$\begin{aligned}
+a_i=arg \max{j\in\{0...l\}} q(j|i,l,m)\times t(f_i|e_j)
+\end{aligned}$$</span><!-- Has MathJax -->
+<h2 id="Parameter-Estimation"><a href="#Parameter-Estimation" class="headerlink" title="Parameter Estimation"></a>Parameter Estimation</h2>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/09/Research_Topic Segmentation and alignment of multiple documents.mmd/" rel="next" title="Topic Segmentation and alignment of multiple documents">
+                <i class="fa fa-chevron-left"></i> Topic Segmentation and alignment of multiple documents
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/06/Life_夏日@京都/" rel="prev" title="夏日@京都">
+                夏日@京都 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/plusaber.jpg"
+               alt="Plusaber" />
+          <p class="site-author-name" itemprop="name">Plusaber</p>
+          <p class="site-description motion-element" itemprop="description">Plusaber's Blog</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">327</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://leetcode.com/problemset/algorithms/" title="Leetcode" target="_blank">Leetcode</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.kaggle.com" title="Kaggle" target="_blank">Kaggle</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jp.linkedin.com/in/zebangchen" title="LinkedIn" target="_blank">LinkedIn</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://portal.qiniu.com" title="Qiniu" target="_blank">Qiniu</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Nosiy-Channel-Approch-消息信道模型"><span class="nav-number">2.</span> <span class="nav-text">The Nosiy-Channel Approch(消息信道模型)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-IBM-Models"><span class="nav-number">3.</span> <span class="nav-text">The IBM Models</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Alignments"><span class="nav-number">3.1.</span> <span class="nav-text">Alignments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Alignment-Models-IBM-Model-2"><span class="nav-number">3.2.</span> <span class="nav-text">Alignment Models: IBM Model 2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Independence-Assumptions-in-IBM-Model-2"><span class="nav-number">3.3.</span> <span class="nav-text">Independence Assumptions in IBM Model 2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Applying-IBM-Model-2"><span class="nav-number">3.4.</span> <span class="nav-text">Applying IBM Model 2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Parameter-Estimation"><span class="nav-number">4.</span> <span class="nav-text">Parameter Estimation</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Plusaber</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'plusaber';
+      var disqus_identifier = '2016/07/13/NLP_Statistical Machine Translation IBM Models 1 and 2/';
+      var disqus_title = "Statistical Machine Translation IBM Models 1 and 2";
+      var disqus_url = 'http://yoursite.com/2016/07/13/NLP_Statistical Machine Translation IBM Models 1 and 2/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

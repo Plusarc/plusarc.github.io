@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -118,7 +118,7 @@
   <link rel="canonical" href="http://yoursite.com/page/18/"/>
 
 
-  <title> Plusaber's Blog </title>
+  <title> Plusaber's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
@@ -126,7 +126,7 @@
   
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -238,6 +238,272 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/09/13/Leetcode_Perfect Squares/" itemprop="url">
+                  Perfect Squares
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-09-13T00:00:00+09:00" content="2015-09-13">
+              2015-09-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/13/Leetcode_Perfect Squares/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/13/Leetcode_Perfect Squares/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Perfect-Squares"><a href="#Perfect-Squares" class="headerlink" title="Perfect Squares"></a><a href="https://leetcode.com/problems/perfect-squares/" target="_blank" rel="external">Perfect Squares</a></h1><blockquote>
+<p>Given a positive integer <code>n</code>, find the least number of perfect square numbers (for example, <code>1, 4, 9, 16, ...</code>) which sum to <code>n</code>.</p>
+<p>For example, given <code>n = 12</code>, return <code>3</code> because <code>12 = 4 + 4 + 4</code>; given <code>n = 13</code>, return <code>2</code> because <code>13 = 4 + 9</code>.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p><strong>动态规划法</strong>，accept。</p>
+<p>每个数都能被拆分为一个perfect square的倍数+另一个数，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">13 = 9*1 + 4</div><div class="line">13 = 4*3 + 1</div><div class="line">...</div><div class="line"></div><div class="line">50 = 49*1 + 1</div><div class="line">50 = 25*2 + 0</div><div class="line">50 = 16*3 + 2</div><div class="line">...</div></pre></td></tr></table></figure>
+<p><code>50</code>的mininum square num也一定来自于其中的一个组合。</p>
+<p>而这里可能的组合数远远小于上一种划分方法。同时不必求出<code>0-49</code>每个数的minum square num。</p>
+<p>同时使用HashMap存储已经计算出的数的mininum square num，下次需要求同一个数的minimum square num就可以直接取出。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1"></a>Method 1</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">	Map&lt;Integer, Integer&gt; record = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numSquares</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    	<span class="keyword">if</span>(n==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    	<span class="keyword">if</span>(record.containsKey(n)) <span class="keyword">return</span> record.get(n);</div><div class="line">        <span class="keyword">if</span>((Math.sqrt(n)-(<span class="keyword">int</span>)Math.sqrt(n))==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        </div><div class="line">        List&lt;Integer&gt; squares = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">        <span class="keyword">int</span> sq = <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> base = <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(sq&lt;=n) &#123;</div><div class="line">        	squares.add(sq);</div><div class="line">        	base ++;</div><div class="line">        	sq = base * base;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> min = Integer.MAX_VALUE;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=squares.size()-<span class="number">1</span>; i&gt;=<span class="number">0</span>; i--) &#123;</div><div class="line">        	<span class="keyword">int</span> count = n / squares.get(i);</div><div class="line">        	count += numSquares(n % squares.get(i));</div><div class="line">        	<span class="keyword">if</span>(count&lt;min) min = count;</div><div class="line">        &#125;</div><div class="line">        record.put(n, min);</div><div class="line">        <span class="keyword">return</span> min;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="better-solution"><a href="#better-solution" class="headerlink" title="better solution"></a>better solution</h2><p><a href="http://segmentfault.com/a/1190000003768736" target="_blank" rel="external">[Leetcode] Perfect Squares 完美平方数</a></p>
+<p>复杂度<br>时间 O(N^2) 空间 O(N)</p>
+<p>思路<br>如果一个数x可以表示为一个任意数a加上一个平方数bｘb，也就是x=a+bｘb，那么能组成这个数x最少的平方数个数，就是能组成a最少的平方数个数加上1（因为b*b已经是平方数了）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numSquares</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n+<span class="number">1</span>];</div><div class="line">        <span class="comment">// 将所有非平方数的结果置最大，保证之后比较的时候不被选中</span></div><div class="line">        Arrays.fill(dp, Integer.MAX_VALUE);</div><div class="line">        <span class="comment">// 将所有平方数的结果置1</span></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i * i &lt;= n; i++) dp[i * i] = <span class="number">1</span>;</div><div class="line">        <span class="comment">// 从小到大找任意数a</span></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> a = <span class="number">0</span>; a &lt;= n; a++)&#123;</div><div class="line">            <span class="comment">// 从小到大找平方数bｘb</span></div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> b = <span class="number">0</span>; a + b * b &lt;= n; b++)&#123;</div><div class="line">                <span class="comment">// 因为a+b*b可能本身就是平方数，所以我们要取两个中较小的</span></div><div class="line">                dp[a + b * b] = Math.min(dp[a] + <span class="number">1</span>, dp[a + b * b]);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> dp[n];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/09/13/Leetcode_H-Index II/" itemprop="url">
+                  H-Index II
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-09-13T00:00:00+09:00" content="2015-09-13">
+              2015-09-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/13/Leetcode_H-Index II/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/13/Leetcode_H-Index II/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="H-Index-II"><a href="#H-Index-II" class="headerlink" title="H-Index II"></a><a href="https://leetcode.com/problems/h-index-ii/" target="_blank" rel="external">H-Index II</a></h1><blockquote>
+<p>Follow up for <a href="https://leetcode.com/problems/h-index/" target="_blank" rel="external">H-Index</a>: What if the citations array is sorted in ascending order? Could you optimize your algorithm?</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>二分法的变化形式。总觉得H-Index有点绕，不太直观。弄清楚了H-Index，就基本解决了问题。</p>
+<p>思路很容易想到，但实现有点晕，注意清晰其中的逻辑关系。</p>
+<p>下面一种比较清晰描述，参考<a href="https://wenyuanjiao.gitbooks.io/algorithm_practice/content/h-index_ii.html" target="_blank" rel="external">H-index II</a>。</p>
+<p>h index：有h篇文章citation 至少是h<br>For example, citations = [0, 1, 3, 4, 5, 6], should return h-index = 4.</p>
+<ul>
+<li>简单逻辑，从右边开始找，有1篇大于6，2篇大于5，3篇大于4，4篇大于3–&gt;找到，return4</li>
+<li>Binary search: 每一次check citations[mid]和len-mid的关系。 len-mid代表有几篇paper的citiation大于等于citations[mid]</li>
+</ul>
+<p>citations[mid] &lt; len - mid，paper数量太多去右边找<br>else 去左边找。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hIndex</span><span class="params">(<span class="keyword">int</span>[] citations)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(citations==<span class="keyword">null</span> || citations.length==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> length = citations.length;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> right = length - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(left&lt;=right)&#123;</div><div class="line">            <span class="keyword">int</span> mid = (left+right) / <span class="number">2</span>;</div><div class="line">            <span class="comment">// 如果该点是有效的H指数，则最大H指数一定在右边</span></div><div class="line">            <span class="keyword">if</span>(length - mid&gt;citations[mid])&#123;</div><div class="line">                left = mid + <span class="number">1</span>;</div><div class="line">            <span class="comment">// 否则最大H指数在左边</span></div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                right = mid - <span class="number">1</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> length - left;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -516,8 +782,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/09/11/Leetcode_Sort List/" itemprop="url">
-                  Sort List
+                <a class="post-title-link" href="/2015/09/11/Leetcode_Sqrt(x)/" itemprop="url">
+                  Sqrt(x)
                 </a>
               
             
@@ -560,8 +826,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/09/11/Leetcode_Sort List/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/11/Leetcode_Sort List/" itemprop="commentsCount"></span>
+                <a href="/2015/09/11/Leetcode_Sqrt(x)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/11/Leetcode_Sqrt(x)/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -586,275 +852,13 @@
       
         
           
-            <h1 id="Sort-List"><a href="#Sort-List" class="headerlink" title="Sort List"></a><a href="https://leetcode.com/problems/sort-list/" target="_blank" rel="external">Sort List</a></h1><blockquote>
-<p>Sort a linked list in O(n log n) time using constant space complexity.</p>
+            <h1 id="Sqrt-x"><a href="#Sqrt-x" class="headerlink" title="Sqrt(x)"></a><a href="https://leetcode.com/problems/sqrtx/" target="_blank" rel="external">Sqrt(x)</a></h1><blockquote>
+<p>Implement int sqrt(int x).</p>
+<p>Compute and return the square root of x.</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>这里使用归并排序，无需开辟新的空间，时间复杂度<code>O(log(n))</code>.</p>
-<p>与数组的merge sort不同的是，无法直接通过下标二分数组。</p>
-<p>这里使用快慢指针遍历链表获得链表的前半段和后半段，然后分别对前后半段递归排序，再进行Merge。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * public class ListNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     ListNode next;</div><div class="line"> *     ListNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">sortList</span><span class="params">(ListNode head)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span> || head.next==<span class="keyword">null</span>) <span class="keyword">return</span> head;</div><div class="line">        ListNode slow = head;</div><div class="line">        ListNode fast = head;</div><div class="line">        <span class="keyword">while</span>(fast!=<span class="keyword">null</span>) &#123;</div><div class="line">            fast = fast.next;</div><div class="line">            <span class="keyword">if</span>(fast==<span class="keyword">null</span> || fast.next==<span class="keyword">null</span>) <span class="keyword">break</span>;</div><div class="line">            fast = fast.next;</div><div class="line">            slow = slow.next;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        ListNode nextHead = slow.next;</div><div class="line">        slow.next = <span class="keyword">null</span>;</div><div class="line">        </div><div class="line">        ListNode h1 = sortList(head);</div><div class="line">        ListNode h2 = sortList(nextHead);</div><div class="line">        <span class="keyword">return</span> merge(h1, h2);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">merge</span><span class="params">(ListNode h1, ListNode h2)</span> </span>&#123;</div><div class="line">        ListNode head = <span class="keyword">null</span>;</div><div class="line">        ListNode current = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">while</span>(h1!=<span class="keyword">null</span> || h2!=<span class="keyword">null</span>) &#123;</div><div class="line">            ListNode choose = <span class="keyword">null</span>;</div><div class="line">            <span class="keyword">if</span>(h1!=<span class="keyword">null</span> &amp;&amp; h2!=<span class="keyword">null</span>) &#123;</div><div class="line">                <span class="keyword">if</span>(h1.val&lt;=h2.val) &#123;</div><div class="line">                    choose = h1;</div><div class="line">                    h1 = h1.next;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    choose = h2;</div><div class="line">                    h2 = h2.next;</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span>(h1!=<span class="keyword">null</span>) &#123;</div><div class="line">                choose = h1;</div><div class="line">                h1 = h1.next;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                choose = h2;</div><div class="line">                h2 = h2.next;</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(head==<span class="keyword">null</span>) &#123;</div><div class="line">                head = current = choose;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                current.next = choose;</div><div class="line">                current = choose;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> head;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/09/11/Leetcode_Pow(x, n) /" itemprop="url">
-                  Pow(x, n)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-11T00:00:00+09:00" content="2015-09-11">
-              2015-09-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/11/Leetcode_Pow(x, n) /#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/11/Leetcode_Pow(x, n) /" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Pow-x-n"><a href="#Pow-x-n" class="headerlink" title="Pow(x, n)"></a><a href="https://leetcode.com/problems/powx-n/" target="_blank" rel="external">Pow(x, n)</a></h1><blockquote>
-<p>Implement pow(x, n).</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>最直接的方法是直接将<code>x</code>相乘<code>n</code>次，时间复杂度为<code>O(n)</code>.</p>
-<p>更高效的是二分法处理，<code>x^n = x^(n/2)  *  x^(n/2)  * x^(n%2)</code>，时间复杂度为<code>O(log(n))</code>.</p>
-<p>注意处理，负指数情况以及负指数是<code>Integer.MIN_VALUE</code>的情况。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">myPow</span><span class="params">(<span class="keyword">double</span> x, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(x==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">if</span>(n==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(n&lt;<span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">if</span>(n==Integer.MIN_VALUE) <span class="keyword">return</span> <span class="number">1</span> / (recPow(x, Integer.MAX_VALUE) * x);</div><div class="line">            <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">1</span> / recPow(x, -n);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> recPow(x, n);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">recPow</span><span class="params">(<span class="keyword">double</span> x, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(n==<span class="number">1</span>) <span class="keyword">return</span> x;</div><div class="line">        <span class="keyword">double</span> half = recPow(x, n/<span class="number">2</span>);</div><div class="line">        <span class="keyword">if</span>(n%<span class="number">2</span>==<span class="number">0</span>) <span class="keyword">return</span> half * half;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">return</span> half * half * x;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/09/11/Leetcode_Valid Sudoku/" itemprop="url">
-                  Valid Sudoku
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-11T00:00:00+09:00" content="2015-09-11">
-              2015-09-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/11/Leetcode_Valid Sudoku/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/11/Leetcode_Valid Sudoku/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Valid-Sudoku"><a href="#Valid-Sudoku" class="headerlink" title="Valid Sudoku"></a><a href="https://leetcode.com/problems/valid-sudoku/" target="_blank" rel="external">Valid Sudoku</a></h1><blockquote>
-<p>Determine if a Sudoku is valid, according to: Sudoku Puzzles - The Rules.</p>
-<p>The Sudoku board could be partially filled, where empty cells are filled with the character ‘.’.</p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Sudoku-by-L2G-20050714.svg/250px-Sudoku-by-L2G-20050714.svg.png" alt=""></p>
-<p>A partially filled sudoku which is valid.</p>
-<p>Note:<br>A valid Sudoku board (partially filled) is not necessarily solvable. Only the filled cells need to be validated.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>本质就是要求每一行不能有重复元素，每一列不能有重复元素，每一个九宫格内不能有重复元素。</p>
-<p>关键是如何记录已经使用过的元素和减少遍历次数。</p>
-<p>这里使用了两种记录方式，都只需要扫描一遍。</p>
-<ol>
-<li>使用HashSet记录已经使用过的元素。</li>
-<li>由于元素是有限的，都在<code>1-9</code>之间，可以采用boolean数组记录是否已经使用过。</li>
-</ol>
-<p>按照行遍历，需要维持 1个行boolean数组(or Set), 3个九宫格boolean数组，9个列boolean数组。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="Boolean-Array-based-method"><a href="#Boolean-Array-based-method" class="headerlink" title="Boolean_Array-based method"></a>Boolean_Array-based method</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isValidSudoku</span><span class="params">(<span class="keyword">char</span>[][] board)</span> </span>&#123;</div><div class="line">        <span class="keyword">boolean</span> [] row = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">boolean</span> [][] boxs = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">boolean</span> [][] lines = <span class="keyword">new</span> <span class="keyword">boolean</span> [<span class="number">9</span>][<span class="number">9</span>];</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">9</span>; i++) &#123;</div><div class="line">            row = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="number">9</span>];</div><div class="line">            <span class="keyword">if</span>(i%<span class="number">3</span>==<span class="number">0</span>) boxs = <span class="keyword">new</span> <span class="keyword">boolean</span> [<span class="number">3</span>][<span class="number">9</span>];</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;<span class="number">9</span>; j++) &#123;</div><div class="line">                <span class="keyword">if</span>(board[i][j]==<span class="string">'.'</span>) <span class="keyword">continue</span>;</div><div class="line">                <span class="keyword">int</span> boxNo = j / <span class="number">3</span>;</div><div class="line">                <span class="keyword">int</span> num = board[i][j] - <span class="string">'1'</span>;</div><div class="line">                <span class="keyword">if</span>(row[num]) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">                <span class="keyword">else</span> row[num] = <span class="keyword">true</span>;</div><div class="line">                </div><div class="line">                <span class="keyword">if</span>(boxs[boxNo][num]) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">                <span class="keyword">else</span> boxs[boxNo][num] = <span class="keyword">true</span>;</div><div class="line">                </div><div class="line">                <span class="keyword">if</span>(lines[j][num]) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">                <span class="keyword">else</span> lines[j][num] = <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="HashSet-based-method"><a href="#HashSet-based-method" class="headerlink" title="HashSet-based method"></a>HashSet-based method</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isValidSudoku</span><span class="params">(<span class="keyword">char</span>[][] board)</span> </span>&#123;</div><div class="line">        Set&lt;Character&gt; row = <span class="keyword">new</span> HashSet&lt;Character&gt;();</div><div class="line">        List&lt;Set&lt;Character&gt;&gt; cols = <span class="keyword">new</span> ArrayList&lt;Set&lt;Character&gt;&gt;();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">9</span>; i++) cols.add(<span class="keyword">new</span> HashSet&lt;Character&gt;());</div><div class="line">        List&lt;Set&lt;Character&gt;&gt; boxs = <span class="keyword">new</span> ArrayList&lt;Set&lt;Character&gt;&gt;();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">3</span>; i++) boxs.add(<span class="keyword">new</span> HashSet&lt;Character&gt;());</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;board.length; i++) &#123;</div><div class="line">        	row.clear();</div><div class="line">        	<span class="keyword">if</span>(i!=<span class="number">0</span> &amp;&amp; i%<span class="number">3</span>==<span class="number">0</span>) &#123;</div><div class="line">        		<span class="keyword">for</span>(<span class="keyword">int</span> cl=<span class="number">0</span>; cl&lt;<span class="number">3</span>; cl++) boxs.get(cl).clear();;</div><div class="line">        	&#125;</div><div class="line">        	</div><div class="line">        	<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;board[<span class="number">0</span>].length; j++) &#123;</div><div class="line">        		<span class="keyword">char</span> ele = board[i][j];</div><div class="line">        		<span class="keyword">if</span>(ele==<span class="string">'.'</span>) <span class="keyword">continue</span>;</div><div class="line">        		<span class="keyword">int</span> box_no = j / <span class="number">3</span>;</div><div class="line">        		</div><div class="line">        		<span class="keyword">if</span>(row.contains(ele)) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        		<span class="keyword">else</span> row.add(ele);</div><div class="line">        		</div><div class="line">        		<span class="keyword">if</span>(cols.get(j).contains(ele)) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        		<span class="keyword">else</span> cols.get(j).add(ele);</div><div class="line">        		</div><div class="line">        		<span class="keyword">if</span>(boxs.get(box_no).contains(ele)) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        		<span class="keyword">else</span> boxs.get(box_no).add(ele);</div><div class="line">        	&#125;</div><div class="line">        &#125;</div><div class="line">    	<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>首先题目的意思不够明确，这里要处理的是<code>int</code>型数值的求根，返回的结果也是<code>int</code>型数值。<br>对于没有整数根的<code>x</code>，返回 平方最接近且小于<code>x</code>的数。</p>
+<p>二分法搜索<code>x</code>的根值。如果找到整数根，则直接返回。如果无法找到整数根，则返回平方最接近且小于<code>x</code>的数，也就是下面处理的right指针。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">mySqrt</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">    	<span class="keyword">if</span>(x==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">long</span> left = <span class="number">1</span>;</div><div class="line">        <span class="keyword">long</span> right = x;</div><div class="line">        <span class="keyword">while</span>(left&lt;=right) &#123;</div><div class="line">            <span class="keyword">long</span> half = (left + right) / <span class="number">2</span>;</div><div class="line">            <span class="keyword">long</span> square = half * half;</div><div class="line">            <span class="keyword">if</span>(square==x) <span class="keyword">return</span> (<span class="keyword">int</span>) half;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(square&lt;x) left = half + <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> right = half - <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>) right;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -887,7 +891,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/17/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><span class="space">&hellip;</span><a class="page-number" href="/page/65/">65</a><a class="extend next" rel="next" href="/page/19/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/17/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><span class="space">&hellip;</span><a class="page-number" href="/page/66/">66</a><a class="extend next" rel="next" href="/page/19/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -928,7 +932,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">325</span>
+              <span class="site-state-item-count">327</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -936,7 +940,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分類</span>
               </a>
             </div>
@@ -1147,7 +1151,24 @@
       }
     });
   </script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
   

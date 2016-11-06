@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -118,7 +118,7 @@
   <link rel="canonical" href="http://yoursite.com/page/29/"/>
 
 
-  <title> Plusaber's Blog </title>
+  <title> Plusaber's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
@@ -126,7 +126,7 @@
   
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -260,8 +260,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/08/21/Leetcode_Repeated DNA Sequences/" itemprop="url">
-                  Repeated DNA Sequences
+                <a class="post-title-link" href="/2015/08/22/Leetcode_Add and Search Word/" itemprop="url">
+                  Add and Search Word
                 </a>
               
             
@@ -274,8 +274,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-08-21T00:00:00+09:00" content="2015-08-21">
-              2015-08-21
+            <time itemprop="dateCreated" datetime="2015-08-22T00:00:00+09:00" content="2015-08-22">
+              2015-08-22
             </time>
           </span>
 
@@ -304,8 +304,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/08/21/Leetcode_Repeated DNA Sequences/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/21/Leetcode_Repeated DNA Sequences/" itemprop="commentsCount"></span>
+                <a href="/2015/08/22/Leetcode_Add and Search Word/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/22/Leetcode_Add and Search Word/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -330,29 +330,154 @@
       
         
           
-            <h1 id="Repeated-DNA-Sequences"><a href="#Repeated-DNA-Sequences" class="headerlink" title="Repeated DNA Sequences"></a><a href="https://leetcode.com/problems/repeated-dna-sequences/" target="_blank" rel="external">Repeated DNA Sequences</a></h1><blockquote>
-<p>All DNA is composed of a series of nucleotides abbreviated as A, C, G, and T, for example: “ACGAATTCCG”. When studying DNA, it is sometimes useful to identify repeated sequences within the DNA.</p>
-<p>Write a function to find all the 10-letter-long sequences (substrings) that occur more than once in a DNA molecule.</p>
-<p>For example,</p>
+            <h1 id="Add-and-Search-Word"><a href="#Add-and-Search-Word" class="headerlink" title="Add and Search Word"></a><a href="https://leetcode.com/problems/add-and-search-word-data-structure-design/" target="_blank" rel="external">Add and Search Word</a></h1><blockquote>
+<p>Design a data structure that supports the following two operations:</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Given s = &quot;AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT&quot;,</div><div class="line"></div><div class="line">Return:</div><div class="line">[&quot;AAAAACCCCC&quot;, &quot;CCCCCAAAAA&quot;].</div></pre></td></tr></table></figure>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>直接存入子串肯定会导致memory exceed，所以最开始调用每个子串的hashCode方法，存储hashtable，结果部分不同的子串还是有相同的hash值，使用各个子部分hashcode的组合，得到accepted的结果，但是还是无法避免没有出现多次但因为有相同的hash值而错误记入的情况。因为java本身的hashcode方法无法避免冲突的结果。</p>
-<p>考虑到了设计自己的hash计算方法，但纠结了好久还是没弄出来。找到一种很nb的<a href="http://yuanhsh.iteye.com/blog/2185976" target="_blank" rel="external">基于位操作的计算hash值的方法</a>，保证了完全唯一性(根据DNA码本身的特点，只有4种组成部分)。原文已经写的很好了，这里直接参考。</p>
-<p>因为只有4个字母,所以可以创建自己的hashkey, 每两个BITS, 对应一个 incoming character. 超过20bit 即10个字符时, 只保留20bits.</p>
-<p><strong>关键：设计针对这个问题的hashcode计算方法</strong></p>
-<h3 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1"></a>Method 1</h3><p>考虑到只有4种字母，ACGT，固定10位字符，所以排列组合数是一定的，仅有4^10 = 1048576种可能。因此，可以让10位字符序列做一个Hash。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">A = 00</div><div class="line">C = 01</div><div class="line">G = 10</div><div class="line">T = 11</div></pre></td></tr></table></figure>
-<p>将他们拼接起来，变成一个数value。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">void addWord(word)</div><div class="line">bool search(word)</div><div class="line">search(word) can search a literal word or a regular expression string containing only letters a-z or .. A . means it can represent any one letter.</div></pre></td></tr></table></figure>
 <blockquote>
-<p>如： AAACCC = 00 00 00 01 01 01 （二进制） = 21 （十进制）</p>
-<p>然后遍历整个序列，每10个字符生成一个value。因为只需要判断10个字符的值，每个字符占2位，所以我们只需要20位的bit，通过掩码0xFFFFF来过滤掉10位之前的字符所对应的位。当某value出现过一次后，就将对应的序列加入到结果中。</p>
+<p>For example:</p>
 </blockquote>
-<h3 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2"></a>Method 2</h3><p>我们可以考虑使用A,C,G,T的ASCII码的二进制来替代map映射表。当然，必须保证字符大小写格式完全统一。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">A: 1000001</div><div class="line">C: 1000011</div><div class="line">G: 1000111</div><div class="line">T: 1010100</div></pre></td></tr></table></figure>
-<p>可以看出，A,C,G,T的后三位都不同。我们可以仅用后三位来代表每个字符。10个字符的话我们需要30位，正好低于Integer的32位。这次我们则需要30位的掩码 0x3FFFFFFF 来保证我们只拿30位即最近10个字符。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="Method-1-1"><a href="#Method-1-1" class="headerlink" title="Method 1"></a>Method 1</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">findRepeatedDnaSequences</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        List&lt;String&gt; result = <span class="keyword">new</span> ArrayList&lt;&gt;();  </div><div class="line">        Map&lt;Character, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();  </div><div class="line">        map.put(<span class="string">'A'</span>, <span class="number">0</span>);  </div><div class="line">        map.put(<span class="string">'C'</span>, <span class="number">1</span>);  </div><div class="line">        map.put(<span class="string">'G'</span>, <span class="number">2</span>);  </div><div class="line">        map.put(<span class="string">'T'</span>, <span class="number">3</span>);  </div><div class="line">        Map&lt;Integer, Integer&gt; sumMap = <span class="keyword">new</span> HashMap&lt;&gt;();  </div><div class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;  </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;s.length(); i++) &#123;  </div><div class="line">            sum = ((sum &lt;&lt; <span class="number">2</span>) + map.get(s.charAt(i))) &amp; <span class="number">0xFFFFF</span>;  </div><div class="line">            <span class="keyword">if</span>(i &lt; <span class="number">9</span>) <span class="keyword">continue</span>;  </div><div class="line">            Integer cnt = sumMap.get(sum);  </div><div class="line">            <span class="keyword">if</span>(cnt != <span class="keyword">null</span> &amp;&amp; cnt == <span class="number">1</span>) &#123;  </div><div class="line">                result.add(s.substring(i-<span class="number">9</span>,i+<span class="number">1</span>));  </div><div class="line">            &#125;   </div><div class="line">            sumMap.put(sum, cnt != <span class="keyword">null</span> ? cnt+<span class="number">1</span> : <span class="number">1</span>);  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> result;  </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Method-2-1"><a href="#Method-2-1" class="headerlink" title="Method 2"></a>Method 2</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">findRepeatedDnaSequences</span><span class="params">(String s)</span> </span>&#123;  </div><div class="line">    List&lt;String&gt; result = <span class="keyword">new</span> ArrayList&lt;&gt;();  </div><div class="line">    Map&lt;Integer, Integer&gt; sumMap = <span class="keyword">new</span> HashMap&lt;&gt;();  </div><div class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;  </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;s.length(); i++) &#123;  </div><div class="line">        sum = ((sum &lt;&lt; <span class="number">3</span>) | (s.charAt(i) &amp; <span class="number">7</span>)) &amp; <span class="number">0x3FFFFFFF</span>;  </div><div class="line">        <span class="keyword">if</span>(i &lt; <span class="number">9</span>) <span class="keyword">continue</span>;  </div><div class="line">        Integer cnt = sumMap.get(sum);  </div><div class="line">        <span class="keyword">if</span>(cnt != <span class="keyword">null</span> &amp;&amp; cnt == <span class="number">1</span>) &#123;  </div><div class="line">            result.add(s.substring(i-<span class="number">9</span>, i+<span class="number">1</span>));  </div><div class="line">        &#125;   </div><div class="line">        sumMap.put(sum, cnt != <span class="keyword">null</span> ? cnt+<span class="number">1</span> : <span class="number">1</span>);  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">return</span> result;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">addWord(&quot;bad&quot;)</div><div class="line">addWord(&quot;dad&quot;)</div><div class="line">addWord(&quot;mad&quot;)</div><div class="line">search(&quot;pad&quot;) -&gt; false</div><div class="line">search(&quot;bad&quot;) -&gt; true</div><div class="line">search(&quot;.ad&quot;) -&gt; true</div><div class="line">search(&quot;b..&quot;) -&gt; true</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Note:<br>You may assume that all words are consist of lowercase letters a-z.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>类似于Implement Trie，不过search增加了一个<code>.</code>匹配符。采用DFS搜索Trie树，每次处理word的一个字符，如果是非<code>.</code>字符，则获得相应的子树，如果该子树为<code>null</code>则匹配失败。如果是<code>.</code>则对于当前节点的所有子节点依次进行DFS，只要有一个子树搜索到结果，就跳过后面的搜索。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TrieNode</span> </span>&#123;</div><div class="line">    <span class="comment">// Initialize your data structure here.</span></div><div class="line">    <span class="keyword">private</span> TrieNode [] records;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> withWord;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TrieNode</span><span class="params">()</span> </span>&#123;</div><div class="line">        records = <span class="keyword">new</span> TrieNode[<span class="number">26</span>];</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setWord</span><span class="params">()</span> </span>&#123;</div><div class="line">        withWord = <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isWord</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> withWord;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> TrieNode <span class="title">getRecord</span><span class="params">(<span class="keyword">char</span> c)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> records[c-<span class="string">'a'</span>];</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setRecord</span><span class="params">(<span class="keyword">char</span> c, TrieNode node)</span> </span>&#123;</div><div class="line">        records[c-<span class="string">'a'</span>] = node;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WordDictionary</span> </span>&#123;</div><div class="line">	</div><div class="line">	<span class="keyword">private</span> TrieNode root;</div><div class="line">	</div><div class="line">	WordDictionary() &#123;</div><div class="line">		root = <span class="keyword">new</span> TrieNode();</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">    <span class="comment">// Adds a word into the data structure.</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addWord</span><span class="params">(String word)</span> </span>&#123;</div><div class="line">    	TrieNode current = root;</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span>(i&lt;word.length() &amp;&amp; current.getRecord(word.charAt(i))!=<span class="keyword">null</span>) &#123;</div><div class="line">            current = current.getRecord(word.charAt(i));</div><div class="line">            i ++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(i==word.length()) &#123;</div><div class="line">            current.setWord();</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">while</span>(i&lt;word.length()) &#123;</div><div class="line">            TrieNode newNode = <span class="keyword">new</span> TrieNode();</div><div class="line">            current.setRecord(word.charAt(i), newNode);</div><div class="line">            current = newNode;</div><div class="line">            i ++;</div><div class="line">        &#125;</div><div class="line">        current.setWord();</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Returns if the word is in the data structure. A word could</span></div><div class="line">    <span class="comment">// contain the dot character '.' to represent any one letter.</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">search</span><span class="params">(String word)</span> </span>&#123;</div><div class="line">    	<span class="keyword">return</span> recSearch(word, <span class="number">0</span>, root);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">recSearch</span><span class="params">(String word, <span class="keyword">int</span> pos, TrieNode root)</span> </span>&#123;</div><div class="line">    	<span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    	<span class="keyword">if</span>(pos==word.length()) <span class="keyword">return</span> root.isWord();</div><div class="line">    	<span class="keyword">if</span>(word.charAt(pos)==<span class="string">'.'</span>) &#123;</div><div class="line">    		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">26</span>; i++) &#123;</div><div class="line">    			<span class="keyword">if</span>(recSearch(word, pos+<span class="number">1</span>, root.getRecord((<span class="keyword">char</span>)(<span class="string">'a'</span>+i)))) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    		&#125;</div><div class="line">    		<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    	&#125; <span class="keyword">else</span> &#123;</div><div class="line">    		<span class="keyword">return</span> recSearch(word, pos+<span class="number">1</span>, root.getRecord(word.charAt(pos)));</div><div class="line">    	&#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Your WordDictionary object will be instantiated and called as such:</span></div><div class="line"><span class="comment">// WordDictionary wordDictionary = new WordDictionary();</span></div><div class="line"><span class="comment">// wordDictionary.addWord("word");</span></div><div class="line"><span class="comment">// wordDictionary.search("pattern");</span></div></pre></td></tr></table></figure>
+<p>second time </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TrieNode</span> </span>&#123;</div><div class="line">    <span class="comment">// Initialize your data structure here.</span></div><div class="line">    TrieNode[] nodes;</div><div class="line">    <span class="keyword">boolean</span> exist;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TrieNode</span><span class="params">()</span> </span>&#123;</div><div class="line">        nodes = <span class="keyword">new</span> TrieNode[<span class="number">26</span>];</div><div class="line">        exist = <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WordDictionary</span> </span>&#123;</div><div class="line">    TrieNode root = <span class="keyword">new</span> TrieNode();</div><div class="line">    <span class="comment">// Adds a word into the data structure.</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addWord</span><span class="params">(String word)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(word==<span class="keyword">null</span> || word.length()==<span class="number">0</span>) <span class="keyword">return</span>;</div><div class="line">        TrieNode move = root;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;word.length(); i++) &#123;</div><div class="line">            <span class="keyword">char</span> c= word.charAt(i); </div><div class="line">            <span class="keyword">if</span>(move.nodes[c-<span class="string">'a'</span>]==<span class="keyword">null</span>) &#123;</div><div class="line">                move.nodes[c-<span class="string">'a'</span>] = <span class="keyword">new</span> TrieNode();</div><div class="line">            &#125;</div><div class="line">            move = move.nodes[c-<span class="string">'a'</span>];</div><div class="line">        &#125;</div><div class="line">        move.exist = <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Returns if the word is in the data structure. A word could</span></div><div class="line">    <span class="comment">// contain the dot character '.' to represent any one letter.</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">search</span><span class="params">(String word)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> search(word, <span class="number">0</span>, root);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">search</span><span class="params">(String word, <span class="keyword">int</span> pos, TrieNode move)</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=pos; i&lt;word.length(); i++) &#123;</div><div class="line">            <span class="keyword">char</span> c = word.charAt(i);</div><div class="line">            <span class="keyword">if</span>(c!=<span class="string">'.'</span>) &#123;</div><div class="line">                <span class="keyword">if</span>(move.nodes[c-<span class="string">'a'</span>]==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">                <span class="keyword">else</span> move = move.nodes[c-<span class="string">'a'</span>];</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;<span class="number">26</span>; j++) &#123;</div><div class="line">                    <span class="keyword">if</span>(move.nodes[j]!=<span class="keyword">null</span> &amp;&amp; search(word, i+<span class="number">1</span>, move.nodes[j])) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> move.exist;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Your WordDictionary object will be instantiated and called as such:</span></div><div class="line"><span class="comment">// WordDictionary wordDictionary = new WordDictionary();</span></div><div class="line"><span class="comment">// wordDictionary.addWord("word");</span></div><div class="line"><span class="comment">// wordDictionary.search("pattern");</span></div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
 
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/08/22/Leetcode_House Robber/" itemprop="url">
+                  House Robber
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-08-22T00:00:00+09:00" content="2015-08-22">
+              2015-08-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/08/22/Leetcode_House Robber/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/22/Leetcode_House Robber/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="House-Robber"><a href="#House-Robber" class="headerlink" title="House Robber"></a><a href="https://leetcode.com/problems/house-robber/" target="_blank" rel="external">House Robber</a></h1><blockquote>
+<p>You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night.</p>
+<p>Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>其实就是对于一个数组，不能去任意相邻的两个值，求能取得的最大的sum。</p>
+<h3 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1"></a>Method 1</h3><p>直接想到的是递归搜索解空间树，也就是对于当前的元素，选择加入或不加入，如果加入，则算入sum，然后从下下个开始继续递归。如果不加入，则sum不变，从下个元素开始继续递归。</p>
+<p>得到这两种选择的较大值，返回结果。</p>
+<p>要注意到的是，计算过程中其实有很多重复的递归计算。</p>
+<h3 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2"></a>Method 2</h3><p>动态规划方法，设<code>max[n]</code>为<code>从0到n的子数组能取得的最大的sum</code>，注意到对于数组<code>0到n</code>能取到的最大的<code>max[n]</code>，为<code>max[n-1]</code>与<code>max[n-2]+num[n]</code>中的较大值，因为最大值必定为对<code>n</code>元素取或者不取结果的一种，如果取这其最大sum为<code>max[n-2]+num[n]</code>，如果不取，dao<code>n</code>的最大sum为<code>max[n-1]</code>。这就是一个动态规划的问题了，也就是状态转移方程为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">max[0] = num[0]</div><div class="line">max[1] = Math.max(num[0], num[1])</div><div class="line">max[i] = Math.max(max[i-2]+num[i], nums[i-1])</div><div class="line"></div><div class="line">``` </div><div class="line"></div><div class="line"></div><div class="line">## Code</div><div class="line"></div><div class="line">### Method 1</div><div class="line"></div><div class="line">```java</div><div class="line">public class Solution &#123;</div><div class="line">    public int rob(int[] nums) &#123;</div><div class="line">        return recRob(nums, 0, 0);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    private int recRob(int [] nums, int pos, int sum) &#123;</div><div class="line">        if(pos&gt;=nums.length) return sum;</div><div class="line">        </div><div class="line">        int tSum = recRob(nums, pos+2, sum+nums[pos]);</div><div class="line">        int nSum = recRob(nums, pos+1, sum);</div><div class="line">        </div><div class="line">        return (tSum&gt;=nSum)? tSum:nSum;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Method-2-1"><a href="#Method-2-1" class="headerlink" title="Method 2"></a>Method 2</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">rob</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(nums.length==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">if</span>(nums.length==<span class="number">1</span>) <span class="keyword">return</span> nums[<span class="number">0</span>];</div><div class="line">        <span class="keyword">if</span>(nums.length==<span class="number">2</span>) <span class="keyword">return</span> Math.max(nums[<span class="number">0</span>], nums[<span class="number">1</span>]);</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> [] max = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</div><div class="line">        max[<span class="number">0</span>] = nums[<span class="number">0</span>];</div><div class="line">        max[<span class="number">1</span>] = Math.max(nums[<span class="number">0</span>], nums[<span class="number">1</span>]);</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>; i&lt;nums.length; i++) &#123;</div><div class="line">            max[i] =  Math.max(max[i-<span class="number">2</span>]+nums[i]), max[i-<span class="number">1</span>]);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> max[nums.length-<span class="number">1</span>];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Second-time-solution"><a href="#Second-time-solution" class="headerlink" title="Second time solution"></a>Second time solution</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">rob</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(nums==<span class="keyword">null</span> || nums.length==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;nums.length; i++) &#123;</div><div class="line">            <span class="keyword">int</span> last = (i-<span class="number">2</span>&gt;=<span class="number">0</span>) ? nums[i-<span class="number">2</span>] : <span class="number">0</span>;</div><div class="line">            nums[i] = (last+nums[i]&gt;nums[i-<span class="number">1</span>]) ? last+nums[i] : nums[i-<span class="number">1</span>];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> nums[nums.length-<span class="number">1</span>];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>思路相同，但不用修改数组：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">rob</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(nums.length==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">if</span>(nums.length==<span class="number">1</span>) <span class="keyword">return</span> nums[<span class="number">0</span>];</div><div class="line">        <span class="keyword">int</span> lastLastMax = nums[<span class="number">0</span>];</div><div class="line">        <span class="keyword">int</span> lastMax = Math.max(nums[<span class="number">0</span>], nums[<span class="number">1</span>]);</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>; i&lt;nums.length; i++) &#123;</div><div class="line">            <span class="keyword">int</span> thisMax = Math.max(lastLastMax+nums[i], lastMax);</div><div class="line">            lastLastMax = lastMax;</div><div class="line">            lastMax = thisMax;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> lastMax;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           
         
       
@@ -529,6 +654,147 @@
             
               
                 
+                <a class="post-title-link" href="/2015/08/21/Leetcode_Repeated DNA Sequences/" itemprop="url">
+                  Repeated DNA Sequences
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-08-21T00:00:00+09:00" content="2015-08-21">
+              2015-08-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/08/21/Leetcode_Repeated DNA Sequences/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/21/Leetcode_Repeated DNA Sequences/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Repeated-DNA-Sequences"><a href="#Repeated-DNA-Sequences" class="headerlink" title="Repeated DNA Sequences"></a><a href="https://leetcode.com/problems/repeated-dna-sequences/" target="_blank" rel="external">Repeated DNA Sequences</a></h1><blockquote>
+<p>All DNA is composed of a series of nucleotides abbreviated as A, C, G, and T, for example: “ACGAATTCCG”. When studying DNA, it is sometimes useful to identify repeated sequences within the DNA.</p>
+<p>Write a function to find all the 10-letter-long sequences (substrings) that occur more than once in a DNA molecule.</p>
+<p>For example,</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Given s = &quot;AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT&quot;,</div><div class="line"></div><div class="line">Return:</div><div class="line">[&quot;AAAAACCCCC&quot;, &quot;CCCCCAAAAA&quot;].</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>直接存入子串肯定会导致memory exceed，所以最开始调用每个子串的hashCode方法，存储hashtable，结果部分不同的子串还是有相同的hash值，使用各个子部分hashcode的组合，得到accepted的结果，但是还是无法避免没有出现多次但因为有相同的hash值而错误记入的情况。因为java本身的hashcode方法无法避免冲突的结果。</p>
+<p>考虑到了设计自己的hash计算方法，但纠结了好久还是没弄出来。找到一种很nb的<a href="http://yuanhsh.iteye.com/blog/2185976" target="_blank" rel="external">基于位操作的计算hash值的方法</a>，保证了完全唯一性(根据DNA码本身的特点，只有4种组成部分)。原文已经写的很好了，这里直接参考。</p>
+<p>因为只有4个字母,所以可以创建自己的hashkey, 每两个BITS, 对应一个 incoming character. 超过20bit 即10个字符时, 只保留20bits.</p>
+<p><strong>关键：设计针对这个问题的hashcode计算方法</strong></p>
+<h3 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1"></a>Method 1</h3><p>考虑到只有4种字母，ACGT，固定10位字符，所以排列组合数是一定的，仅有4^10 = 1048576种可能。因此，可以让10位字符序列做一个Hash。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">A = 00</div><div class="line">C = 01</div><div class="line">G = 10</div><div class="line">T = 11</div></pre></td></tr></table></figure>
+<p>将他们拼接起来，变成一个数value。</p>
+<blockquote>
+<p>如： AAACCC = 00 00 00 01 01 01 （二进制） = 21 （十进制）</p>
+<p>然后遍历整个序列，每10个字符生成一个value。因为只需要判断10个字符的值，每个字符占2位，所以我们只需要20位的bit，通过掩码0xFFFFF来过滤掉10位之前的字符所对应的位。当某value出现过一次后，就将对应的序列加入到结果中。</p>
+</blockquote>
+<h3 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2"></a>Method 2</h3><p>我们可以考虑使用A,C,G,T的ASCII码的二进制来替代map映射表。当然，必须保证字符大小写格式完全统一。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">A: 1000001</div><div class="line">C: 1000011</div><div class="line">G: 1000111</div><div class="line">T: 1010100</div></pre></td></tr></table></figure>
+<p>可以看出，A,C,G,T的后三位都不同。我们可以仅用后三位来代表每个字符。10个字符的话我们需要30位，正好低于Integer的32位。这次我们则需要30位的掩码 0x3FFFFFFF 来保证我们只拿30位即最近10个字符。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="Method-1-1"><a href="#Method-1-1" class="headerlink" title="Method 1"></a>Method 1</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">findRepeatedDnaSequences</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        List&lt;String&gt; result = <span class="keyword">new</span> ArrayList&lt;&gt;();  </div><div class="line">        Map&lt;Character, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();  </div><div class="line">        map.put(<span class="string">'A'</span>, <span class="number">0</span>);  </div><div class="line">        map.put(<span class="string">'C'</span>, <span class="number">1</span>);  </div><div class="line">        map.put(<span class="string">'G'</span>, <span class="number">2</span>);  </div><div class="line">        map.put(<span class="string">'T'</span>, <span class="number">3</span>);  </div><div class="line">        Map&lt;Integer, Integer&gt; sumMap = <span class="keyword">new</span> HashMap&lt;&gt;();  </div><div class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;  </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;s.length(); i++) &#123;  </div><div class="line">            sum = ((sum &lt;&lt; <span class="number">2</span>) + map.get(s.charAt(i))) &amp; <span class="number">0xFFFFF</span>;  </div><div class="line">            <span class="keyword">if</span>(i &lt; <span class="number">9</span>) <span class="keyword">continue</span>;  </div><div class="line">            Integer cnt = sumMap.get(sum);  </div><div class="line">            <span class="keyword">if</span>(cnt != <span class="keyword">null</span> &amp;&amp; cnt == <span class="number">1</span>) &#123;  </div><div class="line">                result.add(s.substring(i-<span class="number">9</span>,i+<span class="number">1</span>));  </div><div class="line">            &#125;   </div><div class="line">            sumMap.put(sum, cnt != <span class="keyword">null</span> ? cnt+<span class="number">1</span> : <span class="number">1</span>);  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> result;  </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Method-2-1"><a href="#Method-2-1" class="headerlink" title="Method 2"></a>Method 2</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">findRepeatedDnaSequences</span><span class="params">(String s)</span> </span>&#123;  </div><div class="line">    List&lt;String&gt; result = <span class="keyword">new</span> ArrayList&lt;&gt;();  </div><div class="line">    Map&lt;Integer, Integer&gt; sumMap = <span class="keyword">new</span> HashMap&lt;&gt;();  </div><div class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;  </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;s.length(); i++) &#123;  </div><div class="line">        sum = ((sum &lt;&lt; <span class="number">3</span>) | (s.charAt(i) &amp; <span class="number">7</span>)) &amp; <span class="number">0x3FFFFFFF</span>;  </div><div class="line">        <span class="keyword">if</span>(i &lt; <span class="number">9</span>) <span class="keyword">continue</span>;  </div><div class="line">        Integer cnt = sumMap.get(sum);  </div><div class="line">        <span class="keyword">if</span>(cnt != <span class="keyword">null</span> &amp;&amp; cnt == <span class="number">1</span>) &#123;  </div><div class="line">            result.add(s.substring(i-<span class="number">9</span>, i+<span class="number">1</span>));  </div><div class="line">        &#125;   </div><div class="line">        sumMap.put(sum, cnt != <span class="keyword">null</span> ? cnt+<span class="number">1</span> : <span class="number">1</span>);  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">return</span> result;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/08/21/Leetcode_Ugly Number II/" itemprop="url">
                   Ugly Number II
                 </a>
@@ -650,265 +916,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/08/20/Leetcode_Kth Largest Element in an Array/" itemprop="url">
-                  Kth Largest Element in an Array
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-08-20T00:00:00+09:00" content="2015-08-20">
-              2015-08-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/08/20/Leetcode_Kth Largest Element in an Array/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/20/Leetcode_Kth Largest Element in an Array/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Kth-Largest-Element-in-an-Array"><a href="#Kth-Largest-Element-in-an-Array" class="headerlink" title="Kth Largest Element in an Array"></a><a href="https://leetcode.com/problems/kth-largest-element-in-an-array/" target="_blank" rel="external">Kth Largest Element in an Array</a></h1><blockquote>
-<p>Find the kth largest element in an unsorted array. Note that it is the kth largest element in the sorted order, not the kth distinct element.</p>
-<p>For example,<br>Given [3,2,1,5,6,4] and k = 2, return 5.</p>
-<p>Note:<br>You may assume k is always valid, 1 ≤ k ≤ array’s length.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>很容易想到的一种方法是quick sort之后选择第K大的元素，但是由于我们只需要第K大的元素，没有必要对整个数组进行排序，使用quick sort中的partition方法，可以得到pivot所应该在的位置，左边为比pivot大的元素，右边为比pivot小的元素(根据从大到小的quick sort，从小到大则反过来)。如果pivot的位置刚好为K-1，则说明pivot正好是第K大的元素。如果pivot的位置大于K-1，则第K大的元素在pivot位置的左边，继续搜索左边的数组，如果pivot的位置小余K-1，则第K大的元素在pivot位置的右边，继续搜索右边的数组。</p>
-<p>参考<a href="http://www.cs.yale.edu/homes/aspnes/pinewiki/QuickSelect.html" target="_blank" rel="external">quick select</a>.</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> recFindKth(nums, k, <span class="number">0</span>, nums.length-<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">recFindKth</span><span class="params">(<span class="keyword">int</span> [] nums, <span class="keyword">int</span> k, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> pos = partition(nums, left, right);</div><div class="line">        <span class="keyword">if</span>(pos==k-<span class="number">1</span>) <span class="keyword">return</span> nums[pos];</div><div class="line">        <span class="keyword">if</span>(pos&lt;k-<span class="number">1</span>) <span class="keyword">return</span> recFindKth(nums, k, pos+<span class="number">1</span>, right);</div><div class="line">        <span class="keyword">else</span> <span class="keyword">return</span> recFindKth(nums, k, left, pos-<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="keyword">int</span> [] nums, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> pivot = left++;</div><div class="line">        <span class="keyword">while</span>(left&lt;=right) &#123;</div><div class="line">            <span class="keyword">while</span>(left&lt;=right &amp;&amp; nums[left]&gt;=nums[pivot]) left ++;</div><div class="line">            <span class="keyword">while</span>(right&gt;=left &amp;&amp; nums[right]&lt;nums[pivot]) right--;</div><div class="line">            <span class="keyword">if</span>(left&gt;right) <span class="keyword">break</span>;</div><div class="line">            swap(nums, left, right);</div><div class="line">        &#125;</div><div class="line">        swap(nums, pivot, right);</div><div class="line">        <span class="keyword">return</span> right;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> []nums, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> temp = nums[i];</div><div class="line">        nums[i] = nums[j];</div><div class="line">        nums[j] = temp;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/08/20/Leetcode_Count Primes/" itemprop="url">
-                  Count Primes
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-08-20T00:00:00+09:00" content="2015-08-20">
-              2015-08-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/08/20/Leetcode_Count Primes/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/20/Leetcode_Count Primes/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Count-Primes"><a href="#Count-Primes" class="headerlink" title="Count Primes"></a><a href="https://leetcode.com/problems/count-primes/" target="_blank" rel="external">Count Primes</a></h1><blockquote>
-<p>Description:</p>
-<p>Count the number of prime numbers less than a non-negative number, n.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p><a href="https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes" target="_blank" rel="external">厄拉多塞筛法</a>。一个数的倍数肯定不是prime number，从2开始，把每个数的倍数全部设为non prime，当达到某一个数m时，如果该数还没有被设置为non prime，则其一定是prime，因为一个non prime的数，假设为<code>m</code>,必定为<code>2-m的求根值</code>的倍数(根据prime的性质)。</p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif" alt=""></p>
-<p>建立一个长度为<code>n</code>的boolean数组，从<code>2...n</code>开始，如果其是prime，则设置其所有的倍数数为non-prime，如果是non-prime，则直接跳过(因为non-prime的倍数也必定是non-prime，且已经被设置过了(倍数关系)，避免重复计算)。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countPrimes</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">        <span class="keyword">boolean</span>[] notPrime = <span class="keyword">new</span> <span class="keyword">boolean</span>[n];</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>; i&lt;n; i++) &#123;</div><div class="line">            <span class="keyword">if</span>(!notPrime[i]) &#123;</div><div class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k=i+i; k&lt;n; k+=i) &#123;</div><div class="line">                    notPrime[k] = <span class="keyword">true</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>; i&lt;n; i++) &#123;</div><div class="line">            <span class="keyword">if</span>(!notPrime[i]) count ++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> count;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/28/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><span class="page-number current">29</span><a class="page-number" href="/page/30/">30</a><span class="space">&hellip;</span><a class="page-number" href="/page/65/">65</a><a class="extend next" rel="next" href="/page/30/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/28/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><span class="page-number current">29</span><a class="page-number" href="/page/30/">30</a><span class="space">&hellip;</span><a class="page-number" href="/page/66/">66</a><a class="extend next" rel="next" href="/page/30/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -949,7 +961,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">325</span>
+              <span class="site-state-item-count">327</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -957,7 +969,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分類</span>
               </a>
             </div>
@@ -1168,7 +1180,24 @@
       }
     });
   </script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
   

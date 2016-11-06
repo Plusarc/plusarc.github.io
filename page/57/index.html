@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -118,7 +118,7 @@
   <link rel="canonical" href="http://yoursite.com/page/57/"/>
 
 
-  <title> Plusaber's Blog </title>
+  <title> Plusaber's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
@@ -126,7 +126,7 @@
   
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -238,6 +238,299 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/03/15/DSA_区间调度问题/" itemprop="url">
+                  区间调度问题详解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-03-15T00:00:00+09:00" content="2015-03-15">
+              2015-03-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/DSA/" itemprop="url" rel="index">
+                    <span itemprop="name">DSA</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/03/15/DSA_区间调度问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/03/15/DSA_区间调度问题/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="区间调度问题详解"><a href="#区间调度问题详解" class="headerlink" title="区间调度问题详解"></a><a href="http://blog.csdn.net/yutianzuijin/article/details/45116705" target="_blank" rel="external">区间调度问题详解</a></h1><p>这里是一个区间调度问题的总结学习，主要参考<a href="http://blog.csdn.net/yutianzuijin/article/details/45116705" target="_blank" rel="external">区间调度问题详解</a>，思路方面原文已经非常清晰，这里就不在赘述，请直接参考原文。</p>
+<h2 id="最多区间调度"><a href="#最多区间调度" class="headerlink" title="最多区间调度"></a>最多区间调度</h2><p>Greedy</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX_N=<span class="number">100000</span>;</div><div class="line"><span class="comment">//输入</span></div><div class="line"><span class="keyword">int</span> N,S[MAX_N],T[MAX_N];</div><div class="line"></div><div class="line"><span class="comment">//用于对工作排序的pair数组</span></div><div class="line">pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; itv[MAX_N];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="comment">//对pair进行的是字典序比较，为了让结束时间早的工作排在前面，把T存入first，//把S存入second</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)</div><div class="line">    &#123;</div><div class="line">	    itv[i].first=T[i];</div><div class="line">	    itv[i].second=S[i];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    sort(itv,itv+N);</div><div class="line"></div><div class="line">    <span class="comment">//t是最后所选工作的结束时间</span></div><div class="line">    <span class="keyword">int</span> ans=<span class="number">0</span>,t=<span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)</div><div class="line">    &#123;</div><div class="line">	    <span class="keyword">if</span>(t&lt;itv[i].second)<span class="comment">//判断区间是否重叠</span></div><div class="line">	    &#123;</div><div class="line">		    ans++;</div><div class="line">		    t=itv[i].first;</div><div class="line">	    &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(“%d\n”,ans);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>DP</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="comment">//1. 对所有的区间进行排序</span></div><div class="line">	sort_all_intervals();</div><div class="line"></div><div class="line">	<span class="comment">//2. 按照动态规划求最优解</span></div><div class="line">	dp[<span class="number">0</span>]=<span class="number">1</span>;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; intervals.size(); i++) </div><div class="line">       &#123;</div><div class="line">		<span class="comment">//1. 选择第i个区间</span></div><div class="line">		k=find_nonoverlap_pos();</div><div class="line">		<span class="keyword">if</span>(k&gt;=<span class="number">0</span>) dp[i]=dp[k]+<span class="number">1</span>;</div><div class="line">		<span class="comment">//2. 不选择第i个区间</span></div><div class="line">		dp[i]=max&#123;dp[i],dp[j]&#125;;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="最大区间调度"><a href="#最大区间调度" class="headerlink" title="最大区间调度"></a>最大区间调度</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getMaxWorkingTime</span><span class="params">(List&lt;Interval&gt; intervals)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span>(intervals==<span class="keyword">null</span> || intervals.size()==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">		Collections.sort(intervals, <span class="keyword">new</span> Comparator&lt;Interval&gt;() &#123;</div><div class="line">			<span class="meta">@Override</span></div><div class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Interval i1, Interval i2)</span> </span>&#123;</div><div class="line">				<span class="keyword">return</span> i1.getEndHour() != i2.getEndHour() ? i1.getEndHour() - i2.getEndHour() : i1.getEndMinute() - i2.getEndMinute();</div><div class="line">			&#125;</div><div class="line">		&#125;);</div><div class="line">		<span class="keyword">int</span>[] maxTimes = <span class="keyword">new</span> <span class="keyword">int</span>[intervals.size()];</div><div class="line">		<span class="keyword">int</span> max = Integer.MIN_VALUE;</div><div class="line">		</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;intervals.size(); i++) &#123;</div><div class="line">			Interval interval = intervals.get(i);</div><div class="line">			<span class="keyword">int</span> passMax = i&gt;<span class="number">0</span> ? maxTimes[i-<span class="number">1</span>] : <span class="number">0</span>;</div><div class="line">			<span class="keyword">int</span> takeMax = interval.getIntervalMinute();</div><div class="line">			<span class="keyword">int</span> lastIndex = binarySearchLastNorConflict(intervals, i-<span class="number">1</span>, interval.getBeginMinuteUnit());</div><div class="line">			takeMax += (lastIndex&gt;=<span class="number">0</span> ? maxTimes[lastIndex] : <span class="number">0</span>);</div><div class="line">			maxTimes[i] = Math.max(passMax, takeMax);</div><div class="line">			<span class="keyword">if</span>(maxTimes[i]&gt;max) max = maxTimes[i];</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> max;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">binarySearchLastNorConflict</span><span class="params">(List&lt;Interval&gt; intervals, <span class="keyword">int</span> right, <span class="keyword">int</span> time)</span> </span>&#123;</div><div class="line">		<span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">		<span class="keyword">while</span>(left&lt;=right) &#123;</div><div class="line">			<span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</div><div class="line">			<span class="keyword">if</span>(intervals.get(mid).getEndMinuteUnit()&lt;=time) left = mid + <span class="number">1</span>;</div><div class="line">			<span class="keyword">else</span> right = mid - <span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> right;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<h2 id="带权的区间调度"><a href="#带权的区间调度" class="headerlink" title="带权的区间调度"></a>带权的区间调度</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX_N=<span class="number">100000</span>;</div><div class="line"><span class="comment">//输入</span></div><div class="line"><span class="keyword">int</span> N,S[MAX_N],T[MAX_N];</div><div class="line"></div><div class="line"><span class="comment">//用于对工作排序的pair数组</span></div><div class="line">pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; itv[MAX_N];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="comment">//对pair进行的是字典序比较，为了让结束时间早的工作排在前面，把T存入first，//把S存入second</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)</div><div class="line">    &#123;</div><div class="line">	    itv[i].first=T[i];</div><div class="line">	    itv[i].second=S[i];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    sort(itv,itv+N);</div><div class="line"></div><div class="line">    dp[<span class="number">0</span>] = (itv[<span class="number">0</span>].first-itv[<span class="number">0</span>].second)*V[<span class="number">0</span>];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N; i++)</div><div class="line">    &#123;</div><div class="line">	    <span class="keyword">int</span> max;</div><div class="line"></div><div class="line">	    <span class="comment">//select the ith interval</span></div><div class="line">	    <span class="keyword">int</span> nonOverlap = lower_bound(itv, itv[i].second)<span class="number">-1</span>;</div><div class="line">	    <span class="keyword">if</span> (nonOverlap &gt;= <span class="number">0</span>)</div><div class="line">		    max = dp[nonOverlap] + (itv[i].first-itv[i].second)*V[i];</div><div class="line">	    <span class="keyword">else</span></div><div class="line">		    max = (itv[i].first-itv[i].second)*V[i];</div><div class="line"></div><div class="line">	    <span class="comment">//do not select the ith interval</span></div><div class="line">	    dp[i] = max&gt;dp[i<span class="number">-1</span>]?max:dp[i<span class="number">-1</span>];</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(“%d\n”,dp[N<span class="number">-1</span>]);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="最小区间覆盖"><a href="#最小区间覆盖" class="headerlink" title="最小区间覆盖"></a>最小区间覆盖</h2><p>将剩余的区间和新的左端点比较并选择右端点最大的区间，修改左端点，这时左端点就会变为end4，I4添加到最小覆盖区间中。依次处理剩余的区间，我们就获得了最优解</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX_N=<span class="number">100000</span>;</div><div class="line"><span class="comment">//输入</span></div><div class="line"><span class="keyword">int</span> N,S[MAX_N],T[MAX_N];</div><div class="line"></div><div class="line"><span class="comment">//用于对工作排序的pair数组</span></div><div class="line">pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; itv[MAX_N];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">solve</span><span class="params">(<span class="keyword">int</span> s,<span class="keyword">int</span> t)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)</div><div class="line">    &#123;</div><div class="line">	    itv[i].first=S[i];</div><div class="line">	    itv[i].second=T[i];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//按照开始时间排序</span></div><div class="line">    sort(itv,itv+N);</div><div class="line"></div><div class="line">    <span class="keyword">int</span> ans=<span class="number">0</span>,max_right=<span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; )</div><div class="line">    &#123;</div><div class="line">	    <span class="comment">//从开始时间在s左侧的区间中挑出最大的结束时间</span></div><div class="line">	    <span class="keyword">while</span>(itv[i].first&lt;=s)</div><div class="line">	    &#123;</div><div class="line">		    <span class="keyword">if</span>(max_right&lt;itv[i].end) max_right=itv[i].end;</div><div class="line">		    i++;</div><div class="line">	    &#125;	</div><div class="line"></div><div class="line">	    <span class="keyword">if</span>(max_right&gt;s) </div><div class="line">        &#123;</div><div class="line">             s=max_right;</div><div class="line">             ans++;</div><div class="line">            <span class="keyword">if</span>(s&gt;=t) <span class="keyword">return</span> ans;</div><div class="line">        &#125;</div><div class="line">	    <span class="keyword">else</span> <span class="comment">//如果分界线左侧的区间不能覆盖s，则不可能有区间组合覆盖给定范围</span></div><div class="line">	    &#123;</div><div class="line">                <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">	    &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="最大区间重叠（最少工人调度）"><a href="#最大区间重叠（最少工人调度）" class="headerlink" title="最大区间重叠（最少工人调度）"></a>最大区间重叠（最少工人调度）</h2><p>这里实际的代码是leetcode的minimal meeting room问题，但本质上就是最大区间重叠问题。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minMeetingRooms</span><span class="params">(Interval[] intervals)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(intervals == <span class="keyword">null</span> || intervals.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        Arrays.sort(intervals, <span class="keyword">new</span> Comparator&lt;Interval&gt;()&#123;</div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Interval i1, Interval i2)</span></span>&#123;</div><div class="line">                <span class="keyword">return</span> i1.start - i2.start;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        <span class="comment">// 用堆来管理房间的结束时间</span></div><div class="line">        PriorityQueue&lt;Integer&gt; endTimes = <span class="keyword">new</span> PriorityQueue&lt;Integer&gt;();</div><div class="line">        endTimes.offer(intervals[<span class="number">0</span>].end);</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; intervals.length; i++)&#123;</div><div class="line">            <span class="comment">// 如果当前时间段的开始时间大于最早结束的时间，则可以更新这个最早的结束时间为当前时间段的结束时间，如果小于的话，就加入一个新的结束时间，表示新的房间</span></div><div class="line">            <span class="keyword">if</span>(intervals[i].start &gt;= endTimes.peek())&#123;</div><div class="line">                endTimes.poll();</div><div class="line">            &#125;</div><div class="line">            endTimes.offer(intervals[i].end);</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 有多少结束时间就有多少房间</span></div><div class="line">        <span class="keyword">return</span> endTimes.size();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/03/10/Design Pattern_Adapter pattern/" itemprop="url">
+                  Adapter pattern
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-03-10T00:00:00+09:00" content="2015-03-10">
+              2015-03-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Design-Pattern/" itemprop="url" rel="index">
+                    <span itemprop="name">Design Pattern</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/03/10/Design Pattern_Adapter pattern/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/03/10/Design Pattern_Adapter pattern/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h1><p>适配器模式是个相当好理解的模式，可以参考生活中的电源适配器。</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_1.png" alt="Design_pattern_adapter_1"></p>
+<p>假设已有一个软件系统，我们希望它能和一个新的厂商类库搭配使用，但是这个新厂商所设计的接口和旧厂商的接口不同。</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_2.png" alt="Design_pattern_adapter_2"></p>
+<p>这时我们就可以写一个类，实现新厂商接口，但真正提供服务是被封装的旧厂商(反过来也可以，甚至是双向适配器)。外部客户只需要调用新厂商接口，而不需要直到内部是谁实现的。这个适配器相当于一个中间人，将客户锁发出的请求转成厂商类所能理解的请求。</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_3.png" alt="Design_pattern_adapter_3"></p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_4.png" alt="Design_pattern_adapter_4"></p>
+<p>假设我们缺少鸭子对象，需要使用火鸡对象来冒充鸭子。我们可以这样做：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Duck</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quack</span><span class="params">()</span></span>;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MallardDuck</span> <span class="keyword">implements</span> <span class="title">Duck</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quack</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Quack"</span>);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"I'm flying"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Turkey</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gobble</span><span class="params">()</span></span>;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WildTurkey</span> <span class="keyword">implements</span> <span class="title">Turkey</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gobble</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Gobble gobble"</span>);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"I'm flying a short distance"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>写个适配器：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TurkeyAdapter</span> <span class="keyword">implements</span> <span class="title">Duck</span> </span>&#123;</div><div class="line">	Turkey turkey;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">TurkeyAdapter</span><span class="params">(Turkey turkey)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.turkey = turkey;</div><div class="line">	&#125;</div><div class="line">    </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quack</span><span class="params">()</span> </span>&#123;</div><div class="line">		turkey.gobble();</div><div class="line">	&#125;</div><div class="line">  </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</div><div class="line">			turkey.fly();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DuckTestDrive</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		MallardDuck duck = <span class="keyword">new</span> MallardDuck();</div><div class="line"> </div><div class="line">		WildTurkey turkey = <span class="keyword">new</span> WildTurkey();</div><div class="line">		Duck turkeyAdapter = <span class="keyword">new</span> TurkeyAdapter(turkey);</div><div class="line">   </div><div class="line">		System.out.println(<span class="string">"The Turkey says..."</span>);</div><div class="line">		turkey.gobble();</div><div class="line">		turkey.fly();</div><div class="line"> </div><div class="line">		System.out.println(<span class="string">"\nThe Duck says..."</span>);</div><div class="line">		testDuck(duck);</div><div class="line">  </div><div class="line">		System.out.println(<span class="string">"\nThe TurkeyAdapter says..."</span>);</div><div class="line">		testDuck(turkeyAdapter);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testDuck</span><span class="params">(Duck duck)</span> </span>&#123;</div><div class="line">		duck.quack();</div><div class="line">		duck.fly();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里鸭子是目标接口，火鸡就是被适配者。</p>
+<p>客户使用适配器的过程如下：</p>
+<ul>
+<li>客户通过目标接口调用适配器的方法对适配器发出请求。</li>
+<li>适配器使用陪被适配者接口执行请求。</li>
+<li>客户收到调用的结果，但并未察觉这一切是适配器在起转换作用。</li>
+</ul>
+<p>同样的，我们也可以写一个适配器将鸭子转为火鸡。</p>
+<h2 id="定义适配器模式"><a href="#定义适配器模式" class="headerlink" title="定义适配器模式"></a>定义适配器模式</h2><p>适配器模式将一个类的接口，转换为客户期望的另一个接口。适配器让原本接口不兼容的类可以互相合作。</p>
+<p>同样适配器可以将改变的部分封装起来，被适配者接口改变时，客户端代码也不需要修改。</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_5.png" alt="Design_pattern_adapter_5"></p>
+<h2 id="对象适配器和类适配器"><a href="#对象适配器和类适配器" class="headerlink" title="对象适配器和类适配器"></a>对象适配器和类适配器</h2><p>适配器主要有两类：对象适配器和类适配器。前面在鸭子的例子使用的是对象适配器。对象适配器使用的是组合，而类适配器使用的是继承(多继承)。</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_6.png" alt="Design_pattern_adapter_6"></p>
+<h2 id="Java的枚举器"><a href="#Java的枚举器" class="headerlink" title="Java的枚举器"></a>Java的枚举器</h2><p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_7.png" alt="Design_pattern_adapter_7"></p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_8.png" alt="Design_pattern_adapter_8"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EnumerationIterator</span> <span class="keyword">implements</span> <span class="title">Iterator</span> </span>&#123;</div><div class="line">	Enumeration enumeration;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">EnumerationIterator</span><span class="params">(Enumeration enumeration)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.enumeration = enumeration;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> enumeration.hasMoreElements();</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">next</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> enumeration.nextElement();</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EnumerationIteratorTestDrive</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span> <span class="params">(String args[])</span> </span>&#123;</div><div class="line">		Vector v = <span class="keyword">new</span> Vector(Arrays.asList(args));</div><div class="line">		Iterator iterator = <span class="keyword">new</span> EnumerationIterator(v.elements());</div><div class="line">		<span class="keyword">while</span> (iterator.hasNext()) &#123;</div><div class="line">			System.out.println(iterator.next());</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>比较装饰器、适配器和外观：</p>
+<p>装饰者：不改变接口，但加入责任<br>适配器：将一个接口转成另一个接口<br>外观：让接口更简单</p>
+<h1 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h1><p>外观模式的意图是简化接口，而适配器的意图是将接口转换。使用外观模式，我们通过创建一个接口简化而统一的类，用来包装子系统中一个或多个复杂的类。</p>
+<p>外观模式提供了一个统一的接口，用来访问子系统中的一群接口。外观定义了一个高层接口，让子系统更容易使用。</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_10.png" alt="Design_pattern_adapter_10"></p>
+<p>这也符合了OO的另一个设计原则：最少知识原则<br><strong>最少知识原则：只和你的密友谈话。</strong></p>
+<p>这个原则希望我们在设计中，不要让太多的类耦合在一起，免得修改系统中的一部分，会信息到更多的部分。我们需要尽量使类对其他类对象的依赖尽可能的少。除了上面的外观模式，另一个指导原则就是：就任何对象而言，在该对象的方法内，我们只应该调用属于一下范围的方法：</p>
+<ul>
+<li>该对象本身</li>
+<li>被当做方法的参数而传递进来的对象</li>
+<li>此方法所创建或实例化的任何对象</li>
+<li>对象的任何组件(组合方式的成员变量)</li>
+</ul>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_11.png" alt="Design_pattern_adapter_11"></p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_12.png" alt="Design_pattern_adapter_12"></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -1112,271 +1405,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/02/09/Java_awt的review/" itemprop="url">
-                  Java awt的review以及netbean打包jar包
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-02-09T00:00:00+09:00" content="2015-02-09">
-              2015-02-09
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/02/09/Java_awt的review/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/02/09/Java_awt的review/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>好久没做java界面开发，几乎全忘了。。最近帮同学开发一个简单的用于通过按键计算时间的程序，重新回顾了一下java awt和swing，这里记录遇到的两个问题。</p>
-<ol>
-<li>key press事件在key被push后会一直发生，被监听组件收到，而不是按下去时的一个事件。一直push的过程中，大概几毫秒到几百毫秒间会触发一个keypressed事件。</li>
-<li>获得focus的组件才会得到事件的通知，一般为上一个有action的能获得focus的组件。可以通过binding绑定到其他组件上，这样就可以获得其他组件收到的事件通知。</li>
-</ol>
-<p>另外是关于netbean打包jar包的问题，记录如下：</p>
-<ol>
-<li>Click on Properties</li>
-<li>Click on Compress JAR File</li>
-<li>Accept changes, click ok</li>
-<li>Click the button in the ribbon tab with the hammer/broom. (clean and build project)</li>
-<li>Go to the directory where your project is stored</li>
-<li>Look in the dist folder</li>
-</ol>
-<p>参考<a href="http://stackoverflow.com/questions/9681876/how-to-create-a-jar-file-in-netbeans" target="_blank" rel="external">How to create a Jar file in Netbeans.</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/02/06/Java_Maven, Ant在Mac的配置/" itemprop="url">
-                  Maven, Ant在Mac的配置
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-02-06T00:00:00+09:00" content="2015-02-06">
-              2015-02-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/02/06/Java_Maven, Ant在Mac的配置/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/02/06/Java_Maven, Ant在Mac的配置/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>下载Ant和Maven。</li>
-<li>解压包到<code>/urs/local</code>下（任何目录都可以，选择自己需要的路径）</li>
-<li>对于Ant，需要设置<code>ANT_HOME</code>环境变量指向前面解压的Ant包的bin目录，并加入系统<code>PATH</code>中。对于Maven，需要配置<code>M2_HOME</code>（Maven 2后使用的路径），<code>MAVEN_HOME</code>（部分旧的项目可能使用），都设置为指向前面解压的Maven包的bin目录。配置完成，可以使用<code>which ant</code>, <code>which mvn</code>查看安装的路径是否正确。</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ANT_HOME=/usr/<span class="built_in">local</span>/apache-ant-1.9.6</div><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$ANT_HOME</span>/bin:<span class="variable">$PATH</span></div><div class="line"></div><div class="line">M2_HOME=/usr/<span class="built_in">local</span>/apache-maven-3.3.9</div><div class="line">MAVEN_HOME=/usr/<span class="built_in">local</span>/apache-maven-3.3.9</div><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$M2_HOME</span>/bin:<span class="variable">$PATH</span></div></pre></td></tr></table></figure>
-<p>关于配置环境变量的方法，可以参考<a href="http://plusaber.net/2014/07/02/Developing_Linux环境变量配置/" target="_blank" rel="external">Linux环境变量配置</a>.</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/56/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/56/">56</a><span class="page-number current">57</span><a class="page-number" href="/page/58/">58</a><span class="space">&hellip;</span><a class="page-number" href="/page/65/">65</a><a class="extend next" rel="next" href="/page/58/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/56/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/56/">56</a><span class="page-number current">57</span><a class="page-number" href="/page/58/">58</a><span class="space">&hellip;</span><a class="page-number" href="/page/66/">66</a><a class="extend next" rel="next" href="/page/58/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1417,7 +1450,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">325</span>
+              <span class="site-state-item-count">327</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -1425,7 +1458,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分類</span>
               </a>
             </div>
@@ -1636,7 +1669,24 @@
       }
     });
   </script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
   

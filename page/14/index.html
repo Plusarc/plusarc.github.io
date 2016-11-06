@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -118,7 +118,7 @@
   <link rel="canonical" href="http://yoursite.com/page/14/"/>
 
 
-  <title> Plusaber's Blog </title>
+  <title> Plusaber's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
@@ -126,7 +126,7 @@
   
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -238,6 +238,264 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/09/26/Leetcode_Recover Binary Search Tree/" itemprop="url">
+                  Recover Binary Search Tree
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-09-26T00:00:00+09:00" content="2015-09-26">
+              2015-09-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/26/Leetcode_Recover Binary Search Tree/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/26/Leetcode_Recover Binary Search Tree/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Recover-Binary-Search-Tree"><a href="#Recover-Binary-Search-Tree" class="headerlink" title="Recover Binary Search Tree"></a><a href="https://leetcode.com/problems/recover-binary-search-tree/" target="_blank" rel="external">Recover Binary Search Tree</a></h1><blockquote>
+<p>Two elements of a binary search tree (BST) are swapped by mistake.</p>
+<p>Recover the tree without changing its structure.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>BST中序遍历输出有序序列，当BST的两个节点被交换后，中序遍历必然会出现不连续的情况，也就是后面的一个值可能会大于前一个节点的值，也就是异常节点，如果交换的两个节点在中序遍历中是紧挨着，这个异常会出现一次，如果不是紧挨着，则这个异常会出现两次。记录异常出现的节点位置，交换其值。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    TreeNode last = <span class="keyword">null</span>;</div><div class="line">    TreeNode abnormal = <span class="keyword">null</span>;</div><div class="line">    TreeNode secondAbnormal = <span class="keyword">null</span>;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recoverTree</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">        recFind(root);</div><div class="line">        <span class="keyword">int</span> abnormalValue = abnormal.val;</div><div class="line">        abnormal.val = secondAbnormal.val;</div><div class="line">        secondAbnormal.val = abnormalValue;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recFind</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">        recFind(root.left);</div><div class="line">        <span class="keyword">if</span>(last!=<span class="keyword">null</span> &amp;&amp;  root.val&lt;=last.val) &#123;</div><div class="line">            <span class="keyword">if</span>(abnormal==<span class="keyword">null</span>) &#123;</div><div class="line">                abnormal = last;</div><div class="line">                secondAbnormal = root;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                secondAbnormal = root;   </div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        last = root;</div><div class="line">        recFind(root.right);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/09/26/Leetcode_Valid Number/" itemprop="url">
+                  Valid Number
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-09-26T00:00:00+09:00" content="2015-09-26">
+              2015-09-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/26/Leetcode_Valid Number/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/26/Leetcode_Valid Number/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Valid-Number"><a href="#Valid-Number" class="headerlink" title="Valid Number"></a><a href="https://leetcode.com/problems/valid-number/" target="_blank" rel="external">Valid Number</a></h1><blockquote>
+<p>Validate if a given string is numeric.</p>
+<p>Some examples:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; &quot;0&quot; =&gt; true</div><div class="line">&quot; 0.1 &quot; =&gt; true</div><div class="line">&quot;abc&quot; =&gt; false</div><div class="line">&quot;1 a&quot; =&gt; false</div><div class="line">&quot;2e10&quot; =&gt; true</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+<p>Note: It is intended for the problem statement to be ambiguous. You should gather all requirements up front before implementing one.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>比较trivial的题，关键是使逻辑尽量简洁。</p>
+<p>自己的实现比较繁琐，这里参考一种比较简洁的逻辑情况处理：</p>
+<p>设置3个FLAG: <code>num, exp, dot</code>.</p>
+<p>有以下情况：<br>(1). 出现了<code>e</code>，则前面要有digit,不能有<code>e</code>. 并且后面要有digit.<br>(2). 出现了<code>.</code> 那么是一个小数，那么前面不可以有<code>.</code>和<code>e</code><br>(3). 出现了<code>+, -</code> 那么它必须是第一个，或者前一个是e，比如<code>&quot; 005047e+6&quot;</code></p>
+<p>参考:<br><a href="http://www.yanyulin.info/pages/2014/10/38958011441714.html" target="_blank" rel="external">Valid Number</a></p>
+<p>或者可以直接利用正则表达式匹配。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="Logic-solution"><a href="#Logic-solution" class="headerlink" title="Logic solution"></a>Logic solution</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isNumber</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> len = s.length();</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, e = len - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span> (i &lt;= e &amp;&amp; Character.isWhitespace(s.charAt(i))) i++;</div><div class="line">        <span class="keyword">if</span> (i &gt; len - <span class="number">1</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">while</span> (e &gt;= i &amp;&amp; Character.isWhitespace(s.charAt(e))) e--;</div><div class="line">        <span class="comment">// skip leading +/-</span></div><div class="line">        <span class="keyword">if</span> (s.charAt(i) == <span class="string">'+'</span> || s.charAt(i) == <span class="string">'-'</span>) i++;</div><div class="line">        <span class="keyword">boolean</span> num = <span class="keyword">false</span>; <span class="comment">// is a digit</span></div><div class="line">        <span class="keyword">boolean</span> dot = <span class="keyword">false</span>; <span class="comment">// is a '.'</span></div><div class="line">        <span class="keyword">boolean</span> exp = <span class="keyword">false</span>; <span class="comment">// is a 'e'</span></div><div class="line">        <span class="keyword">while</span> (i &lt;= e) &#123;</div><div class="line">            <span class="keyword">char</span> c = s.charAt(i);</div><div class="line">            <span class="keyword">if</span> (Character.isDigit(c)) &#123;</div><div class="line">                num = <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (c == <span class="string">'.'</span>) &#123;</div><div class="line">                <span class="keyword">if</span>(exp || dot) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">                dot = <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (c == <span class="string">'e'</span>) &#123;</div><div class="line">                <span class="keyword">if</span>(exp || num == <span class="keyword">false</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">                exp = <span class="keyword">true</span>;</div><div class="line">                num = <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (c == <span class="string">'+'</span> || c == <span class="string">'-'</span>) &#123;</div><div class="line">                <span class="keyword">if</span> (s.charAt(i - <span class="number">1</span>) != <span class="string">'e'</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line">            i++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> num;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Regex-Solution"><a href="#Regex-Solution" class="headerlink" title="Regex Solution"></a>Regex Solution</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isNumber</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(s.trim().isEmpty())&#123;  </div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;  </div><div class="line">        &#125;  </div><div class="line">        String regex = <span class="string">"[-+]?(\\d+\\.?|\\.\\d+)\\d*(e[-+]?\\d+)?"</span>;  </div><div class="line">        <span class="keyword">if</span>(s.trim().matches(regex))&#123;  </div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;  </div><div class="line">        &#125;<span class="keyword">else</span>&#123;  </div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;  </div><div class="line">        &#125;  </div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -385,8 +643,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/09/26/Leetcode_Binary Tree Maximum Path Sum/" itemprop="url">
-                  Binary Tree Maximum Path Sum
+                <a class="post-title-link" href="/2015/09/26/Leetcode_Shortest Palindrome/" itemprop="url">
+                  Shortest Palindrome
                 </a>
               
             
@@ -429,8 +687,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/09/26/Leetcode_Binary Tree Maximum Path Sum/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/26/Leetcode_Binary Tree Maximum Path Sum/" itemprop="commentsCount"></span>
+                <a href="/2015/09/26/Leetcode_Shortest Palindrome/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/26/Leetcode_Shortest Palindrome/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -455,16 +713,14 @@
       
         
           
-            <h1 id="Binary-Tree-Maximum-Path-Sum"><a href="#Binary-Tree-Maximum-Path-Sum" class="headerlink" title="Binary Tree Maximum Path Sum"></a><a href="https://leetcode.com/problems/binary-tree-maximum-path-sum/" target="_blank" rel="external">Binary Tree Maximum Path Sum</a></h1><blockquote>
-<p>Given a binary tree, find the maximum path sum.</p>
-<p>For this problem, a path is defined as any sequence of nodes from some starting node to any node in the tree along the parent-child connections. The path does not need to go through the root.</p>
-<p>For example:<br>Given the below binary tree,</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">       1</div><div class="line">      / \</div><div class="line">     2   3</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-<p>Return <code>6</code>.</p>
+            <h1 id="Shortest-Palindrome"><a href="#Shortest-Palindrome" class="headerlink" title="Shortest Palindrome"></a><a href="https://leetcode.com/problems/shortest-palindrome/" target="_blank" rel="external">Shortest Palindrome</a></h1><blockquote>
+<p>Given a string S, you are allowed to convert it to a palindrome by adding characters in front of it. Find and return the shortest palindrome you can find by performing this transformation.</p>
+<p>For example:</p>
+<p>Given <code>&quot;aacecaaa&quot;</code>, return <code>&quot;aaacecaaa&quot;</code>.</p>
+<p>Given <code>&quot;abcd&quot;</code>, return <code>&quot;dcbabcd&quot;</code>.</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>后序遍历二叉树，遍历后更新节点值为从叶子节点到当前节点路径的最大值，同时返回当前子树存在的路径的最大值。</p>
-<p>具体逻辑参考代码。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxPathSum</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> leftMax = Integer.MIN_VALUE;</div><div class="line">        <span class="keyword">int</span> rightMax = Integer.MIN_VALUE;</div><div class="line">        <span class="keyword">if</span>(root.left!=<span class="keyword">null</span>) leftMax = maxPathSum(root.left);</div><div class="line">        <span class="keyword">if</span>(root.right!=<span class="keyword">null</span>) rightMax = maxPathSum(root.right);</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> currentMax = root.val;</div><div class="line">        <span class="keyword">if</span>(getValue(root.left)&gt;<span class="number">0</span>) currentMax += getValue(root.left);</div><div class="line">        <span class="keyword">if</span>(getValue(root.right)&gt;<span class="number">0</span>) currentMax += getValue(root.right);</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> pathMax = getValue(root.left)&gt;=getValue(root.right) ? getValue(root.left) : getValue(root.right);</div><div class="line">        </div><div class="line">        root.val = root.val + (pathMax&gt;<span class="number">0</span>? pathMax : <span class="number">0</span>);</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> Math.max(currentMax, Math.max(leftMax, rightMax));</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getValue</span><span class="params">(TreeNode node)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(node==<span class="keyword">null</span>) <span class="keyword">return</span> Integer.MIN_VALUE;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">return</span> node.val;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p><a href="http://pisxw.com/algorithm/Shortest-Palindrome.html" target="_blank" rel="external">LeetCode-Shortest Palindrome</a><br><a href="http://pisxw.com/algorithm/Implement-strStr%28%29.html" target="_blank" rel="external">LeetCode-Implement strStr()</a><br><a href="http://blog.csdn.net/v_july_v/article/details/7041827" target="_blank" rel="external">从头到尾彻底理解KMP</a><br><a href="http://segmentfault.com/a/1190000003059361" target="_blank" rel="external">Shortest Palindrome@LeetCode（以及关于KMP的理解)</a><br><a href="https://leetcode.com/discuss/36807/c-8-ms-kmp-based-o-n-time-%26-o-n-memory-solution" target="_blank" rel="external">C++ 8 ms KMP-based O(n) time &amp; O(n) memory solution</a></p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">shortestPalindrome</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        StringBuilder builder = <span class="keyword">new</span> StringBuilder(s);</div><div class="line">        <span class="keyword">return</span> builder.reverse().substring(<span class="number">0</span>, s.length() - getCommonLength(s)) + s;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">getCommonLength</span><span class="params">(String str)</span> </span>&#123;</div><div class="line">        StringBuilder builder = <span class="keyword">new</span> StringBuilder(str);</div><div class="line">        String rev = <span class="keyword">new</span> StringBuilder(str).reverse().toString();</div><div class="line">        builder.append(<span class="string">"#"</span>).append(rev);</div><div class="line">        <span class="keyword">int</span>[] p = <span class="keyword">new</span> <span class="keyword">int</span>[builder.length()];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; p.length; i++) &#123;</div><div class="line">            <span class="keyword">int</span> j = p[i - <span class="number">1</span>];</div><div class="line">            <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; builder.charAt(i) != builder.charAt(j)) j = p[j - <span class="number">1</span>];</div><div class="line">            p[i] = j == <span class="number">0</span> ? (builder.charAt(i) == builder.charAt(<span class="number">0</span>) ? <span class="number">1</span> : <span class="number">0</span>) : j + <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> p[p.length - <span class="number">1</span>];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -630,289 +886,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/09/24/Leetcode_Maximum Gap/" itemprop="url">
-                  Maximum Gap
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-24T00:00:00+09:00" content="2015-09-24">
-              2015-09-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/24/Leetcode_Maximum Gap/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/24/Leetcode_Maximum Gap/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Maximum-Gap"><a href="#Maximum-Gap" class="headerlink" title="Maximum Gap"></a><a href="https://leetcode.com/problems/maximum-gap/" target="_blank" rel="external">Maximum Gap</a></h1><blockquote>
-<p>Given an unsorted array, find the maximum difference between the successive elements in its sorted form.</p>
-<p>Try to solve it in linear time/space.</p>
-<p>Return 0 if the array contains less than 2 elements.</p>
-<p>You may assume all elements in the array are non-negative integers and fit in the 32-bit signed integer range.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>最直接的方法是快速排序，然后判断max gap，但是不满足题目要求的linear time。</p>
-<p>这里参考<a href="http://bookshadow.com/weblog/2014/12/14/leetcode-maximum-gap/" target="_blank" rel="external">LeetCode_Maximum Gap</a>， <a href="http://pisxw.com/algorithm/Maximum-Gap.html" target="_blank" rel="external">LeetCode-Maximum Gap</a> 中更加高效的方法，使用桶排序。</p>
-<p>假设有N个元素A到B。</p>
-<p>那么最大差值不会小于<code>ceiling[(B - A) / (N - 1)]</code></p>
-<p>令bucket（桶）的大小<code>len = ceiling[(B - A) / (N - 1)]</code>，则最多会有<code>(B - A) / len + 1</code>个桶。</p>
-<p>对于数组中的任意整数K，很容易通过算式<code>loc = (K - A) / len</code>找出其桶的位置，然后维护每一个桶的最大值和最小值。</p>
-<p>由于同一个桶内的元素之间的差值至多为<code>len - 1</code>，因此最终答案不会从同一个桶中选择。</p>
-<p>对于每一个非空的桶p，找出下一个非空的桶<code>q</code>，则<code>q.min - p.max</code>可能就是备选答案。返回所有这些可能值中的最大值。</p>
-<p>桶排序参考<a href="http://hxraid.iteye.com/blog/647759" target="_blank" rel="external">【排序结构6】 桶排序</a>。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bucket</span> </span>&#123;</div><div class="line">        <span class="keyword">public</span> <span class="keyword">int</span> min;</div><div class="line">        <span class="keyword">public</span> <span class="keyword">int</span> max;</div><div class="line">        <span class="keyword">public</span> <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line"></div><div class="line">        Bucket(<span class="keyword">int</span> min,<span class="keyword">int</span> max) &#123;</div><div class="line">            <span class="keyword">this</span>.min = min;</div><div class="line">            <span class="keyword">this</span>.max = max;</div><div class="line">        &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maximumGap</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(nums==<span class="keyword">null</span> || nums.length&lt;<span class="number">2</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> numMax = Integer.MIN_VALUE;</div><div class="line">        <span class="keyword">int</span> numMin = Integer.MAX_VALUE;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> val:nums) &#123;</div><div class="line">            numMax = Math.max(numMax,val);</div><div class="line">            numMin = Math.min(numMin,val);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">int</span> bucketSize = (<span class="keyword">int</span>)Math.ceil((<span class="keyword">double</span>)(numMax-numMin)/(nums.length-<span class="number">1</span>));</div><div class="line">        <span class="keyword">if</span>(bucketSize==<span class="number">0</span> || bucketSize==<span class="number">1</span>) <span class="keyword">return</span> numMax - numMin;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> bucketNum = ((numMax - numMin) / bucketSize) + <span class="number">1</span>;</div><div class="line">        </div><div class="line">        Bucket[] buckets = <span class="keyword">new</span> Bucket[bucketNum];</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;buckets.length; i++) buckets[i]=<span class="keyword">new</span> Bucket(Integer.MAX_VALUE,Integer.MIN_VALUE);</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> val:nums) &#123;</div><div class="line">            <span class="keyword">int</span> index = (val-numMin) / bucketSize;</div><div class="line">            buckets[index].min = Math.min(buckets[index].min, val);</div><div class="line">            buckets[index].max = Math.max(buckets[index].max, val);</div><div class="line">            buckets[index].count++;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">int</span> maxGap=<span class="number">0</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> lastNotEmpty = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span>(buckets[lastNotEmpty].count==<span class="number">0</span>) lastNotEmpty++;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=lastNotEmpty+<span class="number">1</span>; i&lt;buckets.length; i++) &#123;</div><div class="line">            <span class="keyword">while</span>(buckets[i].count==<span class="number">0</span>) i++;</div><div class="line">            maxGap = Math.max(maxGap, (buckets[i].min - buckets[lastNotEmpty].max));</div><div class="line">            lastNotEmpty = i;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> maxGap;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/09/24/Leetcode_Sliding Window Maximum/" itemprop="url">
-                  Sliding Window Maximum
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-24T00:00:00+09:00" content="2015-09-24">
-              2015-09-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/24/Leetcode_Sliding Window Maximum/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/24/Leetcode_Sliding Window Maximum/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Sliding-Window-Maximum"><a href="#Sliding-Window-Maximum" class="headerlink" title="Sliding Window Maximum"></a><a href="https://leetcode.com/problems/sliding-window-maximum/" target="_blank" rel="external">Sliding Window Maximum</a></h1><blockquote>
-<p>Given an array nums, there is a sliding window of size <code>k</code> which is moving from the very left of the array to the very right. You can only see the <code>k</code> numbers in the window. Each time the sliding window moves right by one position.</p>
-<p>For example,<br>Given nums = <code>[1,3,-1,-3,5,3,6,7]</code>, and <code>k = 3</code>.</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Window position                Max</div><div class="line">---------------               -----</div><div class="line">[1  3  -1] -3  5  3  6  7       3</div><div class="line"> 1 [3  -1  -3] 5  3  6  7       3</div><div class="line"> 1  3 [-1  -3  5] 3  6  7       5</div><div class="line"> 1  3  -1 [-3  5  3] 6  7       5</div><div class="line"> 1  3  -1  -3 [5  3  6] 7       6</div><div class="line"> 1  3  -1  -3  5 [3  6  7]      7</div></pre></td></tr></table></figure>
-<blockquote>
-<p>Therefore, return the max sliding window as <code>[3,3,5,5,6,7]</code>.</p>
-<p>Note:<br>You may assume <code>k</code> is always valid, ie: <code>1 ≤ k ≤ input array&#39;s size</code> for non-empty array.</p>
-<p><strong>Follow up:</strong><br>Could you solve it in linear time?</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>首先想到的解法是使用堆记录window，最佳情况是<code>O(n)</code>, 当window变大时,时间复杂度会成为<code>O(n*log(n))</code>，同时跟踪需要移除的窗口外的值也是一个问题。另外题目要求最好是给出linear time的solution。</p>
-<p>下面是一种linear time solution, 参考<a href="http://n00tc0d3r.blogspot.jp/2013/04/sliding-window-maximum.html" target="_blank" rel="external">Sliding Window Maximum</a>.</p>
-<p>To get maximal of current window, it can take <code>O(w)</code> or <code>O(logw)</code> time. But we also need to keep track of the maximals as window sliding from left to right.</p>
-<p><strong>The first thought might be heap.</strong><br>By maintaining a heap for all numbers in the window can give us a <code>O(nlogw)</code>-time solution, where building up a heap for initial window takes time <code>O(wlogw)</code>. when window moves to the next number, each insertion and deletion take time <code>O(logw)</code> and there are n-w moves in total.<br>after updating the heap, findMax only takes time <code>O(1)</code> since we know the top of heap is the largest. </p>
-<p>So, if w &lt;&lt; n, the performance of this solution is good, close to <code>O(n)</code>; but if w is not that small, say <code>w = n/3 or n/4</code>, the running time goes up to O(nlogn).</p>
-<p>All we need is to keep track of the maximals. Do we really need a heap that performs unnecessary sorting for all numbers in the window?<br>The answer is NO.</p>
-<p><strong>We can use a Deque which allow insertions/deletions on both ends.</strong> For a Deque implemented by Circular Array/Buffer or Double Linked List, the basic insert/delete operations run in constant time.</p>
-<p>Back to the problem.</p>
-<p><strong>What shall we keep in the deque?</strong></p>
-<p>If we keep all numbers in the window into the queue, each time when we insert a new number and remove a old one, we need to figure out where to insert so as to maintain the numbers in order. That’s not easy…</p>
-<p>Actually, we do not need to keep all numbers. For example, suppose numbers in a window of size <code>4</code> are <code>[1, 3, -1, 2], ...</code>. Obviously, no matter what next numbers are, <code>1</code> and <code>-1</code> are never going to be a maximal as the window moving. The queue should look like <code>[3, 2]</code> in this case.</p>
-<p>So, to maintain the queue in order, when moves to a new number, iterate through back of the queue, removes all numbers that are not greater than the new one, and then insert the new one to the back. <code>findMax</code> only need to take the first one of the queue.<br>To remove a number outside the window, only compare whether the current index is greater than the front of queue. If so, remove it.</p>
-<p><strong>By doing these, we guarantee that the first element of the queue is the maximal and all numbers following it are smaller and came later then it. </strong>That said, <code>findMax</code> runs in constant time. Noticing that we only insert and delete each number once. Assuming the insert/delete operations of the Deque run in <code>O(1)</code> time, the total running time for this algorithm is <code>O(n)</code> and it takes at most <code>O(w)</code> space!</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] maxSlidingWindow(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k) &#123;</div><div class="line">        <span class="keyword">if</span>(nums==<span class="keyword">null</span> || nums.length==<span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">0</span>];</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> windows = nums.length - k + <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> winMax[] = <span class="keyword">new</span> <span class="keyword">int</span>[windows];</div><div class="line">        </div><div class="line">        Deque&lt;Integer&gt; records = <span class="keyword">new</span> ArrayDeque&lt;&gt;();</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nums.length; i++) &#123;</div><div class="line">            <span class="keyword">while</span>(!records.isEmpty() &amp;&amp; nums[records.getLast()]&lt;=nums[i]) &#123;</div><div class="line">                records.removeLast();</div><div class="line">            &#125;</div><div class="line">            records.add(i);</div><div class="line">            <span class="keyword">if</span>(i&lt;k-<span class="number">1</span>) <span class="keyword">continue</span>;</div><div class="line">            <span class="keyword">while</span>(!records.isEmpty() &amp;&amp; i-records.getFirst()&gt;=k) &#123;</div><div class="line">                records.removeFirst();</div><div class="line">            &#125;</div><div class="line">            winMax[i+<span class="number">1</span>-k] = nums[records.getFirst()];</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> winMax;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/65/">65</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/66/">66</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -953,7 +931,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">325</span>
+              <span class="site-state-item-count">327</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -961,7 +939,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分類</span>
               </a>
             </div>
@@ -1172,7 +1150,24 @@
       }
     });
   </script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
   
