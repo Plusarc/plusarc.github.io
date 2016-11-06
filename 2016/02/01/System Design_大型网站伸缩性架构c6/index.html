@@ -1,0 +1,821 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="google88d81a02a91db82f" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="system design," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="网站架构的伸缩性设计网站的伸缩性是指不需要改变网站的软硬件设计，仅仅通过增减部署的服务器数量就可以扩大或缩小网站的服务处理能力。这样就可以做到通过不断简单地向集群中添加服务器来增强整个集群的能力。
+一般说来，网站的伸缩性设计可分为两类，一类是根据功能进行物理分离是实现伸缩，一类是单一功能通过集群实现伸缩。前者是不同的服务器部署不同的服务，提供不同的功能；后者是集群内的多台服务器部署相同的服务，提供">
+<meta property="og:type" content="article">
+<meta property="og:title" content="System Design_大型网站伸缩性架构">
+<meta property="og:url" content="http://yoursite.com/2016/02/01/System Design_大型网站伸缩性架构c6/index.html">
+<meta property="og:site_name" content="Plusaber's Blog">
+<meta property="og:description" content="网站架构的伸缩性设计网站的伸缩性是指不需要改变网站的软硬件设计，仅仅通过增减部署的服务器数量就可以扩大或缩小网站的服务处理能力。这样就可以做到通过不断简单地向集群中添加服务器来增强整个集群的能力。
+一般说来，网站的伸缩性设计可分为两类，一类是根据功能进行物理分离是实现伸缩，一类是单一功能通过集群实现伸缩。前者是不同的服务器部署不同的服务，提供不同的功能；后者是集群内的多台服务器部署相同的服务，提供">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_1.png">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_2.png">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_3.png">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_4.png">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_5.png">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_6.png">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_7.png">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_8.png">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_9.png">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_10.png">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_11.png">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_12.png">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_13.png">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_14.png">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_15.png">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_16.png">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_17.png">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_18.png">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_19.png">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_20.png">
+<meta property="og:updated_time" content="2016-07-10T11:16:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="System Design_大型网站伸缩性架构">
+<meta name="twitter:description" content="网站架构的伸缩性设计网站的伸缩性是指不需要改变网站的软硬件设计，仅仅通过增减部署的服务器数量就可以扩大或缩小网站的服务处理能力。这样就可以做到通过不断简单地向集群中添加服务器来增强整个集群的能力。
+一般说来，网站的伸缩性设计可分为两类，一类是根据功能进行物理分离是实现伸缩，一类是单一功能通过集群实现伸缩。前者是不同的服务器部署不同的服务，提供不同的功能；后者是集群内的多台服务器部署相同的服务，提供">
+<meta name="twitter:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/02/01/System Design_大型网站伸缩性架构c6/"/>
+
+
+  <title> System Design_大型网站伸缩性架构 | Plusaber's Blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-79158075-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Plusaber's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                System Design_大型网站伸缩性架构
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-02-01T00:00:00+09:00" content="2016-02-01">
+              2016-02-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/System-design/" itemprop="url" rel="index">
+                    <span itemprop="name">System design</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/02/01/System Design_大型网站伸缩性架构c6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/02/01/System Design_大型网站伸缩性架构c6/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="网站架构的伸缩性设计"><a href="#网站架构的伸缩性设计" class="headerlink" title="网站架构的伸缩性设计"></a>网站架构的伸缩性设计</h1><p>网站的伸缩性是指不需要改变网站的软硬件设计，仅仅通过增减部署的服务器数量就可以扩大或缩小网站的服务处理能力。这样就可以做到通过不断简单地向集群中添加服务器来增强整个集群的能力。</p>
+<p>一般说来，网站的伸缩性设计可分为两类，一类是根据功能进行物理分离是实现伸缩，一类是单一功能通过集群实现伸缩。前者是不同的服务器部署不同的服务，提供不同的功能；后者是集群内的多台服务器部署相同的服务，提供相同的功能。</p>
+<h2 id="不同功能进行物理分离实现伸缩"><a href="#不同功能进行物理分离实现伸缩" class="headerlink" title="不同功能进行物理分离实现伸缩"></a>不同功能进行物理分离实现伸缩</h2><p>使用新增的服务器处理某种特定服务，通过物理上分离不同的功能，实现网站伸缩。<br><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_1.png" alt="System_design_c6_1"></p>
+<p>具体又可分为如下两种情况：</p>
+<p>纵向分离（垂直分割）：将业务处理流程上的不同部分分离部署，实现系统伸缩性。<br><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_2.png" alt="System_design_c6_2"></p>
+<p>横向分离（功能分割）：将不同的业务模块分离部署，实现系统伸缩性。<br><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_3.png" alt="System_design_c6_3"></p>
+<h2 id="单一功能通过集群实现伸缩"><a href="#单一功能通过集群实现伸缩" class="headerlink" title="单一功能通过集群实现伸缩"></a>单一功能通过集群实现伸缩</h2><p>将不同功能分离部署可以实现一定程度的伸缩性，但是随着网站并发访问逐步增加，单一的功能独立部署在独立的服务器上也不能满足业务规模的要求。因此必须使用服务器集群，即将相同服务部署在多台服务器上构成一个集群整体对外提供服务。</p>
+<p>集群伸缩又具体可分为应用服务器集群伸缩性和数据服务器伸缩性，技术实现差别很大。而数据服务器集群也可分为缓存数据服务器集群和存储数据服务器集群，其伸缩性设计也很不一样。</p>
+<h1 id="应用服务器集群的伸缩性设计"><a href="#应用服务器集群的伸缩性设计" class="headerlink" title="应用服务器集群的伸缩性设计"></a>应用服务器集群的伸缩性设计</h1><p>在构建高可用的架构时曾提到，应用服务器应该设计成无状态的，即应用服务器不存储请求上下文信息，这样每次用户请求可以由任意一台服务器处理，而不会影响结果。</p>
+<p>如果HTTP请求分发装置可以感知或配置集群的服务器数量，及时发现集群中新上线或下线的服务器，并分发请求，就实现了应用服务器集群的伸缩性。</p>
+<p>这里，这个HTTP请求分发装置被称为负载均衡服务器。</p>
+<p>负载均衡是网站必不可少的基础技术手段，不但可以实现网站的伸缩性，同时还可改善网站的可用性，</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_4.png" alt="System_design_c6_4"></p>
+<h2 id="HTTP重定向负载均衡"><a href="#HTTP重定向负载均衡" class="headerlink" title="HTTP重定向负载均衡"></a>HTTP重定向负载均衡</h2><p>使用HTTP重定向协议实现负载均衡。</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_5.png" alt="System_design_c6_5"></p>
+<p>HTTP重定向服务器是一台普通的应用服务器，功能是更具用户的HTTP请求计算一台真实的Web服务器地址，并使浏览器重定向到该服务器。</p>
+ <a id="more"></a>
+<p>优点是简单，缺点是浏览器需要两次请求服务器才能完成一次访问。另外重定向服务器本身可能称为瓶颈。</p>
+<h2 id="DNS域名解析负载均衡"><a href="#DNS域名解析负载均衡" class="headerlink" title="DNS域名解析负载均衡"></a>DNS域名解析负载均衡</h2><p>利用DNS处理域名解析请求的同时进行负载均衡处理的一种方案。</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_6.png" alt="System_design_c6_6"></p>
+<p>在DNS服务器中配置多个A记录，每次域名解析请求都会根据负载均衡算法计算一个不同的IP地址返回，这样A记录配置的多个服务器就构成一个集群，并实现负载均衡。</p>
+<p>优点是将工作转交给了DNS，同时许多DNS还支持基于地里位置的域名解析，可以实现选择最近的一个服务器地址，加快访问速度。缺点是目前的DNS是多级解析，每一级DNS都可能缓存A记录，这样下线了某台服务器后，即使修改了DNS的A记录，使其生效也需要较长一段时间，这段时间访问该服务器的请求都会失败。</p>
+<p>大型网站总是部分使用DNS域名解析，利用域名解析作为第一级负载均衡手段，即域名解析得到的服务器地址并不是实际提供服务的应用服务器，而是同样提供负载均衡服务的内部服务器，这组内部负载均衡服务器再进行负载均衡，将请求分发到真正提供服务的Web服务器上。</p>
+<h2 id="反向代理负载均衡"><a href="#反向代理负载均衡" class="headerlink" title="反向代理负载均衡"></a>反向代理负载均衡</h2><p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_7.png" alt="System_design_c6_7"></p>
+<p>可以使用反向代理实现缓存资源，过滤恶意访问。同时还可以提供负载均衡的功能，管理一组Web服务器，将请求根据负载均衡转发到不同的Web服务器上。Web服务器处理完成的响应也需要通过反向代理服务器返回给用户。由于Web服务器不直接对外提供访问，因此不需要使用外部IP地址，而反向代理服务器需要配置双网卡和内部外部两套IP地址。</p>
+<p>由于反向代理服务器转发请求在HTTP协议层面，因此也称为应用层负载均衡。优点是和反向代理服务器功能集成在一起，部署简单。缺点是方向代理服务器是所有请求和响应的中转站，其性能可能会成为瓶颈。</p>
+<h2 id="IP负载均衡"><a href="#IP负载均衡" class="headerlink" title="IP负载均衡"></a>IP负载均衡</h2><p>在网络层通过修改请求目标地址进行负载均衡。</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_8.png" alt="System_design_c6_8"></p>
+<p>负载均衡服务器在操作系统内核进程获取网络数据包，根据负载均衡算法得到一个真实Web服务器IP地址，然后将数据目的地IP修改为该地址，不需要用户进程处理。Web服务器处理完后响应数据包回到负载均衡服务器，负载均衡服务器再将数据报源地址改为自己的地址。</p>
+<p>关键是Web服务器响应数据包如何返回给负载均衡服务器，一个方案是负载均衡服务器在修改目的IP地址时同时修改源地址，需要记录真正的源地址。另一种是将负载均衡服务器同时作为真实物理服务器集群的网关服务器，这样所有响应数据都会到达负载均衡服务器。</p>
+<p>IP负载均衡在内核进程完成数据分发，较反向代理负载均衡有更好的处理性能。但是由于所有请求响应都需要经过负载均衡服务器，集群的最大响应数据量受限于负载均衡服务器的网卡带宽，在很多情况下可能难以满足需求。</p>
+<h2 id="数据链路层负载均衡"><a href="#数据链路层负载均衡" class="headerlink" title="数据链路层负载均衡"></a>数据链路层负载均衡</h2><p>数据链路层负载均衡是指在通信协议的数据链路层修改mac地址进行负载均衡。</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_9.png" alt="System_design_c6_9"></p>
+<p>这种数据传输方式又称为三角传输模式，负载均衡数据分发过程中不修改IP地址，只修改目的mac地址，通过配置真实物理服务器集群所有机器虚拟IP和负载均衡服务器IP地址一致，从而达到不修改数据包的源地址和目的地址就可以进行数据分发的目的，由于实际处理请求的真实物理服务器IP和数据请求目的IP一致，不需要通过负载均衡服务器进行地址转换，可将响应数据包返回给用户浏览器（应用服务器通常是设置为只允许发送数据包出内网，而不能直接接收外网的请求，也就是外网唯一内访问到的仍只有负载均衡服务器），避免负载均衡服务器网卡带宽成为瓶颈。这种负载均衡方式也称为直接路由方式。</p>
+<p>链路层负载均衡是目前大型网站使用最广的一种负载均衡手段，在Linux平台上最好的链路层负载均衡开源产品是LVS(Linux Virtual Server)。</p>
+<h2 id="负载均衡算法"><a href="#负载均衡算法" class="headerlink" title="负载均衡算法"></a>负载均衡算法</h2><p>负载均衡服务器实现可以分为两个部分：</p>
+<ol>
+<li>根据负载均衡算法和Web服务器列表计算得到一台服务器地址。</li>
+<li>将请求数据发送到该地址对应的Web服务器上。</li>
+</ol>
+<p>前面介绍了如何将请求数据发送到web服务器上，下面是几种负载均衡算法：</p>
+<ul>
+<li><p><strong>轮询(Round Robin)</strong><br>所有请求依次被分发到每台应用服务器上，即每台服务器需要处理的请求数目都相同，适用于所有服务器情况都相同的场景。</p>
+</li>
+<li><p><strong>加权轮询(Weighted Round Robin)</strong><br>根据服务器性能，在轮询基础上，按照配置的权重分发请求。</p>
+</li>
+<li><p><strong>随机(Random)</strong><br>另外也有加权随机算法</p>
+</li>
+<li><p><strong>最少连接</strong><br>记录每个服务器正在处理的请求数，发送到最少请求的服务器上。也可以进行加权。</p>
+</li>
+<li><p><strong>源地址散列</strong><br>根据请求来源的IP地址进行Hash计算，得到应用服务器，这样来自同一个IP地址的请求总是在同一个服务器上处理，该请求的上下文信息可以存储在这台服务器上，在一个会话周期内重复使用，实现会话粘滞。</p>
+</li>
+</ul>
+<h1 id="分布式缓存集群的伸缩性设计"><a href="#分布式缓存集群的伸缩性设计" class="headerlink" title="分布式缓存集群的伸缩性设计"></a>分布式缓存集群的伸缩性设计</h1><p>和所有服务器都部署相同应用的应用服务器集群不同，分布式缓存服务器集群中不同服务器中缓存的数据各不相同，缓存访问请求不能任意发送到任意一台缓存服务器，必须先找到缓存数据所在的服务器，然后才能访问。这个特点会严重制约分布式缓存集群的伸缩性设计，因为新上线的缓存服务器没有任何数据，而下线的缓存服务器还缓存着许多热点数据。</p>
+<p>必须让新上线的缓存服务器对整个分布式缓存集群影响最小，也就是是说新加入缓存服务器后必须使整个缓存服务器集群已经缓存的数据尽可能还能被访问到，也是分布式缓存集群伸缩性设计的主要目标。</p>
+<h2 id="Memcached分布式缓存集群的访问模型"><a href="#Memcached分布式缓存集群的访问模型" class="headerlink" title="Memcached分布式缓存集群的访问模型"></a>Memcached分布式缓存集群的访问模型</h2><p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_10.png" alt="System_design_c6_10"></p>
+<p>由路由算法根据应用程序输入的缓存数据KEY计算得到应该将数据写入哪台服务器或者应该从哪台服务器读取数据。</p>
+<h2 id="Memcached分布式缓存集群的伸缩性挑战"><a href="#Memcached分布式缓存集群的伸缩性挑战" class="headerlink" title="Memcached分布式缓存集群的伸缩性挑战"></a>Memcached分布式缓存集群的伸缩性挑战</h2><p>对于缓存服务器集群的管理，路由算法至关重要，相当与前面的负载均衡算法一样，决定这该访问集群中的哪台服务器。</p>
+<p>简单的路由算法可以使用余数Hash，或者加权的余数Hash路由。如果不考虑缓存服务器集群伸缩性，余数Hash基本可以满足需求</p>
+<p>问题是，当分布式缓存集群需要扩容时，之前已缓存的数据的重新计算的Hash由于服务器数量的增加都发生改变，也就是之前已缓存在其他服务器上的数据也无法被访问到了。</p>
+<p>一种解决方法是在网站访问量最少是扩容集群，负载冲击最小。然后通过模拟请求的方法逐渐预热缓存，使缓存服务器中的数据重新分布。</p>
+<p>更好的解决方案是一致性Hash算法，可以使得新加入的服务器不影响大部分已缓存数据的正确命中。</p>
+<h2 id="分布式缓存的一致性Hash算法"><a href="#分布式缓存的一致性Hash算法" class="headerlink" title="分布式缓存的一致性Hash算法"></a>分布式缓存的一致性Hash算法</h2><p>一致性Hash算法通过一个叫作一致性Hash环的数据结构实现KEY到缓存服务器的Hash映射。</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_11.png" alt="System_design_c6_11"></p>
+<p>具体算法是：先构造一个长度为$0-2^{32}$的整数环（一致性Hash环），根据节点名称的Hash值，将缓存服务器节点放置在这个Hash环上。然后根据需要缓存的数据的KEY值计算得到其Hash值，然后在Hash环上顺指针查找距离这个KEY的Hash值最近的缓存服务器节点，完成KEY到服务器的Hash映射查找。</p>
+<p>当缓存服务器集群需要扩容时，只需要将新加入的节点名称的Hash放入一致性Hash环中，由于KEY是顺时针查找距离其最近的节点，因此新加入的节点只影响整个环中的一小段。并且随着集群规模越大继续命中原有缓存的概率也也逐渐增大。</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_12.png" alt="System_design_c6_12"></p>
+<p>具体应用中，这个一致性Hash环通常使用BST实现，Hash查找过程实际上是在BST查找不小于查找数的最小数值。当然这个二叉树的最右边叶子结点和最左边叶子节点相连接，构成环。</p>
+<p>目前解决方案存在的问题是，可能会造成负载不均衡。如上面新加入的NODE3只影响了原来的节点NODE1，但是原来的节点NODE0和NODE2不受影响，意味着NODE0和NODE2缓存压力是NODE1与NODE3的两倍。</p>
+<p><strong>计算机的任何问题都可以通过增加一个虚拟层来解决。</strong></p>
+<p>上面一致性Hash算法带来的负载不均衡问题也可以通过使用虚拟层的手段，将每台物理缓存服务器虚拟为一组虚拟缓存服务器，将虚拟服务器的Hash值放置在Hash环上，KEY在环上先找到虚拟服务器节点，再得到服务器的信息。</p>
+<p>这样新加入物理服务器节点时，是将一组虚拟节点加入环中，如果虚拟节点的数目足够多，这组虚拟节点将会影响同样多数目的已经存在的虚拟节点，这些已经存在的虚拟节点又对应不同的物理节点。最终的结果是：新加入一台缓存服务器，将会较为均匀的影响原来集群中已经存在的所有服务器。其导致的命中失败影响跟不使用虚拟节点时相同。</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_13.png" alt="System_design_c6_13"></p>
+<p>每个物理节点对应的虚拟节点越多，各个物理节点之间的负载越均衡，新加入物理服务器对原有的物理服务器影响越保持一致。过多也会影响性能，一般设置为150个。</p>
+<h1 id="数据存储服务器集群的伸缩性设计"><a href="#数据存储服务器集群的伸缩性设计" class="headerlink" title="数据存储服务器集群的伸缩性设计"></a>数据存储服务器集群的伸缩性设计</h1><p>数据存储服务器必须保证数据的可靠存储，任何情况下都必须保证数据的可用性和正确性。因此缓存服务集群的伸缩性架构不能直接适用与数据库等存储服务器。</p>
+<p>具体的，数据存储服务器集群的伸缩性设计又可分为关系数据库集群的伸缩性设计和NoSQL数据库的伸缩性设计。</p>
+<h2 id="关系数据库集群的伸缩性设计"><a href="#关系数据库集群的伸缩性设计" class="headerlink" title="关系数据库集群的伸缩性设计"></a>关系数据库集群的伸缩性设计</h2><p>最简单的是使用数据复制功能对数据库进行伸缩：</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_14.png" alt="System_design_c6_14"></p>
+<p>也就是数据库主从读写分离，另外前面提到的业务分割模式也可以用在数据库，不同业务的数据表部署在不同数据库上，即<strong>数据分库</strong>，这种方式的制约条件是跨库的表不能进行join操作。</p>
+<p>在大型网站的实际应用中，即使进行了分库和主从复制，对一些单表数据仍然很大的表，比如Facebook的用户数据库等，还需要进行<strong>分片</strong>，也就是将一张表拆开分别存储在多个数据库中。</p>
+<p>目前支持数据分片的分布式数据库产品主要有Amoeba和Cobar。</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_15.png" alt="System_design_c6_15"></p>
+<p>Cobar是一个分布式关系数据库访问代理，介于应用服务器和数据库服务器之间（Cobar也支持非独立部署，以lib的方式和应用程序部署在一起）。应用程序通过JDBC驱动访问Cobar集群，Cobar服务器根据SQL和分库规则分解SQL，分发到MySQL集群的不同数据库实例上执行（每个MySQL实例部署为主/从结构，保证数据高可用）。</p>
+<p>Cobar系统组件模型如下：</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_16.png" alt="System_design_c6_16"></p>
+<p>前端通信模块负责和应用程序通信，收到SQL请求<code>select * from users where userid in(12,22,23)</code>后转交给SQL解析模块，SQL解析模块解析获得SQL中路由规则查询条件<code>userid in(12,22,23)</code>转交给SQL路由模块，SQL路由模块根据路由配置规则(userid为偶数路由至数据库A，为奇数路由至数据库B)将应用程序提交的SQL分解成两条SQL(<code>select * from user where userid in(12,22)</code>;<code>select * from user where userid in(23)</code>)然后转交给SQL执行代理模块，发送到数据库A和数据库B分别执行。</p>
+<p>数据库A和数据库B的执行结果返回至SQL执行模块，通过结果合并模块将两个返回结果集合并成一个结果集，最终返回给应用程序。</p>
+<p><strong>Cobar如何进行集群的伸缩</strong></p>
+<p>Cobar的伸缩有两种：Cobar服务器集群的伸缩和MySQL服务器集群的伸缩。</p>
+<p>Cobar服务器可以看做是无状态的应用服务器，上面的负载均衡手段可以直接应用实现集群伸缩。而MySQL中存储这数据，要想保证集群扩容后数据一致负载均衡，必须要做<strong>数据迁移</strong>，将集群中原来机器中的数据迁移到新添加的机器中：</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_17.png" alt="System_design_c6_17"></p>
+<p>具体迁移哪些数据可以利用一致性Hash算法，尽量使需要迁移的数据最少。实践中，Cobar利用的MySQL的数据同步功能进行数据迁移，数据迁移不是以数据为单位，而是以Schema为单位。集群扩容时，从每个服务器中迁移部分Schema到新机器中，使用MySQL的同步机制。</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_18.png" alt="System_design_c6_18"></p>
+<p>同步完成时，及新机器中Schema数据和原机器中Schema数据一致时，修改Cobar服务器的路由配置，将这些Schema的IP修改为新机器的IP，然后删除原机器中的相关Schema，完成MySQL集群扩容。</p>
+<p>但是同时这也限制了关系数据库某些功能的使用，例如无法执行跨库Join操作等，更不能执行跨库的事务处理。</p>
+<h2 id="NoSQL数据库的伸缩性设计"><a href="#NoSQL数据库的伸缩性设计" class="headerlink" title="NoSQL数据库的伸缩性设计"></a>NoSQL数据库的伸缩性设计</h2><p>NoSQL主要指非关系的、分布式的数据库设计模式，是关系数据库的补充，而不是替代方案。NoSQL数据库产品放弃了关系数据库的两大重要基础：SQL和事物一致性保证(ACID)，以强化其他一些大型网站更关注的特性：高可用性和伸缩性。</p>
+<p>目前应用最广泛的是Apache HBase，HBase为可伸缩海量数据存储而设计，实现面向在线业务的实时数据访问延迟。HBase的伸缩性主要依赖其可分裂HRegion及可伸缩的分布式文件系统HDFS实现。</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_19.png" alt="System_design_c6_19"></p>
+<p>HBase中，数据以HRegion为单位进行管理，也就是应用程序如果要访问一个数据，必须先找到HRegion，然后将数据读写操作提交给HRegion，由HRegion完成存储层面的数据操作。每个HRegion中存储一段Key值区间<code>[key1, key2)</code>的数据，HRegionServer是物理服务器，每个HRegionSever上可以启动多个HRegion实例。当一个HRegion中的写入数据太多，达到配置的阀值时，HRegion会分裂成两个HRegion，并将HRegion在整个集群中进行迁移，以实现HRegionSever的负载均衡。</p>
+<p>所有HRegion的信息(存储的Key区间，所在HRegionSever地址，访问端口号等)都记录在HMaster服务上，为了保证高可用，HBase启动多个HMaster，并通过Zookeeper(一个支持分布式一致性的数据管理服务)选举出一个主服务器，应用程序通过Zookeeper获得主HMaster的地址，输入Key值获得这个Key所在的HRegioinServer地址，然后请求HRegionServer上的HRegion，获得需要的数据。调用时序如下：</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c6_20.png" alt="System_design_c6_20"></p>
+<p>写入过程也是一样，需要先得到HRegion才能继续操作，HRegion会把数据存储在若干个叫HFile格式的文件中，这些文件使用HDFS分布式文件系统存储，在整个集群内分布并高可用。当一个HRegino中数据太多时，HRegion(连同HFile)会分裂成两个HRegion，并根据集群中服务器负载进行迁移，如果集群中有新加入的服务器，也就是有新的HRegionServer，由于其负载较低，也会把HRegion迁移过去并记录到HMaster，从而实现HBase的线程伸缩。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/system-design/" rel="tag">#system design</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/20/Research_WordNet/" rel="next" title="WordNet">
+                <i class="fa fa-chevron-left"></i> WordNet
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/02/12/Research_JWI/" rel="prev" title="Java Wordnet Interface">
+                Java Wordnet Interface <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/plusaber.jpg"
+               alt="Plusaber" />
+          <p class="site-author-name" itemprop="name">Plusaber</p>
+          <p class="site-description motion-element" itemprop="description">Plusaber's Blog</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">325</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://leetcode.com/problemset/algorithms/" title="Leetcode" target="_blank">Leetcode</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.kaggle.com" title="Kaggle" target="_blank">Kaggle</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jp.linkedin.com/in/zebangchen" title="LinkedIn" target="_blank">LinkedIn</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://portal.qiniu.com" title="Qiniu" target="_blank">Qiniu</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#网站架构的伸缩性设计"><span class="nav-number">1.</span> <span class="nav-text">网站架构的伸缩性设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#不同功能进行物理分离实现伸缩"><span class="nav-number">1.1.</span> <span class="nav-text">不同功能进行物理分离实现伸缩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单一功能通过集群实现伸缩"><span class="nav-number">1.2.</span> <span class="nav-text">单一功能通过集群实现伸缩</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#应用服务器集群的伸缩性设计"><span class="nav-number">2.</span> <span class="nav-text">应用服务器集群的伸缩性设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP重定向负载均衡"><span class="nav-number">2.1.</span> <span class="nav-text">HTTP重定向负载均衡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS域名解析负载均衡"><span class="nav-number">2.2.</span> <span class="nav-text">DNS域名解析负载均衡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反向代理负载均衡"><span class="nav-number">2.3.</span> <span class="nav-text">反向代理负载均衡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IP负载均衡"><span class="nav-number">2.4.</span> <span class="nav-text">IP负载均衡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据链路层负载均衡"><span class="nav-number">2.5.</span> <span class="nav-text">数据链路层负载均衡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#负载均衡算法"><span class="nav-number">2.6.</span> <span class="nav-text">负载均衡算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分布式缓存集群的伸缩性设计"><span class="nav-number">3.</span> <span class="nav-text">分布式缓存集群的伸缩性设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Memcached分布式缓存集群的访问模型"><span class="nav-number">3.1.</span> <span class="nav-text">Memcached分布式缓存集群的访问模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Memcached分布式缓存集群的伸缩性挑战"><span class="nav-number">3.2.</span> <span class="nav-text">Memcached分布式缓存集群的伸缩性挑战</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式缓存的一致性Hash算法"><span class="nav-number">3.3.</span> <span class="nav-text">分布式缓存的一致性Hash算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据存储服务器集群的伸缩性设计"><span class="nav-number">4.</span> <span class="nav-text">数据存储服务器集群的伸缩性设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#关系数据库集群的伸缩性设计"><span class="nav-number">4.1.</span> <span class="nav-text">关系数据库集群的伸缩性设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NoSQL数据库的伸缩性设计"><span class="nav-number">4.2.</span> <span class="nav-text">NoSQL数据库的伸缩性设计</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Plusaber</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'plusaber';
+      var disqus_identifier = '2016/02/01/System Design_大型网站伸缩性架构c6/';
+      var disqus_title = "System Design_大型网站伸缩性架构";
+      var disqus_url = 'http://yoursite.com/2016/02/01/System Design_大型网站伸缩性架构c6/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

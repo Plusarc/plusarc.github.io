@@ -1,0 +1,778 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="google88d81a02a91db82f" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="MathJax basic tutorial and quick reference参考MathJax basic tutorial and quick reference.
+MacDown无法编辑公式，可以使用Cmd Markdown。
+公式标记$...$表示行内公式，$$...$$表示独立公式。如：$\sum_{i=0}^n f(i) =\frac{(n^2+n)}{6}$是一个行内公式：$\">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MathJax使用">
+<meta property="og:url" content="http://yoursite.com/2015/06/16/Blogging_Mathjax/index.html">
+<meta property="og:site_name" content="Plusaber's Blog">
+<meta property="og:description" content="MathJax basic tutorial and quick reference参考MathJax basic tutorial and quick reference.
+MacDown无法编辑公式，可以使用Cmd Markdown。
+公式标记$...$表示行内公式，$$...$$表示独立公式。如：$\sum_{i=0}^n f(i) =\frac{(n^2+n)}{6}$是一个行内公式：$\">
+<meta property="og:updated_time" content="2016-07-13T03:29:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MathJax使用">
+<meta name="twitter:description" content="MathJax basic tutorial and quick reference参考MathJax basic tutorial and quick reference.
+MacDown无法编辑公式，可以使用Cmd Markdown。
+公式标记$...$表示行内公式，$$...$$表示独立公式。如：$\sum_{i=0}^n f(i) =\frac{(n^2+n)}{6}$是一个行内公式：$\">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/06/16/Blogging_Mathjax/"/>
+
+
+  <title> MathJax使用 | Plusaber's Blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-79158075-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Plusaber's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                MathJax使用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-06-16T00:00:00+09:00" content="2015-06-16">
+              2015-06-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Blogging/" itemprop="url" rel="index">
+                    <span itemprop="name">Blogging</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/06/16/Blogging_Mathjax/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/16/Blogging_Mathjax/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="MathJax-basic-tutorial-and-quick-reference"><a href="#MathJax-basic-tutorial-and-quick-reference" class="headerlink" title="MathJax basic tutorial and quick reference"></a>MathJax basic tutorial and quick reference</h1><p>参考<a href="http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference" target="_blank" rel="external">MathJax basic tutorial and quick reference</a>.</p>
+<p>MacDown无法编辑公式，可以使用Cmd Markdown。</p>
+<h2 id="公式标记"><a href="#公式标记" class="headerlink" title="公式标记"></a>公式标记</h2><p><code>$...$</code>表示行内公式，<code>$$...$$</code>表示独立公式。如：<br><code>$\sum_{i=0}^n f(i) =\frac{(n^2+n)}{6}$</code>是一个行内公式：$\sum_{i=0}^n f(i) = \frac{(n^2+n)}{6}$</p>
+<p><code>\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}</code>是一个独立公式：<br>$$\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$$</p>
+<h2 id="希腊字母"><a href="#希腊字母" class="headerlink" title="希腊字母"></a>希腊字母</h2><p>使用<code>\alpha</code>, <code>\beta</code>, …, <code>\omega</code>来表示$\alpha$, $\beta$, …, $\omega$，大写使用<code>\Gamma</code>, <code>\Delta</code>, …, <code>\Omega</code>表示$\Gamma$, $\Delta$, …, $\Omega$</p>
+<h2 id="上下标表示"><a href="#上下标表示" class="headerlink" title="上下标表示"></a>上下标表示</h2><p>使用<code>^</code>和<code>_</code>，如<code>x_i^2</code>表示$x_i^2$</p>
+<h2 id="组-Group"><a href="#组-Group" class="headerlink" title="组(Group)"></a>组(Group)</h2><p>上下标或者其他命令都是以组为单位的，组可以是单个字母，也可是使用<code>{..}</code>围起来的单元，如<code>10^10</code>表示$10^10$，<code>10^{10}</code>表示$10^{10}$，<code>x_i^2</code>表示$x<em>i^2$，`x</em>{i^2}`表示$x_{i^2}$。需要注意的是，命令后面如果是没有{}的group，则需要加空格已区分命令和后面的参数。</p>
+<h2 id="括号"><a href="#括号" class="headerlink" title="括号"></a>括号</h2><p>可以直接使用<code>()[]</code>表示括号，但是这些括号不会随着公式大小调节。<br>另一种方法是使用<code>\left(...\right)</code>，可以随着公式大小自动调整大小。如<code>(\frac{\sqrt x}{y^3})</code>表示$(\frac{\sqrt x}{y^3})$，<code>\left(\frac{\sqrt x}{y^3}\right)</code>表示$\left(\frac{\sqrt x}{y^3}\right)$。</p>
+<p><code>\left</code>,<code>\right</code>同样可以用于<code>[]</code>,<code>{}</code>,<code>||</code>。另外特殊的需要专门的标记，如<code>\langle x \rangle</code>来表示$\langle x \rangle$，<code>\lceil x \rceil</code>来表示$\lceil x \rceil$，<code>\lfloor x \rfloor</code>来表示$\lfloor x \rfloor$。</p>
+<p>另外还可以通过附加<code>.</code>表示不可见的括号，如<code>\left.\frac12\right\rbrace</code>表示$\left.\frac12\right\rbrace$。</p>
+<h2 id="求和和积分"><a href="#求和和积分" class="headerlink" title="求和和积分"></a>求和和积分</h2><p>使用<code>\sum</code>和<code>\int</code>表示$\sum$和$\int$，<code>\sum_{i=0}^\infty i^2</code>表示$\sum_{i=0}^\infty i^2$。</p>
+<p>另外，<code>\prod</code>表示$\prod$，<code>\bigcup</code>表示$\bigcup$，<code>\bigcap</code>表示$\bigcap$，<code>\iint</code>表示$\iint$。</p>
+<h2 id="分数"><a href="#分数" class="headerlink" title="分数"></a>分数</h2><p>两种方式，一种方式是<code>\frac ab</code>，表示$\frac ab$，<code>\frac{a+1}{b+1}</code>表示$\frac{a+1}{b+1}$。</p>
+<p>另一种方式是<code>{a+1\over b+1}</code>，表示${a+1\over b+1}$。</p>
+<h2 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h2><p>可以在公式中使用多种字体，如<code>\mathbb{CHNQRZ}</code>表示$\mathbb{CHNQRZ}$。还有多种字体可以参考<a href="http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference" target="_blank" rel="external">MathJax basic tutorial and quick reference</a>.</p>
+<h2 id="求根"><a href="#求根" class="headerlink" title="求根"></a>求根</h2><p>使用<code>sqrt</code>，默认是平方求根，可以通过<code>[]</code>添加参数。如<code>\sqrt{x^3}</code>表示$\sqrt{x^3}$，<code>\sqrt[3]{\frac xy}</code>表示$\sqrt[3]{\frac xy}$。更直接的方式是直接使用上标。</p>
+<h2 id="一些特殊函数"><a href="#一些特殊函数" class="headerlink" title="一些特殊函数"></a>一些特殊函数</h2><p><code>\lim</code>,<code>\sin</code>,<code>\cos</code>等，虽然可以直接用字母表示，但是只有使用了这些符号才会有符合其特征的表示，如<code>\sin x</code>表示$\sin x$，但是<code>sin x</code>只是表示$sin x$。<code>\lim_{x\to 0}</code>表示$$\lim_{x\to 0}$$。</p>
+<h2 id="常用符合和表示"><a href="#常用符合和表示" class="headerlink" title="常用符合和表示"></a>常用符合和表示</h2><ul>
+<li><code>\lt \gt \le \ge \neq</code>表示$\lt \gt \le \ge \neq$，可以使用<code>\not</code>取非，如<code>\not\lt</code>表示$\not\lt$。</li>
+<li><code>\times \div \pm \mp \cdot</code>表示$\times \div \pm \mp \cdot$ </li>
+<li><code>\cup \cap \setminus \subset \subseteq \subsetneq \supset \in \notin \emptyset \varnothing</code>表示$\cup \cap \setminus \subset \subseteq \subsetneq \supset \in \notin \emptyset \varnothing$</li>
+<li><code>{n+1 \choose 2k}</code> or <code>\binom{n+1}{2k}</code>表示${n+1 \choose 2k}$</li>
+<li><code>\to \rightarrow \leftarrow \Rightarrow \Leftarrow \mapsto</code>表示$\to \rightarrow \leftarrow \Rightarrow \Leftarrow \mapsto$</li>
+<li><code>\land \lor \lnot \forall \exists \top \bot \vdash \vDash</code>表示$\land \lor \lnot \forall \exists \top \bot \vdash \vDash$</li>
+<li><code>\star \ast \oplus \circ \bullet</code>表示$\star \ast \oplus \circ \bullet$</li>
+<li><code>\approx \sim \simeq \cong \equiv \prec</code>表示$\approx \sim \simeq \cong \equiv \prec$</li>
+<li><code>\infty \aleph_0</code>表示$\infty \aleph_0$</li>
+<li><code>\nabla \partial</code>表示$\nabla \partial$</li>
+<li><code>\Im \Re</code>表示$\Im \Re$</li>
+<li><code>a\equiv b\pmod n</code>表示$a\equiv b\pmod n$</li>
+<li><code>\ldots</code>表示$\ldots$</li>
+<li><code>\epsilon \varepsilon</code>表示$\epsilon \varepsilon$</li>
+<li><code>\phi \varphi</code>表示$\phi \varphi$</li>
+<li><code>\ell</code>表示$\ell$</li>
+<li><code>\\</code>或者<code>\cr</code>表示new line，Hexo似乎只支持<code>\cr</code></li>
+<li><code>\backslash</code>表示$\backslash$</li>
+<li><code>\$</code>表示$\$$</li>
+<li><code>\{</code>表示${$</li>
+</ul>
+<h2 id="空格"><a href="#空格" class="headerlink" title="空格"></a>空格</h2><p>需要增加空格，不能通过<code>`，如</code>a  b<code>与</code>ab<code>都是$a  b$。
+可以通过</code>`,<code>\quad</code>,<code>\qquad</code>增加空间。</p>
+<h2 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h2><p>使用<code>\text{..}</code>。如<code>\{x\in s\mid x\text{ is extra large}\}</code>表示${x\in s\mid x\text{ is extra large}}$。可以在text内部使用<code>$..$</code>。</p>
+<h2 id="上标线"><a href="#上标线" class="headerlink" title="上标线"></a>上标线</h2><ul>
+<li><code>\hat</code>用于单个字符，<code>\hat x</code>表示$\hat x$</li>
+<li><code>\widehat</code>用于多个字符，<code>\widehat{xy}</code>表示$\widehat{xy}$</li>
+<li><code>\bar x</code>表示$\bar x$</li>
+<li><code>\overline{xyz}</code>表示$\overline{xyz}$</li>
+<li><code>\vec x</code>表示$\vec x$</li>
+<li><code>\overleftrightarrow{xy}</code>表示$\overleftrightarrow{xy}$</li>
+<li><code>\frac d{dx}x\dot x =  \dot x^2 +  x\ddot x</code>表示$\frac d{dx}x\dot x =  \dot x^2 +  x\ddot x$</li>
+</ul>
+<h2 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h2><p><strong>Hexo似乎只支持<code>\cr</code>进行换行</strong></p>
+<ul>
+<li>使用<code>$$\begin{matrix}…\end{matrix}$$</code>，在<code>\begin</code>和<code>\end</code>放入元素，使用<code>&amp;</code>分隔元素，使用<code>\cr</code>换行。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$$</div><div class="line">        \begin&#123;matrix&#125;</div><div class="line">        1 &amp; x &amp; x^2 \cr</div><div class="line">        1 &amp; y &amp; y^2 \cr</div><div class="line">        1 &amp; z &amp; z^2 \cr</div><div class="line">        \end&#123;matrix&#125;</div><div class="line">$$</div></pre></td></tr></table></figure>
+<p>表示<br>$$<br>        \begin{matrix}<br>        1 &amp; x &amp; x^2 \cr<br>        1 &amp; y &amp; y^2 \cr<br>        1 &amp; z &amp; z^2 \cr<br>        \end{matrix}<br>$$</p>
+<ul>
+<li>如果需要使用括号，一样使用<code>\left..\right</code>，不过需要使用字符串符号，如：</li>
+</ul>
+<p>with <code>pmatrix</code>,<code>\begin{pmatrix}1&amp;2\cr3&amp;4\cr \end{pmatrix}</code>表示$\begin{pmatrix}1&amp;2\cr3&amp;4\cr \end{pmatrix}$<br>with <code>bmatrix</code>,<code>\begin{bmatrix}1&amp;2\cr3&amp;4\cr \end{bmatrix}</code>表示$\begin{bmatrix}1&amp;2\cr3&amp;4\cr \end{bmatrix}$<br>with <code>pmatrix</code>,<code>\begin{Bmatrix}1&amp;2\cr3&amp;4\cr \end{Bmatrix}</code>表示$\begin{Bmatrix}1&amp;2\cr3&amp;4\cr \end{Bmatrix}$<br>with <code>vmatrix</code>,<code>\begin{vmatrix}1&amp;2\cr3&amp;4\cr \end{vmatrix}</code>表示$\begin{vmatrix}1&amp;2\cr3&amp;4\cr \end{vmatrix}$<br>with <code>Vmatrix</code>,<code>\begin{Vmatrix}1&amp;2\cr3&amp;4\cr \end{Vmatrix}</code>表示$\begin{Vmatrix}1&amp;2\cr3&amp;4\cr \end{Vmatrix}$</p>
+<ul>
+<li>使用<code>\cdots \ddots vdots</code>表示省略。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">\begin&#123;pmatrix&#125;</div><div class="line">     1 &amp; a_1 &amp; a_1^2 &amp; \cdots &amp; a_1^n \cr</div><div class="line">     1 &amp; a_2 &amp; a_2^2 &amp; \cdots &amp; a_2^n \cr</div><div class="line">     \vdots  &amp; \vdots&amp; \vdots &amp; \ddots &amp; \vdots \cr</div><div class="line">     1 &amp; a_m &amp; a_m^2 &amp; \cdots &amp; a_m^n    </div><div class="line">     \end&#123;pmatrix&#125;</div></pre></td></tr></table></figure>
+<p>表示<br>\begin{pmatrix}<br>     1 &amp; a_1 &amp; a_1^2 &amp; \cdots &amp; a_1^n \cr<br>     1 &amp; a_2 &amp; a_2^2 &amp; \cdots &amp; a_2^n \cr<br>     \vdots  &amp; \vdots&amp; \vdots &amp; \ddots &amp; \vdots \cr<br>     1 &amp; a_m &amp; a_m^2 &amp; \cdots &amp; a_m^n<br>     \end{pmatrix}</p>
+<ul>
+<li>分割矩阵</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$$ \left[</div><div class="line">    \begin&#123;array&#125;&#123;cc|c&#125;</div><div class="line">      1&amp;2&amp;3\cr</div><div class="line">      4&amp;5&amp;6</div><div class="line">    \end&#123;array&#125;</div><div class="line">\right] $$</div></pre></td></tr></table></figure>
+<p>$$ \left[<br>    \begin{array}{cc|c}<br>      1&amp;2&amp;3\cr<br>      4&amp;5&amp;6<br>    \end{array}<br>\right] $$</p>
+<p><code>cc|c</code>表示分割方式。</p>
+<ul>
+<li>行内矩阵</li>
+</ul>
+<p>使用<code>\bigl(\begin{smallmatrix} ... \end{smallmatrix}\bigr)</code>,如$\bigl( \begin{smallmatrix} a &amp; b \cr c &amp; d \end{smallmatrix} \bigr)$，由下面命令生成：<br><code>$\bigl( \begin{smallmatrix} a &amp; b \cr c &amp; d \end{smallmatrix} \bigr)$</code></p>
+<ul>
+<li>Aligned equations</li>
+</ul>
+<p>Often people want a series of equations where the equals signs are aligned. To get this, use \begin{align}…\end{align}. Each line should end with \, and should contain an ampersand at the point to align at, typically immediately before the equals sign.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">\begin&#123;align&#125;</div><div class="line">\sqrt&#123;37&#125; &amp; = \sqrt&#123;\frac&#123;73^2-1&#125;&#123;12^2&#125;&#125; \\</div><div class="line"> &amp; = \sqrt&#123;\frac&#123;73^2&#125;&#123;12^2&#125;\cdot\frac&#123;73^2-1&#125;&#123;73^2&#125;&#125; \\ </div><div class="line"> &amp; = \sqrt&#123;\frac&#123;73^2&#125;&#123;12^2&#125;&#125;\sqrt&#123;\frac&#123;73^2-1&#125;&#123;73^2&#125;&#125; \\</div><div class="line"> &amp; = \frac&#123;73&#125;&#123;12&#125;\sqrt&#123;1 - \frac&#123;1&#125;&#123;73^2&#125;&#125; \\ </div><div class="line"> &amp; \approx \frac&#123;73&#125;&#123;12&#125;\left(1 - \frac&#123;1&#125;&#123;2\cdot73^2&#125;\right)</div><div class="line">\end&#123;align&#125;</div></pre></td></tr></table></figure>
+<p>$$<br>\begin{align}<br>\sqrt{37} &amp; = \sqrt{\frac{73^2-1}{12^2}} \<br> &amp; = \sqrt{\frac{73^2}{12^2}\cdot\frac{73^2-1}{73^2}} \<br> &amp; = \sqrt{\frac{73^2}{12^2}}\sqrt{\frac{73^2-1}{73^2}} \<br> &amp; = \frac{73}{12}\sqrt{1 - \frac{1}{73^2}} \<br> &amp; \approx \frac{73}{12}\left(1 - \frac{1}{2\cdot73^2}\right)<br>\end{align}<br>$$</p>
+<h2 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h2><p>Refer to <a href="http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference" target="_blank" rel="external">MathJax basic tutorial and quick reference</a>.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/06/16/Leetcode_Sum Root Leaf Numbers/" rel="next" title="Sum Root to Leaf Numbers">
+                <i class="fa fa-chevron-left"></i> Sum Root to Leaf Numbers
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/06/16/Leetcode_String toInteger(atoi) /" rel="prev" title="String to Integer (atoi)">
+                String to Integer (atoi) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/plusaber.jpg"
+               alt="Plusaber" />
+          <p class="site-author-name" itemprop="name">Plusaber</p>
+          <p class="site-description motion-element" itemprop="description">Plusaber's Blog</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">325</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://leetcode.com/problemset/algorithms/" title="Leetcode" target="_blank">Leetcode</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.kaggle.com" title="Kaggle" target="_blank">Kaggle</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jp.linkedin.com/in/zebangchen" title="LinkedIn" target="_blank">LinkedIn</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://portal.qiniu.com" title="Qiniu" target="_blank">Qiniu</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MathJax-basic-tutorial-and-quick-reference"><span class="nav-number">1.</span> <span class="nav-text">MathJax basic tutorial and quick reference</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#公式标记"><span class="nav-number">1.1.</span> <span class="nav-text">公式标记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#希腊字母"><span class="nav-number">1.2.</span> <span class="nav-text">希腊字母</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上下标表示"><span class="nav-number">1.3.</span> <span class="nav-text">上下标表示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组-Group"><span class="nav-number">1.4.</span> <span class="nav-text">组(Group)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#括号"><span class="nav-number">1.5.</span> <span class="nav-text">括号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求和和积分"><span class="nav-number">1.6.</span> <span class="nav-text">求和和积分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分数"><span class="nav-number">1.7.</span> <span class="nav-text">分数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字体"><span class="nav-number">1.8.</span> <span class="nav-text">字体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求根"><span class="nav-number">1.9.</span> <span class="nav-text">求根</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些特殊函数"><span class="nav-number">1.10.</span> <span class="nav-text">一些特殊函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用符合和表示"><span class="nav-number">1.11.</span> <span class="nav-text">常用符合和表示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空格"><span class="nav-number">1.12.</span> <span class="nav-text">空格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文本"><span class="nav-number">1.13.</span> <span class="nav-text">文本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上标线"><span class="nav-number">1.14.</span> <span class="nav-text">上标线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵"><span class="nav-number">1.15.</span> <span class="nav-text">矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Others"><span class="nav-number">1.16.</span> <span class="nav-text">Others</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Plusaber</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'plusaber';
+      var disqus_identifier = '2015/06/16/Blogging_Mathjax/';
+      var disqus_title = "MathJax使用";
+      var disqus_url = 'http://yoursite.com/2015/06/16/Blogging_Mathjax/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

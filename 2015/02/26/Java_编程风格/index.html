@@ -1,0 +1,858 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="google88d81a02a91db82f" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="import语句
+尽量不要使用通配符，如import java.util.*
+按照是否静态、顶级包等性质对import进行分组。
+
+声明类声明
+每个顶级类都在一个与它同名的源文件中。
+累成员顺序需要按照一定的逻辑关系组织在一起，而不是新的方法习惯性添加到类的结尾。
+当有多个同名重载函数时，这些函数应该按照一定的逻辑顺序连续放在一起。
+
+变量声明
+每次只声明一个变量，不要使用组合声明。
+需要使用变量">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java编程风格">
+<meta property="og:url" content="http://yoursite.com/2015/02/26/Java_编程风格/index.html">
+<meta property="og:site_name" content="Plusaber's Blog">
+<meta property="og:description" content="import语句
+尽量不要使用通配符，如import java.util.*
+按照是否静态、顶级包等性质对import进行分组。
+
+声明类声明
+每个顶级类都在一个与它同名的源文件中。
+累成员顺序需要按照一定的逻辑关系组织在一起，而不是新的方法习惯性添加到类的结尾。
+当有多个同名重载函数时，这些函数应该按照一定的逻辑顺序连续放在一起。
+
+变量声明
+每次只声明一个变量，不要使用组合声明。
+需要使用变量">
+<meta property="og:updated_time" content="2016-05-07T03:32:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java编程风格">
+<meta name="twitter:description" content="import语句
+尽量不要使用通配符，如import java.util.*
+按照是否静态、顶级包等性质对import进行分组。
+
+声明类声明
+每个顶级类都在一个与它同名的源文件中。
+累成员顺序需要按照一定的逻辑关系组织在一起，而不是新的方法习惯性添加到类的结尾。
+当有多个同名重载函数时，这些函数应该按照一定的逻辑顺序连续放在一起。
+
+变量声明
+每次只声明一个变量，不要使用组合声明。
+需要使用变量">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/02/26/Java_编程风格/"/>
+
+
+  <title> Java编程风格 | Plusaber's Blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-79158075-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Plusaber's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Java编程风格
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-02-26T00:00:00+09:00" content="2015-02-26">
+              2015-02-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/02/26/Java_编程风格/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/02/26/Java_编程风格/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="import语句"><a href="#import语句" class="headerlink" title="import语句"></a>import语句</h1><ul>
+<li>尽量不要使用通配符，如<code>import java.util.*</code></li>
+<li>按照是否静态、顶级包等性质对import进行分组。</li>
+</ul>
+<h1 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h1><h2 id="类声明"><a href="#类声明" class="headerlink" title="类声明"></a>类声明</h2><ul>
+<li>每个顶级类都在一个与它同名的源文件中。</li>
+<li>累成员顺序需要按照一定的逻辑关系组织在一起，而不是新的方法习惯性添加到类的结尾。</li>
+<li>当有多个同名重载函数时，这些函数应该按照一定的逻辑顺序连续放在一起。</li>
+</ul>
+<h2 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h2><ul>
+<li>每次只声明一个变量，不要使用组合声明。</li>
+<li>需要使用变量时才声明（在第一次使用时才声明），并尽快初始化。不要在一个代码快把局部变量都一次性声明。</li>
+<li>数组初始化：写成块状结构。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> <span class="keyword">int</span>[] &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</div><div class="line"></div><div class="line"><span class="keyword">new</span> String[][] &#123;</div><div class="line">	&#123;<span class="string">"a"</span>, <span class="string">"b"</span>&#125;,</div><div class="line">	&#123;<span class="string">"c"</span>, <span class="string">"d"</span>&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h1 id="命名约定"><a href="#命名约定" class="headerlink" title="命名约定"></a>命名约定</h1><h2 id="约定"><a href="#约定" class="headerlink" title="约定"></a>约定</h2><ul>
+<li>包名全部小写，连续的单词只是简单连接起来，不使用下划线。</li>
+<li>类名以<code>UpperCamelCase</code>风格命名，通常是名词或者名词短语，接口名称有时可能是形容词或者形容词短语。</li>
+<li>测试类的命名以要测试的类的名称开始，以<code>Test</code>结束。</li>
+<li>方法名以<code>lowerCamelCase</code>风格命名。方法名通常是动词或者动词短语。下划线可能出现在JUnit测试方法名称中以分割名称的逻辑组件，一个典型的模式是：<code>test&lt;MethodUnderTest&gt;_&lt;state&gt;</code>。</li>
+<li>常量命名模式为<code>CONSTANT_CASE</code>，全部字母大写，用下划线分割单词。</li>
+<li>非常量字段名，按照<code>lowerCamelCase</code>。</li>
+<li>参数名，按照<code>lowerCamelCase</code>。</li>
+<li>局部变量名，按照<code>lowerCamelCase</code>，但是可以有更为宽松的缩写。</li>
+</ul>
+<h2 id="CamelCase"><a href="#CamelCase" class="headerlink" title="CamelCase"></a>CamelCase</h2><p>驼峰式命名法分大驼峰式命名法(UpperCamelCase)和小驼峰式命名法(lowerCamelCase)。 名字从散文形式(prose form)开始:</p>
+<ul>
+<li>把短语转换为纯ASCII码，并且移除任何单引号。例如：”Müller’s algorithm”将变成”Muellers algorithm”。</li>
+<li>把这个结果切分成单词，在空格或其它标点符号(通常是连字符)处分割开。<br>推荐：如果某个单词已经有了常用的驼峰表示形式，按它的组成将它分割开(如”AdWords”将分割成”ad words”)。 需要注意的是”iOS”并不是一个真正的驼峰表示形式，因此该推荐对它并不适用。</li>
+<li>现在将所有字母都小写(包括缩写)，然后将单词的第一个字母大写：<ul>
+<li>每个单词的第一个字母都大写，来得到大驼峰式命名。</li>
+<li>除了第一个单词，每个单词的第一个字母都大写，来得到小驼峰式命名。</li>
+</ul>
+</li>
+<li>最后将所有的单词连接起来得到一个标识符。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Prose form                Correct               Incorrect</div><div class="line"></div><div class="line">&quot;XML HTTP request&quot;        XmlHttpRequest        XMLHTTPRequest</div><div class="line">&quot;new customer ID&quot;         newCustomerId         newCustomerID</div><div class="line">&quot;inner stopwatch&quot;         innerStopwatch        innerStopWatch</div><div class="line">&quot;supports IPv6 on iOS?&quot;   supportsIpv6OnIos     supportsIPv6OnIOS</div><div class="line">&quot;YouTube importer&quot;        YouTubeImporter</div></pre></td></tr></table></figure>
+<h1 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h1><h2 id="大括号"><a href="#大括号" class="headerlink" title="大括号"></a>大括号</h2><ul>
+<li>与<code>if, else, for, do, while</code>一起使用，即使只有一条语句，也需要加上大括号。</li>
+<li>非空块时遵循Kernighan风格：<ul>
+<li>左大括号前不换行</li>
+<li>左大括号后换行</li>
+<li>右大括号前换行</li>
+<li>如果右大括号是一个语句、函数体或类的终止，则右大括号后换行; 否则不换行。例如，如果右大括号后面是else或逗号，则不换行。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">return</span> <span class="keyword">new</span> MyClass() &#123;</div><div class="line">  <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (condition()) &#123;</div><div class="line">      <span class="keyword">try</span> &#123;</div><div class="line">        something();</div><div class="line">      &#125; <span class="keyword">catch</span> (ProblemException e) &#123;</div><div class="line">        recover();</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<ul>
+<li>空块，可以直接使用单行<code>void doNothing() {}</code></li>
+</ul>
+<h2 id="空白"><a href="#空白" class="headerlink" title="空白"></a>空白</h2><h3 id="垂直空白"><a href="#垂直空白" class="headerlink" title="垂直空白"></a>垂直空白</h3><ul>
+<li>类内连续成员之间(可选，主要是用于逻辑分组)</li>
+<li>函数体内，语句的逻辑分组之间。</li>
+</ul>
+<h2 id="水平空白"><a href="#水平空白" class="headerlink" title="水平空白"></a>水平空白</h2><ul>
+<li>任何保留字与紧随其后的左括号<code>(</code>时：</li>
+<li>任何保留字与其前面的右大括号<code>}</code></li>
+<li>任何左大括号前<code>{</code></li>
+<li>任何二元或三元运算符的两侧</li>
+<li><code>, : ;</code>及右括号<code>)</code>后</li>
+<li>括号内的最左最右元素的空格不是必须的。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">playShiritori</span><span class="params">(Set&lt;String&gt; candidates, String lastResponse)</span> </span>&#123;</div><div class="line">		Set&lt;String&gt; choices = getNextChoices(candidates, lastResponse);</div><div class="line">		<span class="keyword">if</span> (choices.isEmpty()) &#123;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			...</div><div class="line">		&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<h2 id="用小括号来指定逻辑组：推荐"><a href="#用小括号来指定逻辑组：推荐" class="headerlink" title="用小括号来指定逻辑组：推荐"></a>用小括号来指定逻辑组：推荐</h2><h2 id="自动换行"><a href="#自动换行" class="headerlink" title="自动换行"></a>自动换行</h2><ul>
+<li>如果在<code>非赋值运算符</code>处断开，则应该在该符号<strong>之前</strong>断开(比如<code>+</code>，应该和后面的语句一起放到下一行)</li>
+<li>如果在<code>赋值运算符</code>出断开，通常在该符合之后断开。</li>
+<li>方法名或够照函数名与左括号留在同一行。</li>
+<li>逗号（<code>,</code>）与前面的内容留在同一行。</li>
+</ul>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>块注释风格<br><strong>块注释与其周围的代码在同一缩进级别</strong>。它们可以是<code>/* ... */</code>风格，也可以是<code>// ...</code>风格。对于多行的<code>/* ... */</code>注释，后续行必须从<code>*</code>开始， 并且与前一行的<code>*</code>对齐。以下示例注释都是OK的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"> * This is          // And so           /* Or you can</div><div class="line"> * okay.            // is this.          * even do this. */</div><div class="line"> */</div></pre></td></tr></table></figure>
+<h1 id="JavaDoc"><a href="#JavaDoc" class="headerlink" title="JavaDoc"></a>JavaDoc</h1><p>参考<a href="http://www.cnblogs.com/boring09/p/4274893.html" target="_blank" rel="external">如何写Java文档注释(Java Doc Comments)</a></p>
+<p>“文档注释”(Java Doc Comments)是专门为了用javadoc工具自动生成文档而写的注释，它是一种带有特殊功能的注释。</p>
+<p>文档注释只负责描述类(class)、接口(interface)、方法(method)、构造器(constructor)、成员字段(field)。相应地，文档注释必须写在类、接口、方法、构造器、成员字段前面，而写在其他位置，比如函数内部，是无效的文档注释。</p>
+<p>文档注释采用HTML语法规则书写，支持HTML标记(tag)，同时也有一些额外的辅助标记。需要注意的是，这些标记不是给人看的（通常他们的可读性也不好），他们的作用是为了javadoc工具更好地生成最终文档。</p>
+<p><strong>文档注释与一般注释的最大区别在于起始符号是`/</strong><code>而不是</code>/<em><code>或</code>//`。*</em></p>
+<p>Javadoc块的基本格式如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">一个文档注释由两部分组成：</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line">* 描述部分(description) </div><div class="line">*</div><div class="line">* 标记部分(block tags)</div><div class="line">*/</div></pre></td></tr></table></figure>
+<p>描述部分自然不用多说，所谓的标记符号指的是@param, @return, @see之类的。<br>或者是以下单行形式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/** An especially short bit of Javadoc. */</span></div></pre></td></tr></table></figure>
+<p>需要注意的几点：</p>
+<ol>
+<li>第一行以特殊的文档定界符<code>/**</code> 开头</li>
+<li>在描述段落和标记段落之间空一行，描述段落和标记段落必须分开，不能揉在一起，描述段落必须在标记段落之前</li>
+<li>每一行注释都应该跟后面描述的类、方法等保持同样距离的缩进</li>
+</ol>
+<h2 id="描述部分-Description"><a href="#描述部分-Description" class="headerlink" title="描述部分(Description)"></a>描述部分(Description)</h2><p>描述部分的第一行应该是一句对类、接口、方法等的简单描述，这句话最后会被javadoc工具提取并放在索引目录中。</p>
+<p>怎么界定第一句话到哪结束了呢？答案是跟在第一个句号（英文标点）之后的tab、空行或行终结符规定了第一句的结尾。</p>
+<p>例如下面这句注释，第一句的结尾是Prof.：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">* This is a simulation of Prof. Knuth's MIX computer.</div><div class="line">*/</div></pre></td></tr></table></figure>
+<p>除了普通的文本之外，描述部分可以使用：</p>
+<ol>
+<li>HTML语法标签，例如 <code>&lt;b&gt;xxx&lt;/b&gt;</code></li>
+<li>javadoc规定的特殊标签，例如 <code>{@link xxx}</code> 。标签的语法规则是：{@标签名 标签内容}</li>
+</ol>
+<p>需要注意的地方：</p>
+<ol>
+<li>标签在有javadoc工具生成文档时会转化成特殊的内容，比如 <code>{@link URL}</code> 标签会被转化成指向URL类的超链接</li>
+<li>如果注释包含多段内容，段与段之间需要用 <code>&lt;p&gt;</code> 分隔，空行是没用的</li>
+<li>最后结尾行 <code>*/</code> 和起始行不同，这里只有一个星号</li>
+<li>为了避免一行过长影响阅读效果，务必将每行的长度限制在80个字符以内</li>
+<li>善用javadoc工具的复制机制避免不必要的注释：</li>
+</ol>
+<p>如果一个方法覆盖了父类的方法或实现了接口种的方法，那么javadoc工具会在该注释里添加指向原始方法的链接，此外如果新方法没有注释，那么javadoc会把原始方法的注释复制一份作为其注释，但是如果新方法有注释了，就不会复制了。</p>
+<p><strong>注释风格：</strong></p>
+<ol>
+<li>使用 <code>&lt;code&gt;关键字&lt;/code&gt;</code> 来强调关键字，建议强调的内容有：java关键字、包名、类名、方法名、接口名、字段名、参数名等</li>
+<li>控制 <code>{@link xxx}</code> 的数量，太多的链接会使文档的可读性很差，因为读者总是跳来跳去。不要出现相同的链接，同样的链接只保留第一个；不要为java自带的内容或是常识性的内容提供链接</li>
+<li>描述一个方法时，应当只保留方法名字，不要附带方法的参数。比如有个方法是add(Object obj)，那么用add指代该方法即可，而不是add(Object obj)</li>
+<li>英文注释可以是短语也可以是句子。如果是句子，首字母要大写，如果是短语，首字母小写。</li>
+<li>英文注释使用第三人称，而不是第二人称。</li>
+</ol>
+<h2 id="标记部分-Tag"><a href="#标记部分-Tag" class="headerlink" title="标记部分(Tag)"></a>标记部分(Tag)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">@author（只出现在类和接口的文档中）</div><div class="line">@version（只出现在类和接口的文档中）</div><div class="line">@param（只出现在方法或构造器的文档中）</div><div class="line">@return（只出现在方法中）</div><div class="line">@exception（从java1.2之后也可以使用@thrown替代）</div><div class="line">@see</div><div class="line">@since</div><div class="line">@serial（也可以使用@serialField或@serialData替代）</div><div class="line">@deprecated</div></pre></td></tr></table></figure>
+<p>此外，如果有多个相同标记，也要注意顺序：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">多个@author标记，应该按照时间顺序排列，即原作者应该排在第一个位置</div><div class="line">多个@param标记，应该按照参数定义的顺序排列</div><div class="line">多个@exception（或是@thrown）应该按照异常的字母顺序排列</div><div class="line">多个@see标记，应该按照注释的逻辑顺序排列，即从最近的到最远的，从最具体的到最一般的</div></pre></td></tr></table></figure>
+<p>如果方法有参数，@param标记必须包含，而且每个对应一个参数<br>如果方法有返回值，@return标记必须包含</p>
+<p><strong>空行</strong>(即，只包含最左侧星号的行)会出现在段落之间和Javadoc标记(@XXX)之前(如果有的话)。 除了第一个段落，每个段落第一个单词前都有标签<code>&lt;p&gt;</code>，并且它和第一个单词间没有空格。</p>
+<p><strong>至少在每个public类及它的每个public和protected成员处使用Javadoc，除了测试类和方法。</strong></p>
+<p><strong>Examples:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Returns an Image object that can then be painted on the screen. </div><div class="line"> * The url argument must specify an absolute &#123;<span class="doctag">@link</span> URL&#125;. The name</div><div class="line"> * argument is a specifier that is relative to the url argument. </div><div class="line"> * &lt;p&gt;</div><div class="line"> * This method always returns immediately, whether or not the </div><div class="line"> * image exists. When this applet attempts to draw the image on</div><div class="line"> * the screen, the data will be loaded. The graphics primitives </div><div class="line"> * that draw the image will incrementally paint on the screen. </div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> url an absolute URL giving the base location of the image</div><div class="line"> * <span class="doctag">@param</span> name the location of the image, relative to the url argument</div><div class="line"> * <span class="doctag">@return</span> the image at the specified URL</div><div class="line"> * <span class="doctag">@see</span> Image</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> Image <span class="title">getImage</span><span class="params">(URL url, String name)</span> </span>&#123;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        <span class="keyword">return</span> getImage(<span class="keyword">new</span> URL(url, name));</div><div class="line">    &#125; <span class="keyword">catch</span> (MalformedURLException e) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Graphics is the abstract base class for all graphics contexts</div><div class="line"> * which allow an application to draw onto components realized on</div><div class="line"> * various devices or onto off-screen images.</div><div class="line"> * A Graphics object encapsulates the state information needed</div><div class="line"> * for the various rendering operations that Java supports. This</div><div class="line"> * state information includes:</div><div class="line"> * &lt;ul&gt;</div><div class="line"> * &lt;li&gt;The Component to draw on</div><div class="line"> * &lt;li&gt;A translation origin for rendering and clipping coordinates</div><div class="line"> * &lt;li&gt;The current clip</div><div class="line"> * &lt;li&gt;The current color</div><div class="line"> * &lt;li&gt;The current font</div><div class="line"> * &lt;li&gt;The current logical pixel operation function (XOR or Paint)</div><div class="line"> * &lt;li&gt;The current XOR alternation color</div><div class="line"> * (see &lt;a href="#setXORMode"&gt;setXORMode&lt;/a&gt;)</div><div class="line"> * &lt;/ul&gt;</div><div class="line"> * &lt;p&gt;</div><div class="line"> * Coordinates are infinitely thin and lie between the pixels of the</div><div class="line"> * output device.</div><div class="line"> * Operations which draw the outline of a figure operate by traversing</div><div class="line"> * along the infinitely thin path with a pixel-sized pen that hangs</div><div class="line"> * down and to the right of the anchor point on the path.</div><div class="line"> * Operations which fill a figure operate by filling the interior</div><div class="line"> * of the infinitely thin path.</div><div class="line"> * Operations which render horizontal text render the ascending</div><div class="line"> * portion of the characters entirely above the baseline coordinate.</div><div class="line"> * &lt;p&gt;</div><div class="line"> * Some important points to consider are that drawing a figure that</div><div class="line"> * covers a given rectangle will occupy one extra row of pixels on</div><div class="line"> * the right and bottom edges compared to filling a figure that is</div><div class="line"> * bounded by that same rectangle.</div><div class="line"> * Also, drawing a horizontal line along the same y coordinate as</div><div class="line"> * the baseline of a line of text will draw the line entirely below</div><div class="line"> * the text except for any descenders.</div><div class="line"> * Both of these properties are due to the pen hanging down and to</div><div class="line"> * the right from the path that it traverses.</div><div class="line"> * &lt;p&gt;</div><div class="line"> * All coordinates which appear as arguments to the methods of this</div><div class="line"> * Graphics object are considered relative to the translation origin</div><div class="line"> * of this Graphics object prior to the invocation of the method.</div><div class="line"> * All rendering operations modify only pixels which lie within the</div><div class="line"> * area bounded by both the current clip of the graphics context</div><div class="line"> * and the extents of the Component used to create the Graphics object.</div><div class="line"> * </div><div class="line"> * <span class="doctag">@author</span> Sami Shaio</div><div class="line"> * <span class="doctag">@author</span> Arthur van Hoff</div><div class="line"> * <span class="doctag">@version</span> %I%, %G%</div><div class="line"> * <span class="doctag">@since</span> 1.0</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Graphics</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">/** </span></div><div class="line">     * Draws as much of the specified image as is currently available</div><div class="line">     * with its northwest corner at the specified coordinate (x, y).</div><div class="line">     * This method will return immediately in all cases, even if the</div><div class="line">     * entire image has not yet been scaled, dithered and converted</div><div class="line">     * for the current output device.</div><div class="line">     * &lt;p&gt;</div><div class="line">     * If the current output representation is not yet complete then</div><div class="line">     * the method will return false and the indicated </div><div class="line">     * &#123;<span class="doctag">@link</span> ImageObserver&#125; object will be notified as the</div><div class="line">     * conversion process progresses.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> img the image to be drawn</div><div class="line">     * <span class="doctag">@param</span> x the x-coordinate of the northwest corner</div><div class="line">     * of the destination rectangle in pixels</div><div class="line">     * <span class="doctag">@param</span> y the y-coordinate of the northwest corner</div><div class="line">     * of the destination rectangle in pixels</div><div class="line">     * <span class="doctag">@param</span> observer the image observer to be notified as more</div><div class="line">     * of the image is converted. May be </div><div class="line">     * &lt;code&gt;null&lt;/code&gt;</div><div class="line">     * <span class="doctag">@return</span> &lt;code&gt;true&lt;/code&gt; if the image is completely </div><div class="line">     * loaded and was painted successfully; </div><div class="line">     * &lt;code&gt;false&lt;/code&gt; otherwise.</div><div class="line">     * <span class="doctag">@see</span> Image</div><div class="line">     * <span class="doctag">@see</span> ImageObserver</div><div class="line">     * <span class="doctag">@since</span> 1.0</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">boolean</span> <span class="title">drawImage</span><span class="params">(Image img, <span class="keyword">int</span> x, <span class="keyword">int</span> y, </span></span></div><div class="line">                                      ImageObserver observer);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Dispose of the system resources used by this graphics context.</div><div class="line">     * The Graphics context cannot be used after being disposed of.</div><div class="line">     * While the finalization process of the garbage collector will</div><div class="line">     * also dispose of the same system resources, due to the number</div><div class="line">     * of Graphics objects that can be created in short time frames</div><div class="line">     * it is preferable to manually free the associated resources</div><div class="line">     * using this method rather than to rely on a finalization</div><div class="line">     * process which may not happen for a long period of time.</div><div class="line">     * &lt;p&gt;</div><div class="line">     * Graphics objects which are provided as arguments to the paint</div><div class="line">     * and update methods of Components are automatically disposed</div><div class="line">     * by the system when those methods return. Programmers should,</div><div class="line">     * for efficiency, call the dispose method when finished using</div><div class="line">     * a Graphics object only if it was created directly from a</div><div class="line">     * Component or another Graphics object.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@see</span> #create(int, int, int, int)</div><div class="line">     * <span class="doctag">@see</span> #finalize()</div><div class="line">     * <span class="doctag">@see</span> Component#getGraphics()</div><div class="line">     * <span class="doctag">@see</span> Component#paint(Graphics)</div><div class="line">     * <span class="doctag">@see</span> Component#update(Graphics)</div><div class="line">     * <span class="doctag">@since</span> 1.0</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">dispose</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Disposes of this graphics context once it is no longer </div><div class="line">     * referenced.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@see</span> #dispose()</div><div class="line">     * <span class="doctag">@since</span> 1.0</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">finalize</span><span class="params">()</span> </span>&#123;</div><div class="line">        dispose();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="编程实践"><a href="#编程实践" class="headerlink" title="编程实践"></a>编程实践</h1><ul>
+<li>switch, default不能省略。</li>
+<li>静态成员：使用类进行调用</li>
+<li>@Override：能用则用</li>
+<li>Finalizers: 禁用</li>
+</ul>
+<p>参考<a href="http://www.hawstein.com/posts/google-java-style.html" target="_blank" rel="external">Google Java编程风格指南</a>。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag">#java</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/02/09/Java_awt的review/" rel="next" title="Java awt的review以及netbean打包jar包">
+                <i class="fa fa-chevron-left"></i> Java awt的review以及netbean打包jar包
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/03/05/Java_JUnit(1)/" rel="prev" title="JUnit_单元测试之道">
+                JUnit_单元测试之道 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/plusaber.jpg"
+               alt="Plusaber" />
+          <p class="site-author-name" itemprop="name">Plusaber</p>
+          <p class="site-description motion-element" itemprop="description">Plusaber's Blog</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">325</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://leetcode.com/problemset/algorithms/" title="Leetcode" target="_blank">Leetcode</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.kaggle.com" title="Kaggle" target="_blank">Kaggle</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jp.linkedin.com/in/zebangchen" title="LinkedIn" target="_blank">LinkedIn</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://portal.qiniu.com" title="Qiniu" target="_blank">Qiniu</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#import语句"><span class="nav-number">1.</span> <span class="nav-text">import语句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#声明"><span class="nav-number">2.</span> <span class="nav-text">声明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#类声明"><span class="nav-number">2.1.</span> <span class="nav-text">类声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量声明"><span class="nav-number">2.2.</span> <span class="nav-text">变量声明</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#命名约定"><span class="nav-number">3.</span> <span class="nav-text">命名约定</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#约定"><span class="nav-number">3.1.</span> <span class="nav-text">约定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CamelCase"><span class="nav-number">3.2.</span> <span class="nav-text">CamelCase</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#格式"><span class="nav-number">4.</span> <span class="nav-text">格式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#大括号"><span class="nav-number">4.1.</span> <span class="nav-text">大括号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空白"><span class="nav-number">4.2.</span> <span class="nav-text">空白</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#垂直空白"><span class="nav-number">4.2.1.</span> <span class="nav-text">垂直空白</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#水平空白"><span class="nav-number">4.3.</span> <span class="nav-text">水平空白</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用小括号来指定逻辑组：推荐"><span class="nav-number">4.4.</span> <span class="nav-text">用小括号来指定逻辑组：推荐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动换行"><span class="nav-number">4.5.</span> <span class="nav-text">自动换行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注释"><span class="nav-number">4.6.</span> <span class="nav-text">注释</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaDoc"><span class="nav-number">5.</span> <span class="nav-text">JavaDoc</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#描述部分-Description"><span class="nav-number">5.1.</span> <span class="nav-text">描述部分(Description)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标记部分-Tag"><span class="nav-number">5.2.</span> <span class="nav-text">标记部分(Tag)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编程实践"><span class="nav-number">6.</span> <span class="nav-text">编程实践</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Plusaber</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'plusaber';
+      var disqus_identifier = '2015/02/26/Java_编程风格/';
+      var disqus_title = "Java编程风格";
+      var disqus_url = 'http://yoursite.com/2015/02/26/Java_编程风格/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

@@ -1,0 +1,748 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="google88d81a02a91db82f" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="design pattern," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="参考《重构–改善既有代码的设计》(《Refactoring–Improving the Design of Existing Code》).
+重构(Refactoring)所谓重构是这样一个过程：在不改变代码外在行为的前提下，对代码做出修改，以改进程序的内部结构。本质上说，重构就是在代码写好之后改进它的设计。
+『在代码写好后改进它的设计』，似乎不是合理的方式，按照目前对软件开发的理解，我们要相信先">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Some principles">
+<meta property="og:url" content="http://yoursite.com/2015/01/17/Refactoring_Some principles/index.html">
+<meta property="og:site_name" content="Plusaber's Blog">
+<meta property="og:description" content="参考《重构–改善既有代码的设计》(《Refactoring–Improving the Design of Existing Code》).
+重构(Refactoring)所谓重构是这样一个过程：在不改变代码外在行为的前提下，对代码做出修改，以改进程序的内部结构。本质上说，重构就是在代码写好之后改进它的设计。
+『在代码写好后改进它的设计』，似乎不是合理的方式，按照目前对软件开发的理解，我们要相信先">
+<meta property="og:updated_time" content="2016-04-30T06:34:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Some principles">
+<meta name="twitter:description" content="参考《重构–改善既有代码的设计》(《Refactoring–Improving the Design of Existing Code》).
+重构(Refactoring)所谓重构是这样一个过程：在不改变代码外在行为的前提下，对代码做出修改，以改进程序的内部结构。本质上说，重构就是在代码写好之后改进它的设计。
+『在代码写好后改进它的设计』，似乎不是合理的方式，按照目前对软件开发的理解，我们要相信先">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/01/17/Refactoring_Some principles/"/>
+
+
+  <title> Some principles | Plusaber's Blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-79158075-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Plusaber's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Some principles
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-01-17T00:00:00+09:00" content="2015-01-17">
+              2015-01-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Refactoring/" itemprop="url" rel="index">
+                    <span itemprop="name">Refactoring</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/01/17/Refactoring_Some principles/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/01/17/Refactoring_Some principles/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>参考《重构–改善既有代码的设计》(《Refactoring–Improving the Design of Existing Code》).</p>
+<h1 id="重构-Refactoring"><a href="#重构-Refactoring" class="headerlink" title="重构(Refactoring)"></a>重构(Refactoring)</h1><p>所谓重构是这样一个过程：在不改变代码外在行为的前提下，对代码做出修改，以改进程序的内部结构。本质上说，重构就是在代码写好之后改进它的设计。</p>
+<p>『在代码写好后改进它的设计』，似乎不是合理的方式，按照目前对软件开发的理解，我们要相信先设计再编码。但是在开始是很难完全预测后面可能会出现的变更，在设计前期使用模式常常导致过度工程(over-engineering)，随着时间流逝，人们不断修改代码，则会导致系统原来的设计不可避免的混乱。</p>
+<p>重构则与此相反。即使目前是一堆混乱的代码，我们也可以借由重构将其加工成设计良好的代码。<strong>重构的目的是使软件更容易被理解和修改。</strong></p>
+<p>重构定义：</p>
+<ul>
+<li>名词：对软件内部结构的一种调整，目的是在不改变软件可观察行为的前提下，提高其可理解性，降低其修改成本。</li>
+<li>动词：使用一系列重构手法，在不改变软件可观察行为的前提下，调整其结构。</li>
+</ul>
+<p>使用重构技术开发软件时，你应该把时间分配给两种截然不同的行为：添加新功能，以及重构。添加新功能时，你不应该修改既有代码，只管添加新功能，通过测试。重构时就不能同时添加新功能。</p>
+<h1 id="Why-refactoring"><a href="#Why-refactoring" class="headerlink" title="Why refactoring"></a>Why refactoring</h1><ul>
+<li><p>重构改进软件设计<br>如果没有重构，程序的设计会逐渐腐败变质。</p>
+</li>
+<li><p>重构是代码更容易理解<br>所谓程序设计，很大程度上就是与计算机交谈。很多时候我们需要补上或修改想要它做什么。而这种编程模式的核心就是『准确说出我想要的』，让代码更易读。</p>
+</li>
+<li><p>重构帮助找到bug</p>
+</li>
+<li>重构提高编程速度</li>
+</ul>
+<p>系统当下的行为，只是故事的一部分。如果只是为今天工作，明天可能无法继续下去。重构是一条摆脱困境的道路。</p>
+<p>下面的程序将会使改动困难重重，导致代码僵化并死亡：</p>
+<ul>
+<li>难以阅读的程序，难以修改</li>
+<li>逻辑重复的程序，难以修改</li>
+<li>添加新行为时需要修改已有代码的程序，难以修改</li>
+<li>带复杂条件逻辑的程序，难以修改</li>
+</ul>
+<p>我们希望程序：（1）容易阅读  （2）所有逻辑都只在唯一的位置指定，没有重复  （3）新的改动不会危及现有行为   （4）尽可能简单表达条件逻辑、</p>
+<p>重构可以帮助我们在不改变程序行为的前期下使其具有上述美好性质，使我们更能够继续保持高速开发。</p>
+<h1 id="When-refactoring"><a href="#When-refactoring" class="headerlink" title="When refactoring"></a>When refactoring</h1><p>第一次做某件事尽管去做；第二次做类似的事如果产生反感，但还是可以去做；第三次再做类似的事，你就应该重构，</p>
+<ul>
+<li><p>添加功能时重构<br>如果不能轻松天骄所需要的新功能</p>
+</li>
+<li><p>修补错误时重构<br>如果难以找出程序的bug。</p>
+</li>
+<li><p>复审代码时重构</p>
+</li>
+</ul>
+<h1 id="Refactoring-and-Design"><a href="#Refactoring-and-Design" class="headerlink" title="Refactoring and Design"></a>Refactoring and Design</h1><p>重构肩负一项特殊使命：它和设计彼此互补。如果没有重构，你就必须保证预先做出的设计正确无误，但这个难度太大了，过度的预先设计往往反而会导致程序的难以编写。如果选择重构，问题的重点就转变了。你仍然可以预先设计，但是不必找到正确的解决方案（事实上也是不可能的），而是一个足够合理的解决方案就够了。</p>
+<p>预先设计往往要预测后面可能的变化，力求得到灵活的解决方案。但是很难预测所有的变化，变化其实可能出现系统各处，如果在所有可能出现变化的地方都建立起灵活性，则往往需要建立许多中间层，反而使系统复杂且难以理解和维护。如果最后发现所有这些灵活性其实毫无必要，才是最大的失败。</p>
+<p>重构可以带来更简单的设计，同时不损失灵活性，这也降低了设计过程的难度，减轻设计压力。</p>
+<h1 id="Some-pricinples"><a href="#Some-pricinples" class="headerlink" title="Some pricinples:"></a>Some pricinples:</h1><ul>
+<li>如果你发现自己需要为程序添加一个特性，而代码结构使你无法很方便地达成目的，那就先重构哪个程序，是特性的添加比较容易进行，然后在添加特性。</li>
+<li>重构的第一步：建立一组可靠的测试机制，这些测试必须有自我校验能力。</li>
+<li>好的代码应该清楚表达出自己的功能，变量名称是代码清晰的关键。</li>
+<li>尽量不要使用临时变量，它们会导致大量参数传来传去，难以追踪，导致冗长的函数。</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/design-pattern/" rel="tag">#design pattern</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/01/05/Java_Log4j/" rel="next" title="Log4j 2基本使用">
+                <i class="fa fa-chevron-left"></i> Log4j 2基本使用
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/02/02/Java_时间格式化/" rel="prev" title="Java中的时间格式化">
+                Java中的时间格式化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/plusaber.jpg"
+               alt="Plusaber" />
+          <p class="site-author-name" itemprop="name">Plusaber</p>
+          <p class="site-description motion-element" itemprop="description">Plusaber's Blog</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">325</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://leetcode.com/problemset/algorithms/" title="Leetcode" target="_blank">Leetcode</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.kaggle.com" title="Kaggle" target="_blank">Kaggle</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jp.linkedin.com/in/zebangchen" title="LinkedIn" target="_blank">LinkedIn</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://portal.qiniu.com" title="Qiniu" target="_blank">Qiniu</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#重构-Refactoring"><span class="nav-number">1.</span> <span class="nav-text">重构(Refactoring)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Why-refactoring"><span class="nav-number">2.</span> <span class="nav-text">Why refactoring</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#When-refactoring"><span class="nav-number">3.</span> <span class="nav-text">When refactoring</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Refactoring-and-Design"><span class="nav-number">4.</span> <span class="nav-text">Refactoring and Design</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Some-pricinples"><span class="nav-number">5.</span> <span class="nav-text">Some pricinples:</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Plusaber</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'plusaber';
+      var disqus_identifier = '2015/01/17/Refactoring_Some principles/';
+      var disqus_title = "Some principles";
+      var disqus_url = 'http://yoursite.com/2015/01/17/Refactoring_Some principles/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

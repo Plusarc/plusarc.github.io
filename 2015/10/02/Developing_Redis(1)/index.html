@@ -1,0 +1,878 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="google88d81a02a91db82f" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="redis," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="IntroductionKey-value数据库Redis是一个key-value数据库，区别与传统的关系型数据库。比如一篇文章在redis存储如下：
+1234# var[&amp;quot;key&amp;quot;] = &amp;quot;value&amp;quot;doc[&amp;quot;title&amp;quot;] = &amp;quot;hello, , world&amp;quot;doc[&amp;quot;author&amp;quot;] = &amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis(1)">
+<meta property="og:url" content="http://yoursite.com/2015/10/02/Developing_Redis(1)/index.html">
+<meta property="og:site_name" content="Plusaber's Blog">
+<meta property="og:description" content="IntroductionKey-value数据库Redis是一个key-value数据库，区别与传统的关系型数据库。比如一篇文章在redis存储如下：
+1234# var[&amp;quot;key&amp;quot;] = &amp;quot;value&amp;quot;doc[&amp;quot;title&amp;quot;] = &amp;quot;hello, , world&amp;quot;doc[&amp;quot;author&amp;quot;] = &amp;">
+<meta property="og:updated_time" content="2016-04-10T12:45:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Redis(1)">
+<meta name="twitter:description" content="IntroductionKey-value数据库Redis是一个key-value数据库，区别与传统的关系型数据库。比如一篇文章在redis存储如下：
+1234# var[&amp;quot;key&amp;quot;] = &amp;quot;value&amp;quot;doc[&amp;quot;title&amp;quot;] = &amp;quot;hello, , world&amp;quot;doc[&amp;quot;author&amp;quot;] = &amp;">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/10/02/Developing_Redis(1)/"/>
+
+
+  <title> Redis(1) | Plusaber's Blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-79158075-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Plusaber's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Redis(1)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-10-02T00:00:00+09:00" content="2015-10-02">
+              2015-10-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Developing/" itemprop="url" rel="index">
+                    <span itemprop="name">Developing</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/10/02/Developing_Redis(1)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/02/Developing_Redis(1)/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><h3 id="Key-value数据库"><a href="#Key-value数据库" class="headerlink" title="Key-value数据库"></a>Key-value数据库</h3><p>Redis是一个key-value数据库，区别与传统的关系型数据库。<br>比如一篇文章在redis存储如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># var[&quot;key&quot;] = &quot;value&quot;</div><div class="line">doc[&quot;title&quot;] = &quot;hello, , world&quot;</div><div class="line">doc[&quot;author&quot;] = &quot;chen&quot;</div><div class="line">doc[&quot;tags&quot;] = [&quot;blog&quot;, &quot;hello&quot;]</div></pre></td></tr></table></figure>
+<ul>
+<li>这样存储也与实际doc结构相一致，更加容易操作，而在mysql存储则需要建立一个表存储doc的基本信息，为了表示tags，需要建立第二表存储tags，还需要第三个表连接doc和tags。</li>
+<li>并且key-value数据库可以随时给doc增加属性，且每篇doc属性可以不同，而mysql中需要预先定义好doc的属性，每篇doc都必须有相同的属性，在属性非常稀疏或者经常需要添加之前无法预定义的属性时，mysql等关系型数据库将难以处理。</li>
+<li>另外当存在海量的docs时，在关系型数据库中将表示为一张巨大的表，会给索引和检索都带来很大的负担，效率会降低，同时单台机器无法存下过大的表，而垂直增加单台机器的性能是一种很不经济的方式，通过水平扩展增加机器数量是一种更好的解决方案，然而mysql传统关系型数据库对于partition的支持是很差的，难以容易scale。而key-value数据库对于水平扩展具有先天的优势，只需将增加机器，然后将单个单个的文档重新划分到这些机器上，非常容易扩展。</li>
+</ul>
+<p>这些都是key-value数据库的优势，在处理互联网上海量但是非结构化的数据具有很大的优势。key-value数据库对于不同应用和需求也有很多种，如MongoDB,Cassandra,Dynamo等。</p>
+<h3 id="内存存储与持久化"><a href="#内存存储与持久化" class="headerlink" title="内存存储与持久化"></a>内存存储与持久化</h3><p>Redis数据库种所有数据都存储在内存种，所以速度非常快，另外redis同时也提供了对持久化的支持，可以将内存的数据异步写到磁盘中。</p>
+<p>另外redis虽然是作为数据库开发的，但是由于其基于内存且提供了很多强大的功能，可以很容易将其用于缓存，队列系统等。</p>
+<h2 id="安装和启动"><a href="#安装和启动" class="headerlink" title="安装和启动"></a>安装和启动</h2><h3 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h3><ul>
+<li>到<a href="http://redis.io/download" target="_blank" rel="external">官网</a>下载当前版本。</li>
+<li>解压并编译</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ tar xzf redis-3.0.7.tar.gz</div><div class="line">$ <span class="built_in">cd</span> redis-3.0.7</div><div class="line">$ make</div></pre></td></tr></table></figure>
+<h3 id="启动redis-server。"><a href="#启动redis-server。" class="headerlink" title="启动redis server。"></a>启动redis server。</h3><p><code>$ src/redis-server</code><br>也可以将<code>redis-server</code>命令直接加入到系统路径里，或者将<code>redis-server</code>复制到<code>/usr/bin/</code>下，这样后面启动redis server就不需要切换到redis目录中。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># /usr/local/redis-3.0.7 redis安装目录</span></div><div class="line">vi ~/.bash_profile <span class="comment">#或者其他系统环境文件</span></div><div class="line"><span class="comment"># 添加:</span></div><div class="line">PATH=<span class="string">"<span class="variable">$PATH</span>"</span>:/usr/<span class="built_in">local</span>/redis-3.0.7/src</div><div class="line"></div><div class="line"><span class="built_in">source</span> ~/.bash_profile</div></pre></td></tr></table></figure>
+<p>redis默认使用6379端口监听，可以通过<code>--port</code>参数设置。</p>
+<p><code>redis-server --port 6000</code></p>
+<p>另外一种方式是使用初始化脚本启动redis。redis目录下utils目录下有一个redis_init_script的默认初始化脚本，我们可以对其修改以满足我们的需要。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/sh</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># Simple Redis init.d script conceived to work on Linux systems</span></div><div class="line"><span class="comment"># as it does use of the /proc filesystem.</span></div><div class="line"></div><div class="line">REDISPORT=6379</div><div class="line">EXEC=/usr/<span class="built_in">local</span>/bin/redis-server</div><div class="line">CLIEXEC=/usr/<span class="built_in">local</span>/bin/redis-cli</div><div class="line"></div><div class="line">PIDFILE=/var/run/redis_<span class="variable">$&#123;REDISPORT&#125;</span>.pid <span class="comment"># pid文件位置</span></div><div class="line">CONF=<span class="string">"/etc/redis/<span class="variable">$&#123;REDISPORT&#125;</span>.conf"</span> <span class="comment"># 即是这个脚本文件文件名，可以复制到不同位置以进行启动，但是/etc/redis/目录下必须要要有一份</span></div><div class="line"><span class="comment"># /var/redis/端口号  持久化文件存放位置</span></div><div class="line"></div><div class="line"><span class="keyword">case</span> <span class="string">"<span class="variable">$1</span>"</span> <span class="keyword">in</span></div><div class="line">    start)</div><div class="line">        <span class="keyword">if</span> [ <span class="_">-f</span> <span class="variable">$PIDFILE</span> ]</div><div class="line">        <span class="keyword">then</span></div><div class="line">                <span class="built_in">echo</span> <span class="string">"<span class="variable">$PIDFILE</span> exists, process is already running or crashed"</span></div><div class="line">        <span class="keyword">else</span></div><div class="line">                <span class="built_in">echo</span> <span class="string">"Starting Redis server..."</span></div><div class="line">                <span class="variable">$EXEC</span> <span class="variable">$CONF</span></div><div class="line">        <span class="keyword">fi</span></div><div class="line">        ;;</div><div class="line">    stop)</div><div class="line">        <span class="keyword">if</span> [ ! <span class="_">-f</span> <span class="variable">$PIDFILE</span> ]</div><div class="line">        <span class="keyword">then</span></div><div class="line">                <span class="built_in">echo</span> <span class="string">"<span class="variable">$PIDFILE</span> does not exist, process is not running"</span></div><div class="line">        <span class="keyword">else</span></div><div class="line">                PID=$(cat <span class="variable">$PIDFILE</span>)</div><div class="line">                <span class="built_in">echo</span> <span class="string">"Stopping ..."</span></div><div class="line">                <span class="variable">$CLIEXEC</span> -p <span class="variable">$REDISPORT</span> shutdown</div><div class="line">                <span class="keyword">while</span> [ -x /proc/<span class="variable">$&#123;PID&#125;</span> ]</div><div class="line">                <span class="keyword">do</span></div><div class="line">                    <span class="built_in">echo</span> <span class="string">"Waiting for Redis to shutdown ..."</span></div><div class="line">                    sleep 1</div><div class="line">                <span class="keyword">done</span></div><div class="line">                <span class="built_in">echo</span> <span class="string">"Redis stopped"</span></div><div class="line">        <span class="keyword">fi</span></div><div class="line">        ;;</div><div class="line">    *)</div><div class="line">        <span class="built_in">echo</span> <span class="string">"Please use start or stop as first argument"</span></div><div class="line">        ;;</div><div class="line"><span class="keyword">esac</span></div></pre></td></tr></table></figure>
+<p>之后可以启动如下：</p>
+<p><code>redis_6000 start # redis_6000 即是上面脚本文件的文件名</code></p>
+<p>另外如果需要更多的配置，如端口号，持久化文件存放地址等，最好的方式是启动时指定配置文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-server /path/to/redis/conf</div></pre></td></tr></table></figure>
+<p>通过启动参数传递同名的配置选项会覆盖配置文件中相应的参数。</p>
+<h3 id="server交互"><a href="#server交互" class="headerlink" title="server交互"></a>server交互</h3><p>之后可以通过命令行终端或者编程语言接口与server交互。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ redis-cli</div><div class="line"><span class="comment"># redis-cli -h 127.0.0.1 -p 6000 如果需要指定服务所在地址和端口</span></div><div class="line"></div><div class="line"><span class="comment"># PING 测试连接是否正常</span></div><div class="line"></div><div class="line">redis&gt; <span class="built_in">set</span> foo bar</div><div class="line">OK</div><div class="line">redis&gt; get foo</div><div class="line"><span class="string">"bar"</span></div></pre></td></tr></table></figure>
+<h3 id="停止redis"><a href="#停止redis" class="headerlink" title="停止redis"></a>停止redis</h3><p><code>redis-cli SHUTDOWN</code></p>
+<h2 id="基本使用（命令行终端）"><a href="#基本使用（命令行终端）" class="headerlink" title="基本使用（命令行终端）"></a>基本使用（命令行终端）</h2><h3 id="redis实例与数据库"><a href="#redis实例与数据库" class="headerlink" title="redis实例与数据库"></a>redis实例与数据库</h3><p>一个redis实例以默认的配置启动后，提供了多个字典（数据库），客户端可以指定将数据存在哪个数据库中。每个数据库使用一个数字来表示(不支持数据库命名，不同数据库没有不同的访问密码，另外数据库并不是完全隔离的，所以redis里的数据库更像是一种命名空间，所以一个redis实例不适合存储不同应用程序的数据)，默认有16个数据库，可以通过配置参数databases来修改。默认会直接进入0号数据库，可以通过SELECT更换数据库。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT 1</div></pre></td></tr></table></figure>
+<h3 id="键操作命令"><a href="#键操作命令" class="headerlink" title="键操作命令"></a>键操作命令</h3><ul>
+<li>获得符合规则的键名列表<br><code>KEYS pattern # 不区分大小写，可以使用正则表达式</code></li>
+</ul>
+<p>一些简单的通配符规则：</p>
+<table>
+<thead>
+<tr>
+<th>sign</th>
+<th>meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>?</td>
+<td>任意一个字符</td>
+</tr>
+<tr>
+<td>？</td>
+<td>任意个字符</td>
+</tr>
+<tr>
+<td>[]</td>
+<td>匹配括号内的任意一个字符，可以使用”-“表示区间，如[a-zA-z]</td>
+</tr>
+<tr>
+<td>\x</td>
+<td>转义通配符</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>判断键是否存在<br><code>EXISTS key</code><br>如果存在则返回整数类型1，否则返回0</p>
+</li>
+<li><p>删除键<br><code>DEL key1 key2 key3 ... # 可以一次删除多个键</code></p>
+</li>
+</ul>
+<p>del命令参数不支持通配符，但是可以结合linux管道和xargs命令实现删除所有符合规则的键，如：<br><code>redis-cli KEYS &quot;*&quot;</code> | xargs redis-cli DEL<br>或者以符合规则的键作为参数：<br>redis-cli DEL `redis-cli’ KEYS “*” ` # 注意这个一个linux嵌入命令，不是单引号。</p>
+<ul>
+<li>获得键值的数据类型<br><code>TYPE key</code><br>返回值可能为string, hash, list, set, zset(有序集合类型)</li>
+</ul>
+<h3 id="基本操作命令"><a href="#基本操作命令" class="headerlink" title="基本操作命令"></a>基本操作命令</h3><ul>
+<li>赋值与取值</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">SET key value</div><div class="line">GET key</div></pre></td></tr></table></figure>
+<ul>
+<li>递增递减数字</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">INCR key <span class="comment"># 必须为整数类型</span></div><div class="line"></div><div class="line">INCRBY key increment</div><div class="line">INCRBY bar 2</div><div class="line"></div><div class="line">DECR key</div><div class="line">DECYBY key decrement</div><div class="line"></div><div class="line">INCRBYFLOAT key increment <span class="comment"># 双精度浮点数增加</span></div></pre></td></tr></table></figure>
+<ul>
+<li>追加</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">SET key hello</div><div class="line">APPEND key <span class="string">" world"</span> <span class="comment"># 如果不存在就相当于SET</span></div></pre></td></tr></table></figure>
+<ul>
+<li>字符串长度</li>
+</ul>
+<p><code>STRLEN key</code></p>
+<ul>
+<li>同时获取/设置多个键值</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">MGET key1 key2 ... </div><div class="line">MSET key1 value1 key2 value2 ...</div></pre></td></tr></table></figure>
+<ul>
+<li>位操作</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">GETBIT key offset <span class="comment"># 可以对字符串操作</span></div><div class="line">SETBIT key offset value</div><div class="line">BITCOUNT key [start] [end] <span class="comment"># 1的个数</span></div><div class="line">BITOP operation destkey key1 key2 ...</div></pre></td></tr></table></figure>
+<h3 id="散列类型"><a href="#散列类型" class="headerlink" title="散列类型"></a>散列类型</h3><p>散列类型适合存储对象，使用对象类别和ID构成键名，使用字段表示对象的属性，而字段值则存储属性值（除了散列类型，redis的其他数据类型同样不支持数据类型嵌套，如集合类型的每个元素都只能是字符串，不能是另一个集合或散列）。</p>
+<ul>
+<li>赋值与取值</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">HSET key field value</div><div class="line">HGET key field</div><div class="line"></div><div class="line">HMSET key field1 value1 field2 value2</div><div class="line">HMGET key field1 field2</div><div class="line">HGETALL key</div><div class="line"></div><div class="line">HSET car price 500</div><div class="line">HSET car name BMW</div></pre></td></tr></table></figure>
+<p>redis中每个键都属于一个明确的数据类型，如通过HSET命令建立的键是散列类型，通过SET命令建立的键是字符串类型等。</p>
+<ul>
+<li>判断字段是否存在</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">HEXISTS key field</div><div class="line"></div><div class="line">HEXISTS car name</div></pre></td></tr></table></figure>
+<ul>
+<li>当字段不存在时赋值</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">HSETNX key field value</div></pre></td></tr></table></figure>
+<ul>
+<li>增减数字</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">HINCRBY key field increment</div><div class="line"></div><div class="line">HINCRBY car price 100 <span class="comment"># 如果键不存在，则会建立</span></div></pre></td></tr></table></figure>
+<ul>
+<li>删除字段</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">HDEL key field1 field2 ...</div></pre></td></tr></table></figure>
+<ul>
+<li>获取字段名或字段值（属性值），字段数量</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">HKEYS key</div><div class="line">HVALS key</div><div class="line">HLEN key</div></pre></td></tr></table></figure>
+<h3 id="列表类型"><a href="#列表类型" class="headerlink" title="列表类型"></a>列表类型</h3><p>列表类型list可以存储一个有序的字符串列表，常用操作是向列表两段添加元素，或者获得列表的一个片段。redis中列表是使用双向链表实现，头尾添加删除很快，注意索引访问速度会比较慢，特别是访问中间的元素。</p>
+<ul>
+<li>向两端加入元素</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">LPUSH key value1 value2 ...</div><div class="line">RPUSH key value1 value2 ...</div><div class="line"></div><div class="line">LPUSH nums 1</div><div class="line">LPUSH nums 2 3</div><div class="line"><span class="comment"># 3 2 1</span></div><div class="line">RPUSH nums 0 -1</div><div class="line"><span class="comment"># 3 2 1 0 -1</span></div></pre></td></tr></table></figure>
+<ul>
+<li>从列表两端弹出元素</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">LPOP key</div><div class="line">RPOP key</div></pre></td></tr></table></figure>
+<ul>
+<li>获取列表中元素的个数</li>
+</ul>
+<p><code>LLEN key # O(1)</code></p>
+<ul>
+<li>获取片段</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">LRANGE key start stop <span class="comment"># first element 0</span></div><div class="line"></div><div class="line">LRANGE nums -2 -1 <span class="comment"># -1, 最右边的第一个元素...</span></div></pre></td></tr></table></figure>
+<ul>
+<li>删除指定值</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">LREM key count value <span class="comment"># 删除列表中前count个值为value的元素</span></div><div class="line"><span class="comment"># count&lt;0从右边开始删除，count=0删除所有</span></div></pre></td></tr></table></figure>
+<h3 id="集合类型"><a href="#集合类型" class="headerlink" title="集合类型"></a>集合类型</h3><p>集合使用hashset实现。</p>
+<ul>
+<li>增加/删除元素</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">SADD key member1 member2 ... <span class="comment"># 返回新增成功的个数</span></div><div class="line">SREM key member1 member2 ... <span class="comment"># 返回删除成功的个数</span></div></pre></td></tr></table></figure>
+<ul>
+<li><p>获得所有元素<br><code>SMEMBERS key</code></p>
+</li>
+<li><p>判断是否存在<br><code>SISMEMBER key member</code></p>
+</li>
+<li><p>集合间运算</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">SDIFF key1 key2 ...</div><div class="line">SINTER key1 key2 ...</div><div class="line">SUNION key1 key2 ...</div><div class="line"></div><div class="line">SDIFFSTORE destination key1 key2...</div><div class="line">SINTERSTORE destination key1 key2... </div><div class="line">SUNIONSTORE destination key1 key2...</div></pre></td></tr></table></figure>
+<ul>
+<li><p>元素个数<br><code>SCARD key</code></p>
+</li>
+<li><p>随机获得集合元素<br><code>SRANDMEMBER key [count]</code></p>
+</li>
+<li><p>随机弹出一个元素<br><code>SPOP key</code></p>
+</li>
+</ul>
+<h3 id="有序集合类型"><a href="#有序集合类型" class="headerlink" title="有序集合类型"></a>有序集合类型</h3><p>sorted set，每个元素具有分数（权值）的set，如果将当分数设为index大小，则可以实现list的功能。</p>
+<ul>
+<li><p>增加元素<br><code>ZADD key score1 member1 score2 ...</code></p>
+</li>
+<li><p>获得元素的分数<br><code>ZSCORE key member</code></p>
+</li>
+<li><p>获得排名在某个范围内的元素列表<br><code>ZRANGE key start stop [WITHSCORES]</code> # 分数从小到大<br><code>Zrevrange key start stop [WITHSCORES]</code> # 分数从大到小</p>
+</li>
+<li><p>获得指定分数范围</p>
+</li>
+</ul>
+<p><code>ZRANGEBYSCORE key min max [WITHSCORES] [LIMIT offset count]</code></p>
+<ul>
+<li>增加某个元素的分数</li>
+</ul>
+<p><code>ZINCRBY key increment member</code></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/redis/" rel="tag">#redis</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/02/Leetcode_First Missing Positive/" rel="next" title="First Missing Positive">
+                <i class="fa fa-chevron-left"></i> First Missing Positive
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/02/Leetcode_Word Ladder II/" rel="prev" title="Word Ladder II">
+                Word Ladder II <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/plusaber.jpg"
+               alt="Plusaber" />
+          <p class="site-author-name" itemprop="name">Plusaber</p>
+          <p class="site-description motion-element" itemprop="description">Plusaber's Blog</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">325</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://leetcode.com/problemset/algorithms/" title="Leetcode" target="_blank">Leetcode</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.kaggle.com" title="Kaggle" target="_blank">Kaggle</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jp.linkedin.com/in/zebangchen" title="LinkedIn" target="_blank">LinkedIn</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://portal.qiniu.com" title="Qiniu" target="_blank">Qiniu</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Key-value数据库"><span class="nav-number">1.1.</span> <span class="nav-text">Key-value数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存存储与持久化"><span class="nav-number">1.2.</span> <span class="nav-text">内存存储与持久化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装和启动"><span class="nav-number">2.</span> <span class="nav-text">安装和启动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Installation"><span class="nav-number">2.1.</span> <span class="nav-text">Installation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动redis-server。"><span class="nav-number">2.2.</span> <span class="nav-text">启动redis server。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#server交互"><span class="nav-number">2.3.</span> <span class="nav-text">server交互</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#停止redis"><span class="nav-number">2.4.</span> <span class="nav-text">停止redis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本使用（命令行终端）"><span class="nav-number">3.</span> <span class="nav-text">基本使用（命令行终端）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#redis实例与数据库"><span class="nav-number">3.1.</span> <span class="nav-text">redis实例与数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#键操作命令"><span class="nav-number">3.2.</span> <span class="nav-text">键操作命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本操作命令"><span class="nav-number">3.3.</span> <span class="nav-text">基本操作命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#散列类型"><span class="nav-number">3.4.</span> <span class="nav-text">散列类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表类型"><span class="nav-number">3.5.</span> <span class="nav-text">列表类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集合类型"><span class="nav-number">3.6.</span> <span class="nav-text">集合类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有序集合类型"><span class="nav-number">3.7.</span> <span class="nav-text">有序集合类型</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Plusaber</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'plusaber';
+      var disqus_identifier = '2015/10/02/Developing_Redis(1)/';
+      var disqus_title = "Redis(1)";
+      var disqus_url = 'http://yoursite.com/2015/10/02/Developing_Redis(1)/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

@@ -1,0 +1,997 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="google88d81a02a91db82f" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="linux," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="IntroductionShell是一个用来与linux，unix系统进行交互的的解释型程序。Shell主要有两种使用方式，一种是直接通过shell terminal输入命令进行交互，一种是写好shell脚本程序，然后批量执行脚本里的命令。
+第一个shell脚本hello.sh：
+12#!/bin/bashecho &quot;hello, world&quot;
+#!指定执行这个脚本的解释器，常用的解释器有sh，b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shell基本使用">
+<meta property="og:url" content="http://yoursite.com/2014/06/02/Developing_Shell/index.html">
+<meta property="og:site_name" content="Plusaber's Blog">
+<meta property="og:description" content="IntroductionShell是一个用来与linux，unix系统进行交互的的解释型程序。Shell主要有两种使用方式，一种是直接通过shell terminal输入命令进行交互，一种是写好shell脚本程序，然后批量执行脚本里的命令。
+第一个shell脚本hello.sh：
+12#!/bin/bashecho &quot;hello, world&quot;
+#!指定执行这个脚本的解释器，常用的解释器有sh，b">
+<meta property="og:updated_time" content="2016-04-09T05:11:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Shell基本使用">
+<meta name="twitter:description" content="IntroductionShell是一个用来与linux，unix系统进行交互的的解释型程序。Shell主要有两种使用方式，一种是直接通过shell terminal输入命令进行交互，一种是写好shell脚本程序，然后批量执行脚本里的命令。
+第一个shell脚本hello.sh：
+12#!/bin/bashecho &quot;hello, world&quot;
+#!指定执行这个脚本的解释器，常用的解释器有sh，b">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2014/06/02/Developing_Shell/"/>
+
+
+  <title> Shell基本使用 | Plusaber's Blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-79158075-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Plusaber's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Shell基本使用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2014-06-02T00:00:00+09:00" content="2014-06-02">
+              2014-06-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Developing/" itemprop="url" rel="index">
+                    <span itemprop="name">Developing</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/06/02/Developing_Shell/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/06/02/Developing_Shell/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Shell是一个用来与linux，unix系统进行交互的的解释型程序。Shell主要有两种使用方式，一种是直接通过shell terminal输入命令进行交互，一种是写好shell脚本程序，然后批量执行脚本里的命令。</p>
+<p>第一个shell脚本hello.sh：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"hello, world"</span></div></pre></td></tr></table></figure>
+<p><code>#!</code>指定执行这个脚本的解释器，常用的解释器有sh，bash。为了执行这个程序我们可以在terminal输入：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">chmod 777 hello.sh  <span class="comment"># 设置执行权限</span></div><div class="line">./hello.sh</div></pre></td></tr></table></figure>
+<p>或者：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh hello.sh</div></pre></td></tr></table></figure>
+<p><code>sh</code>一般是在系统PATH里的，可以直接在terminal中使用该命令，一般PATH包含在<code>/bin, /sbin, /usr/bin, /user/sbin</code>中，如果需要在terminal中直接使用某个命令，我们需要将其可执行程序加入到这些目录中，或者将该可执行程序的路径加入PATH中。</p>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><ul>
+<li><strong>定义和使用变量</strong></li>
+</ul>
+<p>shell不需要声明变量类型，可以直接定义变量或修改变量数据类型，注意定义变量是不要在变量名前<code>$</code>符号。</p>
+<p><code>var=&quot;hello, world&quot;</code></p>
+<p>在使用一个定义过的变量时，只需要在变量名前加<code>$</code>符号，比较好的方式是同时对变量名加上花括号。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="variable">$var</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;var&#125;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>在重新定义变量时，直接像第一次定义变量时定义：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var=<span class="string">"hello, world"</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;var&#125;</span></div><div class="line"></div><div class="line">var=<span class="string">"hello, chen"</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;var&#125;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>通过<code>readonly</code>设置<strong>只读变量</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var=<span class="string">"hello, world"</span></div><div class="line"><span class="built_in">readonly</span> var</div></pre></td></tr></table></figure>
+<ul>
+<li>删除变量(不能删除readonly变量)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">unset</span> var</div></pre></td></tr></table></figure>
+<ul>
+<li>变量类型</li>
+</ul>
+<p>（1）局部变量，当前脚本定义的变量。<br>（2）环境变量，多个不同shell进程可使用的环境变量。<br>（3）shell变量，shell有特殊定义的变量。</p>
+<ul>
+<li>一些shell变量</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>变量</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$0</code></td>
+<td>当前脚本文件名</td>
+</tr>
+<tr>
+<td><code>$n</code></td>
+<td>传递给脚本的第n个参数</td>
+</tr>
+<tr>
+<td><code>$#</code></td>
+<td>参数个数</td>
+</tr>
+<tr>
+<td><code>$*</code></td>
+<td>所有参数，需要注意的是，所有被””包括的将作为单个参数</td>
+</tr>
+<tr>
+<td><code>$@</code></td>
+<td>所有参数，需要注意的是，被””包括的多个元素将作为各个不同参数</td>
+</tr>
+<tr>
+<td><code>$?</code></td>
+<td>上个命令的退出状态，或函数的返回值。</td>
+</tr>
+<tr>
+<td><code>$$</code></td>
+<td>当前shell进程ID</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Shell替换"><a href="#Shell替换" class="headerlink" title="Shell替换"></a>Shell替换</h2><ul>
+<li><strong>变量和字符替换</strong></li>
+</ul>
+<p>字符串中如果包含特殊字符或者变量，shell将会替换这些符号或变量，注意替换转义字符需要加上-e参数。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"></div><div class="line">var=<span class="string">"chen"</span></div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="_">-e</span> <span class="string">"hello, <span class="variable">$var</span> \n"</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"hello, <span class="variable">$var</span> \n"</span></div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hello, chen</div><div class="line">hello, chen \n</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>命令替换</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">processInfo=`ps` # `,not &apos;</div><div class="line"># `commannd`</div><div class="line">echo -e &quot;processes: \n $processInfo&quot;</div></pre></td></tr></table></figure>
+<h2 id="Shell运算"><a href="#Shell运算" class="headerlink" title="Shell运算"></a>Shell运算</h2><p>使用expr表达式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var=`expr 1+0`</div><div class="line"><span class="built_in">echo</span> <span class="string">"result: <span class="variable">$var</span>"</span></div><div class="line"></div><div class="line">a=1</div><div class="line">b=1</div><div class="line">var=`expr <span class="variable">$a</span> + <span class="variable">$b</span>`</div><div class="line"><span class="built_in">echo</span> <span class="string">"result: <span class="variable">$var</span>"</span></div></pre></td></tr></table></figure>
+<ul>
+<li>算术运算符</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>operator</th>
+<th>example expression</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+</td>
+<td><code>`expr $a + $b</code> `</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>`expr $a - $b</code> `</td>
+</tr>
+<tr>
+<td>*</td>
+<td><code>`expr $a * $b</code> `</td>
+</tr>
+<tr>
+<td>/</td>
+<td><code>`expr $a / $b</code> `</td>
+</tr>
+<tr>
+<td>%</td>
+<td><code>`expr $a % $b</code> `</td>
+</tr>
+<tr>
+<td>=</td>
+<td>a=$b</td>
+</tr>
+<tr>
+<td>==</td>
+<td>[$a == $b]</td>
+</tr>
+<tr>
+<td>!=</td>
+<td>[$a != $b]</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>关系运算符</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>operator</th>
+<th>example expression</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-eq</td>
+<td><code>[$a -eq $b]</code></td>
+</tr>
+<tr>
+<td>-ne</td>
+<td><code>[$a -ne $b]</code></td>
+</tr>
+<tr>
+<td>-gt</td>
+<td><code>[$a -gt $b]</code></td>
+</tr>
+<tr>
+<td>-lt</td>
+<td><code>[$a -lt $b]</code></td>
+</tr>
+<tr>
+<td>-ge</td>
+<td><code>[$a -ge $b]</code></td>
+</tr>
+<tr>
+<td>-le</td>
+<td><code>[$a -le $b]</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>逻辑运算符</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>operator</th>
+<th>example expression</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>!</td>
+<td><code>[! false]</code></td>
+</tr>
+<tr>
+<td>-o</td>
+<td><code>[$a -lt 20 -o $b -gt 100 ]</code></td>
+</tr>
+<tr>
+<td>-a</td>
+<td><code>[$a -lt 20 -a $b -gt 100 ]</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>字符串运算符</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>operator</th>
+<th>example expression</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>=</td>
+<td><code>[ $a = $b ]</code></td>
+</tr>
+<tr>
+<td>!=</td>
+<td><code>[ $a != $b ]</code></td>
+</tr>
+<tr>
+<td>-z</td>
+<td>长度是否为0， 为0则返回true，<code>[-z $a]</code></td>
+</tr>
+<tr>
+<td>str</td>
+<td>字符串是否为空，不为空位返回true, <code>[$a]</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>文件测试运算符</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>expression</th>
+<th>meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>是块设备文件?</td>
+<td><code>[ -b $file ]</code></td>
+</tr>
+<tr>
+<td>是字符设备文件?</td>
+<td><code>[ -c $file ]</code></td>
+</tr>
+<tr>
+<td>是目录?</td>
+<td><code>[ -d $file ]</code></td>
+</tr>
+<tr>
+<td>是普通文件?</td>
+<td><code>[ -f $file ]</code></td>
+</tr>
+<tr>
+<td>是否可读</td>
+<td><code>[ -r $file ]</code></td>
+</tr>
+<tr>
+<td>是否可写</td>
+<td><code>[ -w $file ]</code></td>
+</tr>
+<tr>
+<td>是否可执行</td>
+<td><code>[ -x $file ]</code></td>
+</tr>
+<tr>
+<td>是否为空（文件大小是否大于0）</td>
+<td><code>[ -s $file ]</code></td>
+</tr>
+<tr>
+<td>文件（包括目录）是否存在</td>
+<td><code>[ -e $file ]</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>单引号字符串，内容不会被修改。<br>双引号字符串，字符串中可以出现变量和转义字符。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var=<span class="string">"chen"</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;#var&#125;</span> <span class="comment">#获取字符串长度</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;var:1:3&#125;</span> <span class="comment">#获取字字符串</span></div><div class="line"><span class="built_in">echo</span> `expr index <span class="string">"<span class="variable">$var</span>"</span> he`</div><div class="line"></div><div class="line"><span class="built_in">printf</span> <span class="string">"%d %s\n"</span> 1 <span class="string">"abc"</span></div><div class="line"><span class="built_in">printf</span> %s abc def <span class="comment"># 可以没有引号，可以超出参数（重复调用）</span></div></pre></td></tr></table></figure>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><ul>
+<li>定义数组</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">first_array=(value0 value1 ...) <span class="comment">#元素用空格分开</span></div><div class="line"></div><div class="line">second_array[0]=value0 <span class="comment"># 第二种方式定义</span></div><div class="line">second_array[1]=value1</div></pre></td></tr></table></figure>
+<ul>
+<li>操作数组</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$&#123;array_name[index]&#125;</span> <span class="comment"># 一般格式</span></div><div class="line">value=<span class="variable">$&#123;array_name[2]&#125;</span></div><div class="line"></div><div class="line"><span class="variable">$&#123;array_name[*]&#125;</span>  <span class="comment"># 获取所有元素</span></div><div class="line"><span class="variable">$&#123;array_name[@]&#125;</span>  <span class="comment"># 获取所有元素</span></div><div class="line"></div><div class="line">length=<span class="variable">$&#123;#array_name[@]&#125;</span> <span class="comment"># 获取数组元素个数</span></div><div class="line">length=<span class="variable">$&#123;#array_name[*]&#125;</span> <span class="comment"># 获取数组元素个数</span></div><div class="line"></div><div class="line">length=<span class="variable">$&#123;#array_name[n]&#125;</span> <span class="comment"># 获取数组当个元素长度</span></div></pre></td></tr></table></figure>
+<h2 id="if-else"><a href="#if-else" class="headerlink" title="if else"></a>if else</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>[ expression ]</div><div class="line"><span class="keyword">then</span></div><div class="line">	...</div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ expression ]</div><div class="line"><span class="keyword">then</span></div><div class="line">	...</div><div class="line"><span class="keyword">else</span> </div><div class="line">	...</div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ expression ]</div><div class="line"><span class="keyword">then</span></div><div class="line">	...</div><div class="line"><span class="keyword">elif</span> [ expression ]</div><div class="line"><span class="keyword">then</span></div><div class="line">	...</div><div class="line"><span class="keyword">elif</span> <span class="built_in">test</span> expression <span class="comment"># test 命令用于检查某个条件是否成立，与方括号([ ])类似。</span></div><div class="line">	...</div><div class="line"><span class="keyword">else</span></div><div class="line">	...</div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
+<h2 id="case-esac"><a href="#case-esac" class="headerlink" title="case esac"></a>case esac</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">case</span> <span class="variable">$var</span> <span class="keyword">in</span></div><div class="line">mode1)</div><div class="line">	...</div><div class="line">	;;</div><div class="line">mode2)</div><div class="line">	...</div><div class="line">	;;</div><div class="line">*)</div><div class="line">	...</div><div class="line">	;;</div><div class="line"><span class="keyword">esac</span></div></pre></td></tr></table></figure>
+<h2 id="for"><a href="#for" class="headerlink" title="for"></a>for</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> varible <span class="keyword">in</span> list <span class="keyword">do</span></div><div class="line">	...</div><div class="line"><span class="keyword">done</span></div><div class="line"></div><div class="line">\<span class="comment"># 列表是一组值（数字、字符串等）组成的序列，每个值通过空格分隔。每循环一次，就将列表中的下一个值赋给变量。</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> 1 2 3</div><div class="line"><span class="keyword">do</span> </div><div class="line">	<span class="built_in">echo</span> <span class="string">"value: <span class="variable">$i</span>"</span></div><div class="line"><span class="keyword">done</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> char <span class="keyword">in</span> <span class="string">"this"</span></div><div class="line"><span class="keyword">do</span> </div><div class="line">	<span class="built_in">echo</span> <span class="variable">$char</span></div><div class="line"><span class="keyword">done</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">for</span> file <span class="keyword">in</span> <span class="variable">$HOME</span>/.bash*</div><div class="line"><span class="keyword">do</span></div><div class="line">	<span class="built_in">echo</span> <span class="variable">$file</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
+<h2 id="while"><a href="#while" class="headerlink" title="while"></a>while</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">COUNTER=0</div><div class="line"><span class="keyword">while</span> [ <span class="variable">$COUNTER</span> <span class="_">-lt</span> 5 ]</div><div class="line"><span class="keyword">do</span></div><div class="line">    COUNTER=<span class="string">'expr $COUNTER+1'</span></div><div class="line">    <span class="built_in">echo</span> <span class="variable">$COUNTER</span></div><div class="line"><span class="keyword">done</span></div><div class="line"></div><div class="line">\<span class="comment">#　while循环可用于读取键盘信息。下面的例子中，输入信息被设置为变量FILM，按&lt;Ctrl-D&gt;结束循环。</span></div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="string">'type &lt;CTRL-D&gt; to terminate'</span></div><div class="line"><span class="built_in">echo</span> -n <span class="string">'enter your most liked film: '</span></div><div class="line"><span class="keyword">while</span> <span class="built_in">read</span> FILM</div><div class="line"><span class="keyword">do</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">"Yeah! great film the <span class="variable">$FILM</span>"</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
+<h2 id="break-continue"><a href="#break-continue" class="headerlink" title="break, continue"></a>break, continue</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">break</span></div><div class="line"><span class="built_in">break</span> n</div><div class="line"><span class="built_in">continue</span></div><div class="line"><span class="built_in">continue</span> n</div></pre></td></tr></table></figure>
+<h2 id="function"><a href="#function" class="headerlink" title="function"></a>function</h2><ul>
+<li>定义</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">function_name</span></span> () &#123;</div><div class="line">    list of commands</div><div class="line">    [ <span class="built_in">return</span> value ]</div><div class="line">&#125;</div><div class="line"></div><div class="line">function_name <span class="comment"># 执行函数，不需要括号</span></div><div class="line"></div><div class="line"><span class="built_in">unset</span> function_name</div></pre></td></tr></table></figure>
+<p>Shell 函数返回值只能是整数，一般用来表示函数执行成功与否，0表示成功，其他值表示失败。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="function"><span class="title">funWithParam</span></span>()&#123;</div><div class="line">    <span class="built_in">echo</span> <span class="string">"The value of the first parameter is <span class="variable">$1</span> !"</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">"The value of the second parameter is <span class="variable">$2</span> !"</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">"The value of the tenth parameter is <span class="variable">$10</span> !"</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">"The value of the tenth parameter is <span class="variable">$&#123;10&#125;</span> !"</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">"The value of the eleventh parameter is <span class="variable">$&#123;11&#125;</span> !"</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">"The amount of the parameters is <span class="variable">$#</span> !"</span>  <span class="comment"># 参数个数</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">"The string of the parameters is $* !"</span>  <span class="comment"># 传递给函数的所有参数</span></div><div class="line">&#125;</div><div class="line">funWithParam 1 2 3 4 5 6 7 8 9 34 73</div></pre></td></tr></table></figure>
+<p>在Shell中，调用函数时可以向其传递参数。在函数体内部，通过 $n 的形式来获取参数的值，例如，$1表示第一个参数，$2表示第二个参数…注意，$10 不能获取第十个参数，获取第十个参数需要${10}。当n&gt;=10时，需要使用${n}来获取参数。</p>
+<h2 id="dict"><a href="#dict" class="headerlink" title="dict"></a>dict</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">declare</span> -A dict</div><div class="line">mkdir res</div><div class="line"></div><div class="line">dic=([65222]=2 [14280907]=3 [15817900]=2 [16966544]=3)</div><div class="line"></div><div class="line"><span class="keyword">for</span> session_id <span class="keyword">in</span> <span class="variable">$&#123;!dic[*]&#125;</span></div><div class="line"><span class="keyword">do</span></div><div class="line">	<span class="built_in">echo</span> <span class="variable">$&#123;dic[$session_id]&#125;</span></div><div class="line">	<span class="keyword">for</span>((i=1;i&lt;=<span class="variable">$&#123;dic[$session_id]&#125;</span>;i++))</div><div class="line">	<span class="keyword">do</span> </div><div class="line">		java -cp <span class="string">"./bin:./lib/*"</span> <span class="built_in">test</span>Program <span class="variable">$session_id</span> <span class="variable">$i</span> 1 cla gm</div><div class="line">	<span class="keyword">done</span></div><div class="line">	mv logs res/<span class="variable">$session_id</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
+<h2 id="Shell输入输出重定向"><a href="#Shell输入输出重定向" class="headerlink" title="Shell输入输出重定向"></a>Shell输入输出重定向</h2><h2 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h2><p>参考<a href="http://c.biancheng.net/cpp/view/2740.html" target="_blank" rel="external">Shell教程</a>，<a href="http://c.biancheng.net/cpp/html/2726.html" target="_blank" rel="external">Linux教程</a>。</p>
+<h2 id="example"><a href="#example" class="headerlink" title="example"></a>example</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"></div><div class="line">start=$(date +%s)  </div><div class="line"></div><div class="line">i=0</div><div class="line">j=0</div><div class="line">processedFileList=()</div><div class="line">sameFileList=()</div><div class="line">sameFile=<span class="string">''</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> fileA <span class="keyword">in</span> /usr/lib/*.*</div><div class="line"><span class="keyword">do</span></div><div class="line">	processedSign=<span class="literal">false</span></div><div class="line">	<span class="keyword">for</span> element <span class="keyword">in</span> <span class="variable">$&#123;processedFileList[*]&#125;</span></div><div class="line">	<span class="keyword">do</span></div><div class="line">		<span class="keyword">if</span> [ <span class="variable">$element</span> = <span class="variable">$fileA</span> ]</div><div class="line">		<span class="keyword">then</span></div><div class="line">			processedSign=<span class="literal">true</span></div><div class="line">			<span class="built_in">break</span></div><div class="line">		<span class="keyword">fi</span></div><div class="line">	<span class="keyword">done</span>	</div><div class="line"></div><div class="line">	<span class="keyword">if</span> [ <span class="variable">$processedSign</span> = <span class="literal">false</span> ]</div><div class="line">	<span class="keyword">then</span></div><div class="line">		sameFile=<span class="string">''</span> </div><div class="line">		processedFileList[i]=<span class="variable">$fileA</span></div><div class="line">		sameFile+=<span class="variable">$fileA</span></div><div class="line">		sameFile+=<span class="string">'    '</span></div><div class="line">		i=$[<span class="variable">$i</span>+1]		</div><div class="line">		<span class="keyword">for</span> fileB <span class="keyword">in</span> /usr/lib/*.*</div><div class="line">		<span class="keyword">do</span></div><div class="line">			<span class="keyword">if</span> [ <span class="variable">$fileA</span> != <span class="variable">$fileB</span> ]</div><div class="line">			<span class="keyword">then</span></div><div class="line">				<span class="keyword">if</span> diff -q <span class="variable">$fileA</span> <span class="variable">$fileB</span>;</div><div class="line">				<span class="keyword">then</span></div><div class="line">					processedFileList[i]=<span class="variable">$fileB</span></div><div class="line">					sameFile+=<span class="variable">$fileB</span></div><div class="line">					sameFile+=<span class="string">'    '</span></div><div class="line">					i=$[<span class="variable">$i</span>+1]</div><div class="line">				<span class="keyword">fi</span></div><div class="line">			<span class="keyword">fi</span></div><div class="line">		<span class="keyword">done</span></div><div class="line">	sameFileList[j]=<span class="variable">$sameFile</span></div><div class="line">	j=$[<span class="variable">$j</span>+1]</div><div class="line">        <span class="keyword">fi</span>			</div><div class="line"><span class="keyword">done</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">for</span>((i=0;i&lt;<span class="variable">$&#123;#sameFileList[@]&#125;</span>;i++))</div><div class="line"><span class="keyword">do</span> </div><div class="line">	<span class="built_in">echo</span> <span class="variable">$&#123;sameFileList[i]&#125;</span></div><div class="line"><span class="keyword">done</span></div><div class="line"></div><div class="line">end=$(date +%s)</div><div class="line">runningTime=$(( end - start))</div><div class="line"><span class="built_in">echo</span> <span class="string">"The running time is <span class="variable">$runningTime</span>"</span></div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag">#linux</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/05/10/Design Pattern_Principal/" rel="next" title="架构中的设计原则">
+                <i class="fa fa-chevron-left"></i> 架构中的设计原则
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/06/05/Developing_Linux常用命令/" rel="prev" title="Linux常用命令">
+                Linux常用命令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/plusaber.jpg"
+               alt="Plusaber" />
+          <p class="site-author-name" itemprop="name">Plusaber</p>
+          <p class="site-description motion-element" itemprop="description">Plusaber's Blog</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">325</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://leetcode.com/problemset/algorithms/" title="Leetcode" target="_blank">Leetcode</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.kaggle.com" title="Kaggle" target="_blank">Kaggle</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jp.linkedin.com/in/zebangchen" title="LinkedIn" target="_blank">LinkedIn</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://portal.qiniu.com" title="Qiniu" target="_blank">Qiniu</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">2.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shell替换"><span class="nav-number">3.</span> <span class="nav-text">Shell替换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shell运算"><span class="nav-number">4.</span> <span class="nav-text">Shell运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">5.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">6.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#if-else"><span class="nav-number">7.</span> <span class="nav-text">if else</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#case-esac"><span class="nav-number">8.</span> <span class="nav-text">case esac</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#for"><span class="nav-number">9.</span> <span class="nav-text">for</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#while"><span class="nav-number">10.</span> <span class="nav-text">while</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#break-continue"><span class="nav-number">11.</span> <span class="nav-text">break, continue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#function"><span class="nav-number">12.</span> <span class="nav-text">function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dict"><span class="nav-number">13.</span> <span class="nav-text">dict</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shell输入输出重定向"><span class="nav-number">14.</span> <span class="nav-text">Shell输入输出重定向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件包含"><span class="nav-number">15.</span> <span class="nav-text">文件包含</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#example"><span class="nav-number">16.</span> <span class="nav-text">example</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Plusaber</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'plusaber';
+      var disqus_identifier = '2014/06/02/Developing_Shell/';
+      var disqus_title = "Shell基本使用";
+      var disqus_url = 'http://yoursite.com/2014/06/02/Developing_Shell/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

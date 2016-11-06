@@ -1,0 +1,840 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="google88d81a02a91db82f" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="检索EvaluationEvaluation Criteria of Unranked Retrieval
+
+
+-
+Retrieved
+Not-retrieved
+
+
+
+
+relevante
+TP(true positive)
+FN(false negative)
+
+
+Non-relevant
+FP(false positive)
+TN(true negative)
+
+
+
+Precision AN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="检索&聚类评价">
+<meta property="og:url" content="http://yoursite.com/2015/10/08/Research_检索&聚类评价/index.html">
+<meta property="og:site_name" content="Plusaber's Blog">
+<meta property="og:description" content="检索EvaluationEvaluation Criteria of Unranked Retrieval
+
+
+-
+Retrieved
+Not-retrieved
+
+
+
+
+relevante
+TP(true positive)
+FN(false negative)
+
+
+Non-relevant
+FP(false positive)
+TN(true negative)
+
+
+
+Precision AN">
+<meta property="og:updated_time" content="2016-04-30T06:33:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="检索&聚类评价">
+<meta name="twitter:description" content="检索EvaluationEvaluation Criteria of Unranked Retrieval
+
+
+-
+Retrieved
+Not-retrieved
+
+
+
+
+relevante
+TP(true positive)
+FN(false negative)
+
+
+Non-relevant
+FP(false positive)
+TN(true negative)
+
+
+
+Precision AN">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/10/08/Research_检索&聚类评价/"/>
+
+
+  <title> 检索&聚类评价 | Plusaber's Blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-79158075-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Plusaber's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                检索&聚类评价
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-10-08T00:00:00+09:00" content="2015-10-08">
+              2015-10-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/research/" itemprop="url" rel="index">
+                    <span itemprop="name">research</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/10/08/Research_检索&聚类评价/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/08/Research_检索&聚类评价/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="检索Evaluation"><a href="#检索Evaluation" class="headerlink" title="检索Evaluation"></a>检索Evaluation</h1><h2 id="Evaluation-Criteria-of-Unranked-Retrieval"><a href="#Evaluation-Criteria-of-Unranked-Retrieval" class="headerlink" title="Evaluation Criteria of Unranked Retrieval"></a>Evaluation Criteria of Unranked Retrieval</h2><table>
+<thead>
+<tr>
+<th>-</th>
+<th>Retrieved</th>
+<th>Not-retrieved</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>relevante</td>
+<td>TP(true positive)</td>
+<td>FN(false negative)</td>
+</tr>
+<tr>
+<td>Non-relevant</td>
+<td>FP(false positive)</td>
+<td>TN(true negative)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Precision-AND-Recall"><a href="#Precision-AND-Recall" class="headerlink" title="Precision AND Recall"></a><a href="https://en.wikipedia.org/wiki/Precision_and_recall" target="_blank" rel="external">Precision AND Recall</a></h3><p>$$<br>precision = \frac{TP}{TP+FP}<br>$$</p>
+<p>$$<br>recall = \frac{TP}{TP+FN}<br>$$</p>
+<h3 id="Precision-Recall-Curve"><a href="#Precision-Recall-Curve" class="headerlink" title="Precision-Recall Curve"></a>Precision-Recall Curve</h3><p>通常precision和recall是呈一种负相关的关系，recall越高，precision越低。precision-recall curve以recall为横坐标，以precision为纵坐标，表示precision-recall变化关系。</p>
+<h3 id="F-Score"><a href="#F-Score" class="headerlink" title="F-Score"></a><a href="https://en.wikipedia.org/wiki/F1_score" target="_blank" rel="external">F-Score</a></h3><p>组合precision和recall的评价参数。</p>
+<p>$$<br>F = \frac{1}{\alpha\frac 1P + (1-\alpha)\frac 1R} = \frac{(\beta^{2}+1)PR}{\beta^2P+R}<br>$$</p>
+<p>通常我们取$\beta=1,2,3..=，1$，也就是$\alpha=0.5$，也就是harmonic mean，也写作$F_1$，当取$\beta=1,2,3..$，也就得到$F_1, F_2, F_3..$：</p>
+<p>$$<br>F_1 = \frac{2}{\frac 1P + \frac 1R}=\frac{2PR}{R+P}<br>$$</p>
+<h2 id="Precision-for-Rankded-retrieval"><a href="#Precision-for-Rankded-retrieval" class="headerlink" title="Precision for Rankded retrieval"></a>Precision for Rankded retrieval</h2><h3 id="P-k-AND-R-k"><a href="#P-k-AND-R-k" class="headerlink" title="P@k AND R@k"></a>P@k AND R@k</h3><p>用于表示在top k结果中的precision和Recall，如P@10，表示top 10结果的precision。</p>
+<h3 id="MRR"><a href="#MRR" class="headerlink" title="MRR"></a>MRR</h3><p>也就是Mean reciprocal rank，reciprocal rank表示对于一个query第一个正确结果排名位置的倒数值，也就是$RR=\frac {1}{rank}$。MRR表示多个query的RR的平均值：</p>
+<p>$$<br>MRR=\frac{1}{|Q|}\sum^{|Q|}_{i=1}\frac {1}{rank_i}<br>$$</p>
+<p>维基百科给出了一个很好的例子：</p>
+<table>
+<thead>
+<tr>
+<th>query</th>
+<th>results</th>
+<th>correct response</th>
+<th>rank</th>
+<th>reciprocal rank</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cat</td>
+<td>cattern,cati,cats</td>
+<td>cats</td>
+<td>3</td>
+<td>1/3</td>
+</tr>
+<tr>
+<td>torus</td>
+<td>toril,tori,toruses</td>
+<td>tori</td>
+<td>2</td>
+<td>1/2</td>
+</tr>
+<tr>
+<td>virus</td>
+<td>viruses,virii,viri</td>
+<td>viruses</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>$MRR=\frac {(\frac 13 + \frac 12 + 1)}{3}=0.61$</p>
+<h3 id="MAP"><a href="#MAP" class="headerlink" title="MAP"></a>MAP</h3><p>Mean average precision，上面的MRR适合只考虑第一个正确结果检索性能使用，如果有多个正确结果且都要考虑，则应该使用MAP。</p>
+<p>假设query q有m个correct document(or query suggestion etc.).</p>
+<p>$$<br>AP(q)=\frac 1m \sum^{i=m}_{i=1}P(RankSet_i)<br>$$</p>
+<p>$RankSet_i$表示document i排序所在的位置及以上的位置所有的document。假设docuement i=3，排在第7的位置，则$RankSet_3$为1-7的documents，$P(RankSet_i)$即是这个set的precision。</p>
+<p>MAP为多个query的AP的mean：</p>
+<p>$$<br>MAP=\frac{1}{|Q|}\sum^{|Q|}_{i=1}{AP(i)}<br>$$</p>
+<h3 id="DCG-and-nDCG"><a href="#DCG-and-nDCG" class="headerlink" title="DCG and nDCG"></a>DCG and nDCG</h3><p>DCG：Discounted cumulative gain<br>nDCG：Normalized Discounted cumulative gain</p>
+<p>给每个文档指定一个得分，我们希望的得分越高的文档排在越前面。<br>假设一个排名是: $G=[5,2,3,0,10,3]$</p>
+<p>cumulativfe gain可以计算如下：</p>
+<p>$$<br>CG[k]=\sum^{k}_{i=1}G[i]<br>$$</p>
+<p>加上一个惩罚系数，排名越后惩罚越多：</p>
+<p>$$<br>DCG[k]=\sum^{k}_{i=1}\frac{G[i]}{log_2(1+i)}<br>$$</p>
+<p>存在理想的排序$G^`=[10,5,3,3,2,0]$，使得DCG的得分最高。</p>
+<p>使用这个最高得分normal实际的排序，得到就是nDCG得分。</p>
+<p>$$<br>nDCG[k]=\frac{DCG[k]}{DCG^`[k]}<br>$$</p>
+<h2 id="Other-Criteria-of-Effective-IR"><a href="#Other-Criteria-of-Effective-IR" class="headerlink" title="Other Criteria of Effective IR"></a>Other Criteria of Effective IR</h2><ul>
+<li>diversity</li>
+<li>credibility</li>
+<li>comprehensibility</li>
+</ul>
+<h1 id="Clustering-Evaluaition"><a href="#Clustering-Evaluaition" class="headerlink" title="Clustering Evaluaition"></a>Clustering Evaluaition</h1><p>参考<a href="http://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-clustering-1.html" target="_blank" rel="external">Evaluation of clustering</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/06/Developing_Redis(2)/" rel="next" title="Redis(2)">
+                <i class="fa fa-chevron-left"></i> Redis(2)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/08/Research_DBpedia Spotlight Introduction and Manual/" rel="prev" title="DBpedia Spotlight">
+                DBpedia Spotlight <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/plusaber.jpg"
+               alt="Plusaber" />
+          <p class="site-author-name" itemprop="name">Plusaber</p>
+          <p class="site-description motion-element" itemprop="description">Plusaber's Blog</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">325</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://leetcode.com/problemset/algorithms/" title="Leetcode" target="_blank">Leetcode</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.kaggle.com" title="Kaggle" target="_blank">Kaggle</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jp.linkedin.com/in/zebangchen" title="LinkedIn" target="_blank">LinkedIn</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://portal.qiniu.com" title="Qiniu" target="_blank">Qiniu</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#检索Evaluation"><span class="nav-number">1.</span> <span class="nav-text">检索Evaluation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Evaluation-Criteria-of-Unranked-Retrieval"><span class="nav-number">1.1.</span> <span class="nav-text">Evaluation Criteria of Unranked Retrieval</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Precision-AND-Recall"><span class="nav-number">1.1.1.</span> <span class="nav-text">Precision AND Recall</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Precision-Recall-Curve"><span class="nav-number">1.1.2.</span> <span class="nav-text">Precision-Recall Curve</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#F-Score"><span class="nav-number">1.1.3.</span> <span class="nav-text">F-Score</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Precision-for-Rankded-retrieval"><span class="nav-number">1.2.</span> <span class="nav-text">Precision for Rankded retrieval</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P-k-AND-R-k"><span class="nav-number">1.2.1.</span> <span class="nav-text">P@k AND R@k</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MRR"><span class="nav-number">1.2.2.</span> <span class="nav-text">MRR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MAP"><span class="nav-number">1.2.3.</span> <span class="nav-text">MAP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DCG-and-nDCG"><span class="nav-number">1.2.4.</span> <span class="nav-text">DCG and nDCG</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Other-Criteria-of-Effective-IR"><span class="nav-number">1.3.</span> <span class="nav-text">Other Criteria of Effective IR</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Clustering-Evaluaition"><span class="nav-number">2.</span> <span class="nav-text">Clustering Evaluaition</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Plusaber</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'plusaber';
+      var disqus_identifier = '2015/10/08/Research_检索&聚类评价/';
+      var disqus_title = "检索&聚类评价";
+      var disqus_url = 'http://yoursite.com/2015/10/08/Research_检索&聚类评价/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

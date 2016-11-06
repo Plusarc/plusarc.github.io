@@ -1,0 +1,876 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="google88d81a02a91db82f" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="stack," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="Basic Calculator II
+Implement a basic calculator to evaluate a simple expression string.
+The expression string contains only non-negative integers, +, -, *, / operators and empty spaces . The integer">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Basic Calculator II">
+<meta property="og:url" content="http://yoursite.com/2015/08/17/Leetcode_Basic Calculator II/index.html">
+<meta property="og:site_name" content="Plusaber's Blog">
+<meta property="og:description" content="Basic Calculator II
+Implement a basic calculator to evaluate a simple expression string.
+The expression string contains only non-negative integers, +, -, *, / operators and empty spaces . The integer">
+<meta property="og:updated_time" content="2016-04-30T06:05:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Basic Calculator II">
+<meta name="twitter:description" content="Basic Calculator II
+Implement a basic calculator to evaluate a simple expression string.
+The expression string contains only non-negative integers, +, -, *, / operators and empty spaces . The integer">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/08/17/Leetcode_Basic Calculator II/"/>
+
+
+  <title> Basic Calculator II | Plusaber's Blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-79158075-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Plusaber's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Basic Calculator II
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-08-17T00:00:00+09:00" content="2015-08-17">
+              2015-08-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/08/17/Leetcode_Basic Calculator II/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/17/Leetcode_Basic Calculator II/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Basic-Calculator-II"><a href="#Basic-Calculator-II" class="headerlink" title="Basic Calculator II"></a><a href="https://leetcode.com/problems/basic-calculator-ii/" target="_blank" rel="external">Basic Calculator II</a></h1><blockquote>
+<p>Implement a basic calculator to evaluate a simple expression string.</p>
+<p>The expression string contains only non-negative integers, +, -, *, / operators and empty spaces . The integer division should truncate toward zero.</p>
+<p>You may assume that the given expression is always valid.</p>
+<p>Some examples</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&quot;3+2*2&quot; = 7</div><div class="line">&quot; 3/2 &quot; = 1</div><div class="line">&quot; 3+5 / 2 &quot; = 5</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>同Basic Calculator， 一个解决 运算式 计算的通用方法是，先将中缀表达式转为后缀表达式(逆波兰式)，然后再求值，下次详细总结一下。</p>
+<p>一个解决 运算式 计算的通用方法是，先将中缀表达式转为后缀表达式(逆波兰式)，然后再求值，下次详细总结一下。</p>
+<p>###参考:<br><a href="http://blog.csdn.net/cheng110110/article/details/6529777" target="_blank" rel="external">支持四则混合运算的计算器</a><br><a href="http://www.iteye.com/topic/1130373" target="_blank" rel="external">逆波兰表达式的栈实现方式</a><br><a href="http://blog.sina.com.cn/s/blog_8e6a519e0101lvnj.html" target="_blank" rel="external">中缀表达式转后缀表达式</a><br><a href="https://zh.wikipedia.org/wiki/逆波兰表示法" target="_blank" rel="external">逆波兰式Wiki</a></p>
+<h3 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h3><ol>
+<li><strong>先求表达式的后缀表达式</strong><br>具体过程为：<br>1) 如果遇到操作数，则直接输出。<br>2) 如果遇到操作符，则检查栈顶元素优先级，如果其优先级不低于当前操作符（左括号除外），则弹出栈顶元素并输出。重复此过程直到栈顶元素优先级小于当前操作符或为左括号，或者栈为空。 然后将当前操作符压入栈中。<br>3）如果遇到左括号，直接压入栈中。<br>4) 如果遇到右括号，则将栈中元素弹出，直到遇到左括号为止。左括号只弹出栈而不输出。<br>5) 表达式处理完毕，则将栈中元素依次弹出。  </li>
+</ol>
+<p><strong>注意只有遇到右括号的情况下才会弹出左括号，其他情况都不会弹出。</strong>  </p>
+<p>例如，上述中缀表达式 a + b <em> c - (d - e) </em> f 的转换过程为：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>res</th>
+<th>栈</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1) 遇到操作数a, 直接输出a</td>
+<td>a</td>
+<td></td>
+</tr>
+<tr>
+<td>2) 遇到操作符+, +压栈</td>
+<td>a</td>
+<td>+</td>
+</tr>
+<tr>
+<td>3) 遇到操作数b, 直接输出b</td>
+<td>ab</td>
+<td>+</td>
+</tr>
+<tr>
+<td>4) 遇到操作符*, 压栈</td>
+<td>ab</td>
+<td>+ *</td>
+</tr>
+<tr>
+<td>5) 遇到操作数c, 直接输出</td>
+<td>abc</td>
+<td>+ *</td>
+</tr>
+<tr>
+<td>6) 遇到操作符-, 栈顶弹出并输出，然后-进栈</td>
+<td>abc*</td>
+<td>+ -</td>
+</tr>
+<tr>
+<td>7）遇到操作符(,直接进栈</td>
+<td>abc*</td>
+<td>+ - (</td>
+</tr>
+<tr>
+<td>8) 遇到操作数d,直接输出</td>
+<td>abc*d</td>
+<td>+ - (</td>
+</tr>
+<tr>
+<td>9) 遇到操作符-，压栈</td>
+<td>abc*d</td>
+<td>+ - ( -</td>
+</tr>
+<tr>
+<td>10) 遇到操作数e，直接输出</td>
+<td>abc*de</td>
+<td>+ - ( -</td>
+</tr>
+<tr>
+<td>11）遇到操作符),(之后全部输出</td>
+<td>abc*de-</td>
+<td>+ -</td>
+</tr>
+<tr>
+<td>12）遇到操作符*,压栈</td>
+<td>abc*de-</td>
+<td>+ - *</td>
+</tr>
+<tr>
+<td>13) 遇到操作数f,输出</td>
+<td>abc*de-f</td>
+<td>+ - *</td>
+</tr>
+<tr>
+<td>14) 处理完毕，全部出栈输出。</td>
+<td>abc<em>de-f</em>-+</td>
+</tr>
+</tbody>
+</table>
+<p>2.<strong>基于后缀表达式求值。</strong>  </p>
+<p>中缀表达式<code>5 + ((1 + 2) * 4) − 3</code>写作<code>5 1 2 + 4 * + 3 −</code>.<br>下表给出了该逆波兰表达式从左至右求值的过程，堆栈栏给出了中间值，用于跟踪算法。</p>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>操作</th>
+<th>堆栈</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5</td>
+<td>入栈</td>
+<td>5</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>入栈</td>
+<td>5, 1</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>入栈</td>
+<td>5, 1, 2</td>
+<td></td>
+</tr>
+<tr>
+<td>+</td>
+<td>加法运算</td>
+<td>5, 3</td>
+<td>(1, 2)出栈；将结果（3）入栈</td>
+</tr>
+<tr>
+<td>4</td>
+<td>入栈</td>
+<td>5, 3, 4</td>
+<td></td>
+</tr>
+<tr>
+<td>*</td>
+<td>乘法运算</td>
+<td>5, 12</td>
+<td>(3, 4)出栈；将结果（12）入栈</td>
+</tr>
+<tr>
+<td>+</td>
+<td>加法运算</td>
+<td>17</td>
+<td>(5, 12)出栈；将结果 (17)入栈</td>
+</tr>
+<tr>
+<td>3</td>
+<td>入栈</td>
+<td>17, 3</td>
+<td></td>
+</tr>
+<tr>
+<td>−</td>
+<td>减法运算</td>
+<td>14</td>
+<td>(17, 3)出栈；将结果（14）入栈</td>
+</tr>
+</tbody>
+</table>
+<p>计算完成时，栈内只有一个操作数，这就是表达式的结果：14</p>
+<p>上述运算可以重写为如下运算链方法（用于HP的逆波兰计算器）：<br>1 2 + 4 * 5 + 3 −</p>
+<h3 id="code思路"><a href="#code思路" class="headerlink" title="code思路"></a>code思路</h3><p>先给出这个问题的accepted实现。主要思路是从右往左扫描，遇到数字则入栈，遇到*，/也入栈，遇到+,-先查前面是否有 乘除表达式，若有则 从栈中不断弹出计算该乘除表达式计算，然后将结果入栈。直到扫描结束。最后栈中留下的之有可能是结果，或纯乘除表达式或纯加减表达式的一种，扫描一遍计算出结果。不算简洁。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">calculate</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">    	<span class="keyword">if</span>(s.length()==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=s.length()-<span class="number">1</span>; i&gt;=<span class="number">0</span>; i--) &#123;</div><div class="line">            <span class="keyword">if</span>(s.charAt(i)==<span class="string">' '</span>) <span class="keyword">continue</span>;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(isNumChar(s.charAt(i))) &#123;</div><div class="line">                <span class="keyword">int</span> num = toNum(s.charAt(i));</div><div class="line">                <span class="keyword">int</span> base = <span class="number">1</span>;</div><div class="line">                <span class="keyword">while</span>((i-<span class="number">1</span>)&gt;=<span class="number">0</span> &amp;&amp; isNumChar(s.charAt(i-<span class="number">1</span>))) &#123;</div><div class="line">                    i--;</div><div class="line">                    base = base * <span class="number">10</span>;</div><div class="line">                    num = num + toNum(s.charAt(i)) * base;</div><div class="line">                &#125;</div><div class="line">                stack.push(num);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s.charAt(i)==<span class="string">'+'</span> || s.charAt(i)==<span class="string">'-'</span>) &#123;</div><div class="line">                <span class="keyword">int</span> sum = stack.pop();</div><div class="line">                <span class="keyword">while</span>(!stack.isEmpty() &amp;&amp; ( (stack.peek()==<span class="string">'*'</span>) || (stack.peek()==<span class="string">'/'</span>) ) ) &#123;</div><div class="line">                    <span class="keyword">int</span> operation = stack.pop();</div><div class="line">                    <span class="keyword">if</span>(operation==<span class="string">'*'</span>) sum = sum * stack.pop();</div><div class="line">                    <span class="keyword">else</span> <span class="keyword">if</span>(operation==<span class="string">'/'</span>) sum = sum / stack.pop();</div><div class="line">                &#125;</div><div class="line">                stack.push(sum);</div><div class="line">                stack.push((<span class="keyword">int</span>)s.charAt(i));</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s.charAt(i)==<span class="string">'*'</span> || s.charAt(i)==<span class="string">'/'</span>) &#123;</div><div class="line">                stack.push((<span class="keyword">int</span>)s.charAt(i));</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> sum = stack.pop();</div><div class="line">        <span class="keyword">while</span>(!stack.isEmpty()) &#123;</div><div class="line">            <span class="keyword">int</span> operation = stack.pop();</div><div class="line">            <span class="keyword">if</span>(operation==<span class="string">'*'</span>) sum = sum * stack.pop();</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(operation==<span class="string">'/'</span>) sum = sum / stack.pop();</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(operation==<span class="string">'-'</span>) sum = sum - stack.pop();</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(operation==<span class="string">'+'</span>) sum = sum + stack.pop();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> sum;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isNumChar</span><span class="params">(<span class="keyword">char</span> c)</span> </span>&#123;</div><div class="line">    	<span class="keyword">return</span> c&gt;=<span class="string">'0'</span> &amp;&amp; c&lt;=<span class="string">'9'</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">toNum</span><span class="params">(<span class="keyword">char</span> c)</span> </span>&#123;</div><div class="line">    	<span class="keyword">return</span> c-<span class="string">'0'</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>better solution</p>
+<p><a href="http://alexshi629.blogspot.jp/2015/06/leetcode-basic-calculator-ii.html" target="_blank" rel="external">LeetCode | Basic Calculator II</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">calculate</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        s = s.trim();</div><div class="line">        <span class="keyword">if</span>(s.length()==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">if</span>(Character.isDigit(s.charAt(<span class="number">0</span>))) s = <span class="string">"+"</span> + s + <span class="string">"+0"</span>;</div><div class="line">        Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;s.length(); ) &#123;</div><div class="line">            <span class="keyword">char</span> c=s.charAt(i);</div><div class="line">            <span class="keyword">if</span>(c==<span class="string">' '</span>) &#123;</div><div class="line">                i++; </div><div class="line">                <span class="keyword">continue</span>;</div><div class="line">            &#125;</div><div class="line">            i++;</div><div class="line">            <span class="keyword">int</span> num=<span class="number">0</span>;</div><div class="line">            <span class="keyword">while</span>(i&lt;s.length()&amp;&amp;(Character.isDigit(s.charAt(i))||s.charAt(i)==<span class="string">' '</span>))&#123;</div><div class="line">                num = s.charAt(i)==<span class="string">' '</span>? num : num*<span class="number">10</span>+(s.charAt(i)-<span class="string">'0'</span>);</div><div class="line">                i++;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>(c==<span class="string">'+'</span> || c==<span class="string">'-'</span>) &#123;</div><div class="line">                <span class="keyword">if</span>(stack.size()==<span class="number">2</span>) &#123;</div><div class="line">                    stack.push(stack.pop() + stack.pop());</div><div class="line">                &#125;</div><div class="line">                stack.push(c==<span class="string">'+'</span> ? num : -num);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(c==<span class="string">'*'</span> || c==<span class="string">'/'</span>) &#123;</div><div class="line">                stack.push(c==<span class="string">'*'</span> ? stack.pop()*num : stack.pop()/num);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        stack.pop();</div><div class="line">        <span class="keyword">return</span> stack.peek();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>由于表达式字符串中不包含括号，因此问题可以简化为对乘除运算与加减运算优先级的处理。</p>
+<p>参考：<a href="https://leetcode.com/discuss/41610/ac-python-solution-use-re-to-get-the-expression" target="_blank" rel="external">https://leetcode.com/discuss/41610/ac-python-solution-use-re-to-get-the-expression</a></p>
+<p>使用辅助变量d记录当前待参与运算的运算数，func记录上一个加减运算符，total记录表达式的值。</p>
+<p>若当前运算符为乘除法，则马上对d与下一个运算数执行乘除运算，赋值给d；</p>
+<p>若当前运算符为加减法，则对total与d执行func（加减）运算，赋值给total，并更新func；</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="comment"># @param &#123;string&#125; s</span></div><div class="line">    <span class="comment"># @return &#123;integer&#125;</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">calculate</span><span class="params">(self, s)</span>:</span></div><div class="line">        s = re.sub(<span class="string">r'\d+'</span>, <span class="string">' \g&lt;0&gt; '</span>, s)</div><div class="line">        op = &#123;<span class="string">'+'</span>: operator.add, <span class="string">'-'</span>: operator.sub,</div><div class="line">              <span class="string">'*'</span>: operator.mul, <span class="string">'/'</span>: operator.floordiv&#125;</div><div class="line">        expression = s.split()</div><div class="line">        total = d = idx = <span class="number">0</span></div><div class="line">        func = op[<span class="string">'+'</span>]</div><div class="line">        <span class="keyword">while</span> idx &lt; len(expression):</div><div class="line">            e = expression[idx]</div><div class="line">            <span class="keyword">if</span> e <span class="keyword">in</span> <span class="string">'+-'</span>:</div><div class="line">                total = func(total, d)</div><div class="line">                func = op[e]</div><div class="line">            <span class="keyword">elif</span> e <span class="keyword">in</span> <span class="string">'*/'</span>:</div><div class="line">                idx += <span class="number">1</span></div><div class="line">                d = op[e](d, int(expression[idx]))</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                d = int(e)</div><div class="line">            idx += <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> func(total, d)</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/stack/" rel="tag">#stack</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/08/17/Leetcode_Basic Calculator/" rel="next" title="Basic Calculator">
+                <i class="fa fa-chevron-left"></i> Basic Calculator
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/08/18/Leetcode_Different Ways to Add Parentheses/" rel="prev" title="Different Ways to Add Parentheses">
+                Different Ways to Add Parentheses <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/plusaber.jpg"
+               alt="Plusaber" />
+          <p class="site-author-name" itemprop="name">Plusaber</p>
+          <p class="site-description motion-element" itemprop="description">Plusaber's Blog</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">325</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://leetcode.com/problemset/algorithms/" title="Leetcode" target="_blank">Leetcode</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.kaggle.com" title="Kaggle" target="_blank">Kaggle</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jp.linkedin.com/in/zebangchen" title="LinkedIn" target="_blank">LinkedIn</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://portal.qiniu.com" title="Qiniu" target="_blank">Qiniu</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Basic-Calculator-II"><span class="nav-number">1.</span> <span class="nav-text">Basic Calculator II</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Method"><span class="nav-number">1.1.</span> <span class="nav-text">Method</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤："><span class="nav-number">1.1.1.</span> <span class="nav-text">步骤：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#code思路"><span class="nav-number">1.1.2.</span> <span class="nav-text">code思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code"><span class="nav-number">1.2.</span> <span class="nav-text">Code</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Plusaber</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'plusaber';
+      var disqus_identifier = '2015/08/17/Leetcode_Basic Calculator II/';
+      var disqus_title = "Basic Calculator II";
+      var disqus_url = 'http://yoursite.com/2015/08/17/Leetcode_Basic Calculator II/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

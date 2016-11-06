@@ -1,0 +1,712 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="google88d81a02a91db82f" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="WordNet的SynsetWordNet是一个英语词汇库。名词、动词、形容词、副词以及词组以同义group的形式放在一起，称为synsets，也就是一个概念(concept)。下面是一个称为synsets的例子：
+1234mileagefuel consumption rategasoline mileagegas mileage
+这就是一个synset，表示汽车的汽油里程数概念，同一个syns">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WordNet">
+<meta property="og:url" content="http://yoursite.com/2016/01/20/Research_WordNet/index.html">
+<meta property="og:site_name" content="Plusaber's Blog">
+<meta property="og:description" content="WordNet的SynsetWordNet是一个英语词汇库。名词、动词、形容词、副词以及词组以同义group的形式放在一起，称为synsets，也就是一个概念(concept)。下面是一个称为synsets的例子：
+1234mileagefuel consumption rategasoline mileagegas mileage
+这就是一个synset，表示汽车的汽油里程数概念，同一个syns">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Wordnet_1.png">
+<meta property="og:updated_time" content="2016-07-10T11:16:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WordNet">
+<meta name="twitter:description" content="WordNet的SynsetWordNet是一个英语词汇库。名词、动词、形容词、副词以及词组以同义group的形式放在一起，称为synsets，也就是一个概念(concept)。下面是一个称为synsets的例子：
+1234mileagefuel consumption rategasoline mileagegas mileage
+这就是一个synset，表示汽车的汽油里程数概念，同一个syns">
+<meta name="twitter:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Wordnet_1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/01/20/Research_WordNet/"/>
+
+
+  <title> WordNet | Plusaber's Blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-79158075-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Plusaber's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                WordNet
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-01-20T00:00:00+09:00" content="2016-01-20">
+              2016-01-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/research/" itemprop="url" rel="index">
+                    <span itemprop="name">research</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/20/Research_WordNet/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/20/Research_WordNet/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="WordNet的Synset"><a href="#WordNet的Synset" class="headerlink" title="WordNet的Synset"></a>WordNet的Synset</h3><p>WordNet是一个英语词汇库。名词、动词、形容词、副词以及词组以同义group的形式放在一起，称为synsets，也就是一个概念(concept)。下面是一个称为synsets的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mileage</div><div class="line">fuel consumption rate</div><div class="line">gasoline mileage</div><div class="line">gas mileage</div></pre></td></tr></table></figure>
+<p>这就是一个synset，表示汽车的汽油里程数概念，同一个synset里的词可以看做是表达同一种意思，也就是同义词(synonym)。Synset也通过概念语义link连接在一起，使得整个Wordnet组成一个具有语义的网络。</p>
+<p>另外，WordNet中每一个synset包含一个简短的解释gloss，多个例子短句。</p>
+<p>需要注意的是，WordNet不是通过词的形式(string, letter)聚集在一起，而是根据词的语义意思。同样的，当一个词form具有多种不同含义时，该词form会出现在多个synset中。</p>
+<h3 id="WordNet中Synset之间关系"><a href="#WordNet中Synset之间关系" class="headerlink" title="WordNet中Synset之间关系"></a>WordNet中Synset之间关系</h3><p>synset之间最常见的关系是super-subordinate relation(上下级关系，也成为hyperonymy，hyponymy，ISA relation)，比如较抽象的synset之间的关系{furniture}, piece_of_furniture}，比较具体的synset之间的关系{bed},{bunkbed}，所有名词都有一个最上级{entity}。hyperonymy关系是具有传递性的。WordNet区分了不同目录的具体实例（实例为叶子节点），比如一般名词，人物，地点等。例如armchair是一种chair，Barack Obama是一个人名。</p>
+ <a id="more"></a>
+<p>第二种synset之间的关系为meronymy，也就是part-whole relation（整体-部分关系）。也就是一个synset是另一个synset的组成部分，比如{seat} and {leg}。</p>
+<p>第三种synset关系同样是hierarchies（上下级关系），但是是针对verb（动词）的。动词之间的上下级表示某种相似行为的程度逐渐增加的关系(increasingly specific manners characterizing an event)，比如{communicate}-{talk}-{whisper}。程度由具体的语义环境决定，比如上面是根据声音大小，其他的还有速度{move}-{job}-{run}，感情强烈程度{like}-{love}-{idolize}。同时在一个动词经常是另一个动词的动作关系连接时，动词之间也会存在单向连接，如{buy}-{pay},{succeed}-{try},{show}-{see}等。</p>
+<p>形容词除了synset内的同义词关系外，还存在反义词对(antonymy)，如wet-dry, young-old，同时dry也连接到parched, arid，这样一个词可以连接到反义词synset。<br>在synset之间还存在反义词关系()antonymy。名词和形容词的连接主要是用来表示形容词的来源，如criminal-crime.</p>
+<h3 id="Cross-POS-relation"><a href="#Cross-POS-relation" class="headerlink" title="Cross-POS relation"></a>Cross-POS relation</h3><p>WordNet由nouns, verbs, adjectives and adverbs分别组成的子网共同组成，并通过一些cross-POS连接成整个wordnet，例如{sleeper, sleeper_car} is the <strong>LOCATION</strong> for {sleep}; {painter} is the <strong>AGENT</strong> of {plant}, while {painting, picture} is its RESULT.</p>
+<h3 id="WordNet-Online-Search的使用："><a href="#WordNet-Online-Search的使用：" class="headerlink" title="WordNet Online Search的使用："></a>WordNet Online Search的使用：</h3><p><a href="http://wordnetweb.princeton.edu/perl/webwn?s=100&amp;sub=Search+WordNet&amp;o2=1&amp;o0=1&amp;o8=1&amp;o1=1&amp;o7=1&amp;o5=1&amp;o9=&amp;o6=1&amp;o3=1&amp;o4=1&amp;h=000000" target="_blank" rel="external">WordNet Search</a></p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Wordnet_1.png" alt=""></p>
+<p>直接输入word form，下面每个S表示一个synset，后面(n)表示词性，以及同一个synset的其他word form和一个简短的说明gloss。</p>
+<p>参考：<br><a href="http://wordnet.princeton.edu" target="_blank" rel="external">WordNet</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/18/Leetcode_Top K Frequent Elements/" rel="next" title="Top K Frequent Elements">
+                <i class="fa fa-chevron-left"></i> Top K Frequent Elements
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/02/01/System Design_大型网站伸缩性架构c6/" rel="prev" title="System Design_大型网站伸缩性架构">
+                System Design_大型网站伸缩性架构 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/plusaber.jpg"
+               alt="Plusaber" />
+          <p class="site-author-name" itemprop="name">Plusaber</p>
+          <p class="site-description motion-element" itemprop="description">Plusaber's Blog</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">325</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://leetcode.com/problemset/algorithms/" title="Leetcode" target="_blank">Leetcode</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.kaggle.com" title="Kaggle" target="_blank">Kaggle</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jp.linkedin.com/in/zebangchen" title="LinkedIn" target="_blank">LinkedIn</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://portal.qiniu.com" title="Qiniu" target="_blank">Qiniu</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#WordNet的Synset"><span class="nav-number">1.</span> <span class="nav-text">WordNet的Synset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WordNet中Synset之间关系"><span class="nav-number">2.</span> <span class="nav-text">WordNet中Synset之间关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cross-POS-relation"><span class="nav-number">3.</span> <span class="nav-text">Cross-POS relation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WordNet-Online-Search的使用："><span class="nav-number">4.</span> <span class="nav-text">WordNet Online Search的使用：</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Plusaber</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'plusaber';
+      var disqus_identifier = '2016/01/20/Research_WordNet/';
+      var disqus_title = "WordNet";
+      var disqus_url = 'http://yoursite.com/2016/01/20/Research_WordNet/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

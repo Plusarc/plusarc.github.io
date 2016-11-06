@@ -1,0 +1,747 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="google88d81a02a91db82f" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="lucene," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="Lucene的文档建模文档是Lucene索引和检索的基本单位。文档为一个包含一个或多个field(域)的容器，如title, keywords, author, summary, content等，而field的内容才是真正被索引和检索的内容（经过分解为tokens之后）。如下面的文档(已经建模和区分为各个field)：
+12345678title : hello, worldkey world:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lucene(2)_Index">
+<meta property="og:url" content="http://yoursite.com/2014/08/26/Developing_Lucene(2)/index.html">
+<meta property="og:site_name" content="Plusaber's Blog">
+<meta property="og:description" content="Lucene的文档建模文档是Lucene索引和检索的基本单位。文档为一个包含一个或多个field(域)的容器，如title, keywords, author, summary, content等，而field的内容才是真正被索引和检索的内容（经过分解为tokens之后）。如下面的文档(已经建模和区分为各个field)：
+12345678title : hello, worldkey world:">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Lucene_2.png">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Lucene_3.png">
+<meta property="og:updated_time" content="2016-04-14T12:10:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Lucene(2)_Index">
+<meta name="twitter:description" content="Lucene的文档建模文档是Lucene索引和检索的基本单位。文档为一个包含一个或多个field(域)的容器，如title, keywords, author, summary, content等，而field的内容才是真正被索引和检索的内容（经过分解为tokens之后）。如下面的文档(已经建模和区分为各个field)：
+12345678title : hello, worldkey world:">
+<meta name="twitter:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Lucene_2.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2014/08/26/Developing_Lucene(2)/"/>
+
+
+  <title> Lucene(2)_Index | Plusaber's Blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-79158075-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Plusaber's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Lucene(2)_Index
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2014-08-26T00:00:00+09:00" content="2014-08-26">
+              2014-08-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Developing/" itemprop="url" rel="index">
+                    <span itemprop="name">Developing</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/08/26/Developing_Lucene(2)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/08/26/Developing_Lucene(2)/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Lucene的文档建模"><a href="#Lucene的文档建模" class="headerlink" title="Lucene的文档建模"></a>Lucene的文档建模</h2><p>文档是Lucene索引和检索的基本单位。文档为一个包含一个或多个field(域)的容器，如title, keywords, author, summary, content等，而field的内容才是真正被索引和检索的内容（经过分解为tokens之后）。如下面的文档(已经建模和区分为各个field)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">title : hello, world</div><div class="line">key world: blog, hello</div><div class="line">author: zebangchen</div><div class="line">content: I have always believed that the man who has</div><div class="line">begun to live more seriously within begins to live</div><div class="line">more simply without. In an age of extravagance and</div><div class="line">waste, I wish I could show to the world how few the</div><div class="line">real wants of humanity are.</div></pre></td></tr></table></figure>
+<p>在对原始文档进行索引时，首先需要将数据转换为Lucene所能识别的文档和field。在随后的搜索过程中，被搜索对象为field的内容，如搜索<code>title : lucene</code>时，搜索结果为title域包含单词<code>lucene</code>的所有文档。</p>
+<p>进一步每个域(field)可以进行下面的操作：</p>
+<ul>
+<li>field的内容(域值)可以不被检索。</li>
+<li>field被索引后，可以选择性存储项向量(term vector)，也就是只是针对这个field的内容的索引。</li>
+<li>域值可以被单独存储。</li>
+</ul>
+<h2 id="Index过程"><a href="#Index过程" class="headerlink" title="Index过程"></a>Index过程</h2><p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Lucene_2.png" alt="Lucene_2"></p>
+<h3 id="提取plain-text和创建document"><a href="#提取plain-text和创建document" class="headerlink" title="提取plain text和创建document"></a>提取plain text和创建document</h3><p>索引的第一步就是从源文件获取文档然后创建文档，因为很多源文件并不是plain text，例如pdf，xml，html带有大量标签的文档，microsoft文档等。Lucene提供的Tika框架提供了从各个格式文件提取plain text的工具。</p>
+<h3 id="分析文档"><a href="#分析文档" class="headerlink" title="分析文档"></a>分析文档</h3><p>下一步是建立lucene文档及其field，然后将document通过IndexWriter对象的addDocument传递给Lucene进行索引操作。首先是分析各个field的内容分割为tokens，这一步可以有很多可选操作，如toLowerCase，去stopword等，同样还需要处理tokens，例如stem操作等。最后得到的各个field的tokens会被用于建立index。</p>
+<h3 id="向索引添加文档"><a href="#向索引添加文档" class="headerlink" title="向索引添加文档"></a>向索引添加文档</h3><p>分析得到的token，文档会被用于建立倒排索引(inverted index)。<br><img src="http://7xs07u.com1.z0.glb.clouddn.com/Lucene_3.png" alt=""></p>
+<p>Lucene的索引数据结构非常丰富和强大，这里只做一个简要的介绍。Lucene索引包含一个或多个segment(段)。每个段都是一个独立的索引，索引了一部分文档，也就是每个段索引的文档都是不同的，是整个文档集合的一个子集。当索引了一部分文档后，由于内存限制或其他原因，我们需要刷新缓存区的内容将其写入到磁盘中，一个新的段就会被建立，其中包含这部分文档的索引。</p>
+<p>在搜索索引时，会访问每个段，然后合并在这些索引段的结果并返回。</p>
+<p>一般每个段(索引)都包含多个文件，格式为<code>_x.扩展名</code>，X表示段名称，扩展名用来表示索引的各个不同类型文件（项向量(term vector), 存储的域(stored field), 倒排索引(inverted index))。也可以设置使用混合文件格式，则会将这些不同类型的文件都压缩为一个单一的文件:<code>_X.cfs</code>，这中哦该方式能在搜索期间减少打开文件的数量。</p>
+<p>另外还有一个特殊文件，为段文件(segments file)，表示为<code>_&lt;N&gt;</code>。该文件指向其他所有正在使用的段。Lucene在检索时，首先会打开该文件，然后依次打开其所指向的文件。N是一个整数，称为<code>the generation</code>，Lucene每次向index提交更新时N都会被加一。</p>
+<p>随着时间推移，索引会有越来越多的段，特别是程序打开和关闭writter频繁时。根据设置IndexWriter类会周期性的合并一些段，合并段的选取策略由MergePolicy类决定。</p>
+<h2 id="基本索引操作"><a href="#基本索引操作" class="headerlink" title="基本索引操作"></a>基本索引操作</h2><h3 id="向索引添加文档-1"><a href="#向索引添加文档-1" class="headerlink" title="向索引添加文档"></a>向索引添加文档</h3><ul>
+<li><code>addDocument(Document)</code> – 使用默认分析器添加文档，该分析器在创建IndexWriter对象时指定，用于指定将plain text拆分为tokens(tokenization)的策略。</li>
+<li><code>addDocument(Document, Analyzer)</code> – 使用指定的分析器进行tokenization。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> junit.framework.TestCase;</div><div class="line"></div><div class="line"><span class="keyword">import</span> lia.common.TestUtil;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.apache.lucene.store.Directory;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.store.RAMDirectory;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.document.Document;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.document.Field;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.index.IndexWriter;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.index.IndexReader;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.analysis.WhitespaceAnalyzer;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.search.IndexSearcher;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.search.Query;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.search.TermQuery;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.index.Term;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.IOException;</div><div class="line"></div><div class="line"><span class="comment">// From chapter 2</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IndexingTest</span> <span class="keyword">extends</span> <span class="title">TestCase</span> </span>&#123;</div><div class="line">  <span class="keyword">protected</span> String[] ids = &#123;<span class="string">"1"</span>, <span class="string">"2"</span>&#125;;</div><div class="line">  <span class="keyword">protected</span> String[] unindexed = &#123;<span class="string">"Netherlands"</span>, <span class="string">"Italy"</span>&#125;;</div><div class="line">  <span class="keyword">protected</span> String[] unstored = &#123;<span class="string">"Amsterdam has lots of bridges"</span>,</div><div class="line">                                 <span class="string">"Venice has lots of canals"</span>&#125;;</div><div class="line">  <span class="keyword">protected</span> String[] text = &#123;<span class="string">"Amsterdam"</span>, <span class="string">"Venice"</span>&#125;;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> Directory directory;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;     <span class="comment">//1</span></div><div class="line">    directory = <span class="keyword">new</span> RAMDirectory();</div><div class="line"></div><div class="line">    IndexWriter writer = getWriter();           <span class="comment">//2</span></div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; ids.length; i++) &#123;      <span class="comment">//3</span></div><div class="line">      Document doc = <span class="keyword">new</span> Document();</div><div class="line">      doc.add(<span class="keyword">new</span> Field(<span class="string">"id"</span>, ids[i],</div><div class="line">                        Field.Store.YES,</div><div class="line">                        Field.Index.NOT_ANALYZED));</div><div class="line">      doc.add(<span class="keyword">new</span> Field(<span class="string">"country"</span>, unindexed[i],</div><div class="line">                        Field.Store.YES,</div><div class="line">                        Field.Index.NO));</div><div class="line">      doc.add(<span class="keyword">new</span> Field(<span class="string">"contents"</span>, unstored[i],</div><div class="line">                        Field.Store.NO,</div><div class="line">                        Field.Index.ANALYZED));</div><div class="line">      doc.add(<span class="keyword">new</span> Field(<span class="string">"city"</span>, text[i],</div><div class="line">                        Field.Store.YES,</div><div class="line">                        Field.Index.ANALYZED));</div><div class="line">      writer.addDocument(doc);</div><div class="line">    &#125;</div><div class="line">    writer.close();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">private</span> IndexWriter <span class="title">getWriter</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;            <span class="comment">// 2</span></div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> IndexWriter(directory, <span class="keyword">new</span> WhitespaceAnalyzer(),   <span class="comment">// 2</span></div><div class="line">                           IndexWriter.MaxFieldLength.UNLIMITED); <span class="comment">// 2</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">int</span> <span class="title">getHitCount</span><span class="params">(String fieldName, String searchString)</span></span></div><div class="line">    <span class="keyword">throws</span> IOException &#123;</div><div class="line">    IndexSearcher searcher = <span class="keyword">new</span> IndexSearcher(directory); <span class="comment">//4</span></div><div class="line">    Term t = <span class="keyword">new</span> Term(fieldName, searchString);</div><div class="line">    Query query = <span class="keyword">new</span> TermQuery(t);                        <span class="comment">//5</span></div><div class="line">    <span class="keyword">int</span> hitCount = TestUtil.hitCount(searcher, query);     <span class="comment">//6</span></div><div class="line">    searcher.close();</div><div class="line">    <span class="keyword">return</span> hitCount;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testIndexWriter</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">    IndexWriter writer = getWriter();</div><div class="line">    assertEquals(ids.length, writer.numDocs());            <span class="comment">//7</span></div><div class="line">    writer.close();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testIndexReader</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">    IndexReader reader = IndexReader.open(directory);</div><div class="line">    assertEquals(ids.length, reader.maxDoc());             <span class="comment">//8</span></div><div class="line">    assertEquals(ids.length, reader.numDocs());            <span class="comment">//8</span></div><div class="line">    reader.close();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">/*</span></div><div class="line">    #1 Run before every test</div><div class="line">    #2 Create IndexWriter</div><div class="line">    #3 Add documents</div><div class="line">    #4 Create new searcher</div><div class="line">    #5 Build simple single-term query</div><div class="line">    #6 Get number of hits</div><div class="line">    #7 Verify writer document count</div><div class="line">    #8 Verify reader document count</div><div class="line">  */</div></pre></td></tr></table></figure>
+<p>我们需要传入三个变量来创建IndexWiter类：</p>
+<ul>
+<li>Directory类，索引存储位置。</li>
+<li>分析器(analyzer)，用于tokenized fields为tokens，进一步用于indexing。</li>
+<li>MaxFieldLength.UNLIMITED，用于告诉IndexWriter对文档中所有的token建立索引。</li>
+</ul>
+<p>IndexWriter类如果检查到之前没有索引在Dicrectory中，则会创建新的索引，否则会将内容加入到存在的索引中。</p>
+<p>一旦索引已经被建立或者已经存在，我们就可以循环处理每篇document加入索引。对于每篇plain text文档，我们建立一个Document对象，然后加入其所有的域以及对应的域选项(field options)。 </p>
+<h3 id="删除索引中的文档"><a href="#删除索引中的文档" class="headerlink" title="删除索引中的文档"></a>删除索引中的文档</h3><ul>
+<li><code>deleteDocuments(Term)</code>，删除包含term的所有文档（在索引中删除））</li>
+<li><code>deleteDocuments(Term[])</code>，删除包含任意一个term的文档</li>
+<li><code>deleteDocuments(Query)</code>，删除匹配给定query的文档</li>
+<li><code>deleteDocuments(Query[])</code>，删除匹配任意一个query的问阿哥</li>
+<li><code>deleteAll()</code>，删除index中的所有文档。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testDeleteBeforeOptimize</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">    IndexWriter writer = getWriter();</div><div class="line">    assertEquals(<span class="number">2</span>, writer.numDocs()); <span class="comment">//A</span></div><div class="line">    writer.deleteDocuments(<span class="keyword">new</span> Term(<span class="string">"id"</span>, <span class="string">"1"</span>));  <span class="comment">//B</span></div><div class="line">    writer.commit();</div><div class="line">    assertTrue(writer.hasDeletions());    <span class="comment">//1</span></div><div class="line">    assertEquals(<span class="number">2</span>, writer.maxDoc());    <span class="comment">//2</span></div><div class="line">    assertEquals(<span class="number">1</span>, writer.numDocs());   <span class="comment">//2   </span></div><div class="line">    writer.close();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testDeleteAfterOptimize</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">    IndexWriter writer = getWriter();</div><div class="line">    assertEquals(<span class="number">2</span>, writer.numDocs());</div><div class="line">    writer.deleteDocuments(<span class="keyword">new</span> Term(<span class="string">"id"</span>, <span class="string">"1"</span>));</div><div class="line">    writer.optimize();                <span class="comment">//3</span></div><div class="line">    writer.commit();</div><div class="line">    assertFalse(writer.hasDeletions());</div><div class="line">    assertEquals(<span class="number">1</span>, writer.maxDoc());  <span class="comment">//C</span></div><div class="line">    assertEquals(<span class="number">1</span>, writer.numDocs()); <span class="comment">//C    </span></div><div class="line">    writer.close();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">/*</span></div><div class="line">    #A 2 docs in the index</div><div class="line">    #B Delete first document</div><div class="line">    #C 1 indexed document, 0 deleted documents</div><div class="line">    #1 Index contains deletions</div><div class="line">    #2 1 indexed document, 1 deleted document</div><div class="line">    #3 Optimize compacts deletes</div><div class="line">  */</div></pre></td></tr></table></figure>
+<p>在执行delete后，真正的删除操作并不会马山执行，而是放入内存缓冲区。同样我们要调用writter的<code>commit()</code>或<code>close()</code>来执行实际的删除操作。</p>
+<h3 id="更新索引中的文档"><a href="#更新索引中的文档" class="headerlink" title="更新索引中的文档"></a>更新索引中的文档</h3><p>Lucene无法只更新文档的某个域，而是删除旧文档，然后向索引中添加新问昂。</p>
+<ul>
+<li><code>updateDocument(Term, Document)</code>，首先删除包含term的所有文档，然后使用writter的默认分析器添加新文档</li>
+<li><code>updateDocument(Term, Document, Analyzer)</code>，与上面功能一致，区别是指定分析器。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testUpdate</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line"></div><div class="line">  assertEquals(<span class="number">1</span>, getHitCount(<span class="string">"city"</span>, <span class="string">"Amsterdam"</span>));</div><div class="line"></div><div class="line">  IndexWriter writer = getWriter();</div><div class="line"></div><div class="line">  Document doc = <span class="keyword">new</span> Document();                   <span class="comment">//A            </span></div><div class="line">  doc.add(<span class="keyword">new</span> Field(<span class="string">"id"</span>, <span class="string">"1"</span>,</div><div class="line">                    Field.Store.YES,</div><div class="line">                    Field.Index.NOT_ANALYZED));    <span class="comment">//A</span></div><div class="line">  doc.add(<span class="keyword">new</span> Field(<span class="string">"country"</span>, <span class="string">"Netherlands"</span>,</div><div class="line">                    Field.Store.YES,</div><div class="line">                    Field.Index.NO));              <span class="comment">//A  </span></div><div class="line">  doc.add(<span class="keyword">new</span> Field(<span class="string">"contents"</span>,                    </div><div class="line">                    <span class="string">"Den Haag has a lot of museums"</span>,</div><div class="line">                    Field.Store.NO,</div><div class="line">                    Field.Index.ANALYZED));       <span class="comment">//A</span></div><div class="line">  doc.add(<span class="keyword">new</span> Field(<span class="string">"city"</span>, <span class="string">"Den Haag"</span>,</div><div class="line">                    Field.Store.YES,</div><div class="line">                    Field.Index.ANALYZED));       <span class="comment">//A</span></div><div class="line"></div><div class="line">  writer.updateDocument(<span class="keyword">new</span> Term(<span class="string">"id"</span>, <span class="string">"1"</span>),       <span class="comment">//B</span></div><div class="line">                        doc);                      <span class="comment">//B</span></div><div class="line">  writer.close();</div><div class="line"></div><div class="line">  assertEquals(<span class="number">0</span>, getHitCount(<span class="string">"city"</span>, <span class="string">"Amsterdam"</span>));<span class="comment">//C   </span></div><div class="line">  assertEquals(<span class="number">1</span>, getHitCount(<span class="string">"city"</span>, <span class="string">"Haag"</span>));     <span class="comment">//D  </span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">  #A Create new document with "Haag" in city field</div><div class="line">  #B Replace original document with new version</div><div class="line">  #C Verify old document is gone</div><div class="line">  #D Verify new document is indexed</div><div class="line">*/</div></pre></td></tr></table></figure>
+<h2 id="域选项-field-options"><a href="#域选项-field-options" class="headerlink" title="域选项(field options)"></a>域选项(field options)</h2><h2 id="索引数字、日期和时间"><a href="#索引数字、日期和时间" class="headerlink" title="索引数字、日期和时间"></a>索引数字、日期和时间</h2><h2 id="优化索引"><a href="#优化索引" class="headerlink" title="优化索引"></a>优化索引</h2><h2 id="其他Directory子类"><a href="#其他Directory子类" class="headerlink" title="其他Directory子类"></a>其他Directory子类</h2><h2 id="并发、线程安全及锁机制"><a href="#并发、线程安全及锁机制" class="headerlink" title="并发、线程安全及锁机制"></a>并发、线程安全及锁机制</h2><h2 id="高级索引概念"><a href="#高级索引概念" class="headerlink" title="高级索引概念"></a>高级索引概念</h2>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/lucene/" rel="tag">#lucene</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/08/09/Developing_Lucene(1)/" rel="next" title="Lucene(1)_Introduction">
+                <i class="fa fa-chevron-left"></i> Lucene(1)_Introduction
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/09/16/Design Pattern_Singleton pattern/" rel="prev" title="Singleton pattern">
+                Singleton pattern <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/plusaber.jpg"
+               alt="Plusaber" />
+          <p class="site-author-name" itemprop="name">Plusaber</p>
+          <p class="site-description motion-element" itemprop="description">Plusaber's Blog</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">325</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://leetcode.com/problemset/algorithms/" title="Leetcode" target="_blank">Leetcode</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.kaggle.com" title="Kaggle" target="_blank">Kaggle</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jp.linkedin.com/in/zebangchen" title="LinkedIn" target="_blank">LinkedIn</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://portal.qiniu.com" title="Qiniu" target="_blank">Qiniu</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Lucene的文档建模"><span class="nav-number">1.</span> <span class="nav-text">Lucene的文档建模</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Index过程"><span class="nav-number">2.</span> <span class="nav-text">Index过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#提取plain-text和创建document"><span class="nav-number">2.1.</span> <span class="nav-text">提取plain text和创建document</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析文档"><span class="nav-number">2.2.</span> <span class="nav-text">分析文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#向索引添加文档"><span class="nav-number">2.3.</span> <span class="nav-text">向索引添加文档</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本索引操作"><span class="nav-number">3.</span> <span class="nav-text">基本索引操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#向索引添加文档-1"><span class="nav-number">3.1.</span> <span class="nav-text">向索引添加文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除索引中的文档"><span class="nav-number">3.2.</span> <span class="nav-text">删除索引中的文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新索引中的文档"><span class="nav-number">3.3.</span> <span class="nav-text">更新索引中的文档</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#域选项-field-options"><span class="nav-number">4.</span> <span class="nav-text">域选项(field options)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引数字、日期和时间"><span class="nav-number">5.</span> <span class="nav-text">索引数字、日期和时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化索引"><span class="nav-number">6.</span> <span class="nav-text">优化索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他Directory子类"><span class="nav-number">7.</span> <span class="nav-text">其他Directory子类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并发、线程安全及锁机制"><span class="nav-number">8.</span> <span class="nav-text">并发、线程安全及锁机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高级索引概念"><span class="nav-number">9.</span> <span class="nav-text">高级索引概念</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Plusaber</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'plusaber';
+      var disqus_identifier = '2014/08/26/Developing_Lucene(2)/';
+      var disqus_title = "Lucene(2)_Index";
+      var disqus_url = 'http://yoursite.com/2014/08/26/Developing_Lucene(2)/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

@@ -1,0 +1,795 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="google88d81a02a91db82f" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="[Markdown语法]一个很好的编辑器及语法简明手册，不过并不是所有都兼容其他编辑器或博客。这里对参考Cmd Markdown对常用及兼容的子集进行了总结，完整内容请参考Cmd Markdown。
+Mac下另一个强大的编辑器是MacDown,支持PDF导出。
+1. 字体使用  和 * 表示斜体和粗体。也可以使用HTML标签属性修改颜色。
+*斜体*，**粗体**。
+斜体，粗体。
+2. 分级标题在行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Markdown简明语法手册">
+<meta property="og:url" content="http://yoursite.com/2015/09/16/Blogging_Markdown简明语法手册/index.html">
+<meta property="og:site_name" content="Plusaber's Blog">
+<meta property="og:description" content="[Markdown语法]一个很好的编辑器及语法简明手册，不过并不是所有都兼容其他编辑器或博客。这里对参考Cmd Markdown对常用及兼容的子集进行了总结，完整内容请参考Cmd Markdown。
+Mac下另一个强大的编辑器是MacDown,支持PDF导出。
+1. 字体使用  和 * 表示斜体和粗体。也可以使用HTML标签属性修改颜色。
+*斜体*，**粗体**。
+斜体，粗体。
+2. 分级标题在行">
+<meta property="og:image" content="http://plusaber.net/images/plusaber.jpg">
+<meta property="og:updated_time" content="2016-04-30T06:35:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Markdown简明语法手册">
+<meta name="twitter:description" content="[Markdown语法]一个很好的编辑器及语法简明手册，不过并不是所有都兼容其他编辑器或博客。这里对参考Cmd Markdown对常用及兼容的子集进行了总结，完整内容请参考Cmd Markdown。
+Mac下另一个强大的编辑器是MacDown,支持PDF导出。
+1. 字体使用  和 * 表示斜体和粗体。也可以使用HTML标签属性修改颜色。
+*斜体*，**粗体**。
+斜体，粗体。
+2. 分级标题在行">
+<meta name="twitter:image" content="http://plusaber.net/images/plusaber.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/09/16/Blogging_Markdown简明语法手册/"/>
+
+
+  <title> Markdown简明语法手册 | Plusaber's Blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-79158075-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Plusaber's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Markdown简明语法手册
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-09-16T00:00:00+09:00" content="2015-09-16">
+              2015-09-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Blogging/" itemprop="url" rel="index">
+                    <span itemprop="name">Blogging</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/16/Blogging_Markdown简明语法手册/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/16/Blogging_Markdown简明语法手册/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Markdown语法"><a href="#Markdown语法" class="headerlink" title="[Markdown语法]"></a>[Markdown语法]</h1><p>一个很好的编辑器及语法简明手册，不过并不是所有都兼容其他编辑器或博客。这里对参考<a href="https://www.zybuluo.com/mdeditor#137019" target="_blank" rel="external">Cmd Markdown</a>对常用及兼容的子集进行了总结，完整内容请参考<a href="https://www.zybuluo.com/mdeditor#137019" target="_blank" rel="external">Cmd Markdown</a>。</p>
+<p>Mac下另一个强大的编辑器是<a href="http://macdown.uranusjr.com" target="_blank" rel="external">MacDown</a>,支持PDF导出。</p>
+<h3 id="1-字体"><a href="#1-字体" class="headerlink" title="1. 字体"></a>1. 字体</h3><p>使用 <em> 和 *</em> 表示斜体和粗体。也可以使用HTML标签属性修改颜色。</p>
+<p><code>*斜体*，**粗体**。</code></p>
+<p><em>斜体</em>，<strong>粗体</strong>。</p>
+<h3 id="2-分级标题"><a href="#2-分级标题" class="headerlink" title="2. 分级标题"></a>2. 分级标题</h3><p>在行的开头加#号表示标题，数量表示标题级别, 如：# H1, ## H2, ### H3，#### H4。<br>或者在行的下方使用 === 表示一级标题，使用 — 表示二级标题。</p>
+<h3 id="3-外链接"><a href="#3-外链接" class="headerlink" title="3. 外链接"></a>3. 外链接</h3><p>使用 [描述](链接地址) 为文字增加外链接。</p>
+<p><code>[leetcode](https://leetcode.com/problemset/algorithms/)</code><br> <a href="https://leetcode.com/problemset/algorithms/" target="_blank" rel="external">leetcode</a></p>
+<h3 id="4-无序列表"><a href="#4-无序列表" class="headerlink" title="4. 无序列表"></a>4. 无序列表</h3><p>使用 *，+，- 表示无序列表。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">- hello1</div><div class="line">- hello2</div><div class="line">- hello3</div></pre></td></tr></table></figure>
+<ul>
+<li>hello1</li>
+<li>hello2</li>
+<li>hello3</li>
+</ul>
+<h3 id="5-有序列表"><a href="#5-有序列表" class="headerlink" title="5. 有序列表"></a>5. 有序列表</h3><p>使用数字和点表示有序列表。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1. hello1</div><div class="line">2. hello2</div><div class="line">3. hello3</div></pre></td></tr></table></figure>
+<ol>
+<li>hello1</li>
+<li>hello2</li>
+<li>hello3</li>
+</ol>
+<h3 id="6-文字引用"><a href="#6-文字引用" class="headerlink" title="6. 文字引用"></a>6. 文字引用</h3><p>使用 &gt; 表示文字引用。</p>
+<p><code>&gt; 野火烧不尽，春风吹又生。</code></p>
+<blockquote>
+<p>野火烧不尽，春风吹又生。</p>
+</blockquote>
+<h3 id="7-行内代码块"><a href="#7-行内代码块" class="headerlink" title="7. 行内代码块"></a>7. 行内代码块</h3><p>使用 `代码` 表示行内代码块。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Hello, `word`。</div></pre></td></tr></table></figure>
+<p>Hello, <code>word</code>。</p>
+<h3 id="8-插入图像"><a href="#8-插入图像" class="headerlink" title="8.  插入图像"></a>8.  插入图像</h3><p>使用 ![描述](图片链接地址) 插入图像。</p>
+<p>示例：<br><code>![hello](http://plusaber.net/images/plusaber.jpg)</code></p>
+<p><img src="http://plusaber.net/images/plusaber.jpg" alt="hello"></p>
+<h3 id="9-内容目录"><a href="#9-内容目录" class="headerlink" title="9. 内容目录"></a>9. 内容目录</h3><p>在段落中填写 <code>[TOC]</code> 以显示全文内容的目录结构。NextT似乎是不支持，无法展示。</p>
+<p><code>[TOC]</code></p>
+<h3 id="10-标签"><a href="#10-标签" class="headerlink" title="10. 标签"></a>10. 标签</h3><p>标签格式在各个编辑器是有些不兼容的。</p>
+<p>Cmd编辑器为：<br><code>Tags： 数学 英语 Markdown</code></p>
+<p>对于NextT为：<br><code>tags: [leetcode, dynamic programming, unique paths]</code></p>
+<h3 id="11-目录"><a href="#11-目录" class="headerlink" title="11. 目录"></a>11. 目录</h3><p>目录也存在兼容问题，cmd貌似不兼容</p>
+<p>NexT为：<br><code>categories: Blogging</code></p>
+<h3 id="12-删除线"><a href="#12-删除线" class="headerlink" title="12. 删除线"></a>12. 删除线</h3><p>使用 ~~ 表示删除线。</p>
+<p><code>~~这是一段错误的文本。~~</code></p>
+<p><del>这是一段错误的文本。</del></p>
+<h3 id="13-注脚"><a href="#13-注脚" class="headerlink" title="13. 注脚"></a>13. 注脚</h3><p>使用 [^keyword] 表示注脚。NextT似乎是不支持，无法展示。</p>
+<p><code>注脚[^footnote]的样例。</code></p>
+<p>注脚[^footnote]的样例。</p>
+<h3 id="14-LaTeX-公式"><a href="#14-LaTeX-公式" class="headerlink" title="14. LaTeX 公式"></a>14. LaTeX 公式</h3><p>$ 表示行内公式： </p>
+<p>质能守恒方程可以用一个很简洁的方程式 $E=mc^2$ 来表达。</p>
+<p>$$ 表示整行公式：</p>
+<p>$$\sum_{i=1}^n a_i=0$$</p>
+<p>$$f(x_1,x_x,\ldots,x_n) = x_1^2 + x_2^2 + \cdots + x_n^2 $$</p>
+<p>一个不错的介绍<a href="http://mlworks.cn/posts/introduction-to-mathjax-and-latex-expression/" target="_blank" rel="external">Mathjax与LaTex公式简介</a>。</p>
+<p>或者参考<a href="http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference" target="_blank" rel="external">MathJax</a>。</p>
+<h3 id="14-加强代码块"><a href="#14-加强代码块" class="headerlink" title="14. 加强代码块"></a>14. 加强代码块</h3><p>非代码示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install vim-gnome</div></pre></td></tr></table></figure>
+<p>Python 示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@requires_authorization</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">somefunc</span><span class="params">(param1=<span class="string">''</span>, param2=<span class="number">0</span>)</span>:</span></div><div class="line">    <span class="string">'''A docstring'''</span></div><div class="line">    <span class="keyword">if</span> param1 &gt; param2: <span class="comment"># interesting</span></div><div class="line">        <span class="keyword">print</span> <span class="string">'Greater'</span></div><div class="line">    <span class="keyword">return</span> (param2 - param1 + <span class="number">1</span>) <span class="keyword">or</span> <span class="keyword">None</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span>:</span></div><div class="line">    <span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>message = <span class="string">'''interpreter</span></div><div class="line"><span class="meta">... </span>prompt'''</div></pre></td></tr></table></figure>
+<h3 id="15-表格支持"><a href="#15-表格支持" class="headerlink" title="15. 表格支持"></a>15. 表格支持</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">| 项目        | 价格   |  数量  |</div><div class="line">| --------   | -----:  | :----:  |</div><div class="line">| 计算机     | \$1600 |   5     |</div><div class="line">| 手机        |   \$12   |   12   |</div><div class="line">| 管线        |    \$1    |  234  |</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th style="text-align:right">价格</th>
+<th style="text-align:center">数量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>计算机</td>
+<td style="text-align:right">\$1600</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td>手机</td>
+<td style="text-align:right">\$12</td>
+<td style="text-align:center">12</td>
+</tr>
+<tr>
+<td>管线</td>
+<td style="text-align:right">\$1</td>
+<td style="text-align:center">234</td>
+</tr>
+</tbody>
+</table>
+<h3 id="16-Html-标签"><a href="#16-Html-标签" class="headerlink" title="16. Html 标签"></a>16. Html 标签</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;table&gt;</div><div class="line">    &lt;tr&gt;</div><div class="line">        &lt;th rowspan=&quot;2&quot;&gt;值班人员&lt;/th&gt;</div><div class="line">        &lt;th&gt;星期一&lt;/th&gt;</div><div class="line">        &lt;th&gt;星期二&lt;/th&gt;</div><div class="line">        &lt;th&gt;星期三&lt;/th&gt;</div><div class="line">    &lt;/tr&gt;</div><div class="line">    &lt;tr&gt;</div><div class="line">        &lt;td&gt;李强&lt;/td&gt;</div><div class="line">        &lt;td&gt;张明&lt;/td&gt;</div><div class="line">        &lt;td&gt;王平&lt;/td&gt;</div><div class="line">    &lt;/tr&gt;</div><div class="line">&lt;/table&gt;</div></pre></td></tr></table></figure>
+<table><br>    <tr><br>        <th rowspan="2">值班人员</th><br>        <th>星期一</th><br>        <th>星期二</th><br>        <th>星期三</th><br>    </tr><br>    <tr><br>        <td>李强</td><br>        <td>张明</td><br>        <td>王平</td><br>    </tr><br></table>
+
+
+<p>[^footnote]: 这是一个 <em>注脚</em> 的 <strong>文本</strong>。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/09/15/Leetcode_GCD and LCM/" rel="next" title="Find GCD and LCM for an array">
+                <i class="fa fa-chevron-left"></i> Find GCD and LCM for an array
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/09/18/Leetcode_Copy List with Random Pointer/" rel="prev" title="Copy List with Random Pointer">
+                Copy List with Random Pointer <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/plusaber.jpg"
+               alt="Plusaber" />
+          <p class="site-author-name" itemprop="name">Plusaber</p>
+          <p class="site-description motion-element" itemprop="description">Plusaber's Blog</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">325</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://leetcode.com/problemset/algorithms/" title="Leetcode" target="_blank">Leetcode</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.kaggle.com" title="Kaggle" target="_blank">Kaggle</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jp.linkedin.com/in/zebangchen" title="LinkedIn" target="_blank">LinkedIn</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://portal.qiniu.com" title="Qiniu" target="_blank">Qiniu</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Markdown语法"><span class="nav-number">1.</span> <span class="nav-text">[Markdown语法]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-字体"><span class="nav-number">1.0.1.</span> <span class="nav-text">1. 字体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-分级标题"><span class="nav-number">1.0.2.</span> <span class="nav-text">2. 分级标题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-外链接"><span class="nav-number">1.0.3.</span> <span class="nav-text">3. 外链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-无序列表"><span class="nav-number">1.0.4.</span> <span class="nav-text">4. 无序列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-有序列表"><span class="nav-number">1.0.5.</span> <span class="nav-text">5. 有序列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-文字引用"><span class="nav-number">1.0.6.</span> <span class="nav-text">6. 文字引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-行内代码块"><span class="nav-number">1.0.7.</span> <span class="nav-text">7. 行内代码块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-插入图像"><span class="nav-number">1.0.8.</span> <span class="nav-text">8.  插入图像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-内容目录"><span class="nav-number">1.0.9.</span> <span class="nav-text">9. 内容目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-标签"><span class="nav-number">1.0.10.</span> <span class="nav-text">10. 标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-目录"><span class="nav-number">1.0.11.</span> <span class="nav-text">11. 目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-删除线"><span class="nav-number">1.0.12.</span> <span class="nav-text">12. 删除线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-注脚"><span class="nav-number">1.0.13.</span> <span class="nav-text">13. 注脚</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-LaTeX-公式"><span class="nav-number">1.0.14.</span> <span class="nav-text">14. LaTeX 公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-加强代码块"><span class="nav-number">1.0.15.</span> <span class="nav-text">14. 加强代码块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-表格支持"><span class="nav-number">1.0.16.</span> <span class="nav-text">15. 表格支持</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-Html-标签"><span class="nav-number">1.0.17.</span> <span class="nav-text">16. Html 标签</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Plusaber</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'plusaber';
+      var disqus_identifier = '2015/09/16/Blogging_Markdown简明语法手册/';
+      var disqus_title = "Markdown简明语法手册";
+      var disqus_url = 'http://yoursite.com/2015/09/16/Blogging_Markdown简明语法手册/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

@@ -1,0 +1,750 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="google88d81a02a91db82f" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="lucene," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="IntroductionLucene是一个强大的开源信息检索工具库，通过Lucene我们可以轻易将搜索功能加到我们的应用程序中。
+通常一个搜索程序需要包含的组件如下：
+其中Lucene为深色部分的组件提供了强大的可扩展的工具库。
+在获取内容后，为了对这些内容进行高效检索，所需要的做的就是为这些文档建立索引，而在建立索引之前，我们需要分析文档，以把文档分解为token的集合，然后对这些token建立">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lucene(1)_Introduction">
+<meta property="og:url" content="http://yoursite.com/2014/08/09/Developing_Lucene(1)/index.html">
+<meta property="og:site_name" content="Plusaber's Blog">
+<meta property="og:description" content="IntroductionLucene是一个强大的开源信息检索工具库，通过Lucene我们可以轻易将搜索功能加到我们的应用程序中。
+通常一个搜索程序需要包含的组件如下：
+其中Lucene为深色部分的组件提供了强大的可扩展的工具库。
+在获取内容后，为了对这些内容进行高效检索，所需要的做的就是为这些文档建立索引，而在建立索引之前，我们需要分析文档，以把文档分解为token的集合，然后对这些token建立">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Lucene_1.png">
+<meta property="og:updated_time" content="2016-04-13T03:32:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Lucene(1)_Introduction">
+<meta name="twitter:description" content="IntroductionLucene是一个强大的开源信息检索工具库，通过Lucene我们可以轻易将搜索功能加到我们的应用程序中。
+通常一个搜索程序需要包含的组件如下：
+其中Lucene为深色部分的组件提供了强大的可扩展的工具库。
+在获取内容后，为了对这些内容进行高效检索，所需要的做的就是为这些文档建立索引，而在建立索引之前，我们需要分析文档，以把文档分解为token的集合，然后对这些token建立">
+<meta name="twitter:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Lucene_1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2014/08/09/Developing_Lucene(1)/"/>
+
+
+  <title> Lucene(1)_Introduction | Plusaber's Blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-79158075-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Plusaber's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Lucene(1)_Introduction
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2014-08-09T00:00:00+09:00" content="2014-08-09">
+              2014-08-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Developing/" itemprop="url" rel="index">
+                    <span itemprop="name">Developing</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/08/09/Developing_Lucene(1)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/08/09/Developing_Lucene(1)/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>Lucene是一个强大的开源信息检索工具库，通过Lucene我们可以轻易将搜索功能加到我们的应用程序中。</p>
+<p>通常一个搜索程序需要包含的组件如下：<br><img src="http://7xs07u.com1.z0.glb.clouddn.com/Lucene_1.png" alt=""></p>
+<p>其中Lucene为深色部分的组件提供了强大的可扩展的工具库。</p>
+<p>在获取内容后，为了对这些内容进行高效检索，所需要的做的就是为这些文档建立索引，而在建立索引之前，我们需要分析文档，以把文档分解为token的集合，然后对这些token建立索引。而分解文档为token就是Lucene的第一个任务，有许多问题需要在这一步解决，比如如何处理词组的问题，如何处理拼写错误，如何处理同义词关系等。对于中文等语言，甚至词与词之间都没有边界，这时还需要进行中文分词。</p>
+<p>Lucene提供了许多分析器可以让我们轻松定制所需要的文档分析器。</p>
+<p>在文档分析后， 我们就可以对文档建立索引，用于高效检索。Lucene也提供了强大的支持。</p>
+<p>对于搜索功能，通常是客户提交一个搜索请求，然后系统根据请求返回文档。Lunece提供了一个称为查询解析器的（QueryParser）的开发包用于处理用户的请求。查询请求可以包含布尔运算、短语查询或通配符查询。下一步是根据解析后的查询，结合前面建立的索引得到匹配查询的文档。这一系列非常复杂，Lucene同样提供了强大的支持，可以让我们轻松实现结果检索、过滤、排序等功能。</p>
+<p>常见的搜索模型有如下3种：</p>
+<ul>
+<li>纯布尔模型（pure boolean model） – 只检查查询与文档是否匹配，没有评分，没有排序。</li>
+<li>向量空间模型（vector space model） – query和document都作为基于token空间的向量模型，通过计算向量距离作为匹配概率，并用于排序。</li>
+<li>概率模型（probabilistic model） – 采用全概率方法来计算文档和查询语句的匹配概率。</li>
+</ul>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><p>下面是一个对指定文件夹以<code>.txt</code>结尾的文件进行index的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> lia.meetlucene;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.apache.lucene.index.IndexWriter;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.analysis.standard.StandardAnalyzer;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.document.Document;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.document.Field;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.store.FSDirectory;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.store.Directory;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.util.Version;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.File;</div><div class="line"><span class="keyword">import</span> java.io.FileFilter;</div><div class="line"><span class="keyword">import</span> java.io.IOException;</div><div class="line"><span class="keyword">import</span> java.io.FileReader;</div><div class="line"></div><div class="line"><span class="comment">// From chapter 1</span></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * This code was originally written for</div><div class="line"> * Erik's Lucene intro java.net article</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Indexer</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">    <span class="keyword">if</span> (args.length != <span class="number">2</span>) &#123;</div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Usage: java "</span> + Indexer.class.getName()</div><div class="line">        + <span class="string">" &lt;index dir&gt; &lt;data dir&gt;"</span>);</div><div class="line">    &#125;</div><div class="line">    String indexDir = args[<span class="number">0</span>];         <span class="comment">//1</span></div><div class="line">    String dataDir = args[<span class="number">1</span>];          <span class="comment">//2</span></div><div class="line"></div><div class="line">    <span class="keyword">long</span> start = System.currentTimeMillis();</div><div class="line">    Indexer indexer = <span class="keyword">new</span> Indexer(indexDir);</div><div class="line">    <span class="keyword">int</span> numIndexed;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">      numIndexed = indexer.index(dataDir, <span class="keyword">new</span> TextFilesFilter());</div><div class="line">    &#125; <span class="keyword">finally</span> &#123;</div><div class="line">      indexer.close();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">long</span> end = System.currentTimeMillis();</div><div class="line"></div><div class="line">    System.out.println(<span class="string">"Indexing "</span> + numIndexed + <span class="string">" files took "</span></div><div class="line">      + (end - start) + <span class="string">" milliseconds"</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> IndexWriter writer;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Indexer</span><span class="params">(String indexDir)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">    Directory dir = FSDirectory.open(<span class="keyword">new</span> File(indexDir));</div><div class="line">    writer = <span class="keyword">new</span> IndexWriter(dir,            <span class="comment">//3</span></div><div class="line">                 <span class="keyword">new</span> StandardAnalyzer(       <span class="comment">//3</span></div><div class="line">                     Version.LUCENE_30),<span class="comment">//3</span></div><div class="line">                 <span class="keyword">true</span>,                       <span class="comment">//3</span></div><div class="line">                             IndexWriter.MaxFieldLength.UNLIMITED); <span class="comment">//3</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">    writer.close();                             <span class="comment">//4</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">index</span><span class="params">(String dataDir, FileFilter filter)</span></span></div><div class="line">    <span class="keyword">throws</span> Exception &#123;</div><div class="line"></div><div class="line">    File[] files = <span class="keyword">new</span> File(dataDir).listFiles();</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (File f: files) &#123;</div><div class="line">      <span class="keyword">if</span> (!f.isDirectory() &amp;&amp;</div><div class="line">          !f.isHidden() &amp;&amp;</div><div class="line">          f.exists() &amp;&amp;</div><div class="line">          f.canRead() &amp;&amp;</div><div class="line">          (filter == <span class="keyword">null</span> || filter.accept(f))) &#123;</div><div class="line">        indexFile(f);</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> writer.numDocs();                     <span class="comment">//5</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">TextFilesFilter</span> <span class="keyword">implements</span> <span class="title">FileFilter</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">accept</span><span class="params">(File path)</span> </span>&#123;</div><div class="line">      <span class="keyword">return</span> path.getName().toLowerCase()        <span class="comment">//6</span></div><div class="line">             .endsWith(<span class="string">".txt"</span>);                  <span class="comment">//6</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">protected</span> Document <span class="title">getDocument</span><span class="params">(File f)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">    Document doc = <span class="keyword">new</span> Document();</div><div class="line">    doc.add(<span class="keyword">new</span> Field(<span class="string">"contents"</span>, <span class="keyword">new</span> FileReader(f)));      <span class="comment">//7</span></div><div class="line">    doc.add(<span class="keyword">new</span> Field(<span class="string">"filename"</span>, f.getName(),              <span class="comment">//8</span></div><div class="line">                Field.Store.YES, Field.Index.NOT_ANALYZED));<span class="comment">//8</span></div><div class="line">    doc.add(<span class="keyword">new</span> Field(<span class="string">"fullpath"</span>, f.getCanonicalPath(),     <span class="comment">//9</span></div><div class="line">                Field.Store.YES, Field.Index.NOT_ANALYZED));<span class="comment">//9</span></div><div class="line">    <span class="keyword">return</span> doc;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">indexFile</span><span class="params">(File f)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">    System.out.println(<span class="string">"Indexing "</span> + f.getCanonicalPath());</div><div class="line">    Document doc = getDocument(f);</div><div class="line">    writer.addDocument(doc);                              <span class="comment">//10</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">#1 Create index in this directory</div><div class="line">#2 Index *.txt files from this directory</div><div class="line">#3 Create Lucene IndexWriter</div><div class="line">#4 Close IndexWriter</div><div class="line">#5 Return number of documents indexed</div><div class="line">#6 Index .txt files only, using FileFilter</div><div class="line">#7 Index file content</div><div class="line">#8 Index file name</div><div class="line">#9 Index file full path</div><div class="line">#10 Add document to Lucene index</div><div class="line">*/</div></pre></td></tr></table></figure>
+<p>简单的搜索程序：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> lia.meetlucene;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.apache.lucene.document.Document;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.search.IndexSearcher;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.search.Query;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.search.ScoreDoc;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.search.TopDocs;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.store.FSDirectory;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.store.Directory;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.queryParser.QueryParser;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.queryParser.ParseException;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.analysis.standard.StandardAnalyzer;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.util.Version;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.File;</div><div class="line"><span class="keyword">import</span> java.io.IOException;</div><div class="line"></div><div class="line"><span class="comment">// From chapter 1</span></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * This code was originally written for</div><div class="line"> * Erik's Lucene intro java.net article</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Searcher</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IllegalArgumentException,</span></div><div class="line">        IOException, ParseException &#123;</div><div class="line">    <span class="keyword">if</span> (args.length != <span class="number">2</span>) &#123;</div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Usage: java "</span> + Searcher.class.getName()</div><div class="line">        + <span class="string">" &lt;index dir&gt; &lt;query&gt;"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    String indexDir = args[<span class="number">0</span>];               <span class="comment">//1 </span></div><div class="line">    String q = args[<span class="number">1</span>];                      <span class="comment">//2   </span></div><div class="line"></div><div class="line">    search(indexDir, q);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">search</span><span class="params">(String indexDir, String q)</span></span></div><div class="line">    <span class="keyword">throws</span> IOException, ParseException &#123;</div><div class="line"></div><div class="line">    Directory dir = FSDirectory.open(<span class="keyword">new</span> File(indexDir)); <span class="comment">//3</span></div><div class="line">    IndexSearcher is = <span class="keyword">new</span> IndexSearcher(dir);   <span class="comment">//3   </span></div><div class="line"></div><div class="line">    QueryParser parser = <span class="keyword">new</span> QueryParser(Version.LUCENE_30, <span class="comment">// 4</span></div><div class="line">                                         <span class="string">"contents"</span>,  <span class="comment">//4</span></div><div class="line">                     <span class="keyword">new</span> StandardAnalyzer(          <span class="comment">//4</span></div><div class="line">                       Version.LUCENE_30));  <span class="comment">//4</span></div><div class="line">    Query query = parser.parse(q);              <span class="comment">//4   </span></div><div class="line">    <span class="keyword">long</span> start = System.currentTimeMillis();</div><div class="line">    TopDocs hits = is.search(query, <span class="number">10</span>); <span class="comment">//5</span></div><div class="line">    <span class="keyword">long</span> end = System.currentTimeMillis();</div><div class="line"></div><div class="line">    System.err.println(<span class="string">"Found "</span> + hits.totalHits +   <span class="comment">//6  </span></div><div class="line">      <span class="string">" document(s) (in "</span> + (end - start) +        <span class="comment">// 6</span></div><div class="line">      <span class="string">" milliseconds) that matched query '"</span> +     <span class="comment">// 6</span></div><div class="line">      q + <span class="string">"':"</span>);                                   <span class="comment">// 6</span></div><div class="line"></div><div class="line">    <span class="keyword">for</span>(ScoreDoc scoreDoc : hits.scoreDocs) &#123;</div><div class="line">      Document doc = is.doc(scoreDoc.doc);               <span class="comment">//7      </span></div><div class="line">      System.out.println(doc.get(<span class="string">"fullpath"</span>));  <span class="comment">//8  </span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    is.close();                                <span class="comment">//9</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">#1 Parse provided index directory</div><div class="line">#2 Parse provided query string</div><div class="line">#3 Open index</div><div class="line">#4 Parse query</div><div class="line">#5 Search index</div><div class="line">#6 Write search stats</div><div class="line">#7 Retrieve matching document</div><div class="line">#8 Display filename</div><div class="line">#9 Close IndexSearcher</div><div class="line">*/</div></pre></td></tr></table></figure>
+<h3 id="索引过程的核心类"><a href="#索引过程的核心类" class="headerlink" title="索引过程的核心类"></a>索引过程的核心类</h3><ul>
+<li><p><strong>IndexWriter</strong><br>这个类负责创建新索引或者打开已有索引，以及向索引中添加、删除或更新被索引文档的信息。可以将IndexWritter看做为索引写入操作提供支持的类。IndexWritter需要开辟空间来存储索引，该功能有Directory完成。</p>
+</li>
+<li><p><strong>Directory</strong><br>Directory类描述了索引的存放位置，这是一个抽象类，它子类负责具体指向索引的存储路径，如前面例子中的FSDirectory.open方法来获取真实路径。</p>
+</li>
+<li><p><strong>Analyzer</strong><br>文本文件在被索引之前需要经过Analyzer处理。Analyzer在IndexWriter构造器中被指定，负责将文档拆分为tokens，用于index。Analyzer同样是一个抽象类，有很多子类负责不同具体的实现。</p>
+</li>
+<li><p><strong>Document</strong><br>Document代表一篇文档，但不是原始的text文档，而是抽象文档–fields的集合，fields表示文档的的一些元数据，例如标题，作者，创立日期，summary，filename，first paragraph等。不同的的元数据都作为文档不同的field单独存储并被索引。在不同field的相同token具有不同意义和重要性，比如title的更加重要。在搜索时我们也可以指定token一定要出现在某个field。– Document即是一个包含多个Field对象的容器，Field是一个包含能被索引的文本内容的类。</p>
+</li>
+<li><p><strong>Field</strong><br>索引中的每个文档都包含一个或多个不同的field（域），每个field都有一个名字（域名）和对应的内容(text)，以及一组选项说明lucene如何index这个field的内容。文档可以拥有多个同名的field，但是在建立索引时，这些field内容按照顺序被处理，就像被连接在一起作为一个text处理。</p>
+</li>
+</ul>
+<h3 id="搜索过程的核心类"><a href="#搜索过程的核心类" class="headerlink" title="搜索过程的核心类"></a>搜索过程的核心类</h3><p><strong>IndexSearcher</strong><br>IndexSearcher用于搜索索引。最基本的使用是传入一个query对象和top N参数，返回一个TopDocs对象包含若干结果。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Directory dir = FSDirectory.open(<span class="keyword">new</span> File(<span class="string">"/tmp/index"</span>));</div><div class="line">        IndexSearcher searcher = <span class="keyword">new</span> IndexSearcher(dir);</div><div class="line">        Query q = <span class="keyword">new</span> TermQuery(<span class="keyword">new</span> Term(<span class="string">"contents"</span>, <span class="string">"lucene"</span>));</div><div class="line">        TopDocs hits = searcher.search(q, <span class="number">10</span>);</div><div class="line">searcher.close();</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>Term</strong><br>Term对象是搜索功能的基本单元，与Field对象十分类似，只不过一个是query的组成单元，一个是Document的组成单元。Term同样包含一对字符串元素：名字和内容（text）。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Query q = <span class="keyword">new</span> TermQuery(<span class="keyword">new</span> Term(<span class="string">"contents"</span>, <span class="string">"lucene"</span>));</div><div class="line">        TopDocs hits = searcher.search(q, <span class="number">10</span>);</div></pre></td></tr></table></figure>
+<p>上面代码表示寻找contexts域（field）包含单词lucene的前10个document。</p>
+<ul>
+<li><p><strong>Query</strong><br>Query类对象是查询的参数，也是一个抽象类，具体实现有TermQuery, BooleanQuery, PhraseQuery…</p>
+</li>
+<li><p><strong>TermQuery</strong><br>TermQuery是最基本最简单的查询类型，用来匹配指定域(field)中包含特定内容的文档。</p>
+</li>
+<li><p><strong>TopDocs</strong><br>TopDocs类是一个简单的指针容器，指向前N个排名的搜索结果。TopDocs记录前N个结果的int docID和浮点型分数。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/lucene/" rel="tag">#lucene</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/08/05/Java_Template/" rel="next" title="Java泛型">
+                <i class="fa fa-chevron-left"></i> Java泛型
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/08/26/Developing_Lucene(2)/" rel="prev" title="Lucene(2)_Index">
+                Lucene(2)_Index <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/plusaber.jpg"
+               alt="Plusaber" />
+          <p class="site-author-name" itemprop="name">Plusaber</p>
+          <p class="site-description motion-element" itemprop="description">Plusaber's Blog</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">325</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://leetcode.com/problemset/algorithms/" title="Leetcode" target="_blank">Leetcode</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.kaggle.com" title="Kaggle" target="_blank">Kaggle</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jp.linkedin.com/in/zebangchen" title="LinkedIn" target="_blank">LinkedIn</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://portal.qiniu.com" title="Qiniu" target="_blank">Qiniu</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example"><span class="nav-number">2.</span> <span class="nav-text">Example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引过程的核心类"><span class="nav-number">3.</span> <span class="nav-text">索引过程的核心类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搜索过程的核心类"><span class="nav-number">4.</span> <span class="nav-text">搜索过程的核心类</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Plusaber</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'plusaber';
+      var disqus_identifier = '2014/08/09/Developing_Lucene(1)/';
+      var disqus_title = "Lucene(1)_Introduction";
+      var disqus_url = 'http://yoursite.com/2014/08/09/Developing_Lucene(1)/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

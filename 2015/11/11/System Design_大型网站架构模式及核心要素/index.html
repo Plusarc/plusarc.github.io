@@ -1,0 +1,758 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="google88d81a02a91db82f" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="system design," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="大型网站架构模式所谓模式就是描述了在我们周围不断重复发生的问题以及该问题解决方案的核心，这样我们可以一次又一次使用该方案而不必重复解决问题。模式的关键在于模式的可重复性，问题与场景的可重复性带来解决方案的可重复使用。
+为了解决大型网站面临的高并发访问、海量数据处理、高可靠运行等一系列问题与挑战，许多公司在实践中提出了许多解决方案，以实现网站高性能、高可用、易伸缩、可扩展、安全等技术架构目标。
+分层">
+<meta property="og:type" content="article">
+<meta property="og:title" content="System Design_大型网站架构模式及核心要素">
+<meta property="og:url" content="http://yoursite.com/2015/11/11/System Design_大型网站架构模式及核心要素/index.html">
+<meta property="og:site_name" content="Plusaber's Blog">
+<meta property="og:description" content="大型网站架构模式所谓模式就是描述了在我们周围不断重复发生的问题以及该问题解决方案的核心，这样我们可以一次又一次使用该方案而不必重复解决问题。模式的关键在于模式的可重复性，问题与场景的可重复性带来解决方案的可重复使用。
+为了解决大型网站面临的高并发访问、海量数据处理、高可靠运行等一系列问题与挑战，许多公司在实践中提出了许多解决方案，以实现网站高性能、高可用、易伸缩、可扩展、安全等技术架构目标。
+分层">
+<meta property="og:updated_time" content="2015-12-19T09:58:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="System Design_大型网站架构模式及核心要素">
+<meta name="twitter:description" content="大型网站架构模式所谓模式就是描述了在我们周围不断重复发生的问题以及该问题解决方案的核心，这样我们可以一次又一次使用该方案而不必重复解决问题。模式的关键在于模式的可重复性，问题与场景的可重复性带来解决方案的可重复使用。
+为了解决大型网站面临的高并发访问、海量数据处理、高可靠运行等一系列问题与挑战，许多公司在实践中提出了许多解决方案，以实现网站高性能、高可用、易伸缩、可扩展、安全等技术架构目标。
+分层">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/11/11/System Design_大型网站架构模式及核心要素/"/>
+
+
+  <title> System Design_大型网站架构模式及核心要素 | Plusaber's Blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-79158075-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Plusaber's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                System Design_大型网站架构模式及核心要素
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-11-11T00:00:00+09:00" content="2015-11-11">
+              2015-11-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/System-design/" itemprop="url" rel="index">
+                    <span itemprop="name">System design</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/11/11/System Design_大型网站架构模式及核心要素/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/11/11/System Design_大型网站架构模式及核心要素/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="大型网站架构模式"><a href="#大型网站架构模式" class="headerlink" title="大型网站架构模式"></a>大型网站架构模式</h1><p>所谓模式就是描述了在我们周围不断重复发生的问题以及该问题解决方案的核心，这样我们可以一次又一次使用该方案而不必重复解决问题。模式的关键在于模式的可重复性，问题与场景的可重复性带来解决方案的可重复使用。</p>
+<p>为了解决大型网站面临的高并发访问、海量数据处理、高可靠运行等一系列问题与挑战，许多公司在实践中提出了许多解决方案，以实现网站高性能、高可用、易伸缩、可扩展、安全等技术架构目标。</p>
+<h2 id="分层"><a href="#分层" class="headerlink" title="分层"></a>分层</h2><p>分层是企业应用系统常用的架构模式，将系统在横向维度切分为几个部分（垂直的分为几层），然后通过上层对下层的依赖和调用组成一个完整的系统，如分割为应用层、服务层、数据层，应用层可细分问u视图层、业务逻辑层。服务层可以细分为数据接口层、逻辑处理层。</p>
+<p>不同层可以部署在不同的服务器上，实现低耦合，可伸缩。</p>
+<h2 id="分割"><a href="#分割" class="headerlink" title="分割"></a>分割</h2><p>水平分割，例如按照功能将系统分割，包装为高内聚低耦合的模块单元，一方面有助于软件的开发和维护，同样便于不同模块的分布式部署，提高网站的并发处理能力和功能扩张能力。</p>
+<h2 id="分布式"><a href="#分布式" class="headerlink" title="分布式"></a>分布式</h2><p>对于大型网站，分层和分割的一个主要目的是为了切分后的模块便于分布式部署，可通过增加机器提高并发能力。但分布式需要通过网络，会带来性能的影响，多个服务器也意味着机器出现问题的概率变大，降低网站的可用性。另外一个问题是在分布式的环境中保持数据一致性。</p>
+<p>几种分布式方案：</p>
+<ol>
+<li>分布式应用和服务：将分层和分割后的应用和服务分布式部署，</li>
+<li>分布式静态资源：将网站的静态资源独立分布式部署。</li>
+<li>分布式数据和存储：分布式数据库，NoSQL等。</li>
+<li>分布式计算</li>
+</ol>
+<h2 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h2><p>使用分布式虽然已经将分层和分割后的模块独立部署，但是对于用户访问集中的模块，还需要将独立部署的服务器集群化，即多台服务器部署相同服务，通过负载均衡设备共同对外提供服务。通过添加新服务器可以提高服务能力，也就是具有可伸缩性，另外还可以通过失效转移等机制保证可用性。</p>
+<h2 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h2><ul>
+<li><strong>CDN</strong>：内容分发网络，部署在离终端用户最近的网络服务提供商，缓存网站一些静态资源(变化较少的资源)或者热点内容。</li>
+<li><strong>反向代理</strong>：反向代理属于网站前端架构的一部分，部署在网站的前端，当用户请求到达网站的数据中心时，最先访问的就是反向代理服务器，这里缓存网站的静态和热点资源，无需将请求转发给应用服务器就可以返回给用户。</li>
+<li><strong>本地缓存</strong>：在应用服务器本地缓存热点数据，减少访问文件和数据库。</li>
+<li><strong>分布式缓存</strong>：本地缓存一般不够大，另外将数据缓存在一个专门的分布式缓存集群中，通过网络通信访问缓存数据。</li>
+</ul>
+<h2 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h2><p>降低软件耦合性，前面分层、分割、分布也是同样的目标。通过异步，业务之间的消息传递不是同步调用，而是将一个业务操作分成多个阶段，每个阶段之间通过共享数据的方式异步执行协作。</p>
+<p>在单一服务器内部可通过多线程共享内存队列的方式实现异步：在分布式系统中，多个服务器可以通过分布式消息队列实现异步。</p>
+<p>异步架构是典型的生产者消费者模式，两者不存在直接调用，只要保持数据结构不变，批次功能实现可以随意变化而不互相影响，这对网站扩展新功能非常便利。另外，使用异步消息队列还有如下特性。</p>
+<p><strong>提高系统可用性</strong>：消费者服务器发生故障，数据会在消息队列服务器中堆积，生产者可以继续处理业务请求，系统整体无故障。消费者服务器恢复正常后，继续处理消息队列中的数据。</p>
+<p><strong>加快网站相应速度</strong>：处在业务处理前端的生产者服务器可以在处理完业务请求后，将数据写入消息队列后返回，不需要同步等待消费者服务器处理就可以返回，减少相应延迟。</p>
+<p><strong>消除并发访问高峰</strong>：用户访问存在突然的高峰，如果同时同步处理所有访问，会导致网站负载过重，响应延迟。使用消息队列将突然增加的访问请求数据放入消息队列中，等待消费者服务器依次处理，就不会对整个网站负载造成太大压力。</p>
+<h2 id="冗余"><a href="#冗余" class="headerlink" title="冗余"></a>冗余</h2><p>要保证网站的可用性，需要一定程度的服务器冗余运行，数据冗余备份，这样当某台服务器宕机时，可以将其上的服务和数据访问转移到其他机器上。数据库除了冷备份外，为了保证在线业务高可用，也需要对数据库进行主从分离，实时同步实现热备份。</p>
+<h2 id="自动化"><a href="#自动化" class="headerlink" title="自动化"></a>自动化</h2><h2 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h2><h1 id="大型网站核心要素"><a href="#大型网站核心要素" class="headerlink" title="大型网站核心要素"></a>大型网站核心要素</h1><p>除了系统的功能需求外，软件架构还需要关注可能、可用性、伸缩性、扩展性、安全性这个5个架构要素，以及平衡这5个要素之间的关系以实现需求和架构目标。</p>
+<h2 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h2><p>性能是网站的一个重要指标，用户无法忍受一个相应缓慢的网站。</p>
+<p>性能的问题无处不在，所以优化的方面也很多：</p>
+<ul>
+<li>在浏览器端，可以通过浏览器缓存、页面压缩、减少cookie传输、JavaScript实现可以在本地实现的功能，减少访问次数</li>
+<li>CDN，反向代理服务器缓存热点文件。</li>
+<li>应用服务器端，可以使用服务器本地缓存和分布式缓存，通过缓存在内存的热点数据，减少访问数据库，加快请求处理过程。</li>
+<li>异步将用户请求发送到消息队列等待处理，直接返回相应给用户。</li>
+<li>在高并发请求的情况下，可以将多台应用服务器组成一个集群共同对外服务，提高整体处理能力。</li>
+<li>代码层面，使用合适的数据结构、高效算法，以及多线程、改善内存管理等手段优化性能。</li>
+<li>数据库服务器端，索引、索引、sql优化。</li>
+<li>NoSQL，Hadoop，分布式计算和存储。</li>
+</ul>
+<p>衡量网站性能有一系列指标，如相应时间、TPS等，可以测试这些指标确定系统是否达到目标。</p>
+<h2 id="可用性"><a href="#可用性" class="headerlink" title="可用性"></a>可用性</h2><p>高可用架构设计的前提是必然出现服务器宕机，设计目标是服务器宕机时，服务依然可用。</p>
+<p>实现高可用的主要手段是冗余，应用部署在多台服务器上同时提供服务，数据存储在多台服务器上相互备份，任何一台机器宕机不会影响整体服务，也不会导致数据丢失。</p>
+<p>对于应用服务器，可以通过负载均衡服务器组成一个集群共同对外提供服务，一台机器宕机时可以将服务转移到其他机器上，前提是服务器不在本地保存服务的会话信息。</p>
+<p>对于存储服务器，需要实现实时备份。</p>
+<h2 id="伸缩性"><a href="#伸缩性" class="headerlink" title="伸缩性"></a>伸缩性</h2><p>所谓伸缩性是指能否通过不断增加机器来缓解上升用户的并发访问压力和不断增长的数据存储需求。加入新的服务器后是否可以能提供和原来的服务器无差别的服务，集群中可容纳的总得服务器数量是否有限制。</p>
+<p>对于应用服务器集群，只要服务器上不保存数据，所有服务器都是对等的，通过使用合适的负载均衡就可以向集群中不断加入服务器。</p>
+<p>对于缓存服务器集群，加入新的服务其可能会导致缓存路由失效，进而导致集群中大部分缓存数据都无法访问。如果应用严重依赖缓存，可能对网站造成严重影响甚至数据库服务崩溃。需要改进缓存路由算法保证缓存数据的可访问性，一个解决方法是一致性hash算法。</p>
+<p>关系数据库虽然支持数据复制，主从热备等机制，但是很难做到大规模集群的可伸缩性，因此关系数据库的集群伸缩方案必须在数据库之外实现，通过路由分区等手段将部署多个数据的服务器组成一个集群。</p>
+<p>至于大部分NoSQL数据库产品，由于其就是为海量数据而生，所以对伸缩性支持都非常好，可以做到在较少操作下实现集群规模的线性伸缩。</p>
+<h2 id="扩展性"><a href="#扩展性" class="headerlink" title="扩展性"></a>扩展性</h2><p>网站的扩展性架构直接关注网站的功能需求。网站快速发展，功能不断扩展，如何设计网站的架构使其能够快速相应需求变化，是网站可扩展的主要目的。</p>
+<p>衡量网站架构扩展性的好坏的主要标准就是在网站增加新的业务产品时，是否可以实现对现有产品透明无影响，不需要改动或很少改动既有业务功能就可以上线新功能。不同产品之间是否很少耦合，一个产品改动对其他产品无影响。</p>
+<p>网站可伸缩架构的主要手段是事件驱动和分布式服务。</p>
+<p>事件驱动架构在网站使用消息队列实现，将用户请求和其他业务时间构造消息发布到消息队列，消息的处理作为消费者从消息队列中获取消息进行处理。通过这种方式将消息产生和消息处理分离开来，可以透明地增加新的消息生产者任务或者新的消息消费者任务。</p>
+<p>分布式服务则是将业务和可复用的服务分离开来，通过分布式服务框架调用。新增产品可以调用可复用的服务实现自身的业务逻辑，而对现有产品没有任何影响。可复用服务升级变更时，也可以通过提供多版本服务对应用实现透明升级，不需要强制应用同步变更。</p>
+<h2 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h2><p>安全架构目的是保证网站不受恶意访问和攻击，保护网站的重要数据不被窃取。</p>
+<p>衡量网站安全架构的标准就是针对现存和潜在的各种攻击和窃密手段，是否有可靠的应对策略。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/system-design/" rel="tag">#system design</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/08/Leetcode_Meeting Rooms/" rel="next" title="Meeting Rooms">
+                <i class="fa fa-chevron-left"></i> Meeting Rooms
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/19/System Design_大型网站安全架构/" rel="prev" title="System Design_大型网站安全架构">
+                System Design_大型网站安全架构 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/plusaber.jpg"
+               alt="Plusaber" />
+          <p class="site-author-name" itemprop="name">Plusaber</p>
+          <p class="site-description motion-element" itemprop="description">Plusaber's Blog</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">325</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://leetcode.com/problemset/algorithms/" title="Leetcode" target="_blank">Leetcode</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.kaggle.com" title="Kaggle" target="_blank">Kaggle</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jp.linkedin.com/in/zebangchen" title="LinkedIn" target="_blank">LinkedIn</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://portal.qiniu.com" title="Qiniu" target="_blank">Qiniu</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#大型网站架构模式"><span class="nav-number">1.</span> <span class="nav-text">大型网站架构模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分层"><span class="nav-number">1.1.</span> <span class="nav-text">分层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分割"><span class="nav-number">1.2.</span> <span class="nav-text">分割</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式"><span class="nav-number">1.3.</span> <span class="nav-text">分布式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集群"><span class="nav-number">1.4.</span> <span class="nav-text">集群</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存"><span class="nav-number">1.5.</span> <span class="nav-text">缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步"><span class="nav-number">1.6.</span> <span class="nav-text">异步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#冗余"><span class="nav-number">1.7.</span> <span class="nav-text">冗余</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动化"><span class="nav-number">1.8.</span> <span class="nav-text">自动化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安全"><span class="nav-number">1.9.</span> <span class="nav-text">安全</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#大型网站核心要素"><span class="nav-number">2.</span> <span class="nav-text">大型网站核心要素</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#性能"><span class="nav-number">2.1.</span> <span class="nav-text">性能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可用性"><span class="nav-number">2.2.</span> <span class="nav-text">可用性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伸缩性"><span class="nav-number">2.3.</span> <span class="nav-text">伸缩性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展性"><span class="nav-number">2.4.</span> <span class="nav-text">扩展性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安全性"><span class="nav-number">2.5.</span> <span class="nav-text">安全性</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Plusaber</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'plusaber';
+      var disqus_identifier = '2015/11/11/System Design_大型网站架构模式及核心要素/';
+      var disqus_title = "System Design_大型网站架构模式及核心要素";
+      var disqus_url = 'http://yoursite.com/2015/11/11/System Design_大型网站架构模式及核心要素/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
