@@ -260,6 +260,132 @@
             
               
                 
+                <a class="post-title-link" href="/2015/08/02/Leetcode_Product of Array Except Self/" itemprop="url">
+                  Product of Array Except Self
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-08-02T00:00:00+09:00" content="2015-08-02">
+              2015-08-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/08/02/Leetcode_Product of Array Except Self/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/02/Leetcode_Product of Array Except Self/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Product-of-Array-Except-Self"><a href="#Product-of-Array-Except-Self" class="headerlink" title="Product of Array Except Self"></a><a href="https://leetcode.com/problems/product-of-array-except-self/" target="_blank" rel="external">Product of Array Except Self</a></h1><blockquote>
+<p>Given an array of <code>n</code> integers where <code>n &gt; 1</code>, nums, return an array output such that <code>output[i]</code> is equal to the product of all the elements of nums except <code>nums[i]</code>.</p>
+<p>Solve it without division and in <code>O(n)</code>.</p>
+<p>For example, given <code>[1,2,3,4]</code>, return <code>[24,12,8,6]</code>.</p>
+<p>Follow up:<br>Could you solve it with constant space complexity? (Note: The output array does not count as extra space for the purpose of space complexity analysis.)</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] productExceptSelf(<span class="keyword">int</span>[] nums) &#123;</div><div class="line">        <span class="keyword">int</span> [] res = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</div><div class="line">        res[<span class="number">0</span>] = <span class="number">1</span>;</div><div class="line"></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;nums.length; i++) &#123;</div><div class="line">            res[i] = res[i-<span class="number">1</span>]*nums[i-<span class="number">1</span>];</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> right = <span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=nums.length-<span class="number">1</span>; i&gt;=<span class="number">0</span>; i--) &#123;</div><div class="line">            res[i] = res[i] * right;</div><div class="line">            right = right * nums[i];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/08/01/Leetcode_Largest Number/" itemprop="url">
                   Largest Number
                 </a>
@@ -765,134 +891,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/07/27/Leetcode_Power of Two/" itemprop="url">
-                  Power of Two
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-07-27T00:00:00+09:00" content="2015-07-27">
-              2015-07-27
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/07/27/Leetcode_Power of Two/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/07/27/Leetcode_Power of Two/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Power-of-Two"><a href="#Power-of-Two" class="headerlink" title="Power of Two"></a><a href="https://leetcode.com/problems/power-of-two/" target="_blank" rel="external">Power of Two</a></h1><blockquote>
-<p>Given an integer, write a function to determine if it is a power of two.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>奇数就直接返回false。</p>
-<p>偶数的情况，比较高效的方法是首先不断累计计算<code>2^1, 2^2, 2^4, 2^8, 2^16...</code>，直到最后一个小于等于<code>n</code>的数，然后再以此为基数不断<code>*2</code>，直到等于<code>n</code>或者大于<code>n</code>，从而得到结果。注意处理可能越界(Integer.MAX_VALUE)的情况。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPowerOfTwo</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(n==<span class="number">1</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        <span class="keyword">if</span>(n&lt;<span class="number">1</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> num  = <span class="number">2</span>;</div><div class="line">        <span class="keyword">while</span>(num&lt;=n/num) num = num * num;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(num&lt;=n) &#123;</div><div class="line">            <span class="keyword">if</span>(num==n) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            <span class="keyword">if</span>(num&gt;Integer.MAX_VALUE/<span class="number">2.0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            num = <span class="number">2</span> * num;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>更高级的解法，O(1)时间复杂度，核心是分析出2的幂次方的二进制形式都是<code>00000001</code>,<code>00000010</code>,<code>00000100</code>的形式，也就是只有一个1，其他为都是0，而n-1是从该位的下一位开始到最后都是1，如<code>n</code>为<code>00001000</code>，<code>n-1</code>为<code>00000111</code>。可以得到的是，如果<code>n</code>是2的幂次方，则<code>(n &amp; (n-1))==0</code>。如果<code>n</code>不是2的幂次方，则代表除了n最高位的位<code>1</code>之外，一定还有其他位为1，也就是<code>n-1</code>不会一定不会影响到最高位<code>1</code>的改变，所以<code>(n &amp; (n-1))!=0</code>。</p>
-<p>结论就是如果<code>(n&gt;0) &amp;&amp; (n &amp; (n-1))==0</code>，则<code>n</code>为2的幂次方。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPowerOfTwo</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(n&lt;=<span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">return</span> (n &amp; (n-<span class="number">1</span>)) == <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -938,7 +936,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">327</span>
+              <span class="site-state-item-count">328</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

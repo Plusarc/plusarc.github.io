@@ -260,6 +260,141 @@
             
               
                 
+                <a class="post-title-link" href="/2015/10/01/Leetcode_LRU Cache/" itemprop="url">
+                  LRU Cache
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-10-01T00:00:00+09:00" content="2015-10-01">
+              2015-10-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/10/01/Leetcode_LRU Cache/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/01/Leetcode_LRU Cache/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="LRU-Cache"><a href="#LRU-Cache" class="headerlink" title="LRU Cache"></a><a href="https://leetcode.com/problems/lru-cache/" target="_blank" rel="external">LRU Cache</a></h1><blockquote>
+<p>Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: <code>get</code> and <code>set</code>.</p>
+<p><code>get(key)</code> - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return <code>-1</code>.<br><code>set(key, value)</code> - Set or insert the value if the key is not already present. When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>LRU cache数据结构的核心就是当存储空间满了，而有新的item要插入时，要先丢弃最早更新的item。这里的数据结构需要符合以下条件：</p>
+<ol>
+<li><p>要能快速找到最早更新的item。这里需要将item以更新时间顺序排序。<br>可选的有：queue，heap，linked list</p>
+</li>
+<li><p>要能快速访问指定item，并且访问以后要更新它的时间顺序。<br>对于更新时间顺序这个操作，queue和heap要做到就很困难了。所以这点最佳的是linked list。但linked list中查找指定item需要遍历，这里可以用一个hash table来记录key与节点之间的对应。并且由于要随时更新节点位置，doubly linked list更为适用。</p>
+</li>
+</ol>
+<p>根据以上两点，有了以下解法。注意由于代码较长，面试时尽可能将一些基本操作写成函数。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="双向链表-HashMap"><a href="#双向链表-HashMap" class="headerlink" title="双向链表 + HashMap"></a>双向链表 + HashMap</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</div><div class="line">        Node pre, next;</div><div class="line">        <span class="keyword">int</span> key;</div><div class="line">        <span class="keyword">int</span> val;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.key = key;</div><div class="line">            <span class="keyword">this</span>.val = value;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> capacity;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> num;</div><div class="line">    <span class="keyword">private</span> HashMap&lt;Integer, Node&gt; map;</div><div class="line">    <span class="keyword">private</span> Node first, last;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.capacity = capacity;</div><div class="line">        num = <span class="number">0</span>;</div><div class="line">        map = <span class="keyword">new</span> HashMap&lt;Integer, Node&gt;();</div><div class="line">        first = <span class="keyword">null</span>;</div><div class="line">        last = <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</div><div class="line">        Node node = map.get(key);</div><div class="line">        <span class="keyword">if</span>(node == <span class="keyword">null</span>)</div><div class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(node!=last) &#123;</div><div class="line">            <span class="keyword">if</span>(node == first)</div><div class="line">                first = first.next;</div><div class="line">            <span class="keyword">else</span></div><div class="line">                node.pre.next = node.next;</div><div class="line">            node.next.pre = node.pre;</div><div class="line">            last.next = node;</div><div class="line">            node.pre = last;</div><div class="line">            node.next = <span class="keyword">null</span>;</div><div class="line">            last = node;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> node.val;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</div><div class="line">        Node node = map.get(key);</div><div class="line">        <span class="keyword">if</span>(node != <span class="keyword">null</span>) &#123;</div><div class="line">            node.val = value;</div><div class="line">            <span class="keyword">if</span>(node!=last) &#123;</div><div class="line">                <span class="keyword">if</span>(node == first) &#123;</div><div class="line">                    first = first.next;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">else</span> &#123;</div><div class="line">                    node.pre.next = node.next;</div><div class="line">                &#125;</div><div class="line">                </div><div class="line">                node.next.pre = node.pre;</div><div class="line">                last.next = node;</div><div class="line">                node.pre = last;</div><div class="line">                node.next = <span class="keyword">null</span>;</div><div class="line">                last = node;</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            Node newNode = <span class="keyword">new</span> Node(key,value);</div><div class="line">            <span class="keyword">if</span>(num&gt;=capacity) &#123;</div><div class="line">                map.remove(first.key);</div><div class="line">                first = first.next;</div><div class="line">                <span class="keyword">if</span>(first!=<span class="keyword">null</span>)</div><div class="line">                    first.pre = <span class="keyword">null</span>;</div><div class="line">                <span class="keyword">else</span></div><div class="line">                    last = <span class="keyword">null</span>;</div><div class="line">                num--;    </div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>(first == <span class="keyword">null</span> || last == <span class="keyword">null</span>) &#123;</div><div class="line">                first = newNode;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> &#123;</div><div class="line">                last.next = newNode;</div><div class="line">            &#125;</div><div class="line">            newNode.pre = last;</div><div class="line">            last = newNode;</div><div class="line">            map.put(key,newNode);</div><div class="line">            num++;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Linked-List-Solution-LTE"><a href="#Linked-List-Solution-LTE" class="headerlink" title="Linked List Solution(LTE)"></a>Linked List Solution(LTE)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Element</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> key;</div><div class="line">        <span class="keyword">int</span> value;</div><div class="line">        Element next;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Element</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.key = key;</div><div class="line">            <span class="keyword">this</span>.value = value;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> capacity;</div><div class="line">    Element top;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.capacity = capacity;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</div><div class="line">    	<span class="keyword">if</span>(top!=<span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">if</span>(top.key==key) &#123;</div><div class="line">                <span class="keyword">return</span> top.value;</div><div class="line">            &#125;</div><div class="line">            Element last = top;</div><div class="line">            Element ele = top.next;</div><div class="line">            <span class="keyword">while</span>(ele!=<span class="keyword">null</span>) &#123;</div><div class="line">                <span class="keyword">if</span>(ele.key==key) &#123;</div><div class="line">                    last.next = ele.next;</div><div class="line">                    ele.next = top;</div><div class="line">                    top = ele;</div><div class="line">                    <span class="keyword">return</span> ele.value;</div><div class="line">                &#125;</div><div class="line">                last = ele;</div><div class="line">                ele = ele.next;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(top!=<span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">if</span>(top.key==key) &#123;</div><div class="line">                top.value = value;</div><div class="line">                <span class="keyword">return</span>;</div><div class="line">            &#125;</div><div class="line">            Element last = top;</div><div class="line">            Element ele = top.next;</div><div class="line">            <span class="keyword">int</span> i = <span class="number">1</span>;</div><div class="line">            <span class="keyword">while</span>(i&lt;capacity &amp;&amp; ele!=<span class="keyword">null</span>) &#123;</div><div class="line">                <span class="keyword">if</span>(ele.key==key) &#123;</div><div class="line">                    last.next = ele.next;</div><div class="line">                    ele.next = top;</div><div class="line">                    top = ele;</div><div class="line">                    <span class="keyword">return</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span>(i==capacity-<span class="number">1</span>) last.next = <span class="keyword">null</span>;</div><div class="line">                last = ele;</div><div class="line">                ele = ele.next;</div><div class="line">                i ++;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        Element newEle = <span class="keyword">new</span> Element(key, value);</div><div class="line">        newEle.next = top;</div><div class="line">        top = newEle;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Java-LinkedHashMap-Solution"><a href="#Java-LinkedHashMap-Solution" class="headerlink" title="Java LinkedHashMap Solution"></a>Java LinkedHashMap Solution</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.LinkedHashMap;</div><div class="line"><span class="keyword">import</span> java.util.Map;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> <span class="keyword">extends</span> <span class="title">LinkedHashMap</span>&lt;<span class="title">Integer</span>, <span class="title">Integer</span>&gt; </span>&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> capacity;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</div><div class="line">		<span class="keyword">super</span>(<span class="number">16</span>, <span class="number">0.75f</span>, <span class="keyword">true</span>);</div><div class="line">		<span class="keyword">this</span>.capacity = capacity;</div><div class="line">	&#125;</div><div class="line">	<span class="comment">//重写父类get，为null时范围-1</span></div><div class="line">	<span class="function"><span class="keyword">public</span> Integer <span class="title">get</span><span class="params">(Object key)</span> </span>&#123;</div><div class="line">		Integer v = <span class="keyword">super</span>.get(key);</div><div class="line">		<span class="keyword">if</span> (v != <span class="keyword">null</span>)</div><div class="line">			<span class="keyword">return</span> v;</div><div class="line">		<span class="keyword">else</span></div><div class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="comment">//重写父类方法，当超过缓存容量时，就删除最老的</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">removeEldestEntry</span><span class="params">(Map.Entry&lt;Integer, Integer&gt; eldest)</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> size() &gt; capacity;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</div><div class="line">		<span class="keyword">super</span>.put(key, value);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>参考:<br><a href="http://www.acmerblog.com/leetcode-lru-cache-lru-5745.html" target="_blank" rel="external">LeetCode-LRU Cache-LRU算法</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/09/30/Leetcode_Insert Interval/" itemprop="url">
                   Insert Interval
                 </a>
@@ -751,135 +886,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/09/26/Leetcode_Binary Tree Maximum Path Sum/" itemprop="url">
-                  Binary Tree Maximum Path Sum
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-26T00:00:00+09:00" content="2015-09-26">
-              2015-09-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/26/Leetcode_Binary Tree Maximum Path Sum/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/26/Leetcode_Binary Tree Maximum Path Sum/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Binary-Tree-Maximum-Path-Sum"><a href="#Binary-Tree-Maximum-Path-Sum" class="headerlink" title="Binary Tree Maximum Path Sum"></a><a href="https://leetcode.com/problems/binary-tree-maximum-path-sum/" target="_blank" rel="external">Binary Tree Maximum Path Sum</a></h1><blockquote>
-<p>Given a binary tree, find the maximum path sum.</p>
-<p>For this problem, a path is defined as any sequence of nodes from some starting node to any node in the tree along the parent-child connections. The path does not need to go through the root.</p>
-<p>For example:<br>Given the below binary tree,</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">       1</div><div class="line">      / \</div><div class="line">     2   3</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-<p>Return <code>6</code>.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>后序遍历二叉树，遍历后更新节点值为从叶子节点到当前节点路径的最大值，同时返回当前子树存在的路径的最大值。</p>
-<p>具体逻辑参考代码。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxPathSum</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> leftMax = Integer.MIN_VALUE;</div><div class="line">        <span class="keyword">int</span> rightMax = Integer.MIN_VALUE;</div><div class="line">        <span class="keyword">if</span>(root.left!=<span class="keyword">null</span>) leftMax = maxPathSum(root.left);</div><div class="line">        <span class="keyword">if</span>(root.right!=<span class="keyword">null</span>) rightMax = maxPathSum(root.right);</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> currentMax = root.val;</div><div class="line">        <span class="keyword">if</span>(getValue(root.left)&gt;<span class="number">0</span>) currentMax += getValue(root.left);</div><div class="line">        <span class="keyword">if</span>(getValue(root.right)&gt;<span class="number">0</span>) currentMax += getValue(root.right);</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> pathMax = getValue(root.left)&gt;=getValue(root.right) ? getValue(root.left) : getValue(root.right);</div><div class="line">        </div><div class="line">        root.val = root.val + (pathMax&gt;<span class="number">0</span>? pathMax : <span class="number">0</span>);</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> Math.max(currentMax, Math.max(leftMax, rightMax));</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getValue</span><span class="params">(TreeNode node)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(node==<span class="keyword">null</span>) <span class="keyword">return</span> Integer.MIN_VALUE;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">return</span> node.val;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -925,7 +931,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">327</span>
+              <span class="site-state-item-count">328</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

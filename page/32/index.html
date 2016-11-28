@@ -260,8 +260,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/08/18/Leetcode_Excel Sheet Column Number/" itemprop="url">
-                  Excel Sheet Column Number
+                <a class="post-title-link" href="/2015/08/19/Leetcode_Single Number II/" itemprop="url">
+                  Single Number II
                 </a>
               
             
@@ -274,8 +274,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-08-18T00:00:00+09:00" content="2015-08-18">
-              2015-08-18
+            <time itemprop="dateCreated" datetime="2015-08-19T00:00:00+09:00" content="2015-08-19">
+              2015-08-19
             </time>
           </span>
 
@@ -304,8 +304,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/08/18/Leetcode_Excel Sheet Column Number/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/18/Leetcode_Excel Sheet Column Number/" itemprop="commentsCount"></span>
+                <a href="/2015/08/19/Leetcode_Single Number II/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/19/Leetcode_Single Number II/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -330,14 +330,15 @@
       
         
           
-            <h1 id="Excel-Sheet-Column-Number"><a href="#Excel-Sheet-Column-Number" class="headerlink" title="Excel Sheet Column Number"></a><a href="https://leetcode.com/problems/excel-sheet-column-number/" target="_blank" rel="external">Excel Sheet Column Number</a></h1><blockquote>
-<p>Related to question Excel Sheet Column Title</p>
-<p>Given a column title as appear in an Excel sheet, return its corresponding column number.</p>
-<p>For example:</p>
+            <h1 id="Single-Number-II"><a href="#Single-Number-II" class="headerlink" title="Single Number II"></a><a href="https://leetcode.com/problems/single-number-ii/" target="_blank" rel="external">Single Number II</a></h1><blockquote>
+<p>Given an array of integers, every element appears three times except for one. Find that single one.</p>
+<p>Note:<br>Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">A -&gt; 1</div><div class="line">B -&gt; 2</div><div class="line">C -&gt; 3</div><div class="line">...</div><div class="line">Z -&gt; 26</div><div class="line">AA -&gt; 27</div><div class="line">AB -&gt; 28</div></pre></td></tr></table></figure>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>直接将字符串作为 类26进制数 计算10进制的数。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">titleToNumber</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> base = <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=s.length()-<span class="number">1</span>; i&gt;=<span class="number">0</span>; i--) &#123;</div><div class="line">            res = res + (s.charAt(i)-<span class="string">'A'</span>+<span class="number">1</span>) * base;</div><div class="line">            base = base * <span class="number">26</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h3 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1"></a>Method 1</h3><p>使用HashMap，一遍扫描数组，如果不在set中，则添加到set中。如果元素已经在set中，且次数为1，则更新为2，如果次数为2，则从set中移除。<br>按照题目的条件，扫描完后只会剩下一个只出现一遍的元素，取出返回结果</p>
+<h3 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2"></a>Method 2</h3><p>使用位操作，尝试消除掉出现3次的数字(<a href="http://www.wengweitao.com/lintcode-single-number-i-ii-iii-luo-dan-de-shu.html" target="_blank" rel="external">参考</a>)。</p>
+<p>若一个数字出现3次，则该数字的二进制表示中每个位置的数值为1的出现次数为3次，如：5的二进制表示为101，若5出现3次，则其二进制表示中的第一个位置和第二个位置出现1的次数和均为3。那么对该位1出现的次数对3取余，最终的结果所对应的就是所要求的Single Number。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="Method-1-1"><a href="#Method-1-1" class="headerlink" title="Method 1"></a>Method 1</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        Map&lt;Integer, Integer&gt; record = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nums.length; i++) &#123;</div><div class="line">            <span class="keyword">if</span>(record.containsKey(nums[i])) &#123;</div><div class="line">                <span class="keyword">if</span>(record.get(nums[i])==<span class="number">2</span>) record.remove(nums[i]);</div><div class="line">                <span class="keyword">else</span> record.put(nums[i], <span class="number">2</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> record.put(nums[i], <span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        Iterator it = record.keySet().iterator();</div><div class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>) it.next();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Method-2-1"><a href="#Method-2-1" class="headerlink" title="Method 2"></a>Method 2</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getBit</span><span class="params">(<span class="keyword">int</span> num, <span class="keyword">int</span> pos)</span> </span>&#123;</div><div class="line">        num = num &gt;&gt; pos;</div><div class="line">        <span class="keyword">return</span> num &amp; <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> pos=<span class="number">0</span>; pos&lt;<span class="number">32</span>; pos++) &#123;</div><div class="line">            <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nums.length; i++) &#123;</div><div class="line">                count += getBit(nums[i], pos);</div><div class="line">            &#125;</div><div class="line">            res |= (count%<span class="number">3</span>) &lt;&lt; pos;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -520,8 +521,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/08/18/Leetcode_Different Ways to Add Parentheses/" itemprop="url">
-                  Different Ways to Add Parentheses
+                <a class="post-title-link" href="/2015/08/18/Leetcode_Excel Sheet Column Title/" itemprop="url">
+                  Excel Sheet Column Title
                 </a>
               
             
@@ -564,8 +565,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/08/18/Leetcode_Different Ways to Add Parentheses/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/18/Leetcode_Different Ways to Add Parentheses/" itemprop="commentsCount"></span>
+                <a href="/2015/08/18/Leetcode_Excel Sheet Column Title/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/18/Leetcode_Excel Sheet Column Title/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -590,37 +591,145 @@
       
         
           
-            <h1 id="Different-Ways-to-Add-Parentheses"><a href="#Different-Ways-to-Add-Parentheses" class="headerlink" title="Different Ways to Add Parentheses"></a><a href="https://leetcode.com/problems/different-ways-to-add-parentheses/" target="_blank" rel="external">Different Ways to Add Parentheses</a></h1><blockquote>
-<p>Given a string of numbers and operators, return all possible results from computing all the different possible ways to group numbers and operators. The valid operators are +, - and *.</p>
+            <h1 id="Excel-Sheet-Column-Title"><a href="#Excel-Sheet-Column-Title" class="headerlink" title="Excel Sheet Column Title"></a><a href="">Excel Sheet Column Title</a></h1><blockquote>
+<p>Given a positive integer, return its corresponding column title as appear in an Excel sheet.</p>
 </blockquote>
-<p>Example 1<br><code>Input: &quot;2-1-1&quot;</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">((2-1)-1) = 0</div><div class="line">(2-(1-1)) = 2</div><div class="line">Output: [0, 2]</div></pre></td></tr></table></figure>
-<p>Example 2<br><code>Input: &quot;2*3-4*5&quot;</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">(2*(3-(4*5))) = -34</div><div class="line">((2*3)-(4*5)) = -14</div><div class="line">((2*(3-4))*5) = -10</div><div class="line">(2*((3-4)*5)) = -10</div><div class="line">(((2*3)-4)*5) = 10</div><div class="line">Output: [-34, -14, -10, -10, 10]</div></pre></td></tr></table></figure>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h3 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1"></a>Method 1</h3><p>个人使用了栈实现+递归实现，每次添加一个数入栈时，依次弹出一个数计算并压入栈，直到只剩一个操作数，对于每次计算完后复制栈并递归。例如：<br><code>Input: &quot;2*3-4*5&quot;</code></p>
-<p>step 1:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">*</div><div class="line">2</div></pre></td></tr></table></figure>
-<p>step2:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">3</div><div class="line">*</div><div class="line">2</div></pre></td></tr></table></figure>
-<p>复制这个栈进行第一个下一步递归。</p>
-<p>弹出栈中的两个数进行计算：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">6</div></pre></td></tr></table></figure>
-<p>同样复制这个栈进行第二个下一步递归。</p>
-<p>step3:<br>有两个独立的递归在进行，这里已第一个递归为例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">4</div><div class="line">-</div><div class="line">3</div><div class="line">*</div><div class="line">2</div></pre></td></tr></table></figure>
-<p>复制这个栈进行第一个下一步递归。</p>
-<p>弹出栈中的两个数进行计算：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-1</div><div class="line">*</div><div class="line">2</div></pre></td></tr></table></figure>
-<p>同样复制这个栈进行第二个下一步递归。</p>
-<p>继续弹出栈中的两个数进行计算：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-2</div></pre></td></tr></table></figure>
-<p>同样复制这个栈进行第三个下一步递归。</p>
-<p>对于step2的第二个递归也是如此操作。</p>
-<h3 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2"></a>Method 2</h3><p>上面实现的方法空间复杂度比较高，因为要不断的复制栈。<br>这里参考一种更优的基于<a href="https://leetcode.com/discuss/48477/a-recursive-java-solution-284-ms" target="_blank" rel="external">分治与递归的方法</a>，本质上跟上面方法是一样的，计算方式更加清晰和简洁。</p>
-<p>对于<code>Input: &quot;2*3-4*5&quot;</code>，假设<code>f(2*3-4*5)</code>表示其可能的计算解(为一个结果的list)，其可能的计算组合表示为 <code>f(2*3-4*5)</code> = <code>f(2)*f(3-4*5)</code> with <code>f(2*3)-f(4*5)</code> with<code>f(2*3-4)*f(5)</code>,  对于<code>f(3-4*5)</code>又可以进一步分解为<code>f(3)-f(4*5)</code>和<code>f(3-4)*f(5)</code>，这样递归计算。比较清晰。注意<code>f</code>的结果不是一个单个的数而是一个list，上面两个 <code>f</code>之间的操作也不是单纯的<code>+, -, *</code>， 而是两个 <code>f</code>中每个元素与对方集合进行操作的结果。</p>
-<p>例如<br><code>f(2)={2}</code><br><code>f(3-4*5)={-5, -17}</code><br><code>f(2)*f(3-4*5) = {-10, -34}</code></p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><p>Method 2的代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">diffWaysToCompute</span><span class="params">(String input)</span> </span>&#123;</div><div class="line">        List&lt;Integer&gt; ret = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;input.length(); i++) &#123;</div><div class="line">            <span class="keyword">if</span> (input.charAt(i) == <span class="string">'-'</span> ||</div><div class="line">                input.charAt(i) == <span class="string">'*'</span> ||</div><div class="line">                input.charAt(i) == <span class="string">'+'</span> ) &#123;</div><div class="line">                String part1 = input.substring(<span class="number">0</span>, i);</div><div class="line">                String part2 = input.substring(i+<span class="number">1</span>);</div><div class="line">                List&lt;Integer&gt; part1Ret = diffWaysToCompute(part1);</div><div class="line">                List&lt;Integer&gt; part2Ret = diffWaysToCompute(part2);</div><div class="line">                <span class="keyword">for</span> (Integer p1 :   part1Ret) &#123;</div><div class="line">                    <span class="keyword">for</span> (Integer p2 :   part2Ret) &#123;</div><div class="line">                        <span class="keyword">int</span> c = <span class="number">0</span>;</div><div class="line">                        <span class="keyword">switch</span> (input.charAt(i)) &#123;</div><div class="line">                            <span class="keyword">case</span> <span class="string">'+'</span>: c = p1+p2;</div><div class="line">                                <span class="keyword">break</span>;</div><div class="line">                            <span class="keyword">case</span> <span class="string">'-'</span>: c = p1-p2;</div><div class="line">                                <span class="keyword">break</span>;</div><div class="line">                            <span class="keyword">case</span> <span class="string">'*'</span>: c = p1*p2;</div><div class="line">                                <span class="keyword">break</span>;</div><div class="line">                        &#125;</div><div class="line">                        ret.add(c);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (ret.size() == <span class="number">0</span>) &#123;</div><div class="line">            ret.add(Integer.valueOf(input));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>For example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">1 -&gt; A</div><div class="line">2 -&gt; B</div><div class="line">3 -&gt; C</div><div class="line">...</div><div class="line">26 -&gt; Z</div><div class="line">27 -&gt; AA</div><div class="line">28 -&gt; AB</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>问题的本质是要将数表示为26进制，28表示为AB,其实就是 <code>28=1*26^1+2*26^0</code>, 其中A表示1，B表示2……字母所在的位置表示指数。注意跟26进制一个不同的一点就是，例如52需要表示为AZ，也就是<code>1*26^1+26*26^0</code>，而不是<code>2*26^1</code>，因为这里没有表示0的字母。</p>
+<p>处理方式就是首先找到最大的指数，及其基数值。这里需要注意可能超过Integer.MAX_VALUE的问题。然后得到该位置的字母，减去相应的值，直到n为0，也就是得到所有对应位的字母。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">convertToTitle</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(n&lt;=<span class="number">0</span>) <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> anum = <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> length = <span class="number">0</span>;</div><div class="line">        <span class="keyword">boolean</span> inSign = <span class="keyword">true</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>((sum=sum+anum)&lt;=n) &#123;</div><div class="line">        	length ++;</div><div class="line">        	<span class="keyword">if</span>(anum&gt;Integer.MAX_VALUE/<span class="number">26</span>) &#123;</div><div class="line">        		inSign = <span class="keyword">false</span>;</div><div class="line">        		<span class="keyword">break</span>;</div><div class="line">        	&#125;</div><div class="line">        	anum = anum*<span class="number">26</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(inSign) anum = anum/<span class="number">26</span>;</div><div class="line">        StringBuffer res = <span class="keyword">new</span> StringBuffer();</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(length&gt;<span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">int</span> di = n/anum;</div><div class="line">            <span class="keyword">if</span>(n%anum==<span class="number">0</span> &amp;&amp; length!=<span class="number">1</span>) di--;</div><div class="line">            res.append((<span class="keyword">char</span>)(<span class="string">'A'</span> + di-<span class="number">1</span>));</div><div class="line">            n -= di * anum;</div><div class="line">            anum = anum/<span class="number">26</span>;</div><div class="line">            length--;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res.toString();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Clearner solution</p>
+<p>Refer to<a href="https://segmentfault.com/a/1190000003903482" target="_blank" rel="external">Excel Sheet Column Title</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">convertToTitle</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</div><div class="line">        <span class="keyword">while</span>(n != <span class="number">0</span>)&#123;</div><div class="line">            sb.append((<span class="keyword">char</span>)(<span class="string">'A'</span> + (n - <span class="number">1</span>) % <span class="number">26</span>));</div><div class="line">            n = (n - <span class="number">1</span>) / <span class="number">26</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> sb.reverse().toString();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">convertToTitle</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (n == <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> convertToTitle((n - <span class="number">1</span>) / <span class="number">26</span>) + (<span class="keyword">char</span>)((n - <span class="number">1</span>) % <span class="number">26</span> + <span class="string">'A'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/08/18/Leetcode_Excel Sheet Column Number/" itemprop="url">
+                  Excel Sheet Column Number
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-08-18T00:00:00+09:00" content="2015-08-18">
+              2015-08-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/08/18/Leetcode_Excel Sheet Column Number/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/18/Leetcode_Excel Sheet Column Number/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Excel-Sheet-Column-Number"><a href="#Excel-Sheet-Column-Number" class="headerlink" title="Excel Sheet Column Number"></a><a href="https://leetcode.com/problems/excel-sheet-column-number/" target="_blank" rel="external">Excel Sheet Column Number</a></h1><blockquote>
+<p>Related to question Excel Sheet Column Title</p>
+<p>Given a column title as appear in an Excel sheet, return its corresponding column number.</p>
+<p>For example:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">A -&gt; 1</div><div class="line">B -&gt; 2</div><div class="line">C -&gt; 3</div><div class="line">...</div><div class="line">Z -&gt; 26</div><div class="line">AA -&gt; 27</div><div class="line">AB -&gt; 28</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>直接将字符串作为 类26进制数 计算10进制的数。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">titleToNumber</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> base = <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=s.length()-<span class="number">1</span>; i&gt;=<span class="number">0</span>; i--) &#123;</div><div class="line">            res = res + (s.charAt(i)-<span class="string">'A'</span>+<span class="number">1</span>) * base;</div><div class="line">            base = base * <span class="number">26</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -778,137 +887,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/08/18/Leetcode_Excel Sheet Column Title/" itemprop="url">
-                  Excel Sheet Column Title
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-08-18T00:00:00+09:00" content="2015-08-18">
-              2015-08-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/08/18/Leetcode_Excel Sheet Column Title/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/18/Leetcode_Excel Sheet Column Title/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Excel-Sheet-Column-Title"><a href="#Excel-Sheet-Column-Title" class="headerlink" title="Excel Sheet Column Title"></a><a href="">Excel Sheet Column Title</a></h1><blockquote>
-<p>Given a positive integer, return its corresponding column title as appear in an Excel sheet.</p>
-</blockquote>
-<p>For example:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">1 -&gt; A</div><div class="line">2 -&gt; B</div><div class="line">3 -&gt; C</div><div class="line">...</div><div class="line">26 -&gt; Z</div><div class="line">27 -&gt; AA</div><div class="line">28 -&gt; AB</div></pre></td></tr></table></figure>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>问题的本质是要将数表示为26进制，28表示为AB,其实就是 <code>28=1*26^1+2*26^0</code>, 其中A表示1，B表示2……字母所在的位置表示指数。注意跟26进制一个不同的一点就是，例如52需要表示为AZ，也就是<code>1*26^1+26*26^0</code>，而不是<code>2*26^1</code>，因为这里没有表示0的字母。</p>
-<p>处理方式就是首先找到最大的指数，及其基数值。这里需要注意可能超过Integer.MAX_VALUE的问题。然后得到该位置的字母，减去相应的值，直到n为0，也就是得到所有对应位的字母。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">convertToTitle</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(n&lt;=<span class="number">0</span>) <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> anum = <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> length = <span class="number">0</span>;</div><div class="line">        <span class="keyword">boolean</span> inSign = <span class="keyword">true</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>((sum=sum+anum)&lt;=n) &#123;</div><div class="line">        	length ++;</div><div class="line">        	<span class="keyword">if</span>(anum&gt;Integer.MAX_VALUE/<span class="number">26</span>) &#123;</div><div class="line">        		inSign = <span class="keyword">false</span>;</div><div class="line">        		<span class="keyword">break</span>;</div><div class="line">        	&#125;</div><div class="line">        	anum = anum*<span class="number">26</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(inSign) anum = anum/<span class="number">26</span>;</div><div class="line">        StringBuffer res = <span class="keyword">new</span> StringBuffer();</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(length&gt;<span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">int</span> di = n/anum;</div><div class="line">            <span class="keyword">if</span>(n%anum==<span class="number">0</span> &amp;&amp; length!=<span class="number">1</span>) di--;</div><div class="line">            res.append((<span class="keyword">char</span>)(<span class="string">'A'</span> + di-<span class="number">1</span>));</div><div class="line">            n -= di * anum;</div><div class="line">            anum = anum/<span class="number">26</span>;</div><div class="line">            length--;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res.toString();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>Clearner solution</p>
-<p>Refer to<a href="https://segmentfault.com/a/1190000003903482" target="_blank" rel="external">Excel Sheet Column Title</a></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">convertToTitle</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</div><div class="line">        <span class="keyword">while</span>(n != <span class="number">0</span>)&#123;</div><div class="line">            sb.append((<span class="keyword">char</span>)(<span class="string">'A'</span> + (n - <span class="number">1</span>) % <span class="number">26</span>));</div><div class="line">            n = (n - <span class="number">1</span>) / <span class="number">26</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> sb.reverse().toString();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">convertToTitle</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (n == <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> convertToTitle((n - <span class="number">1</span>) / <span class="number">26</span>) + (<span class="keyword">char</span>)((n - <span class="number">1</span>) % <span class="number">26</span> + <span class="string">'A'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -954,7 +932,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">327</span>
+              <span class="site-state-item-count">328</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

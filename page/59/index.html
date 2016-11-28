@@ -260,6 +260,132 @@
             
               
                 
+                <a class="post-title-link" href="/2015/02/05/Java_Ant编译编码问题/" itemprop="url">
+                  Ant编译编码问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-02-05T00:00:00+09:00" content="2015-02-05">
+              2015-02-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/02/05/Java_Ant编译编码问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/02/05/Java_Ant编译编码问题/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Ant编译编码问题"><a href="#Ant编译编码问题" class="headerlink" title="Ant编译编码问题"></a>Ant编译编码问题</h1><p>使用Ant编译项目遇到了编码问题，这里记录一下解决方案。</p>
+<p>编码问题来源于代码的注释，所以应该是中文编码的问题，如果是使用eclipse，可以随便打开一个有中文注释的java文件查看properties，确认文件的编码，这次的情况是部分文件为GBK编码。</p>
+<p>找到项目的Ant的build.xml，找到javac的配置部分，加入的encoding的指定，否则默认是使用UTF-8进行编译。</p>
+<p>build.xml原来的编译配置：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"><span class="tag">&lt;<span class="name">javac</span> <span class="attr">debug</span>=<span class="string">"true"</span> <span class="attr">debuglevel</span>=<span class="string">"$&#123;debuglevel&#125;"</span> <span class="attr">destdir</span>=<span class="string">"bin"</span> <span class="attr">includeantruntime</span>=<span class="string">"false"</span> <span class="attr">source</span>=<span class="string">"$&#123;source&#125;"</span> <span class="attr">target</span>=<span class="string">"$&#123;target&#125;"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">src</span> <span class="attr">path</span>=<span class="string">"src"</span>/&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">classpath</span> <span class="attr">refid</span>=<span class="string">"LogMiner.classpath"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">javac</span>&gt;</span></div><div class="line">...</div></pre></td></tr></table></figure>
+<p>指定encoding为gbk:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"><span class="tag">&lt;<span class="name">javac</span> <span class="attr">debug</span>=<span class="string">"true"</span> <span class="attr">debuglevel</span>=<span class="string">"$&#123;debuglevel&#125;"</span> <span class="attr">destdir</span>=<span class="string">"bin"</span> <span class="attr">includeantruntime</span>=<span class="string">"false"</span> <span class="attr">source</span>=<span class="string">"$&#123;source&#125;"</span> <span class="attr">encoding</span>=<span class="string">"gbk"</span> <span class="attr">target</span>=<span class="string">"$&#123;target&#125;"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">src</span> <span class="attr">path</span>=<span class="string">"src"</span>/&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">classpath</span> <span class="attr">refid</span>=<span class="string">"LogMiner.classpath"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">javac</span>&gt;</span></div><div class="line">...</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/02/02/Java_时间格式化/" itemprop="url">
                   Java中的时间格式化
                 </a>
@@ -935,131 +1061,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/01/01/Life_Walden/" itemprop="url">
-                  Walden
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-01-01T00:00:00+09:00" content="2015-01-01">
-              2015-01-01
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Life/" itemprop="url" rel="index">
-                    <span itemprop="name">Life</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/01/01/Life_Walden/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/01/01/Life_Walden/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>However mean your life is, meet it and live it; do not shun it and call it hard names. It is not so bad as you are. It looks poorest when you are richest. The fault-finder will find faults even in paradise. Love your life, poor as it is. You may perhaps have some pleasant, thrilling, glorious hours, even in a poor-house. The setting sun is reflected from the windows of the almshouse as brightly as from the rich man’s abode; the snow melts before its door as early in the spring. I do not see but a quiet mind may live as contentedly there, and have as cheering thoughts, as in a palace. The town’s poor seem to me often to live the most independent lives of any. Maybe they are simply goreat enough to receive without misgiving. Most think that they are above being supported by the town; but it oftener happens that they are not above supporting themselves by dishonest means, which should be more disreputable. Cultivate poverty like a garden herb, like sage. Do not trouble yourself much to get new things, whether clothes or friends. Turn the old; return to them. Things do not change; we change. Sell your clothes and keep your thoughts. God will see that you do not want society. If I were confined to a corner of a garret all my days, like a spider, the world would be just as large to me while I had my thoughts about me. The philosopher said: “From an army of three divisions one can take away its general, and put it in disorder; from the man the most abject and vulgar one cannot take away his thought.” Do not seek so anxiously to be developed, to subject yourself to many influences to be played on; it is all dissipation. Humility like darkness reveals the heavenly lights. The shadows of poverty and meanness gather around us, “and lo! creation widens to our view.” We are often reminded that if there were bestowed on us the wealth of Croesus, our aims must still be the same, and our means essentially the same. Moreover, if you are restricted in your range by poverty, if you cannot buy books and newspapers, for instance, you are but confined to the most significant and vital experiences; you are compelled to deal with the material which yields the most sugar and the most starch. It is life near the bone where it is sweetest. You are defended from being a trifler. No man loses ever on a lower level by magnanimity on a higher. Superfluous wealth can buy superfluities only. Money is not required to buy one necessary of the soul.</p>
-<p>So thoroughly and sincerely are we compelled to live, reverencing our life, and denying the possibility of change. This is the only way, we say; but there are as many ways as there can be drawn radii from one center.<br>我们被迫生活得如此认真，敬畏自己的生命，拒绝任何可能的改变，我们说，这是唯一的方式；而事实上，经过圆心能画出多少直径，就有多少生活方式。</p>
-<p>I wanted to live deep and suck out all the marrow of life, to live so sturdily and Spartan- like as to put to rout all that was not life, to cut a broad swath and shave close, to drive life into a corner, and reduce it to its lowest terms.<br>我愿意深深地扎入生活，吮尽生活的骨髓，过得扎实，简单，把一切不属于生活的内容剔除得干净利落，把生活逼到绝处，用最基本的形式，简单，简单，再简单。</p>
-<p>时间决定你会在生命中遇见谁，你的心决定你想要谁出现在你的生命里，而你的行为决定最后谁能留下。</p>
-<p>The finest qualities of our nature, like the bloom on fruits, can be preserved only by the most delicate handling. Yet we do not treat ourselves nor one another thus tenderly.<br>我们天性中最优秀的品质，就像果实上的霜粉，只有最为精心的对待，才能得以保存下来。然而，我们在对待自己和彼此相处时，却缺少这样的轻柔。</p>
-<p><em>– by Henry David Thoreau</em></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1105,7 +1106,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">327</span>
+              <span class="site-state-item-count">328</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

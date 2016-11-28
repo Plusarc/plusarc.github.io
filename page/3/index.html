@@ -260,6 +260,136 @@
             
               
                 
+                <a class="post-title-link" href="/2016/01/17/Leetcode_Longest Increasing Path in a Matrix/" itemprop="url">
+                  Longest Increasing Path in a Matrix
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-01-17T00:00:00+09:00" content="2016-01-17">
+              2016-01-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/17/Leetcode_Longest Increasing Path in a Matrix/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/17/Leetcode_Longest Increasing Path in a Matrix/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Longest-Increasing-Path-in-a-Matrix"><a href="#Longest-Increasing-Path-in-a-Matrix" class="headerlink" title="Longest Increasing Path in a Matrix"></a><a href="https://leetcode.com/problems/longest-increasing-path-in-a-matrix/" target="_blank" rel="external">Longest Increasing Path in a Matrix</a></h1><blockquote>
+<p>Given an integer matrix, find the length of the longest increasing path.</p>
+<p>From each cell, you can either move to four directions: left, right, up or down. You may NOT move diagonally or move outside of the boundary (i.e. wrap-around is not allowed).</p>
+<p>Example 1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; nums = [</div><div class="line">  [9,9,4],</div><div class="line">  [6,6,8],</div><div class="line">  [2,1,1]</div><div class="line">]</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+<p>Return 4<br>The longest increasing path is [1, 2, 6, 9].</p>
+<p>Example 2:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">nums = [</div><div class="line">  [3,4,5],</div><div class="line">  [3,2,6],</div><div class="line">  [2,2,1]</div><div class="line">]</div><div class="line">&gt;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>Return 4<br>The longest increasing path is [3, 4, 5, 6]. Moving diagonally is not allowed.</p>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>DFS+动态规划（记忆化搜索）。建立一个res二维数组，<code>res[i][j]</code>记录以<code>(i, j)</code>结束的最长递增路径长度。递归的搜索<code>(i, j)</code>上下左右比<code>(i, j)</code>元素小的位置的最长递增路径长度，并同样记录到res。后面扫描到相同位置时如果<code>res[i][j]</code>不为0，则代表之前已经递归计算了以该位置结尾的最长递增路径长度，直接引用即可。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">longestIncreasingPath</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(matrix==<span class="keyword">null</span> || matrix.length==<span class="number">0</span> || matrix[<span class="number">0</span>].length==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span>[][] res = <span class="keyword">new</span> <span class="keyword">int</span>[matrix.length][matrix[<span class="number">0</span>].length];</div><div class="line">        <span class="keyword">int</span> max = Integer.MIN_VALUE;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;matrix.length; i++) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;matrix[<span class="number">0</span>].length; j++) &#123;</div><div class="line">            	recLongest(matrix, res, i, j);</div><div class="line">                <span class="keyword">if</span>(res[i][j]&gt;max) max = res[i][j];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> max;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">recLongest</span><span class="params">(<span class="keyword">int</span>[][] matrix, <span class="keyword">int</span>[][] res, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(res[i][j]!=<span class="number">0</span>) <span class="keyword">return</span> res[i][j];</div><div class="line">        res[i][j] = <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(i-<span class="number">1</span>&gt;=<span class="number">0</span> &amp;&amp; matrix[i][j]&gt;matrix[i-<span class="number">1</span>][j] &amp;&amp; recLongest(matrix, res, i-<span class="number">1</span>, j)+<span class="number">1</span>&gt;=res[i][j]) </div><div class="line">            res[i][j] = res[i-<span class="number">1</span>][j] + <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(i+<span class="number">1</span>&lt;matrix.length &amp;&amp; matrix[i][j]&gt;matrix[i+<span class="number">1</span>][j] &amp;&amp; recLongest(matrix, res, i+<span class="number">1</span>, j)+<span class="number">1</span>&gt;=res[i][j]) </div><div class="line">            res[i][j] = res[i+<span class="number">1</span>][j] + <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(j-<span class="number">1</span>&gt;=<span class="number">0</span> &amp;&amp; matrix[i][j]&gt;matrix[i][j-<span class="number">1</span>] &amp;&amp; recLongest(matrix, res, i, j-<span class="number">1</span>)+<span class="number">1</span>&gt;=res[i][j]) </div><div class="line">            res[i][j] = res[i][j-<span class="number">1</span>] + <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(j+<span class="number">1</span>&lt;matrix[<span class="number">0</span>].length &amp;&amp; matrix[i][j]&gt;matrix[i][j+<span class="number">1</span>] &amp;&amp; recLongest(matrix, res, i, j+<span class="number">1</span>)+<span class="number">1</span>&gt;=res[i][j]) </div><div class="line">            res[i][j] = res[i][j+<span class="number">1</span>] + <span class="number">1</span>;</div><div class="line">        <span class="keyword">return</span> res[i][j];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/01/09/Leetcode_Serialize and Deserialize Binary Tree/" itemprop="url">
                   Serialize and Deserialize Binary Tree
                 </a>
@@ -775,132 +905,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/30/Leetcode_Power of Four/" itemprop="url">
-                  Power of Four
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-12-30T00:00:00+09:00" content="2015-12-30">
-              2015-12-30
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/12/30/Leetcode_Power of Four/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/12/30/Leetcode_Power of Four/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Power-of-Four"><a href="#Power-of-Four" class="headerlink" title="Power of Four"></a><a href="https://leetcode.com/problems/power-of-four/" target="_blank" rel="external">Power of Four</a></h1><blockquote>
-<p>Given an integer (signed 32 bits), write a function to check whether it is a power of 4.</p>
-<p>Example:<br>Given num = 16, return true. Given num = 5, return false.</p>
-<p>Follow up: Could you solve it without loops/recursion?</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>4的power必然也是2的power，可以先用power of two的方法先判断是不是2的power，也就是只有一个bit为1，另外注意4的power中，1出现的位必然是奇数位，如果只有一位为1且是在奇数位，那么这个数是4的power。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPowerOfFour</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> (num &gt; <span class="number">0</span>) &amp;&amp; ((num &amp; (num - <span class="number">1</span>)) == <span class="number">0</span>) &amp;&amp; ((num &amp; <span class="number">0x5555555555555555l</span>) == num);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -946,7 +950,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">327</span>
+              <span class="site-state-item-count">328</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

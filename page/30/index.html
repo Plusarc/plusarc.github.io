@@ -260,6 +260,134 @@
             
               
                 
+                <a class="post-title-link" href="/2015/08/21/Leetcode_Bitwise AND of Numbers Range/" itemprop="url">
+                  Bitwise AND of Numbers Range
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-08-21T00:00:00+09:00" content="2015-08-21">
+              2015-08-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/08/21/Leetcode_Bitwise AND of Numbers Range/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/21/Leetcode_Bitwise AND of Numbers Range/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Bitwise-AND-of-Numbers-Range"><a href="#Bitwise-AND-of-Numbers-Range" class="headerlink" title="Bitwise AND of Numbers Range"></a><a href="https://leetcode.com/problems/bitwise-and-of-numbers-range/" target="_blank" rel="external">Bitwise AND of Numbers Range</a></h1><blockquote>
+<p>Given a range [m, n] where 0 &lt;= m &lt;= n &lt;= 2147483647, return the bitwise AND of all numbers in this range, inclusive.</p>
+<p>For example, given the range [5, 7], you should return 4.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>最直接的方法就是对于各个数都做一遍AND操作，明显会TLE。</p>
+<p>关键是观察出连续数字的特征。对于连续的两个数<code>n, n+1</code>，其最后一位必定不一样，一个是偶数以0结尾，一个是奇数以1结尾，对于差距为2的两个数<code>n, n+2</code>，其倒数第二位必定不同，一个是0，一个是1，对于差距为4的两个数<code>n, n+4</code>，其倒数第三位必定不同，一个是0，一个是1, …</p>
+<p>差距为4的区间<code>n, n+1, n+2, n+3, n+4</code>，所有数进行AND操作其低三位必定都为0，因为<code>n &amp; n+1 =&gt;最低位为0</code>, <code>n &amp; n+2 =&gt;倒数第二位为0</code> ， <code>n &amp; n+4 =&gt;倒数第三位为0</code>，其他高位均不变，因为<code>n, n+1, n+2, n+3, n+4</code>除低三位的高位都是相同的。</p>
+<p>也就是对于一个区间<code>m, n</code>的所有数进行AND操作，其结果就是所有数相同的高位保持原来不变，而之后的低位全部会变为0. 而所有数相同的高位部分可以由比较<code>n</code>和<code>m</code>得到，也就是只需要获得<code>n</code>和<code>m</code>相同的高位部分并保留，对于剩余的低位部分全部置0.</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">rangeBitwiseAnd</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(m&gt;n) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> moving = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span>(m!=n &amp;&amp; m!=<span class="number">0</span>) &#123;</div><div class="line">            moving ++;</div><div class="line">            m &gt;&gt;= <span class="number">1</span>;</div><div class="line">            n &gt;&gt;= <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> m &lt;&lt; moving;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/08/20/Leetcode_Kth Largest Element in an Array/" itemprop="url">
                   Kth Largest Element in an Array
                 </a>
@@ -387,8 +515,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/08/20/Leetcode_Linked List Cycle II/" itemprop="url">
-                  Linked List Cycle II
+                <a class="post-title-link" href="/2015/08/20/Leetcode_Ugly Number/" itemprop="url">
+                  Ugly Number
                 </a>
               
             
@@ -431,8 +559,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/08/20/Leetcode_Linked List Cycle II/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/20/Leetcode_Linked List Cycle II/" itemprop="commentsCount"></span>
+                <a href="/2015/08/20/Leetcode_Ugly Number/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/20/Leetcode_Ugly Number/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -457,13 +585,14 @@
       
         
           
-            <h1 id="Linked-List-Cycle-II"><a href="#Linked-List-Cycle-II" class="headerlink" title="Linked List Cycle II"></a><a href="https://leetcode.com/problems/linked-list-cycle-ii/" target="_blank" rel="external">Linked List Cycle II</a></h1><blockquote>
-<p>Given a linked list, return the node where the cycle begins. If there is no cycle, return null.</p>
-<p>Follow up:<br>Can you solve it without using extra space?</p>
+            <h1 id="Ugly-Number"><a href="#Ugly-Number" class="headerlink" title="Ugly Number"></a><a href="https://leetcode.com/problems/ugly-number/" target="_blank" rel="external">Ugly Number</a></h1><blockquote>
+<p>Write a program to check whether a given number is an ugly number.</p>
+<p>Ugly numbers are positive numbers whose prime factors only include <code>2, 3, 5</code>. For example, <code>6, 8</code> are ugly while <code>14</code> is not ugly since it includes another prime factor <code>7</code>.</p>
+<p>Note that 1 is typically treated as an ugly number.</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>龟兔赛跑算法，比较好的说明可以参考<a href="http://www.cnblogs.com/zuoyuan/p/3701877.html" target="_blank" rel="external">[leetcode]Linked List Cycle II</a></p>
-<p>不同于I的是，需要严格保证每次快节点需要行进两步，慢节点需要完成行进一步。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * class ListNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     ListNode next;</div><div class="line"> *     ListNode(int x) &#123;</div><div class="line"> *         val = x;</div><div class="line"> *         next = null;</div><div class="line"> *     &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">detectCycle</span><span class="params">(ListNode head)</span> </span>&#123;</div><div class="line">        ListNode fast = head;</div><div class="line">        ListNode slow = head;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(fast!=<span class="keyword">null</span>) &#123;</div><div class="line">            fast = fast.next;</div><div class="line">            <span class="keyword">if</span>(fast==<span class="keyword">null</span>) <span class="keyword">break</span>;</div><div class="line">            fast = fast.next;</div><div class="line">            <span class="keyword">if</span>(fast==<span class="keyword">null</span>) <span class="keyword">break</span>;</div><div class="line">            </div><div class="line">            slow = slow.next;</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(fast==slow) &#123;</div><div class="line">                fast = head;</div><div class="line">                <span class="keyword">while</span>(fast!=slow) &#123;</div><div class="line">                    fast = fast.next;</div><div class="line">                    slow = slow.next;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">return</span> fast;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>如果一个数是ugly number，通过除以一定次数的<code>2, 3, 5</code>，会正好得到结果1(整除得到的，余数为0)。</p>
+<p>所以依次在除2余数为0时，将其不断除以2，直到余数不为0。检查结果是否为1，如果是则返回<code>true</code>。如果不是，则在除3余数为0时，将其不断除以3，直到余数不为0。检查结果是否为1，如果是则返回<code>true</code>。如果不是，则在除5余数为0时，将其不断除以5，直到余数不为0。检查结果是否为1，如果是则返回<code>true</code>,如果不是则说明2，3，5无法乘得该数，也就是该数有其他的prime，不是ugly number，返回<code>false</code>。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isUgly</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(num==<span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">while</span>(num%<span class="number">2</span>==<span class="number">0</span>) num /= <span class="number">2</span>;</div><div class="line">        <span class="keyword">while</span>(num%<span class="number">3</span>==<span class="number">0</span>) num /= <span class="number">3</span>;</div><div class="line">        <span class="keyword">while</span>(num%<span class="number">5</span>==<span class="number">0</span>) num /= <span class="number">5</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> num == <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -745,133 +874,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/08/20/Leetcode_Ugly Number/" itemprop="url">
-                  Ugly Number
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-08-20T00:00:00+09:00" content="2015-08-20">
-              2015-08-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/08/20/Leetcode_Ugly Number/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/20/Leetcode_Ugly Number/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Ugly-Number"><a href="#Ugly-Number" class="headerlink" title="Ugly Number"></a><a href="https://leetcode.com/problems/ugly-number/" target="_blank" rel="external">Ugly Number</a></h1><blockquote>
-<p>Write a program to check whether a given number is an ugly number.</p>
-<p>Ugly numbers are positive numbers whose prime factors only include <code>2, 3, 5</code>. For example, <code>6, 8</code> are ugly while <code>14</code> is not ugly since it includes another prime factor <code>7</code>.</p>
-<p>Note that 1 is typically treated as an ugly number.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>如果一个数是ugly number，通过除以一定次数的<code>2, 3, 5</code>，会正好得到结果1(整除得到的，余数为0)。</p>
-<p>所以依次在除2余数为0时，将其不断除以2，直到余数不为0。检查结果是否为1，如果是则返回<code>true</code>。如果不是，则在除3余数为0时，将其不断除以3，直到余数不为0。检查结果是否为1，如果是则返回<code>true</code>。如果不是，则在除5余数为0时，将其不断除以5，直到余数不为0。检查结果是否为1，如果是则返回<code>true</code>,如果不是则说明2，3，5无法乘得该数，也就是该数有其他的prime，不是ugly number，返回<code>false</code>。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isUgly</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(num==<span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">while</span>(num%<span class="number">2</span>==<span class="number">0</span>) num /= <span class="number">2</span>;</div><div class="line">        <span class="keyword">while</span>(num%<span class="number">3</span>==<span class="number">0</span>) num /= <span class="number">3</span>;</div><div class="line">        <span class="keyword">while</span>(num%<span class="number">5</span>==<span class="number">0</span>) num /= <span class="number">5</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> num == <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -917,7 +919,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">327</span>
+              <span class="site-state-item-count">328</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

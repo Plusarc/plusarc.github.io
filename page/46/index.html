@@ -260,6 +260,133 @@
             
               
                 
+                <a class="post-title-link" href="/2015/07/01/Leetcode_Merge Sorted Array/" itemprop="url">
+                  Merge Sorted Array
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-07-01T00:00:00+09:00" content="2015-07-01">
+              2015-07-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/07/01/Leetcode_Merge Sorted Array/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/07/01/Leetcode_Merge Sorted Array/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Merge-Sorted-Array"><a href="#Merge-Sorted-Array" class="headerlink" title="Merge Sorted Array"></a><a href="https://leetcode.com/problems/merge-sorted-array/" target="_blank" rel="external">Merge Sorted Array</a></h1><blockquote>
+<p>Given two sorted integer arrays nums1 and nums2, merge nums2 into nums1 as one sorted array.</p>
+<p>Note:<br>You may assume that nums1 has enough space (size that is greater or equal to m + n) to hold additional elements from nums2. The number of elements initialized in nums1 and nums2 are m and n respectively.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>关键是如何merge <code>nums1</code>,<code>nums2</code>到<code>nums1</code>，而不是建立新数组。</p>
+<p>如果直接进行merge，则存在merge<code>nums</code>中数据丢失的情况。</p>
+<p>首先进行的操作是将<code>nums1</code>移动到数组的尾端，然后调整相应两个子数组遍历开始的位置，以及<code>merged</code>的当前指针。再进行merge，</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>[] nums1, <span class="keyword">int</span> m, <span class="keyword">int</span>[] nums2, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;m; i++) &#123;</div><div class="line">            nums1[nums1.length-<span class="number">1</span>-i] = nums1[m-<span class="number">1</span>-i];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> index1 = nums1.length - m;</div><div class="line">        <span class="keyword">int</span> index2 = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span>(index&lt;m+n) &#123;</div><div class="line">            <span class="keyword">if</span>(index1&lt;nums1.length &amp;&amp; index2&lt;n) &#123;</div><div class="line">                <span class="keyword">if</span>(nums1[index1]&lt;=nums2[index2]) nums1[index++] = nums1[index1++];</div><div class="line">                <span class="keyword">else</span> nums1[index++] = nums2[index2++];</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span>(index1&lt;nums1.length) &#123;</div><div class="line">                nums1[index++] = nums1[index1++];</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                nums1[index++] = nums2[index2++];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/06/30/Leetcode_Valid Palindrome/" itemprop="url">
                   Valid Palindrome
                 </a>
@@ -751,134 +878,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/06/28/Leetcode_Spiral Matrix/" itemprop="url">
-                  Spiral Matrix
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-06-28T00:00:00+09:00" content="2015-06-28">
-              2015-06-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/06/28/Leetcode_Spiral Matrix/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/28/Leetcode_Spiral Matrix/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Spiral-Matrix"><a href="#Spiral-Matrix" class="headerlink" title="Spiral Matrix"></a><a href="https://leetcode.com/problems/spiral-matrix/" target="_blank" rel="external">Spiral Matrix</a></h1><blockquote>
-<p>Given a matrix of m x n elements (m rows, n columns), return all elements of the matrix in spiral order.</p>
-<p>For example,<br>Given the following matrix:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line"> [ 1, 2, 3 ],</div><div class="line"> [ 4, 5, 6 ],</div><div class="line"> [ 7, 8, 9 ]</div><div class="line">]</div></pre></td></tr></table></figure>
-<p>You should return <code>[1,2,3,6,9,8,7,4,5]</code>.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>按照从 上，右，下，左边处理，最外为的一圈处理完之后，其实是一样处理内部一圈的内容，只是width和heigh的都减小<code>2</code>。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">spiralOrder</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span> </span>&#123;</div><div class="line">        List&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> xlength = matrix.length;</div><div class="line">        <span class="keyword">if</span>(xlength==<span class="number">0</span>) <span class="keyword">return</span> res;</div><div class="line">        <span class="keyword">int</span> ylength = matrix[<span class="number">0</span>].length;</div><div class="line">        <span class="keyword">if</span>(ylength==<span class="number">0</span>) <span class="keyword">return</span> res;</div><div class="line">        </div><div class="line">        </div><div class="line">        <span class="keyword">int</span> loop = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span>(xlength&gt;<span class="number">0</span> &amp;&amp; ylength&gt;<span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">int</span> x = loop;</div><div class="line">            <span class="keyword">int</span> y = loop;</div><div class="line">            <span class="keyword">for</span>( ; y&lt;loop+ylength; y++) res.add(matrix[x][y]);</div><div class="line">            <span class="keyword">if</span>(xlength==<span class="number">1</span>) <span class="keyword">break</span>;</div><div class="line">            y--;</div><div class="line">            x++; </div><div class="line">            <span class="keyword">for</span>( ; x&lt;loop+xlength; x++) res.add(matrix[x][y]);</div><div class="line">            <span class="keyword">if</span>(ylength==<span class="number">1</span>) <span class="keyword">break</span>;</div><div class="line">            x--;</div><div class="line">            y--;</div><div class="line">            <span class="keyword">for</span>( ; y&gt;=loop; y--) res.add(matrix[x][y]);</div><div class="line">            y++;</div><div class="line">            x--;</div><div class="line">            <span class="keyword">for</span>( ; x&gt;loop; x--) res.add(matrix[x][y]);</div><div class="line">            </div><div class="line">            loop++;</div><div class="line">            xlength = xlength - <span class="number">2</span>;</div><div class="line">            ylength = ylength - <span class="number">2</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -924,7 +923,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">327</span>
+              <span class="site-state-item-count">328</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

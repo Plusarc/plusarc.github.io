@@ -260,6 +260,137 @@
             
               
                 
+                <a class="post-title-link" href="/2015/09/05/Leetcode_Gray Code/" itemprop="url">
+                  Gray Code
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-09-05T00:00:00+09:00" content="2015-09-05">
+              2015-09-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/05/Leetcode_Gray Code/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/05/Leetcode_Gray Code/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Gray-Code"><a href="#Gray-Code" class="headerlink" title="Gray Code"></a><a href="https://leetcode.com/problems/gray-code/" target="_blank" rel="external">Gray Code</a></h1><blockquote>
+<p>The gray code is a binary numeral system where two successive values differ in only one bit.</p>
+</blockquote>
+<p>Given a non-negative integer n representing the total number of bits in the code, print the sequence of gray code. A gray code sequence must begin with 0.</p>
+<p>For example, given <code>n = 2</code>, return <code>[0,1,3,2]</code>. Its gray code sequence is:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">00 - 0</div><div class="line">01 - 1</div><div class="line">11 - 3</div><div class="line">10 - 2</div></pre></td></tr></table></figure>
+<p>Note:<br>For a given n, a gray code sequence is not uniquely defined.</p>
+<p>For example, <code>[0,2,3,1]</code> is also a valid gray code sequence according to the above definition.</p>
+<p>For now, the judge is able to judge based on one instance of gray code sequence. Sorry about that.</p>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>本质上可以用DFS的思想解决，每次选择与当前数字只差<code>1</code>位的数字。每次改变当前数字一位，判断生成的这个数字是否已经访问过，如果没有访问过，则将其加入结果集中，同时加入记录已访问数字的HashSet中，以这个数为开始以同样的操作生成只只改变一位的下一个数字，知道生成所有的数字序列。</p>
+<p>不断循环上面的操作知道生成<code>2^n</code>个不同数字列，也就是一组<code>Gray Code</code>.</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">grayCode</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        List&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">        Set&lt;Integer&gt; set = <span class="keyword">new</span> HashSet&lt;Integer&gt;();</div><div class="line">        res.add(<span class="number">0</span>);</div><div class="line">        set.add(<span class="number">0</span>);</div><div class="line">        <span class="keyword">int</span> sum = (<span class="keyword">int</span>) Math.pow(<span class="number">2</span>, n);</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=sum; i++) &#123;</div><div class="line">            <span class="keyword">int</span> num = res.get(i-<span class="number">1</span>);</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;n; j++) &#123;</div><div class="line">                <span class="keyword">int</span> bit = getBit(num, j);</div><div class="line">                <span class="keyword">int</span> generate = setBit(num, j, <span class="number">1</span>-bit);</div><div class="line">                <span class="keyword">if</span>(set.contains(generate)) <span class="keyword">continue</span>;</div><div class="line">                <span class="keyword">else</span> &#123;</div><div class="line">                    set.add(generate);</div><div class="line">                    res.add(generate);</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">getBit</span><span class="params">(<span class="keyword">int</span> num, <span class="keyword">int</span> i)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> num &amp; (<span class="number">1</span> &lt;&lt; i);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">setBit</span><span class="params">(<span class="keyword">int</span> num, <span class="keyword">int</span> i, <span class="keyword">int</span> bit)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(bit==<span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">return</span> num | (<span class="number">1</span> &lt;&lt; i);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> num &amp; ~(<span class="number">1</span> &lt;&lt; i);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/09/04/Leetcode_Surrounded Regions/" itemprop="url">
                   Surrounded Regions
                 </a>
@@ -345,144 +476,6 @@
 <p>修改遍历方式为BFS，accept。</p>
 <h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="BFS-solution"><a href="#BFS-solution" class="headerlink" title="BFS solution"></a>BFS solution</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">solve</span><span class="params">(<span class="keyword">char</span>[][] board)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(board==<span class="keyword">null</span> || board.length==<span class="number">0</span> || board[<span class="number">0</span>].length==<span class="number">0</span>) <span class="keyword">return</span>;</div><div class="line">        </div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> y=<span class="number">0</span>, xf=<span class="number">0</span>, xl=board.length-<span class="number">1</span>; y&lt;board[<span class="number">0</span>].length; y++) &#123;</div><div class="line">                <span class="keyword">if</span>(board[xf][y]==<span class="string">'O'</span>) bfs(board, xf, y);</div><div class="line">                <span class="keyword">if</span>(board[xl][y]==<span class="string">'O'</span>) bfs(board, xl, y);</div><div class="line">            &#125;</div><div class="line">        </div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>, yf=<span class="number">0</span>, yl=board[<span class="number">0</span>].length-<span class="number">1</span>; x&lt;board.length; x++) &#123;</div><div class="line">                <span class="keyword">if</span>(board[x][yf]==<span class="string">'O'</span>) bfs(board, x, yf);</div><div class="line">                <span class="keyword">if</span>(board[x][yl]==<span class="string">'O'</span>) bfs(board, x, yl);</div><div class="line">            &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>; x&lt;board.length; x++) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> y=<span class="number">0</span>; y&lt;board[<span class="number">0</span>].length; y++) &#123;</div><div class="line">                <span class="keyword">if</span>(board[x][y]==<span class="string">'O'</span>) board[x][y] = <span class="string">'X'</span>;</div><div class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(board[x][y]==<span class="string">'A'</span>) board[x][y] = <span class="string">'O'</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bfs</span><span class="params">(<span class="keyword">char</span> [][] board, <span class="keyword">int</span> xpos, <span class="keyword">int</span> ypos)</span> </span>&#123;</div><div class="line">        Queue&lt;Integer&gt; queue = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</div><div class="line">        queue.add(xpos*board[<span class="number">0</span>].length + ypos);</div><div class="line"></div><div class="line">        <span class="keyword">while</span>(!queue.isEmpty()) &#123;</div><div class="line">            <span class="keyword">int</span> pos = queue.poll();</div><div class="line">            <span class="keyword">int</span> x = pos / board[<span class="number">0</span>].length;</div><div class="line">            <span class="keyword">int</span> y = pos % board[<span class="number">0</span>].length;</div><div class="line">            <span class="keyword">if</span>(board[x][y]!=<span class="string">'O'</span>) <span class="keyword">continue</span>;</div><div class="line">            board[x][y] = <span class="string">'A'</span>;</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(x+<span class="number">1</span>&lt;board.length &amp;&amp; board[x+<span class="number">1</span>][y]==<span class="string">'O'</span>) queue.add((x+<span class="number">1</span>)*board[<span class="number">0</span>].length + y);</div><div class="line">            <span class="keyword">if</span>(x-<span class="number">1</span>&gt;=<span class="number">0</span> &amp;&amp; board[x-<span class="number">1</span>][y]==<span class="string">'O'</span>) queue.add((x-<span class="number">1</span>)*board[<span class="number">0</span>].length + y);</div><div class="line">            <span class="keyword">if</span>(y+<span class="number">1</span>&lt;board[<span class="number">0</span>].length &amp;&amp; board[x][y+<span class="number">1</span>]==<span class="string">'O'</span>) queue.add(x*board[<span class="number">0</span>].length + (y+<span class="number">1</span>));</div><div class="line">            <span class="keyword">if</span>(y-<span class="number">1</span>&gt;=<span class="number">0</span> &amp;&amp; board[x][y-<span class="number">1</span>]==<span class="string">'O'</span>) queue.add(x*board[<span class="number">0</span>].length + (y-<span class="number">1</span>));</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">char</span> [][] board, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(x&lt;<span class="number">0</span> || x&gt;=board.length || y&lt;<span class="number">0</span> || y&gt;=board[<span class="number">0</span>].length || board[x][y]==<span class="string">'X'</span> || board[x][y]==<span class="string">'A'</span>) <span class="keyword">return</span>;</div><div class="line">        board[x][y] = <span class="string">'A'</span>;</div><div class="line">        dfs(board, x+<span class="number">1</span>, y);</div><div class="line">        dfs(board, x-<span class="number">1</span>, y);</div><div class="line">        dfs(board, x, y+<span class="number">1</span>);</div><div class="line">        dfs(board, x, y-<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs2</span><span class="params">(<span class="keyword">char</span> [][] board, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">        board[x][y] = <span class="string">'A'</span>;</div><div class="line">        <span class="keyword">if</span>(x+<span class="number">1</span>&lt;board.length &amp;&amp; board[x+<span class="number">1</span>][y]==<span class="string">'O'</span>) dfs(board, x+<span class="number">1</span>, y);</div><div class="line">        <span class="keyword">if</span>(x-<span class="number">1</span>&gt;=<span class="number">0</span> &amp;&amp; board[x-<span class="number">1</span>][y]==<span class="string">'O'</span>) dfs(board, x-<span class="number">1</span>, y);</div><div class="line">        <span class="keyword">if</span>(y+<span class="number">1</span>&lt;board[<span class="number">0</span>].length &amp;&amp; board[x][y+<span class="number">1</span>]==<span class="string">'O'</span>) dfs(board, x, y+<span class="number">1</span>);</div><div class="line">        <span class="keyword">if</span>(y-<span class="number">1</span>&gt;=<span class="number">0</span> &amp;&amp; board[x][y-<span class="number">1</span>]==<span class="string">'O'</span>) dfs(board, x, y-<span class="number">1</span>);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/09/04/Leetcode_Course Schedule II/" itemprop="url">
-                  Course Schedule II
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-04T00:00:00+09:00" content="2015-09-04">
-              2015-09-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/04/Leetcode_Course Schedule II/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/04/Leetcode_Course Schedule II/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Course-Schedule"><a href="#Course-Schedule" class="headerlink" title="Course Schedule"></a><a href="https://leetcode.com/problems/course-schedule/" target="_blank" rel="external">Course Schedule</a></h1><blockquote>
-<p>There are a total of n courses you have to take, labeled from 0 to n - 1.</p>
-<p>Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: <code>[0,1]</code></p>
-<p>Given the total number of courses and a list of prerequisite pairs, return the ordering of courses you should take to finish all courses.</p>
-<p>There may be multiple correct orders, you just need to return one of them. If it is impossible to finish all courses, return an empty array.</p>
-<p>For example:<br><code>2, [[1,0]]</code></p>
-<p>There are a total of 2 courses to take. To take course 1 you should have finished course 0. So the correct course order is [0,1]</p>
-<p><code>4, [[1,0],[2,0],[3,1],[3,2]]</code></p>
-<p>There are a total of 4 courses to take. To take course 3 you should have finished both courses 1 and 2. Both courses 1 and 2 should be taken after you finished course 0. So one correct course order is [0,1,2,3]. Another correct ordering is[0,2,1,3].</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>与问题Course Schedule本质相同。课程的组织可以表示为一个有向图，问题本质是检测一个有向图中是否有环，如果一个图有环，则一定存在冲突，也就是环中的课程一定无法参加。对图进行拓扑排序，如果可以进行完整的拓扑排序(输出排序节点等于所有节点数)，则说明是一个有向无环图，否则说明有环。</p>
-<p>这里采用基于队列的拓扑排序：</p>
-<ol>
-<li>遍历所有边，统计所有节点的入度(就是修课前需要完成的课程数)，和指向的节点(用HashMap存储)。</li>
-<li>将所有入度为0的节点加入队列。</li>
-<li>在队列非空的情况下，取出队列的一个节点，将<code>这个节点加入结果集</code>，将所有这个节点指向的节点的<code>入度-1</code>，如果每个被指向的节点入度变为0，则将其加入队列。</li>
-<li>循环第3步直到队列为空，如果<code>结果集size==numCourses</code>，则成功得到一个完整的拓扑序列，也就是所有课程都可以修完并且顺序记录在结果集中，返回结果集。如果<code>结果集size&lt;numCourse</code>，则存在环，部分课程无法参加，返回空数组。</li>
-</ol>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] findOrder(<span class="keyword">int</span> numCourses, <span class="keyword">int</span>[][] prerequisites) &#123;</div><div class="line">        <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[numCourses];</div><div class="line">        <span class="keyword">int</span> current = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span>[] count = <span class="keyword">new</span> <span class="keyword">int</span>[numCourses];</div><div class="line">        List&lt;List&lt;Integer&gt;&gt; toCourses = <span class="keyword">new</span> ArrayList&lt;List&lt;Integer&gt;&gt;();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;numCourses; i++) toCourses.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;());</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;prerequisites.length; i++) &#123;</div><div class="line">            count[prerequisites[i][<span class="number">0</span>]] ++;</div><div class="line">            toCourses.get(prerequisites[i][<span class="number">1</span>]).add(prerequisites[i][<span class="number">0</span>]);</div><div class="line">        &#125;</div><div class="line">        Queue&lt;Integer&gt; prepares = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;numCourses; i++) &#123;</div><div class="line">            <span class="keyword">if</span>(count[i]==<span class="number">0</span>) &#123;</div><div class="line">                res[current++] = i;</div><div class="line">                prepares.offer(i);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">while</span>(!prepares.isEmpty()) &#123;</div><div class="line">            <span class="keyword">int</span> pre = prepares.poll();</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> to: toCourses.get(pre)) &#123;</div><div class="line">                count[to] --;</div><div class="line">                <span class="keyword">if</span>(count[to]==<span class="number">0</span>) &#123;</div><div class="line">                    res[current++] = to;</div><div class="line">                    prepares.offer(to);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(current==numCourses) <span class="keyword">return</span> res;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">0</span>];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -805,8 +798,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/09/03/Leetcode_Integer to English Words/" itemprop="url">
-                  Integer to English Words
+                <a class="post-title-link" href="/2015/09/04/Leetcode_Course Schedule II/" itemprop="url">
+                  Course Schedule II
                 </a>
               
             
@@ -819,8 +812,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-03T00:00:00+09:00" content="2015-09-03">
-              2015-09-03
+            <time itemprop="dateCreated" datetime="2015-09-04T00:00:00+09:00" content="2015-09-04">
+              2015-09-04
             </time>
           </span>
 
@@ -849,8 +842,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/09/03/Leetcode_Integer to English Words/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/03/Leetcode_Integer to English Words/" itemprop="commentsCount"></span>
+                <a href="/2015/09/04/Leetcode_Course Schedule II/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/04/Leetcode_Course Schedule II/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -875,14 +868,25 @@
       
         
           
-            <h1 id="Integer-to-English-Words"><a href="#Integer-to-English-Words" class="headerlink" title="Integer to English Words"></a><a href="https://leetcode.com/problems/integer-to-english-words/" target="_blank" rel="external">Integer to English Words</a></h1><blockquote>
-<p>Convert a non-negative integer to its english words representation. Given input is guaranteed to be less than 231 - 1.</p>
-<p>For example,</p>
+            <h1 id="Course-Schedule"><a href="#Course-Schedule" class="headerlink" title="Course Schedule"></a><a href="https://leetcode.com/problems/course-schedule/" target="_blank" rel="external">Course Schedule</a></h1><blockquote>
+<p>There are a total of n courses you have to take, labeled from 0 to n - 1.</p>
+<p>Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: <code>[0,1]</code></p>
+<p>Given the total number of courses and a list of prerequisite pairs, return the ordering of courses you should take to finish all courses.</p>
+<p>There may be multiple correct orders, you just need to return one of them. If it is impossible to finish all courses, return an empty array.</p>
+<p>For example:<br><code>2, [[1,0]]</code></p>
+<p>There are a total of 2 courses to take. To take course 1 you should have finished course 0. So the correct course order is [0,1]</p>
+<p><code>4, [[1,0],[2,0],[3,1],[3,2]]</code></p>
+<p>There are a total of 4 courses to take. To take course 3 you should have finished both courses 1 and 2. Both courses 1 and 2 should be taken after you finished course 0. So one correct course order is [0,1,2,3]. Another correct ordering is[0,2,1,3].</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">123 -&gt; &quot;One Hundred Twenty Three&quot;</div><div class="line">12345 -&gt; &quot;Twelve Thousand Three Hundred Forty Five&quot;</div><div class="line">1234567 -&gt; &quot;One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven&quot;</div></pre></td></tr></table></figure>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>以<code>1000000000, 1000000, 1000, 100, 10, 1</code>，为基数，计算num是否大于基数，然后计算器倍数，对于倍数递归调用函数生成words，加入结果，然后取余，进行下一步循环，知道num为0或已经处理完。</p>
-<p>注意处理<code>0</code>，<code>10-19</code>，以及<code>20,30,40,50..90</code>这些特殊情况(没有单位)。<br>以及空格的处理。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> [] base = &#123;<span class="number">1000000000</span>, <span class="number">1000000</span>, <span class="number">1000</span>, <span class="number">100</span>, <span class="number">10</span>, <span class="number">1</span>&#125;;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">numberToWords</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(num==<span class="number">0</span>) <span class="keyword">return</span> <span class="string">"Zero"</span>;</div><div class="line">        StringBuffer res = <span class="keyword">new</span> StringBuffer();</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(num!=<span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;=<span class="number">5</span>; i++) &#123;</div><div class="line">                <span class="keyword">if</span>(num&gt;=base[i]) &#123;</div><div class="line">                    <span class="keyword">int</span> high = num / base[i];</div><div class="line">                    num = num % base[i];</div><div class="line">                    </div><div class="line">                    <span class="keyword">if</span>(base[i]==<span class="number">1</span>) &#123;</div><div class="line">                		res.append(unit2word(high));</div><div class="line">                	&#125; <span class="keyword">else</span> <span class="keyword">if</span>(base[i]==<span class="number">10</span>) &#123;</div><div class="line">                		<span class="keyword">if</span>(high==<span class="number">1</span>) res.append(unit2word(high*<span class="number">10</span> + num) + <span class="string">" "</span>);</div><div class="line">                		<span class="keyword">else</span> &#123;</div><div class="line">                			<span class="keyword">if</span>(num!=<span class="number">0</span>) res.append(unit2word(high*<span class="number">10</span>) + <span class="string">" "</span> + unit2word(num) + <span class="string">" "</span>);</div><div class="line">                			<span class="keyword">else</span> res.append(unit2word(high*<span class="number">10</span>) + <span class="string">" "</span>);</div><div class="line">                		&#125;</div><div class="line">                		</div><div class="line">                		num = <span class="number">0</span>;</div><div class="line">                	&#125; <span class="keyword">else</span> &#123;</div><div class="line">                		<span class="keyword">if</span>((high&gt;=<span class="number">1</span> &amp;&amp; high&lt;=<span class="number">19</span>) || (high&gt;=<span class="number">20</span> &amp;&amp; high&lt;<span class="number">100</span> &amp;&amp; high%<span class="number">10</span>==<span class="number">0</span>) || high==<span class="number">1000</span></div><div class="line">                        		|| high==<span class="number">1000000</span> || high==<span class="number">1000000000</span>) &#123;</div><div class="line">                        	res.append(unit2word(high) + <span class="string">" "</span>);</div><div class="line">                        &#125; <span class="keyword">else</span> &#123;</div><div class="line">                        	res.append(numberToWords(high) + <span class="string">" "</span>);</div><div class="line">                        &#125;</div><div class="line">                		</div><div class="line">                		res.append(unit2word(base[i]) + <span class="string">" "</span>);</div><div class="line">                	&#125;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        String word = res.toString();</div><div class="line">        <span class="keyword">if</span>(word.charAt(word.length()-<span class="number">1</span>)==<span class="string">' '</span>) <span class="keyword">return</span> word.substring(<span class="number">0</span>, word.length()-<span class="number">1</span>);</div><div class="line">        <span class="keyword">else</span> <span class="keyword">return</span> word;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">unit2word</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">        <span class="keyword">switch</span>(num) &#123;</div><div class="line">        	<span class="keyword">case</span> <span class="number">0</span>: <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">1</span>: <span class="keyword">return</span> <span class="string">"One"</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">2</span>: <span class="keyword">return</span> <span class="string">"Two"</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">3</span>: <span class="keyword">return</span> <span class="string">"Three"</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">4</span>: <span class="keyword">return</span> <span class="string">"Four"</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">5</span>: <span class="keyword">return</span> <span class="string">"Five"</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">6</span>: <span class="keyword">return</span> <span class="string">"Six"</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">7</span>: <span class="keyword">return</span> <span class="string">"Seven"</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">8</span>: <span class="keyword">return</span> <span class="string">"Eight"</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">9</span>: <span class="keyword">return</span> <span class="string">"Nine"</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">10</span>: <span class="keyword">return</span> <span class="string">"Ten"</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">11</span>: <span class="keyword">return</span> <span class="string">"Eleven"</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">12</span>: <span class="keyword">return</span> <span class="string">"Twelve"</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">13</span>: <span class="keyword">return</span> <span class="string">"Thirteen"</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">14</span>: <span class="keyword">return</span> <span class="string">"Fourteen"</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">15</span>: <span class="keyword">return</span> <span class="string">"Fifteen"</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">16</span>: <span class="keyword">return</span> <span class="string">"Sixteen"</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">17</span>: <span class="keyword">return</span> <span class="string">"Seventeen"</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">18</span>: <span class="keyword">return</span> <span class="string">"Eighteen"</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">19</span>: <span class="keyword">return</span> <span class="string">"Nineteen"</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">20</span>: <span class="keyword">return</span> <span class="string">"Twenty"</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">30</span>: <span class="keyword">return</span> <span class="string">"Thirty"</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">40</span>: <span class="keyword">return</span> <span class="string">"Forty"</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">50</span>: <span class="keyword">return</span> <span class="string">"Fifty"</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">60</span>: <span class="keyword">return</span> <span class="string">"Sixty"</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">70</span>: <span class="keyword">return</span> <span class="string">"Seventy"</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">80</span>: <span class="keyword">return</span> <span class="string">"Eighty"</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">90</span>: <span class="keyword">return</span> <span class="string">"Ninety"</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">100</span>: <span class="keyword">return</span> <span class="string">"Hundred"</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">1000</span>: <span class="keyword">return</span> <span class="string">"Thousand"</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">1000000</span>: <span class="keyword">return</span> <span class="string">"Million"</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">1000000000</span>: <span class="keyword">return</span> <span class="string">"Billion"</span>;</div><div class="line">            <span class="keyword">default</span>: <span class="keyword">return</span> <span class="string">"Error"</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>与问题Course Schedule本质相同。课程的组织可以表示为一个有向图，问题本质是检测一个有向图中是否有环，如果一个图有环，则一定存在冲突，也就是环中的课程一定无法参加。对图进行拓扑排序，如果可以进行完整的拓扑排序(输出排序节点等于所有节点数)，则说明是一个有向无环图，否则说明有环。</p>
+<p>这里采用基于队列的拓扑排序：</p>
+<ol>
+<li>遍历所有边，统计所有节点的入度(就是修课前需要完成的课程数)，和指向的节点(用HashMap存储)。</li>
+<li>将所有入度为0的节点加入队列。</li>
+<li>在队列非空的情况下，取出队列的一个节点，将<code>这个节点加入结果集</code>，将所有这个节点指向的节点的<code>入度-1</code>，如果每个被指向的节点入度变为0，则将其加入队列。</li>
+<li>循环第3步直到队列为空，如果<code>结果集size==numCourses</code>，则成功得到一个完整的拓扑序列，也就是所有课程都可以修完并且顺序记录在结果集中，返回结果集。如果<code>结果集size&lt;numCourse</code>，则存在环，部分课程无法参加，返回空数组。</li>
+</ol>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] findOrder(<span class="keyword">int</span> numCourses, <span class="keyword">int</span>[][] prerequisites) &#123;</div><div class="line">        <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[numCourses];</div><div class="line">        <span class="keyword">int</span> current = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span>[] count = <span class="keyword">new</span> <span class="keyword">int</span>[numCourses];</div><div class="line">        List&lt;List&lt;Integer&gt;&gt; toCourses = <span class="keyword">new</span> ArrayList&lt;List&lt;Integer&gt;&gt;();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;numCourses; i++) toCourses.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;());</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;prerequisites.length; i++) &#123;</div><div class="line">            count[prerequisites[i][<span class="number">0</span>]] ++;</div><div class="line">            toCourses.get(prerequisites[i][<span class="number">1</span>]).add(prerequisites[i][<span class="number">0</span>]);</div><div class="line">        &#125;</div><div class="line">        Queue&lt;Integer&gt; prepares = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;numCourses; i++) &#123;</div><div class="line">            <span class="keyword">if</span>(count[i]==<span class="number">0</span>) &#123;</div><div class="line">                res[current++] = i;</div><div class="line">                prepares.offer(i);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">while</span>(!prepares.isEmpty()) &#123;</div><div class="line">            <span class="keyword">int</span> pre = prepares.poll();</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> to: toCourses.get(pre)) &#123;</div><div class="line">                count[to] --;</div><div class="line">                <span class="keyword">if</span>(count[to]==<span class="number">0</span>) &#123;</div><div class="line">                    res[current++] = to;</div><div class="line">                    prepares.offer(to);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(current==numCourses) <span class="keyword">return</span> res;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">0</span>];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -956,7 +960,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">327</span>
+              <span class="site-state-item-count">328</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

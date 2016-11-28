@@ -260,6 +260,137 @@
             
               
                 
+                <a class="post-title-link" href="/2015/09/06/Leetcode_Triangle/" itemprop="url">
+                  Triangle
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-09-06T00:00:00+09:00" content="2015-09-06">
+              2015-09-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/06/Leetcode_Triangle/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/06/Leetcode_Triangle/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Triangle"><a href="#Triangle" class="headerlink" title="Triangle"></a><a href="https://leetcode.com/problems/triangle/" target="_blank" rel="external">Triangle</a></h1><blockquote>
+<p>Given a triangle, find the minimum path sum from top to bottom. Each step you may move to adjacent numbers on the row below.</p>
+<p>For example, given the following triangle</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">     [2],</div><div class="line">    [3,4],</div><div class="line">   [6,5,7],</div><div class="line">  [4,1,8,3]</div><div class="line">]</div></pre></td></tr></table></figure>
+<p>The minimum path sum from top to bottom is 11 (i.e., <code>2 + 3 + 5 + 1 = 11</code>).</p>
+<p>Note:<br>Bonus point if you are able to do this using only O(n) extra space, where n is the total number of rows in the triangle.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>动态规划，子问题是以当前层各个节点结尾的最短路径。以最后一层的各个节点结尾的路径的最短路径值中，最小值即是问题的解。</p>
+<p><code>triangle[i][j]</code>处理后保存的是到达第<code>i</code>层第<code>j</code>个节点的最短路径值。(也就是原来<code>list&lt;list&lt;Integer&gt;&gt;</code>，这里使用数组比较直观。)</p>
+<p>到达每个点的路径的上一层节点只有两个选择，就是上一层与当前节点相邻的两个节点。(开头与末尾节点只有一种可能)，从中选择较短路径。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">triangle[0][0] = triangle[0][0];</div><div class="line"></div><div class="line">for i, j</div><div class="line">	if(j==0) triangle[i][j] += 上一行的第一个值; //这一行开头的一个值</div><div class="line">	else if(j==triangle[i].length()-1) triangle[i][j] += 上一个最后一个值; </div><div class="line">	//这一行最后一个</div><div class="line">	else triangle[i] += Math.min(上一行相邻的两个值)</div><div class="line">end</div></pre></td></tr></table></figure>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minimumTotal</span><span class="params">(List&lt;List&lt;Integer&gt;&gt; triangle)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(triangle.size()==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> level=<span class="number">1</span>; level&lt;triangle.size(); level++) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;triangle.get(level).size(); i++) &#123;</div><div class="line">                <span class="keyword">int</span> left = (i&gt;<span class="number">0</span>) ? triangle.get(level-<span class="number">1</span>).get(i-<span class="number">1</span>) : Integer.MAX_VALUE;</div><div class="line">                <span class="keyword">int</span> right = (i&lt;triangle.get(level-<span class="number">1</span>).size()) ? triangle.get(level-<span class="number">1</span>).get(i) : Integer.MAX_VALUE;</div><div class="line">                triangle.get(level).set(i, Math.min(left, right) + triangle.get(level).get(i));</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        List&lt;Integer&gt; lastLine = triangle.get(triangle.size()-<span class="number">1</span>);</div><div class="line">        <span class="keyword">int</span> min = Integer.MAX_VALUE;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> ele: lastLine) &#123;</div><div class="line">            <span class="keyword">if</span>(ele&lt;min) min = ele;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> min;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/09/05/Leetcode_Binary Tree Zigzag Level Order Traversal/" itemprop="url">
                   Binary Tree Zigzag Level Order Traversal
                 </a>
@@ -390,8 +521,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/09/05/Leetcode_Gray Code/" itemprop="url">
-                  Gray Code
+                <a class="post-title-link" href="/2015/09/05/Leetcode_Populating Next Right Pointers in Each Node/" itemprop="url">
+                  Populating Next Right Pointers in Each Node
                 </a>
               
             
@@ -434,8 +565,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/09/05/Leetcode_Gray Code/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/05/Leetcode_Gray Code/" itemprop="commentsCount"></span>
+                <a href="/2015/09/05/Leetcode_Populating Next Right Pointers in Each Node/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/05/Leetcode_Populating Next Right Pointers in Each Node/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -460,155 +591,30 @@
       
         
           
-            <h1 id="Gray-Code"><a href="#Gray-Code" class="headerlink" title="Gray Code"></a><a href="https://leetcode.com/problems/gray-code/" target="_blank" rel="external">Gray Code</a></h1><blockquote>
-<p>The gray code is a binary numeral system where two successive values differ in only one bit.</p>
+            <h1 id="Populating-Next-Right-Pointers-in-Each-Node"><a href="#Populating-Next-Right-Pointers-in-Each-Node" class="headerlink" title="Populating Next Right Pointers in Each Node"></a><a href="https://leetcode.com/problems/populating-next-right-pointers-in-each-node/" target="_blank" rel="external">Populating Next Right Pointers in Each Node</a></h1><blockquote>
+<p>Given a binary tree</p>
+<pre><code>struct TreeLinkNode {
+  TreeLinkNode *left;
+  TreeLinkNode *right;
+  TreeLinkNode *next;
+}
+</code></pre><p>Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to NULL.</p>
+<p>Initially, all next pointers are set to NULL.</p>
+<p>Note:<br>You may only use constant extra space.<br>You may assume that it is a perfect binary tree (ie, all leaves are at the same level, and every parent has two children).</p>
+<p>For example,<br>Given the following perfect binary tree,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">     1</div><div class="line">   /  \</div><div class="line">  2    3</div><div class="line"> / \  / \</div><div class="line">4  5  6  7</div></pre></td></tr></table></figure>
+<p>After calling your function, the tree should look like:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">     1 -&gt; NULL</div><div class="line">   /  \</div><div class="line">  2 -&gt; 3 -&gt; NULL</div><div class="line"> / \  / \</div><div class="line">4-&gt;5-&gt;6-&gt;7 -&gt; NULL</div></pre></td></tr></table></figure>
 </blockquote>
-<p>Given a non-negative integer n representing the total number of bits in the code, print the sequence of gray code. A gray code sequence must begin with 0.</p>
-<p>For example, given <code>n = 2</code>, return <code>[0,1,3,2]</code>. Its gray code sequence is:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">00 - 0</div><div class="line">01 - 1</div><div class="line">11 - 3</div><div class="line">10 - 2</div></pre></td></tr></table></figure>
-<p>Note:<br>For a given n, a gray code sequence is not uniquely defined.</p>
-<p>For example, <code>[0,2,3,1]</code> is also a valid gray code sequence according to the above definition.</p>
-<p>For now, the judge is able to judge based on one instance of gray code sequence. Sorry about that.</p>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>本质上可以用DFS的思想解决，每次选择与当前数字只差<code>1</code>位的数字。每次改变当前数字一位，判断生成的这个数字是否已经访问过，如果没有访问过，则将其加入结果集中，同时加入记录已访问数字的HashSet中，以这个数为开始以同样的操作生成只只改变一位的下一个数字，知道生成所有的数字序列。</p>
-<p>不断循环上面的操作知道生成<code>2^n</code>个不同数字列，也就是一组<code>Gray Code</code>.</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">grayCode</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        List&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">        Set&lt;Integer&gt; set = <span class="keyword">new</span> HashSet&lt;Integer&gt;();</div><div class="line">        res.add(<span class="number">0</span>);</div><div class="line">        set.add(<span class="number">0</span>);</div><div class="line">        <span class="keyword">int</span> sum = (<span class="keyword">int</span>) Math.pow(<span class="number">2</span>, n);</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=sum; i++) &#123;</div><div class="line">            <span class="keyword">int</span> num = res.get(i-<span class="number">1</span>);</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;n; j++) &#123;</div><div class="line">                <span class="keyword">int</span> bit = getBit(num, j);</div><div class="line">                <span class="keyword">int</span> generate = setBit(num, j, <span class="number">1</span>-bit);</div><div class="line">                <span class="keyword">if</span>(set.contains(generate)) <span class="keyword">continue</span>;</div><div class="line">                <span class="keyword">else</span> &#123;</div><div class="line">                    set.add(generate);</div><div class="line">                    res.add(generate);</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">getBit</span><span class="params">(<span class="keyword">int</span> num, <span class="keyword">int</span> i)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> num &amp; (<span class="number">1</span> &lt;&lt; i);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">setBit</span><span class="params">(<span class="keyword">int</span> num, <span class="keyword">int</span> i, <span class="keyword">int</span> bit)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(bit==<span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">return</span> num | (<span class="number">1</span> &lt;&lt; i);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> num &amp; ~(<span class="number">1</span> &lt;&lt; i);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h3 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1"></a>Method 1</h3><p>由于条件是一棵perfect，每个节点都有确定的序号，并且可以确定是否是否右驱节点，如果有，其右驱节点序号为当前节点序号+1。</p>
+<p>这样最直接的方法是建立一个数组，遍历树一遍，将节点的引用存入数组对应的位置(序号位置)。然后再遍历树一遍，设置next的值。</p>
+<p>需要O(n)的空间。</p>
+<p>后面又想了下面的方法2，无需额外空间，实现也更简洁，所以就没有实现Method 1，这里只给出了Method 2的实现.</p>
+<h3 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2"></a>Method 2</h3><p>对于一个节点如果左右子节点非空，则设置<code>root.left.next = root.right</code>.</p>
+<p>另外如果其<code>next!=null</code>，则设置<code>root.right.next = root.next.left</code>，也就是其右子节点的next指向其next节点的左子结点。</p>
+<p>递归地对左右子树进行同样操作。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="Method-2-1"><a href="#Method-2-1" class="headerlink" title="Method 2"></a>Method 2</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for binary tree with next pointer.</div><div class="line"> * public class TreeLinkNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeLinkNode left, right, next;</div><div class="line"> *     TreeLinkNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">connect</span><span class="params">(TreeLinkNode root)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span> || root.left==<span class="keyword">null</span> || root.right==<span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">        root.left.next = root.right;</div><div class="line">        <span class="keyword">if</span>(root.next!=<span class="keyword">null</span>) root.right.next = root.next.left;</div><div class="line">        connect(root.left);</div><div class="line">        connect(root.right);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/09/05/Leetcode_Restore IP Addresses/" itemprop="url">
-                  Restore IP Addresses
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-05T00:00:00+09:00" content="2015-09-05">
-              2015-09-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/05/Leetcode_Restore IP Addresses/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/05/Leetcode_Restore IP Addresses/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Restore-IP-Addresses"><a href="#Restore-IP-Addresses" class="headerlink" title="Restore IP Addresses"></a><a href="https://leetcode.com/problems/restore-ip-addresses/" target="_blank" rel="external">Restore IP Addresses</a></h1><blockquote>
-<p>Given a string containing only digits, restore it by returning all possible valid IP address combinations.</p>
-<p>For example:<br>Given <code>&quot;25525511135&quot;</code>,</p>
-<p>return <code>[&quot;255.255.11.135&quot;, &quot;255.255.111.35&quot;]</code>. (Order does not matter)</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>回溯法求解，对于当前的每个数字，选择和累积的数字创建新的字段，或者不创建新的字段，并入到下一个数字的递归中。</p>
-<p>IP地址的条件：这种表示法下，IP地址为32位，4个字段，每个字段范围为0-255。</p>
-<p>根据条件进行回溯:</p>
-<ol>
-<li>累计的数字<code>&gt;255</code>，</li>
-<li>当前位置没有到最后一位，但是字段数达到<code>4</code></li>
-<li>当前为最后一位，但总字段数小余<code>4</code>.</li>
-<li>上一个数字为<code>0</code>的情况。</li>
-</ol>
-<p>最后一个回溯条件是为了注意处理IP地址中连续为0的情况。也就是<code>00010</code>，只能解析为<code>0.0.0.10</code>,不存在字段表示为<code>0.0.01.0</code>的情况。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">restoreIpAddresses</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        List&lt;String&gt; res = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">        <span class="keyword">if</span>(s.length()&lt;<span class="number">4</span>) <span class="keyword">return</span> res;</div><div class="line">        </div><div class="line">        recRes(s, res, <span class="string">""</span>, -<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recRes</span><span class="params">(String s, List&lt;String&gt; res, String record, <span class="keyword">int</span> partNum, <span class="keyword">int</span> count, <span class="keyword">int</span> pos)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(partNum==-<span class="number">1</span>) partNum = <span class="number">0</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(partNum==<span class="number">0</span>) <span class="keyword">return</span>;</div><div class="line">    	partNum = partNum * <span class="number">10</span> + (s.charAt(pos) - <span class="string">'0'</span>);</div><div class="line">        <span class="keyword">if</span>(partNum&gt;<span class="number">255</span>) <span class="keyword">return</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(pos==s.length()-<span class="number">1</span>) &#123;</div><div class="line">        	<span class="keyword">if</span>(count!=<span class="number">3</span>) <span class="keyword">return</span>;</div><div class="line">            res.add(record + partNum);</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>((count+<span class="number">1</span>)&lt;<span class="number">4</span>)recRes(s, res, record+partNum+<span class="string">"."</span>, -<span class="number">1</span>, count+<span class="number">1</span>, pos+<span class="number">1</span>);</div><div class="line">        recRes(s, res, record, partNum, count, pos+<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>second time</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">restoreIpAddresses</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        List&lt;String&gt; res = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">        recRes(s, <span class="number">0</span>, <span class="number">0</span>, res, <span class="string">""</span>, <span class="number">0</span>);</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recRes</span><span class="params">(String s, <span class="keyword">int</span> pos, <span class="keyword">int</span> cum, List&lt;String&gt; res, String record, <span class="keyword">int</span> segNum)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(segNum==<span class="number">4</span> &amp;&amp; pos==s.length()) res.add(record);</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(segNum&gt;=<span class="number">4</span> || pos&gt;=s.length()) <span class="keyword">return</span>;</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">char</span> c = s.charAt(pos);</div><div class="line">            <span class="keyword">if</span>(c==<span class="string">'0'</span> &amp;&amp; cum==<span class="number">0</span>) &#123;</div><div class="line">                <span class="keyword">if</span>(record.length()!=<span class="number">0</span>) record = record + <span class="string">"."</span> + cum;</div><div class="line">                <span class="keyword">else</span> record = record + cum;</div><div class="line">                recRes(s, pos+<span class="number">1</span>, <span class="number">0</span>, res, record, segNum+<span class="number">1</span>);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                cum = <span class="number">10</span> * cum + (c-<span class="string">'0'</span>);</div><div class="line">                <span class="keyword">if</span>(cum&gt;<span class="number">255</span>) <span class="keyword">return</span>;</div><div class="line">                recRes(s, pos+<span class="number">1</span>, cum, res, record, segNum);</div><div class="line">                </div><div class="line">                <span class="keyword">if</span>(record.length()!=<span class="number">0</span>) record = record + <span class="string">"."</span> + cum;</div><div class="line">                <span class="keyword">else</span> record = record + cum;</div><div class="line">                recRes(s, pos+<span class="number">1</span>, <span class="number">0</span>, res, record, segNum+<span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           
         
       
@@ -790,8 +796,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/09/05/Leetcode_Populating Next Right Pointers in Each Node/" itemprop="url">
-                  Populating Next Right Pointers in Each Node
+                <a class="post-title-link" href="/2015/09/05/Leetcode_Restore IP Addresses/" itemprop="url">
+                  Restore IP Addresses
                 </a>
               
             
@@ -834,8 +840,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/09/05/Leetcode_Populating Next Right Pointers in Each Node/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/05/Leetcode_Populating Next Right Pointers in Each Node/" itemprop="commentsCount"></span>
+                <a href="/2015/09/05/Leetcode_Restore IP Addresses/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/05/Leetcode_Restore IP Addresses/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -860,30 +866,24 @@
       
         
           
-            <h1 id="Populating-Next-Right-Pointers-in-Each-Node"><a href="#Populating-Next-Right-Pointers-in-Each-Node" class="headerlink" title="Populating Next Right Pointers in Each Node"></a><a href="https://leetcode.com/problems/populating-next-right-pointers-in-each-node/" target="_blank" rel="external">Populating Next Right Pointers in Each Node</a></h1><blockquote>
-<p>Given a binary tree</p>
-<pre><code>struct TreeLinkNode {
-  TreeLinkNode *left;
-  TreeLinkNode *right;
-  TreeLinkNode *next;
-}
-</code></pre><p>Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to NULL.</p>
-<p>Initially, all next pointers are set to NULL.</p>
-<p>Note:<br>You may only use constant extra space.<br>You may assume that it is a perfect binary tree (ie, all leaves are at the same level, and every parent has two children).</p>
-<p>For example,<br>Given the following perfect binary tree,</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">     1</div><div class="line">   /  \</div><div class="line">  2    3</div><div class="line"> / \  / \</div><div class="line">4  5  6  7</div></pre></td></tr></table></figure>
-<p>After calling your function, the tree should look like:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">     1 -&gt; NULL</div><div class="line">   /  \</div><div class="line">  2 -&gt; 3 -&gt; NULL</div><div class="line"> / \  / \</div><div class="line">4-&gt;5-&gt;6-&gt;7 -&gt; NULL</div></pre></td></tr></table></figure>
+            <h1 id="Restore-IP-Addresses"><a href="#Restore-IP-Addresses" class="headerlink" title="Restore IP Addresses"></a><a href="https://leetcode.com/problems/restore-ip-addresses/" target="_blank" rel="external">Restore IP Addresses</a></h1><blockquote>
+<p>Given a string containing only digits, restore it by returning all possible valid IP address combinations.</p>
+<p>For example:<br>Given <code>&quot;25525511135&quot;</code>,</p>
+<p>return <code>[&quot;255.255.11.135&quot;, &quot;255.255.111.35&quot;]</code>. (Order does not matter)</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h3 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1"></a>Method 1</h3><p>由于条件是一棵perfect，每个节点都有确定的序号，并且可以确定是否是否右驱节点，如果有，其右驱节点序号为当前节点序号+1。</p>
-<p>这样最直接的方法是建立一个数组，遍历树一遍，将节点的引用存入数组对应的位置(序号位置)。然后再遍历树一遍，设置next的值。</p>
-<p>需要O(n)的空间。</p>
-<p>后面又想了下面的方法2，无需额外空间，实现也更简洁，所以就没有实现Method 1，这里只给出了Method 2的实现.</p>
-<h3 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2"></a>Method 2</h3><p>对于一个节点如果左右子节点非空，则设置<code>root.left.next = root.right</code>.</p>
-<p>另外如果其<code>next!=null</code>，则设置<code>root.right.next = root.next.left</code>，也就是其右子节点的next指向其next节点的左子结点。</p>
-<p>递归地对左右子树进行同样操作。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="Method-2-1"><a href="#Method-2-1" class="headerlink" title="Method 2"></a>Method 2</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for binary tree with next pointer.</div><div class="line"> * public class TreeLinkNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeLinkNode left, right, next;</div><div class="line"> *     TreeLinkNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">connect</span><span class="params">(TreeLinkNode root)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span> || root.left==<span class="keyword">null</span> || root.right==<span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">        root.left.next = root.right;</div><div class="line">        <span class="keyword">if</span>(root.next!=<span class="keyword">null</span>) root.right.next = root.next.left;</div><div class="line">        connect(root.left);</div><div class="line">        connect(root.right);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>回溯法求解，对于当前的每个数字，选择和累积的数字创建新的字段，或者不创建新的字段，并入到下一个数字的递归中。</p>
+<p>IP地址的条件：这种表示法下，IP地址为32位，4个字段，每个字段范围为0-255。</p>
+<p>根据条件进行回溯:</p>
+<ol>
+<li>累计的数字<code>&gt;255</code>，</li>
+<li>当前位置没有到最后一位，但是字段数达到<code>4</code></li>
+<li>当前为最后一位，但总字段数小余<code>4</code>.</li>
+<li>上一个数字为<code>0</code>的情况。</li>
+</ol>
+<p>最后一个回溯条件是为了注意处理IP地址中连续为0的情况。也就是<code>00010</code>，只能解析为<code>0.0.0.10</code>,不存在字段表示为<code>0.0.01.0</code>的情况。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">restoreIpAddresses</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        List&lt;String&gt; res = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">        <span class="keyword">if</span>(s.length()&lt;<span class="number">4</span>) <span class="keyword">return</span> res;</div><div class="line">        </div><div class="line">        recRes(s, res, <span class="string">""</span>, -<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recRes</span><span class="params">(String s, List&lt;String&gt; res, String record, <span class="keyword">int</span> partNum, <span class="keyword">int</span> count, <span class="keyword">int</span> pos)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(partNum==-<span class="number">1</span>) partNum = <span class="number">0</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(partNum==<span class="number">0</span>) <span class="keyword">return</span>;</div><div class="line">    	partNum = partNum * <span class="number">10</span> + (s.charAt(pos) - <span class="string">'0'</span>);</div><div class="line">        <span class="keyword">if</span>(partNum&gt;<span class="number">255</span>) <span class="keyword">return</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(pos==s.length()-<span class="number">1</span>) &#123;</div><div class="line">        	<span class="keyword">if</span>(count!=<span class="number">3</span>) <span class="keyword">return</span>;</div><div class="line">            res.add(record + partNum);</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>((count+<span class="number">1</span>)&lt;<span class="number">4</span>)recRes(s, res, record+partNum+<span class="string">"."</span>, -<span class="number">1</span>, count+<span class="number">1</span>, pos+<span class="number">1</span>);</div><div class="line">        recRes(s, res, record, partNum, count, pos+<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>second time</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">restoreIpAddresses</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        List&lt;String&gt; res = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">        recRes(s, <span class="number">0</span>, <span class="number">0</span>, res, <span class="string">""</span>, <span class="number">0</span>);</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recRes</span><span class="params">(String s, <span class="keyword">int</span> pos, <span class="keyword">int</span> cum, List&lt;String&gt; res, String record, <span class="keyword">int</span> segNum)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(segNum==<span class="number">4</span> &amp;&amp; pos==s.length()) res.add(record);</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(segNum&gt;=<span class="number">4</span> || pos&gt;=s.length()) <span class="keyword">return</span>;</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">char</span> c = s.charAt(pos);</div><div class="line">            <span class="keyword">if</span>(c==<span class="string">'0'</span> &amp;&amp; cum==<span class="number">0</span>) &#123;</div><div class="line">                <span class="keyword">if</span>(record.length()!=<span class="number">0</span>) record = record + <span class="string">"."</span> + cum;</div><div class="line">                <span class="keyword">else</span> record = record + cum;</div><div class="line">                recRes(s, pos+<span class="number">1</span>, <span class="number">0</span>, res, record, segNum+<span class="number">1</span>);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                cum = <span class="number">10</span> * cum + (c-<span class="string">'0'</span>);</div><div class="line">                <span class="keyword">if</span>(cum&gt;<span class="number">255</span>) <span class="keyword">return</span>;</div><div class="line">                recRes(s, pos+<span class="number">1</span>, cum, res, record, segNum);</div><div class="line">                </div><div class="line">                <span class="keyword">if</span>(record.length()!=<span class="number">0</span>) record = record + <span class="string">"."</span> + cum;</div><div class="line">                <span class="keyword">else</span> record = record + cum;</div><div class="line">                recRes(s, pos+<span class="number">1</span>, <span class="number">0</span>, res, record, segNum+<span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           
         
       
@@ -956,7 +956,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">327</span>
+              <span class="site-state-item-count">328</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

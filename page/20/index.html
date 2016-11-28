@@ -260,6 +260,138 @@
             
               
                 
+                <a class="post-title-link" href="/2015/09/10/Leetcode_Partition List/" itemprop="url">
+                  Partition List
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-09-10T00:00:00+09:00" content="2015-09-10">
+              2015-09-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/10/Leetcode_Partition List/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/10/Leetcode_Partition List/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Partition-List"><a href="#Partition-List" class="headerlink" title="Partition List"></a><a href="https://leetcode.com/problems/partition-list/" target="_blank" rel="external">Partition List</a></h1><blockquote>
+<p>Given a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.</p>
+<p>You should preserve the original relative order of the nodes in each of the two partitions.</p>
+<p>For example,<br>Given <code>1-&gt;4-&gt;3-&gt;2-&gt;5-&gt;2</code> and <code>x = 3</code>,<br>return <code>1-&gt;2-&gt;2-&gt;4-&gt;3-&gt;5</code>.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>注意很关键的一点是要保持两组数内部原来的顺序。</p>
+<p>设置指针：<br><code>lastSmall</code>, 记录最后一个小于<code>x</code>的节点。<br><code>firstBig</code>, 注意记录第一个大于等于<code>x</code>的节点。<br><code>last</code>, <code>current</code>用于扫描数组。<code>last</code>总是指向上一个大于等于<code>x</code>的节点，<code>current</code>指向当前节点，原因参考后面。</p>
+<p>向后扫描数组，直到第一个大于等于<code>x</code>的节点，记录<code>lastSmall</code>和<code>firstBig</code>。如果没有，则说明所有数都小于<code>x</code>，则直接返回。</p>
+<p>如果遇到小于<code>x</code>的节点，将<code>lastSmall.next</code>设置为当前<code>current</code>节点，将<code>current.next</code>设置为<code>firstBig</code>，然后设置<code>lastSmall = current</code>。注意处理前<code>lastSmall==null</code>的情况。</p>
+<p>如果遇到大于等于<code>x</code>的节点，则直接跳到下一个节点。</p>
+<p>直到处理到链表尾端。</p>
+<p>注意处理边界和特殊情况，以及指针的更新和保存。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * public class ListNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     ListNode next;</div><div class="line"> *     ListNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">partition</span><span class="params">(ListNode head, <span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">        ListNode smallHead = <span class="keyword">null</span>;</div><div class="line">        ListNode smallCurrent = <span class="keyword">null</span>;</div><div class="line">        ListNode bigHead = <span class="keyword">null</span>;</div><div class="line">        ListNode bigCurrent = <span class="keyword">null</span>;</div><div class="line">        ListNode current = head;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(current!=<span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">if</span>(current.val&lt;x) &#123;</div><div class="line">                <span class="keyword">if</span>(smallHead==<span class="keyword">null</span>) &#123;</div><div class="line">                    smallHead = smallCurrent = current;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    smallCurrent.next = current;</div><div class="line">                    smallCurrent = current;</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">if</span>(bigHead==<span class="keyword">null</span>) &#123;</div><div class="line">                    bigHead = bigCurrent = current;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    bigCurrent.next = current;</div><div class="line">                    bigCurrent = current;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            current = current.next;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(smallCurrent!=<span class="keyword">null</span>) smallCurrent.next = bigHead;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">return</span> bigHead;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(bigCurrent!=<span class="keyword">null</span>) bigCurrent.next = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">return</span> smallHead;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/09/09/Leetcode_Clone Graph/" itemprop="url">
                   Clone Graph
                 </a>
@@ -779,137 +911,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/09/06/Leetcode_Triangle/" itemprop="url">
-                  Triangle
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-06T00:00:00+09:00" content="2015-09-06">
-              2015-09-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/06/Leetcode_Triangle/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/06/Leetcode_Triangle/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Triangle"><a href="#Triangle" class="headerlink" title="Triangle"></a><a href="https://leetcode.com/problems/triangle/" target="_blank" rel="external">Triangle</a></h1><blockquote>
-<p>Given a triangle, find the minimum path sum from top to bottom. Each step you may move to adjacent numbers on the row below.</p>
-<p>For example, given the following triangle</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">     [2],</div><div class="line">    [3,4],</div><div class="line">   [6,5,7],</div><div class="line">  [4,1,8,3]</div><div class="line">]</div></pre></td></tr></table></figure>
-<p>The minimum path sum from top to bottom is 11 (i.e., <code>2 + 3 + 5 + 1 = 11</code>).</p>
-<p>Note:<br>Bonus point if you are able to do this using only O(n) extra space, where n is the total number of rows in the triangle.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>动态规划，子问题是以当前层各个节点结尾的最短路径。以最后一层的各个节点结尾的路径的最短路径值中，最小值即是问题的解。</p>
-<p><code>triangle[i][j]</code>处理后保存的是到达第<code>i</code>层第<code>j</code>个节点的最短路径值。(也就是原来<code>list&lt;list&lt;Integer&gt;&gt;</code>，这里使用数组比较直观。)</p>
-<p>到达每个点的路径的上一层节点只有两个选择，就是上一层与当前节点相邻的两个节点。(开头与末尾节点只有一种可能)，从中选择较短路径。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">triangle[0][0] = triangle[0][0];</div><div class="line"></div><div class="line">for i, j</div><div class="line">	if(j==0) triangle[i][j] += 上一行的第一个值; //这一行开头的一个值</div><div class="line">	else if(j==triangle[i].length()-1) triangle[i][j] += 上一个最后一个值; </div><div class="line">	//这一行最后一个</div><div class="line">	else triangle[i] += Math.min(上一行相邻的两个值)</div><div class="line">end</div></pre></td></tr></table></figure>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minimumTotal</span><span class="params">(List&lt;List&lt;Integer&gt;&gt; triangle)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(triangle.size()==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> level=<span class="number">1</span>; level&lt;triangle.size(); level++) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;triangle.get(level).size(); i++) &#123;</div><div class="line">                <span class="keyword">int</span> left = (i&gt;<span class="number">0</span>) ? triangle.get(level-<span class="number">1</span>).get(i-<span class="number">1</span>) : Integer.MAX_VALUE;</div><div class="line">                <span class="keyword">int</span> right = (i&lt;triangle.get(level-<span class="number">1</span>).size()) ? triangle.get(level-<span class="number">1</span>).get(i) : Integer.MAX_VALUE;</div><div class="line">                triangle.get(level).set(i, Math.min(left, right) + triangle.get(level).get(i));</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        List&lt;Integer&gt; lastLine = triangle.get(triangle.size()-<span class="number">1</span>);</div><div class="line">        <span class="keyword">int</span> min = Integer.MAX_VALUE;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> ele: lastLine) &#123;</div><div class="line">            <span class="keyword">if</span>(ele&lt;min) min = ele;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> min;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -955,7 +956,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">327</span>
+              <span class="site-state-item-count">328</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

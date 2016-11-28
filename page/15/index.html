@@ -260,8 +260,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/09/24/Leetcode_Maximum Gap/" itemprop="url">
-                  Maximum Gap
+                <a class="post-title-link" href="/2015/09/25/Leetcode_Populating Next Right Pointers in Each Node II/" itemprop="url">
+                  Populating Next Right Pointers in Each Node II
                 </a>
               
             
@@ -274,8 +274,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-24T00:00:00+09:00" content="2015-09-24">
-              2015-09-24
+            <time itemprop="dateCreated" datetime="2015-09-25T00:00:00+09:00" content="2015-09-25">
+              2015-09-25
             </time>
           </span>
 
@@ -304,8 +304,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/09/24/Leetcode_Maximum Gap/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/24/Leetcode_Maximum Gap/" itemprop="commentsCount"></span>
+                <a href="/2015/09/25/Leetcode_Populating Next Right Pointers in Each Node II/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/25/Leetcode_Populating Next Right Pointers in Each Node II/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -330,22 +330,24 @@
       
         
           
-            <h1 id="Maximum-Gap"><a href="#Maximum-Gap" class="headerlink" title="Maximum Gap"></a><a href="https://leetcode.com/problems/maximum-gap/" target="_blank" rel="external">Maximum Gap</a></h1><blockquote>
-<p>Given an unsorted array, find the maximum difference between the successive elements in its sorted form.</p>
-<p>Try to solve it in linear time/space.</p>
-<p>Return 0 if the array contains less than 2 elements.</p>
-<p>You may assume all elements in the array are non-negative integers and fit in the 32-bit signed integer range.</p>
+            <h1 id="Populating-Next-Right-Pointers-in-Each-Node-II"><a href="#Populating-Next-Right-Pointers-in-Each-Node-II" class="headerlink" title="Populating Next Right Pointers in Each Node II"></a><a href="https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/" target="_blank" rel="external">Populating Next Right Pointers in Each Node II</a></h1><blockquote>
+<p>Follow up for problem “Populating Next Right Pointers in Each Node”.</p>
+<p>What if the given tree could be any binary tree? Would your previous solution still work?</p>
+<p>Note:</p>
+<ul>
+<li>You may only use constant extra space.</li>
+</ul>
+<p>For example,<br>Given the following binary tree,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">         1</div><div class="line">       /  \</div><div class="line">      2    3</div><div class="line">     / \    \</div><div class="line">    4   5    7</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+<p>After calling your function, the tree should look like:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">         1 -&gt; NULL</div><div class="line">       /  \</div><div class="line">      2 -&gt; 3 -&gt; NULL</div><div class="line">     / \    \</div><div class="line">    4-&gt; 5 -&gt; 7 -&gt; NULL</div><div class="line">&gt;</div></pre></td></tr></table></figure>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>最直接的方法是快速排序，然后判断max gap，但是不满足题目要求的linear time。</p>
-<p>这里参考<a href="http://bookshadow.com/weblog/2014/12/14/leetcode-maximum-gap/" target="_blank" rel="external">LeetCode_Maximum Gap</a>， <a href="http://pisxw.com/algorithm/Maximum-Gap.html" target="_blank" rel="external">LeetCode-Maximum Gap</a> 中更加高效的方法，使用桶排序。</p>
-<p>假设有N个元素A到B。</p>
-<p>那么最大差值不会小于<code>ceiling[(B - A) / (N - 1)]</code></p>
-<p>令bucket（桶）的大小<code>len = ceiling[(B - A) / (N - 1)]</code>，则最多会有<code>(B - A) / len + 1</code>个桶。</p>
-<p>对于数组中的任意整数K，很容易通过算式<code>loc = (K - A) / len</code>找出其桶的位置，然后维护每一个桶的最大值和最小值。</p>
-<p>由于同一个桶内的元素之间的差值至多为<code>len - 1</code>，因此最终答案不会从同一个桶中选择。</p>
-<p>对于每一个非空的桶p，找出下一个非空的桶<code>q</code>，则<code>q.min - p.max</code>可能就是备选答案。返回所有这些可能值中的最大值。</p>
-<p>桶排序参考<a href="http://hxraid.iteye.com/blog/647759" target="_blank" rel="external">【排序结构6】 桶排序</a>。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bucket</span> </span>&#123;</div><div class="line">        <span class="keyword">public</span> <span class="keyword">int</span> min;</div><div class="line">        <span class="keyword">public</span> <span class="keyword">int</span> max;</div><div class="line">        <span class="keyword">public</span> <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line"></div><div class="line">        Bucket(<span class="keyword">int</span> min,<span class="keyword">int</span> max) &#123;</div><div class="line">            <span class="keyword">this</span>.min = min;</div><div class="line">            <span class="keyword">this</span>.max = max;</div><div class="line">        &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maximumGap</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(nums==<span class="keyword">null</span> || nums.length&lt;<span class="number">2</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> numMax = Integer.MIN_VALUE;</div><div class="line">        <span class="keyword">int</span> numMin = Integer.MAX_VALUE;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> val:nums) &#123;</div><div class="line">            numMax = Math.max(numMax,val);</div><div class="line">            numMin = Math.min(numMin,val);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">int</span> bucketSize = (<span class="keyword">int</span>)Math.ceil((<span class="keyword">double</span>)(numMax-numMin)/(nums.length-<span class="number">1</span>));</div><div class="line">        <span class="keyword">if</span>(bucketSize==<span class="number">0</span> || bucketSize==<span class="number">1</span>) <span class="keyword">return</span> numMax - numMin;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> bucketNum = ((numMax - numMin) / bucketSize) + <span class="number">1</span>;</div><div class="line">        </div><div class="line">        Bucket[] buckets = <span class="keyword">new</span> Bucket[bucketNum];</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;buckets.length; i++) buckets[i]=<span class="keyword">new</span> Bucket(Integer.MAX_VALUE,Integer.MIN_VALUE);</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> val:nums) &#123;</div><div class="line">            <span class="keyword">int</span> index = (val-numMin) / bucketSize;</div><div class="line">            buckets[index].min = Math.min(buckets[index].min, val);</div><div class="line">            buckets[index].max = Math.max(buckets[index].max, val);</div><div class="line">            buckets[index].count++;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">int</span> maxGap=<span class="number">0</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> lastNotEmpty = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span>(buckets[lastNotEmpty].count==<span class="number">0</span>) lastNotEmpty++;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=lastNotEmpty+<span class="number">1</span>; i&lt;buckets.length; i++) &#123;</div><div class="line">            <span class="keyword">while</span>(buckets[i].count==<span class="number">0</span>) i++;</div><div class="line">            maxGap = Math.max(maxGap, (buckets[i].min - buckets[lastNotEmpty].max));</div><div class="line">            lastNotEmpty = i;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> maxGap;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>思路基本跟Populating Next Right Pointers in Each Node I一样，关键是节点的左右子节点可能为空，next节点不能像Populating Next Right Pointers in Each Node I中一样有固定的规则。</p>
+<p>而是需要每次按照具体情况搜索，具体逻辑参考代码。</p>
+<p>另外需要注意的一点是，先处理右子树，然后再处理左子树。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for binary tree with next pointer.</div><div class="line"> * public class TreeLinkNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeLinkNode left, right, next;</div><div class="line"> *     TreeLinkNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">connect</span><span class="params">(TreeLinkNode root)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">        <span class="keyword">if</span>(root.left==<span class="keyword">null</span> &amp;&amp; root.right==<span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">        <span class="keyword">if</span>(root.left!=<span class="keyword">null</span> &amp;&amp; root.right!=<span class="keyword">null</span>) root.left.next = root.right;</div><div class="line">        TreeLinkNode decentNeed = root.left==<span class="keyword">null</span> ? root.right : (root.right!=<span class="keyword">null</span> ? root.right : root.left); </div><div class="line">        TreeLinkNode decentNext = <span class="keyword">null</span>;</div><div class="line">        TreeLinkNode move = root.next;</div><div class="line">        <span class="keyword">while</span>(move!=<span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">if</span>(move.left!=<span class="keyword">null</span> || move.right!=<span class="keyword">null</span>) &#123;</div><div class="line">                decentNext = move.left!=<span class="keyword">null</span> ? move.left : move.right;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">            move = move.next;</div><div class="line">        &#125;</div><div class="line">        decentNeed.next = decentNext;</div><div class="line">        connect(root.right);</div><div class="line">        connect(root.left);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>或者宽度优先：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">connect</span><span class="params">(TreeLinkNode root)</span> </span>&#123;</div><div class="line">        Queue&lt;TreeLinkNode&gt; queue = <span class="keyword">new</span> LinkedList&lt;TreeLinkNode&gt;();</div><div class="line">        queue.offer(root);</div><div class="line">        <span class="keyword">while</span>(!queue.isEmpty()) &#123;</div><div class="line">            TreeLinkNode node = queue.poll();</div><div class="line">            <span class="keyword">if</span>(node==<span class="keyword">null</span>) <span class="keyword">continue</span>;</div><div class="line">            <span class="keyword">if</span>(node.left==<span class="keyword">null</span> &amp;&amp; node.right==<span class="keyword">null</span>) <span class="keyword">continue</span>;</div><div class="line">            queue.offer(node.left);</div><div class="line">            queue.offer(node.right);</div><div class="line">            <span class="keyword">if</span>(node.left!=<span class="keyword">null</span> &amp;&amp; node.right!=<span class="keyword">null</span>) node.left.next = node.right;</div><div class="line">            TreeLinkNode decentNeed = node.left==<span class="keyword">null</span> ? node.right : (node.right!=<span class="keyword">null</span> ? node.right : node.left); </div><div class="line">            TreeLinkNode decentNext = <span class="keyword">null</span>;</div><div class="line">            TreeLinkNode move = node.next;</div><div class="line">            <span class="keyword">while</span>(move!=<span class="keyword">null</span>) &#123;</div><div class="line">                <span class="keyword">if</span>(move.left!=<span class="keyword">null</span> || move.right!=<span class="keyword">null</span>) &#123;</div><div class="line">                    decentNext = move.left!=<span class="keyword">null</span> ? move.left : move.right;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">                move = move.next;</div><div class="line">            &#125;</div><div class="line">            decentNeed.next = decentNext;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -538,8 +540,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/09/22/Leetcode_Find Minimum in Rotated Sorted Array II/" itemprop="url">
-                  Find Minimum in Rotated Sorted Array II
+                <a class="post-title-link" href="/2015/09/24/Leetcode_Maximum Gap/" itemprop="url">
+                  Maximum Gap
                 </a>
               
             
@@ -552,8 +554,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-22T00:00:00+09:00" content="2015-09-22">
-              2015-09-22
+            <time itemprop="dateCreated" datetime="2015-09-24T00:00:00+09:00" content="2015-09-24">
+              2015-09-24
             </time>
           </span>
 
@@ -582,8 +584,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/09/22/Leetcode_Find Minimum in Rotated Sorted Array II/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/22/Leetcode_Find Minimum in Rotated Sorted Array II/" itemprop="commentsCount"></span>
+                <a href="/2015/09/24/Leetcode_Maximum Gap/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/24/Leetcode_Maximum Gap/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -608,156 +610,22 @@
       
         
           
-            <h1 id="Find-Minimum-in-Rotated-Sorted-Array-II"><a href="#Find-Minimum-in-Rotated-Sorted-Array-II" class="headerlink" title="Find Minimum in Rotated Sorted Array II"></a><a href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/" target="_blank" rel="external">Find Minimum in Rotated Sorted Array II</a></h1><blockquote>
-<blockquote>
-<p>Follow up for “Find Minimum in Rotated Sorted Array”:<br>What if duplicates are allowed?</p>
-<p>Would this affect the run-time complexity? How and why?</p>
+            <h1 id="Maximum-Gap"><a href="#Maximum-Gap" class="headerlink" title="Maximum Gap"></a><a href="https://leetcode.com/problems/maximum-gap/" target="_blank" rel="external">Maximum Gap</a></h1><blockquote>
+<p>Given an unsorted array, find the maximum difference between the successive elements in its sorted form.</p>
+<p>Try to solve it in linear time/space.</p>
+<p>Return 0 if the array contains less than 2 elements.</p>
+<p>You may assume all elements in the array are non-negative integers and fit in the 32-bit signed integer range.</p>
 </blockquote>
-<p>Suppose a sorted array is rotated at some pivot unknown to you beforehand.</p>
-<p>(i.e., <code>0 1 2 4 5 6 7</code> might become <code>4 5 6 7 0 1 2</code>).</p>
-<p>Find the minimum element.</p>
-<p>The array may contain duplicates.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>二分法搜索的变化形式。跟Find Minimum in Rotated Sorted Array I类似。</p>
-<p>得到了accept solution但觉得边界处理不够系统和简洁，也不太好解释。</p>
-<p>找到了比较简洁和系统的思路和solution，参考<a href="http://bangbingsyb.blogspot.jp/2014/11/leecode-find-minimum-in-rotated-sorted.html" target="_blank" rel="external">Find Minimum in Rotated Sorted Array I, II</a>:</p>
-<p>根据A[mid]和A[end]来判断右半数组是否sorted：<br>原数组：<code>0 1 2 4 5 6 7</code><br>情况1：  <code>6 7 0 1 2 4 5</code><br>情况2：  <code>2 4 5 6 7 0 1</code> </p>
-<p>(1) <font color="red"> <code>A[mid] &lt; A[end]</code> </font>： <code>A[mid : end]</code> sorted =&gt; <strong>min不在<code>A[mid+1 : end]</code>中</strong>,<font color="red"> 搜索<code>A[start : mid]</code> </font><br>(2) <font color="red">  <code>A[mid] &gt; A[end]</code> </font>： <code>A[start : mid]</code> sorted且又因为该情况下<code>A[end]&lt;A[start]</code> =&gt; <strong>min不在<code>A[start : mid]</code>中</strong>, <font color="red">搜索<code>A[mid+1 : end]</code></font><br>(3) <strong>base case</strong>：<br>a. <code>start =  end</code>，必然<code>A[start]为min</code>，为搜寻结束条件。<br>b. <code>start + 1 = end</code>，此时<code>A[mid] =  A[start]</code>，而<code>min = min(A[mid], A[end])</code>。<strong>而这个条件可以合并到(1)和(2)中。</strong></p>
-<p><strong>上面是Find Minimum in Rotated Sorted Array I的solution，II不同的一点是：</strong><font color="red">同样<code>当A[mid] = A[end]</code>时，无法判断min究竟在左边还是右边。</font></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">3 1 2 3 3 3 3 </div><div class="line">3 3 3 3 1 2 3</div></pre></td></tr></table></figure>
-<p>但可以肯定的是可以排除A[end]：因为即使<code>min = A[end]</code>，由于<code>A[end] = A[mid]</code>，排除A[end]并没有让min丢失。所以增加的条件是：</p>
-<p><code>A[mid] = A[end]</code>：搜索<code>A[start : end-1]</code></p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMin</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> right = nums.length - <span class="number">1</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(left&lt;right) &#123;</div><div class="line">        	<span class="keyword">if</span>(nums[left]&lt;nums[right]) <span class="keyword">return</span> nums[left];</div><div class="line">            <span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</div><div class="line">            <span class="keyword">if</span>(nums[mid]&gt;nums[right]) &#123;</div><div class="line">                left = mid + <span class="number">1</span>;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span>(nums[mid]&lt;nums[right])&#123;</div><div class="line">                right = mid;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;  <span class="comment">// nums[mid]&lt;nums[right]</span></div><div class="line">            	right --;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> nums[left];</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/09/22/Leetcode_Search in Rotated Sorted Array/" itemprop="url">
-                  Search in Rotated Sorted Array
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-22T00:00:00+09:00" content="2015-09-22">
-              2015-09-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/22/Leetcode_Search in Rotated Sorted Array/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/22/Leetcode_Search in Rotated Sorted Array/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Search-in-Rotated-Sorted-Array"><a href="#Search-in-Rotated-Sorted-Array" class="headerlink" title="Search in Rotated Sorted Array"></a><a href="https://leetcode.com/problems/search-in-rotated-sorted-array/" target="_blank" rel="external">Search in Rotated Sorted Array</a></h1><blockquote>
-<p>Suppose a sorted array is rotated at some pivot unknown to you beforehand.</p>
-<p>(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).</p>
-<p>You are given a target value to search. If found in the array return its index, otherwise return -1.</p>
-<p>You may assume no duplicate exists in the array.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>二分检索处理。注意题中条件说明不存在重复元素。从中间将数组划分，</p>
-<p>如果左子数组开头元素小于末尾元素，则说明左子数组是有序的，突变点在右子数组中。否则则说明突变点在左子数组中，右子数组是有序的。</p>
-<p>然后进一步的采取措施，如果左子数组是有序的，判断target是否在左子数组中，如果不在则下一步搜寻右子数组。对于右子数组有序的情况也一样操作。</p>
-<p>具体逻辑参考代码。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> right = nums.length - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(left&lt;=right) &#123;</div><div class="line">            <span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</div><div class="line">            <span class="keyword">if</span>(nums[mid]==target) <span class="keyword">return</span> mid;</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(nums[mid]&gt;=nums[left]) &#123;</div><div class="line">            	<span class="keyword">if</span>(nums[left]&lt;=target &amp;&amp; nums[mid]&gt;target) right = mid - <span class="number">1</span>;</div><div class="line">            	<span class="keyword">else</span> left = mid + <span class="number">1</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> &#123;</div><div class="line">            	<span class="keyword">if</span>(nums[mid]&lt;target &amp;&amp; nums[right]&gt;=target) left = mid + <span class="number">1</span>;</div><div class="line">            	<span class="keyword">else</span> right = mid - <span class="number">1</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>最直接的方法是快速排序，然后判断max gap，但是不满足题目要求的linear time。</p>
+<p>这里参考<a href="http://bookshadow.com/weblog/2014/12/14/leetcode-maximum-gap/" target="_blank" rel="external">LeetCode_Maximum Gap</a>， <a href="http://pisxw.com/algorithm/Maximum-Gap.html" target="_blank" rel="external">LeetCode-Maximum Gap</a> 中更加高效的方法，使用桶排序。</p>
+<p>假设有N个元素A到B。</p>
+<p>那么最大差值不会小于<code>ceiling[(B - A) / (N - 1)]</code></p>
+<p>令bucket（桶）的大小<code>len = ceiling[(B - A) / (N - 1)]</code>，则最多会有<code>(B - A) / len + 1</code>个桶。</p>
+<p>对于数组中的任意整数K，很容易通过算式<code>loc = (K - A) / len</code>找出其桶的位置，然后维护每一个桶的最大值和最小值。</p>
+<p>由于同一个桶内的元素之间的差值至多为<code>len - 1</code>，因此最终答案不会从同一个桶中选择。</p>
+<p>对于每一个非空的桶p，找出下一个非空的桶<code>q</code>，则<code>q.min - p.max</code>可能就是备选答案。返回所有这些可能值中的最大值。</p>
+<p>桶排序参考<a href="http://hxraid.iteye.com/blog/647759" target="_blank" rel="external">【排序结构6】 桶排序</a>。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bucket</span> </span>&#123;</div><div class="line">        <span class="keyword">public</span> <span class="keyword">int</span> min;</div><div class="line">        <span class="keyword">public</span> <span class="keyword">int</span> max;</div><div class="line">        <span class="keyword">public</span> <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line"></div><div class="line">        Bucket(<span class="keyword">int</span> min,<span class="keyword">int</span> max) &#123;</div><div class="line">            <span class="keyword">this</span>.min = min;</div><div class="line">            <span class="keyword">this</span>.max = max;</div><div class="line">        &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maximumGap</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(nums==<span class="keyword">null</span> || nums.length&lt;<span class="number">2</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> numMax = Integer.MIN_VALUE;</div><div class="line">        <span class="keyword">int</span> numMin = Integer.MAX_VALUE;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> val:nums) &#123;</div><div class="line">            numMax = Math.max(numMax,val);</div><div class="line">            numMin = Math.min(numMin,val);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">int</span> bucketSize = (<span class="keyword">int</span>)Math.ceil((<span class="keyword">double</span>)(numMax-numMin)/(nums.length-<span class="number">1</span>));</div><div class="line">        <span class="keyword">if</span>(bucketSize==<span class="number">0</span> || bucketSize==<span class="number">1</span>) <span class="keyword">return</span> numMax - numMin;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> bucketNum = ((numMax - numMin) / bucketSize) + <span class="number">1</span>;</div><div class="line">        </div><div class="line">        Bucket[] buckets = <span class="keyword">new</span> Bucket[bucketNum];</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;buckets.length; i++) buckets[i]=<span class="keyword">new</span> Bucket(Integer.MAX_VALUE,Integer.MIN_VALUE);</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> val:nums) &#123;</div><div class="line">            <span class="keyword">int</span> index = (val-numMin) / bucketSize;</div><div class="line">            buckets[index].min = Math.min(buckets[index].min, val);</div><div class="line">            buckets[index].max = Math.max(buckets[index].max, val);</div><div class="line">            buckets[index].count++;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">int</span> maxGap=<span class="number">0</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> lastNotEmpty = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span>(buckets[lastNotEmpty].count==<span class="number">0</span>) lastNotEmpty++;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=lastNotEmpty+<span class="number">1</span>; i&lt;buckets.length; i++) &#123;</div><div class="line">            <span class="keyword">while</span>(buckets[i].count==<span class="number">0</span>) i++;</div><div class="line">            maxGap = Math.max(maxGap, (buckets[i].min - buckets[lastNotEmpty].max));</div><div class="line">            lastNotEmpty = i;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> maxGap;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -919,6 +787,136 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/09/22/Leetcode_Peeking Iterator/" itemprop="url">
+                  Peeking Iterator
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-09-22T00:00:00+09:00" content="2015-09-22">
+              2015-09-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/22/Leetcode_Peeking Iterator/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/22/Leetcode_Peeking Iterator/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Peeking-Iterator"><a href="#Peeking-Iterator" class="headerlink" title="Peeking Iterator"></a><a href="https://leetcode.com/problems/peeking-iterator/" target="_blank" rel="external">Peeking Iterator</a></h1><blockquote>
+<p>Given an Iterator class interface with methods: <code>next()</code> and <code>hasNext()</code>, design and implement a PeekingIterator that support the <code>peek()</code> operation – <strong>it essentially <code>peek()</code> at the element that will be returned by the next call to <code>next()</code></strong>.</p>
+<p>Here is an example. Assume that the iterator is initialized to the beginning of the list: <code>[1, 2, 3]</code>.</p>
+<p>Call <code>next()</code> gets you <code>1</code>, the first element in the list.</p>
+<p>Now you call <code>peek()</code> and it returns <code>2</code>, the next element. Calling <code>next()</code> after that still return <code>2</code>.</p>
+<p>You call <code>next()</code> the final time and it returns <code>3</code>, the last element. Calling <code>hasNext()</code> after that should return false.</p>
+<p>Follow up: How would you extend your design to be generic and work with all types, not just integer?</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>注意在调用peek()之前必须先调用一次next().</p>
+<p>建立top变量缓存顶部元素，用以peek()操作。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Java Iterator interface reference:</span></div><div class="line"><span class="comment">// https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">PeekingIterator</span> <span class="keyword">implements</span> <span class="title">Iterator</span>&lt;<span class="title">Integer</span>&gt; </span>&#123;</div><div class="line">    Integer top;</div><div class="line">    Iterator&lt;Integer&gt; iter;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">PeekingIterator</span><span class="params">(Iterator&lt;Integer&gt; iterator)</span> </span>&#123;</div><div class="line">	    <span class="comment">// initialize any member here.</span></div><div class="line">	    iter = iterator;</div><div class="line">	    <span class="keyword">if</span>(iter.hasNext()) &#123;</div><div class="line">	        top = iterator.next();</div><div class="line">	    &#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">    <span class="comment">// Returns the next element in the iteration without advancing the iterator.</span></div><div class="line">	<span class="function"><span class="keyword">public</span> Integer <span class="title">peek</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> top;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">// hasNext() and next() should behave the same as in the Iterator interface.</span></div><div class="line">	<span class="comment">// Override them if needed.</span></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> Integer <span class="title">next</span><span class="params">()</span> </span>&#123;</div><div class="line">	    Integer last = top;</div><div class="line">	    top = iter.hasNext() ? iter.next() : <span class="keyword">null</span>;</div><div class="line">	    <span class="keyword">return</span> last;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</div><div class="line">	    <span class="keyword">return</span> top!=<span class="keyword">null</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -964,7 +962,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">327</span>
+              <span class="site-state-item-count">328</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

@@ -260,8 +260,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/08/24/Leetcode_Missing Number/" itemprop="url">
-                  Missing Number
+                <a class="post-title-link" href="/2015/08/26/Leetcode_Construct Binary Tree from Preorder and Inorder Traversal /" itemprop="url">
+                  Construct Binary Tree from Preorder and Inorder Traversal
                 </a>
               
             
@@ -274,8 +274,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-08-24T00:00:00+09:00" content="2015-08-24">
-              2015-08-24
+            <time itemprop="dateCreated" datetime="2015-08-26T00:00:00+09:00" content="2015-08-26">
+              2015-08-26
             </time>
           </span>
 
@@ -304,8 +304,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/08/24/Leetcode_Missing Number/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/24/Leetcode_Missing Number/" itemprop="commentsCount"></span>
+                <a href="/2015/08/26/Leetcode_Construct Binary Tree from Preorder and Inorder Traversal /#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/26/Leetcode_Construct Binary Tree from Preorder and Inorder Traversal /" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -330,273 +330,12 @@
       
         
           
-            <h1 id="Missing-Number"><a href="#Missing-Number" class="headerlink" title="Missing Number"></a><a href="https://leetcode.com/problems/missing-number/" target="_blank" rel="external">Missing Number</a></h1><blockquote>
-<p>Given an array containing n distinct numbers taken from 0, 1, 2, …, n, find the one that is missing from the array.</p>
-<p>For example,<br>Given nums = [0, 1, 3] return 2.</p>
-<p>Note:<br>Your algorithm should run in linear runtime complexity. Could you implement it using only constant extra space complexity?</p>
+            <h1 id="Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal"><a href="#Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal" class="headerlink" title="Construct Binary Tree from Preorder and Inorder Traversal"></a><a href="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/" target="_blank" rel="external">Construct Binary Tree from Preorder and Inorder Traversal</a></h1><blockquote>
+<p>Given preorder and inorder traversal of a tree, construct the binary tree.</p>
+<p>Note:<br>You may assume that duplicates do not exist in the tree.</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h3 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1"></a>Method 1</h3><p>使用Hashset记录。</p>
-<h3 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2"></a>Method 2</h3><p>首先数值序列为<code>0,1,2,3,...n</code>, 其总和为<code>n*(n+1)/2</code>.<br>对数组进行求和得到sum，则缺的那个数字为 <code>n*(n+1)/2 - sum</code></p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="Method-2-1"><a href="#Method-2-1" class="headerlink" title="Method 2"></a>Method 2</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">missingNumber</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> ele: nums) sum += ele;</div><div class="line">        <span class="keyword">return</span> nums.length*(nums.length+<span class="number">1</span>)/<span class="number">2</span> - sum;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>second time</p>
-<p>anouth solution: 异或法 Exclusive OR</p>
-<p><a href="http://segmentfault.com/a/1190000003488849" target="_blank" rel="external">Missing Number</a></p>
-<p>复杂度<br>时间 O(N) 空间 O(1)</p>
-<p>思路<br>根据异或的特性，对于一个数，异或自己是0，异或0是自己，所以我们把0-n都异或一遍，再对着给定数组异或一遍，结果就是缺失的数。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">missingNumber</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= nums.length; i++)&#123;</div><div class="line">            res ^= i == nums.length ? i : i ^ nums[i];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/08/24/Leetcode_Minimum Path Sum/" itemprop="url">
-                  Minimum Path Sum
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-08-24T00:00:00+09:00" content="2015-08-24">
-              2015-08-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/08/24/Leetcode_Minimum Path Sum/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/24/Leetcode_Minimum Path Sum/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Minimum-Path-Sum"><a href="#Minimum-Path-Sum" class="headerlink" title="Minimum Path Sum"></a><a href="https://leetcode.com/problems/minimum-path-sum/" target="_blank" rel="external">Minimum Path Sum</a></h1><blockquote>
-<p>Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.</p>
-<p>Note: You can only move either down or right at any point in time.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>动态规划，到达每个点的方式只有两种，从其左边的点或上面的点，选择其中较小的一条路径。</p>
-<p>状态转移方程：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">path[i][j] = path[i][j]+ path[i-1][j],  if i&gt;=1 &amp;&amp; j==0</div><div class="line">path[i][j] = path[i][j]+ path[i][j-1],  if i==0 &amp;&amp; j&gt;=1</div><div class="line"></div><div class="line">path[i][j] = path[i][j] + Math.min(path[i-1][j], path[i][j-1]) if </div><div class="line">i&gt;=1 &amp;&amp; j&gt;=1</div></pre></td></tr></table></figure>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minPathSum</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(grid.length==<span class="number">0</span> || grid[<span class="number">0</span>].length==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;grid.length; i++) grid[i][<span class="number">0</span>] += grid[i-<span class="number">1</span>][<span class="number">0</span>];</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;grid[<span class="number">0</span>].length; i++) grid[<span class="number">0</span>][i] += grid[<span class="number">0</span>][i-<span class="number">1</span>];</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;grid.length; i++) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;grid[<span class="number">0</span>].length; j++) &#123;</div><div class="line">                grid[i][j] += Math.min(grid[i-<span class="number">1</span>][j], grid[i][j-<span class="number">1</span>]);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> grid[grid.length-<span class="number">1</span>][grid[<span class="number">0</span>].length-<span class="number">1</span>];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>second time</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minPathSum</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(grid==<span class="keyword">null</span> || grid.length==<span class="number">0</span> || grid[<span class="number">0</span>].length==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;grid.length; i++) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;grid[<span class="number">0</span>].length; j++) &#123;</div><div class="line">                <span class="keyword">if</span>(i==<span class="number">0</span> &amp;&amp; j==<span class="number">0</span>) <span class="keyword">continue</span>;</div><div class="line">                <span class="keyword">int</span> left = j-<span class="number">1</span>&gt;=<span class="number">0</span> ? grid[i][j-<span class="number">1</span>] : Integer.MAX_VALUE;</div><div class="line">                <span class="keyword">int</span> up = i-<span class="number">1</span>&gt;=<span class="number">0</span> ? grid[i-<span class="number">1</span>][j] : Integer.MAX_VALUE;</div><div class="line">                grid[i][j] += (left&lt;=up ? left : up);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> grid[grid.length-<span class="number">1</span>][grid[<span class="number">0</span>].length-<span class="number">1</span>];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/08/24/Leetcode_Reverse Words in a String/" itemprop="url">
-                  Reverse Words in a String
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-08-24T00:00:00+09:00" content="2015-08-24">
-              2015-08-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/08/24/Leetcode_Reverse Words in a String/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/24/Leetcode_Reverse Words in a String/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Reverse-Words-in-a-String"><a href="#Reverse-Words-in-a-String" class="headerlink" title="Reverse Words in a String"></a><a href="https://leetcode.com/problems/reverse-words-in-a-string/" target="_blank" rel="external">Reverse Words in a String</a></h1><blockquote>
-<p>Given an input string, reverse the string word by word.</p>
-<p>For example,<br>Given <code>s = &quot;the sky is blue&quot;</code>,<br>return <code>&quot;blue is sky the&quot;</code>.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>从右向左开始，记录每个词的结束和开始位置。注意空格处理，开头处理，以及java的charAt与substring的下标不同含义。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">reverseWords</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        StringBuffer res = <span class="keyword">new</span> StringBuffer();</div><div class="line">        <span class="keyword">boolean</span> begin = <span class="keyword">false</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> right = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=s.length()-<span class="number">1</span>; i&gt;=<span class="number">0</span>; i--) &#123;</div><div class="line">            <span class="keyword">if</span>(!begin) &#123;</div><div class="line">                <span class="keyword">if</span>(s.charAt(i)==<span class="string">' '</span>) <span class="keyword">continue</span>;</div><div class="line">                <span class="keyword">else</span> &#123;</div><div class="line">                    begin = <span class="keyword">true</span>;</div><div class="line">                    right = i + <span class="number">1</span>;</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">if</span>(s.charAt(i)==<span class="string">' '</span>) &#123;</div><div class="line">                    begin = <span class="keyword">false</span>;</div><div class="line">                    left = i + <span class="number">1</span>;</div><div class="line">                    </div><div class="line">                    <span class="keyword">if</span>(res.length()!=<span class="number">0</span>) res.append(<span class="string">" "</span>);</div><div class="line">                    res.append(s.substring(left, right));</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(begin) &#123;</div><div class="line">        	<span class="keyword">if</span>(res.length()!=<span class="number">0</span>) res.append(<span class="string">" "</span>);</div><div class="line">        	res.append(s.substring(<span class="number">0</span>, right));</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> res.toString();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>从preorder末尾找到树的的根节点，然后在inorder找到根节点，以此将inorder两分，得到左右子树的size以及推出在preorder，inorder的位置信息，递归建立左右子树赋给根节点。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">buildTree</span><span class="params">(<span class="keyword">int</span>[] preorder, <span class="keyword">int</span>[] inorder)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> recBuild(preorder, inorder, <span class="number">0</span>, <span class="number">0</span>, preorder.length);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">recBuild</span><span class="params">(<span class="keyword">int</span> [] preorder, <span class="keyword">int</span> [] inorder, <span class="keyword">int</span> pstart, <span class="keyword">int</span> istart, <span class="keyword">int</span> size)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(size==<span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        TreeNode root = <span class="keyword">new</span> TreeNode(preorder[pstart]);</div><div class="line">        <span class="keyword">if</span>(size==<span class="number">1</span>) <span class="keyword">return</span> root;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> ipos = istart;</div><div class="line">        <span class="keyword">while</span>(inorder[ipos]!=preorder[pstart]) ipos++;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> lsize = ipos - istart;</div><div class="line">        <span class="keyword">int</span> rsize = size - lsize - <span class="number">1</span>;</div><div class="line">        </div><div class="line">        root.left = recBuild(preorder, inorder, pstart+<span class="number">1</span>, istart, lsize);</div><div class="line">        root.right = recBuild(preorder, inorder, pstart+lsize+<span class="number">1</span>, ipos+<span class="number">1</span>, rsize);</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> root;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -884,6 +623,264 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/08/24/Leetcode_Minimum Path Sum/" itemprop="url">
+                  Minimum Path Sum
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-08-24T00:00:00+09:00" content="2015-08-24">
+              2015-08-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/08/24/Leetcode_Minimum Path Sum/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/24/Leetcode_Minimum Path Sum/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Minimum-Path-Sum"><a href="#Minimum-Path-Sum" class="headerlink" title="Minimum Path Sum"></a><a href="https://leetcode.com/problems/minimum-path-sum/" target="_blank" rel="external">Minimum Path Sum</a></h1><blockquote>
+<p>Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.</p>
+<p>Note: You can only move either down or right at any point in time.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>动态规划，到达每个点的方式只有两种，从其左边的点或上面的点，选择其中较小的一条路径。</p>
+<p>状态转移方程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">path[i][j] = path[i][j]+ path[i-1][j],  if i&gt;=1 &amp;&amp; j==0</div><div class="line">path[i][j] = path[i][j]+ path[i][j-1],  if i==0 &amp;&amp; j&gt;=1</div><div class="line"></div><div class="line">path[i][j] = path[i][j] + Math.min(path[i-1][j], path[i][j-1]) if </div><div class="line">i&gt;=1 &amp;&amp; j&gt;=1</div></pre></td></tr></table></figure>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minPathSum</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(grid.length==<span class="number">0</span> || grid[<span class="number">0</span>].length==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;grid.length; i++) grid[i][<span class="number">0</span>] += grid[i-<span class="number">1</span>][<span class="number">0</span>];</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;grid[<span class="number">0</span>].length; i++) grid[<span class="number">0</span>][i] += grid[<span class="number">0</span>][i-<span class="number">1</span>];</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;grid.length; i++) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;grid[<span class="number">0</span>].length; j++) &#123;</div><div class="line">                grid[i][j] += Math.min(grid[i-<span class="number">1</span>][j], grid[i][j-<span class="number">1</span>]);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> grid[grid.length-<span class="number">1</span>][grid[<span class="number">0</span>].length-<span class="number">1</span>];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>second time</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minPathSum</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(grid==<span class="keyword">null</span> || grid.length==<span class="number">0</span> || grid[<span class="number">0</span>].length==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;grid.length; i++) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;grid[<span class="number">0</span>].length; j++) &#123;</div><div class="line">                <span class="keyword">if</span>(i==<span class="number">0</span> &amp;&amp; j==<span class="number">0</span>) <span class="keyword">continue</span>;</div><div class="line">                <span class="keyword">int</span> left = j-<span class="number">1</span>&gt;=<span class="number">0</span> ? grid[i][j-<span class="number">1</span>] : Integer.MAX_VALUE;</div><div class="line">                <span class="keyword">int</span> up = i-<span class="number">1</span>&gt;=<span class="number">0</span> ? grid[i-<span class="number">1</span>][j] : Integer.MAX_VALUE;</div><div class="line">                grid[i][j] += (left&lt;=up ? left : up);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> grid[grid.length-<span class="number">1</span>][grid[<span class="number">0</span>].length-<span class="number">1</span>];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/08/24/Leetcode_Best Time to Buy and Sell Stock II/" itemprop="url">
+                  Best Time to Buy and Sell Stock II
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-08-24T00:00:00+09:00" content="2015-08-24">
+              2015-08-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/08/24/Leetcode_Best Time to Buy and Sell Stock II/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/24/Leetcode_Best Time to Buy and Sell Stock II/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Best-Time-to-Buy-and-Sell-Stock-II"><a href="#Best-Time-to-Buy-and-Sell-Stock-II" class="headerlink" title="Best Time to Buy and Sell Stock II"></a><a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/" target="_blank" rel="external">Best Time to Buy and Sell Stock II</a></h1><blockquote>
+<p>Say you have an array for which the ith element is the price of a given stock on day i.</p>
+<p>Design an algorithm to find the maximum profit. You may complete as many transactions as you like (ie, buy one and sell one share of the stock multiple times). However, you may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>虽然题目跟Best Time to Buy and Sell Stock类似，但使用的策略是不同的。</p>
+<p>首先来看一张股市变化的图：<br><img src="http://s4.sinaimg.cn/bmiddle/4fabc3bft60bc342a6d03" alt=""></p>
+<p>给定了所有时间的股票价格，最佳策略是什么？ 当然是在局部最低处买入，在同一个对于的下一个局部最高处卖出，其实就是上升子序列，对于所有的上升子序列进行同样的操作。本质上是贪心策略，记入每个上升子序列的非负差值。</p>
+<p>所以问题就转化为了检查局部最低处和局部最高处，在局部最低处买入(设置<code>min</code>)，局部最高处卖出(<code>max, profit += (max-min)</code>)</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><p>second time</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(prices==<span class="keyword">null</span> || prices.length==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> profit = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;prices.length; i++) &#123;</div><div class="line">            <span class="keyword">int</span> s = i;</div><div class="line">            <span class="keyword">while</span>(i+<span class="number">1</span>&lt;prices.length &amp;&amp; prices[i]&lt;prices[i+<span class="number">1</span>]) i++;</div><div class="line">            profit += (prices[i]-prices[s]);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> profit;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -929,7 +926,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">327</span>
+              <span class="site-state-item-count">328</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

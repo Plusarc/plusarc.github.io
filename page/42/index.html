@@ -260,8 +260,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/07/18/Leetcode_Longest Common Prefix/" itemprop="url">
-                  Longest Common Prefix
+                <a class="post-title-link" href="/2015/07/18/Leetcode_Roman to Integer/" itemprop="url">
+                  Roman to Integer
                 </a>
               
             
@@ -304,8 +304,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/07/18/Leetcode_Longest Common Prefix/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/07/18/Leetcode_Longest Common Prefix/" itemprop="commentsCount"></span>
+                <a href="/2015/07/18/Leetcode_Roman to Integer/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/07/18/Leetcode_Roman to Integer/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -330,11 +330,137 @@
       
         
           
-            <h1 id="Longest-Common-Prefix"><a href="#Longest-Common-Prefix" class="headerlink" title="Longest Common Prefix"></a><a href="https://leetcode.com/problems/longest-common-prefix/" target="_blank" rel="external">Longest Common Prefix</a></h1><blockquote>
-<p>Write a function to find the longest common prefix string amongst an array of strings.</p>
+            <h1 id="Roman-to-Integer"><a href="#Roman-to-Integer" class="headerlink" title="Roman to Integer"></a><a href="https://leetcode.com/problems/roman-to-integer/" target="_blank" rel="external">Roman to Integer</a></h1><blockquote>
+<p>Given a roman numeral, convert it to an integer.</p>
+<p>Input is guaranteed to be within the range from 1 to 3999.</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>每次判断当前字符是否被所有字符串所共有，若不是，则最长前缀是此字符之前的子串。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">longestCommonPrefix</span><span class="params">(String[] strs)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(strs.length==<span class="number">0</span>) <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">        <span class="keyword">if</span>(strs.length==<span class="number">1</span>) <span class="keyword">return</span> strs[<span class="number">0</span>];</div><div class="line">        StringBuffer prefix = <span class="keyword">new</span> StringBuffer();</div><div class="line">        <span class="keyword">boolean</span> quit = <span class="keyword">false</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> charIndex=<span class="number">0</span>; ; charIndex++) &#123;</div><div class="line">            <span class="keyword">char</span> prechar = <span class="string">' '</span>;</div><div class="line">            <span class="keyword">if</span>(charIndex&lt;strs[<span class="number">0</span>].length()) prechar = strs[<span class="number">0</span>].charAt(charIndex);</div><div class="line">            <span class="keyword">else</span> <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> stringIndex=<span class="number">1</span>; stringIndex&lt;strs.length; stringIndex++) &#123;</div><div class="line">                <span class="keyword">if</span>(charIndex&gt;=strs[stringIndex].length() || strs[stringIndex].charAt(charIndex)!=prechar) &#123;</div><div class="line">                    quit = <span class="keyword">true</span>;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>(quit) <span class="keyword">break</span>;</div><div class="line">            prefix.append(prechar);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> prefix.toString();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>遇到字母加入其对应数值，如果当前字母大于上一个字母，则减去2倍的上一个字母所对于的数值。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">romanToInt</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">    	<span class="keyword">if</span>(s.length()==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    	<span class="keyword">if</span>(s.length()==<span class="number">1</span>) <span class="keyword">return</span> romanCharToNum(s.charAt(<span class="number">0</span>));</div><div class="line">    	</div><div class="line">        <span class="keyword">int</span> num = romanCharToNum(s.charAt(<span class="number">0</span>));</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;s.length(); i++) &#123;</div><div class="line">        	<span class="keyword">if</span>(romanCharToNum(s.charAt(i))&lt;=romanCharToNum(s.charAt(i-<span class="number">1</span>))) </div><div class="line">        		num += romanCharToNum(s.charAt(i));</div><div class="line">        	<span class="keyword">else</span> num = num - <span class="number">2</span> * romanCharToNum(s.charAt(i-<span class="number">1</span>)) + romanCharToNum(s.charAt(i));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> num;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">romanCharToNum</span><span class="params">(<span class="keyword">char</span> rc)</span> </span>&#123;</div><div class="line">    	<span class="keyword">switch</span>(rc) &#123;</div><div class="line">    		<span class="keyword">case</span> <span class="string">'I'</span> : <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    		<span class="keyword">case</span> <span class="string">'V'</span> : <span class="keyword">return</span> <span class="number">5</span>;</div><div class="line">    		<span class="keyword">case</span> <span class="string">'X'</span> : <span class="keyword">return</span> <span class="number">10</span>;</div><div class="line">    		<span class="keyword">case</span> <span class="string">'L'</span> : <span class="keyword">return</span> <span class="number">50</span>;</div><div class="line">    		<span class="keyword">case</span> <span class="string">'C'</span> : <span class="keyword">return</span> <span class="number">100</span>;</div><div class="line">    		<span class="keyword">case</span> <span class="string">'D'</span> : <span class="keyword">return</span> <span class="number">500</span>;</div><div class="line">    		<span class="keyword">case</span> <span class="string">'M'</span> : <span class="keyword">return</span> <span class="number">1000</span>;</div><div class="line">    		<span class="keyword">default</span>  : <span class="keyword">return</span> <span class="number">0</span>; </div><div class="line">    	&#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/07/18/Leetcode_Integer to Roman/" itemprop="url">
+                  Integer to Roman
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-07-18T00:00:00+09:00" content="2015-07-18">
+              2015-07-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/07/18/Leetcode_Integer to Roman/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/07/18/Leetcode_Integer to Roman/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Integer-to-Roman"><a href="#Integer-to-Roman" class="headerlink" title="Integer to Roman"></a><a href="https://leetcode.com/problems/integer-to-roman/" target="_blank" rel="external">Integer to Roman</a></h1><blockquote>
+<p>Given an integer, convert it to a roman numeral.</p>
+<p>Input is guaranteed to be within the range from 1 to 3999.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>每个阿拉伯数值范围都有罗马数字对应的表示范围，采用贪心策略，每次获得当前数值最大的罗马数字，然后将其从数值中扣去，进行下一步递归，直到需要表示的数字为<code>0</code>。注意处理需要减去的数，每次选用一个当前最大数值后，可能出现超过需要表示的数值的情况，这时需要减去这个罗马数字对应的补偿数值，然后继续递归表示不足部分。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">intToRoman</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">    	<span class="keyword">if</span>(num&gt;<span class="number">3999</span> || num&lt;=<span class="number">0</span>) <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">    	</div><div class="line">    	<span class="keyword">return</span> recurTo(num);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">recurTo</span> <span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">    	<span class="keyword">if</span>(num==<span class="number">0</span>) <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">    	<span class="keyword">char</span> piv = numCorRoman(num);</div><div class="line">    	num = num - romanCharToNum(piv);</div><div class="line">    	</div><div class="line">    	<span class="comment">//System.out.println("num: " + num);</span></div><div class="line">    	<span class="keyword">if</span>(num&gt;<span class="number">0</span>) <span class="keyword">return</span> <span class="string">""</span>+ piv + recurTo(num);</div><div class="line">    	<span class="keyword">if</span>(num&lt;<span class="number">0</span>) &#123;</div><div class="line">    		<span class="keyword">char</span> pri = smallestCorRoman(piv);</div><div class="line">    		<span class="comment">//System.out.println("pri: " + pri);</span></div><div class="line">    		num = num + romanCharToNum(pri);</div><div class="line">    		<span class="keyword">return</span> <span class="string">""</span> + pri + piv + recurTo(num);</div><div class="line">    	&#125; </div><div class="line">    	</div><div class="line">    	<span class="keyword">return</span> <span class="string">""</span>+ piv;</div><div class="line">    &#125;</div><div class="line">	</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">char</span> <span class="title">numCorRoman</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">    	<span class="keyword">if</span>(num&gt;=<span class="number">900</span>) <span class="keyword">return</span> <span class="string">'M'</span>;</div><div class="line">    	<span class="keyword">if</span>(num&gt;=<span class="number">400</span>) <span class="keyword">return</span> <span class="string">'D'</span>;</div><div class="line">    	<span class="keyword">if</span>(num&gt;=<span class="number">90</span>) <span class="keyword">return</span> <span class="string">'C'</span>;</div><div class="line">    	<span class="keyword">if</span>(num&gt;=<span class="number">40</span>) <span class="keyword">return</span> <span class="string">'L'</span>;</div><div class="line">    	<span class="keyword">if</span>(num&gt;=<span class="number">9</span>) <span class="keyword">return</span> <span class="string">'X'</span>;</div><div class="line">    	<span class="keyword">if</span>(num&gt;=<span class="number">4</span>) <span class="keyword">return</span> <span class="string">'V'</span>;</div><div class="line">    	<span class="keyword">else</span> <span class="keyword">return</span> <span class="string">'I'</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">char</span> <span class="title">smallestCorRoman</span><span class="params">(<span class="keyword">char</span> piv)</span> </span>&#123;</div><div class="line">    	<span class="keyword">switch</span>(piv) &#123;</div><div class="line">			<span class="keyword">case</span> <span class="string">'V'</span> : ;</div><div class="line">			<span class="keyword">case</span> <span class="string">'X'</span> : <span class="keyword">return</span> <span class="string">'I'</span>;</div><div class="line">			<span class="keyword">case</span> <span class="string">'L'</span> : ;</div><div class="line">			<span class="keyword">case</span> <span class="string">'C'</span> : <span class="keyword">return</span> <span class="string">'X'</span>;</div><div class="line">			<span class="keyword">case</span> <span class="string">'D'</span> : ;</div><div class="line">			<span class="keyword">case</span> <span class="string">'M'</span> : <span class="keyword">return</span> <span class="string">'C'</span>;</div><div class="line">			<span class="keyword">default</span>  : <span class="keyword">return</span> <span class="string">' '</span>; </div><div class="line">    	&#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">romanCharToNum</span><span class="params">(<span class="keyword">char</span> rc)</span> </span>&#123;</div><div class="line">    	<span class="keyword">switch</span>(rc) &#123;</div><div class="line">    		<span class="keyword">case</span> <span class="string">'I'</span> : <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    		<span class="keyword">case</span> <span class="string">'V'</span> : <span class="keyword">return</span> <span class="number">5</span>;</div><div class="line">    		<span class="keyword">case</span> <span class="string">'X'</span> : <span class="keyword">return</span> <span class="number">10</span>;</div><div class="line">    		<span class="keyword">case</span> <span class="string">'L'</span> : <span class="keyword">return</span> <span class="number">50</span>;</div><div class="line">    		<span class="keyword">case</span> <span class="string">'C'</span> : <span class="keyword">return</span> <span class="number">100</span>;</div><div class="line">    		<span class="keyword">case</span> <span class="string">'D'</span> : <span class="keyword">return</span> <span class="number">500</span>;</div><div class="line">    		<span class="keyword">case</span> <span class="string">'M'</span> : <span class="keyword">return</span> <span class="number">1000</span>;</div><div class="line">    		<span class="keyword">default</span>  : <span class="keyword">return</span> <span class="number">0</span>; </div><div class="line">    	&#125;</div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -768,133 +894,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/07/14/Leetcode_Search Insert Position/" itemprop="url">
-                  Search Insert Position
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-07-14T00:00:00+09:00" content="2015-07-14">
-              2015-07-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/07/14/Leetcode_Search Insert Position/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/07/14/Leetcode_Search Insert Position/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Search-Insert-Position"><a href="#Search-Insert-Position" class="headerlink" title="Search Insert Position"></a><a href="https://leetcode.com/problems/search-insert-position/" target="_blank" rel="external">Search Insert Position</a></h1><blockquote>
-<p>Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.</p>
-<p>You may assume no duplicates in the array.</p>
-<p>Here are few examples.</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[1,3,5,6], 5 → 2</div><div class="line">[1,3,5,6], 2 → 1</div><div class="line">[1,3,5,6], 7 → 4</div><div class="line">[1,3,5,6], 0 → 0</div></pre></td></tr></table></figure>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>二分法搜索调整，搜索大于等于target的值最小的位置(最左边的)，注意处理条件值的设置。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">searchInsert</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> right = nums.length - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(left&lt;=right) &#123;</div><div class="line">            <span class="keyword">int</span> mid = left + (right-left) / <span class="number">2</span>;</div><div class="line">            <span class="keyword">if</span>(nums[mid]&gt;=target) right = mid - <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> left = mid + <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> left;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -940,7 +939,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">327</span>
+              <span class="site-state-item-count">328</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

@@ -260,6 +260,261 @@
             
               
                 
+                <a class="post-title-link" href="/2015/09/20/Leetcode_Max Points on a Line/" itemprop="url">
+                  Max Points on a Line
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-09-20T00:00:00+09:00" content="2015-09-20">
+              2015-09-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/20/Leetcode_Max Points on a Line/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/20/Leetcode_Max Points on a Line/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Max-Points-on-a-Line"><a href="#Max-Points-on-a-Line" class="headerlink" title="Max Points on a Line"></a><a href="https://leetcode.com/problems/max-points-on-a-line/" target="_blank" rel="external">Max Points on a Line</a></h1><blockquote>
+<p>Given n points on a 2D plane, find the maximum number of points that lie on the same straight line.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>每次处理一个点，具体过程：</p>
+<ol>
+<li>对每个点p进行循环扫描（扫描坐标中所有的点），并维护一个duplicate变量，初值为1，表示自己，使用hashmap记录当前点对应斜率的点个数（对于每个点p，需要清空或者新建立一个hashmap）。</li>
+<li>扫描到点q时，当p点与q点重合时，duplicate++。否则计算斜率（注意边界case，斜率为∞），记录斜率为k的直线个数。</li>
+<li>对坐标中所有的点处理完之后，遍历map中的value + duplicate的最大值，有一种特殊情况：所有的点都是重合点，map为空。</li>
+</ol>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a point.</div><div class="line"> * class Point &#123;</div><div class="line"> *     int x;</div><div class="line"> *     int y;</div><div class="line"> *     Point() &#123; x = 0; y = 0; &#125;</div><div class="line"> *     Point(int a, int b) &#123; x = a; y = b; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxPoints</span><span class="params">(Point[] points)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span>(points== <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">		<span class="keyword">if</span>(points.length &lt;= <span class="number">2</span>) <span class="keyword">return</span> points.length;</div><div class="line">		<span class="keyword">int</span> max = <span class="number">0</span>;</div><div class="line">		<span class="keyword">int</span> duplicate = <span class="number">1</span>;</div><div class="line">		Map&lt;Double,Integer&gt; map = <span class="keyword">new</span> HashMap&lt;Double,Integer&gt;();</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; points.length; i++)&#123;</div><div class="line">			map.clear();   <span class="comment">// this is important</span></div><div class="line">			duplicate = <span class="number">1</span>;</div><div class="line">			Point p = points[i];</div><div class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span> ; j &lt; points.length; j++)&#123;</div><div class="line">				<span class="keyword">if</span>(i == j) <span class="keyword">continue</span>;</div><div class="line">				Point tem = points[j];</div><div class="line">				<span class="keyword">double</span> slope = <span class="number">0.0</span>;</div><div class="line">				<span class="keyword">if</span>(tem.x == p.x &amp;&amp; tem.y == p.y)&#123;</div><div class="line">					duplicate ++;</div><div class="line">					<span class="keyword">continue</span>;</div><div class="line">				&#125;<span class="keyword">else</span> <span class="keyword">if</span>(tem.x == p.x)&#123;</div><div class="line">					slope = Integer.MAX_VALUE;</div><div class="line">				&#125;<span class="keyword">else</span>&#123;</div><div class="line">					slope = tem.y == p.y ? <span class="number">0</span> : <span class="number">1.0</span> * (tem.y - p.y) / (tem.x - p.x);</div><div class="line">				&#125;</div><div class="line">				map.put(slope, map.containsKey(slope) ? map.get(slope) + <span class="number">1</span> : <span class="number">1</span> );</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">if</span>(map.keySet().size() == <span class="number">0</span>)&#123;</div><div class="line">				max = duplicate;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">for</span>(<span class="keyword">double</span> key : map.keySet())&#123;</div><div class="line">				max = Math.max(max, duplicate + map.get(key));</div><div class="line">			&#125;</div><div class="line">			</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> max;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/09/20/Leetcode_Move Zeroes/" itemprop="url">
+                  Move Zeroes
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-09-20T00:00:00+09:00" content="2015-09-20">
+              2015-09-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/20/Leetcode_Move Zeroes/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/20/Leetcode_Move Zeroes/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Move-Zeroes"><a href="#Move-Zeroes" class="headerlink" title="Move Zeroes"></a><a href="https://leetcode.com/problems/move-zeroes/" target="_blank" rel="external">Move Zeroes</a></h1><blockquote>
+<p>Given an array nums, write a function to move all 0’s to the end of it while maintaining the relative order of the non-zero elements.</p>
+<p>For example, given <code>nums = [0, 1, 0, 3, 12]</code>, after calling your function, nums should be <code>[1, 3, 12, 0, 0]</code>.</p>
+<p>Note:<br>You must do this in-place without making a copy of the array.<br>Minimize the total number of operations.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>设置一个当前指针，一个实际存储非0元素的指针。将数组的非0元素都移到左边，然后对于将最后非0元素指针及之后的元素全部置0.</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">moveZeroes</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> cp = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nums.length; i++) &#123;</div><div class="line">            <span class="keyword">if</span>(nums[i]!=<span class="number">0</span>) nums[cp++] = nums[i];</div><div class="line">            <span class="keyword">else</span> count ++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;count; i++) &#123;</div><div class="line">            nums[nums.length-<span class="number">1</span>-i] = <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/09/20/Leetcode_Word Search II/" itemprop="url">
                   Word Search II
                 </a>
@@ -341,135 +596,6 @@
 <p>在大量词存在公共前缀情况下，这种方法会造成很多的重复计算，例如某个word不存在，则所以有以这个word为前缀的词也不可能存在于board，没有必要再重复搜索。</p>
 <p>先把所有词存入字典树中，然后利用字典树剪枝board的DFS搜索，避免不必要的搜索。</p>
 <h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">findWords</span><span class="params">(<span class="keyword">char</span>[][] board, String[] words)</span> </span>&#123;</div><div class="line">        List&lt;String&gt; res = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">        <span class="keyword">if</span>(board==<span class="keyword">null</span> || board.length==<span class="number">0</span> || board[<span class="number">0</span>].length==<span class="number">0</span> || words.length==<span class="number">0</span>) <span class="keyword">return</span> res;</div><div class="line">        </div><div class="line">        Trie wordTree = <span class="keyword">new</span> Trie();</div><div class="line">        <span class="keyword">for</span>(String word: words) wordTree.insert(word);</div><div class="line">        TrieNode root = wordTree.getRoot();</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>; x&lt;board.length; x++) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> y=<span class="number">0</span>; y&lt;board[<span class="number">0</span>].length; y++) &#123;</div><div class="line">                recFind(board, root, x, y, <span class="string">""</span>, res);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recFind</span><span class="params">(<span class="keyword">char</span>[][] board, TrieNode parentNode, <span class="keyword">int</span> x, <span class="keyword">int</span> y, String record, List&lt;String&gt; res)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(x&lt;<span class="number">0</span> || x&gt;=board.length) <span class="keyword">return</span>;</div><div class="line">        <span class="keyword">if</span>(y&lt;<span class="number">0</span> || y&gt;=board[<span class="number">0</span>].length) <span class="keyword">return</span>;</div><div class="line">        <span class="keyword">if</span>(board[x][y]==<span class="string">'0'</span>) <span class="keyword">return</span>;</div><div class="line">        </div><div class="line">        TrieNode currentNode = parentNode.getRecord(board[x][y]);</div><div class="line">        <span class="keyword">if</span>(currentNode==<span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">char</span> cc = board[x][y];</div><div class="line">        record = record + cc;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(currentNode.isWord()) &#123;</div><div class="line">            res.add(record);</div><div class="line">            currentNode.removeWord();</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        board[x][y] = <span class="string">'0'</span>;</div><div class="line">        recFind(board, currentNode, x-<span class="number">1</span>, y, record, res);</div><div class="line">        recFind(board, currentNode, x+<span class="number">1</span>, y, record, res);</div><div class="line">        recFind(board, currentNode, x, y-<span class="number">1</span>, record, res);</div><div class="line">        recFind(board, currentNode, x, y+<span class="number">1</span>, record, res);</div><div class="line">        </div><div class="line">        board[x][y] = cc;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TrieNode</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> TrieNode [] records;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> withWord;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TrieNode</span><span class="params">()</span> </span>&#123;</div><div class="line">        records = <span class="keyword">new</span> TrieNode[<span class="number">26</span>];</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setWord</span><span class="params">()</span> </span>&#123;</div><div class="line">        withWord = <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeWord</span><span class="params">()</span> </span>&#123;</div><div class="line">        withWord = <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isWord</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> withWord;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> TrieNode <span class="title">getRecord</span><span class="params">(<span class="keyword">char</span> c)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> records[c-<span class="string">'a'</span>];</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setRecord</span><span class="params">(<span class="keyword">char</span> c, TrieNode node)</span> </span>&#123;</div><div class="line">        records[c-<span class="string">'a'</span>] = node;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Trie</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> TrieNode root;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Trie</span><span class="params">()</span> </span>&#123;</div><div class="line">        root = <span class="keyword">new</span> TrieNode();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(String word)</span> </span>&#123;</div><div class="line">        TrieNode current = root;</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span>(i&lt;word.length() &amp;&amp; current.getRecord(word.charAt(i))!=<span class="keyword">null</span>) &#123;</div><div class="line">            current = current.getRecord(word.charAt(i));</div><div class="line">            i ++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(i==word.length()) &#123;</div><div class="line">            current.setWord();</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">while</span>(i&lt;word.length()) &#123;</div><div class="line">            TrieNode newNode = <span class="keyword">new</span> TrieNode();</div><div class="line">            current.setRecord(word.charAt(i), newNode);</div><div class="line">            current = newNode;</div><div class="line">            i ++;</div><div class="line">        &#125;</div><div class="line">        current.setWord();</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> TrieNode <span class="title">getRoot</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.root;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/09/20/Leetcode_Max Points on a Line/" itemprop="url">
-                  Max Points on a Line
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-20T00:00:00+09:00" content="2015-09-20">
-              2015-09-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/20/Leetcode_Max Points on a Line/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/20/Leetcode_Max Points on a Line/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Max-Points-on-a-Line"><a href="#Max-Points-on-a-Line" class="headerlink" title="Max Points on a Line"></a><a href="https://leetcode.com/problems/max-points-on-a-line/" target="_blank" rel="external">Max Points on a Line</a></h1><blockquote>
-<p>Given n points on a 2D plane, find the maximum number of points that lie on the same straight line.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>每次处理一个点，具体过程：</p>
-<ol>
-<li>对每个点p进行循环扫描（扫描坐标中所有的点），并维护一个duplicate变量，初值为1，表示自己，使用hashmap记录当前点对应斜率的点个数（对于每个点p，需要清空或者新建立一个hashmap）。</li>
-<li>扫描到点q时，当p点与q点重合时，duplicate++。否则计算斜率（注意边界case，斜率为∞），记录斜率为k的直线个数。</li>
-<li>对坐标中所有的点处理完之后，遍历map中的value + duplicate的最大值，有一种特殊情况：所有的点都是重合点，map为空。</li>
-</ol>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a point.</div><div class="line"> * class Point &#123;</div><div class="line"> *     int x;</div><div class="line"> *     int y;</div><div class="line"> *     Point() &#123; x = 0; y = 0; &#125;</div><div class="line"> *     Point(int a, int b) &#123; x = a; y = b; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxPoints</span><span class="params">(Point[] points)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span>(points== <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">		<span class="keyword">if</span>(points.length &lt;= <span class="number">2</span>) <span class="keyword">return</span> points.length;</div><div class="line">		<span class="keyword">int</span> max = <span class="number">0</span>;</div><div class="line">		<span class="keyword">int</span> duplicate = <span class="number">1</span>;</div><div class="line">		Map&lt;Double,Integer&gt; map = <span class="keyword">new</span> HashMap&lt;Double,Integer&gt;();</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; points.length; i++)&#123;</div><div class="line">			map.clear();   <span class="comment">// this is important</span></div><div class="line">			duplicate = <span class="number">1</span>;</div><div class="line">			Point p = points[i];</div><div class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span> ; j &lt; points.length; j++)&#123;</div><div class="line">				<span class="keyword">if</span>(i == j) <span class="keyword">continue</span>;</div><div class="line">				Point tem = points[j];</div><div class="line">				<span class="keyword">double</span> slope = <span class="number">0.0</span>;</div><div class="line">				<span class="keyword">if</span>(tem.x == p.x &amp;&amp; tem.y == p.y)&#123;</div><div class="line">					duplicate ++;</div><div class="line">					<span class="keyword">continue</span>;</div><div class="line">				&#125;<span class="keyword">else</span> <span class="keyword">if</span>(tem.x == p.x)&#123;</div><div class="line">					slope = Integer.MAX_VALUE;</div><div class="line">				&#125;<span class="keyword">else</span>&#123;</div><div class="line">					slope = tem.y == p.y ? <span class="number">0</span> : <span class="number">1.0</span> * (tem.y - p.y) / (tem.x - p.x);</div><div class="line">				&#125;</div><div class="line">				map.put(slope, map.containsKey(slope) ? map.get(slope) + <span class="number">1</span> : <span class="number">1</span> );</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">if</span>(map.keySet().size() == <span class="number">0</span>)&#123;</div><div class="line">				max = duplicate;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">for</span>(<span class="keyword">double</span> key : map.keySet())&#123;</div><div class="line">				max = Math.max(max, duplicate + map.get(key));</div><div class="line">			&#125;</div><div class="line">			</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> max;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -833,138 +959,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/09/15/Leetcode_GCD and LCM/" itemprop="url">
-                  Find GCD and LCM for an array
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-15T00:00:00+09:00" content="2015-09-15">
-              2015-09-15
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/15/Leetcode_GCD and LCM/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/15/Leetcode_GCD and LCM/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Find-GCD-and-LCM-for-an-array"><a href="#Find-GCD-and-LCM-for-an-array" class="headerlink" title="Find GCD and LCM for an array"></a>Find GCD and LCM for an array</h1><h2 id="Find-GCD-of-two-number"><a href="#Find-GCD-of-two-number" class="headerlink" title="Find GCD of two number"></a>Find GCD of two number</h2><blockquote>
-<p>Problem: Given two non-negative integer a and b, find the greatest common divisor.</p>
-<p>Solution: A very efficient algorithm is Euclid’s algorithm.  The main idea here is GCD(a, b) =  GCD(b, a mod b). Therefore, the code is straightforward:</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">GCD</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></div><div class="line">&#123;</div><div class="line">   <span class="keyword">if</span>(b==<span class="number">0</span>) <span class="keyword">return</span> a;</div><div class="line">  </div><div class="line">   <span class="keyword">return</span> GCD(b, a mod b);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="How-to-find-GCD-LCM-on-a-set-of-numbers"><a href="#How-to-find-GCD-LCM-on-a-set-of-numbers" class="headerlink" title="How to find GCD, LCM on a set of numbers"></a>How to find GCD, LCM on a set of numbers</h2><p>Refer to <a href="http://stackoverflow.com/questions/4201860/how-to-find-gcf-lcm-on-a-set-of-numbers" target="_blank" rel="external">How to find GCD, LCM on a set of numbers</a>.</p>
-<h3 id="GCD-on-a-set-of-numbers"><a href="#GCD-on-a-set-of-numbers" class="headerlink" title="GCD on a set of numbers"></a>GCD on a set of numbers</h3><p>I’ve used Euclid’s algorithm to find the greatest common divisor of two numbers; it can be iterated to obtain the GCD of a larger set of numbers.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">gcd</span><span class="params">(<span class="keyword">long</span> a, <span class="keyword">long</span> b)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">while</span> (b &gt; <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">long</span> temp = b;</div><div class="line">        b = a % b; <span class="comment">// % is remainder</span></div><div class="line">        a = temp;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> a;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">gcd</span><span class="params">(<span class="keyword">long</span>[] input)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">long</span> result = input[<span class="number">0</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; input.length; i++) result = gcd(result, input[i]);</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="LCM-on-a-set-of-numbers"><a href="#LCM-on-a-set-of-numbers" class="headerlink" title="LCM on a set of numbers"></a>LCM on a set of numbers</h3><p>Least common multiple is a little trickier, but probably the best approach is reduction by the GCD, which can be similarly iterated:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">lcm</span><span class="params">(<span class="keyword">long</span> a, <span class="keyword">long</span> b)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> a * (b / gcd(a, b));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">lcm</span><span class="params">(<span class="keyword">long</span>[] input)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">long</span> result = input[<span class="number">0</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; input.length; i++) result = lcm(result, input[i]);</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>There are no build in function for it. You can find the GCD of two numbers using Euclid’s algorithm.</p>
-<p>For a set of number<br><code>GCD(a_1,a_2,a_3,...,a_n) = GCD( GCD(a_1, a_2), a_3, a_4,..., a_n )</code><br>Apply it recursively.</p>
-<p>Same for LCM:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">LCM(a,b) = a * b / GCD(a,b)</div><div class="line">LCM(a_1,a_2,a_3,...,a_n) = LCM( LCM(a_1, a_2), a_3, a_4,..., a_n)</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1010,7 +1004,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">327</span>
+              <span class="site-state-item-count">328</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

@@ -260,6 +260,134 @@
             
               
                 
+                <a class="post-title-link" href="/2015/06/12/Leetcode_Remove Nth Node From End of List/" itemprop="url">
+                  Remove Nth Node From End of List
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-06-12T00:00:00+09:00" content="2015-06-12">
+              2015-06-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/06/12/Leetcode_Remove Nth Node From End of List/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/12/Leetcode_Remove Nth Node From End of List/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Remove-Nth-Node-From-End-of-List"><a href="#Remove-Nth-Node-From-End-of-List" class="headerlink" title="Remove Nth Node From End of List"></a><a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/" target="_blank" rel="external">Remove Nth Node From End of List</a></h1><blockquote>
+<p>Given a linked list, remove the nth node from the end of list and return its head.</p>
+<p>For example,</p>
+<p>   Given linked list: 1-&gt;2-&gt;3-&gt;4-&gt;5, and n = 2.</p>
+<p>   After removing the second node from the end, the linked list becomes 1-&gt;2-&gt;3-&gt;5.</p>
+<p>Note:<br>Given n will always be valid.<br>Try to do this in one pass.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>设置快慢指针(这里不是指速度不同，而是指开始移动的时间不同)，快指针移动了n步之后，慢指针才开始移动，当快指针移动到链表尾端时，慢指针位于目标节点前，删除该节点。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * public class ListNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     ListNode next;</div><div class="line"> *     ListNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">removeNthFromEnd</span><span class="params">(ListNode head, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> current = <span class="number">1</span>;</div><div class="line">        ListNode early = head;</div><div class="line">        ListNode late = head;</div><div class="line">        <span class="keyword">while</span>(early!=<span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">if</span>(early.next==<span class="keyword">null</span>) &#123;</div><div class="line">                <span class="keyword">if</span>(current==n) <span class="keyword">return</span> head.next;</div><div class="line">                late.next = late.next.next;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>(current&gt;n) late = late.next;</div><div class="line">            early = early.next;</div><div class="line">            current ++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> head;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/06/12/Leetcode_Merge Two Sorted Lists/" itemprop="url">
                   Merge Two Sorted Lists
                 </a>
@@ -335,131 +463,6 @@
 </blockquote>
 <h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>设置两个指针指向两个list当前位置，以及一个指针记录新的的list当前的位置。每次选择两个list中当前元素中较小的一个，将新list指针的next指向该元素。设置前同时注意维护下一个指针信息和之后移动指针到下一个。</p>
 <h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * public class ListNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     ListNode next;</div><div class="line"> *     ListNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">mergeTwoLists</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(l1==<span class="keyword">null</span>) <span class="keyword">return</span> l2;</div><div class="line">        <span class="keyword">if</span>(l2==<span class="keyword">null</span>) <span class="keyword">return</span> l1;</div><div class="line">        ListNode head = <span class="keyword">null</span>;</div><div class="line">        ListNode current = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">while</span>(l1!=<span class="keyword">null</span> || l2!=<span class="keyword">null</span>) &#123;</div><div class="line">            ListNode node = <span class="keyword">null</span>;</div><div class="line">            <span class="keyword">if</span>(l1!=<span class="keyword">null</span> &amp;&amp; l2!=<span class="keyword">null</span>) &#123;</div><div class="line">                node = l1.val&lt;=l2.val ? l1 : l2;</div><div class="line">                <span class="keyword">if</span>(l1.val&lt;=l2.val) l1 = l1.next;</div><div class="line">                <span class="keyword">else</span> l2 = l2.next;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span>(l1!=<span class="keyword">null</span>) &#123;</div><div class="line">                node = l1;</div><div class="line">                l1 = l1.next;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                node = l2;</div><div class="line">                l2 = l2.next;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>(head==<span class="keyword">null</span>) head = current = node;</div><div class="line">            current.next = node;</div><div class="line">            current = node;</div><div class="line">        &#125;</div><div class="line">        current.next = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">return</span> head;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/06/11/Leetcode_Add Binary/" itemprop="url">
-                  Add Binary
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-06-11T00:00:00+09:00" content="2015-06-11">
-              2015-06-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/06/11/Leetcode_Add Binary/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/11/Leetcode_Add Binary/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Add-Binary"><a href="#Add-Binary" class="headerlink" title="Add Binary"></a><a href="https://leetcode.com/problems/add-binary/" target="_blank" rel="external">Add Binary</a></h1><blockquote>
-<p>Given two binary strings, return their sum (also a binary string).</p>
-<p>For example,<br><code>a = &quot;11&quot;</code><br><code>b = &quot;1&quot;</code><br><code>Return &quot;100&quot;</code>.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>设置长度为<code>a</code>,<code>b</code>中较长长度的数组<code>digits</code>，按对应位累加两个字符串的位存储存入<code>digits</code>。然后统计<code>digits</code>，<code>位大于1</code>则进位。注意处理最后是否有进位，有则在最后结果字符串先添加<code>1</code>，然后将<code>digits</code>处理后的为添加到结果字符串里。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">addBinary</span><span class="params">(String a, String b)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> remain = <span class="number">0</span>;</div><div class="line">        StringBuffer res = <span class="keyword">new</span> StringBuffer();</div><div class="line">        <span class="keyword">int</span> i1 = a.length() - <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> i2 = b.length() - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(i1&gt;=<span class="number">0</span> || i2&gt;=<span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">int</span> n1 = (i1&gt;=<span class="number">0</span> &amp;&amp; a.charAt(i1)==<span class="string">'1'</span>) ? <span class="number">1</span> : <span class="number">0</span>;</div><div class="line">            <span class="keyword">int</span> n2 = (i2&gt;=<span class="number">0</span> &amp;&amp; b.charAt(i2)==<span class="string">'1'</span>) ? <span class="number">1</span> : <span class="number">0</span>;</div><div class="line">            <span class="keyword">int</span> num = (n1 + n2 + remain) % <span class="number">2</span>;</div><div class="line">            remain = (n1 + n2 + remain) / <span class="number">2</span>;</div><div class="line">            res.insert(<span class="number">0</span>, num);</div><div class="line">            i1 --;</div><div class="line">            i2 --;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(remain!=<span class="number">0</span>) res.insert(<span class="number">0</span>, remain);</div><div class="line">        <span class="keyword">return</span> res.toString();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -634,6 +637,131 @@
             
               
                 
+                <a class="post-title-link" href="/2015/06/11/Leetcode_Add Binary/" itemprop="url">
+                  Add Binary
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-06-11T00:00:00+09:00" content="2015-06-11">
+              2015-06-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/06/11/Leetcode_Add Binary/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/11/Leetcode_Add Binary/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Add-Binary"><a href="#Add-Binary" class="headerlink" title="Add Binary"></a><a href="https://leetcode.com/problems/add-binary/" target="_blank" rel="external">Add Binary</a></h1><blockquote>
+<p>Given two binary strings, return their sum (also a binary string).</p>
+<p>For example,<br><code>a = &quot;11&quot;</code><br><code>b = &quot;1&quot;</code><br><code>Return &quot;100&quot;</code>.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>设置长度为<code>a</code>,<code>b</code>中较长长度的数组<code>digits</code>，按对应位累加两个字符串的位存储存入<code>digits</code>。然后统计<code>digits</code>，<code>位大于1</code>则进位。注意处理最后是否有进位，有则在最后结果字符串先添加<code>1</code>，然后将<code>digits</code>处理后的为添加到结果字符串里。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">addBinary</span><span class="params">(String a, String b)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> remain = <span class="number">0</span>;</div><div class="line">        StringBuffer res = <span class="keyword">new</span> StringBuffer();</div><div class="line">        <span class="keyword">int</span> i1 = a.length() - <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> i2 = b.length() - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(i1&gt;=<span class="number">0</span> || i2&gt;=<span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">int</span> n1 = (i1&gt;=<span class="number">0</span> &amp;&amp; a.charAt(i1)==<span class="string">'1'</span>) ? <span class="number">1</span> : <span class="number">0</span>;</div><div class="line">            <span class="keyword">int</span> n2 = (i2&gt;=<span class="number">0</span> &amp;&amp; b.charAt(i2)==<span class="string">'1'</span>) ? <span class="number">1</span> : <span class="number">0</span>;</div><div class="line">            <span class="keyword">int</span> num = (n1 + n2 + remain) % <span class="number">2</span>;</div><div class="line">            remain = (n1 + n2 + remain) / <span class="number">2</span>;</div><div class="line">            res.insert(<span class="number">0</span>, num);</div><div class="line">            i1 --;</div><div class="line">            i2 --;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(remain!=<span class="number">0</span>) res.insert(<span class="number">0</span>, remain);</div><div class="line">        <span class="keyword">return</span> res.toString();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/06/10/Leetcode_Add Two Numbers/" itemprop="url">
                   Add Two Numbers
                 </a>
@@ -739,131 +867,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/06/10/Leetcode_Reverse Linked List/" itemprop="url">
-                  Reverse Linked List
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-06-10T00:00:00+09:00" content="2015-06-10">
-              2015-06-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/06/10/Leetcode_Reverse Linked List/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/10/Leetcode_Reverse Linked List/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Reverse-Linked-List"><a href="#Reverse-Linked-List" class="headerlink" title="Reverse Linked List"></a><a href="https://leetcode.com/problems/reverse-linked-list/" target="_blank" rel="external">Reverse Linked List</a></h1><blockquote>
-<p>Reverse a singly linked list.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>设立前后指针，遍历链表同时反转。</p>
-<p>注意处理边界和特殊情况。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * public class ListNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     ListNode next;</div><div class="line"> *     ListNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</div><div class="line">        ListNode last = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">while</span>(head!=<span class="keyword">null</span>) &#123;</div><div class="line">            ListNode temp = head.next;</div><div class="line">            head.next = last;</div><div class="line">            last = head;</div><div class="line">            head = temp;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> last;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -909,7 +912,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">327</span>
+              <span class="site-state-item-count">328</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

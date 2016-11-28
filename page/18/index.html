@@ -260,6 +260,138 @@
             
               
                 
+                <a class="post-title-link" href="/2015/09/15/Leetcode_GCD and LCM/" itemprop="url">
+                  Find GCD and LCM for an array
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-09-15T00:00:00+09:00" content="2015-09-15">
+              2015-09-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/15/Leetcode_GCD and LCM/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/15/Leetcode_GCD and LCM/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Find-GCD-and-LCM-for-an-array"><a href="#Find-GCD-and-LCM-for-an-array" class="headerlink" title="Find GCD and LCM for an array"></a>Find GCD and LCM for an array</h1><h2 id="Find-GCD-of-two-number"><a href="#Find-GCD-of-two-number" class="headerlink" title="Find GCD of two number"></a>Find GCD of two number</h2><blockquote>
+<p>Problem: Given two non-negative integer a and b, find the greatest common divisor.</p>
+<p>Solution: A very efficient algorithm is Euclid’s algorithm.  The main idea here is GCD(a, b) =  GCD(b, a mod b). Therefore, the code is straightforward:</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">GCD</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></div><div class="line">&#123;</div><div class="line">   <span class="keyword">if</span>(b==<span class="number">0</span>) <span class="keyword">return</span> a;</div><div class="line">  </div><div class="line">   <span class="keyword">return</span> GCD(b, a mod b);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="How-to-find-GCD-LCM-on-a-set-of-numbers"><a href="#How-to-find-GCD-LCM-on-a-set-of-numbers" class="headerlink" title="How to find GCD, LCM on a set of numbers"></a>How to find GCD, LCM on a set of numbers</h2><p>Refer to <a href="http://stackoverflow.com/questions/4201860/how-to-find-gcf-lcm-on-a-set-of-numbers" target="_blank" rel="external">How to find GCD, LCM on a set of numbers</a>.</p>
+<h3 id="GCD-on-a-set-of-numbers"><a href="#GCD-on-a-set-of-numbers" class="headerlink" title="GCD on a set of numbers"></a>GCD on a set of numbers</h3><p>I’ve used Euclid’s algorithm to find the greatest common divisor of two numbers; it can be iterated to obtain the GCD of a larger set of numbers.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">gcd</span><span class="params">(<span class="keyword">long</span> a, <span class="keyword">long</span> b)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">while</span> (b &gt; <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">long</span> temp = b;</div><div class="line">        b = a % b; <span class="comment">// % is remainder</span></div><div class="line">        a = temp;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> a;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">gcd</span><span class="params">(<span class="keyword">long</span>[] input)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">long</span> result = input[<span class="number">0</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; input.length; i++) result = gcd(result, input[i]);</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="LCM-on-a-set-of-numbers"><a href="#LCM-on-a-set-of-numbers" class="headerlink" title="LCM on a set of numbers"></a>LCM on a set of numbers</h3><p>Least common multiple is a little trickier, but probably the best approach is reduction by the GCD, which can be similarly iterated:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">lcm</span><span class="params">(<span class="keyword">long</span> a, <span class="keyword">long</span> b)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> a * (b / gcd(a, b));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">lcm</span><span class="params">(<span class="keyword">long</span>[] input)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">long</span> result = input[<span class="number">0</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; input.length; i++) result = lcm(result, input[i]);</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>There are no build in function for it. You can find the GCD of two numbers using Euclid’s algorithm.</p>
+<p>For a set of number<br><code>GCD(a_1,a_2,a_3,...,a_n) = GCD( GCD(a_1, a_2), a_3, a_4,..., a_n )</code><br>Apply it recursively.</p>
+<p>Same for LCM:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">LCM(a,b) = a * b / GCD(a,b)</div><div class="line">LCM(a_1,a_2,a_3,...,a_n) = LCM( LCM(a_1, a_2), a_3, a_4,..., a_n)</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/09/13/Leetcode_Perfect Squares/" itemprop="url">
                   Perfect Squares
                 </a>
@@ -761,132 +893,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/09/11/Leetcode_Sqrt(x)/" itemprop="url">
-                  Sqrt(x)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-11T00:00:00+09:00" content="2015-09-11">
-              2015-09-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/11/Leetcode_Sqrt(x)/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/11/Leetcode_Sqrt(x)/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Sqrt-x"><a href="#Sqrt-x" class="headerlink" title="Sqrt(x)"></a><a href="https://leetcode.com/problems/sqrtx/" target="_blank" rel="external">Sqrt(x)</a></h1><blockquote>
-<p>Implement int sqrt(int x).</p>
-<p>Compute and return the square root of x.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>首先题目的意思不够明确，这里要处理的是<code>int</code>型数值的求根，返回的结果也是<code>int</code>型数值。<br>对于没有整数根的<code>x</code>，返回 平方最接近且小于<code>x</code>的数。</p>
-<p>二分法搜索<code>x</code>的根值。如果找到整数根，则直接返回。如果无法找到整数根，则返回平方最接近且小于<code>x</code>的数，也就是下面处理的right指针。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">mySqrt</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">    	<span class="keyword">if</span>(x==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">long</span> left = <span class="number">1</span>;</div><div class="line">        <span class="keyword">long</span> right = x;</div><div class="line">        <span class="keyword">while</span>(left&lt;=right) &#123;</div><div class="line">            <span class="keyword">long</span> half = (left + right) / <span class="number">2</span>;</div><div class="line">            <span class="keyword">long</span> square = half * half;</div><div class="line">            <span class="keyword">if</span>(square==x) <span class="keyword">return</span> (<span class="keyword">int</span>) half;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(square&lt;x) left = half + <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> right = half - <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>) right;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -932,7 +938,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">327</span>
+              <span class="site-state-item-count">328</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

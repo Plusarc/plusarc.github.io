@@ -1,0 +1,787 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="google88d81a02a91db82f" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="貌似是，11月从来不是可以平静度过的时间，当然主要是还是自己各种商时不时不在线上，比如这次还把喜欢的妹子弄哭了。虽然大部分时候做了什么蠢事都是没有意识到的，不过现在回想那天做了什么蠢事还是能清楚的知道的，所以更加的为自己的各种商感到残念。。
+想着是要有一个新的开始，但是似乎这不会是一个好的开始。然而时间无法倒退，也只能等着时间过去，希望某一天可以平静地回想起这些事情然后觉得还是不错的回忆。虽然感觉">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Let's EasyMock">
+<meta property="og:url" content="http://yoursite.com/2016/11/28/Java_EasyMock/index.html">
+<meta property="og:site_name" content="Plusaber's Blog">
+<meta property="og:description" content="貌似是，11月从来不是可以平静度过的时间，当然主要是还是自己各种商时不时不在线上，比如这次还把喜欢的妹子弄哭了。虽然大部分时候做了什么蠢事都是没有意识到的，不过现在回想那天做了什么蠢事还是能清楚的知道的，所以更加的为自己的各种商感到残念。。
+想着是要有一个新的开始，但是似乎这不会是一个好的开始。然而时间无法倒退，也只能等着时间过去，希望某一天可以平静地回想起这些事情然后觉得还是不错的回忆。虽然感觉">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8613.jpg">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8670.JPG">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8680.JPG">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8588.jpg">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8416.jpg">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8695.JPG">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8684.JPG">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8644.jpg">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8700.JPG">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8657.JPG">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8357.jpg">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8580.jpg">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8431.JPG">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8672.JPG">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8621.jpg">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8625.jpg">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8591.jpg">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8698.JPG">
+<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8305.jpg">
+<meta property="og:updated_time" content="2016-11-28T15:21:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Let's EasyMock">
+<meta name="twitter:description" content="貌似是，11月从来不是可以平静度过的时间，当然主要是还是自己各种商时不时不在线上，比如这次还把喜欢的妹子弄哭了。虽然大部分时候做了什么蠢事都是没有意识到的，不过现在回想那天做了什么蠢事还是能清楚的知道的，所以更加的为自己的各种商感到残念。。
+想着是要有一个新的开始，但是似乎这不会是一个好的开始。然而时间无法倒退，也只能等着时间过去，希望某一天可以平静地回想起这些事情然后觉得还是不错的回忆。虽然感觉">
+<meta name="twitter:image" content="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8613.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/11/28/Java_EasyMock/"/>
+
+
+  <title> Let's EasyMock | Plusaber's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
+
+  
+
+
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-79158075-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Plusaber's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Let's EasyMock
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-11-28T00:00:00+09:00" content="2016-11-28">
+              2016-11-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/28/Java_EasyMock/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/11/28/Java_EasyMock/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>貌似是，11月从来不是可以平静度过的时间，当然主要是还是自己各种商时不时不在线上，比如这次还把喜欢的妹子弄哭了。虽然大部分时候做了什么蠢事都是没有意识到的，不过现在回想那天做了什么蠢事还是能清楚的知道的，所以更加的为自己的各种商感到残念。。</p>
+<p>想着是要有一个新的开始，但是似乎这不会是一个好的开始。然而时间无法倒退，也只能等着时间过去，希望某一天可以平静地回想起这些事情然后觉得还是不错的回忆。虽然感觉最近一段时间都会常常思考一下心痛的原理。。</p>
+<p>虽然有这些难过的事情，但是京都还是和往常一样美的令人感动到想哭。</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8613.jpg" alt=""><br><img src="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8670.JPG" alt=""><br><img src="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8680.JPG" alt=""></p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8588.jpg" alt=""></p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8416.jpg" alt=""><br><img src="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8695.JPG" alt=""><br><img src="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8684.JPG" alt=""><br><img src="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8644.jpg" alt=""><br><img src="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8700.JPG" alt=""><br><img src="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8657.JPG" alt=""><br><img src="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8357.jpg" alt=""></p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8580.jpg" alt=""><br><img src="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8431.JPG" alt=""><br><img src="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8672.JPG" alt=""></p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8621.jpg" alt=""></p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8625.jpg" alt=""></p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8591.jpg" alt=""><br><img src="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8698.JPG" alt=""><br><img src="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8305.jpg" alt=""></p>
+<p>扯回正题。。记一下EasyMock的使用，<br>入职之后首先感觉到和之前自己写代码或者在startup的不同是，同事的code review和开发的整个生命周期的维护（设计，实现，测试，qa，部署，AB test，日志。。。。。）</p>
+<p>在单元测试时，由于很多类的功能都是依赖于其他类的功能，如果在测试一个类是全部引入其依赖的类的对象，会导致高度耦合和复杂度，首先一个问题是，单元测试失败时我们无法定位是哪里的问题，是当前正在测试的类的问题还是其依赖的类的问题。</p>
+<p>单元测试的目的是检测单个function的逻辑是否能工作正常，而不是各个类耦合在一起能否一起完成整体功能（有intergration测试）。所以我们需要模拟依赖的各个类，使得其确定能工作正常（设定其行为）。</p>
+<p>EasyMock就是一个经常使用的Mock工具，我们可以借助其快速生成我们想要的mock object。</p>
+<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><p>Maven</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">  &lt;groupId&gt;org.easymock&lt;/groupId&gt;</div><div class="line">  &lt;artifactId&gt;easymock&lt;/artifactId&gt;</div><div class="line">  &lt;version&gt;3.4&lt;/version&gt;</div><div class="line">  &lt;scope&gt;test&lt;/scope&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
+<h2 id="Mocking"><a href="#Mocking" class="headerlink" title="Mocking"></a>Mocking</h2><h3 id="The-first-Mock-Object"><a href="#The-first-Mock-Object" class="headerlink" title="The first Mock Object"></a>The first Mock Object</h3><p>假设我们现在有下面的test class：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> org.junit.*;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExampleTest</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> ClassUnderTest classUnderTest;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> Collaborator mock;</div><div class="line"></div><div class="line">  <span class="meta">@Before</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> </span>&#123;</div><div class="line">    classUnderTest = <span class="keyword">new</span> ClassUnderTest();</div><div class="line">    classUnderTest.setListener(mock);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@Test</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testRemoveNonExistingDocument</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="comment">// This call should not lead to any notification</span></div><div class="line">    <span class="comment">// of the Mock Object:</span></div><div class="line">    classUnderTest.removeDocument(<span class="string">"Does not exist"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>对于大部分的mock，我们只需要静态import EasyMock的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.easymock.EasyMock.*;</div><div class="line"><span class="keyword">import</span> org.junit.*;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExampleTest</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> ClassUnderTest classUnderTest;</div><div class="line">  <span class="keyword">private</span> Collaborator mock;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>对于创建我们所需要的Mock object，我们只需要：</p>
+<ol>
+<li>创建mock object</li>
+<li>设定我们希望的mock的行为(function及其返回结果)</li>
+<li>切换对象到replay状态</li>
+</ol>
+<p>创建mock object我们可以使用mock方法或者annotations：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Before</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> </span>&#123;</div><div class="line">  mock = mock(Collaborator.class); <span class="comment">// 1</span></div><div class="line">  classUnderTest = <span class="keyword">new</span> ClassUnderTest();</div><div class="line">  classUnderTest.setListener(mock);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testRemoveNonExistingDocument</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="comment">// 2 (we do not expect anything)</span></div><div class="line">  replay(mock); <span class="comment">// 3</span></div><div class="line">  classUnderTest.removeDocument(<span class="string">"Does not exist"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Using-annotations"><a href="#Using-annotations" class="headerlink" title="Using annotations"></a>Using annotations</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.easymock.EasyMock.*;</div><div class="line"><span class="keyword">import</span> org.easymock.EasyMockRunner;</div><div class="line"><span class="keyword">import</span> org.easymock.TestSubject;</div><div class="line"><span class="keyword">import</span> org.easymock.Mock;</div><div class="line"><span class="keyword">import</span> org.junit.Test;</div><div class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</div><div class="line"></div><div class="line"><span class="meta">@RunWith</span>(EasyMockRunner.class)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExampleTest</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="meta">@TestSubject</span></div><div class="line">  <span class="keyword">private</span> ClassUnderTest classUnderTest = <span class="keyword">new</span> ClassUnderTest(); <span class="comment">// 2</span></div><div class="line"></div><div class="line">  <span class="meta">@Mock</span></div><div class="line">  <span class="keyword">private</span> Collaborator mock; <span class="comment">// 1</span></div><div class="line"></div><div class="line">  <span class="meta">@Test</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testRemoveNonExistingDocument</span><span class="params">()</span> </span>&#123;</div><div class="line">    replay(mock);</div><div class="line">    classUnderTest.removeDocument(<span class="string">"Does not exist"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="EasyMockSupport"><a href="#EasyMockSupport" class="headerlink" title="EasyMockSupport"></a>EasyMockSupport</h3><p>EasyMockSupport可以帮助我们跟踪创建的所有mock，自动的注册，replay以及verfiy这些mocks。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SupportTest</span> <span class="keyword">extends</span> <span class="title">EasyMockSupport</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> Collaborator firstCollaborator;</div><div class="line">  <span class="keyword">private</span> Collaborator secondCollaborator;</div><div class="line">  <span class="keyword">private</span> ClassTested classUnderTest;</div><div class="line"></div><div class="line">  <span class="meta">@Before</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</div><div class="line">    classUnderTest = <span class="keyword">new</span> ClassTested();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@Test</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addDocument</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="comment">// creation phase</span></div><div class="line">    firstCollaborator = mock(Collaborator.class);</div><div class="line">    secondCollaborator = mock(Collaborator.class);</div><div class="line">    classUnderTest.addListener(firstCollaborator);</div><div class="line">    classUnderTest.addListener(secondCollaborator);</div><div class="line"></div><div class="line">    <span class="comment">// recording phase</span></div><div class="line">    firstCollaborator.documentAdded(<span class="string">"New Document"</span>);</div><div class="line">    secondCollaborator.documentAdded(<span class="string">"New Document"</span>);</div><div class="line">    replayAll(); <span class="comment">// replay all mocks at once</span></div><div class="line"></div><div class="line">    <span class="comment">// test</span></div><div class="line">    classUnderTest.addDocument(<span class="string">"New Document"</span>, <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">0</span>]);</div><div class="line">    verifyAll(); <span class="comment">// verify all mocks at once</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Strict-Mocks"><a href="#Strict-Mocks" class="headerlink" title="Strict Mocks"></a>Strict Mocks</h3><p>在使用mock()创建的mock对象时，调用方法时并不会记录这些方法调用的顺序。如果需要，可以使用<code>EasyMock.strictMock()</code>创建mock对象。</p>
+<p>如果调用了mock对象所没有的方法，strict mock对象会抛出异常。<code>verify(mock)</code>会列出所有缺失的method calls。</p>
+<h3 id="Nice-mocks"><a href="#Nice-mocks" class="headerlink" title="Nice mocks"></a>Nice mocks</h3><p>默认的mock()创建的mock对象在遇到unexpected method calls会抛出AssertionError。如果需要创建一个遇到unexpected method时返回合适的空值(0, null, false)，可以使用<code>niceMock()</code>。</p>
+<h3 id="Using-Stub-Behavior-for-Methods"><a href="#Using-Stub-Behavior-for-Methods" class="headerlink" title="Using Stub Behavior for Methods"></a>Using Stub Behavior for Methods</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">expect(mock.voteForRemoval(<span class="string">"Document"</span>)).andReturn(<span class="number">42</span>);</div><div class="line">expect(mock.voteForRemoval(not(eq(<span class="string">"Document"</span>)))).andStubReturn(-<span class="number">1</span>);</div></pre></td></tr></table></figure>
+<h3 id="Resuing-mock-object"><a href="#Resuing-mock-object" class="headerlink" title="Resuing mock object"></a>Resuing mock object</h3><p>可以使用<code>reset(mock)</code>来reset mock.<br>另外还有<code>resetwToNice(mock)</code>, <code>resetToDefault(mock)</code>, <code>resetToStrict(mock)</code>来reset到其他模式。</p>
+<h2 id="Behavior"><a href="#Behavior" class="headerlink" title="Behavior"></a>Behavior</h2><h3 id="A-second-test"><a href="#A-second-test" class="headerlink" title="A second test"></a>A second test</h3><p>假设我们有如下的test：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testAddDocument</span><span class="params">()</span> </span>&#123;</div><div class="line">  mock.documentAdded(<span class="string">"New Document"</span>); <span class="comment">// 2</span></div><div class="line">  replay(mock); <span class="comment">// 3</span></div><div class="line">  classUnderTest.addDocument(<span class="string">"New Document"</span>, <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">0</span>]); <span class="comment">// will call mock.documentAdded()</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在record state(记录状态下，也就是在调用replay之前)，mock并不会真正表现像其mock的object，而只是记录所有这个mock对象的method calls。在调用了<code>replay</code>之后，mock对象才真正具有mock object的行为，也就是会check是否方法正确被调用了。</p>
+<p>这时如果调用mock object不存在的方法或者with wrong argument，mock object会抛出一个AssertionError:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">java.lang.AssertionError:</div><div class="line">  <span class="function">Unexpected method call <span class="title">documentAdded</span><span class="params">(<span class="string">"Wrong title"</span>)</span>:</span></div><div class="line">    <span class="title">documentAdded</span><span class="params">(<span class="string">"New Document"</span>)</span>: expected: 1, actual: 0</div><div class="line">      at org.easymock.internal.MockInvocationHandler.<span class="title">invoke</span><span class="params">(MockInvocationHandler.java:<span class="number">29</span>)</span></div><div class="line">      at org.easymock.internal.ObjectMethodsFilter.<span class="title">invoke</span><span class="params">(ObjectMethodsFilter.java:<span class="number">44</span>)</span></div><div class="line">      at $Proxy0.<span class="title">documentAdded</span><span class="params">(Unknown Source)</span></div><div class="line">      at org.easymock.samples.ClassUnderTest.<span class="title">notifyListenersDocumentAdded</span><span class="params">(ClassUnderTest.java:<span class="number">61</span>)</span></div><div class="line">      at org.easymock.samples.ClassUnderTest.<span class="title">addDocument</span><span class="params">(ClassUnderTest.java:<span class="number">28</span>)</span></div><div class="line">      at org.easymock.samples.ExampleTest.<span class="title">testAddDocument</span><span class="params">(ExampleTest.java:<span class="number">30</span>)</span></div><div class="line">      ...</div></pre></td></tr></table></figure>
+<p>如果方法被调用多次，mock object同样会抛出exception(默认是调用一次)。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">java.lang.AssertionError:</div><div class="line">  <span class="function">Unexpected method call <span class="title">documentAdded</span><span class="params">(<span class="string">"New Document"</span>)</span>:</span></div><div class="line">    <span class="title">documentAdded</span><span class="params">(<span class="string">"New Document"</span>)</span>: expected: 1, actual: 2</div><div class="line">      at org.easymock.internal.MockInvocationHandler.<span class="title">invoke</span><span class="params">(MockInvocationHandler.java:<span class="number">29</span>)</span></div><div class="line">      at org.easymock.internal.ObjectMethodsFilter.<span class="title">invoke</span><span class="params">(ObjectMethodsFilter.java:<span class="number">44</span>)</span></div><div class="line">      at $Proxy0.<span class="title">documentAdded</span><span class="params">(Unknown Source)</span></div><div class="line">      at org.easymock.samples.ClassUnderTest.<span class="title">notifyListenersDocumentAdded</span><span class="params">(ClassUnderTest.java:<span class="number">62</span>)</span></div><div class="line">      at org.easymock.samples.ClassUnderTest.<span class="title">addDocument</span><span class="params">(ClassUnderTest.java:<span class="number">29</span>)</span></div><div class="line">      at org.easymock.samples.ExampleTest.<span class="title">testAddDocument</span><span class="params">(ExampleTest.java:<span class="number">30</span>)</span></div><div class="line">      ...</div></pre></td></tr></table></figure>
+<h2 id="Verification"><a href="#Verification" class="headerlink" title="Verification"></a>Verification</h2><h3 id="A-first-verification"><a href="#A-first-verification" class="headerlink" title="A first verification"></a>A first verification</h3><p>到目前为止，我们知道如何设定mock的behavior，但是我们还不知道这些指定的behavior有没有被执行，如果没有被执行，test只是会简单的被pass。如果要verify这些specified behavior是否被执行了，我们可以调用<code>verify(mock)</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testAddDocument</span><span class="params">()</span> </span>&#123;</div><div class="line">  mock.documentAdded(<span class="string">"New Document"</span>); <span class="comment">// 2</span></div><div class="line">  replay(mock); <span class="comment">// 3</span></div><div class="line">  classUnderTest.addDocument(<span class="string">"New Document"</span>, <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">0</span>]);</div><div class="line">  verify(mock);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果指定的方法没有被执行，我们会得到下面的exception：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">java.lang.AssertionError:</div><div class="line">  Expectation failure on verify:</div><div class="line">    documentAdded(<span class="string">"New Document"</span>): expected: <span class="number">1</span>, actual: <span class="number">0</span></div><div class="line">      at org.easymock.internal.MocksControl.verify(MocksControl.java:<span class="number">70</span>)</div><div class="line">      at org.easymock.EasyMock.verify(EasyMock.java:<span class="number">536</span>)</div><div class="line">      at org.easymock.samples.ExampleTest.testAddDocument(ExampleTest.java:<span class="number">31</span>)</div><div class="line">      ...</div></pre></td></tr></table></figure>
+<p>message会列出所有missing的expected calls。</p>
+<h3 id="Expecting-an-Explict-Number-of-Calls"><a href="#Expecting-an-Explict-Number-of-Calls" class="headerlink" title="Expecting an Explict Number of Calls"></a>Expecting an Explict Number of Calls</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testAddAndChangeDocument</span><span class="params">()</span> </span>&#123;</div><div class="line">  mock.documentAdded(<span class="string">"Document"</span>);</div><div class="line">  mock.documentChanged(<span class="string">"Document"</span>);</div><div class="line">  mock.documentChanged(<span class="string">"Document"</span>);</div><div class="line">  mock.documentChanged(<span class="string">"Document"</span>);</div><div class="line">  replay(mock);</div><div class="line">  classUnderTest.addDocument(<span class="string">"Document"</span>, <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">0</span>]);</div><div class="line">  classUnderTest.addDocument(<span class="string">"Document"</span>, <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">0</span>]);</div><div class="line">  classUnderTest.addDocument(<span class="string">"Document"</span>, <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">0</span>]);</div><div class="line">  classUnderTest.addDocument(<span class="string">"Document"</span>, <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">0</span>]);</div><div class="line">  verify(mock);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testAddAndChangeDocument</span><span class="params">()</span> </span>&#123;</div><div class="line">  mock.documentAdded(<span class="string">"Document"</span>);</div><div class="line">  mock.documentChanged(<span class="string">"Document"</span>);</div><div class="line">  expectLastCall().times(<span class="number">3</span>);</div><div class="line">  replay(mock);</div><div class="line">  classUnderTest.addDocument(<span class="string">"Document"</span>, <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">0</span>]);</div><div class="line">  classUnderTest.addDocument(<span class="string">"Document"</span>, <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">0</span>]);</div><div class="line">  classUnderTest.addDocument(<span class="string">"Document"</span>, <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">0</span>]);</div><div class="line">  classUnderTest.addDocument(<span class="string">"Document"</span>, <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">0</span>]);</div><div class="line">  verify(mock);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果method调用太多次，则会得到exception：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">java.lang.AssertionError:</div><div class="line">  <span class="function">Unexpected method call <span class="title">documentChanged</span><span class="params">(<span class="string">"Document"</span>)</span>:</span></div><div class="line">    <span class="title">documentChanged</span><span class="params">(<span class="string">"Document"</span>)</span>: expected: 3, actual: 4</div><div class="line">      at org.easymock.internal.MockInvocationHandler.<span class="title">invoke</span><span class="params">(MockInvocationHandler.java:<span class="number">29</span>)</span></div><div class="line">      at org.easymock.internal.ObjectMethodsFilter.<span class="title">invoke</span><span class="params">(ObjectMethodsFilter.java:<span class="number">44</span>)</span></div><div class="line">      at $Proxy0.<span class="title">documentChanged</span><span class="params">(Unknown Source)</span></div><div class="line">      at org.easymock.samples.ClassUnderTest.<span class="title">notifyListenersDocumentChanged</span><span class="params">(ClassUnderTest.java:<span class="number">67</span>)</span></div><div class="line">      at org.easymock.samples.ClassUnderTest.<span class="title">addDocument</span><span class="params">(ClassUnderTest.java:<span class="number">26</span>)</span></div><div class="line">      at org.easymock.samples.ExampleTest.<span class="title">testAddAndChangeDocument</span><span class="params">(ExampleTest.java:<span class="number">43</span>)</span></div><div class="line">      ...</div></pre></td></tr></table></figure>
+<p>如果调用次数太少，同样得到exception</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">java.lang.AssertionError:</div><div class="line">  Expectation failure on verify:</div><div class="line">    documentChanged(<span class="string">"Document"</span>): expected: <span class="number">3</span>, actual: <span class="number">2</span></div><div class="line">      at org.easymock.internal.MocksControl.verify(MocksControl.java:<span class="number">70</span>)</div><div class="line">      at org.easymock.EasyMock.verify(EasyMock.java:<span class="number">536</span>)</div><div class="line">      at org.easymock.samples.ExampleTest.testAddAndChangeDocument(ExampleTest.java:<span class="number">43</span>)</div></pre></td></tr></table></figure>
+<h3 id="Specifying-Return-Values"><a href="#Specifying-Return-Values" class="headerlink" title="Specifying Return Values"></a>Specifying Return Values</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testVoteForRemoval</span><span class="params">()</span> </span>&#123;</div><div class="line">  mock.documentAdded(<span class="string">"Document"</span>);</div><div class="line">  <span class="comment">// expect document addition</span></div><div class="line">  <span class="comment">// expect to be asked to vote for document removal, and vote for it</span></div><div class="line">  expect(mock.voteForRemoval(<span class="string">"Document"</span>)).andReturn((<span class="keyword">byte</span>) <span class="number">42</span>);</div><div class="line">  mock.documentRemoved(<span class="string">"Document"</span>);</div><div class="line">  <span class="comment">// expect document removal</span></div><div class="line">  replay(mock);</div><div class="line">  classUnderTest.addDocument(<span class="string">"Document"</span>, <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">0</span>]);</div><div class="line">  assertTrue(classUnderTest.removeDocument(<span class="string">"Document"</span>));</div><div class="line">  verify(mock);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testVoteAgainstRemoval</span><span class="params">()</span> </span>&#123;</div><div class="line">  mock.documentAdded(<span class="string">"Document"</span>);</div><div class="line">  <span class="comment">// expect document addition</span></div><div class="line">  <span class="comment">// expect to be asked to vote for document removal, and vote against it</span></div><div class="line">  expect(mock.voteForRemoval(<span class="string">"Document"</span>)).andReturn((<span class="keyword">byte</span>) -<span class="number">42</span>);</div><div class="line">  replay(mock);</div><div class="line">  classUnderTest.addDocument(<span class="string">"Document"</span>, <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">0</span>]);</div><div class="line">  assertFalse(classUnderTest.removeDocument(<span class="string">"Document"</span>));</div><div class="line">  verify(mock);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Continuing…</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag">#java</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/06/Life_夏日@京都/" rel="next" title="夏日@京都">
+                <i class="fa fa-chevron-left"></i> 夏日@京都
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/plusaber.jpg"
+               alt="Plusaber" />
+          <p class="site-author-name" itemprop="name">Plusaber</p>
+          <p class="site-description motion-element" itemprop="description">Plusaber's Blog</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">328</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.kaggle.com" title="Kaggle" target="_blank">Kaggle</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.algolia.com" title="Algolia" target="_blank">Algolia</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jp.linkedin.com/in/zebangchen" title="LinkedIn" target="_blank">LinkedIn</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://portal.qiniu.com" title="Qiniu" target="_blank">Qiniu</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Installation"><span class="nav-number">1.</span> <span class="nav-text">Installation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mocking"><span class="nav-number">2.</span> <span class="nav-text">Mocking</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-first-Mock-Object"><span class="nav-number">2.1.</span> <span class="nav-text">The first Mock Object</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-annotations"><span class="nav-number">2.2.</span> <span class="nav-text">Using annotations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EasyMockSupport"><span class="nav-number">2.3.</span> <span class="nav-text">EasyMockSupport</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Strict-Mocks"><span class="nav-number">2.4.</span> <span class="nav-text">Strict Mocks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nice-mocks"><span class="nav-number">2.5.</span> <span class="nav-text">Nice mocks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-Stub-Behavior-for-Methods"><span class="nav-number">2.6.</span> <span class="nav-text">Using Stub Behavior for Methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Resuing-mock-object"><span class="nav-number">2.7.</span> <span class="nav-text">Resuing mock object</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Behavior"><span class="nav-number">3.</span> <span class="nav-text">Behavior</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-second-test"><span class="nav-number">3.1.</span> <span class="nav-text">A second test</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Verification"><span class="nav-number">4.</span> <span class="nav-text">Verification</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-first-verification"><span class="nav-number">4.1.</span> <span class="nav-text">A first verification</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Expecting-an-Explict-Number-of-Calls"><span class="nav-number">4.2.</span> <span class="nav-text">Expecting an Explict Number of Calls</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Specifying-Return-Values"><span class="nav-number">4.3.</span> <span class="nav-text">Specifying Return Values</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Plusaber</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'plusaber';
+      var disqus_identifier = '2016/11/28/Java_EasyMock/';
+      var disqus_title = "Let\'s EasyMock";
+      var disqus_url = 'http://yoursite.com/2016/11/28/Java_EasyMock/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

@@ -260,8 +260,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/08/24/Leetcode_Best Time to Buy and Sell Stock II/" itemprop="url">
-                  Best Time to Buy and Sell Stock II
+                <a class="post-title-link" href="/2015/08/24/Leetcode_Missing Number/" itemprop="url">
+                  Missing Number
                 </a>
               
             
@@ -304,8 +304,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/08/24/Leetcode_Best Time to Buy and Sell Stock II/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/24/Leetcode_Best Time to Buy and Sell Stock II/" itemprop="commentsCount"></span>
+                <a href="/2015/08/24/Leetcode_Missing Number/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/24/Leetcode_Missing Number/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -330,16 +330,144 @@
       
         
           
-            <h1 id="Best-Time-to-Buy-and-Sell-Stock-II"><a href="#Best-Time-to-Buy-and-Sell-Stock-II" class="headerlink" title="Best Time to Buy and Sell Stock II"></a><a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/" target="_blank" rel="external">Best Time to Buy and Sell Stock II</a></h1><blockquote>
-<p>Say you have an array for which the ith element is the price of a given stock on day i.</p>
-<p>Design an algorithm to find the maximum profit. You may complete as many transactions as you like (ie, buy one and sell one share of the stock multiple times). However, you may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).</p>
+            <h1 id="Missing-Number"><a href="#Missing-Number" class="headerlink" title="Missing Number"></a><a href="https://leetcode.com/problems/missing-number/" target="_blank" rel="external">Missing Number</a></h1><blockquote>
+<p>Given an array containing n distinct numbers taken from 0, 1, 2, …, n, find the one that is missing from the array.</p>
+<p>For example,<br>Given nums = [0, 1, 3] return 2.</p>
+<p>Note:<br>Your algorithm should run in linear runtime complexity. Could you implement it using only constant extra space complexity?</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>虽然题目跟Best Time to Buy and Sell Stock类似，但使用的策略是不同的。</p>
-<p>首先来看一张股市变化的图：<br><img src="http://s4.sinaimg.cn/bmiddle/4fabc3bft60bc342a6d03" alt=""></p>
-<p>给定了所有时间的股票价格，最佳策略是什么？ 当然是在局部最低处买入，在同一个对于的下一个局部最高处卖出，其实就是上升子序列，对于所有的上升子序列进行同样的操作。本质上是贪心策略，记入每个上升子序列的非负差值。</p>
-<p>所以问题就转化为了检查局部最低处和局部最高处，在局部最低处买入(设置<code>min</code>)，局部最高处卖出(<code>max, profit += (max-min)</code>)</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><p>second time</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(prices==<span class="keyword">null</span> || prices.length==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> profit = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;prices.length; i++) &#123;</div><div class="line">            <span class="keyword">int</span> s = i;</div><div class="line">            <span class="keyword">while</span>(i+<span class="number">1</span>&lt;prices.length &amp;&amp; prices[i]&lt;prices[i+<span class="number">1</span>]) i++;</div><div class="line">            profit += (prices[i]-prices[s]);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> profit;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h3 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1"></a>Method 1</h3><p>使用Hashset记录。</p>
+<h3 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2"></a>Method 2</h3><p>首先数值序列为<code>0,1,2,3,...n</code>, 其总和为<code>n*(n+1)/2</code>.<br>对数组进行求和得到sum，则缺的那个数字为 <code>n*(n+1)/2 - sum</code></p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="Method-2-1"><a href="#Method-2-1" class="headerlink" title="Method 2"></a>Method 2</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">missingNumber</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> ele: nums) sum += ele;</div><div class="line">        <span class="keyword">return</span> nums.length*(nums.length+<span class="number">1</span>)/<span class="number">2</span> - sum;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>second time</p>
+<p>anouth solution: 异或法 Exclusive OR</p>
+<p><a href="http://segmentfault.com/a/1190000003488849" target="_blank" rel="external">Missing Number</a></p>
+<p>复杂度<br>时间 O(N) 空间 O(1)</p>
+<p>思路<br>根据异或的特性，对于一个数，异或自己是0，异或0是自己，所以我们把0-n都异或一遍，再对着给定数组异或一遍，结果就是缺失的数。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">missingNumber</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= nums.length; i++)&#123;</div><div class="line">            res ^= i == nums.length ? i : i ^ nums[i];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/08/24/Leetcode_Reverse Words in a String/" itemprop="url">
+                  Reverse Words in a String
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-08-24T00:00:00+09:00" content="2015-08-24">
+              2015-08-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/08/24/Leetcode_Reverse Words in a String/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/24/Leetcode_Reverse Words in a String/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Reverse-Words-in-a-String"><a href="#Reverse-Words-in-a-String" class="headerlink" title="Reverse Words in a String"></a><a href="https://leetcode.com/problems/reverse-words-in-a-string/" target="_blank" rel="external">Reverse Words in a String</a></h1><blockquote>
+<p>Given an input string, reverse the string word by word.</p>
+<p>For example,<br>Given <code>s = &quot;the sky is blue&quot;</code>,<br>return <code>&quot;blue is sky the&quot;</code>.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>从右向左开始，记录每个词的结束和开始位置。注意空格处理，开头处理，以及java的charAt与substring的下标不同含义。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">reverseWords</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        StringBuffer res = <span class="keyword">new</span> StringBuffer();</div><div class="line">        <span class="keyword">boolean</span> begin = <span class="keyword">false</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> right = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=s.length()-<span class="number">1</span>; i&gt;=<span class="number">0</span>; i--) &#123;</div><div class="line">            <span class="keyword">if</span>(!begin) &#123;</div><div class="line">                <span class="keyword">if</span>(s.charAt(i)==<span class="string">' '</span>) <span class="keyword">continue</span>;</div><div class="line">                <span class="keyword">else</span> &#123;</div><div class="line">                    begin = <span class="keyword">true</span>;</div><div class="line">                    right = i + <span class="number">1</span>;</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">if</span>(s.charAt(i)==<span class="string">' '</span>) &#123;</div><div class="line">                    begin = <span class="keyword">false</span>;</div><div class="line">                    left = i + <span class="number">1</span>;</div><div class="line">                    </div><div class="line">                    <span class="keyword">if</span>(res.length()!=<span class="number">0</span>) res.append(<span class="string">" "</span>);</div><div class="line">                    res.append(s.substring(left, right));</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(begin) &#123;</div><div class="line">        	<span class="keyword">if</span>(res.length()!=<span class="number">0</span>) res.append(<span class="string">" "</span>);</div><div class="line">        	res.append(s.substring(<span class="number">0</span>, right));</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> res.toString();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -389,8 +517,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/08/23/Leetcode_Remove Duplicates from Sorted List/" itemprop="url">
-                  Remove Duplicates from Sorted List II
+                <a class="post-title-link" href="/2015/08/23/Leetcode_Remove Duplicates from Sorted Array II /" itemprop="url">
+                  Remove Duplicates from Sorted Array II
                 </a>
               
             
@@ -433,8 +561,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/08/23/Leetcode_Remove Duplicates from Sorted List/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/23/Leetcode_Remove Duplicates from Sorted List/" itemprop="commentsCount"></span>
+                <a href="/2015/08/23/Leetcode_Remove Duplicates from Sorted Array II /#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/23/Leetcode_Remove Duplicates from Sorted Array II /" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -459,11 +587,13 @@
       
         
           
-            <h1 id="Remove-Duplicates-from-Sorted-List"><a href="#Remove-Duplicates-from-Sorted-List" class="headerlink" title="Remove Duplicates from Sorted List"></a><a href="https://leetcode.com/problems/remove-duplicates-from-sorted-list/" target="_blank" rel="external">Remove Duplicates from Sorted List</a></h1><blockquote>
-<p>Given a sorted linked list, delete all duplicates such that each element appear only once.</p>
-<p>For example,<br>Given <code>1-&gt;1-&gt;2</code>, return <code>1-&gt;2</code>.<br>Given <code>1-&gt;1-&gt;2-&gt;3-&gt;3</code>, return <code>1-&gt;2-&gt;3</code>.</p>
+            <h1 id="Remove-Duplicates-from-Sorted-Array-II"><a href="#Remove-Duplicates-from-Sorted-Array-II" class="headerlink" title="Remove Duplicates from Sorted Array II "></a><a href="https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/" target="_blank" rel="external">Remove Duplicates from Sorted Array II </a></h1><blockquote>
+<p>Follow up for “Remove Duplicates”:<br>What if duplicates are allowed at most twice?</p>
+<p>For example,<br>Given sorted array <code>nums = [1,1,1,2,2,3]</code>,</p>
+<p>Your function should return length = 5, with the first five elements of nums being <code>1, 1, 2, 2 and 3.</code> It doesn’t matter what you leave beyond the new length.</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * public class ListNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     ListNode next;</div><div class="line"> *     ListNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">deleteDuplicates</span><span class="params">(ListNode head)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span>) <span class="keyword">return</span> head;</div><div class="line">        <span class="keyword">while</span>(head.next!=<span class="keyword">null</span> &amp;&amp; head.val==head.next.val) head = head.next;</div><div class="line">        ListNode current = head;</div><div class="line">        <span class="keyword">while</span>(current!=<span class="keyword">null</span>) &#123;</div><div class="line">            ListNode move = current.next;</div><div class="line">            <span class="keyword">if</span>(move==<span class="keyword">null</span>) <span class="keyword">return</span> head;</div><div class="line">            <span class="keyword">while</span>(move.next!=<span class="keyword">null</span> &amp;&amp; move.val==move.next.val) move = move.next;</div><div class="line">            current.next = move;</div><div class="line">            current = move;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> head;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>对于每个字符计数，超过2就直接跳过。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> limit = <span class="number">2</span>;</div><div class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nums.length; i++) &#123;</div><div class="line">            nums[index++] = nums[i];</div><div class="line">            <span class="keyword">int</span> count = <span class="number">1</span>;</div><div class="line">            <span class="keyword">while</span>(i+<span class="number">1</span>&lt;nums.length &amp;&amp; nums[i+<span class="number">1</span>]==nums[i]) &#123;</div><div class="line">                count ++;</div><div class="line">                i ++;</div><div class="line">                <span class="keyword">if</span>(count&lt;=limit) nums[index++] = nums[i];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> index;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -755,132 +885,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/08/23/Leetcode_Remove Duplicates from Sorted Array II /" itemprop="url">
-                  Remove Duplicates from Sorted Array II
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-08-23T00:00:00+09:00" content="2015-08-23">
-              2015-08-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/08/23/Leetcode_Remove Duplicates from Sorted Array II /#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/23/Leetcode_Remove Duplicates from Sorted Array II /" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Remove-Duplicates-from-Sorted-Array-II"><a href="#Remove-Duplicates-from-Sorted-Array-II" class="headerlink" title="Remove Duplicates from Sorted Array II "></a><a href="https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/" target="_blank" rel="external">Remove Duplicates from Sorted Array II </a></h1><blockquote>
-<p>Follow up for “Remove Duplicates”:<br>What if duplicates are allowed at most twice?</p>
-<p>For example,<br>Given sorted array <code>nums = [1,1,1,2,2,3]</code>,</p>
-<p>Your function should return length = 5, with the first five elements of nums being <code>1, 1, 2, 2 and 3.</code> It doesn’t matter what you leave beyond the new length.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>对于每个字符计数，超过2就直接跳过。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> limit = <span class="number">2</span>;</div><div class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nums.length; i++) &#123;</div><div class="line">            nums[index++] = nums[i];</div><div class="line">            <span class="keyword">int</span> count = <span class="number">1</span>;</div><div class="line">            <span class="keyword">while</span>(i+<span class="number">1</span>&lt;nums.length &amp;&amp; nums[i+<span class="number">1</span>]==nums[i]) &#123;</div><div class="line">                count ++;</div><div class="line">                i ++;</div><div class="line">                <span class="keyword">if</span>(count&lt;=limit) nums[index++] = nums[i];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> index;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -926,7 +930,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">327</span>
+              <span class="site-state-item-count">328</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

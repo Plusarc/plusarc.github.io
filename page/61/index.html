@@ -260,8 +260,8 @@
             
               
                 
-                <a class="post-title-link" href="/2014/11/22/Developing_Tomcat/" itemprop="url">
-                  Tomcat on Mac
+                <a class="post-title-link" href="/2014/12/10/System Design_Useful Materials/" itemprop="url">
+                  Useful Materials
                 </a>
               
             
@@ -274,8 +274,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2014-11-22T00:00:00+09:00" content="2014-11-22">
-              2014-11-22
+            <time itemprop="dateCreated" datetime="2014-12-10T00:00:00+09:00" content="2014-12-10">
+              2014-12-10
             </time>
           </span>
 
@@ -288,8 +288,8 @@
               <span class="post-meta-item-text">分類於</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Developing/" itemprop="url" rel="index">
-                    <span itemprop="name">Developing</span>
+                  <a href="/categories/System-design/" itemprop="url" rel="index">
+                    <span itemprop="name">System design</span>
                   </a>
                 </span>
 
@@ -304,8 +304,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2014/11/22/Developing_Tomcat/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/11/22/Developing_Tomcat/" itemprop="commentsCount"></span>
+                <a href="/2014/12/10/System Design_Useful Materials/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/12/10/System Design_Useful Materials/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -330,21 +330,9 @@
       
         
           
-            <h2 id="Tomcat在mac上的安装"><a href="#Tomcat在mac上的安装" class="headerlink" title="Tomcat在mac上的安装"></a>Tomcat在mac上的安装</h2><ul>
-<li>安装java并配置好JAVA_HOME</li>
-<li>下载<a href="http://tomcat.apache.org/download-90.cgi" target="_blank" rel="external">Tomcat</a>并验证md5</li>
-<li>解压到<code>/Library/</code>下（其他目录也可以），命名为Tomcat</li>
-<li>修改文件执行权限，<code>sudo chmod 777 Tomcat</code></li>
-<li>启动Tomcat，执行<code>sh Tomcat/bin/startup.sh</code></li>
-<li>打开<a href="http://localhost:8080" target="_blank" rel="external">http://localhost:8080</a>确认服务是否正常启动。</li>
-</ul>
-<p>上面的配置完成后，我们便可以执行Tomcat安装目录下bin目录中的命令进行启动和停止，但是有些麻烦，我们可以配置一个脚本文件用于控制Tomcat的启动停止。</p>
-<p>在<code>/usr/local/bin</code>目录(任何PATH下的目录都可以）下创建文件tomcat，写入如下内容：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="keyword">case</span> <span class="variable">$1</span> <span class="keyword">in</span></div><div class="line">start)</div><div class="line">sh /Library/Tomcat/bin/startup.sh</div><div class="line">;;</div><div class="line">stop)</div><div class="line">sh /Library/Tomcat/bin/shutdown.sh</div><div class="line">;;</div><div class="line">restart)</div><div class="line">sh /Library/Tomcat/bin/shutdown.sh</div><div class="line">sh /Library/Tomcat/bin/startup.sh</div><div class="line">;;</div><div class="line">*)</div><div class="line"><span class="built_in">echo</span> “Usage: start|stop|restart”</div><div class="line">;;</div><div class="line"><span class="keyword">esac</span></div><div class="line"><span class="built_in">exit</span> 0</div></pre></td></tr></table></figure>
-<p>修改执行权限<code>chmod 777 tomcat</code>。</p>
-<p>新建一个concole，我们可以通过下面命令控制Tomcat的运行，如果需要更高级的控制，在tomcat脚本文件添加相关内容即可：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">tomcat start  # 启动</div><div class="line">tomcat stop # 停止</div><div class="line">tomcat restart # 重启</div></pre></td></tr></table></figure>
-<h2 id="Tomcat的配置"><a href="#Tomcat的配置" class="headerlink" title="Tomcat的配置"></a>Tomcat的配置</h2><h2 id="Tomcat-vs-Apache"><a href="#Tomcat-vs-Apache" class="headerlink" title="Tomcat vs Apache"></a>Tomcat vs Apache</h2><p>Apache是web服务器，Tomcat是应用（java）服务器，它只是一个servlet容器，是Apache的扩展。Apache和Tomcat都可以做为独立的web服务器来运行，但是Apache不能直接解释java程序（jsp,serverlet,php）。需要通过插件才能解释。Apache是普通服务器，本身只支持html即普通网页。不过可以通过插件支持php,还可以与Tomcat连通(单向Apache连接Tomcat,就是说通过Apache可以访问Tomcat资源。反之不然)两者都是一种容器，只不过发布的东西不同：Apache是html容器，功能像IIS一样；Tomcat是jsp/servlet容器，用于发布jsp及java的，类似的有IBM的webshere、EBA的Weblogic，sun的JRun等等。Apache和Tomcat是独立的，在通一台服务器上可以集成。打个比方：Apache是一辆卡车，上面可以装一些东西如html等。但是不能装水，要装水必须要有容器（桶），Tomcat就是一个桶（装像Java这样的水），而这个桶也可以不放在卡车上。Apache只支持静态网页，但像asp,php,cgi,jsp等动态网页就需要Tomcat来处理。Apache和Tomcat整合使用：如果客户端请求的是静态页面，则只需要Apache服务器响应请求；如果客户端请求动态页面，则是Tomcat服务器响应请求；因为jsp是服务器端解释代码的，这样整合就可以减少Tomcat的服务开销 。</p>
+            <h1 id="Useful-Materials"><a href="#Useful-Materials" class="headerlink" title="Useful Materials"></a>Useful Materials</h1><p><a href="http://www.aosabook.org/en/distsys.html#" target="_blank" rel="external">Scalable Web Architecture and Distributed Systems</a><br><a href="http://highscalability.com/blog/2009/8/6/an-unorthodox-approach-to-database-design-the-coming-of-the.html" target="_blank" rel="external">An Unorthodox Approach To Database Design : The Coming Of The Shard</a><br><a href="http://www.oschina.net/translate/scalable-web-architecture-and-distributed-systems?lang=chs&amp;page=1#" target="_blank" rel="external">可扩展Web架构与分布式系统</a><br><a href="http://www.cnblogs.com/ggjucheng/archive/2012/11/13/2768959.html" target="_blank" rel="external">可扩展性设计之数据切分</a><br><a href="http://www.cnblogs.com/ggjucheng/archive/2012/11/15/2771686.html" target="_blank" rel="external">可扩展性设计之Cache与Search的利用</a><br><a href="http://www.kuqin.com/shuoit/20140806/341531.html" target="_blank" rel="external">可扩展架构设计的三个维度</a><br><a href="http://www.jdon.com/scalable.html" target="_blank" rel="external">可伸缩性/可扩展性(Scalable/scalability)</a><br><a href="http://www.jdon.com/37793" target="_blank" rel="external">可伸缩性最佳实战</a></p>
+<p><a href="http://www.cnblogs.com/ggjucheng/archive/2013/01/20/2868837.html" target="_blank" rel="external">internet笔记</a><br><a href="http://www.cnblogs.com/ggjucheng/archive/2012/04/22/2465625.html" target="_blank" rel="external">hadoop笔记本</a><br><a href="http://www.cnblogs.com/ggjucheng/archive/2012/08/18/2645324.html" target="_blank" rel="external">TCP/IP笔记本</a></p>
+<p><a href="http://www.cnblogs.com/ggjucheng/archive/2012/11/13/2768879.html" target="_blank" rel="external">MySQL Replication 常用架构</a></p>
 
           
         
@@ -500,6 +488,140 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StarbuzzCoffee</span> </span>&#123;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</div><div class="line">		Beverage beverage = <span class="keyword">new</span> Espresso();</div><div class="line">		System.out.println(beverage.getDescription() </div><div class="line">				+ <span class="string">" $"</span> + beverage.cost());</div><div class="line"> </div><div class="line">		Beverage beverage2 = <span class="keyword">new</span> DarkRoast();</div><div class="line">		beverage2 = <span class="keyword">new</span> Mocha(beverage2);</div><div class="line">		beverage2 = <span class="keyword">new</span> Mocha(beverage2);</div><div class="line">		beverage2 = <span class="keyword">new</span> Whip(beverage2);</div><div class="line">		System.out.println(beverage2.getDescription() </div><div class="line">				+ <span class="string">" $"</span> + beverage2.cost());</div><div class="line"> </div><div class="line">		Beverage beverage3 = <span class="keyword">new</span> HouseBlend();</div><div class="line">		beverage3 = <span class="keyword">new</span> Soy(beverage3);</div><div class="line">		beverage3 = <span class="keyword">new</span> Mocha(beverage3);</div><div class="line">		beverage3 = <span class="keyword">new</span> Whip(beverage3);</div><div class="line">		System.out.println(beverage3.getDescription() </div><div class="line">				+ <span class="string">" $"</span> + beverage3.cost());</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>Java I/O中很多类即采用了装饰器模型，将功能结合起来，实现更强大的读取数据或其他操作。</p>
 <p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_decorator_8.png" alt="Design_pattern_decorator_8"></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/11/22/Developing_Tomcat/" itemprop="url">
+                  Tomcat on Mac
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2014-11-22T00:00:00+09:00" content="2014-11-22">
+              2014-11-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Developing/" itemprop="url" rel="index">
+                    <span itemprop="name">Developing</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/11/22/Developing_Tomcat/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/11/22/Developing_Tomcat/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Tomcat在mac上的安装"><a href="#Tomcat在mac上的安装" class="headerlink" title="Tomcat在mac上的安装"></a>Tomcat在mac上的安装</h2><ul>
+<li>安装java并配置好JAVA_HOME</li>
+<li>下载<a href="http://tomcat.apache.org/download-90.cgi" target="_blank" rel="external">Tomcat</a>并验证md5</li>
+<li>解压到<code>/Library/</code>下（其他目录也可以），命名为Tomcat</li>
+<li>修改文件执行权限，<code>sudo chmod 777 Tomcat</code></li>
+<li>启动Tomcat，执行<code>sh Tomcat/bin/startup.sh</code></li>
+<li>打开<a href="http://localhost:8080" target="_blank" rel="external">http://localhost:8080</a>确认服务是否正常启动。</li>
+</ul>
+<p>上面的配置完成后，我们便可以执行Tomcat安装目录下bin目录中的命令进行启动和停止，但是有些麻烦，我们可以配置一个脚本文件用于控制Tomcat的启动停止。</p>
+<p>在<code>/usr/local/bin</code>目录(任何PATH下的目录都可以）下创建文件tomcat，写入如下内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="keyword">case</span> <span class="variable">$1</span> <span class="keyword">in</span></div><div class="line">start)</div><div class="line">sh /Library/Tomcat/bin/startup.sh</div><div class="line">;;</div><div class="line">stop)</div><div class="line">sh /Library/Tomcat/bin/shutdown.sh</div><div class="line">;;</div><div class="line">restart)</div><div class="line">sh /Library/Tomcat/bin/shutdown.sh</div><div class="line">sh /Library/Tomcat/bin/startup.sh</div><div class="line">;;</div><div class="line">*)</div><div class="line"><span class="built_in">echo</span> “Usage: start|stop|restart”</div><div class="line">;;</div><div class="line"><span class="keyword">esac</span></div><div class="line"><span class="built_in">exit</span> 0</div></pre></td></tr></table></figure>
+<p>修改执行权限<code>chmod 777 tomcat</code>。</p>
+<p>新建一个concole，我们可以通过下面命令控制Tomcat的运行，如果需要更高级的控制，在tomcat脚本文件添加相关内容即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">tomcat start  # 启动</div><div class="line">tomcat stop # 停止</div><div class="line">tomcat restart # 重启</div></pre></td></tr></table></figure>
+<h2 id="Tomcat的配置"><a href="#Tomcat的配置" class="headerlink" title="Tomcat的配置"></a>Tomcat的配置</h2><h2 id="Tomcat-vs-Apache"><a href="#Tomcat-vs-Apache" class="headerlink" title="Tomcat vs Apache"></a>Tomcat vs Apache</h2><p>Apache是web服务器，Tomcat是应用（java）服务器，它只是一个servlet容器，是Apache的扩展。Apache和Tomcat都可以做为独立的web服务器来运行，但是Apache不能直接解释java程序（jsp,serverlet,php）。需要通过插件才能解释。Apache是普通服务器，本身只支持html即普通网页。不过可以通过插件支持php,还可以与Tomcat连通(单向Apache连接Tomcat,就是说通过Apache可以访问Tomcat资源。反之不然)两者都是一种容器，只不过发布的东西不同：Apache是html容器，功能像IIS一样；Tomcat是jsp/servlet容器，用于发布jsp及java的，类似的有IBM的webshere、EBA的Weblogic，sun的JRun等等。Apache和Tomcat是独立的，在通一台服务器上可以集成。打个比方：Apache是一辆卡车，上面可以装一些东西如html等。但是不能装水，要装水必须要有容器（桶），Tomcat就是一个桶（装像Java这样的水），而这个桶也可以不放在卡车上。Apache只支持静态网页，但像asp,php,cgi,jsp等动态网页就需要Tomcat来处理。Apache和Tomcat整合使用：如果客户端请求的是静态页面，则只需要Apache服务器响应请求；如果客户端请求动态页面，则是Tomcat服务器响应请求；因为jsp是服务器端解释代码的，这样整合就可以减少Tomcat的服务开销 。</p>
 
           
         
@@ -1208,137 +1330,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/11/02/Design Pattern_Observer pattern/" itemprop="url">
-                  Observer pattern
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2014-11-02T00:00:00+09:00" content="2014-11-02">
-              2014-11-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Design-Pattern/" itemprop="url" rel="index">
-                    <span itemprop="name">Design Pattern</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/11/02/Design Pattern_Observer pattern/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/11/02/Design Pattern_Observer pattern/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>观察者模式定义了对象之间的一对多依赖，观察者依赖于此主体，只要主体状态有变化，观察者就会被通知。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_observer_1.png" alt="Design_pattern_observer_1"></p>
-<p>一种基于Subject和Observer接口的实现：</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_observer_2.png" alt="Design_pattern_observer_2"></p>
-<p>观察者模式提供了一种对象设计，让主题和观察者之间实现松耦合。</p>
-<p>气象站的观察者模式设计：</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_observer_3.png" alt="Design_pattern_observer_3"></p>
-<p>实现代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Subject</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">registerObserver</span><span class="params">(Observer o)</span></span>;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeObserver</span><span class="params">(Observer o)</span></span>;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">notifyObservers</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Observer</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">float</span> temp, <span class="keyword">float</span> humidity, <span class="keyword">float</span> pressure)</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">DisplayElement</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WeatherData</span> <span class="keyword">implements</span> <span class="title">Subject</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> ArrayList observers;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">float</span> temperature;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">float</span> humidity;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">float</span> pressure;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">WeatherData</span><span class="params">()</span> </span>&#123;</div><div class="line">		observers = <span class="keyword">new</span> ArrayList();</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">registerObserver</span><span class="params">(Observer o)</span> </span>&#123;</div><div class="line">		observers.add(o);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeObserver</span><span class="params">(Observer o)</span> </span>&#123;</div><div class="line">		<span class="keyword">int</span> i = observers.indexOf(o);</div><div class="line">		<span class="keyword">if</span> (i &gt;= <span class="number">0</span>) &#123;</div><div class="line">			observers.remove(i);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">notifyObservers</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; observers.size(); i++) &#123;</div><div class="line">			Observer observer = (Observer)observers.get(i);</div><div class="line">			observer.update(temperature, humidity, pressure);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">measurementsChanged</span><span class="params">()</span> </span>&#123;</div><div class="line">		notifyObservers();</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMeasurements</span><span class="params">(<span class="keyword">float</span> temperature, <span class="keyword">float</span> humidity, <span class="keyword">float</span> pressure)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.temperature = temperature;</div><div class="line">		<span class="keyword">this</span>.humidity = humidity;</div><div class="line">		<span class="keyword">this</span>.pressure = pressure;</div><div class="line">		measurementsChanged();</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">// other WeatherData methods here</span></div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">getTemperature</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> temperature;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">getHumidity</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> humidity;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">getPressure</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> pressure;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>同样，观察者模式也有缺点，观察者无法主动获取所需要的数据，而是由主题对象一次推送所有数据，在某些情况并不合适，后面介绍的模式将解决这个问题。</p>
-<p>另外Java内置有观察者模式，但是是基于抽象类，而不是接口的实现，在很多时候并不适用。在JDK中，Swing的JButton等组件加入Listener即是使用了观察者模式，当按扭事件被触发时，所有listener将会得到通知并做出相应行为。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1384,7 +1375,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">327</span>
+              <span class="site-state-item-count">328</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

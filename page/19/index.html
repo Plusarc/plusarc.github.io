@@ -260,132 +260,6 @@
             
               
                 
-                <a class="post-title-link" href="/2015/09/11/Leetcode_Pow(x, n) /" itemprop="url">
-                  Pow(x, n)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-11T00:00:00+09:00" content="2015-09-11">
-              2015-09-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/11/Leetcode_Pow(x, n) /#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/11/Leetcode_Pow(x, n) /" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Pow-x-n"><a href="#Pow-x-n" class="headerlink" title="Pow(x, n)"></a><a href="https://leetcode.com/problems/powx-n/" target="_blank" rel="external">Pow(x, n)</a></h1><blockquote>
-<p>Implement pow(x, n).</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>最直接的方法是直接将<code>x</code>相乘<code>n</code>次，时间复杂度为<code>O(n)</code>.</p>
-<p>更高效的是二分法处理，<code>x^n = x^(n/2)  *  x^(n/2)  * x^(n%2)</code>，时间复杂度为<code>O(log(n))</code>.</p>
-<p>注意处理，负指数情况以及负指数是<code>Integer.MIN_VALUE</code>的情况。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">myPow</span><span class="params">(<span class="keyword">double</span> x, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(x==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">if</span>(n==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(n&lt;<span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">if</span>(n==Integer.MIN_VALUE) <span class="keyword">return</span> <span class="number">1</span> / (recPow(x, Integer.MAX_VALUE) * x);</div><div class="line">            <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">1</span> / recPow(x, -n);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> recPow(x, n);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">recPow</span><span class="params">(<span class="keyword">double</span> x, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(n==<span class="number">1</span>) <span class="keyword">return</span> x;</div><div class="line">        <span class="keyword">double</span> half = recPow(x, n/<span class="number">2</span>);</div><div class="line">        <span class="keyword">if</span>(n%<span class="number">2</span>==<span class="number">0</span>) <span class="keyword">return</span> half * half;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">return</span> half * half * x;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2015/09/11/Leetcode_Valid Sudoku/" itemprop="url">
                   Valid Sudoku
                 </a>
@@ -648,8 +522,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/09/10/Leetcode_Partition List/" itemprop="url">
-                  Partition List
+                <a class="post-title-link" href="/2015/09/11/Leetcode_Pow(x, n) /" itemprop="url">
+                  Pow(x, n)
                 </a>
               
             
@@ -662,8 +536,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-10T00:00:00+09:00" content="2015-09-10">
-              2015-09-10
+            <time itemprop="dateCreated" datetime="2015-09-11T00:00:00+09:00" content="2015-09-11">
+              2015-09-11
             </time>
           </span>
 
@@ -692,8 +566,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/09/10/Leetcode_Partition List/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/10/Leetcode_Partition List/" itemprop="commentsCount"></span>
+                <a href="/2015/09/11/Leetcode_Pow(x, n) /#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/11/Leetcode_Pow(x, n) /" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -718,19 +592,139 @@
       
         
           
-            <h1 id="Partition-List"><a href="#Partition-List" class="headerlink" title="Partition List"></a><a href="https://leetcode.com/problems/partition-list/" target="_blank" rel="external">Partition List</a></h1><blockquote>
-<p>Given a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.</p>
-<p>You should preserve the original relative order of the nodes in each of the two partitions.</p>
-<p>For example,<br>Given <code>1-&gt;4-&gt;3-&gt;2-&gt;5-&gt;2</code> and <code>x = 3</code>,<br>return <code>1-&gt;2-&gt;2-&gt;4-&gt;3-&gt;5</code>.</p>
+            <h1 id="Pow-x-n"><a href="#Pow-x-n" class="headerlink" title="Pow(x, n)"></a><a href="https://leetcode.com/problems/powx-n/" target="_blank" rel="external">Pow(x, n)</a></h1><blockquote>
+<p>Implement pow(x, n).</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>注意很关键的一点是要保持两组数内部原来的顺序。</p>
-<p>设置指针：<br><code>lastSmall</code>, 记录最后一个小于<code>x</code>的节点。<br><code>firstBig</code>, 注意记录第一个大于等于<code>x</code>的节点。<br><code>last</code>, <code>current</code>用于扫描数组。<code>last</code>总是指向上一个大于等于<code>x</code>的节点，<code>current</code>指向当前节点，原因参考后面。</p>
-<p>向后扫描数组，直到第一个大于等于<code>x</code>的节点，记录<code>lastSmall</code>和<code>firstBig</code>。如果没有，则说明所有数都小于<code>x</code>，则直接返回。</p>
-<p>如果遇到小于<code>x</code>的节点，将<code>lastSmall.next</code>设置为当前<code>current</code>节点，将<code>current.next</code>设置为<code>firstBig</code>，然后设置<code>lastSmall = current</code>。注意处理前<code>lastSmall==null</code>的情况。</p>
-<p>如果遇到大于等于<code>x</code>的节点，则直接跳到下一个节点。</p>
-<p>直到处理到链表尾端。</p>
-<p>注意处理边界和特殊情况，以及指针的更新和保存。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * public class ListNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     ListNode next;</div><div class="line"> *     ListNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">partition</span><span class="params">(ListNode head, <span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">        ListNode smallHead = <span class="keyword">null</span>;</div><div class="line">        ListNode smallCurrent = <span class="keyword">null</span>;</div><div class="line">        ListNode bigHead = <span class="keyword">null</span>;</div><div class="line">        ListNode bigCurrent = <span class="keyword">null</span>;</div><div class="line">        ListNode current = head;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(current!=<span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">if</span>(current.val&lt;x) &#123;</div><div class="line">                <span class="keyword">if</span>(smallHead==<span class="keyword">null</span>) &#123;</div><div class="line">                    smallHead = smallCurrent = current;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    smallCurrent.next = current;</div><div class="line">                    smallCurrent = current;</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">if</span>(bigHead==<span class="keyword">null</span>) &#123;</div><div class="line">                    bigHead = bigCurrent = current;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    bigCurrent.next = current;</div><div class="line">                    bigCurrent = current;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            current = current.next;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(smallCurrent!=<span class="keyword">null</span>) smallCurrent.next = bigHead;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">return</span> bigHead;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(bigCurrent!=<span class="keyword">null</span>) bigCurrent.next = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">return</span> smallHead;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>最直接的方法是直接将<code>x</code>相乘<code>n</code>次，时间复杂度为<code>O(n)</code>.</p>
+<p>更高效的是二分法处理，<code>x^n = x^(n/2)  *  x^(n/2)  * x^(n%2)</code>，时间复杂度为<code>O(log(n))</code>.</p>
+<p>注意处理，负指数情况以及负指数是<code>Integer.MIN_VALUE</code>的情况。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">myPow</span><span class="params">(<span class="keyword">double</span> x, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(x==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">if</span>(n==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(n&lt;<span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">if</span>(n==Integer.MIN_VALUE) <span class="keyword">return</span> <span class="number">1</span> / (recPow(x, Integer.MAX_VALUE) * x);</div><div class="line">            <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">1</span> / recPow(x, -n);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> recPow(x, n);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">recPow</span><span class="params">(<span class="keyword">double</span> x, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(n==<span class="number">1</span>) <span class="keyword">return</span> x;</div><div class="line">        <span class="keyword">double</span> half = recPow(x, n/<span class="number">2</span>);</div><div class="line">        <span class="keyword">if</span>(n%<span class="number">2</span>==<span class="number">0</span>) <span class="keyword">return</span> half * half;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">return</span> half * half * x;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/09/11/Leetcode_Sqrt(x)/" itemprop="url">
+                  Sqrt(x)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-09-11T00:00:00+09:00" content="2015-09-11">
+              2015-09-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/11/Leetcode_Sqrt(x)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/11/Leetcode_Sqrt(x)/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Sqrt-x"><a href="#Sqrt-x" class="headerlink" title="Sqrt(x)"></a><a href="https://leetcode.com/problems/sqrtx/" target="_blank" rel="external">Sqrt(x)</a></h1><blockquote>
+<p>Implement int sqrt(int x).</p>
+<p>Compute and return the square root of x.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>首先题目的意思不够明确，这里要处理的是<code>int</code>型数值的求根，返回的结果也是<code>int</code>型数值。<br>对于没有整数根的<code>x</code>，返回 平方最接近且小于<code>x</code>的数。</p>
+<p>二分法搜索<code>x</code>的根值。如果找到整数根，则直接返回。如果无法找到整数根，则返回平方最接近且小于<code>x</code>的数，也就是下面处理的right指针。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">mySqrt</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">    	<span class="keyword">if</span>(x==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">long</span> left = <span class="number">1</span>;</div><div class="line">        <span class="keyword">long</span> right = x;</div><div class="line">        <span class="keyword">while</span>(left&lt;=right) &#123;</div><div class="line">            <span class="keyword">long</span> half = (left + right) / <span class="number">2</span>;</div><div class="line">            <span class="keyword">long</span> square = half * half;</div><div class="line">            <span class="keyword">if</span>(square==x) <span class="keyword">return</span> (<span class="keyword">int</span>) half;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(square&lt;x) left = half + <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> right = half - <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>) right;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -939,7 +933,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">327</span>
+              <span class="site-state-item-count">328</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

@@ -260,6 +260,137 @@
             
               
                 
+                <a class="post-title-link" href="/2016/02/12/Research_JWI/" itemprop="url">
+                  Java Wordnet Interface
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-02-12T00:00:00+09:00" content="2016-02-12">
+              2016-02-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/research/" itemprop="url" rel="index">
+                    <span itemprop="name">research</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/02/12/Research_JWI/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/02/12/Research_JWI/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="MIT-Java-Wordnet-Interface"><a href="#MIT-Java-Wordnet-Interface" class="headerlink" title="MIT Java Wordnet Interface"></a>MIT Java Wordnet Interface</h3><p>JWI是一个java实现的与Wordnet交互的工具包，通过JWI我们可以搜索词form对应的词汇(具有具体语义)及其synset，gloss，上下级词汇等。</p>
+<h3 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h3><p>JWI交互的主要接口是edu.mit.jwi.IDictionary，标准实现类为edu.mit.jwi.Dictionary，我们可以通过指定Wordnet所在的位置的url简单的初始化一个Dictionary。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testDictionary</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">	<span class="comment">// construct the URL to the Wordnet dictionary directory</span></div><div class="line">	String wnhome = System.getenv(<span class="string">"WNHOME"</span>);</div><div class="line">	String path = wnhome + File.separator + <span class="string">"dict"</span>; </div><div class="line">	URL url = <span class="keyword">new</span> URL(<span class="string">"file"</span>, <span class="keyword">null</span>, path);</div><div class="line">	<span class="comment">// construct the dictionary object and open it</span></div><div class="line">	IDictionary dict = <span class="keyword">new</span> Dictionary(url); dict.open();</div><div class="line">	<span class="comment">// look up first sense of the word "dog"</span></div><div class="line">	IIndexWord idxWord = dict.getIndexWord(<span class="string">"dog"</span>, POS.NOUN); </div><div class="line">	IWordID wordID = idxWord.getWordIDs().get(<span class="number">0</span>);</div><div class="line">	IWord word = dict.getWord(wordID);</div><div class="line">	System.out.println(<span class="string">"Id = "</span> + wordID); </div><div class="line">	System.out.println(<span class="string">"Lemma = "</span> + 	word.getLemma()); </div><div class="line">	System.out.println(<span class="string">"Gloss = "</span> + 	word.getSynset().getGloss());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Id = WID-2084071-n-?-dog</div><div class="line">Lemma = dog</div><div class="line">Gloss = a member of the genus Canis (probably descended from the common</div><div class="line">wolf) that has been domesticated by man since prehistoric times; occurs in many breeds; &quot;the dog barked all night&quot;</div></pre></td></tr></table></figure>
+<p>为了提高速度，JWI2.2提供了一个新的IDicitionary实现类：edu.mit.jwi.RAMDictionary，允许将整个Dicitionary加载到RAM中，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testRAMDictionary</span><span class="params">(File wnDir)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">	<span class="comment">// construct the dictionary object and open it</span></div><div class="line">	IRAMDictionary dict = <span class="keyword">new</span> RAMDictionary(wnDir, ILoadPolicy.NO_LOAD); </div><div class="line">	dict.open();</div><div class="line">	<span class="comment">// do something</span></div><div class="line">	trek(dict);</div><div class="line">	<span class="comment">// now load into memory</span></div><div class="line">	System.out.print(<span class="string">"\nLoading Wordnet into memory..."</span>);</div><div class="line">	<span class="keyword">long</span> t = System.currentTimeMillis();</div><div class="line">	dict.load(<span class="keyword">true</span>);</div><div class="line">	System.out.printf(<span class="string">"done (%1d msec)\n"</span>, System.currentTimeMillis()-t);</div><div class="line">	<span class="comment">// try it again, this time in memory</span></div><div class="line">	trek(dict); </div><div class="line">&#125;</div><div class="line">	</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">trek</span><span class="params">(IDictionary dict)</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> tickNext = <span class="number">0</span>;</div><div class="line">	<span class="keyword">int</span> tickSize = <span class="number">20000</span>;</div><div class="line">	<span class="keyword">int</span> seen = <span class="number">0</span>;</div><div class="line">	System.out.print(<span class="string">"Treking across Wordnet"</span>); </div><div class="line">	<span class="keyword">long</span> t = System.currentTimeMillis(); </div><div class="line">	<span class="keyword">for</span>(POS pos : POS.values()) &#123;</div><div class="line">		<span class="keyword">for</span>(Iterator &lt;IIndexWord&gt; i = dict.getIndexWordIterator(pos); i.hasNext(); ) &#123;</div><div class="line">			<span class="keyword">for</span>(IWordID wid : i.next().getWordIDs())&#123;</div><div class="line">				seen += dict.getWord(wid).getSynset().getWords().size(); </div><div class="line">				<span class="keyword">if</span>(seen &gt; tickNext) &#123;</div><div class="line">					System.out.print(<span class="string">"."</span>);</div><div class="line">					tickNext = seen + tickSize; </div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	System.out.printf(<span class="string">"done (%1d msec)\n"</span>, System.currentTimeMillis()-t); System.out.println(<span class="string">"In my trek I saw "</span> + seen + <span class="string">" words"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Treking across Wordnet...........................done (3467 msec) In my trek I saw 522858 words</div><div class="line">Loading Wordnet into memory...done (5728 msec)</div><div class="line">Treking across Wordnet...........................done (205 msec) In my trek I saw 522858 words</div></pre></td></tr></table></figure>
+<p>需要注意的是，JWI要求作为参数的传入必须是词的词根root，否则可能会无法返回在wordnet正确的词汇，比如dog，我们应该传入<code>dog</code>作为参数，<code>dogs</code>则有可能会导致结果有误。我们可以通过edu.mit.jwi.morph.WordnetStemmer来过来的词root，之后以此输入词典进行查找。</p>
+<h3 id="Retrieve-synonyms"><a href="#Retrieve-synonyms" class="headerlink" title="Retrieve synonyms"></a>Retrieve synonyms</h3><p>也就是取得一个term的某种语义意思的synset中的其他词汇。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getSynonyms</span><span class="params">(IDictionary dict)</span></span>&#123;</div><div class="line">	<span class="comment">// look up first sense of the word "dog"</span></div><div class="line">	IIndexWord idxWord = dict.getIndexWord(<span class="string">"dog"</span>, POS.NOUN); </div><div class="line">	IWordID wordID = idxWord.getWordIDs().get(<span class="number">0</span>); <span class="comment">// 1st meaning </span></div><div class="line">	IWord word = dict.getWord(wordID);</div><div class="line">	ISynset synset = word.getSynset();</div><div class="line">	<span class="comment">// iterate over words associated with the synset</span></div><div class="line">	<span class="keyword">for</span>(IWord w : synset.getWords()) System.out.println(w.getLemma());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/02/12/Research_JWI/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/02/01/System Design_大型网站伸缩性架构c6/" itemprop="url">
                   System Design_大型网站伸缩性架构
                 </a>
@@ -652,136 +783,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/01/17/Leetcode_Longest Increasing Path in a Matrix/" itemprop="url">
-                  Longest Increasing Path in a Matrix
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2016-01-17T00:00:00+09:00" content="2016-01-17">
-              2016-01-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/17/Leetcode_Longest Increasing Path in a Matrix/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/17/Leetcode_Longest Increasing Path in a Matrix/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Longest-Increasing-Path-in-a-Matrix"><a href="#Longest-Increasing-Path-in-a-Matrix" class="headerlink" title="Longest Increasing Path in a Matrix"></a><a href="https://leetcode.com/problems/longest-increasing-path-in-a-matrix/" target="_blank" rel="external">Longest Increasing Path in a Matrix</a></h1><blockquote>
-<p>Given an integer matrix, find the length of the longest increasing path.</p>
-<p>From each cell, you can either move to four directions: left, right, up or down. You may NOT move diagonally or move outside of the boundary (i.e. wrap-around is not allowed).</p>
-<p>Example 1:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; nums = [</div><div class="line">  [9,9,4],</div><div class="line">  [6,6,8],</div><div class="line">  [2,1,1]</div><div class="line">]</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-<p>Return 4<br>The longest increasing path is [1, 2, 6, 9].</p>
-<p>Example 2:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">nums = [</div><div class="line">  [3,4,5],</div><div class="line">  [3,2,6],</div><div class="line">  [2,2,1]</div><div class="line">]</div><div class="line">&gt;</div></pre></td></tr></table></figure></p>
-</blockquote>
-<p>Return 4<br>The longest increasing path is [3, 4, 5, 6]. Moving diagonally is not allowed.</p>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>DFS+动态规划（记忆化搜索）。建立一个res二维数组，<code>res[i][j]</code>记录以<code>(i, j)</code>结束的最长递增路径长度。递归的搜索<code>(i, j)</code>上下左右比<code>(i, j)</code>元素小的位置的最长递增路径长度，并同样记录到res。后面扫描到相同位置时如果<code>res[i][j]</code>不为0，则代表之前已经递归计算了以该位置结尾的最长递增路径长度，直接引用即可。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">longestIncreasingPath</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(matrix==<span class="keyword">null</span> || matrix.length==<span class="number">0</span> || matrix[<span class="number">0</span>].length==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span>[][] res = <span class="keyword">new</span> <span class="keyword">int</span>[matrix.length][matrix[<span class="number">0</span>].length];</div><div class="line">        <span class="keyword">int</span> max = Integer.MIN_VALUE;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;matrix.length; i++) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;matrix[<span class="number">0</span>].length; j++) &#123;</div><div class="line">            	recLongest(matrix, res, i, j);</div><div class="line">                <span class="keyword">if</span>(res[i][j]&gt;max) max = res[i][j];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> max;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">recLongest</span><span class="params">(<span class="keyword">int</span>[][] matrix, <span class="keyword">int</span>[][] res, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(res[i][j]!=<span class="number">0</span>) <span class="keyword">return</span> res[i][j];</div><div class="line">        res[i][j] = <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(i-<span class="number">1</span>&gt;=<span class="number">0</span> &amp;&amp; matrix[i][j]&gt;matrix[i-<span class="number">1</span>][j] &amp;&amp; recLongest(matrix, res, i-<span class="number">1</span>, j)+<span class="number">1</span>&gt;=res[i][j]) </div><div class="line">            res[i][j] = res[i-<span class="number">1</span>][j] + <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(i+<span class="number">1</span>&lt;matrix.length &amp;&amp; matrix[i][j]&gt;matrix[i+<span class="number">1</span>][j] &amp;&amp; recLongest(matrix, res, i+<span class="number">1</span>, j)+<span class="number">1</span>&gt;=res[i][j]) </div><div class="line">            res[i][j] = res[i+<span class="number">1</span>][j] + <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(j-<span class="number">1</span>&gt;=<span class="number">0</span> &amp;&amp; matrix[i][j]&gt;matrix[i][j-<span class="number">1</span>] &amp;&amp; recLongest(matrix, res, i, j-<span class="number">1</span>)+<span class="number">1</span>&gt;=res[i][j]) </div><div class="line">            res[i][j] = res[i][j-<span class="number">1</span>] + <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(j+<span class="number">1</span>&lt;matrix[<span class="number">0</span>].length &amp;&amp; matrix[i][j]&gt;matrix[i][j+<span class="number">1</span>] &amp;&amp; recLongest(matrix, res, i, j+<span class="number">1</span>)+<span class="number">1</span>&gt;=res[i][j]) </div><div class="line">            res[i][j] = res[i][j+<span class="number">1</span>] + <span class="number">1</span>;</div><div class="line">        <span class="keyword">return</span> res[i][j];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/01/17/System Design_大型网站可扩展架构c7/" itemprop="url">
                   System Design_大型网站可扩展架构
                 </a>
@@ -947,7 +948,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">327</span>
+              <span class="site-state-item-count">328</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

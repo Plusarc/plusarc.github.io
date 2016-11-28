@@ -260,6 +260,137 @@
             
               
                 
+                <a class="post-title-link" href="/2014/11/02/Design Pattern_Observer pattern/" itemprop="url">
+                  Observer pattern
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2014-11-02T00:00:00+09:00" content="2014-11-02">
+              2014-11-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Design-Pattern/" itemprop="url" rel="index">
+                    <span itemprop="name">Design Pattern</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/11/02/Design Pattern_Observer pattern/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/11/02/Design Pattern_Observer pattern/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>观察者模式定义了对象之间的一对多依赖，观察者依赖于此主体，只要主体状态有变化，观察者就会被通知。</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_observer_1.png" alt="Design_pattern_observer_1"></p>
+<p>一种基于Subject和Observer接口的实现：</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_observer_2.png" alt="Design_pattern_observer_2"></p>
+<p>观察者模式提供了一种对象设计，让主题和观察者之间实现松耦合。</p>
+<p>气象站的观察者模式设计：</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_observer_3.png" alt="Design_pattern_observer_3"></p>
+<p>实现代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Subject</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">registerObserver</span><span class="params">(Observer o)</span></span>;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeObserver</span><span class="params">(Observer o)</span></span>;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">notifyObservers</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Observer</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">float</span> temp, <span class="keyword">float</span> humidity, <span class="keyword">float</span> pressure)</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">DisplayElement</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WeatherData</span> <span class="keyword">implements</span> <span class="title">Subject</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> ArrayList observers;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">float</span> temperature;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">float</span> humidity;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">float</span> pressure;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">WeatherData</span><span class="params">()</span> </span>&#123;</div><div class="line">		observers = <span class="keyword">new</span> ArrayList();</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">registerObserver</span><span class="params">(Observer o)</span> </span>&#123;</div><div class="line">		observers.add(o);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeObserver</span><span class="params">(Observer o)</span> </span>&#123;</div><div class="line">		<span class="keyword">int</span> i = observers.indexOf(o);</div><div class="line">		<span class="keyword">if</span> (i &gt;= <span class="number">0</span>) &#123;</div><div class="line">			observers.remove(i);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">notifyObservers</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; observers.size(); i++) &#123;</div><div class="line">			Observer observer = (Observer)observers.get(i);</div><div class="line">			observer.update(temperature, humidity, pressure);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">measurementsChanged</span><span class="params">()</span> </span>&#123;</div><div class="line">		notifyObservers();</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMeasurements</span><span class="params">(<span class="keyword">float</span> temperature, <span class="keyword">float</span> humidity, <span class="keyword">float</span> pressure)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.temperature = temperature;</div><div class="line">		<span class="keyword">this</span>.humidity = humidity;</div><div class="line">		<span class="keyword">this</span>.pressure = pressure;</div><div class="line">		measurementsChanged();</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">// other WeatherData methods here</span></div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">getTemperature</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> temperature;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">getHumidity</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> humidity;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">getPressure</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> pressure;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>同样，观察者模式也有缺点，观察者无法主动获取所需要的数据，而是由主题对象一次推送所有数据，在某些情况并不合适，后面介绍的模式将解决这个问题。</p>
+<p>另外Java内置有观察者模式，但是是基于抽象类，而不是接口的实现，在很多时候并不适用。在JDK中，Swing的JButton等组件加入Listener即是使用了观察者模式，当按扭事件被触发时，所有listener将会得到通知并做出相应行为。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2014/10/10/Design Pattern_Strategy pattern/" itemprop="url">
                   Strategy Pattern
                 </a>
@@ -985,307 +1116,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/09/21/Developing_Lucene(3)/" itemprop="url">
-                  Lucene(3)_Search
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2014-09-21T00:00:00+09:00" content="2014-09-21">
-              2014-09-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Developing/" itemprop="url" rel="index">
-                    <span itemprop="name">Developing</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/09/21/Developing_Lucene(3)/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/09/21/Developing_Lucene(3)/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="实现简单的搜索功能"><a href="#实现简单的搜索功能" class="headerlink" title="实现简单的搜索功能"></a>实现简单的搜索功能</h2><p>使用Lucene进行搜索时，我们可以自己构建查询语句，也可以是使用Lucene的QueryParser类将用户输入的文本转换为Query对象。</p>
-<h3 id="对于term的检索"><a href="#对于term的检索" class="headerlink" title="对于term的检索"></a>对于term的检索</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> junit.framework.TestCase;</div><div class="line"></div><div class="line"><span class="keyword">import</span> lia.common.TestUtil;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.apache.lucene.analysis.SimpleAnalyzer;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.document.Document;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.store.Directory;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.index.Term;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.queryParser.QueryParser;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.search.TopDocs;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.search.IndexSearcher;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.search.Query;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.search.TermQuery;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.util.Version;</div><div class="line"></div><div class="line"><span class="comment">// From chapter 3</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BasicSearchingTest</span> <span class="keyword">extends</span> <span class="title">TestCase</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testTerm</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">    Directory dir = TestUtil.getBookIndexDirectory(); <span class="comment">//A</span></div><div class="line">    IndexSearcher searcher = <span class="keyword">new</span> IndexSearcher(dir);  <span class="comment">//B</span></div><div class="line"></div><div class="line">    Term t = <span class="keyword">new</span> Term(<span class="string">"subject"</span>, <span class="string">"ant"</span>);</div><div class="line">    Query query = <span class="keyword">new</span> TermQuery(t);</div><div class="line">    TopDocs docs = searcher.search(query, <span class="number">10</span>);</div><div class="line">    assertEquals(<span class="string">"Ant in Action"</span>,                <span class="comment">//C</span></div><div class="line">                 <span class="number">1</span>, docs.totalHits);                         <span class="comment">//C</span></div><div class="line"></div><div class="line">    t = <span class="keyword">new</span> Term(<span class="string">"subject"</span>, <span class="string">"junit"</span>);</div><div class="line">    docs = searcher.search(<span class="keyword">new</span> TermQuery(t), <span class="number">10</span>);</div><div class="line">    assertEquals(<span class="string">"Ant in Action, "</span> +                                 <span class="comment">//D</span></div><div class="line">                 <span class="string">"JUnit in Action, Second Edition"</span>,                  <span class="comment">//D</span></div><div class="line">                 <span class="number">2</span>, docs.totalHits);                                 <span class="comment">//D</span></div><div class="line"></div><div class="line">    searcher.close();</div><div class="line">    dir.close();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">/*</span></div><div class="line">    #A Obtain directory from TestUtil</div><div class="line">    #B Create IndexSearcher</div><div class="line">    #C Confirm one hit for "ant"</div><div class="line">    #D Confirm two hits for "junit"</div><div class="line">  */</div></pre></td></tr></table></figure>
-<h3 id="解析用户输入的查询表达式-QueryParser"><a href="#解析用户输入的查询表达式-QueryParser" class="headerlink" title="解析用户输入的查询表达式:QueryParser"></a>解析用户输入的查询表达式:QueryParser</h3><p>Lucene的搜索方法需要一个Query对象作为参数。对查询表达式的解析就是将用户的query text，例如<code>mock OR junit</code>，转换为对应的Query对象。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Lucene_4.png" alt="Lucene_4"></p>
-<p>QueryParser为查询解析提供了强大的支持，可以处理复杂的条件表达式，最后生成的Query 会非常庞大而复杂。</p>
-<p>QueryParser类需要使用一个分析器将查询语句分割为多个项。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">QueryParser parser = <span class="keyword">new</span> QueryParser(Version matchVersion,</div><div class="line">                                     String field,</div><div class="line">                                     Analyzer analyzer)</div></pre></td></tr></table></figure>
-<p>Version matchVersion用于告诉Lucene使用哪个版本，以实现向后兼容。<br>field用于指示默认搜索的field，除了query里明确指示了应该搜索哪个域，例如<code>title:lucene</code>。<br>analyzer指定了用于分解query的分析器。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testQueryParser</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">    Directory dir = TestUtil.getBookIndexDirectory();</div><div class="line">    IndexSearcher searcher = <span class="keyword">new</span> IndexSearcher(dir);</div><div class="line"></div><div class="line">    QueryParser parser = <span class="keyword">new</span> QueryParser(Version.LUCENE_30,      <span class="comment">//A</span></div><div class="line">                                         <span class="string">"contents"</span>,                  <span class="comment">//A</span></div><div class="line">                                         <span class="keyword">new</span> SimpleAnalyzer());       <span class="comment">//A</span></div><div class="line"></div><div class="line">    Query query = parser.parse(<span class="string">"+JUNIT +ANT -MOCK"</span>);                  <span class="comment">//B</span></div><div class="line">    TopDocs docs = searcher.search(query, <span class="number">10</span>);</div><div class="line">    assertEquals(<span class="number">1</span>, docs.totalHits);</div><div class="line">    Document d = searcher.doc(docs.scoreDocs[<span class="number">0</span>].doc);</div><div class="line">    assertEquals(<span class="string">"Ant in Action"</span>, d.get(<span class="string">"title"</span>));</div><div class="line"></div><div class="line">    query = parser.parse(<span class="string">"mock OR junit"</span>);                            <span class="comment">//B</span></div><div class="line">    docs = searcher.search(query, <span class="number">10</span>);</div><div class="line">    assertEquals(<span class="string">"Ant in Action, "</span> + </div><div class="line">                 <span class="string">"JUnit in Action, Second Edition"</span>,</div><div class="line">                 <span class="number">2</span>, docs.totalHits);</div><div class="line"></div><div class="line">    searcher.close();</div><div class="line">    dir.close();</div><div class="line">  &#125;</div><div class="line">  <span class="comment">/*</span></div><div class="line">#A Create QueryParser</div><div class="line">#B Parse user's text</div><div class="line">  */</div></pre></td></tr></table></figure>
-<p><strong>query expressions以及其QueryParser分解</strong></p>
-<table>
-<thead>
-<tr>
-<th>Query expression</th>
-<th>Matches documents that</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>java</td>
-<td>Contain the term java in the default field</td>
-</tr>
-<tr>
-<td>java junit</td>
-<td>Contain the term java or junit, or both, in the default field</td>
-</tr>
-<tr>
-<td>java OR junit</td>
-<td>Contain the term java or junit, or both, in the default field</td>
-</tr>
-<tr>
-<td>+java +junit</td>
-<td>Contain both java and junit in the default field</td>
-</tr>
-<tr>
-<td>java AND junit</td>
-<td>Contain both java and junit in the default field</td>
-</tr>
-<tr>
-<td>title:ant</td>
-<td>Contain the term ant in the title field</td>
-</tr>
-<tr>
-<td>title:extreme –subject:sports</td>
-<td>Contain extreme in the title field and don’t have sports in the subject field</td>
-</tr>
-<tr>
-<td>title:extreme AND NOT subject:sports</td>
-<td>Contain extreme in the title field and don’t have sports in the subject field</td>
-</tr>
-<tr>
-<td>(agile OR extreme) AND methodology</td>
-<td>Contain methodology and must also contain agile and/or extreme, all in the default field</td>
-</tr>
-<tr>
-<td>title:”junit in action”</td>
-<td>Contain the exact phrase “junit in action” in the title field</td>
-</tr>
-<tr>
-<td>title:”junit action”~5</td>
-<td>Contain the terms junit and action within five positions of one another, in the title field</td>
-</tr>
-<tr>
-<td>java*</td>
-<td>Contain terms that begin with java, like javaspaces, javaserver, java.net, and the exact tem java itself.</td>
-</tr>
-<tr>
-<td>java~</td>
-<td>Contain terms that are close to the word java, such as lava</td>
-</tr>
-<tr>
-<td>lastmodified: [1/1/09 TO 12/31/09]</td>
-<td>Have lastmodified field values between the dates January 1, 2009 and December 31, 2009</td>
-</tr>
-</tbody>
-</table>
-<h2 id="使用IndexSearcher"><a href="#使用IndexSearcher" class="headerlink" title="使用IndexSearcher"></a>使用IndexSearcher</h2><h3 id="创建IndexSearcher"><a href="#创建IndexSearcher" class="headerlink" title="创建IndexSearcher"></a>创建IndexSearcher</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Directory dir = FSDirectory.open(<span class="keyword">new</span> File(<span class="string">"/path/to/index"</span>));</div><div class="line">IndexReader reader = IndexReader.open(dir);</div><div class="line">IndexSearcher searcher = <span class="keyword">new</span> IndexSearcher(reader);</div></pre></td></tr></table></figure>
-<p>IndexReaser完成了诸如打开索引系统文件和提供底层reader API等繁重的工作，而IndexSearcher则要简单很多。打开一个IndexReader需要较大的系统开销，所有在搜索期间最好重复使用同一个或有限的几个IndexReader实例，只在有必要的时候才创建新的IndexReader。</p>
-<p>另外还可以从Directory直接创建IndexSearcher，这时会创建这个searcher自己的IndexReader，searcher关闭时这个reader也会关闭，消耗比较大。</p>
-<p>IndexReader的读操作总是基于它创建时的快照，如果index发生了改变而且我们需要IndexReader同步这些修改，我们需要重新创建一个IndexReader。如果已经有建立的reader，这时可以调用IndexReaser.reopen，会conver所有的change，同时资源消耗会远小于直接创建一个新的reader。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">IndexReader newReader = reader.reopen();</div><div class="line"><span class="keyword">if</span> (reader != newReader) &#123;</div><div class="line">  reader.close();</div><div class="line">  reader = newReader;</div><div class="line">  searcher = <span class="keyword">new</span> IndexSearcher(reader);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>如果索引有所变更，reopen方法返回一个新的reader，这是程序必须关闭reader并创建新的searcher。在实际的应用程序中，可能还有多个线程在使用旧的reader，我们要注意保证线程安全。</p>
-<h3 id="实现搜索功能"><a href="#实现搜索功能" class="headerlink" title="实现搜索功能"></a>实现搜索功能</h3><p>在建立IndexSearcher实例后，使用<code>search(Query, int)</code>方法进行检索。另外更好高级的操作还有过滤和排序。</p>
-<table>
-<thead>
-<tr>
-<th>search method</th>
-<th>when to use</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>TopDocs search(Query query, int n)</td>
-<td>Straightforward searches. The int n parameter specifies how many top-scoring documents to return.</td>
-</tr>
-<tr>
-<td>TopDocs search(Query query, Filter filter, int n)</td>
-<td>Searches constrained to a subset of available documents, based on filter criteria.</td>
-</tr>
-<tr>
-<td>TopFieldDocs search(Query query, Filter filter, int n, Sort sort)</td>
-<td>Searches constrained to a subset of available documents based on filter criteria, and sorted by a custom Sort object</td>
-</tr>
-<tr>
-<td>void search(Query query, Collector results)</td>
-<td>Used when you have custom logic to implement for each document visited, or you’d like to collect a different subset of documents than the top N by the sort criteria.</td>
-</tr>
-<tr>
-<td>void search(Query query, Filter filter, Collector results)</td>
-<td>Same as previous, except documents are only accepted if they pass the filter criteria.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="Working-with-TopDocs"><a href="#Working-with-TopDocs" class="headerlink" title="Working with TopDocs"></a>Working with TopDocs</h3><table>
-<thead>
-<tr>
-<th>TopDocs method or attribute</th>
-<th>Return value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>totalHits</td>
-<td>Number of documents that matched the search</td>
-</tr>
-<tr>
-<td>scoreDocs</td>
-<td>Array of ScoreDoc instances that contains the results</td>
-</tr>
-<tr>
-<td>getMaxScore()</td>
-<td>Returns best score of all matches, if scoring was done while searching (when sorting by field, you separately control whether scores are computed)</td>
-</tr>
-</tbody>
-</table>
-<h3 id="搜索结果分页"><a href="#搜索结果分页" class="headerlink" title="搜索结果分页"></a>搜索结果分页</h3><p>大部分情况下用户只在首页结果进行查找，但是分页仍是需要的，主要有下面两种解决方案：</p>
-<ul>
-<li>返回多页的结果并保存在ScoreDocs和IndexSearcher中。</li>
-<li>重新发送查询请求(requerying)。</li>
-</ul>
-<p>Requerying一般是更好的解决方案，可以减少保存用户state，在很多用户的情况下，保存很多用户的state代价是非常大的。Lucene通常查询速度非常快，而且操作系统通常会cache最近查询的数据，使得很多情况下需要的数据还在RAM中。</p>
-<h3 id="Near-real-time-search"><a href="#Near-real-time-search" class="headerlink" title="Near-real-time search"></a>Near-real-time search</h3><p>Lucene 2.9开始引入近实时检索，使得我们可以快速检索最近index新添加的内容，即是IndexWriter还没有把内容写入到磁盘。许多应用程序在提供搜索功能的同时，也在不断索引新添加的内容，需要维持一个不能段时间关闭的writter，而且需要在搜索时反映出这些新添加的内容。如果writer和reader处于同一个JVM中，我们就可以使用近实时检索(Near-real-time search)。</p>
-<p>近实时检索可以是我们能够检索新创建但还未完成提交的段进行检索。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> org.apache.lucene.util.Version;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.store.*;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.index.*;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.search.*;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.document.*;</div><div class="line"><span class="keyword">import</span> org.apache.lucene.analysis.standard.StandardAnalyzer;</div><div class="line"></div><div class="line"><span class="keyword">import</span> junit.framework.TestCase;</div><div class="line"></div><div class="line"><span class="comment">// From chapter 3</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NearRealTimeTest</span> <span class="keyword">extends</span> <span class="title">TestCase</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testNearRealTime</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">    Directory dir = <span class="keyword">new</span> RAMDirectory();</div><div class="line">    IndexWriter writer = <span class="keyword">new</span> IndexWriter(dir, <span class="keyword">new</span> StandardAnalyzer(Version.LUCENE_30), IndexWriter.MaxFieldLength.UNLIMITED);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++) &#123;</div><div class="line">      Document doc = <span class="keyword">new</span> Document();</div><div class="line">      doc.add(<span class="keyword">new</span> Field(<span class="string">"id"</span>, <span class="string">""</span>+i, Field.Store.NO, Field.Index.NOT_ANALYZED_NO_NORMS));</div><div class="line">      doc.add(<span class="keyword">new</span> Field(<span class="string">"text"</span>, <span class="string">"aaa"</span>, Field.Store.NO, Field.Index.ANALYZED));</div><div class="line">      writer.addDocument(doc);</div><div class="line">    &#125;</div><div class="line">    IndexReader reader = writer.getReader();                 <span class="comment">// #1</span></div><div class="line">    IndexSearcher searcher = <span class="keyword">new</span> IndexSearcher(reader);      <span class="comment">// #A</span></div><div class="line"></div><div class="line">    Query query = <span class="keyword">new</span> TermQuery(<span class="keyword">new</span> Term(<span class="string">"text"</span>, <span class="string">"aaa"</span>));</div><div class="line">    TopDocs docs = searcher.search(query, <span class="number">1</span>);</div><div class="line">    assertEquals(<span class="number">10</span>, docs.totalHits);                        <span class="comment">// #B</span></div><div class="line"></div><div class="line">    writer.deleteDocuments(<span class="keyword">new</span> Term(<span class="string">"id"</span>, <span class="string">"7"</span>));             <span class="comment">// #2</span></div><div class="line"></div><div class="line">    Document doc = <span class="keyword">new</span> Document();                           <span class="comment">// #3</span></div><div class="line">    doc.add(<span class="keyword">new</span> Field(<span class="string">"id"</span>,                                  <span class="comment">// #3</span></div><div class="line">                      <span class="string">"11"</span>,                                  <span class="comment">// #3</span></div><div class="line">                      Field.Store.NO,                        <span class="comment">// #3</span></div><div class="line">                      Field.Index.NOT_ANALYZED_NO_NORMS));   <span class="comment">// #3</span></div><div class="line">    doc.add(<span class="keyword">new</span> Field(<span class="string">"text"</span>,                                <span class="comment">// #3</span></div><div class="line">                      <span class="string">"bbb"</span>,                                 <span class="comment">// #3</span></div><div class="line">                      Field.Store.NO,                        <span class="comment">// #3</span></div><div class="line">                      Field.Index.ANALYZED));                <span class="comment">// #3</span></div><div class="line">    writer.addDocument(doc);                                 <span class="comment">// #3</span></div><div class="line">    </div><div class="line">    IndexReader newReader = reader.reopen();                 <span class="comment">// #4</span></div><div class="line">    assertFalse(reader == newReader);                        <span class="comment">// #5</span></div><div class="line">    reader.close();                                          <span class="comment">// #6</span></div><div class="line">    searcher = <span class="keyword">new</span> IndexSearcher(newReader);              </div><div class="line"></div><div class="line">    TopDocs hits = searcher.search(query, <span class="number">10</span>);               <span class="comment">// #7</span></div><div class="line">    assertEquals(<span class="number">9</span>, hits.totalHits);                         <span class="comment">// #7</span></div><div class="line"></div><div class="line">    query = <span class="keyword">new</span> TermQuery(<span class="keyword">new</span> Term(<span class="string">"text"</span>, <span class="string">"bbb"</span>));          <span class="comment">// #8</span></div><div class="line">    hits = searcher.search(query, <span class="number">1</span>);                        <span class="comment">// #8</span></div><div class="line">    assertEquals(<span class="number">1</span>, hits.totalHits);                         <span class="comment">// #8</span></div><div class="line"></div><div class="line">    newReader.close();</div><div class="line">    writer.close();</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">  #1 Create near-real-time reader</div><div class="line">  #A Wrap reader in IndexSearcher</div><div class="line">  #B Search returns 10 hits</div><div class="line">  #2 Delete 1 document</div><div class="line">  #3 Add 1 document</div><div class="line">  #4 Reopen reader</div><div class="line">  #5 Confirm reader is new</div><div class="line">  #6 Close old reader</div><div class="line">  #7 Verify 9 hits now</div><div class="line">  #8 Confirm new document matched</div><div class="line">*/</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">#1 IndexWriter returns a reader that's able to search all previously committed changes to the index, plus any uncommitted changes.  The returned reader is always readOnly.</div><div class="line">#2,#3 We make changes to the index, but do not commit them.</div><div class="line">#4,#5,#6 Ask the reader to reopen.  Note that this simply re-calls writer.getReader again under the hood.  Because we made changes, the newReader will be different from the old one so we must close the old one.</div><div class="line">#7, #8 The changes made with the writer are reflected in new searches.</div><div class="line">*/</div></pre></td></tr></table></figure>
-<h2 id="Lucene的评分机制-scoring"><a href="#Lucene的评分机制-scoring" class="headerlink" title="Lucene的评分机制(scoring)"></a>Lucene的评分机制(scoring)</h2><h3 id="How-Lucene-scores"><a href="#How-Lucene-scores" class="headerlink" title="How Lucene scores"></a>How Lucene scores</h3><p>Lucene similarity scoring formula:</p>
-<p>$$ \sum_{t\in d}(tf(t\in d)\times idf(t)^2\times boost(t.field\in d)\times coord(q, d)\times queryNorm(q)) $$</p>
-<p>其中d指document，t指term，q指query。<br>通过这个方程我们可以计算文档对于query的评分，通常还需要将评分进行归一化处理，也就是除以最大评分。评分越大说明文档和query的匹配程度越高。Lucene根据匹配文档的得分进行排序，然后将结果返回。</p>
-<p>This score is the raw score, which is a floating-point number &gt;= 0.0. Typically, if an application presents the score to the end user, it’s best to first normalize the scores by dividing all scores by the maximum score for the query. The larger the similarity score, the better the match of the document to the query. By default Lucene returns documents reverse-sorted by this score, meaning the top documents are the best matching ones. Table 3.5 describes each of the factors in the scoring formula.<br>Boost factors are built into the equation to let you affect a query or field’s influence on score. Field boosts come in explicitly in the equation as the boost(t.field in d) factor, set at indexing time. The default value of field boosts, logically, is 1.0. During indexing, a document can be assigned a boost, too. A document boost factor implicitly sets the starting field boost of all fields to the specified value. Field-specific boosts are multiplied by the starting value, giving the final value of the field boost factor. It’s pos- sible to add the same named field to a document multiple times, and in such situations the field boost is computed as all the boosts specified for that field and document mul- tiplied together. Section 2.5 discusses index-time boosting in more detail.<br>In addition to the explicit factors in this equation, other factors can be computed on a per-query basis as part of the queryNorm factor. Queries themselves can have an impact on the document score. Boosting a Query instance is sensible only in a multi- ple-clause query; if only a single term is used for searching, changing its boost would impact all matched documents equally. In a multiple-clause Boolean query, some doc- uments may match one clause but not another, enabling the boost factor to discrimi- nate between matching documents. Queries also default to a 1.0 boost factor.<br>Most of these scoring formula factors are controlled and implemented as a sub- class of the abstract Similarity class. DefaultSimilarity is the implementation used unless otherwise specified. More computations are performed under the covers of DefaultSimilarity; for example, the term frequency factor is the square root of the actual frequency. Because this is an “in action” book, it’s beyond the book’s scope to delve into the inner workings of these calculations. In practice, it’s extremely rare to need a change in these factors. Should you need to change them, please refer to Similarity’s Javadocs, and be prepared with a solid understanding of these factors and the effect your changes will have.<br>It’s important to note that a change in index-time boosts or the Similarity meth- ods used during indexing, such as lengthNorm, require that the index be rebuilt for all factors to be in sync.<br>Let’s say you’re baffled as to why a certain document got a good score to your Query. Lucene offers a nice feature to help provide the answer.</p>
-<table>
-<thead>
-<tr>
-<th>Factor</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>tf(t in d)</code></td>
-<td>Term frequency factor for the term (t) in the document (d)—how many times the term t occurs in the document.</td>
-</tr>
-<tr>
-<td><code>idf(t)</code></td>
-<td>Inverse document frequency of the term: a measure of how “unique” the term is. Very common terms have a low idf; very rare terms have a high idf.</td>
-</tr>
-<tr>
-<td><code>boost(t.field in d)</code></td>
-<td>Field and document boost, as set during indexing (see section 2.5). You may use this to statically boost certain fields and certain docu- ments over others.</td>
-</tr>
-<tr>
-<td><code>lengthNorm(t.field in d)</code></td>
-<td>Normalization value of a field, given the number of terms within the field. This value is computed during indexing and stored in the index norms. Shorter fields (fewer tokens) get a bigger boost from this factor.</td>
-</tr>
-<tr>
-<td><code>coord(q, d)</code></td>
-<td>Coordination factor, based on the number of query terms the document contains. The coordination factor gives an AND-like boost to documents that contain more of the search terms than other documents.</td>
-</tr>
-<tr>
-<td><code>queryNorm(q)</code></td>
-<td>Normalization value for a query, given the sum of the squared weights of each of the query terms.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="多样化查询-Lucene’s-diverse-queries"><a href="#多样化查询-Lucene’s-diverse-queries" class="headerlink" title="多样化查询(Lucene’s diverse queries)"></a>多样化查询(Lucene’s diverse queries)</h2><h2 id="QueryParser"><a href="#QueryParser" class="headerlink" title="QueryParser"></a>QueryParser</h2>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1331,7 +1161,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">327</span>
+              <span class="site-state-item-count">328</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

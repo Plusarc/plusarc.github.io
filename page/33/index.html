@@ -260,6 +260,287 @@
             
               
                 
+                <a class="post-title-link" href="/2015/08/18/Leetcode_Different Ways to Add Parentheses/" itemprop="url">
+                  Different Ways to Add Parentheses
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-08-18T00:00:00+09:00" content="2015-08-18">
+              2015-08-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/08/18/Leetcode_Different Ways to Add Parentheses/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/18/Leetcode_Different Ways to Add Parentheses/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Different-Ways-to-Add-Parentheses"><a href="#Different-Ways-to-Add-Parentheses" class="headerlink" title="Different Ways to Add Parentheses"></a><a href="https://leetcode.com/problems/different-ways-to-add-parentheses/" target="_blank" rel="external">Different Ways to Add Parentheses</a></h1><blockquote>
+<p>Given a string of numbers and operators, return all possible results from computing all the different possible ways to group numbers and operators. The valid operators are +, - and *.</p>
+</blockquote>
+<p>Example 1<br><code>Input: &quot;2-1-1&quot;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">((2-1)-1) = 0</div><div class="line">(2-(1-1)) = 2</div><div class="line">Output: [0, 2]</div></pre></td></tr></table></figure>
+<p>Example 2<br><code>Input: &quot;2*3-4*5&quot;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">(2*(3-(4*5))) = -34</div><div class="line">((2*3)-(4*5)) = -14</div><div class="line">((2*(3-4))*5) = -10</div><div class="line">(2*((3-4)*5)) = -10</div><div class="line">(((2*3)-4)*5) = 10</div><div class="line">Output: [-34, -14, -10, -10, 10]</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h3 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1"></a>Method 1</h3><p>个人使用了栈实现+递归实现，每次添加一个数入栈时，依次弹出一个数计算并压入栈，直到只剩一个操作数，对于每次计算完后复制栈并递归。例如：<br><code>Input: &quot;2*3-4*5&quot;</code></p>
+<p>step 1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">*</div><div class="line">2</div></pre></td></tr></table></figure>
+<p>step2:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">3</div><div class="line">*</div><div class="line">2</div></pre></td></tr></table></figure>
+<p>复制这个栈进行第一个下一步递归。</p>
+<p>弹出栈中的两个数进行计算：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">6</div></pre></td></tr></table></figure>
+<p>同样复制这个栈进行第二个下一步递归。</p>
+<p>step3:<br>有两个独立的递归在进行，这里已第一个递归为例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">4</div><div class="line">-</div><div class="line">3</div><div class="line">*</div><div class="line">2</div></pre></td></tr></table></figure>
+<p>复制这个栈进行第一个下一步递归。</p>
+<p>弹出栈中的两个数进行计算：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-1</div><div class="line">*</div><div class="line">2</div></pre></td></tr></table></figure>
+<p>同样复制这个栈进行第二个下一步递归。</p>
+<p>继续弹出栈中的两个数进行计算：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-2</div></pre></td></tr></table></figure>
+<p>同样复制这个栈进行第三个下一步递归。</p>
+<p>对于step2的第二个递归也是如此操作。</p>
+<h3 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2"></a>Method 2</h3><p>上面实现的方法空间复杂度比较高，因为要不断的复制栈。<br>这里参考一种更优的基于<a href="https://leetcode.com/discuss/48477/a-recursive-java-solution-284-ms" target="_blank" rel="external">分治与递归的方法</a>，本质上跟上面方法是一样的，计算方式更加清晰和简洁。</p>
+<p>对于<code>Input: &quot;2*3-4*5&quot;</code>，假设<code>f(2*3-4*5)</code>表示其可能的计算解(为一个结果的list)，其可能的计算组合表示为 <code>f(2*3-4*5)</code> = <code>f(2)*f(3-4*5)</code> with <code>f(2*3)-f(4*5)</code> with<code>f(2*3-4)*f(5)</code>,  对于<code>f(3-4*5)</code>又可以进一步分解为<code>f(3)-f(4*5)</code>和<code>f(3-4)*f(5)</code>，这样递归计算。比较清晰。注意<code>f</code>的结果不是一个单个的数而是一个list，上面两个 <code>f</code>之间的操作也不是单纯的<code>+, -, *</code>， 而是两个 <code>f</code>中每个元素与对方集合进行操作的结果。</p>
+<p>例如<br><code>f(2)={2}</code><br><code>f(3-4*5)={-5, -17}</code><br><code>f(2)*f(3-4*5) = {-10, -34}</code></p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><p>Method 2的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">diffWaysToCompute</span><span class="params">(String input)</span> </span>&#123;</div><div class="line">        List&lt;Integer&gt; ret = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;input.length(); i++) &#123;</div><div class="line">            <span class="keyword">if</span> (input.charAt(i) == <span class="string">'-'</span> ||</div><div class="line">                input.charAt(i) == <span class="string">'*'</span> ||</div><div class="line">                input.charAt(i) == <span class="string">'+'</span> ) &#123;</div><div class="line">                String part1 = input.substring(<span class="number">0</span>, i);</div><div class="line">                String part2 = input.substring(i+<span class="number">1</span>);</div><div class="line">                List&lt;Integer&gt; part1Ret = diffWaysToCompute(part1);</div><div class="line">                List&lt;Integer&gt; part2Ret = diffWaysToCompute(part2);</div><div class="line">                <span class="keyword">for</span> (Integer p1 :   part1Ret) &#123;</div><div class="line">                    <span class="keyword">for</span> (Integer p2 :   part2Ret) &#123;</div><div class="line">                        <span class="keyword">int</span> c = <span class="number">0</span>;</div><div class="line">                        <span class="keyword">switch</span> (input.charAt(i)) &#123;</div><div class="line">                            <span class="keyword">case</span> <span class="string">'+'</span>: c = p1+p2;</div><div class="line">                                <span class="keyword">break</span>;</div><div class="line">                            <span class="keyword">case</span> <span class="string">'-'</span>: c = p1-p2;</div><div class="line">                                <span class="keyword">break</span>;</div><div class="line">                            <span class="keyword">case</span> <span class="string">'*'</span>: c = p1*p2;</div><div class="line">                                <span class="keyword">break</span>;</div><div class="line">                        &#125;</div><div class="line">                        ret.add(c);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (ret.size() == <span class="number">0</span>) &#123;</div><div class="line">            ret.add(Integer.valueOf(input));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/08/17/Leetcode_Rectangle Area/" itemprop="url">
+                  Rectangle Area
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-08-17T00:00:00+09:00" content="2015-08-17">
+              2015-08-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/08/17/Leetcode_Rectangle Area/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/17/Leetcode_Rectangle Area/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Rectangle-Area"><a href="#Rectangle-Area" class="headerlink" title="Rectangle Area"></a><a href="">Rectangle Area</a></h1><blockquote>
+<p>Find the total area covered by two rectilinear rectangles in a 2D plane.</p>
+<p>Each rectangle is defined by its bottom left corner and top right corner as shown in the figure.</p>
+<p><img src="https://leetcode.com/static/images/problemset/rectangle_area.png" alt=""></p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>求两个矩形在平面上占有的面积，关键是抽象出判断两个矩阵是否有重合，如何求出重合的面积，需要仔细观察。</p>
+<p>想象随意给两个矩形， 它们有重合的条件是：</p>
+<ol>
+<li>两个矩形下边的较大值必须 小于 两个矩形上边的较小值</li>
+<li>两个矩形左边的较大值必须 小于 两个矩形右边的较小值</li>
+</ol>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">computeArea</span><span class="params">(<span class="keyword">int</span> A, <span class="keyword">int</span> B, <span class="keyword">int</span> C, <span class="keyword">int</span> D, <span class="keyword">int</span> E, <span class="keyword">int</span> F, <span class="keyword">int</span> G, <span class="keyword">int</span> H)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> width = (Math.min(C, G) &gt; Math.max(A, E)) ? (Math.min(C, G) - Math.max(A, E)) : <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> height = (Math.min(D, H) &gt; Math.max(B, F)) ? (Math.min(D, H) - Math.max(B, F)) : <span class="number">0</span>;</div><div class="line">        <span class="keyword">return</span> (C-A) * (D-B) + (G-E) * (H-F) - width * height;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/08/17/Leetcode_Implement Stack using Queues/" itemprop="url">
                   Implement Stack using Queues
                 </a>
@@ -338,300 +619,6 @@
 <p>对于top操作，将整个queue的n个元素pop并push回去，并记录最后一个元素值，作为栈顶元素。</p>
 <h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyStack</span> </span>&#123;</div><div class="line">    <span class="comment">// Push element x onto stack.</span></div><div class="line">    Queue&lt;Integer&gt; record;</div><div class="line">    </div><div class="line">    MyStack() &#123;</div><div class="line">    	record = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">        record.add(x);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Removes the element on top of the stack.</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span>(i&lt;=record.size()-<span class="number">2</span>) &#123;</div><div class="line">            record.add(record.poll());</div><div class="line">            i++;</div><div class="line">        &#125;</div><div class="line">        record.poll();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Get the top element.</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span>(i&lt;=record.size()-<span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">if</span>(i==record.size()-<span class="number">1</span>) res = record.peek();</div><div class="line">        	record.add(record.poll());</div><div class="line">        	i++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Return whether the stack is empty.</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">empty</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> record.isEmpty();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/08/17/Leetcode_Basic Calculator II/" itemprop="url">
-                  Basic Calculator II
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-08-17T00:00:00+09:00" content="2015-08-17">
-              2015-08-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/08/17/Leetcode_Basic Calculator II/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/17/Leetcode_Basic Calculator II/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Basic-Calculator-II"><a href="#Basic-Calculator-II" class="headerlink" title="Basic Calculator II"></a><a href="https://leetcode.com/problems/basic-calculator-ii/" target="_blank" rel="external">Basic Calculator II</a></h1><blockquote>
-<p>Implement a basic calculator to evaluate a simple expression string.</p>
-<p>The expression string contains only non-negative integers, +, -, *, / operators and empty spaces . The integer division should truncate toward zero.</p>
-<p>You may assume that the given expression is always valid.</p>
-<p>Some examples</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&quot;3+2*2&quot; = 7</div><div class="line">&quot; 3/2 &quot; = 1</div><div class="line">&quot; 3+5 / 2 &quot; = 5</div></pre></td></tr></table></figure>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>同Basic Calculator， 一个解决 运算式 计算的通用方法是，先将中缀表达式转为后缀表达式(逆波兰式)，然后再求值，下次详细总结一下。</p>
-<p>一个解决 运算式 计算的通用方法是，先将中缀表达式转为后缀表达式(逆波兰式)，然后再求值，下次详细总结一下。</p>
-<p>###参考:<br><a href="http://blog.csdn.net/cheng110110/article/details/6529777" target="_blank" rel="external">支持四则混合运算的计算器</a><br><a href="http://www.iteye.com/topic/1130373" target="_blank" rel="external">逆波兰表达式的栈实现方式</a><br><a href="http://blog.sina.com.cn/s/blog_8e6a519e0101lvnj.html" target="_blank" rel="external">中缀表达式转后缀表达式</a><br><a href="https://zh.wikipedia.org/wiki/逆波兰表示法" target="_blank" rel="external">逆波兰式Wiki</a></p>
-<h3 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h3><ol>
-<li><strong>先求表达式的后缀表达式</strong><br>具体过程为：<br>1) 如果遇到操作数，则直接输出。<br>2) 如果遇到操作符，则检查栈顶元素优先级，如果其优先级不低于当前操作符（左括号除外），则弹出栈顶元素并输出。重复此过程直到栈顶元素优先级小于当前操作符或为左括号，或者栈为空。 然后将当前操作符压入栈中。<br>3）如果遇到左括号，直接压入栈中。<br>4) 如果遇到右括号，则将栈中元素弹出，直到遇到左括号为止。左括号只弹出栈而不输出。<br>5) 表达式处理完毕，则将栈中元素依次弹出。  </li>
-</ol>
-<p><strong>注意只有遇到右括号的情况下才会弹出左括号，其他情况都不会弹出。</strong>  </p>
-<p>例如，上述中缀表达式 a + b <em> c - (d - e) </em> f 的转换过程为：</p>
-<table>
-<thead>
-<tr>
-<th>操作</th>
-<th>res</th>
-<th>栈</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1) 遇到操作数a, 直接输出a</td>
-<td>a</td>
-<td></td>
-</tr>
-<tr>
-<td>2) 遇到操作符+, +压栈</td>
-<td>a</td>
-<td>+</td>
-</tr>
-<tr>
-<td>3) 遇到操作数b, 直接输出b</td>
-<td>ab</td>
-<td>+</td>
-</tr>
-<tr>
-<td>4) 遇到操作符*, 压栈</td>
-<td>ab</td>
-<td>+ *</td>
-</tr>
-<tr>
-<td>5) 遇到操作数c, 直接输出</td>
-<td>abc</td>
-<td>+ *</td>
-</tr>
-<tr>
-<td>6) 遇到操作符-, 栈顶弹出并输出，然后-进栈</td>
-<td>abc*</td>
-<td>+ -</td>
-</tr>
-<tr>
-<td>7）遇到操作符(,直接进栈</td>
-<td>abc*</td>
-<td>+ - (</td>
-</tr>
-<tr>
-<td>8) 遇到操作数d,直接输出</td>
-<td>abc*d</td>
-<td>+ - (</td>
-</tr>
-<tr>
-<td>9) 遇到操作符-，压栈</td>
-<td>abc*d</td>
-<td>+ - ( -</td>
-</tr>
-<tr>
-<td>10) 遇到操作数e，直接输出</td>
-<td>abc*de</td>
-<td>+ - ( -</td>
-</tr>
-<tr>
-<td>11）遇到操作符),(之后全部输出</td>
-<td>abc*de-</td>
-<td>+ -</td>
-</tr>
-<tr>
-<td>12）遇到操作符*,压栈</td>
-<td>abc*de-</td>
-<td>+ - *</td>
-</tr>
-<tr>
-<td>13) 遇到操作数f,输出</td>
-<td>abc*de-f</td>
-<td>+ - *</td>
-</tr>
-<tr>
-<td>14) 处理完毕，全部出栈输出。</td>
-<td>abc<em>de-f</em>-+</td>
-</tr>
-</tbody>
-</table>
-<p>2.<strong>基于后缀表达式求值。</strong>  </p>
-<p>中缀表达式<code>5 + ((1 + 2) * 4) − 3</code>写作<code>5 1 2 + 4 * + 3 −</code>.<br>下表给出了该逆波兰表达式从左至右求值的过程，堆栈栏给出了中间值，用于跟踪算法。</p>
-<table>
-<thead>
-<tr>
-<th>输入</th>
-<th>操作</th>
-<th>堆栈</th>
-<th>注释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>5</td>
-<td>入栈</td>
-<td>5</td>
-<td></td>
-</tr>
-<tr>
-<td>1</td>
-<td>入栈</td>
-<td>5, 1</td>
-<td></td>
-</tr>
-<tr>
-<td>2</td>
-<td>入栈</td>
-<td>5, 1, 2</td>
-<td></td>
-</tr>
-<tr>
-<td>+</td>
-<td>加法运算</td>
-<td>5, 3</td>
-<td>(1, 2)出栈；将结果（3）入栈</td>
-</tr>
-<tr>
-<td>4</td>
-<td>入栈</td>
-<td>5, 3, 4</td>
-<td></td>
-</tr>
-<tr>
-<td>*</td>
-<td>乘法运算</td>
-<td>5, 12</td>
-<td>(3, 4)出栈；将结果（12）入栈</td>
-</tr>
-<tr>
-<td>+</td>
-<td>加法运算</td>
-<td>17</td>
-<td>(5, 12)出栈；将结果 (17)入栈</td>
-</tr>
-<tr>
-<td>3</td>
-<td>入栈</td>
-<td>17, 3</td>
-<td></td>
-</tr>
-<tr>
-<td>−</td>
-<td>减法运算</td>
-<td>14</td>
-<td>(17, 3)出栈；将结果（14）入栈</td>
-</tr>
-</tbody>
-</table>
-<p>计算完成时，栈内只有一个操作数，这就是表达式的结果：14</p>
-<p>上述运算可以重写为如下运算链方法（用于HP的逆波兰计算器）：<br>1 2 + 4 * 5 + 3 −</p>
-<h3 id="code思路"><a href="#code思路" class="headerlink" title="code思路"></a>code思路</h3><p>先给出这个问题的accepted实现。主要思路是从右往左扫描，遇到数字则入栈，遇到*，/也入栈，遇到+,-先查前面是否有 乘除表达式，若有则 从栈中不断弹出计算该乘除表达式计算，然后将结果入栈。直到扫描结束。最后栈中留下的之有可能是结果，或纯乘除表达式或纯加减表达式的一种，扫描一遍计算出结果。不算简洁。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">calculate</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">    	<span class="keyword">if</span>(s.length()==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=s.length()-<span class="number">1</span>; i&gt;=<span class="number">0</span>; i--) &#123;</div><div class="line">            <span class="keyword">if</span>(s.charAt(i)==<span class="string">' '</span>) <span class="keyword">continue</span>;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(isNumChar(s.charAt(i))) &#123;</div><div class="line">                <span class="keyword">int</span> num = toNum(s.charAt(i));</div><div class="line">                <span class="keyword">int</span> base = <span class="number">1</span>;</div><div class="line">                <span class="keyword">while</span>((i-<span class="number">1</span>)&gt;=<span class="number">0</span> &amp;&amp; isNumChar(s.charAt(i-<span class="number">1</span>))) &#123;</div><div class="line">                    i--;</div><div class="line">                    base = base * <span class="number">10</span>;</div><div class="line">                    num = num + toNum(s.charAt(i)) * base;</div><div class="line">                &#125;</div><div class="line">                stack.push(num);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s.charAt(i)==<span class="string">'+'</span> || s.charAt(i)==<span class="string">'-'</span>) &#123;</div><div class="line">                <span class="keyword">int</span> sum = stack.pop();</div><div class="line">                <span class="keyword">while</span>(!stack.isEmpty() &amp;&amp; ( (stack.peek()==<span class="string">'*'</span>) || (stack.peek()==<span class="string">'/'</span>) ) ) &#123;</div><div class="line">                    <span class="keyword">int</span> operation = stack.pop();</div><div class="line">                    <span class="keyword">if</span>(operation==<span class="string">'*'</span>) sum = sum * stack.pop();</div><div class="line">                    <span class="keyword">else</span> <span class="keyword">if</span>(operation==<span class="string">'/'</span>) sum = sum / stack.pop();</div><div class="line">                &#125;</div><div class="line">                stack.push(sum);</div><div class="line">                stack.push((<span class="keyword">int</span>)s.charAt(i));</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s.charAt(i)==<span class="string">'*'</span> || s.charAt(i)==<span class="string">'/'</span>) &#123;</div><div class="line">                stack.push((<span class="keyword">int</span>)s.charAt(i));</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> sum = stack.pop();</div><div class="line">        <span class="keyword">while</span>(!stack.isEmpty()) &#123;</div><div class="line">            <span class="keyword">int</span> operation = stack.pop();</div><div class="line">            <span class="keyword">if</span>(operation==<span class="string">'*'</span>) sum = sum * stack.pop();</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(operation==<span class="string">'/'</span>) sum = sum / stack.pop();</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(operation==<span class="string">'-'</span>) sum = sum - stack.pop();</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(operation==<span class="string">'+'</span>) sum = sum + stack.pop();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> sum;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isNumChar</span><span class="params">(<span class="keyword">char</span> c)</span> </span>&#123;</div><div class="line">    	<span class="keyword">return</span> c&gt;=<span class="string">'0'</span> &amp;&amp; c&lt;=<span class="string">'9'</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">toNum</span><span class="params">(<span class="keyword">char</span> c)</span> </span>&#123;</div><div class="line">    	<span class="keyword">return</span> c-<span class="string">'0'</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>better solution</p>
-<p><a href="http://alexshi629.blogspot.jp/2015/06/leetcode-basic-calculator-ii.html" target="_blank" rel="external">LeetCode | Basic Calculator II</a></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">calculate</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        s = s.trim();</div><div class="line">        <span class="keyword">if</span>(s.length()==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">if</span>(Character.isDigit(s.charAt(<span class="number">0</span>))) s = <span class="string">"+"</span> + s + <span class="string">"+0"</span>;</div><div class="line">        Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;s.length(); ) &#123;</div><div class="line">            <span class="keyword">char</span> c=s.charAt(i);</div><div class="line">            <span class="keyword">if</span>(c==<span class="string">' '</span>) &#123;</div><div class="line">                i++; </div><div class="line">                <span class="keyword">continue</span>;</div><div class="line">            &#125;</div><div class="line">            i++;</div><div class="line">            <span class="keyword">int</span> num=<span class="number">0</span>;</div><div class="line">            <span class="keyword">while</span>(i&lt;s.length()&amp;&amp;(Character.isDigit(s.charAt(i))||s.charAt(i)==<span class="string">' '</span>))&#123;</div><div class="line">                num = s.charAt(i)==<span class="string">' '</span>? num : num*<span class="number">10</span>+(s.charAt(i)-<span class="string">'0'</span>);</div><div class="line">                i++;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>(c==<span class="string">'+'</span> || c==<span class="string">'-'</span>) &#123;</div><div class="line">                <span class="keyword">if</span>(stack.size()==<span class="number">2</span>) &#123;</div><div class="line">                    stack.push(stack.pop() + stack.pop());</div><div class="line">                &#125;</div><div class="line">                stack.push(c==<span class="string">'+'</span> ? num : -num);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(c==<span class="string">'*'</span> || c==<span class="string">'/'</span>) &#123;</div><div class="line">                stack.push(c==<span class="string">'*'</span> ? stack.pop()*num : stack.pop()/num);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        stack.pop();</div><div class="line">        <span class="keyword">return</span> stack.peek();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>由于表达式字符串中不包含括号，因此问题可以简化为对乘除运算与加减运算优先级的处理。</p>
-<p>参考：<a href="https://leetcode.com/discuss/41610/ac-python-solution-use-re-to-get-the-expression" target="_blank" rel="external">https://leetcode.com/discuss/41610/ac-python-solution-use-re-to-get-the-expression</a></p>
-<p>使用辅助变量d记录当前待参与运算的运算数，func记录上一个加减运算符，total记录表达式的值。</p>
-<p>若当前运算符为乘除法，则马上对d与下一个运算数执行乘除运算，赋值给d；</p>
-<p>若当前运算符为加减法，则对total与d执行func（加减）运算，赋值给total，并更新func；</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="comment"># @param &#123;string&#125; s</span></div><div class="line">    <span class="comment"># @return &#123;integer&#125;</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">calculate</span><span class="params">(self, s)</span>:</span></div><div class="line">        s = re.sub(<span class="string">r'\d+'</span>, <span class="string">' \g&lt;0&gt; '</span>, s)</div><div class="line">        op = &#123;<span class="string">'+'</span>: operator.add, <span class="string">'-'</span>: operator.sub,</div><div class="line">              <span class="string">'*'</span>: operator.mul, <span class="string">'/'</span>: operator.floordiv&#125;</div><div class="line">        expression = s.split()</div><div class="line">        total = d = idx = <span class="number">0</span></div><div class="line">        func = op[<span class="string">'+'</span>]</div><div class="line">        <span class="keyword">while</span> idx &lt; len(expression):</div><div class="line">            e = expression[idx]</div><div class="line">            <span class="keyword">if</span> e <span class="keyword">in</span> <span class="string">'+-'</span>:</div><div class="line">                total = func(total, d)</div><div class="line">                func = op[e]</div><div class="line">            <span class="keyword">elif</span> e <span class="keyword">in</span> <span class="string">'*/'</span>:</div><div class="line">                idx += <span class="number">1</span></div><div class="line">                d = op[e](d, int(expression[idx]))</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                d = int(e)</div><div class="line">            idx += <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> func(total, d)</div></pre></td></tr></table></figure>
           
         
       
@@ -969,8 +956,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/08/17/Leetcode_Rectangle Area/" itemprop="url">
-                  Rectangle Area
+                <a class="post-title-link" href="/2015/08/17/Leetcode_Basic Calculator II/" itemprop="url">
+                  Basic Calculator II
                 </a>
               
             
@@ -1013,8 +1000,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/08/17/Leetcode_Rectangle Area/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/17/Leetcode_Rectangle Area/" itemprop="commentsCount"></span>
+                <a href="/2015/08/17/Leetcode_Basic Calculator II/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/17/Leetcode_Basic Calculator II/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1039,145 +1026,182 @@
       
         
           
-            <h1 id="Rectangle-Area"><a href="#Rectangle-Area" class="headerlink" title="Rectangle Area"></a><a href="">Rectangle Area</a></h1><blockquote>
-<p>Find the total area covered by two rectilinear rectangles in a 2D plane.</p>
-<p>Each rectangle is defined by its bottom left corner and top right corner as shown in the figure.</p>
-<p><img src="https://leetcode.com/static/images/problemset/rectangle_area.png" alt=""></p>
+            <h1 id="Basic-Calculator-II"><a href="#Basic-Calculator-II" class="headerlink" title="Basic Calculator II"></a><a href="https://leetcode.com/problems/basic-calculator-ii/" target="_blank" rel="external">Basic Calculator II</a></h1><blockquote>
+<p>Implement a basic calculator to evaluate a simple expression string.</p>
+<p>The expression string contains only non-negative integers, +, -, *, / operators and empty spaces . The integer division should truncate toward zero.</p>
+<p>You may assume that the given expression is always valid.</p>
+<p>Some examples</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>求两个矩形在平面上占有的面积，关键是抽象出判断两个矩阵是否有重合，如何求出重合的面积，需要仔细观察。</p>
-<p>想象随意给两个矩形， 它们有重合的条件是：</p>
-<ol>
-<li>两个矩形下边的较大值必须 小于 两个矩形上边的较小值</li>
-<li>两个矩形左边的较大值必须 小于 两个矩形右边的较小值</li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&quot;3+2*2&quot; = 7</div><div class="line">&quot; 3/2 &quot; = 1</div><div class="line">&quot; 3+5 / 2 &quot; = 5</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>同Basic Calculator， 一个解决 运算式 计算的通用方法是，先将中缀表达式转为后缀表达式(逆波兰式)，然后再求值，下次详细总结一下。</p>
+<p>一个解决 运算式 计算的通用方法是，先将中缀表达式转为后缀表达式(逆波兰式)，然后再求值，下次详细总结一下。</p>
+<p>###参考:<br><a href="http://blog.csdn.net/cheng110110/article/details/6529777" target="_blank" rel="external">支持四则混合运算的计算器</a><br><a href="http://www.iteye.com/topic/1130373" target="_blank" rel="external">逆波兰表达式的栈实现方式</a><br><a href="http://blog.sina.com.cn/s/blog_8e6a519e0101lvnj.html" target="_blank" rel="external">中缀表达式转后缀表达式</a><br><a href="https://zh.wikipedia.org/wiki/逆波兰表示法" target="_blank" rel="external">逆波兰式Wiki</a></p>
+<h3 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h3><ol>
+<li><strong>先求表达式的后缀表达式</strong><br>具体过程为：<br>1) 如果遇到操作数，则直接输出。<br>2) 如果遇到操作符，则检查栈顶元素优先级，如果其优先级不低于当前操作符（左括号除外），则弹出栈顶元素并输出。重复此过程直到栈顶元素优先级小于当前操作符或为左括号，或者栈为空。 然后将当前操作符压入栈中。<br>3）如果遇到左括号，直接压入栈中。<br>4) 如果遇到右括号，则将栈中元素弹出，直到遇到左括号为止。左括号只弹出栈而不输出。<br>5) 表达式处理完毕，则将栈中元素依次弹出。  </li>
 </ol>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">computeArea</span><span class="params">(<span class="keyword">int</span> A, <span class="keyword">int</span> B, <span class="keyword">int</span> C, <span class="keyword">int</span> D, <span class="keyword">int</span> E, <span class="keyword">int</span> F, <span class="keyword">int</span> G, <span class="keyword">int</span> H)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> width = (Math.min(C, G) &gt; Math.max(A, E)) ? (Math.min(C, G) - Math.max(A, E)) : <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> height = (Math.min(D, H) &gt; Math.max(B, F)) ? (Math.min(D, H) - Math.max(B, F)) : <span class="number">0</span>;</div><div class="line">        <span class="keyword">return</span> (C-A) * (D-B) + (G-E) * (H-F) - width * height;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/08/16/Leetcode_Climbing Stairs /" itemprop="url">
-                  Climbing Stairs
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-08-16T00:00:00+09:00" content="2015-08-16">
-              2015-08-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/08/16/Leetcode_Climbing Stairs /#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/16/Leetcode_Climbing Stairs /" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Climbing-Stairs"><a href="#Climbing-Stairs" class="headerlink" title="Climbing Stairs "></a><a href="https://leetcode.com/problems/climbing-stairs/" target="_blank" rel="external">Climbing Stairs </a></h1><blockquote>
-<p>You are climbing a stair case. It takes n steps to reach to the top.</p>
-<p>Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>动态规划法，对于n&gt;2，其上一步必定是n-1, 或n-2。由n-1跳一步，或者n-2跳两步，所以状态转移方程为：<br><code>path(n)=path(n-1)+path(n-2)</code></p>
-<p>递归solution会包含很多子问题的重复计算，建立数组从最下面的台阶开始存储每每个台阶的path，递推方式计算。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">climbStairs</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(n==<span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(n==<span class="number">2</span>) <span class="keyword">return</span> <span class="number">2</span>;</div><div class="line">        <span class="keyword">int</span> last2 = <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> last = <span class="number">2</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>; i&lt;n; i++) &#123;</div><div class="line">            <span class="keyword">int</span> current = last + last2;</div><div class="line">            last2 = last;</div><div class="line">            last = current;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> last;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
+<p><strong>注意只有遇到右括号的情况下才会弹出左括号，其他情况都不会弹出。</strong>  </p>
+<p>例如，上述中缀表达式 a + b <em> c - (d - e) </em> f 的转换过程为：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>res</th>
+<th>栈</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1) 遇到操作数a, 直接输出a</td>
+<td>a</td>
+<td></td>
+</tr>
+<tr>
+<td>2) 遇到操作符+, +压栈</td>
+<td>a</td>
+<td>+</td>
+</tr>
+<tr>
+<td>3) 遇到操作数b, 直接输出b</td>
+<td>ab</td>
+<td>+</td>
+</tr>
+<tr>
+<td>4) 遇到操作符*, 压栈</td>
+<td>ab</td>
+<td>+ *</td>
+</tr>
+<tr>
+<td>5) 遇到操作数c, 直接输出</td>
+<td>abc</td>
+<td>+ *</td>
+</tr>
+<tr>
+<td>6) 遇到操作符-, 栈顶弹出并输出，然后-进栈</td>
+<td>abc*</td>
+<td>+ -</td>
+</tr>
+<tr>
+<td>7）遇到操作符(,直接进栈</td>
+<td>abc*</td>
+<td>+ - (</td>
+</tr>
+<tr>
+<td>8) 遇到操作数d,直接输出</td>
+<td>abc*d</td>
+<td>+ - (</td>
+</tr>
+<tr>
+<td>9) 遇到操作符-，压栈</td>
+<td>abc*d</td>
+<td>+ - ( -</td>
+</tr>
+<tr>
+<td>10) 遇到操作数e，直接输出</td>
+<td>abc*de</td>
+<td>+ - ( -</td>
+</tr>
+<tr>
+<td>11）遇到操作符),(之后全部输出</td>
+<td>abc*de-</td>
+<td>+ -</td>
+</tr>
+<tr>
+<td>12）遇到操作符*,压栈</td>
+<td>abc*de-</td>
+<td>+ - *</td>
+</tr>
+<tr>
+<td>13) 遇到操作数f,输出</td>
+<td>abc*de-f</td>
+<td>+ - *</td>
+</tr>
+<tr>
+<td>14) 处理完毕，全部出栈输出。</td>
+<td>abc<em>de-f</em>-+</td>
+</tr>
+</tbody>
+</table>
+<p>2.<strong>基于后缀表达式求值。</strong>  </p>
+<p>中缀表达式<code>5 + ((1 + 2) * 4) − 3</code>写作<code>5 1 2 + 4 * + 3 −</code>.<br>下表给出了该逆波兰表达式从左至右求值的过程，堆栈栏给出了中间值，用于跟踪算法。</p>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>操作</th>
+<th>堆栈</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5</td>
+<td>入栈</td>
+<td>5</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>入栈</td>
+<td>5, 1</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>入栈</td>
+<td>5, 1, 2</td>
+<td></td>
+</tr>
+<tr>
+<td>+</td>
+<td>加法运算</td>
+<td>5, 3</td>
+<td>(1, 2)出栈；将结果（3）入栈</td>
+</tr>
+<tr>
+<td>4</td>
+<td>入栈</td>
+<td>5, 3, 4</td>
+<td></td>
+</tr>
+<tr>
+<td>*</td>
+<td>乘法运算</td>
+<td>5, 12</td>
+<td>(3, 4)出栈；将结果（12）入栈</td>
+</tr>
+<tr>
+<td>+</td>
+<td>加法运算</td>
+<td>17</td>
+<td>(5, 12)出栈；将结果 (17)入栈</td>
+</tr>
+<tr>
+<td>3</td>
+<td>入栈</td>
+<td>17, 3</td>
+<td></td>
+</tr>
+<tr>
+<td>−</td>
+<td>减法运算</td>
+<td>14</td>
+<td>(17, 3)出栈；将结果（14）入栈</td>
+</tr>
+</tbody>
+</table>
+<p>计算完成时，栈内只有一个操作数，这就是表达式的结果：14</p>
+<p>上述运算可以重写为如下运算链方法（用于HP的逆波兰计算器）：<br>1 2 + 4 * 5 + 3 −</p>
+<h3 id="code思路"><a href="#code思路" class="headerlink" title="code思路"></a>code思路</h3><p>先给出这个问题的accepted实现。主要思路是从右往左扫描，遇到数字则入栈，遇到*，/也入栈，遇到+,-先查前面是否有 乘除表达式，若有则 从栈中不断弹出计算该乘除表达式计算，然后将结果入栈。直到扫描结束。最后栈中留下的之有可能是结果，或纯乘除表达式或纯加减表达式的一种，扫描一遍计算出结果。不算简洁。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">calculate</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">    	<span class="keyword">if</span>(s.length()==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=s.length()-<span class="number">1</span>; i&gt;=<span class="number">0</span>; i--) &#123;</div><div class="line">            <span class="keyword">if</span>(s.charAt(i)==<span class="string">' '</span>) <span class="keyword">continue</span>;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(isNumChar(s.charAt(i))) &#123;</div><div class="line">                <span class="keyword">int</span> num = toNum(s.charAt(i));</div><div class="line">                <span class="keyword">int</span> base = <span class="number">1</span>;</div><div class="line">                <span class="keyword">while</span>((i-<span class="number">1</span>)&gt;=<span class="number">0</span> &amp;&amp; isNumChar(s.charAt(i-<span class="number">1</span>))) &#123;</div><div class="line">                    i--;</div><div class="line">                    base = base * <span class="number">10</span>;</div><div class="line">                    num = num + toNum(s.charAt(i)) * base;</div><div class="line">                &#125;</div><div class="line">                stack.push(num);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s.charAt(i)==<span class="string">'+'</span> || s.charAt(i)==<span class="string">'-'</span>) &#123;</div><div class="line">                <span class="keyword">int</span> sum = stack.pop();</div><div class="line">                <span class="keyword">while</span>(!stack.isEmpty() &amp;&amp; ( (stack.peek()==<span class="string">'*'</span>) || (stack.peek()==<span class="string">'/'</span>) ) ) &#123;</div><div class="line">                    <span class="keyword">int</span> operation = stack.pop();</div><div class="line">                    <span class="keyword">if</span>(operation==<span class="string">'*'</span>) sum = sum * stack.pop();</div><div class="line">                    <span class="keyword">else</span> <span class="keyword">if</span>(operation==<span class="string">'/'</span>) sum = sum / stack.pop();</div><div class="line">                &#125;</div><div class="line">                stack.push(sum);</div><div class="line">                stack.push((<span class="keyword">int</span>)s.charAt(i));</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s.charAt(i)==<span class="string">'*'</span> || s.charAt(i)==<span class="string">'/'</span>) &#123;</div><div class="line">                stack.push((<span class="keyword">int</span>)s.charAt(i));</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> sum = stack.pop();</div><div class="line">        <span class="keyword">while</span>(!stack.isEmpty()) &#123;</div><div class="line">            <span class="keyword">int</span> operation = stack.pop();</div><div class="line">            <span class="keyword">if</span>(operation==<span class="string">'*'</span>) sum = sum * stack.pop();</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(operation==<span class="string">'/'</span>) sum = sum / stack.pop();</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(operation==<span class="string">'-'</span>) sum = sum - stack.pop();</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(operation==<span class="string">'+'</span>) sum = sum + stack.pop();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> sum;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isNumChar</span><span class="params">(<span class="keyword">char</span> c)</span> </span>&#123;</div><div class="line">    	<span class="keyword">return</span> c&gt;=<span class="string">'0'</span> &amp;&amp; c&lt;=<span class="string">'9'</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">toNum</span><span class="params">(<span class="keyword">char</span> c)</span> </span>&#123;</div><div class="line">    	<span class="keyword">return</span> c-<span class="string">'0'</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>better solution</p>
+<p><a href="http://alexshi629.blogspot.jp/2015/06/leetcode-basic-calculator-ii.html" target="_blank" rel="external">LeetCode | Basic Calculator II</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">calculate</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        s = s.trim();</div><div class="line">        <span class="keyword">if</span>(s.length()==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">if</span>(Character.isDigit(s.charAt(<span class="number">0</span>))) s = <span class="string">"+"</span> + s + <span class="string">"+0"</span>;</div><div class="line">        Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;s.length(); ) &#123;</div><div class="line">            <span class="keyword">char</span> c=s.charAt(i);</div><div class="line">            <span class="keyword">if</span>(c==<span class="string">' '</span>) &#123;</div><div class="line">                i++; </div><div class="line">                <span class="keyword">continue</span>;</div><div class="line">            &#125;</div><div class="line">            i++;</div><div class="line">            <span class="keyword">int</span> num=<span class="number">0</span>;</div><div class="line">            <span class="keyword">while</span>(i&lt;s.length()&amp;&amp;(Character.isDigit(s.charAt(i))||s.charAt(i)==<span class="string">' '</span>))&#123;</div><div class="line">                num = s.charAt(i)==<span class="string">' '</span>? num : num*<span class="number">10</span>+(s.charAt(i)-<span class="string">'0'</span>);</div><div class="line">                i++;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>(c==<span class="string">'+'</span> || c==<span class="string">'-'</span>) &#123;</div><div class="line">                <span class="keyword">if</span>(stack.size()==<span class="number">2</span>) &#123;</div><div class="line">                    stack.push(stack.pop() + stack.pop());</div><div class="line">                &#125;</div><div class="line">                stack.push(c==<span class="string">'+'</span> ? num : -num);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(c==<span class="string">'*'</span> || c==<span class="string">'/'</span>) &#123;</div><div class="line">                stack.push(c==<span class="string">'*'</span> ? stack.pop()*num : stack.pop()/num);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        stack.pop();</div><div class="line">        <span class="keyword">return</span> stack.peek();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>由于表达式字符串中不包含括号，因此问题可以简化为对乘除运算与加减运算优先级的处理。</p>
+<p>参考：<a href="https://leetcode.com/discuss/41610/ac-python-solution-use-re-to-get-the-expression" target="_blank" rel="external">https://leetcode.com/discuss/41610/ac-python-solution-use-re-to-get-the-expression</a></p>
+<p>使用辅助变量d记录当前待参与运算的运算数，func记录上一个加减运算符，total记录表达式的值。</p>
+<p>若当前运算符为乘除法，则马上对d与下一个运算数执行乘除运算，赋值给d；</p>
+<p>若当前运算符为加减法，则对total与d执行func（加减）运算，赋值给total，并更新func；</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="comment"># @param &#123;string&#125; s</span></div><div class="line">    <span class="comment"># @return &#123;integer&#125;</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">calculate</span><span class="params">(self, s)</span>:</span></div><div class="line">        s = re.sub(<span class="string">r'\d+'</span>, <span class="string">' \g&lt;0&gt; '</span>, s)</div><div class="line">        op = &#123;<span class="string">'+'</span>: operator.add, <span class="string">'-'</span>: operator.sub,</div><div class="line">              <span class="string">'*'</span>: operator.mul, <span class="string">'/'</span>: operator.floordiv&#125;</div><div class="line">        expression = s.split()</div><div class="line">        total = d = idx = <span class="number">0</span></div><div class="line">        func = op[<span class="string">'+'</span>]</div><div class="line">        <span class="keyword">while</span> idx &lt; len(expression):</div><div class="line">            e = expression[idx]</div><div class="line">            <span class="keyword">if</span> e <span class="keyword">in</span> <span class="string">'+-'</span>:</div><div class="line">                total = func(total, d)</div><div class="line">                func = op[e]</div><div class="line">            <span class="keyword">elif</span> e <span class="keyword">in</span> <span class="string">'*/'</span>:</div><div class="line">                idx += <span class="number">1</span></div><div class="line">                d = op[e](d, int(expression[idx]))</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                d = int(e)</div><div class="line">            idx += <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> func(total, d)</div></pre></td></tr></table></figure>
           
         
       
@@ -1250,7 +1274,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">327</span>
+              <span class="site-state-item-count">328</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
