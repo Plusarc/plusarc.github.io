@@ -260,8 +260,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/10/22/Leetcode_Sudoku Solver/" itemprop="url">
-                  Sudoku Solver
+                <a class="post-title-link" href="/2015/10/23/Leetcode_Text Justification/" itemprop="url">
+                  Text Justification
                 </a>
               
             
@@ -274,8 +274,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-10-22T00:00:00+09:00" content="2015-10-22">
-              2015-10-22
+            <time itemprop="dateCreated" datetime="2015-10-23T00:00:00+09:00" content="2015-10-23">
+              2015-10-23
             </time>
           </span>
 
@@ -304,8 +304,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/10/22/Leetcode_Sudoku Solver/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/22/Leetcode_Sudoku Solver/" itemprop="commentsCount"></span>
+                <a href="/2015/10/23/Leetcode_Text Justification/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/23/Leetcode_Text Justification/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -330,14 +330,25 @@
       
         
           
-            <h1 id="Sudoku-Solver"><a href="#Sudoku-Solver" class="headerlink" title="Sudoku Solver"></a><a href="https://leetcode.com/problems/sudoku-solver/" target="_blank" rel="external">Sudoku Solver</a></h1><blockquote>
-<p>Write a program to solve a Sudoku puzzle by filling the empty cells.</p>
-<p>Empty cells are indicated by the character <code>&#39;.&#39;</code>.</p>
-<p>You may assume that there will be only one unique solution.</p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Sudoku-by-L2G-20050714.svg/250px-Sudoku-by-L2G-20050714.svg.png" alt=""><br>A sudoku puzzle…<br><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Sudoku-by-L2G-20050714_solution.svg/250px-Sudoku-by-L2G-20050714_solution.svg.png" alt=""><br>..and its solution numbers marked in red.</p>
+            <h1 id="Text-Justification"><a href="#Text-Justification" class="headerlink" title="Text Justification"></a><a href="https://leetcode.com/problems/text-justification/" target="_blank" rel="external">Text Justification</a></h1><blockquote>
+<p>Given an array of words and a length L, format the text such that each line has exactly L characters and is fully (left and right) justified.</p>
+<p>You should pack your words in a greedy approach; that is, pack as many words as you can in each line. Pad extra spaces <code>&#39; &#39;</code> when necessary so that each line has exactly L characters.</p>
+<p>Extra spaces between words should be distributed as evenly as possible. If the number of spaces on a line do not divide evenly between words, the empty slots on the left will be assigned more spaces than the slots on the right.</p>
+<p>For the last line of text, it should be left justified and no extra space is inserted between words.</p>
+<p>For example,<br>words: [<code>&quot;This&quot;</code>, <code>&quot;is&quot;</code>, <code>&quot;an&quot;</code>, <code>&quot;example&quot;</code>, <code>&quot;of&quot;</code>, <code>&quot;text&quot;</code>, <code>&quot;justification.&quot;</code>]<br>L: <code>16</code>.</p>
+<p>Return the formatted lines as:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">   &quot;This    is    an&quot;,</div><div class="line">   &quot;example  of text&quot;,</div><div class="line">   &quot;justification.  &quot;</div><div class="line">]</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+<p>Note: Each word is guaranteed not to exceed L in length.</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p><a href="http://huangyawu.com/leetcode-sudoku-solver-java/" target="_blank" rel="external">Sudoku Solver@LeetCode</a></p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">solveSudoku</span><span class="params">(<span class="keyword">char</span>[][] board)</span> </span>&#123;</div><div class="line">        solve(board);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">solve</span><span class="params">(<span class="keyword">char</span>[][] board)</span></span>&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">9</span>; i++)</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;<span class="number">9</span>; j++)&#123;</div><div class="line">                <span class="keyword">if</span>(board[i][j] ==  <span class="string">'.'</span>)&#123;</div><div class="line">                    <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">1</span>; k&lt;=<span class="number">9</span>; k++)&#123;</div><div class="line">                        board[i][j] = (<span class="keyword">char</span>) (<span class="string">'0'</span> + k);</div><div class="line">                        <span class="keyword">if</span>(isValid(board, i, j) &amp;&amp; solve(board))</div><div class="line">                            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">                        board[i][j] = <span class="string">'.'</span>;</div><div class="line">                    &#125;</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isValid</span><span class="params">(<span class="keyword">char</span>[][] board, <span class="keyword">int</span> row, <span class="keyword">int</span> col)</span></span>&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">9</span>; i++)&#123;</div><div class="line">            <span class="keyword">if</span>(i!=row &amp;&amp; board[i][col] == board[row][col]) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            <span class="keyword">if</span>(i!=col &amp;&amp; board[row][i] == board[row][col]) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">         </div><div class="line">        <span class="keyword">int</span> r = row / <span class="number">3</span> * <span class="number">3</span>;</div><div class="line">        <span class="keyword">int</span> c = col / <span class="number">3</span> * <span class="number">3</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">3</span>; i++)</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;<span class="number">3</span>; j++)&#123;</div><div class="line">                <span class="keyword">if</span>(r + i != row &amp;&amp; c + j != col </div><div class="line">                        &amp;&amp; board[r+i][c+j] == board[row][col])</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p><a href="http://segmentfault.com/a/1190000002666017" target="_blank" rel="external">Text Justification</a><br>这一题主要考察的还是对边界条件的控制，并没有太高深的算法，但是编写的难度不低，而且想一次通过非常难。</p>
+<p>我采用的办法：</p>
+<p>首先，筛选出一行中应该包括的单词，这里要考虑空格还要占用掉的长度，也就是除了当前的总长度之外，还需要记录下纯单词的长度，这样方便之后生成相应的空格。</p>
+<p>然后，当当前记录的长度大于等于额定长度之后，就需要对当前内容进行格式化。单词的索引很容易算出，难点在于空格，因为空格需要遵循以下两个规则：</p>
+<ol>
+<li>每两个单词之间必须要有一个空格</li>
+<li>单词实现左右对齐之后，空格应该尽量平均，并且有需要的话越往左空格应该越多<br>基于这两条原则，我的办法是先计算平均空格长度，那么所有的空格要么是等于平均空格长度，要么是等于平均空格长度加1，在拼接空格的时候，计算当前剩余的空格总数以每个位置填入平均空格数是否可以填满，以此来判断具体当前位置需要填入的空格数。</li>
+</ol>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">fullJustify</span><span class="params">(String[] words, <span class="keyword">int</span> L)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> index = <span class="number">0</span>, last = <span class="number">0</span>, count = <span class="number">0</span>, wordsLenCount = <span class="number">0</span>, wordsCount = <span class="number">0</span>;</div><div class="line">        List&lt;String&gt; result = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">        <span class="keyword">if</span> (L == <span class="number">0</span>) &#123;</div><div class="line">            result.add(words[<span class="number">0</span>]);</div><div class="line">            <span class="keyword">return</span> result;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">while</span> (index &lt; words.length) &#123;</div><div class="line">            <span class="keyword">if</span> (count + words[index].length() &gt;= L) &#123;</div><div class="line">                <span class="keyword">int</span> spaceCount;</div><div class="line">                <span class="keyword">int</span> aveSlot = <span class="number">0</span>;</div><div class="line">                <span class="keyword">if</span> (count + words[index].length() &gt; L) &#123;</div><div class="line">                    spaceCount = L - wordsLenCount;</div><div class="line">                    <span class="keyword">if</span> (wordsCount &gt; <span class="number">1</span>)</div><div class="line">                        aveSlot = spaceCount / (wordsCount - <span class="number">1</span>);</div><div class="line">                    index--;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    wordsLenCount += words[index].length();</div><div class="line">                    wordsCount++;</div><div class="line">                    spaceCount = L - wordsLenCount;</div><div class="line">                    <span class="keyword">if</span> (wordsCount &gt; <span class="number">1</span>)</div><div class="line">                        aveSlot = spaceCount / (wordsCount - <span class="number">1</span>);</div><div class="line">                &#125;</div><div class="line">                StringBuffer buffer = <span class="keyword">new</span> StringBuffer(<span class="string">""</span>);</div><div class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = index - wordsCount + <span class="number">1</span>; i &lt;= index; i++) &#123;</div><div class="line">                    buffer.append(words[i]);</div><div class="line">                    <span class="keyword">int</span> sCount;</div><div class="line">                    <span class="keyword">if</span> (wordsCount &gt; <span class="number">1</span>) &#123;</div><div class="line">                        <span class="keyword">if</span> (spaceCount % aveSlot == <span class="number">0</span> &amp;&amp; spaceCount / aveSlot == wordsCount - <span class="number">1</span>) &#123;</div><div class="line">                            sCount = aveSlot;</div><div class="line">                        &#125; <span class="keyword">else</span> &#123;</div><div class="line">                            sCount = aveSlot + <span class="number">1</span>;</div><div class="line">                        &#125;</div><div class="line">                        spaceCount -= sCount;</div><div class="line">                        wordsCount--;</div><div class="line">                    &#125; <span class="keyword">else</span> &#123;</div><div class="line">                        sCount = spaceCount;</div><div class="line">                    &#125;</div><div class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; sCount; j++) &#123;</div><div class="line">                        buffer.append(<span class="string">' '</span>);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                result.add(buffer.toString());</div><div class="line">                count = <span class="number">0</span>;</div><div class="line">                wordsLenCount = <span class="number">0</span>;</div><div class="line">                wordsCount = <span class="number">0</span>;</div><div class="line">                last = index + <span class="number">1</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                count += words[index].length() + <span class="number">1</span>;</div><div class="line">                wordsLenCount += words[index].length();</div><div class="line">                wordsCount++;</div><div class="line">            &#125;</div><div class="line">            index++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (last &lt; words.length) &#123;</div><div class="line">            StringBuffer buffer = <span class="keyword">new</span> StringBuffer(<span class="string">""</span>);</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = last; i &lt; words.length; i++) &#123;</div><div class="line">                buffer.append(words[i]);</div><div class="line">                <span class="keyword">if</span> (words[i].length() &gt; <span class="number">0</span>)</div><div class="line">                    buffer.append(<span class="string">" "</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = buffer.length(); i &lt; L; i++) &#123;</div><div class="line">                buffer.append(<span class="string">" "</span>);</div><div class="line">            &#125;</div><div class="line">            result.add(buffer.toString());</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -520,133 +531,6 @@
             
               
                 
-                <a class="post-title-link" href="/2015/10/22/Leetcode_Wiggle Sort I and II/" itemprop="url">
-                  Wiggle Sort
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-10-22T00:00:00+09:00" content="2015-10-22">
-              2015-10-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/10/22/Leetcode_Wiggle Sort I and II/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/22/Leetcode_Wiggle Sort I and II/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Wiggle-Sort-I"><a href="#Wiggle-Sort-I" class="headerlink" title="Wiggle Sort I"></a><a href="https://leetcode.com/problems/wiggle-sort-ii/" target="_blank" rel="external">Wiggle Sort I</a></h1><blockquote>
-<p>Given an unsorted array nums, reorder it in-place such that nums[0] &lt;= nums[1] &gt;= nums[2] &lt;= nums[3]….</p>
-<p>For example, given <code>nums = [3, 5, 2, 1, 6, 4]</code>, one possible answer is <code>[1, 6, 2, 5, 3, 4]</code>.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>Locked problem, refer to <a href="http://buttercola.blogspot.jp/2015/09/leetcode-wiggle-sort.html" target="_blank" rel="external">Leetcode: Wiggle Sort</a></p>
-<p>A[0] &lt;= A[1] &gt;= A[2] &lt;= A[3] &gt;= A[4] &lt;= A[5]<br>So we could actually observe that there is pattern that<br>A[even] &lt;= A[odd],<br>A[odd] &gt;= A[even].</p>
-<p>Therefore we could go through the array and check this condition does not hold, just swap.</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">wiggleSort</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length &lt;= <span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">         </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length - <span class="number">1</span>; i++) &#123;</div><div class="line">            <span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>) &#123;</div><div class="line">                <span class="keyword">if</span> (nums[i] &gt; nums[i + <span class="number">1</span>]) &#123;</div><div class="line">                    swap(nums, i, i + <span class="number">1</span>);</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">if</span> (nums[i] &lt; nums[i + <span class="number">1</span>]) &#123;</div><div class="line">                    swap(nums, i, i + <span class="number">1</span>);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">     </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> temp = nums[i];</div><div class="line">        nums[i] = nums[j];</div><div class="line">        nums[j] = temp;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2015/10/22/Leetcode_Interleaving String/" itemprop="url">
                   Interleaving String
                 </a>
@@ -774,8 +658,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/10/18/Leetcode_Word Pattern/" itemprop="url">
-                  Word Pattern
+                <a class="post-title-link" href="/2015/10/22/Leetcode_Wiggle Sort I and II/" itemprop="url">
+                  Wiggle Sort
                 </a>
               
             
@@ -788,8 +672,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-10-18T00:00:00+09:00" content="2015-10-18">
-              2015-10-18
+            <time itemprop="dateCreated" datetime="2015-10-22T00:00:00+09:00" content="2015-10-22">
+              2015-10-22
             </time>
           </span>
 
@@ -818,8 +702,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/10/18/Leetcode_Word Pattern/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/18/Leetcode_Word Pattern/" itemprop="commentsCount"></span>
+                <a href="/2015/10/22/Leetcode_Wiggle Sort I and II/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/22/Leetcode_Wiggle Sort I and II/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -844,12 +728,141 @@
       
         
           
-            <h1 id="Word-Pattern"><a href="#Word-Pattern" class="headerlink" title="Word Pattern"></a><a href="https://leetcode.com/problems/word-pattern/" target="_blank" rel="external">Word Pattern</a></h1><blockquote>
-<p>Given a <code>pattern</code> and a string <code>str</code>, find if <code>str</code> follows the same pattern.</p>
+            <h1 id="Wiggle-Sort-I"><a href="#Wiggle-Sort-I" class="headerlink" title="Wiggle Sort I"></a><a href="https://leetcode.com/problems/wiggle-sort-ii/" target="_blank" rel="external">Wiggle Sort I</a></h1><blockquote>
+<p>Given an unsorted array nums, reorder it in-place such that nums[0] &lt;= nums[1] &gt;= nums[2] &lt;= nums[3]….</p>
+<p>For example, given <code>nums = [3, 5, 2, 1, 6, 4]</code>, one possible answer is <code>[1, 6, 2, 5, 3, 4]</code>.</p>
 </blockquote>
-<p>Here follow means a full match, such that there is a bijection between a letter in <code>pattern</code> and a non-empty word in <code>str</code>.</p>
-<p>Examples:<br>pattern = <code>&quot;abba&quot;</code>, str = <code>&quot;dog cat cat dog&quot;</code> should return true.<br>pattern = <code>&quot;abba&quot;</code>, str = <code>&quot;dog cat cat fish&quot;</code> should return false.<br>pattern = “aaaa”, str = <code>&quot;dog cat cat dog&quot;</code> should return false.<br>pattern = “abba”, str = <code>&quot;dog dog dog dog&quot;</code> should return false.<br>Notes:<br>You may assume <code>pattern</code> contains only lowercase letters, and <code>str</code> contains lowercase letters separated by a single space.</p>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">wordPattern</span><span class="params">(String pattern, String str)</span> </span>&#123;</div><div class="line">        <span class="keyword">boolean</span> [] used = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="number">26</span>];</div><div class="line">        String [] words = str.split(<span class="string">" "</span>);</div><div class="line">        <span class="keyword">if</span>(pattern.length()!=words.length) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        </div><div class="line">        Map&lt;String, Character&gt; map = <span class="keyword">new</span> HashMap&lt;String, Character&gt;();</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;words.length; i++) &#123;</div><div class="line">            <span class="keyword">if</span>(map.containsKey(words[i])) &#123;</div><div class="line">                <span class="keyword">if</span>(map.get(words[i])!=pattern.charAt(i)) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">if</span>(used[pattern.charAt(i)-<span class="string">'a'</span>]) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">                <span class="keyword">else</span> &#123;</div><div class="line">                    map.put(words[i], pattern.charAt(i));</div><div class="line">                    used[pattern.charAt(i)-<span class="string">'a'</span>] = <span class="keyword">true</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>Locked problem, refer to <a href="http://buttercola.blogspot.jp/2015/09/leetcode-wiggle-sort.html" target="_blank" rel="external">Leetcode: Wiggle Sort</a></p>
+<p>A[0] &lt;= A[1] &gt;= A[2] &lt;= A[3] &gt;= A[4] &lt;= A[5]<br>So we could actually observe that there is pattern that<br>A[even] &lt;= A[odd],<br>A[odd] &gt;= A[even].</p>
+<p>Therefore we could go through the array and check this condition does not hold, just swap.</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">wiggleSort</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length &lt;= <span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">         </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length - <span class="number">1</span>; i++) &#123;</div><div class="line">            <span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>) &#123;</div><div class="line">                <span class="keyword">if</span> (nums[i] &gt; nums[i + <span class="number">1</span>]) &#123;</div><div class="line">                    swap(nums, i, i + <span class="number">1</span>);</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">if</span> (nums[i] &lt; nums[i + <span class="number">1</span>]) &#123;</div><div class="line">                    swap(nums, i, i + <span class="number">1</span>);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">     </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> temp = nums[i];</div><div class="line">        nums[i] = nums[j];</div><div class="line">        nums[j] = temp;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/10/22/Leetcode_Sudoku Solver/" itemprop="url">
+                  Sudoku Solver
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-10-22T00:00:00+09:00" content="2015-10-22">
+              2015-10-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/10/22/Leetcode_Sudoku Solver/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/22/Leetcode_Sudoku Solver/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Sudoku-Solver"><a href="#Sudoku-Solver" class="headerlink" title="Sudoku Solver"></a><a href="https://leetcode.com/problems/sudoku-solver/" target="_blank" rel="external">Sudoku Solver</a></h1><blockquote>
+<p>Write a program to solve a Sudoku puzzle by filling the empty cells.</p>
+<p>Empty cells are indicated by the character <code>&#39;.&#39;</code>.</p>
+<p>You may assume that there will be only one unique solution.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Sudoku-by-L2G-20050714.svg/250px-Sudoku-by-L2G-20050714.svg.png" alt=""><br>A sudoku puzzle…<br><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Sudoku-by-L2G-20050714_solution.svg/250px-Sudoku-by-L2G-20050714_solution.svg.png" alt=""><br>..and its solution numbers marked in red.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p><a href="http://huangyawu.com/leetcode-sudoku-solver-java/" target="_blank" rel="external">Sudoku Solver@LeetCode</a></p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">solveSudoku</span><span class="params">(<span class="keyword">char</span>[][] board)</span> </span>&#123;</div><div class="line">        solve(board);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">solve</span><span class="params">(<span class="keyword">char</span>[][] board)</span></span>&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">9</span>; i++)</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;<span class="number">9</span>; j++)&#123;</div><div class="line">                <span class="keyword">if</span>(board[i][j] ==  <span class="string">'.'</span>)&#123;</div><div class="line">                    <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">1</span>; k&lt;=<span class="number">9</span>; k++)&#123;</div><div class="line">                        board[i][j] = (<span class="keyword">char</span>) (<span class="string">'0'</span> + k);</div><div class="line">                        <span class="keyword">if</span>(isValid(board, i, j) &amp;&amp; solve(board))</div><div class="line">                            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">                        board[i][j] = <span class="string">'.'</span>;</div><div class="line">                    &#125;</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isValid</span><span class="params">(<span class="keyword">char</span>[][] board, <span class="keyword">int</span> row, <span class="keyword">int</span> col)</span></span>&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">9</span>; i++)&#123;</div><div class="line">            <span class="keyword">if</span>(i!=row &amp;&amp; board[i][col] == board[row][col]) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            <span class="keyword">if</span>(i!=col &amp;&amp; board[row][i] == board[row][col]) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">         </div><div class="line">        <span class="keyword">int</span> r = row / <span class="number">3</span> * <span class="number">3</span>;</div><div class="line">        <span class="keyword">int</span> c = col / <span class="number">3</span> * <span class="number">3</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">3</span>; i++)</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;<span class="number">3</span>; j++)&#123;</div><div class="line">                <span class="keyword">if</span>(r + i != row &amp;&amp; c + j != col </div><div class="line">                        &amp;&amp; board[r+i][c+j] == board[row][col])</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -923,7 +936,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">328</span>
+              <span class="site-state-item-count">329</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

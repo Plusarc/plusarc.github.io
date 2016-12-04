@@ -391,6 +391,142 @@
             
               
                 
+                <a class="post-title-link" href="/2015/09/05/Leetcode_Restore IP Addresses/" itemprop="url">
+                  Restore IP Addresses
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-09-05T00:00:00+09:00" content="2015-09-05">
+              2015-09-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/05/Leetcode_Restore IP Addresses/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/05/Leetcode_Restore IP Addresses/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Restore-IP-Addresses"><a href="#Restore-IP-Addresses" class="headerlink" title="Restore IP Addresses"></a><a href="https://leetcode.com/problems/restore-ip-addresses/" target="_blank" rel="external">Restore IP Addresses</a></h1><blockquote>
+<p>Given a string containing only digits, restore it by returning all possible valid IP address combinations.</p>
+<p>For example:<br>Given <code>&quot;25525511135&quot;</code>,</p>
+<p>return <code>[&quot;255.255.11.135&quot;, &quot;255.255.111.35&quot;]</code>. (Order does not matter)</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>回溯法求解，对于当前的每个数字，选择和累积的数字创建新的字段，或者不创建新的字段，并入到下一个数字的递归中。</p>
+<p>IP地址的条件：这种表示法下，IP地址为32位，4个字段，每个字段范围为0-255。</p>
+<p>根据条件进行回溯:</p>
+<ol>
+<li>累计的数字<code>&gt;255</code>，</li>
+<li>当前位置没有到最后一位，但是字段数达到<code>4</code></li>
+<li>当前为最后一位，但总字段数小余<code>4</code>.</li>
+<li>上一个数字为<code>0</code>的情况。</li>
+</ol>
+<p>最后一个回溯条件是为了注意处理IP地址中连续为0的情况。也就是<code>00010</code>，只能解析为<code>0.0.0.10</code>,不存在字段表示为<code>0.0.01.0</code>的情况。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">restoreIpAddresses</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        List&lt;String&gt; res = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">        <span class="keyword">if</span>(s.length()&lt;<span class="number">4</span>) <span class="keyword">return</span> res;</div><div class="line">        </div><div class="line">        recRes(s, res, <span class="string">""</span>, -<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recRes</span><span class="params">(String s, List&lt;String&gt; res, String record, <span class="keyword">int</span> partNum, <span class="keyword">int</span> count, <span class="keyword">int</span> pos)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(partNum==-<span class="number">1</span>) partNum = <span class="number">0</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(partNum==<span class="number">0</span>) <span class="keyword">return</span>;</div><div class="line">    	partNum = partNum * <span class="number">10</span> + (s.charAt(pos) - <span class="string">'0'</span>);</div><div class="line">        <span class="keyword">if</span>(partNum&gt;<span class="number">255</span>) <span class="keyword">return</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(pos==s.length()-<span class="number">1</span>) &#123;</div><div class="line">        	<span class="keyword">if</span>(count!=<span class="number">3</span>) <span class="keyword">return</span>;</div><div class="line">            res.add(record + partNum);</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>((count+<span class="number">1</span>)&lt;<span class="number">4</span>)recRes(s, res, record+partNum+<span class="string">"."</span>, -<span class="number">1</span>, count+<span class="number">1</span>, pos+<span class="number">1</span>);</div><div class="line">        recRes(s, res, record, partNum, count, pos+<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>second time</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">restoreIpAddresses</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        List&lt;String&gt; res = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">        recRes(s, <span class="number">0</span>, <span class="number">0</span>, res, <span class="string">""</span>, <span class="number">0</span>);</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recRes</span><span class="params">(String s, <span class="keyword">int</span> pos, <span class="keyword">int</span> cum, List&lt;String&gt; res, String record, <span class="keyword">int</span> segNum)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(segNum==<span class="number">4</span> &amp;&amp; pos==s.length()) res.add(record);</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(segNum&gt;=<span class="number">4</span> || pos&gt;=s.length()) <span class="keyword">return</span>;</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">char</span> c = s.charAt(pos);</div><div class="line">            <span class="keyword">if</span>(c==<span class="string">'0'</span> &amp;&amp; cum==<span class="number">0</span>) &#123;</div><div class="line">                <span class="keyword">if</span>(record.length()!=<span class="number">0</span>) record = record + <span class="string">"."</span> + cum;</div><div class="line">                <span class="keyword">else</span> record = record + cum;</div><div class="line">                recRes(s, pos+<span class="number">1</span>, <span class="number">0</span>, res, record, segNum+<span class="number">1</span>);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                cum = <span class="number">10</span> * cum + (c-<span class="string">'0'</span>);</div><div class="line">                <span class="keyword">if</span>(cum&gt;<span class="number">255</span>) <span class="keyword">return</span>;</div><div class="line">                recRes(s, pos+<span class="number">1</span>, cum, res, record, segNum);</div><div class="line">                </div><div class="line">                <span class="keyword">if</span>(record.length()!=<span class="number">0</span>) record = record + <span class="string">"."</span> + cum;</div><div class="line">                <span class="keyword">else</span> record = record + cum;</div><div class="line">                recRes(s, pos+<span class="number">1</span>, <span class="number">0</span>, res, record, segNum+<span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/09/04/Leetcode_Surrounded Regions/" itemprop="url">
                   Surrounded Regions
                 </a>
@@ -476,142 +612,6 @@
 <p>修改遍历方式为BFS，accept。</p>
 <h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="BFS-solution"><a href="#BFS-solution" class="headerlink" title="BFS solution"></a>BFS solution</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">solve</span><span class="params">(<span class="keyword">char</span>[][] board)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(board==<span class="keyword">null</span> || board.length==<span class="number">0</span> || board[<span class="number">0</span>].length==<span class="number">0</span>) <span class="keyword">return</span>;</div><div class="line">        </div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> y=<span class="number">0</span>, xf=<span class="number">0</span>, xl=board.length-<span class="number">1</span>; y&lt;board[<span class="number">0</span>].length; y++) &#123;</div><div class="line">                <span class="keyword">if</span>(board[xf][y]==<span class="string">'O'</span>) bfs(board, xf, y);</div><div class="line">                <span class="keyword">if</span>(board[xl][y]==<span class="string">'O'</span>) bfs(board, xl, y);</div><div class="line">            &#125;</div><div class="line">        </div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>, yf=<span class="number">0</span>, yl=board[<span class="number">0</span>].length-<span class="number">1</span>; x&lt;board.length; x++) &#123;</div><div class="line">                <span class="keyword">if</span>(board[x][yf]==<span class="string">'O'</span>) bfs(board, x, yf);</div><div class="line">                <span class="keyword">if</span>(board[x][yl]==<span class="string">'O'</span>) bfs(board, x, yl);</div><div class="line">            &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>; x&lt;board.length; x++) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> y=<span class="number">0</span>; y&lt;board[<span class="number">0</span>].length; y++) &#123;</div><div class="line">                <span class="keyword">if</span>(board[x][y]==<span class="string">'O'</span>) board[x][y] = <span class="string">'X'</span>;</div><div class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(board[x][y]==<span class="string">'A'</span>) board[x][y] = <span class="string">'O'</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bfs</span><span class="params">(<span class="keyword">char</span> [][] board, <span class="keyword">int</span> xpos, <span class="keyword">int</span> ypos)</span> </span>&#123;</div><div class="line">        Queue&lt;Integer&gt; queue = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</div><div class="line">        queue.add(xpos*board[<span class="number">0</span>].length + ypos);</div><div class="line"></div><div class="line">        <span class="keyword">while</span>(!queue.isEmpty()) &#123;</div><div class="line">            <span class="keyword">int</span> pos = queue.poll();</div><div class="line">            <span class="keyword">int</span> x = pos / board[<span class="number">0</span>].length;</div><div class="line">            <span class="keyword">int</span> y = pos % board[<span class="number">0</span>].length;</div><div class="line">            <span class="keyword">if</span>(board[x][y]!=<span class="string">'O'</span>) <span class="keyword">continue</span>;</div><div class="line">            board[x][y] = <span class="string">'A'</span>;</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(x+<span class="number">1</span>&lt;board.length &amp;&amp; board[x+<span class="number">1</span>][y]==<span class="string">'O'</span>) queue.add((x+<span class="number">1</span>)*board[<span class="number">0</span>].length + y);</div><div class="line">            <span class="keyword">if</span>(x-<span class="number">1</span>&gt;=<span class="number">0</span> &amp;&amp; board[x-<span class="number">1</span>][y]==<span class="string">'O'</span>) queue.add((x-<span class="number">1</span>)*board[<span class="number">0</span>].length + y);</div><div class="line">            <span class="keyword">if</span>(y+<span class="number">1</span>&lt;board[<span class="number">0</span>].length &amp;&amp; board[x][y+<span class="number">1</span>]==<span class="string">'O'</span>) queue.add(x*board[<span class="number">0</span>].length + (y+<span class="number">1</span>));</div><div class="line">            <span class="keyword">if</span>(y-<span class="number">1</span>&gt;=<span class="number">0</span> &amp;&amp; board[x][y-<span class="number">1</span>]==<span class="string">'O'</span>) queue.add(x*board[<span class="number">0</span>].length + (y-<span class="number">1</span>));</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">char</span> [][] board, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(x&lt;<span class="number">0</span> || x&gt;=board.length || y&lt;<span class="number">0</span> || y&gt;=board[<span class="number">0</span>].length || board[x][y]==<span class="string">'X'</span> || board[x][y]==<span class="string">'A'</span>) <span class="keyword">return</span>;</div><div class="line">        board[x][y] = <span class="string">'A'</span>;</div><div class="line">        dfs(board, x+<span class="number">1</span>, y);</div><div class="line">        dfs(board, x-<span class="number">1</span>, y);</div><div class="line">        dfs(board, x, y+<span class="number">1</span>);</div><div class="line">        dfs(board, x, y-<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs2</span><span class="params">(<span class="keyword">char</span> [][] board, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">        board[x][y] = <span class="string">'A'</span>;</div><div class="line">        <span class="keyword">if</span>(x+<span class="number">1</span>&lt;board.length &amp;&amp; board[x+<span class="number">1</span>][y]==<span class="string">'O'</span>) dfs(board, x+<span class="number">1</span>, y);</div><div class="line">        <span class="keyword">if</span>(x-<span class="number">1</span>&gt;=<span class="number">0</span> &amp;&amp; board[x-<span class="number">1</span>][y]==<span class="string">'O'</span>) dfs(board, x-<span class="number">1</span>, y);</div><div class="line">        <span class="keyword">if</span>(y+<span class="number">1</span>&lt;board[<span class="number">0</span>].length &amp;&amp; board[x][y+<span class="number">1</span>]==<span class="string">'O'</span>) dfs(board, x, y+<span class="number">1</span>);</div><div class="line">        <span class="keyword">if</span>(y-<span class="number">1</span>&gt;=<span class="number">0</span> &amp;&amp; board[x][y-<span class="number">1</span>]==<span class="string">'O'</span>) dfs(board, x, y-<span class="number">1</span>);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/09/04/Leetcode_H-Index/" itemprop="url">
-                  H-Index
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-04T00:00:00+09:00" content="2015-09-04">
-              2015-09-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/04/Leetcode_H-Index/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/04/Leetcode_H-Index/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="H-Index"><a href="#H-Index" class="headerlink" title="H-Index"></a><a href="https://leetcode.com/problems/h-index/" target="_blank" rel="external">H-Index</a></h1><blockquote>
-<p>Given an array of citations (each citation is a non-negative integer) of a researcher, write a function to compute the researcher’s h-index.</p>
-<p>According to the definition of h-index on Wikipedia: “A scientist has index <code>h</code> if <code>h</code> of his/her <code>N</code> papers have at least <code>h</code> citations each, and the other <code>N − h</code> papers have no more than h citations each.”</p>
-<p>For example, given <code>citations = [3, 0, 6, 1, 5]</code>, which means the researcher has <code>5</code> papers in total and each of them had received <code>3, 0, 6, 1, 5</code> citations respectively. Since the researcher has <code>3</code> papers with at least <code>3</code> citations each and the remaining two with no more than <code>3</code> citations each, his h-index is <code>3</code>.</p>
-<p>Note: If there are several possible values for h, the maximum one is taken as the h-index.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>理解了题目意思就很容易，虽然有点绕。</p>
-<p>注意H-Index的两个条件：</p>
-<ol>
-<li><code>h</code> of his/her <code>N</code> papers have at least <code>h</code> citations</li>
-<li>the other <code>N − h</code> papers have no more than h citations each.</li>
-</ol>
-<p>H的选择是<code>0-N</code>。</p>
-<p>本质上，H-index要满足的条件是citation大于H的文章数大于等于H。也就是，假设对于H的选择范围<code>0-N</code>设立一个数组<code>cum[0-N]</code>，<code>cum[i]</code>表示记录citation大于等于<code>i</code>的文章数。<code>i</code>为H-Index的条件为<code>cum[i+1]&lt;(i+1) &amp;&amp; cum[i]&gt;=i</code>。这里需要注意<code>=</code>的情况，也就是<code>citation=i</code>的文章的数量，这些文章可以被分配到have at least <code>h</code> citations， 也可以被分配到have no more than h citations each. 也就是会形成一个可行的范围。</p>
-<p>最简单的方法是依次选择每一个H，然后遍历数组计算出大于N的文章数，小于N的文章数，以及等于N的文章数，基于这些数量判断H是否是H-index。时间复杂度为O(N^2).</p>
-<p><strong>优化方法</strong>：建立一个数组<code>count[]</code>，<code>count[i]</code>表示<code>citation_num==i 的文章数</code>(最后一个元素是特殊的，<code>count[count.length-1]表示citation_num&gt;=N的文章数</code>), 遍历citation数组依次，统计得到<code>count[]</code>数组。从大到小，每次累计前一个count[i+1]，也就是<code>count[i]=count[i] + count[i+1]</code>，累计之后<code>count[i]也就是前面所用的cum[i]</code>。时间复杂度为O(N).</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hIndex</span><span class="params">(<span class="keyword">int</span>[] citations)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(citations==<span class="keyword">null</span> || citations.length==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span>[] indexs = <span class="keyword">new</span> <span class="keyword">int</span>[citations.length+<span class="number">1</span>];</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> ele: citations) &#123;</div><div class="line">            <span class="keyword">if</span>(ele&gt;=citations.length) indexs[citations.length]++;</div><div class="line">            <span class="keyword">else</span> indexs[ele] ++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=indexs.length-<span class="number">1</span>; i&gt;=<span class="number">0</span>; i--) &#123;</div><div class="line">            <span class="keyword">if</span>(i!=indexs.length-<span class="number">1</span>) indexs[i] += indexs[i+<span class="number">1</span>];</div><div class="line">            <span class="keyword">if</span>(indexs[i]&gt;=i) <span class="keyword">return</span> i;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -798,8 +798,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/09/04/Leetcode_Course Schedule II/" itemprop="url">
-                  Course Schedule II
+                <a class="post-title-link" href="/2015/09/04/Leetcode_H-Index/" itemprop="url">
+                  H-Index
                 </a>
               
             
@@ -842,8 +842,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/09/04/Leetcode_Course Schedule II/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/04/Leetcode_Course Schedule II/" itemprop="commentsCount"></span>
+                <a href="/2015/09/04/Leetcode_H-Index/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/04/Leetcode_H-Index/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -868,25 +868,23 @@
       
         
           
-            <h1 id="Course-Schedule"><a href="#Course-Schedule" class="headerlink" title="Course Schedule"></a><a href="https://leetcode.com/problems/course-schedule/" target="_blank" rel="external">Course Schedule</a></h1><blockquote>
-<p>There are a total of n courses you have to take, labeled from 0 to n - 1.</p>
-<p>Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: <code>[0,1]</code></p>
-<p>Given the total number of courses and a list of prerequisite pairs, return the ordering of courses you should take to finish all courses.</p>
-<p>There may be multiple correct orders, you just need to return one of them. If it is impossible to finish all courses, return an empty array.</p>
-<p>For example:<br><code>2, [[1,0]]</code></p>
-<p>There are a total of 2 courses to take. To take course 1 you should have finished course 0. So the correct course order is [0,1]</p>
-<p><code>4, [[1,0],[2,0],[3,1],[3,2]]</code></p>
-<p>There are a total of 4 courses to take. To take course 3 you should have finished both courses 1 and 2. Both courses 1 and 2 should be taken after you finished course 0. So one correct course order is [0,1,2,3]. Another correct ordering is[0,2,1,3].</p>
+            <h1 id="H-Index"><a href="#H-Index" class="headerlink" title="H-Index"></a><a href="https://leetcode.com/problems/h-index/" target="_blank" rel="external">H-Index</a></h1><blockquote>
+<p>Given an array of citations (each citation is a non-negative integer) of a researcher, write a function to compute the researcher’s h-index.</p>
+<p>According to the definition of h-index on Wikipedia: “A scientist has index <code>h</code> if <code>h</code> of his/her <code>N</code> papers have at least <code>h</code> citations each, and the other <code>N − h</code> papers have no more than h citations each.”</p>
+<p>For example, given <code>citations = [3, 0, 6, 1, 5]</code>, which means the researcher has <code>5</code> papers in total and each of them had received <code>3, 0, 6, 1, 5</code> citations respectively. Since the researcher has <code>3</code> papers with at least <code>3</code> citations each and the remaining two with no more than <code>3</code> citations each, his h-index is <code>3</code>.</p>
+<p>Note: If there are several possible values for h, the maximum one is taken as the h-index.</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>与问题Course Schedule本质相同。课程的组织可以表示为一个有向图，问题本质是检测一个有向图中是否有环，如果一个图有环，则一定存在冲突，也就是环中的课程一定无法参加。对图进行拓扑排序，如果可以进行完整的拓扑排序(输出排序节点等于所有节点数)，则说明是一个有向无环图，否则说明有环。</p>
-<p>这里采用基于队列的拓扑排序：</p>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>理解了题目意思就很容易，虽然有点绕。</p>
+<p>注意H-Index的两个条件：</p>
 <ol>
-<li>遍历所有边，统计所有节点的入度(就是修课前需要完成的课程数)，和指向的节点(用HashMap存储)。</li>
-<li>将所有入度为0的节点加入队列。</li>
-<li>在队列非空的情况下，取出队列的一个节点，将<code>这个节点加入结果集</code>，将所有这个节点指向的节点的<code>入度-1</code>，如果每个被指向的节点入度变为0，则将其加入队列。</li>
-<li>循环第3步直到队列为空，如果<code>结果集size==numCourses</code>，则成功得到一个完整的拓扑序列，也就是所有课程都可以修完并且顺序记录在结果集中，返回结果集。如果<code>结果集size&lt;numCourse</code>，则存在环，部分课程无法参加，返回空数组。</li>
+<li><code>h</code> of his/her <code>N</code> papers have at least <code>h</code> citations</li>
+<li>the other <code>N − h</code> papers have no more than h citations each.</li>
 </ol>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] findOrder(<span class="keyword">int</span> numCourses, <span class="keyword">int</span>[][] prerequisites) &#123;</div><div class="line">        <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[numCourses];</div><div class="line">        <span class="keyword">int</span> current = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span>[] count = <span class="keyword">new</span> <span class="keyword">int</span>[numCourses];</div><div class="line">        List&lt;List&lt;Integer&gt;&gt; toCourses = <span class="keyword">new</span> ArrayList&lt;List&lt;Integer&gt;&gt;();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;numCourses; i++) toCourses.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;());</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;prerequisites.length; i++) &#123;</div><div class="line">            count[prerequisites[i][<span class="number">0</span>]] ++;</div><div class="line">            toCourses.get(prerequisites[i][<span class="number">1</span>]).add(prerequisites[i][<span class="number">0</span>]);</div><div class="line">        &#125;</div><div class="line">        Queue&lt;Integer&gt; prepares = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;numCourses; i++) &#123;</div><div class="line">            <span class="keyword">if</span>(count[i]==<span class="number">0</span>) &#123;</div><div class="line">                res[current++] = i;</div><div class="line">                prepares.offer(i);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">while</span>(!prepares.isEmpty()) &#123;</div><div class="line">            <span class="keyword">int</span> pre = prepares.poll();</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> to: toCourses.get(pre)) &#123;</div><div class="line">                count[to] --;</div><div class="line">                <span class="keyword">if</span>(count[to]==<span class="number">0</span>) &#123;</div><div class="line">                    res[current++] = to;</div><div class="line">                    prepares.offer(to);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(current==numCourses) <span class="keyword">return</span> res;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">0</span>];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>H的选择是<code>0-N</code>。</p>
+<p>本质上，H-index要满足的条件是citation大于H的文章数大于等于H。也就是，假设对于H的选择范围<code>0-N</code>设立一个数组<code>cum[0-N]</code>，<code>cum[i]</code>表示记录citation大于等于<code>i</code>的文章数。<code>i</code>为H-Index的条件为<code>cum[i+1]&lt;(i+1) &amp;&amp; cum[i]&gt;=i</code>。这里需要注意<code>=</code>的情况，也就是<code>citation=i</code>的文章的数量，这些文章可以被分配到have at least <code>h</code> citations， 也可以被分配到have no more than h citations each. 也就是会形成一个可行的范围。</p>
+<p>最简单的方法是依次选择每一个H，然后遍历数组计算出大于N的文章数，小于N的文章数，以及等于N的文章数，基于这些数量判断H是否是H-index。时间复杂度为O(N^2).</p>
+<p><strong>优化方法</strong>：建立一个数组<code>count[]</code>，<code>count[i]</code>表示<code>citation_num==i 的文章数</code>(最后一个元素是特殊的，<code>count[count.length-1]表示citation_num&gt;=N的文章数</code>), 遍历citation数组依次，统计得到<code>count[]</code>数组。从大到小，每次累计前一个count[i+1]，也就是<code>count[i]=count[i] + count[i+1]</code>，累计之后<code>count[i]也就是前面所用的cum[i]</code>。时间复杂度为O(N).</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hIndex</span><span class="params">(<span class="keyword">int</span>[] citations)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(citations==<span class="keyword">null</span> || citations.length==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span>[] indexs = <span class="keyword">new</span> <span class="keyword">int</span>[citations.length+<span class="number">1</span>];</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> ele: citations) &#123;</div><div class="line">            <span class="keyword">if</span>(ele&gt;=citations.length) indexs[citations.length]++;</div><div class="line">            <span class="keyword">else</span> indexs[ele] ++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=indexs.length-<span class="number">1</span>; i&gt;=<span class="number">0</span>; i--) &#123;</div><div class="line">            <span class="keyword">if</span>(i!=indexs.length-<span class="number">1</span>) indexs[i] += indexs[i+<span class="number">1</span>];</div><div class="line">            <span class="keyword">if</span>(indexs[i]&gt;=i) <span class="keyword">return</span> i;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -960,7 +958,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">328</span>
+              <span class="site-state-item-count">329</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

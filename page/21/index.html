@@ -260,6 +260,132 @@
             
               
                 
+                <a class="post-title-link" href="/2015/09/06/Leetcode_Container With Most Water/" itemprop="url">
+                  Container With Most Water
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-09-06T00:00:00+09:00" content="2015-09-06">
+              2015-09-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/06/Leetcode_Container With Most Water/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/06/Leetcode_Container With Most Water/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Container-With-Most-Water"><a href="#Container-With-Most-Water" class="headerlink" title="Container With Most Water"></a><a href="https://leetcode.com/problems/container-with-most-water/" target="_blank" rel="external">Container With Most Water</a></h1><blockquote>
+<p>Given n non-negative integers a1, a2, …, an, where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0).<br>Find two lines, which together with x-axis forms a container, such that the container contains the most water.</p>
+<p>Note: You may not slant the container.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>设置两个指针，分别从左往右，从右往左扫描。容器的容量决定于较短边。</p>
+<p>水桶指题中的容器(container),这里用水桶表示比较直观。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="comment">// for any i, the maxium area will be the farthest j that has a[j] &gt; a[i];</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(height == <span class="keyword">null</span> || height.length &lt; <span class="number">2</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> max = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> right = height.length -<span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(left &lt; right) &#123;</div><div class="line">            max = Math.max( max, (right - left) * Math.min(height[left], height[right]));</div><div class="line">            <span class="keyword">if</span>(height[left] &lt; height[right])&#123;</div><div class="line">                left++;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                right--;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> max;</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/09/06/Leetcode_Triangle/" itemprop="url">
                   Triangle
                 </a>
@@ -342,6 +468,139 @@
 <p>到达每个点的路径的上一层节点只有两个选择，就是上一层与当前节点相邻的两个节点。(开头与末尾节点只有一种可能)，从中选择较短路径。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">triangle[0][0] = triangle[0][0];</div><div class="line"></div><div class="line">for i, j</div><div class="line">	if(j==0) triangle[i][j] += 上一行的第一个值; //这一行开头的一个值</div><div class="line">	else if(j==triangle[i].length()-1) triangle[i][j] += 上一个最后一个值; </div><div class="line">	//这一行最后一个</div><div class="line">	else triangle[i] += Math.min(上一行相邻的两个值)</div><div class="line">end</div></pre></td></tr></table></figure>
 <h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minimumTotal</span><span class="params">(List&lt;List&lt;Integer&gt;&gt; triangle)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(triangle.size()==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> level=<span class="number">1</span>; level&lt;triangle.size(); level++) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;triangle.get(level).size(); i++) &#123;</div><div class="line">                <span class="keyword">int</span> left = (i&gt;<span class="number">0</span>) ? triangle.get(level-<span class="number">1</span>).get(i-<span class="number">1</span>) : Integer.MAX_VALUE;</div><div class="line">                <span class="keyword">int</span> right = (i&lt;triangle.get(level-<span class="number">1</span>).size()) ? triangle.get(level-<span class="number">1</span>).get(i) : Integer.MAX_VALUE;</div><div class="line">                triangle.get(level).set(i, Math.min(left, right) + triangle.get(level).get(i));</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        List&lt;Integer&gt; lastLine = triangle.get(triangle.size()-<span class="number">1</span>);</div><div class="line">        <span class="keyword">int</span> min = Integer.MAX_VALUE;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> ele: lastLine) &#123;</div><div class="line">            <span class="keyword">if</span>(ele&lt;min) min = ele;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> min;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/09/05/Leetcode_Sort Colors/" itemprop="url">
+                  Sort Colors
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-09-05T00:00:00+09:00" content="2015-09-05">
+              2015-09-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/05/Leetcode_Sort Colors/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/05/Leetcode_Sort Colors/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Sort-Colors"><a href="#Sort-Colors" class="headerlink" title="Sort Colors"></a><a href="https://leetcode.com/problems/sort-colors/" target="_blank" rel="external">Sort Colors</a></h1><blockquote>
+<p>Given an array with n objects colored red, white or blue, sort them so that objects of the same color are adjacent, with the colors in the order red, white and blue.</p>
+<p>Here, we will use the integers 0, 1, and 2 to represent the color red, white, and blue respectively.</p>
+<p>Note:<br>You are not suppose to use the library’s sort function for this problem.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>最直接的方法是对数组进行排序，时间复杂度为O(nlong(n))。</p>
+<p>但是这里的情况是只有3种值，使用quick sort的思想，分两次将数组partition成有序。</p>
+<p>首先将2的值全部移到数组的最右端，方法跟quick sort的partition一样，设置left，right指针，left不断右移直到指向一个等于<code>2</code>的值，right不断左移直到指向一个小于<code>2</code>的值(这里也就是0，1)，交换left，right的值。</p>
+<p>不断重复直到<code>left&gt;right</code>，这时right指向从右边开始的第一个非<code>2</code>的值，也就是<code>right, length-1</code>都是2，<code>0-right</code>为0，1组成。</p>
+<p>设置<code>left=0</code>, right不变，重复上面的排序过程，不过这次目的是将<code>1</code>的元素移到<code>0-right</code>子数组的最右端。</p>
+<p>操作完成后，整体数组有序，最左边为<code>0</code>,中间为<code>1</code>,右边<code>2</code>。（如果没有<code>0,1,2</code>的部分元素也是一样）。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sortColors</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> right = nums.length-<span class="number">1</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(left&lt;=right) &#123;</div><div class="line">            <span class="keyword">while</span>(left&lt;nums.length &amp;&amp; nums[left]!=<span class="number">2</span>) left ++;</div><div class="line">            <span class="keyword">while</span>(right&gt;=<span class="number">0</span> &amp;&amp; nums[right]==<span class="number">2</span>) right --;</div><div class="line">            <span class="keyword">if</span>(left&gt;right) <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">int</span> temp = nums[left];</div><div class="line">            nums[left++] = nums[right];</div><div class="line">            nums[right--] = temp;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        left = <span class="number">0</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(left&lt;=right) &#123;</div><div class="line">            <span class="keyword">while</span>(left&lt;nums.length &amp;&amp; nums[left]!=<span class="number">1</span>) left ++;</div><div class="line">            <span class="keyword">while</span>(right&gt;=<span class="number">0</span> &amp;&amp; nums[right]==<span class="number">1</span>) right --;</div><div class="line">            <span class="keyword">if</span>(left&gt;right) <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">int</span> temp = nums[left];</div><div class="line">            nums[left++] = nums[right];</div><div class="line">            nums[right--] = temp;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>second time</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sortColors</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> right = nums.length - <span class="number">1</span>;</div><div class="line">        left = sort(nums, left, right, <span class="number">0</span>);</div><div class="line">        </div><div class="line">        right = nums.length - <span class="number">1</span>;</div><div class="line">        sort(nums, left, right, <span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">int</span> baseColor)</span> </span>&#123;</div><div class="line">        <span class="keyword">while</span>(left&lt;right) &#123;</div><div class="line">            <span class="keyword">while</span>(left&lt;right &amp;&amp; nums[left]==baseColor) left ++;</div><div class="line">            <span class="keyword">while</span>(right&gt;left &amp;&amp; nums[right]!=baseColor) right --;</div><div class="line">            <span class="keyword">if</span>(left&gt;=right) <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">int</span> temp = nums[left];</div><div class="line">            nums[left] = nums[right];</div><div class="line">            nums[right] = temp;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> left;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -642,275 +901,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/09/05/Leetcode_Sort Colors/" itemprop="url">
-                  Sort Colors
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-05T00:00:00+09:00" content="2015-09-05">
-              2015-09-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/05/Leetcode_Sort Colors/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/05/Leetcode_Sort Colors/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Sort-Colors"><a href="#Sort-Colors" class="headerlink" title="Sort Colors"></a><a href="https://leetcode.com/problems/sort-colors/" target="_blank" rel="external">Sort Colors</a></h1><blockquote>
-<p>Given an array with n objects colored red, white or blue, sort them so that objects of the same color are adjacent, with the colors in the order red, white and blue.</p>
-<p>Here, we will use the integers 0, 1, and 2 to represent the color red, white, and blue respectively.</p>
-<p>Note:<br>You are not suppose to use the library’s sort function for this problem.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>最直接的方法是对数组进行排序，时间复杂度为O(nlong(n))。</p>
-<p>但是这里的情况是只有3种值，使用quick sort的思想，分两次将数组partition成有序。</p>
-<p>首先将2的值全部移到数组的最右端，方法跟quick sort的partition一样，设置left，right指针，left不断右移直到指向一个等于<code>2</code>的值，right不断左移直到指向一个小于<code>2</code>的值(这里也就是0，1)，交换left，right的值。</p>
-<p>不断重复直到<code>left&gt;right</code>，这时right指向从右边开始的第一个非<code>2</code>的值，也就是<code>right, length-1</code>都是2，<code>0-right</code>为0，1组成。</p>
-<p>设置<code>left=0</code>, right不变，重复上面的排序过程，不过这次目的是将<code>1</code>的元素移到<code>0-right</code>子数组的最右端。</p>
-<p>操作完成后，整体数组有序，最左边为<code>0</code>,中间为<code>1</code>,右边<code>2</code>。（如果没有<code>0,1,2</code>的部分元素也是一样）。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sortColors</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> right = nums.length-<span class="number">1</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(left&lt;=right) &#123;</div><div class="line">            <span class="keyword">while</span>(left&lt;nums.length &amp;&amp; nums[left]!=<span class="number">2</span>) left ++;</div><div class="line">            <span class="keyword">while</span>(right&gt;=<span class="number">0</span> &amp;&amp; nums[right]==<span class="number">2</span>) right --;</div><div class="line">            <span class="keyword">if</span>(left&gt;right) <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">int</span> temp = nums[left];</div><div class="line">            nums[left++] = nums[right];</div><div class="line">            nums[right--] = temp;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        left = <span class="number">0</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(left&lt;=right) &#123;</div><div class="line">            <span class="keyword">while</span>(left&lt;nums.length &amp;&amp; nums[left]!=<span class="number">1</span>) left ++;</div><div class="line">            <span class="keyword">while</span>(right&gt;=<span class="number">0</span> &amp;&amp; nums[right]==<span class="number">1</span>) right --;</div><div class="line">            <span class="keyword">if</span>(left&gt;right) <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">int</span> temp = nums[left];</div><div class="line">            nums[left++] = nums[right];</div><div class="line">            nums[right--] = temp;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>second time</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sortColors</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> right = nums.length - <span class="number">1</span>;</div><div class="line">        left = sort(nums, left, right, <span class="number">0</span>);</div><div class="line">        </div><div class="line">        right = nums.length - <span class="number">1</span>;</div><div class="line">        sort(nums, left, right, <span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">int</span> baseColor)</span> </span>&#123;</div><div class="line">        <span class="keyword">while</span>(left&lt;right) &#123;</div><div class="line">            <span class="keyword">while</span>(left&lt;right &amp;&amp; nums[left]==baseColor) left ++;</div><div class="line">            <span class="keyword">while</span>(right&gt;left &amp;&amp; nums[right]!=baseColor) right --;</div><div class="line">            <span class="keyword">if</span>(left&gt;=right) <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">int</span> temp = nums[left];</div><div class="line">            nums[left] = nums[right];</div><div class="line">            nums[right] = temp;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> left;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/09/05/Leetcode_Restore IP Addresses/" itemprop="url">
-                  Restore IP Addresses
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-05T00:00:00+09:00" content="2015-09-05">
-              2015-09-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/05/Leetcode_Restore IP Addresses/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/05/Leetcode_Restore IP Addresses/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Restore-IP-Addresses"><a href="#Restore-IP-Addresses" class="headerlink" title="Restore IP Addresses"></a><a href="https://leetcode.com/problems/restore-ip-addresses/" target="_blank" rel="external">Restore IP Addresses</a></h1><blockquote>
-<p>Given a string containing only digits, restore it by returning all possible valid IP address combinations.</p>
-<p>For example:<br>Given <code>&quot;25525511135&quot;</code>,</p>
-<p>return <code>[&quot;255.255.11.135&quot;, &quot;255.255.111.35&quot;]</code>. (Order does not matter)</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>回溯法求解，对于当前的每个数字，选择和累积的数字创建新的字段，或者不创建新的字段，并入到下一个数字的递归中。</p>
-<p>IP地址的条件：这种表示法下，IP地址为32位，4个字段，每个字段范围为0-255。</p>
-<p>根据条件进行回溯:</p>
-<ol>
-<li>累计的数字<code>&gt;255</code>，</li>
-<li>当前位置没有到最后一位，但是字段数达到<code>4</code></li>
-<li>当前为最后一位，但总字段数小余<code>4</code>.</li>
-<li>上一个数字为<code>0</code>的情况。</li>
-</ol>
-<p>最后一个回溯条件是为了注意处理IP地址中连续为0的情况。也就是<code>00010</code>，只能解析为<code>0.0.0.10</code>,不存在字段表示为<code>0.0.01.0</code>的情况。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">restoreIpAddresses</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        List&lt;String&gt; res = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">        <span class="keyword">if</span>(s.length()&lt;<span class="number">4</span>) <span class="keyword">return</span> res;</div><div class="line">        </div><div class="line">        recRes(s, res, <span class="string">""</span>, -<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recRes</span><span class="params">(String s, List&lt;String&gt; res, String record, <span class="keyword">int</span> partNum, <span class="keyword">int</span> count, <span class="keyword">int</span> pos)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(partNum==-<span class="number">1</span>) partNum = <span class="number">0</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(partNum==<span class="number">0</span>) <span class="keyword">return</span>;</div><div class="line">    	partNum = partNum * <span class="number">10</span> + (s.charAt(pos) - <span class="string">'0'</span>);</div><div class="line">        <span class="keyword">if</span>(partNum&gt;<span class="number">255</span>) <span class="keyword">return</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(pos==s.length()-<span class="number">1</span>) &#123;</div><div class="line">        	<span class="keyword">if</span>(count!=<span class="number">3</span>) <span class="keyword">return</span>;</div><div class="line">            res.add(record + partNum);</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>((count+<span class="number">1</span>)&lt;<span class="number">4</span>)recRes(s, res, record+partNum+<span class="string">"."</span>, -<span class="number">1</span>, count+<span class="number">1</span>, pos+<span class="number">1</span>);</div><div class="line">        recRes(s, res, record, partNum, count, pos+<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>second time</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">restoreIpAddresses</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        List&lt;String&gt; res = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">        recRes(s, <span class="number">0</span>, <span class="number">0</span>, res, <span class="string">""</span>, <span class="number">0</span>);</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recRes</span><span class="params">(String s, <span class="keyword">int</span> pos, <span class="keyword">int</span> cum, List&lt;String&gt; res, String record, <span class="keyword">int</span> segNum)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(segNum==<span class="number">4</span> &amp;&amp; pos==s.length()) res.add(record);</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(segNum&gt;=<span class="number">4</span> || pos&gt;=s.length()) <span class="keyword">return</span>;</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">char</span> c = s.charAt(pos);</div><div class="line">            <span class="keyword">if</span>(c==<span class="string">'0'</span> &amp;&amp; cum==<span class="number">0</span>) &#123;</div><div class="line">                <span class="keyword">if</span>(record.length()!=<span class="number">0</span>) record = record + <span class="string">"."</span> + cum;</div><div class="line">                <span class="keyword">else</span> record = record + cum;</div><div class="line">                recRes(s, pos+<span class="number">1</span>, <span class="number">0</span>, res, record, segNum+<span class="number">1</span>);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                cum = <span class="number">10</span> * cum + (c-<span class="string">'0'</span>);</div><div class="line">                <span class="keyword">if</span>(cum&gt;<span class="number">255</span>) <span class="keyword">return</span>;</div><div class="line">                recRes(s, pos+<span class="number">1</span>, cum, res, record, segNum);</div><div class="line">                </div><div class="line">                <span class="keyword">if</span>(record.length()!=<span class="number">0</span>) record = record + <span class="string">"."</span> + cum;</div><div class="line">                <span class="keyword">else</span> record = record + cum;</div><div class="line">                recRes(s, pos+<span class="number">1</span>, <span class="number">0</span>, res, record, segNum+<span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -956,7 +946,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">328</span>
+              <span class="site-state-item-count">329</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

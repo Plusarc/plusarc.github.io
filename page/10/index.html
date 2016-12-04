@@ -260,6 +260,345 @@
             
               
                 
+                <a class="post-title-link" href="/2015/10/11/Python_virtualenv沙箱/" itemprop="url">
+                  Python_virtualenv沙箱
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-10-11T00:00:00+09:00" content="2015-10-11">
+              2015-10-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/10/11/Python_virtualenv沙箱/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/11/Python_virtualenv沙箱/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近开发需要使用到python的沙箱环境，以隔离不同程序的开发，这里记录一下python沙箱virtualenv的了解，参考<a href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001432712108300322c61f256c74803b43bfd65c6f8d0d0000" target="_blank" rel="external">virtualenv</a>，官网<a href="https://dh-virtualenv.readthedocs.org/en/0.11/" target="_blank" rel="external">virtualenv-documentation</a>.</p>
+<p>在同时开发多个应用程序时，可能各个程序所需要的模块版本不同，如A程序需要jinjia 2.6, B程序需要jinja 2.7。默认情况所有通过pip安装的第三方包都会被放到python的site-packages目录下，则会造成冲突。</p>
+<p>可以通过下面命令安装virtualenv：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo pip install virtualen</div></pre></td></tr></table></figure>
+<p>通过virtualenv模块我们可以轻松为每个应用程序设置独立的python运行环境。假设已经切换到A项目目录下，可以通过以下命令建立新的运行环境：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">virtualenv --no-site-packages env</div></pre></td></tr></table></figure>
+<p><code>--no-site-packages</code>参数指不引入任何默认环境已经引入的库，还可以通过<code>--python</code>设置所需要的python版本环境。</p>
+<p>上面命令会在当前目录建立一个<code>env</code>文件夹，记录了环境的设置和第三方库。可以通过执行下面命令进入该环境：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> venv/bin/activate</div></pre></td></tr></table></figure>
+<p>之后正常安装需要的第三方包，都只会影响当前这个<code>env</code>环境，不会影响系统python环境。</p>
+<p>如果需要退出<code>env</code>环境，可以使用：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">deactivate</div></pre></td></tr></table></figure>
+<p>virtualenv的原理是把系统Python复制一份到virtualenv的环境，用命令<code>source venv/bin/activate</code>进入一个virtualenv环境时，virtualenv会修改相关环境变量，让命令<code>python</code>和<code>pip</code>均指向当前的virtualenv环境。参考<a href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001432712108300322c61f256c74803b43bfd65c6f8d0d0000" target="_blank" rel="external">virtualenv</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/10/08/Research_检索&聚类评价/" itemprop="url">
+                  检索&聚类评价
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-10-08T00:00:00+09:00" content="2015-10-08">
+              2015-10-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/research/" itemprop="url" rel="index">
+                    <span itemprop="name">research</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/10/08/Research_检索&聚类评价/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/08/Research_检索&聚类评价/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="检索Evaluation"><a href="#检索Evaluation" class="headerlink" title="检索Evaluation"></a>检索Evaluation</h1><h2 id="Evaluation-Criteria-of-Unranked-Retrieval"><a href="#Evaluation-Criteria-of-Unranked-Retrieval" class="headerlink" title="Evaluation Criteria of Unranked Retrieval"></a>Evaluation Criteria of Unranked Retrieval</h2><table>
+<thead>
+<tr>
+<th>-</th>
+<th>Retrieved</th>
+<th>Not-retrieved</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>relevante</td>
+<td>TP(true positive)</td>
+<td>FN(false negative)</td>
+</tr>
+<tr>
+<td>Non-relevant</td>
+<td>FP(false positive)</td>
+<td>TN(true negative)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Precision-AND-Recall"><a href="#Precision-AND-Recall" class="headerlink" title="Precision AND Recall"></a><a href="https://en.wikipedia.org/wiki/Precision_and_recall" target="_blank" rel="external">Precision AND Recall</a></h3><p>$$<br>precision = \frac{TP}{TP+FP}<br>$$</p>
+<p>$$<br>recall = \frac{TP}{TP+FN}<br>$$</p>
+<h3 id="Precision-Recall-Curve"><a href="#Precision-Recall-Curve" class="headerlink" title="Precision-Recall Curve"></a>Precision-Recall Curve</h3><p>通常precision和recall是呈一种负相关的关系，recall越高，precision越低。precision-recall curve以recall为横坐标，以precision为纵坐标，表示precision-recall变化关系。</p>
+<h3 id="F-Score"><a href="#F-Score" class="headerlink" title="F-Score"></a><a href="https://en.wikipedia.org/wiki/F1_score" target="_blank" rel="external">F-Score</a></h3><p>组合precision和recall的评价参数。</p>
+<p>$$<br>F = \frac{1}{\alpha\frac 1P + (1-\alpha)\frac 1R} = \frac{(\beta^{2}+1)PR}{\beta^2P+R}<br>$$</p>
+<p>通常我们取$\beta=1,2,3..=，1$，也就是$\alpha=0.5$，也就是harmonic mean，也写作$F_1$，当取$\beta=1,2,3..$，也就得到$F_1, F_2, F_3..$：</p>
+<p>$$<br>F_1 = \frac{2}{\frac 1P + \frac 1R}=\frac{2PR}{R+P}<br>$$</p>
+<h2 id="Precision-for-Rankded-retrieval"><a href="#Precision-for-Rankded-retrieval" class="headerlink" title="Precision for Rankded retrieval"></a>Precision for Rankded retrieval</h2><h3 id="P-k-AND-R-k"><a href="#P-k-AND-R-k" class="headerlink" title="P@k AND R@k"></a>P@k AND R@k</h3><p>用于表示在top k结果中的precision和Recall，如P@10，表示top 10结果的precision。</p>
+<h3 id="MRR"><a href="#MRR" class="headerlink" title="MRR"></a>MRR</h3><p>也就是Mean reciprocal rank，reciprocal rank表示对于一个query第一个正确结果排名位置的倒数值，也就是$RR=\frac {1}{rank}$。MRR表示多个query的RR的平均值：</p>
+<p>$$<br>MRR=\frac{1}{|Q|}\sum^{|Q|}_{i=1}\frac {1}{rank_i}<br>$$</p>
+<p>维基百科给出了一个很好的例子：</p>
+<table>
+<thead>
+<tr>
+<th>query</th>
+<th>results</th>
+<th>correct response</th>
+<th>rank</th>
+<th>reciprocal rank</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cat</td>
+<td>cattern,cati,cats</td>
+<td>cats</td>
+<td>3</td>
+<td>1/3</td>
+</tr>
+<tr>
+<td>torus</td>
+<td>toril,tori,toruses</td>
+<td>tori</td>
+<td>2</td>
+<td>1/2</td>
+</tr>
+<tr>
+<td>virus</td>
+<td>viruses,virii,viri</td>
+<td>viruses</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>$MRR=\frac {(\frac 13 + \frac 12 + 1)}{3}=0.61$</p>
+<h3 id="MAP"><a href="#MAP" class="headerlink" title="MAP"></a>MAP</h3><p>Mean average precision，上面的MRR适合只考虑第一个正确结果检索性能使用，如果有多个正确结果且都要考虑，则应该使用MAP。</p>
+<p>假设query q有m个correct document(or query suggestion etc.).</p>
+<p>$$<br>AP(q)=\frac 1m \sum^{i=m}_{i=1}P(RankSet_i)<br>$$</p>
+<p>$RankSet_i$表示document i排序所在的位置及以上的位置所有的document。假设docuement i=3，排在第7的位置，则$RankSet_3$为1-7的documents，$P(RankSet_i)$即是这个set的precision。</p>
+<p>MAP为多个query的AP的mean：</p>
+<p>$$<br>MAP=\frac{1}{|Q|}\sum^{|Q|}_{i=1}{AP(i)}<br>$$</p>
+<h3 id="DCG-and-nDCG"><a href="#DCG-and-nDCG" class="headerlink" title="DCG and nDCG"></a>DCG and nDCG</h3><p>DCG：Discounted cumulative gain<br>nDCG：Normalized Discounted cumulative gain</p>
+<p>给每个文档指定一个得分，我们希望的得分越高的文档排在越前面。<br>假设一个排名是: $G=[5,2,3,0,10,3]$</p>
+<p>cumulativfe gain可以计算如下：</p>
+<p>$$<br>CG[k]=\sum^{k}_{i=1}G[i]<br>$$</p>
+<p>加上一个惩罚系数，排名越后惩罚越多：</p>
+<p>$$<br>DCG[k]=\sum^{k}_{i=1}\frac{G[i]}{log_2(1+i)}<br>$$</p>
+<p>存在理想的排序$G^`=[10,5,3,3,2,0]$，使得DCG的得分最高。</p>
+<p>使用这个最高得分normal实际的排序，得到就是nDCG得分。</p>
+<p>$$<br>nDCG[k]=\frac{DCG[k]}{DCG^`[k]}<br>$$</p>
+<h2 id="Other-Criteria-of-Effective-IR"><a href="#Other-Criteria-of-Effective-IR" class="headerlink" title="Other Criteria of Effective IR"></a>Other Criteria of Effective IR</h2><ul>
+<li>diversity</li>
+<li>credibility</li>
+<li>comprehensibility</li>
+</ul>
+<h1 id="Clustering-Evaluaition"><a href="#Clustering-Evaluaition" class="headerlink" title="Clustering Evaluaition"></a>Clustering Evaluaition</h1><p>参考<a href="http://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-clustering-1.html" target="_blank" rel="external">Evaluation of clustering</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/10/08/Research_DBpedia Spotlight Introduction and Manual/" itemprop="url">
                   DBpedia Spotlight
                 </a>
@@ -522,8 +861,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/10/08/Research_检索&聚类评价/" itemprop="url">
-                  检索&聚类评价
+                <a class="post-title-link" href="/2015/10/08/Research_StanfordNLP/" itemprop="url">
+                  Stanford CoreNLP
                 </a>
               
             
@@ -566,8 +905,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/10/08/Research_检索&聚类评价/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/08/Research_检索&聚类评价/" itemprop="commentsCount"></span>
+                <a href="/2015/10/08/Research_StanfordNLP/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/08/Research_StanfordNLP/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -592,94 +931,7 @@
       
         
           
-            <h1 id="检索Evaluation"><a href="#检索Evaluation" class="headerlink" title="检索Evaluation"></a>检索Evaluation</h1><h2 id="Evaluation-Criteria-of-Unranked-Retrieval"><a href="#Evaluation-Criteria-of-Unranked-Retrieval" class="headerlink" title="Evaluation Criteria of Unranked Retrieval"></a>Evaluation Criteria of Unranked Retrieval</h2><table>
-<thead>
-<tr>
-<th>-</th>
-<th>Retrieved</th>
-<th>Not-retrieved</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>relevante</td>
-<td>TP(true positive)</td>
-<td>FN(false negative)</td>
-</tr>
-<tr>
-<td>Non-relevant</td>
-<td>FP(false positive)</td>
-<td>TN(true negative)</td>
-</tr>
-</tbody>
-</table>
-<h3 id="Precision-AND-Recall"><a href="#Precision-AND-Recall" class="headerlink" title="Precision AND Recall"></a><a href="https://en.wikipedia.org/wiki/Precision_and_recall" target="_blank" rel="external">Precision AND Recall</a></h3><p>$$<br>precision = \frac{TP}{TP+FP}<br>$$</p>
-<p>$$<br>recall = \frac{TP}{TP+FN}<br>$$</p>
-<h3 id="Precision-Recall-Curve"><a href="#Precision-Recall-Curve" class="headerlink" title="Precision-Recall Curve"></a>Precision-Recall Curve</h3><p>通常precision和recall是呈一种负相关的关系，recall越高，precision越低。precision-recall curve以recall为横坐标，以precision为纵坐标，表示precision-recall变化关系。</p>
-<h3 id="F-Score"><a href="#F-Score" class="headerlink" title="F-Score"></a><a href="https://en.wikipedia.org/wiki/F1_score" target="_blank" rel="external">F-Score</a></h3><p>组合precision和recall的评价参数。</p>
-<p>$$<br>F = \frac{1}{\alpha\frac 1P + (1-\alpha)\frac 1R} = \frac{(\beta^{2}+1)PR}{\beta^2P+R}<br>$$</p>
-<p>通常我们取$\beta=1,2,3..=，1$，也就是$\alpha=0.5$，也就是harmonic mean，也写作$F_1$，当取$\beta=1,2,3..$，也就得到$F_1, F_2, F_3..$：</p>
-<p>$$<br>F_1 = \frac{2}{\frac 1P + \frac 1R}=\frac{2PR}{R+P}<br>$$</p>
-<h2 id="Precision-for-Rankded-retrieval"><a href="#Precision-for-Rankded-retrieval" class="headerlink" title="Precision for Rankded retrieval"></a>Precision for Rankded retrieval</h2><h3 id="P-k-AND-R-k"><a href="#P-k-AND-R-k" class="headerlink" title="P@k AND R@k"></a>P@k AND R@k</h3><p>用于表示在top k结果中的precision和Recall，如P@10，表示top 10结果的precision。</p>
-<h3 id="MRR"><a href="#MRR" class="headerlink" title="MRR"></a>MRR</h3><p>也就是Mean reciprocal rank，reciprocal rank表示对于一个query第一个正确结果排名位置的倒数值，也就是$RR=\frac {1}{rank}$。MRR表示多个query的RR的平均值：</p>
-<p>$$<br>MRR=\frac{1}{|Q|}\sum^{|Q|}_{i=1}\frac {1}{rank_i}<br>$$</p>
-<p>维基百科给出了一个很好的例子：</p>
-<table>
-<thead>
-<tr>
-<th>query</th>
-<th>results</th>
-<th>correct response</th>
-<th>rank</th>
-<th>reciprocal rank</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>cat</td>
-<td>cattern,cati,cats</td>
-<td>cats</td>
-<td>3</td>
-<td>1/3</td>
-</tr>
-<tr>
-<td>torus</td>
-<td>toril,tori,toruses</td>
-<td>tori</td>
-<td>2</td>
-<td>1/2</td>
-</tr>
-<tr>
-<td>virus</td>
-<td>viruses,virii,viri</td>
-<td>viruses</td>
-<td>1</td>
-<td>1</td>
-</tr>
-</tbody>
-</table>
-<p>$MRR=\frac {(\frac 13 + \frac 12 + 1)}{3}=0.61$</p>
-<h3 id="MAP"><a href="#MAP" class="headerlink" title="MAP"></a>MAP</h3><p>Mean average precision，上面的MRR适合只考虑第一个正确结果检索性能使用，如果有多个正确结果且都要考虑，则应该使用MAP。</p>
-<p>假设query q有m个correct document(or query suggestion etc.).</p>
-<p>$$<br>AP(q)=\frac 1m \sum^{i=m}_{i=1}P(RankSet_i)<br>$$</p>
-<p>$RankSet_i$表示document i排序所在的位置及以上的位置所有的document。假设docuement i=3，排在第7的位置，则$RankSet_3$为1-7的documents，$P(RankSet_i)$即是这个set的precision。</p>
-<p>MAP为多个query的AP的mean：</p>
-<p>$$<br>MAP=\frac{1}{|Q|}\sum^{|Q|}_{i=1}{AP(i)}<br>$$</p>
-<h3 id="DCG-and-nDCG"><a href="#DCG-and-nDCG" class="headerlink" title="DCG and nDCG"></a>DCG and nDCG</h3><p>DCG：Discounted cumulative gain<br>nDCG：Normalized Discounted cumulative gain</p>
-<p>给每个文档指定一个得分，我们希望的得分越高的文档排在越前面。<br>假设一个排名是: $G=[5,2,3,0,10,3]$</p>
-<p>cumulativfe gain可以计算如下：</p>
-<p>$$<br>CG[k]=\sum^{k}_{i=1}G[i]<br>$$</p>
-<p>加上一个惩罚系数，排名越后惩罚越多：</p>
-<p>$$<br>DCG[k]=\sum^{k}_{i=1}\frac{G[i]}{log_2(1+i)}<br>$$</p>
-<p>存在理想的排序$G^`=[10,5,3,3,2,0]$，使得DCG的得分最高。</p>
-<p>使用这个最高得分normal实际的排序，得到就是nDCG得分。</p>
-<p>$$<br>nDCG[k]=\frac{DCG[k]}{DCG^`[k]}<br>$$</p>
-<h2 id="Other-Criteria-of-Effective-IR"><a href="#Other-Criteria-of-Effective-IR" class="headerlink" title="Other Criteria of Effective IR"></a>Other Criteria of Effective IR</h2><ul>
-<li>diversity</li>
-<li>credibility</li>
-<li>comprehensibility</li>
-</ul>
-<h1 id="Clustering-Evaluaition"><a href="#Clustering-Evaluaition" class="headerlink" title="Clustering Evaluaition"></a>Clustering Evaluaition</h1><p>参考<a href="http://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-clustering-1.html" target="_blank" rel="external">Evaluation of clustering</a></p>
+            <h1 id="Stanford-CoreNLP"><a href="#Stanford-CoreNLP" class="headerlink" title="Stanford CoreNLP"></a>Stanford CoreNLP</h1><p><a href="http://nlp.stanford.edu/software/corenlp.shtml" target="_blank" rel="external">Stanford CoreNLP</a><br><a href="http://nlp.stanford.edu/software/" target="_blank" rel="external">The Stanford Natural Language Processing Group</a><br><a href="http://nlp.stanford.edu/software/tagger.shtml" target="_blank" rel="external">Stanford Log-linear Part-Of-Speech Tagger</a><br><a href="http://nlp.stanford.edu/software/CRF-NER.shtml" target="_blank" rel="external">Stanford Named Entity Recognizer (NER)</a><br><a href="http://nlp.stanford.edu/software/lex-parser.shtml" target="_blank" rel="external">The Stanford Parser: A statistical parser</a></p>
 
           
         
@@ -838,349 +1090,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/10/08/Research_StanfordNLP/" itemprop="url">
-                  Stanford CoreNLP
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-10-08T00:00:00+09:00" content="2015-10-08">
-              2015-10-08
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/research/" itemprop="url" rel="index">
-                    <span itemprop="name">research</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/10/08/Research_StanfordNLP/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/08/Research_StanfordNLP/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Stanford-CoreNLP"><a href="#Stanford-CoreNLP" class="headerlink" title="Stanford CoreNLP"></a>Stanford CoreNLP</h1><p><a href="http://nlp.stanford.edu/software/corenlp.shtml" target="_blank" rel="external">Stanford CoreNLP</a><br><a href="http://nlp.stanford.edu/software/" target="_blank" rel="external">The Stanford Natural Language Processing Group</a><br><a href="http://nlp.stanford.edu/software/tagger.shtml" target="_blank" rel="external">Stanford Log-linear Part-Of-Speech Tagger</a><br><a href="http://nlp.stanford.edu/software/CRF-NER.shtml" target="_blank" rel="external">Stanford Named Entity Recognizer (NER)</a><br><a href="http://nlp.stanford.edu/software/lex-parser.shtml" target="_blank" rel="external">The Stanford Parser: A statistical parser</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/10/06/Developing_Redis(2)/" itemprop="url">
-                  Redis(2)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-10-06T00:00:00+09:00" content="2015-10-06">
-              2015-10-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Developing/" itemprop="url" rel="index">
-                    <span itemprop="name">Developing</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/10/06/Developing_Redis(2)/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/06/Developing_Redis(2)/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><p>redis中的事务（transaction）和传统关系型数据库中的事务一样，是一组命令的集合。事务同命令一样都是redis最小的执行单位，一个事务中的命令要么都执行，要么都不执行。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">MULTI</div><div class="line"></div><div class="line">SADD <span class="string">"user:1:following"</span> 2</div><div class="line">SADO <span class="string">"user:2:following"</span> 1</div><div class="line"></div><div class="line">EXEC</div></pre></td></tr></table></figure>
-<p>在执行到EXEC之前，前面的命令并不会马上执行，而是添加到等待执行的事务队列中。如果在EXEC之前事务中断，则事务的所有命令都不会被执行，一旦发送了EXEC命令，所有命令都一定会被执行。</p>
-<p>另外redis事务还保证一个事务内的命令依次执行而不被其他命令插入，也就是在多个客户端的情况下，一旦某个客户端开始执行某个事务，到结束之前，其他客户端的命令都不会被执行。</p>
-<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><ul>
-<li><p>语法错误<br>事务所有命令都不会被执行。</p>
-</li>
-<li><p>运行错误。比如使用散列类型的命令操作集合类型的键。这种错误在事务中会被接受并继续执行，也就是即使某条命令出现允许错误，其后面的命令还是会被执行，整个事务会被完成。</p>
-</li>
-</ul>
-<p><strong>需要注意的是，redis不支持rollback。</strong></p>
-<h2 id="WATCH命令"><a href="#WATCH命令" class="headerlink" title="WATCH命令"></a>WATCH命令</h2><p>很多情况下我们需要保证在我们获得某个键值后，该键值不能被其他客户端修改，直到当前客户端执行事务完成，这时我们可以使用WATCH。WATCH命令可以监控一个或多个键，一旦其中有一个键被修改（或删除），之后的事务就不会被执行（与事务的最后一条性质相违背？没有！！）。监控一直持续到EXEC命令（监控可以在MULTI之前进行，从那时就开始监控，事务中的命令是在EXEC之后才执行的，所以在MULTI命令后可以修改WATCH监控，也就是WATCH作用是，从WATCH开始，到MULTI中间，如果被watch的键被修改，那么这个事务不会被执行）。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">SET key 1</div><div class="line">WATCH key</div><div class="line">SET key 2</div><div class="line">MULTI</div><div class="line">SET key 3</div><div class="line">EXEC</div><div class="line"></div><div class="line">GET key <span class="comment"># 结果是2</span></div></pre></td></tr></table></figure>
-<p>执行EXEC命令后会取消对所有键的监控，也可以 用UNWATCH命令来取消监控。</p>
-<h2 id="生存时间"><a href="#生存时间" class="headerlink" title="生存时间"></a>生存时间</h2><p>在redis可以使用EXPIRE命令设置一个键的生存时间，到时间后redis会自动删除。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">EXPIRE key seconds <span class="comment"># 返回1表示设置成功，0表示失败</span></div><div class="line">EXPIRE session:29e3d 900</div><div class="line"></div><div class="line">TTL key <span class="comment"># 还有多少时间会被删除（秒），-1表示键不存在或没有设置时间</span></div><div class="line"></div><div class="line">PERSIST key<span class="comment"># 取消生存时间设置（恢复为永久保存）</span></div></pre></td></tr></table></figure>
-<p>除了PRESIST外，使用SET或GETSET命令赋值也同时回清除键的生存时间（恢复为永久）。其他命令只对键值进行操作的命令（INCR,LPUSH,HSET,ZREM）都不会影响键的生存时间。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">PEXPIRE key 1000 <span class="comment"># 毫秒位单位</span></div></pre></td></tr></table></figure>
-<h2 id="实现缓存"><a href="#实现缓存" class="headerlink" title="实现缓存"></a>实现缓存</h2><p>为了提高性能和负载能力，我们通常需要将一些访问频率较高或者计算密集的数据结果缓存起来，并希望这些数据能根据具体访问情况自动更新或过期（性能和有效的内存利用）。由于内存有限，我们不可能无限的将所有数据缓存在内存中，需要按照一定的规则淘汰不需要的缓存键，通过配置文件的maxmemory参数我们可以设置redis最大可用内存大小，超出这个限制时redis回根据maxmemory-policy参数指定的策略删除一些键以空出空间。</p>
-<table>
-<thead>
-<tr>
-<th>rule</th>
-<th>explaination</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>volatile-lru</td>
-<td>使用LRU算法删除一个键（只对设置了生存时间的键）</td>
-</tr>
-<tr>
-<td>allkeys-lru</td>
-<td>使用LRU算法删除一个键</td>
-</tr>
-<tr>
-<td>volatile-random</td>
-<td>随见删除一个键（只对设置了生存时间的键）</td>
-</tr>
-<tr>
-<td>allkeys-lru</td>
-<td>随机删除一个键</td>
-</tr>
-<tr>
-<td>valatile-ttl</td>
-<td>删除生存时间最近的一个键</td>
-</tr>
-<tr>
-<td>noeviction</td>
-<td>不删除键，返回错误</td>
-</tr>
-</tbody>
-</table>
-<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><ul>
-<li>有序集合</li>
-<li>SORT命令</li>
-</ul>
-<p>SORT可以对集合，列表和有序集合类型进行排序（在对有序集合排序时会忽略元素的分数，只针对元素自身的值进行排序，如数字是根据数字大小，还可以通过ALPHA参数实现按照字典顺序排列非数字元素），使用DESC可以实现将元素从大到小排序。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">SORT tag:ruby:posts</div><div class="line">SORT myzset</div><div class="line"></div><div class="line">SORT mylistalpha ALPHA DESC</div></pre></td></tr></table></figure>
-<p>另外SORT还支持LIMIT offset count的用法<br><code>SORT tag:ruby:posts DESC LIMIT 1 2</code></p>
-<ul>
-<li>BY参数</li>
-</ul>
-<p>很多时候列表，集合等中存储的元素值代表的是对象ID，单纯对这些ID排序意义不大，我们需要根据ID对于的对象的某个属性进行排序，这时我们可以使用BY参数。<code>BY 参考键</code>，其中参考键可以是字符串类型键或者是散列类型的某个字段<br>（表示为<code>键名-&gt;字段名</code>）。如果提供了BY参数，SORT命令不在根据元素自身的值进行排序，而是对每个元素使用元素的值替换参考键中的第一个<code>*</code>并获取其值，用以进行排序。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SORT tag:ruby:posts BY post:*-&gt;time DESC</div></pre></td></tr></table></figure>
-<p>除散列类型外，参考键还可以是字符串类型：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SORT list my itemscore:* DESC</div></pre></td></tr></table></figure>
-<p>当某个元素的参考键不存在时，会默认参考键值为0.</p>
-<ul>
-<li>GET参数</li>
-</ul>
-<p>GET参数不影响排序，它的作用是使SORT命令的返回结果不再是元素自身的值，而是GET参数中指定的键值。GET参数的规则和BY参数一样，也支持字符串类型和散列类型的键，并同样使用<code>*</code>作为占位符。另外在一个SORT 命令中可以有多个GET参数（而BY参数只能有一个）。</p>
-<p><code>SORT tag:ruby:posts BY post:*-&gt;time DESC GET post:*title GET post:*-&gt;time GET #</code></p>
-<p>有N个GET参数，每个元素返回的结果就有N行。使用#作为参数可以返回键值本身。</p>
-<ul>
-<li>STORE参数</li>
-</ul>
-<p>可以将排序结果使用STORE保存，返回结果为保存结果个数。</p>
-<p><code>SORT tag:ruby:posts BY post:*-&gt;time DESC GET post:*title GET post:*-&gt;time GET # STORE stor.result</code></p>
-<ul>
-<li>性能优化</li>
-</ul>
-<h2 id="消息通知"><a href="#消息通知" class="headerlink" title="消息通知"></a>消息通知</h2><h3 id="任务队列"><a href="#任务队列" class="headerlink" title="任务队列"></a>任务队列</h3><p>两类实体：生产者和消费者，生产者会将需要处理的任务放入任务队列中，而消费者不断地从任务队列中读入任务信息并执行。使用任务队列可以实现松耦合，使得生产者和消费者都可伸缩，并且在访问量急剧增加的情况下可以根据系统资源情况削峰，降低负载。</p>
-<h3 id="使用redis实现任务队列"><a href="#使用redis实现任务队列" class="headerlink" title="使用redis实现任务队列"></a>使用redis实现任务队列</h3><p>最基本使用redis的列表类型，生产者使用LPUSH加入任务，消费者使用RPOP取出任务并执行（while不断循环，可设置间隔时间）。</p>
-<p>上面的一个确定是消费者需要不断调用RPOP查看是否存在新任务，带了额外的负载压力。我们可以通过BRPOP实现一旦有新任务就通知消费者，消费者在调用BRPOP之后，如果没有任务则会阻塞，知道有新任务加入。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">BRPOP queue 0 <span class="comment"># 0表示一直阻塞，其他表示只会阻塞一定时间</span></div></pre></td></tr></table></figure>
-<h3 id="优先级队列"><a href="#优先级队列" class="headerlink" title="优先级队列"></a>优先级队列</h3><p>有时一个消费者可能能处理相同类型的不同任务，但优先级不同。如VIP客户的订单处理和普通客户的订单处理，可以将不同类型的客户的订单存在不同队列中。BRPOP命令可以同时接收多个键，并处理第一个存在任务的队列的任务。</p>
-<h3 id="『发布-订阅』模式"><a href="#『发布-订阅』模式" class="headerlink" title="『发布/订阅』模式"></a>『发布/订阅』模式</h3><p>除了任务队列以外，redis还提供了一组命令可以让开发者实现”发布/订阅”模式。”发布/订阅”模式同样可以实现进程间的消息传递：订阅者可以订阅一个或若干个频道(channel)，而发布者可以向指定频道发送消息，所有订阅此频道都会收到该消息。</p>
-<p>发布者发布消息:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">PUBLIC channel.1 hi</div></pre></td></tr></table></figure>
-<p>订阅频道的命令是SUBSCRIBE，可以同时订阅多个频道。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SUBSCRIBE channel.1</div></pre></td></tr></table></figure>
-<p>进入订阅状态后客户端可能会收到三种类型的回复。每种类型的回复都包含三个值。第一个值是消息的类型，根据消息类型的不同，第二、第三个值的含义也不同。</p>
-<p>三种类型：</p>
-<ul>
-<li>第一个值为”subsribe”。表示订阅成功的反馈信息，第二个值是订阅成功的频道名称，第三个值是当前客户端订阅的频道数量。</li>
-<li>第一个值为”message”。一般这种类型是我们关心的，表示接受到的消息。第二个值表示频道名称，第三个值表示消息的内容。</li>
-<li>unsubscribe，表示成功取消订阅频道。</li>
-</ul>
-<p>使用UNSUBSCRIBE命令可以取消订阅指定的频道，如果不指定参数则会取消所有订阅频道。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UNSUBSCRIBE channel1 channel2 ...</div></pre></td></tr></table></figure>
-<h3 id="按照规则订阅"><a href="#按照规则订阅" class="headerlink" title="按照规则订阅"></a>按照规则订阅</h3><p>PSUBSCRIBE支持通配符匹配:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">PSUBSCRIBE channel.?*</div><div class="line"></div><div class="line">1) pmessage</div><div class="line">2) channnel.?*</div><div class="line">3) channel.1</div><div class="line">4) <span class="string">"hi!"</span></div></pre></td></tr></table></figure>
-<p>PUNSUBSCRIBE可以退订指定的规则。</p>
-<h2 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h2>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1226,7 +1135,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">328</span>
+              <span class="site-state-item-count">329</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

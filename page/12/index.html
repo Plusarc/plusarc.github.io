@@ -384,8 +384,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/10/02/Leetcode_First Missing Positive/" itemprop="url">
-                  First Missing Positive
+                <a class="post-title-link" href="/2015/10/03/Leetcode_Reverse Nodes in k-Group/" itemprop="url">
+                  Reverse Nodes in k-Group
                 </a>
               
             
@@ -398,8 +398,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-10-02T00:00:00+09:00" content="2015-10-02">
-              2015-10-02
+            <time itemprop="dateCreated" datetime="2015-10-03T00:00:00+09:00" content="2015-10-03">
+              2015-10-03
             </time>
           </span>
 
@@ -428,8 +428,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/10/02/Leetcode_First Missing Positive/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/02/Leetcode_First Missing Positive/" itemprop="commentsCount"></span>
+                <a href="/2015/10/03/Leetcode_Reverse Nodes in k-Group/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/03/Leetcode_Reverse Nodes in k-Group/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -454,152 +454,19 @@
       
         
           
-            <h1 id="First-Missing-Positive"><a href="#First-Missing-Positive" class="headerlink" title="First Missing Positive"></a><a href="https://leetcode.com/problems/first-missing-positive/" target="_blank" rel="external">First Missing Positive</a></h1><blockquote>
-<p>Given an unsorted integer array, find the first missing positive integer.</p>
-<p>For example,<br>Given <code>[1,2,0]</code> return <code>3</code>,<br>and <code>[3,4,-1,1]</code> return <code>2</code>.</p>
-<p>Your algorithm should run in <code>O(n)</code> time and uses constant space.</p>
+            <h1 id="Reverse-Nodes-in-k-Group"><a href="#Reverse-Nodes-in-k-Group" class="headerlink" title="Reverse Nodes in k-Group"></a><a href="https://leetcode.com/problems/reverse-nodes-in-k-group/" target="_blank" rel="external">Reverse Nodes in k-Group</a></h1><blockquote>
+<p>Given a linked list, reverse the nodes of a linked list k at a time and return its modified list.</p>
+<p>If the number of nodes is not a multiple of k then left-out nodes in the end should remain as it is.</p>
+<p>You may not alter the values in the nodes, only nodes itself may be changed.</p>
+<p>Only constant memory is allowed.</p>
+<p>For example,<br>Given this linked list: <code>1-&gt;2-&gt;3-&gt;4-&gt;5</code></p>
+<p>For k = 2, you should return: <code>2-&gt;1-&gt;4-&gt;3-&gt;5</code></p>
+<p>For k = 3, you should return: <code>3-&gt;2-&gt;1-&gt;4-&gt;5</code></p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>将每个整数<code>i</code>放到数组中<code>i-1</code>位置，然后从左右扫描直到出现<code>nums[i]!= i+1</code>的元素或者到末尾，得到First Missing Positive。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">firstMissingPositive</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(nums==<span class="keyword">null</span> || nums.length==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nums.length; i++) &#123;</div><div class="line">            <span class="keyword">if</span>(nums[i]&lt;<span class="number">1</span> || nums[i]&gt;nums.length || nums[i]==i+<span class="number">1</span>) <span class="keyword">continue</span>;</div><div class="line">            <span class="keyword">while</span>(nums[i]&gt;=<span class="number">1</span> &amp;&amp; nums[i]&lt;=nums.length &amp;&amp; nums[i]!=i+<span class="number">1</span>) &#123;</div><div class="line">            	<span class="keyword">int</span> temp = nums[nums[i]-<span class="number">1</span>];</div><div class="line">            	<span class="keyword">if</span>(temp==nums[i]) <span class="keyword">break</span>;</div><div class="line">            	nums[nums[i]-<span class="number">1</span>] = nums[i];</div><div class="line">            	nums[i] = temp;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nums.length; i++) &#123;</div><div class="line">            <span class="keyword">if</span>(nums[i]!= i+<span class="number">1</span>) <span class="keyword">return</span> i+<span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> nums.length + <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>second time</p>
-<p>better explanation</p>
-<p>核心思想就是遍历数组时，将每个元素，和以该元素为下标的元素进行置换，比如第一个元素是3，就将它置换到下标为3的地方，而原本下标为3的地方的元素就换到第一个来。如果换来的元素也是在正确的位置就检查下一个元素，否则继续交换，直到：</p>
-<p>待交换的两个数是一样的<br>当前位置的元素没有对应的目的地（比如负数，或者超界元素）<br>注意</p>
-<p>数组是从0开始的，而正数是从1开始的，为了简化映射关系，把数组里所有元素都减了1，最后返回答案时再加1即可。<br>如果最后还没找到，就说明缺失的是最后一个数n</p>
-<p><a href="http://segmentfault.com/a/1190000003488849" target="_blank" rel="external">First Missing Positive</a></p>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>以<code>k</code>长度为一组，进行翻转，然后将最后一个节点的next设置为递归进行后面的翻转的开头节点，然后返回当前小组的开头节点。</p>
+<p>具体逻辑参考代码。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * public class ListNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     ListNode next;</div><div class="line"> *     ListNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseKGroup</span><span class="params">(ListNode head, <span class="keyword">int</span> k)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span> || head.next==<span class="keyword">null</span>) <span class="keyword">return</span> head;</div><div class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">        ListNode current = head;</div><div class="line">        <span class="keyword">while</span>(current!=<span class="keyword">null</span> &amp;&amp; count&lt;k) &#123;</div><div class="line">        	current = current.next;</div><div class="line">        	count ++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(count!=k) <span class="keyword">return</span> head;</div><div class="line">        </div><div class="line">        ListNode last = <span class="keyword">null</span>;</div><div class="line">        current = head;</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span>(i++&lt;k) &#123;</div><div class="line">            <span class="keyword">if</span>(current!=<span class="keyword">null</span>) &#123;</div><div class="line">                ListNode temp = current.next;</div><div class="line">                current.next = last;</div><div class="line">                last = current;</div><div class="line">                current = temp;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        head.next = reverseKGroup(current, k);</div><div class="line">        <span class="keyword">return</span> last;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/10/02/Leetcode_Word Ladder II/" itemprop="url">
-                  Word Ladder II
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-10-02T00:00:00+09:00" content="2015-10-02">
-              2015-10-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/10/02/Leetcode_Word Ladder II/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/02/Leetcode_Word Ladder II/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Word-Ladder-II"><a href="#Word-Ladder-II" class="headerlink" title="Word Ladder II"></a><a href="https://leetcode.com/problems/word-ladder-ii/" target="_blank" rel="external">Word Ladder II</a></h1><blockquote>
-<p>Given two words (beginWord and endWord), and a dictionary’s word list, find all shortest transformation sequence(s) from beginWord to endWord, such that:</p>
-<p>Only one letter can be changed at a time<br>Each intermediate word must exist in the word list<br>For example,</p>
-<p>Given:<br><code>beginWord = &quot;hit&quot;</code><br><code>endWord = &quot;cog&quot;</code><br><code>wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;]</code><br>Return</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">  [</div><div class="line">    [&quot;hit&quot;,&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;cog&quot;],</div><div class="line">    [&quot;hit&quot;,&quot;hot&quot;,&quot;lot&quot;,&quot;log&quot;,&quot;cog&quot;]</div><div class="line">  ]</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-<p>Note:<br>All words have the same length.<br>All words contain only lowercase alphabetic characters.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>思路与Word Ladder II一样，最开始使用String记录已访问路径，大数据集会超时。</p>
-<p>参考:<br><a href="http://blog.csdn.net/linhuanmars/article/details/23071455" target="_blank" rel="external">Word Ladder II – LeetCode</a><br><a href="http://huangyawu.com/leetcode-word-ladder-ii-java/" target="_blank" rel="external">[LeetCode] Word Ladder II (java)</a></p>
-<p>思路上和Word Ladder是比较类似的，但是因为是要求出所有路径，仅仅保存路径长度是不够的，而且这里还有更多的问题，那就是为了得到所有路径，不是每个结点访问一次就可以标记为visited了，因为有些访问过的结点也会是别的路径上的结点，所以访问的集合要进行回溯（也就是标记回未访问）。所以时间上不再是一次广度优先搜索的复杂度了，取决于结果路径的数量。同样空间上也是相当高的复杂度，因为我们要保存过程中满足的中间路径到某个数据结构中，以便最后可以获取路径，这里我们维护一个HashMap，把一个结点前驱结点都进行保存。</p>
-<p>在LeetCode中用Java实现上述算法非常容易超时。为了提高算法效率，需要注意一下两点：<br>1）在替换String的某一位的字符时，先转换成char数组再操作；<br>2）如果按照正常的方法从start找end，然后根据这个来构造路径，代价会比较高，因为保存前驱结点容易，而保存后驱结点则比较困难。所以我们在广度优先搜索时反过来先从end找start，最后再根据生成的前驱结点映射从start往end构造路径，这样算法效率会有明显提高。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="String-Record-Solution-LTE"><a href="#String-Record-Solution-LTE" class="headerlink" title="String Record Solution(LTE)"></a>String Record Solution(LTE)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> List&lt;List&lt;String&gt;&gt; findLadders(String beginWord, String endWord, Set&lt;String&gt; wordList) &#123;</div><div class="line">        List&lt;List&lt;String&gt;&gt; res = <span class="keyword">new</span> ArrayList&lt;List&lt;String&gt;&gt;();</div><div class="line">        Queue&lt;String&gt; queue = <span class="keyword">new</span> LinkedList&lt;String&gt;();</div><div class="line">        queue.add(beginWord);</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> currentCount = <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> nextCount = <span class="number">0</span>;</div><div class="line">        <span class="keyword">boolean</span> arrive = <span class="keyword">false</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(!queue.isEmpty()) &#123;</div><div class="line">            String cumRecord = queue.poll();</div><div class="line">            String [] records = cumRecord.split(<span class="string">"#"</span>);</div><div class="line">            String s = records[records.length-<span class="number">1</span>];</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;records.length; i++) wordList.remove(records[i]);</div><div class="line">            </div><div class="line">            currentCount --;</div><div class="line">            <span class="keyword">char</span> [] cArray = s.toCharArray();</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> pos=<span class="number">0</span>; pos&lt;cArray.length; pos++) &#123;</div><div class="line">                <span class="keyword">char</span> c = cArray[pos];</div><div class="line">                <span class="keyword">for</span>(<span class="keyword">char</span> i=<span class="string">'a'</span>; i&lt;=<span class="string">'z'</span>; i++) &#123;</div><div class="line">                    <span class="keyword">if</span>(c==i) <span class="keyword">continue</span>;</div><div class="line">                    cArray[pos] = i;</div><div class="line">                    String ns = <span class="keyword">new</span> String(cArray);</div><div class="line">                    <span class="keyword">if</span>(ns.equals(endWord)) &#123;</div><div class="line">                        List&lt;String&gt; temp = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">                        Collections.addAll(temp, records);</div><div class="line">                        temp.add(ns);</div><div class="line">                        res.add(temp);</div><div class="line">                        arrive = <span class="keyword">true</span>;</div><div class="line">                    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(wordList.contains(ns)) &#123;</div><div class="line">                        queue.add(cumRecord + <span class="string">"#"</span> + ns);</div><div class="line">                        <span class="comment">//wordList.remove(ns);</span></div><div class="line">                        nextCount ++;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                cArray[pos] = c;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;records.length; i++) wordList.add(records[i]);</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(currentCount==<span class="number">0</span>) &#123;</div><div class="line">                <span class="keyword">if</span>(arrive) <span class="keyword">return</span> res;</div><div class="line">                currentCount = nextCount;</div><div class="line">                nextCount = <span class="number">0</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Accepted-Solution-I"><a href="#Accepted-Solution-I" class="headerlink" title="Accepted Solution I"></a>Accepted Solution I</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> HashMap&lt;String, Integer&gt; map;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(String word, String end, List&lt;String&gt; sequence, List&lt;List&lt;String&gt;&gt; res)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(map.get(word) == map.get(end) &amp;&amp; !end.equals(word)) <span class="keyword">return</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(end.equals(word))&#123;</div><div class="line">            List&lt;String&gt; list = <span class="keyword">new</span> LinkedList&lt;String&gt;(sequence);</div><div class="line">            list.add(word);</div><div class="line">            Collections.reverse(list);</div><div class="line">            res.add(list);</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">         </div><div class="line">        sequence.add(word);</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;word.length(); i++)&#123;</div><div class="line">            <span class="keyword">char</span>[] wordArray = word.toCharArray();</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">char</span> ch = <span class="string">'a'</span>; ch &lt;= <span class="string">'z'</span>; ch++)&#123;</div><div class="line">                <span class="keyword">if</span>(wordArray[i] == ch) <span class="keyword">continue</span>;</div><div class="line">                wordArray[i] = ch;</div><div class="line">                String tmp = <span class="keyword">new</span> String(wordArray);</div><div class="line">                <span class="keyword">if</span>(map.containsKey(tmp) &amp;&amp; map.get(tmp) == (map.get(word) - <span class="number">1</span>))</div><div class="line">                    dfs(tmp, end, sequence, res);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        sequence.remove(word);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">public</span> List&lt;List&lt;String&gt;&gt; findLadders(String start, String end, Set&lt;String&gt; dict) &#123;</div><div class="line">        List&lt;List&lt;String&gt;&gt; res = <span class="keyword">new</span> ArrayList&lt;List&lt;String&gt;&gt;();</div><div class="line">        LinkedList&lt;String&gt; queue = <span class="keyword">new</span> LinkedList&lt;String&gt;();</div><div class="line">        map = <span class="keyword">new</span> HashMap&lt;String, Integer&gt;();</div><div class="line">        queue.add(start);</div><div class="line">        map.put(start, <span class="number">1</span>);</div><div class="line">        <span class="keyword">if</span>(start.equals(end))&#123;</div><div class="line">            res.add(queue);</div><div class="line">            <span class="keyword">return</span> res;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">while</span>(!queue.isEmpty())&#123;</div><div class="line">            String word = queue.poll();</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;word.length(); i++)&#123;</div><div class="line">                <span class="keyword">char</span>[] wordArray = word.toCharArray();</div><div class="line">                <span class="keyword">for</span>(<span class="keyword">char</span> j=<span class="string">'a'</span>; j&lt;=<span class="string">'z'</span>; j++)&#123;</div><div class="line">                    <span class="keyword">if</span>(wordArray[i] == j)</div><div class="line">                        <span class="keyword">continue</span>;</div><div class="line">                    wordArray[i] = j;</div><div class="line">                    String tmp = <span class="keyword">new</span> String(wordArray);</div><div class="line">                    <span class="keyword">if</span>(tmp.endsWith(end))&#123;</div><div class="line">                        map.put(tmp, map.get(word)+<span class="number">1</span>);</div><div class="line">                        i = word.length();</div><div class="line">                        queue.clear();</div><div class="line">                        <span class="keyword">break</span>;</div><div class="line">                    &#125;</div><div class="line">                    <span class="keyword">if</span>(dict.contains(tmp) &amp;&amp; !map.containsKey(tmp))&#123;</div><div class="line">                        map.put(tmp, map.get(word) + <span class="number">1</span>);</div><div class="line">                        queue.add(tmp);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(map.containsKey(end))</div><div class="line">            dfs(end, start, <span class="keyword">new</span> LinkedList&lt;String&gt;(), res);</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Accepted-Solution-II"><a href="#Accepted-Solution-II" class="headerlink" title="Accepted Solution II"></a>Accepted Solution II</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> List&lt;List&lt;String&gt;&gt; findLadders(String start, String end,</div><div class="line">            Set&lt;String&gt; dict) &#123;</div><div class="line">        List&lt;List&lt;String&gt;&gt; ladders = <span class="keyword">new</span> ArrayList&lt;List&lt;String&gt;&gt;();</div><div class="line">        Map&lt;String, List&lt;String&gt;&gt; map = <span class="keyword">new</span> HashMap&lt;String, List&lt;String&gt;&gt;();</div><div class="line">        Map&lt;String, Integer&gt; distance = <span class="keyword">new</span> HashMap&lt;String, Integer&gt;();</div><div class="line"></div><div class="line">        dict.add(start);</div><div class="line">        dict.add(end);</div><div class="line"> </div><div class="line">        bfs(map, distance, start, end, dict);</div><div class="line">        </div><div class="line">        List&lt;String&gt; path = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">        </div><div class="line">        dfs(ladders, path, end, start, distance, map);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> ladders;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(List&lt;List&lt;String&gt;&gt; ladders, List&lt;String&gt; path, String crt,</span></span></div><div class="line">            String start, Map&lt;String, Integer&gt; distance,</div><div class="line">            Map&lt;String, List&lt;String&gt;&gt; map) &#123;</div><div class="line">        path.add(crt);</div><div class="line">        <span class="keyword">if</span> (crt.equals(start)) &#123;</div><div class="line">            Collections.reverse(path);</div><div class="line">            ladders.add(<span class="keyword">new</span> ArrayList&lt;String&gt;(path));</div><div class="line">            Collections.reverse(path);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">for</span> (String next : map.get(crt)) &#123;</div><div class="line">                <span class="keyword">if</span> (distance.containsKey(next) &amp;&amp; distance.get(crt) == distance.get(next) + <span class="number">1</span>) &#123; </div><div class="line">                    dfs(ladders, path, next, start, distance, map);</div><div class="line">                &#125;</div><div class="line">            &#125;           </div><div class="line">        &#125;</div><div class="line">        path.remove(path.size() - <span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">bfs</span><span class="params">(Map&lt;String, List&lt;String&gt;&gt; map, Map&lt;String, Integer&gt; distance,</span></span></div><div class="line">            String start, String end, Set&lt;String&gt; dict) &#123;</div><div class="line">        Queue&lt;String&gt; q = <span class="keyword">new</span> LinkedList&lt;String&gt;();</div><div class="line">        q.offer(start);</div><div class="line">        distance.put(start, <span class="number">0</span>);</div><div class="line">        <span class="keyword">for</span> (String s : dict) &#123;</div><div class="line">            map.put(s, <span class="keyword">new</span> ArrayList&lt;String&gt;());</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span> (!q.isEmpty()) &#123;</div><div class="line">            String crt = q.poll();</div><div class="line"></div><div class="line">            List&lt;String&gt; nextList = expand(crt, dict);</div><div class="line">            <span class="keyword">for</span> (String next : nextList) &#123;</div><div class="line">                map.get(next).add(crt);</div><div class="line">                <span class="keyword">if</span> (!distance.containsKey(next)) &#123;</div><div class="line">                    distance.put(next, distance.get(crt) + <span class="number">1</span>);</div><div class="line">                    q.offer(next);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function">List&lt;String&gt; <span class="title">expand</span><span class="params">(String crt, Set&lt;String&gt; dict)</span> </span>&#123;</div><div class="line">        List&lt;String&gt; expansion = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; crt.length(); i++) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">char</span> ch = <span class="string">'a'</span>; ch &lt;= <span class="string">'z'</span>; ch++) &#123;</div><div class="line">                <span class="keyword">if</span> (ch != crt.charAt(i)) &#123;</div><div class="line">                    String expanded = crt.substring(<span class="number">0</span>, i) + ch</div><div class="line">                            + crt.substring(i + <span class="number">1</span>);</div><div class="line">                    <span class="keyword">if</span> (dict.contains(expanded)) &#123;</div><div class="line">                        expansion.add(expanded);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> expansion;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           
         
       
@@ -947,6 +814,138 @@
             
               
                 
+                <a class="post-title-link" href="/2015/10/02/Leetcode_First Missing Positive/" itemprop="url">
+                  First Missing Positive
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-10-02T00:00:00+09:00" content="2015-10-02">
+              2015-10-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/10/02/Leetcode_First Missing Positive/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/02/Leetcode_First Missing Positive/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="First-Missing-Positive"><a href="#First-Missing-Positive" class="headerlink" title="First Missing Positive"></a><a href="https://leetcode.com/problems/first-missing-positive/" target="_blank" rel="external">First Missing Positive</a></h1><blockquote>
+<p>Given an unsorted integer array, find the first missing positive integer.</p>
+<p>For example,<br>Given <code>[1,2,0]</code> return <code>3</code>,<br>and <code>[3,4,-1,1]</code> return <code>2</code>.</p>
+<p>Your algorithm should run in <code>O(n)</code> time and uses constant space.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>将每个整数<code>i</code>放到数组中<code>i-1</code>位置，然后从左右扫描直到出现<code>nums[i]!= i+1</code>的元素或者到末尾，得到First Missing Positive。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">firstMissingPositive</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(nums==<span class="keyword">null</span> || nums.length==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nums.length; i++) &#123;</div><div class="line">            <span class="keyword">if</span>(nums[i]&lt;<span class="number">1</span> || nums[i]&gt;nums.length || nums[i]==i+<span class="number">1</span>) <span class="keyword">continue</span>;</div><div class="line">            <span class="keyword">while</span>(nums[i]&gt;=<span class="number">1</span> &amp;&amp; nums[i]&lt;=nums.length &amp;&amp; nums[i]!=i+<span class="number">1</span>) &#123;</div><div class="line">            	<span class="keyword">int</span> temp = nums[nums[i]-<span class="number">1</span>];</div><div class="line">            	<span class="keyword">if</span>(temp==nums[i]) <span class="keyword">break</span>;</div><div class="line">            	nums[nums[i]-<span class="number">1</span>] = nums[i];</div><div class="line">            	nums[i] = temp;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nums.length; i++) &#123;</div><div class="line">            <span class="keyword">if</span>(nums[i]!= i+<span class="number">1</span>) <span class="keyword">return</span> i+<span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> nums.length + <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>second time</p>
+<p>better explanation</p>
+<p>核心思想就是遍历数组时，将每个元素，和以该元素为下标的元素进行置换，比如第一个元素是3，就将它置换到下标为3的地方，而原本下标为3的地方的元素就换到第一个来。如果换来的元素也是在正确的位置就检查下一个元素，否则继续交换，直到：</p>
+<p>待交换的两个数是一样的<br>当前位置的元素没有对应的目的地（比如负数，或者超界元素）<br>注意</p>
+<p>数组是从0开始的，而正数是从1开始的，为了简化映射关系，把数组里所有元素都减了1，最后返回答案时再加1即可。<br>如果最后还没找到，就说明缺失的是最后一个数n</p>
+<p><a href="http://segmentfault.com/a/1190000003488849" target="_blank" rel="external">First Missing Positive</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/10/02/Leetcode_Longest Consecutive Sequence/" itemprop="url">
                   Longest Consecutive Sequence
                 </a>
@@ -1097,7 +1096,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">328</span>
+              <span class="site-state-item-count">329</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

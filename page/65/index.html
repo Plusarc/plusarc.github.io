@@ -260,6 +260,253 @@
             
               
                 
+                <a class="post-title-link" href="/2014/07/05/Java_Ant/" itemprop="url">
+                  Ant基本使用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2014-07-05T00:00:00+09:00" content="2014-07-05">
+              2014-07-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/07/05/Java_Ant/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/07/05/Java_Ant/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello world"></a>Hello world</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> test.ant;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">	System.out.println(<span class="string">"Hello world1"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>假设我们要将上的代码编译，移动，打包，允许。最直接的方法是手动用<code>java, cp, jar, java</code>完成。如果需要测试操作还需要对测试代码进行同样的操作。</p>
+<p>当然这里的情况是很简单的，但是考虑到如果有成百上千个类，包，子项目，存在复杂的相互依赖，外部依赖等情况，同样多的测试类，以及复杂的部署过程。而且这样的过程在开发过程可能需要反复进行很多次。</p>
+<p><strong>手动完成几乎是不可能的任务，而且非常慢和不可靠。</strong><br><strong>通过Ant我们可以简洁优雅的完成这些复杂的任务，只需要一个或几个命令。</strong></p>
+<p>Ant的配置这里就不在细述，可以参考官网，需要注意的是在配置Ant时需要包装java环境已经配置好。</p>
+<p>Ant是一个Apache基金会下的跨平台的基于Java语言开发的构件工具。<br>其构建文件默认为build.xml，默认放在项目的根目录下。</p>
+<p>对于上面的HelloWorld任务，我们可以编写build.xml如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">name</span>=<span class="string">"HelloWorld"</span> <span class="attr">default</span>=<span class="string">"run"</span> <span class="attr">basedir</span>=<span class="string">"."</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"src"</span> <span class="attr">value</span>=<span class="string">"src"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dest"</span> <span class="attr">value</span>=<span class="string">"classes"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hello_jar"</span> <span class="attr">value</span>=<span class="string">"hello1.jar"</span>/&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">target</span> <span class="attr">name</span>=<span class="string">"init"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">mkdir</span> <span class="attr">dir</span>=<span class="string">"$&#123;dest&#125;"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">target</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">target</span> <span class="attr">name</span>=<span class="string">"compile"</span> <span class="attr">depends</span>=<span class="string">"init"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">javac</span> <span class="attr">srcdir</span>=<span class="string">"$&#123;src&#125;"</span> <span class="attr">destdir</span>=<span class="string">"$&#123;dest&#125;"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">target</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">target</span> <span class="attr">name</span>=<span class="string">"build"</span> <span class="attr">depends</span>=<span class="string">"compile"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">jar</span> <span class="attr">jarfile</span>=<span class="string">"$&#123;hello_jar&#125;"</span> <span class="attr">basedir</span>=<span class="string">"$&#123;dest&#125;"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">target</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">target</span> <span class="attr">name</span>=<span class="string">"run"</span> <span class="attr">depends</span>=<span class="string">"build"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">java</span> <span class="attr">classname</span>=<span class="string">"test.ant.HelloWorld"</span> <span class="attr">classpath</span>=<span class="string">"$&#123;hello_jar&#125;"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">target</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">target</span> <span class="attr">name</span>=<span class="string">"clean"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">delete</span> <span class="attr">dir</span>=<span class="string">"$&#123;dest&#125;"</span> /&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">delete</span> <span class="attr">file</span>=<span class="string">"$&#123;hello_jar&#125;"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">target</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">target</span> <span class="attr">name</span>=<span class="string">"rerun"</span> <span class="attr">depends</span>=<span class="string">"clean,run"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">ant</span> <span class="attr">target</span>=<span class="string">"clean"</span> /&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">ant</span> <span class="attr">target</span>=<span class="string">"run"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">target</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">name</span>=<span class="string">"HelloWorld"</span> <span class="attr">default</span>=<span class="string">"run"</span> <span class="attr">basedir</span>=<span class="string">"."</span>&gt;</span></div><div class="line"># 项目名字以及一些属性配置，例如项目目录，默认的target</div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"src"</span> <span class="attr">value</span>=<span class="string">"src"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dest"</span> <span class="attr">value</span>=<span class="string">"classes"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hello_jar"</span> <span class="attr">value</span>=<span class="string">"hello1.jar"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<p><strong>属性任务(相当于变量)，一般会用于后面的target中。</strong></p>
+<p><strong>Ant的构建过程是由一个一个的target组成的，每个target有其名字和行为，以及所依赖的target。</strong></p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>目标名 (name)</td>
+<td>表示目标的名称。（必须）</td>
+</tr>
+<tr>
+<td>依赖 (depends)</td>
+<td>用于描述 target 之间的依赖关系，若与多个 target 存在依赖关系时，需要以“,”间隔。Ant 会依照 depends 属性中 target 出现的顺序依次执行每个 target。被依赖的 target 会先执行。（可选）</td>
+</tr>
+<tr>
+<td>描述 (description)</td>
+<td>关于 target 功能的简单描述。（可选）</td>
+</tr>
+<tr>
+<td>如果 (if)</td>
+<td>用于验证指定的属性是否存在，若不存在，所在 target 将不会被执行。（可选）</td>
+</tr>
+<tr>
+<td>除非 (unless)</td>
+<td>该属性的功能与 if 属性的功能正好相反，它也用于验证指定的属性是否存在，若不存在，所在 target 将会被执行。（可选）</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">target</span> <span class="attr">name</span>=<span class="string">"init"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">mkdir</span> <span class="attr">dir</span>=<span class="string">"$&#123;dest&#125;"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">target</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">target</span> <span class="attr">name</span>=<span class="string">"compile"</span> <span class="attr">depends</span>=<span class="string">"init"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">javac</span> <span class="attr">srcdir</span>=<span class="string">"$&#123;src&#125;"</span> <span class="attr">destdir</span>=<span class="string">"$&#123;dest&#125;"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">target</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>如果一个target有所依赖的target，则在执行这个target之前，会先需要完成所依赖的target的执行。也就是，target之间有一个依赖关系，这种关系用depends来指定。即如果Target A依赖于Target B，那么在执行Target A之前会首先执行Target B。</p>
+<p>完成build.xml后（复杂的项目时一般不需要自己些，ant提供了一系列工具自动生成build.xml），我们只需要通过下面命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ant</div></pre></td></tr></table></figure>
+<p>就可以完成项目的编译，打包，运行，只输入ant时，会执行到默认的target，默认target所依赖(递归)的target也会被全部执行。</p>
+<p><strong>如果只希望执行到某个阶段，只需要打包，可以使用<code>ant target-name</code></strong>。</p>
+<p>例如如果只需要打包，可以使用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ant build</div></pre></td></tr></table></figure>
+<h2 id="More"><a href="#More" class="headerlink" title="More"></a>More</h2><h3 id="子项目"><a href="#子项目" class="headerlink" title="子项目"></a>子项目</h3><p>一个比较复杂的项目通常包括多个子项目，并且各个子项目是由不同的开发人员来完成的。在这种情况下，不同的子项目应该拥有不同的build.xml，整个项目有一个汇总build.xml，通过Ant任务或是AntCall任务调用子项目的build.xml，如下例：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">target</span> <span class="attr">name</span>=<span class="string">"core"</span> <span class="attr">depends</span>=<span class="string">"init"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">ant</span> <span class="attr">dir</span>=<span class="string">"components"</span> <span class="attr">target</span>=<span class="string">"core"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">ant</span> <span class="attr">dir</span>=<span class="string">"waf/src"</span> <span class="attr">target</span>=<span class="string">"core"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">ant</span> <span class="attr">dir</span>=<span class="string">"apps"</span> <span class="attr">target</span>=<span class="string">"core"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">target</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>在各个子项目的耦合不是非常紧密的情况下，各个子项目应该有各自独立的目录结构，也就是说它们可以有自己的src、doc、build、dist等目录及自己的build.xml文件，但是可以共享lib和bin目录。而对于那些耦合紧密的子项目，则推荐使用同一个src目录，但是不同的子项目有不同的子目录，各个子项目的build.xml文件可以放在根目录下，也可以移到各个子项目的目录下。</p>
+<h3 id="属性文件"><a href="#属性文件" class="headerlink" title="属性文件"></a>属性文件</h3><p>当你只需要对小部分属性进行设置时，可以选择直接在构建文件中设置。然而，对于大项目，最好将设置属性的信息存储在一个独立的文件中。使用外部的Property文件可以保存一些预设置的公共属性变量。这些属性可以在多个不同的Build文件中使用。</p>
+<p>存储属性信息在一个独立的文件中将会提供以下好处：</p>
+<ul>
+<li>它可以让您重复使用相同的构建文件，该文件在不同的执行环境中使用不同的属性设置。例如，构建属性文件在 DEV , TEST , 和 PROD 环境中可以独立地被维护。</li>
+<li>当你事先不知道属性的值时（例如，在一个实际的环境中），这样处理是有益的。这样允许你在知道属性值后，在其他环境中执行生成 (build) 操作。</li>
+</ul>
+<p>一般情况下，属性文件都被命名为build.properties， 并且与 build.xml 存放在同一目录层。 你可以基于部署环境，比如： build.properties.dev 和 build.properties.test 创建多个 build.properties文件。</p>
+<p>在下面的例子中展示了 build.xml 文件和与之相联系的build.properties文件：</p>
+<p>build.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">name</span>=<span class="string">"Hello World Project"</span> <span class="attr">default</span>=<span class="string">"info"</span>&gt;</span></div><div class="line"></div><div class="line">   <span class="tag">&lt;<span class="name">property</span> <span class="attr">file</span>=<span class="string">"build.properties"</span>/&gt;</span></div><div class="line"></div><div class="line">   <span class="tag">&lt;<span class="name">target</span> <span class="attr">name</span>=<span class="string">"info"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">echo</span>&gt;</span>Apache Ant version is $&#123;ant.version&#125; - You are at $&#123;sitename&#125; <span class="tag">&lt;/<span class="name">echo</span>&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">target</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>build.properties</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># The Site Name</div><div class="line">sitename=wiki.jikexueyuan.com</div><div class="line">buildversion=3.3.2</div></pre></td></tr></table></figure>
+<p>注意到上面的练习中，sitename 是一个自定义属性，执行后映射到一个地址为 “wiki.jikexueyuan.com” 的网站上。你可以用这种方式声明任意数量的属性。在上面的例子中，还有一个自定义属性 buildversioin，它表明了当前构建的版本号。</p>
+<h3 id="外部XML文件导入"><a href="#外部XML文件导入" class="headerlink" title="外部XML文件导入"></a>外部XML文件导入</h3><p>可以将一个外部的XML文件导入Build文件中，这样多个项目的开发者可以通过引用来共享一些代码，同样，这也有助于Build文件的重用，示例代码如下所示：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE project [</span></div><div class="line">&lt;!ENTITY share-variable SYSTEM "file:../share-variable.xml"&gt;</div><div class="line">&lt;!ENTITY build-share SYSTEM "file:../build-share.xml"&gt;</div><div class="line">]&gt;</div><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">name</span>=<span class="string">"main"</span> <span class="attr">default</span>=<span class="string">"complie"</span> <span class="attr">basedir</span>=<span class="string">"."</span>&gt;</span></div><div class="line">&amp;share-variable;</div><div class="line">&amp;build-share;</div><div class="line">... ...</div></pre></td></tr></table></figure>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>Ant 提供一些预定义的数据类型。不要将术语“数据类型”和那些在编程语言中可用的数据类型相混淆，而是将他们视作一组已经在产品中配置好的服务。</p>
+<p>下述的数据类型是由 Apache Ant 提供的。</p>
+<h4 id="文件集"><a href="#文件集" class="headerlink" title="文件集"></a>文件集</h4><p>文件集的数据类型代表了一个文件集合。它被当作一个过滤器，用来包括或移除匹配某种模式的文件。</p>
+<p>例如，参考下面的代码。这里，src 属性指向项目的源文件夹。</p>
+<p>文件集选择源文件夹中所有的 .java 文件，除了那些包含有 ‘Stub’ 单词的文件。能区分大小写的过滤器被应用到文件集上，这意味着名为 Samplestub.java 的文件将不会被排除在文件集之外。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">fileset</span> <span class="attr">dir</span>=<span class="string">"$&#123;src&#125;"</span> <span class="attr">casesensitive</span>=<span class="string">"yes"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">include</span> <span class="attr">name</span>=<span class="string">"**/*.java"</span>/&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">exclude</span> <span class="attr">name</span>=<span class="string">"**/*Stub*"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">fileset</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="模式集合"><a href="#模式集合" class="headerlink" title="模式集合"></a>模式集合</h4><p>一个模式集合指的是一种模式，基于这种模式，能够很容易地过滤文件或者文件夹。模式可以使用下述的元字符进行创建。</p>
+<ul>
+<li>? －仅匹配一个字符</li>
+<li><ul>
+<li>－匹配零个或者多个字符</li>
+</ul>
+</li>
+<li>** －递归地匹配零个或者多个目录</li>
+</ul>
+<p>下面的例子演示了模式集合的使用。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">patternset</span> <span class="attr">id</span>=<span class="string">"java.files.without.stubs"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">include</span> <span class="attr">name</span>=<span class="string">"src/**/*.java"</span>/&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">exclude</span> <span class="attr">name</span>=<span class="string">"src/**/*Stub*"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">patternset</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>该模式集合能够通过一个类似于下述的文件集进行重用：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">fileset</span> <span class="attr">dir</span>=<span class="string">"$&#123;src&#125;"</span> <span class="attr">casesensitive</span>=<span class="string">"yes"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">patternset</span> <span class="attr">refid</span>=<span class="string">"java.files.without.stubs"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">fileset</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="文件列表"><a href="#文件列表" class="headerlink" title="文件列表"></a>文件列表</h4><p>文件列表数据类型与文件集相类似，除了以下几处不同：</p>
+<p>文件列表包含明确命名的文件的列表，同时其不支持通配符。<br>文件列表数据类型能够被应用于现有的或者还不存在的文件中。<br>让我们来看一个下述的关于文件列表数据类型的例子。在这个例子中，属性 webapp.src.folder 指向该项目中的 Web 应用的源文件夹。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">filelist</span> <span class="attr">id</span>=<span class="string">"config.files"</span> <span class="attr">dir</span>=<span class="string">"$&#123;webapp.src.folder&#125;"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">file</span> <span class="attr">name</span>=<span class="string">"applicationConfig.xml"</span>/&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">file</span> <span class="attr">name</span>=<span class="string">"faces-config.xml"</span>/&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">file</span> <span class="attr">name</span>=<span class="string">"web.xml"</span>/&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">file</span> <span class="attr">name</span>=<span class="string">"portlet.xml"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">filelist</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="过滤器集合"><a href="#过滤器集合" class="headerlink" title="过滤器集合"></a>过滤器集合</h4><p>使用一个过滤器集合数据类型与拷贝任务，你可以在所有文件中使用一个替换值来替换掉一些与模式相匹配的文本。</p>
+<p>一个常见的例子就是对一个已经发行的说明文件追加版本号，代码如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">copy</span> <span class="attr">todir</span>=<span class="string">"$&#123;output.dir&#125;"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">fileset</span> <span class="attr">dir</span>=<span class="string">"$&#123;releasenotes.dir&#125;"</span> <span class="attr">includes</span>=<span class="string">"**/*.txt"</span>/&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">filterset</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">filter</span> <span class="attr">token</span>=<span class="string">"VERSION"</span> <span class="attr">value</span>=<span class="string">"$&#123;current.version&#125;"</span>/&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">filterset</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">copy</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>在这段代码中：</p>
+<ul>
+<li>属性 output.dir 指向项目的输出文件夹。</li>
+<li>属性 releasenotes.dir 指向项目的发行说明文件夹。</li>
+<li>属性 current.version 指向项目的当前版本文件夹。</li>
+<li>拷贝任务，顾名思义，是用来将文件从一个地址拷贝到另一个地址。</li>
+</ul>
+<h4 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h4><p>path数据类型通常被用来表示一个类路径。各个路径之间用分号或者冒号隔开。然而，这些字符在运行时被替代为执行系统的路径分隔符。</p>
+<p>类路径被设置为项目中 jar 文件和类文件的列表，如下面例子所示：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">id</span>=<span class="string">"build.classpath.jar"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">pathelement</span> <span class="attr">path</span>=<span class="string">"$&#123;env.J2EE_HOME&#125;/$&#123;j2ee.jar&#125;"</span>/&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">fileset</span> <span class="attr">dir</span>=<span class="string">"lib"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">include</span> <span class="attr">name</span>=<span class="string">"**/*.jar"</span>/&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">fileset</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">path</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>在这段代码中：</p>
+<ul>
+<li>属性 env.J2EE_HOME 指向环境变量 J2EE_HOME 。</li>
+<li>属性 j2ee.jar 指向在 J2EE 基础文件夹下面的名为 J2EE jar 的文件。</li>
+</ul>
+<h2 id="Example-project"><a href="#Example-project" class="headerlink" title="Example project"></a>Example project</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">C:\work\FaxWebApplication&gt;tree</div><div class="line">Folder PATH listing</div><div class="line">Volume serial number is 00740061 EC1C:ADB1</div><div class="line">C:.</div><div class="line">+---db</div><div class="line">+---src</div><div class="line">.  +---faxapp</div><div class="line">.  +---dao</div><div class="line">.  +---entity</div><div class="line">.  +---util</div><div class="line">.  +---web</div><div class="line">+---war</div><div class="line">   +---images</div><div class="line">   +---js</div><div class="line">   +---META-INF</div><div class="line">   +---styles</div><div class="line">   +---WEB-INF</div><div class="line">      +---classes</div><div class="line">      +---jsp</div><div class="line">      +---lib</div></pre></td></tr></table></figure>
+<p>下面给出上述项目的 build.xml 文件的内容。让我们来一条语句接一条语句地来分析它。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">name</span>=<span class="string">"fax"</span> <span class="attr">basedir</span>=<span class="string">"."</span> <span class="attr">default</span>=<span class="string">"build"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"src.dir"</span> <span class="attr">value</span>=<span class="string">"src"</span>/&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"web.dir"</span> <span class="attr">value</span>=<span class="string">"war"</span>/&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"build.dir"</span> <span class="attr">value</span>=<span class="string">"$&#123;web.dir&#125;/WEB-INF/classes"</span>/&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"fax"</span>/&gt;</span></div><div class="line"></div><div class="line">   <span class="tag">&lt;<span class="name">path</span> <span class="attr">id</span>=<span class="string">"master-classpath"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">fileset</span> <span class="attr">dir</span>=<span class="string">"$&#123;web.dir&#125;/WEB-INF/lib"</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">include</span> <span class="attr">name</span>=<span class="string">"*.jar"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">fileset</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">pathelement</span> <span class="attr">path</span>=<span class="string">"$&#123;build.dir&#125;"</span>/&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">path</span>&gt;</span></div><div class="line"></div><div class="line">   <span class="tag">&lt;<span class="name">target</span> <span class="attr">name</span>=<span class="string">"build"</span> <span class="attr">description</span>=<span class="string">"Compile source tree java files"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">mkdir</span> <span class="attr">dir</span>=<span class="string">"$&#123;build.dir&#125;"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">javac</span> <span class="attr">destdir</span>=<span class="string">"$&#123;build.dir&#125;"</span> <span class="attr">source</span>=<span class="string">"1.5"</span> <span class="attr">target</span>=<span class="string">"1.5"</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">src</span> <span class="attr">path</span>=<span class="string">"$&#123;src.dir&#125;"</span>/&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">classpath</span> <span class="attr">refid</span>=<span class="string">"master-classpath"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">javac</span>&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">target</span>&gt;</span></div><div class="line"></div><div class="line">   <span class="tag">&lt;<span class="name">target</span> <span class="attr">name</span>=<span class="string">"clean"</span> <span class="attr">description</span>=<span class="string">"Clean output directories"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">delete</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">fileset</span> <span class="attr">dir</span>=<span class="string">"$&#123;build.dir&#125;"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">include</span> <span class="attr">name</span>=<span class="string">"**/*.class"</span>/&gt;</span></div><div class="line">         <span class="tag">&lt;/<span class="name">fileset</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">delete</span>&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">target</span>&gt;</span></div><div class="line">   </div><div class="line">   <span class="tag">&lt;<span class="name">target</span> <span class="attr">name</span>=<span class="string">"build-jar"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">jar</span> <span class="attr">destfile</span>=<span class="string">"$&#123;web.dir&#125;/lib/util.jar"</span></span></div><div class="line">      <span class="attr">basedir</span>=<span class="string">"$&#123;build.dir&#125;/classes"</span></div><div class="line">      <span class="attr">includes</span>=<span class="string">"faxapp/util/**"</span></div><div class="line">      <span class="attr">excludes</span>=<span class="string">"**/Test.class"</span>&gt;</div><div class="line"></div><div class="line">      <span class="tag">&lt;<span class="name">manifest</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">attribute</span> <span class="attr">name</span>=<span class="string">"Main-Class"</span> <span class="attr">value</span>=<span class="string">"com.tutorialspoint.util.FaxUtil"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></div><div class="line"></div><div class="line">   		<span class="tag">&lt;/<span class="name">jar</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">target</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>首先，让我们来声明一些源文件，web 文件和构建文件的一些属性信息。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"src.dir"</span> <span class="attr">value</span>=<span class="string">"src"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"web.dir"</span> <span class="attr">value</span>=<span class="string">"war"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"build.dir"</span> <span class="attr">value</span>=<span class="string">"$&#123;web.dir&#125;/WEB-INF/classes"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<p>在上面的例子中：</p>
+<p>src.dir 表示这个项目的源文件目录，也就是存储 java 文件的地方。<br>web.dir 表示这个项目的 web 文件目录，也就是存储 JSPs 文件，web.xml，css，javascript 以及其它与 web 相关的文件的地方。<br>build.dir 表示该项目的输出文件。<br>属性也可以引用其它属性。在上面的例子中，build.dir 属性引用了 web.dir 属性。</p>
+<p>在上面的例子中，src.dir 就是项目源文件存放的地方。</p>
+<p>我们项目的默认目标是编译目标。但是首先让我们来看一下 clean 目标。</p>
+<p>clean 目标，就像它的名字所表明的意思一样，删除构建文件夹中的所有文件。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">target</span> <span class="attr">name</span>=<span class="string">"clean"</span> <span class="attr">description</span>=<span class="string">"Clean output directories"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">delete</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">fileset</span> <span class="attr">dir</span>=<span class="string">"$&#123;build.dir&#125;"</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">include</span> <span class="attr">name</span>=<span class="string">"**/*.class"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">fileset</span>&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">delete</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">target</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>控制类路径 (master-classpath) 保存类路径的相关信息。在这种情况下，它包含了构建文件夹和 jar 文件夹中的所有的类文件。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">id</span>=<span class="string">"master-classpath"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">fileset</span> <span class="attr">dir</span>=<span class="string">"$&#123;web.dir&#125;/WEB-INF/lib"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">include</span> <span class="attr">name</span>=<span class="string">"*.jar"</span>/&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">fileset</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">pathelement</span> <span class="attr">path</span>=<span class="string">"$&#123;build.dir&#125;"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">path</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>最后，构建目标构建这些文件。首先，我们创建一个构建目录，如果该目录不存在，我们就执行 javac 命令（具体以 jdk 1.5 作为我们目标的编译环境）。 我们对 javac 任务提供源文件夹和类路径，并且通过执行 javac 任务将类文件存放在构建文件夹中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;target name=&quot;build&quot; description=&quot;Compile main source tree java files&quot;&gt;</div><div class="line">   &lt;mkdir dir=&quot;$&#123;build.dir&#125;&quot;/&gt;</div><div class="line">   &lt;javac destdir=&quot;$&#123;build.dir&#125;&quot; source=&quot;1.5&quot; target=&quot;1.5&quot; debug=&quot;true&quot;</div><div class="line">      deprecation=&quot;false&quot; optimize=&quot;false&quot; failonerror=&quot;true&quot;&gt;</div><div class="line">      &lt;src path=&quot;$&#123;src.dir&#125;&quot;/&gt;</div><div class="line">      &lt;classpath refid=&quot;master-classpath&quot;/&gt;</div><div class="line">   &lt;/javac&gt;</div><div class="line">&lt;/target&gt;</div></pre></td></tr></table></figure>
+<p>在这个文件上执行 Ant，编译 java 源文件，并将编译后的类文件存放在构建文件夹的地方。</p>
+<p>运行 Ant 文件后，能看到以下输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">BUILD SUCCESSFUL</div><div class="line">Total time: 6.3 seconds</div></pre></td></tr></table></figure>
+<p>文件被编译后，将存储在 build.dir 文件夹中。 </p>
+<h2 id="JUnit集成"><a href="#JUnit集成" class="headerlink" title="JUnit集成"></a>JUnit集成</h2><p>参考<a href="http://wiki.jikexueyuan.com/project/ant/" target="_blank" rel="external">Apache Ant教程</a>, <a href="http://blog.csdn.net/aerchi/article/details/7177564" target="_blank" rel="external">Ant教程</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2014/07/02/Developing_Linux环境变量配置/" itemprop="url">
                   Linux环境变量配置
                 </a>
@@ -1072,142 +1319,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/04/13/Blogging_Summary/" itemprop="url">
-                  Blogging参考资料
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2014-04-13T00:00:00+09:00" content="2014-04-13">
-              2014-04-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Blogging/" itemprop="url" rel="index">
-                    <span itemprop="name">Blogging</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/04/13/Blogging_Summary/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/04/13/Blogging_Summary/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Blogging参考资料"><a href="#Blogging参考资料" class="headerlink" title="Blogging参考资料"></a>Blogging参考资料</h1><p>Welcome to my blog, I am Zebang Chen. Here are some tools I use to write blog.</p>
-<ol>
-<li><a href="http://mlworks.cn/posts/introduction-to-mathjax-and-latex-expression/" target="_blank" rel="external">Mathjax与LaTex公式简介</a></li>
-<li><a href="http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference" target="_blank" rel="external">Mathjax</a></li>
-<li><a href="http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference" target="_blank" rel="external">LaTeX</a></li>
-<li><a href="http://macdown.uranusjr.com" target="_blank" rel="external">MacDowm</a></li>
-<li><a href="https://www.zybuluo.com/mdeditor#137019" target="_blank" rel="external">Cmd Markdown编辑阅读器</a></li>
-<li>HTML标签<ul>
-<li><a href="http://www.w3school.com.cn/html/html_fonts.asp" target="_blank" rel="external">HTML字体</a></li>
-<li><a href="http://www.w3school.com.cn/tags/html_ref_colornames.asp" target="_blank" rel="external">HTML颜色</a></li>
-<li><a href="http://www.w3school.com.cn/html/html_tables.asp" target="_blank" rel="external">HTML表格</a></li>
-</ul>
-</li>
-<li>图床(七牛, ImageShack)</li>
-<li><a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">NextT-Github</a></li>
-<li><a href="http://theme-next.iissnan.com" target="_blank" rel="external">NextT</a></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1253,7 +1364,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">328</span>
+              <span class="site-state-item-count">329</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

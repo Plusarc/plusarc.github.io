@@ -260,6 +260,158 @@
             
               
                 
+                <a class="post-title-link" href="/2014/12/10/System Design_System Design总结/" itemprop="url">
+                  System Design总结
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2014-12-10T00:00:00+09:00" content="2014-12-10">
+              2014-12-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/System-design/" itemprop="url" rel="index">
+                    <span itemprop="name">System design</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/12/10/System Design_System Design总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/12/10/System Design_System Design总结/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="System-Design总结-from-mitbbs"><a href="#System-Design总结-from-mitbbs" class="headerlink" title="System Design总结[from mitbbs]"></a>System Design总结[from mitbbs]</h1><p>最近在准备系统设计方面的内容，找到一篇不错的文章，转自<a href="http://www.mitbbs.com/article_t/JobHunting/32777529.html" target="_blank" rel="external">我的System Design总结</a>，结构有少许调整。</p>
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><p>System Design和OO Design不同 System Design在FLAG以及很多大公司中主要<br>是design scalable distributed systems 这里只讨论如何准备这种题目。</p>
+<p>对于0基础的同学们 下面的资料可以按顺序开始看:</p>
+<ol>
+<li><p><a href="http://www.hiredintech.com/app#system-design" target="_blank" rel="external">http://www.hiredintech.com/app#system-design</a><br>这是一个专门准备面试的网站 你只用关心system design部分 有很多的link后面会重<br>复提到 建议看完至少一遍</p>
+</li>
+<li><p><a href="https://www.youtube.com/watch?v=-W9F__D3oY4" target="_blank" rel="external">https://www.youtube.com/watch?v=-W9F__D3oY4</a><br>非常非常好的入门资料 建议看3遍以上！<br>这是1里面提到的资料 是Harvard web app课的最后一节 讲scalability 里面会讲到很<br>多基础概念比如Vertical scaling, Horizontal scaling, Caching, Load balancing,<br>Database replication, Database partitioning 还会提到很多基本思想比如avoid<br>single point of failure<br>再强调一遍 非常好的资料！</p>
+</li>
+<li><p><a href="http://www.lecloud.net/post/7295452622/scalability-for-dummies-part-1-clones" target="_blank" rel="external">http://www.lecloud.net/post/7295452622/scalability-for-dummies-part-1-clones</a><br>前面课程里提到的 Scalability for Dummies 还算不错 可以看一遍 知道基本思想</p>
+</li>
+</ol>
+<p>结束语：当你结束这一部分的学习的时候 你已经比50%的candidate知道的多了(因为很<br>多人都不准备 或者不知道怎么准备system design) 恭喜:)</p>
+<h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><p>这一部分的资料更加零散 每个看的可能不一样 但是你每多看一篇文章或者一个视频<br>你就比别人强一点<br>这部分你会遇到很多新名词 我的建议是每当你遇到一个不懂的概念时 多google一下<br>看看这个概念或者技术是什么意思 优点和缺点各是什么 什么时候用 这些你都知道以<br>后 你就可以把他运用到面试中 让面试官刮目相看了</p>
+<ol>
+<li><p><a href="http://highscalability.com/blog/2009/8/6/an-unorthodox-approach-to-database-design-the-coming-of-the.html" target="_blank" rel="external">http://highscalability.com/blog/2009/8/6/an-unorthodox-approach-to-database-design-the-coming-of-the.html</a><br>Database Sharding是一个很重要的概念 建议看一看</p>
+</li>
+<li><p><a href="http://highscalability.com/all-time-favorites/" target="_blank" rel="external">http://highscalability.com/all-time-favorites/</a><br>这个里面会讲到很多非常流行的网站架构是如何实现的 比如Twitter, Youtube,<br>Pinterest, Google等等 我的建议是看5-6个 然后你应该已经建立起了一些基本的意识<br>还有知道了某些技术和产品的作用和mapping 比如说到cache你会想到memcached和<br>Redis 说到<br>load balancer你会想到 Amazon ELB, F5一类的</p>
+</li>
+<li><p><a href="http://www.infoq.com/" target="_blank" rel="external">http://www.infoq.com/</a><br>5里面很多的文章都会有链接 其中有很多会指向这个网站 这里面有很多的tech talk<br>很不错 可以看看</p>
+</li>
+<li><p><a href="https://www.facebook.com/Engineering/notes" target="_blank" rel="external">https://www.facebook.com/Engineering/notes</a><br>Facebook非常好的技术日志 会讲很多facebook的feature怎么实现的 比如facebook<br>message:<a href="https://www.facebook.com/notes/facebook-engineering/the-underlying-" target="_blank" rel="external">https://www.facebook.com/notes/facebook-engineering/the-underlying-</a><br>technology-of-messages/454991608919 建议看看 尤其是准备面facebook的同学<br>这有一个facebook talk讲storage的<a href="https://www.youtube.com/watch?v=5RfFhMwRAic" target="_blank" rel="external">https://www.youtube.com/watch?v=5RfFhMwRAic</a></p>
+</li>
+<li><p>一些国内网站上的资料<br><a href="http://blog.csdn.net/sigh1988/article/details/9790337" target="_blank" rel="external">http://blog.csdn.net/sigh1988/article/details/9790337</a><br><a href="http://blog.csdn.net/v_july_v/article/details/6279498" target="_blank" rel="external">http://blog.csdn.net/v_july_v/article/details/6279498</a></p>
+</li>
+<li><p>最后一些概念很有用 都是我再看这些资料的时候发现的 如果你没有遇到或者查过<br>建议查查<br>Distributed Hash Table<br>Eventual Consistency vs Strong Consistency<br>Read Heavy vs Write Heavy<br>Consistent Hashing<br>Sticky Sessions<br>Structured Data(uses DynamoDB) vs Unstructured Data(uses S3)<br><a href="http://smartdatacollective.com/michelenemschoff/206391/quick-guide-structured-and-unstructured-data" target="_blank" rel="external">http://smartdatacollective.com/michelenemschoff/206391/quick-guide-structured-and-unstructured-data</a><br><a href="http://stackoverflow.com/questions/18678315/amazon-s3-or-dynamodb" target="_blank" rel="external">http://stackoverflow.com/questions/18678315/amazon-s3-or-dynamodb</a></p>
+</li>
+<li><p>给有兴趣深入研究的人看的<br>Mining Massive Datasets –讲很多big data和data mining的东西<br>Big Data: Principles and best practices of scalable realtime data systems –<br>twitter的前员工讲述如何处理实时数据</p>
+</li>
+<li><p>凌乱的资料 随便看看吧<br><a href="http://highscalability.com/blog/2013/10/28/design-decisions-for" target="_blank" rel="external">http://highscalability.com/blog/2013/10/28/design-decisions-for</a></p>
+</li>
+</ol>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>看多了以后 你的最终目标应该是心里有了一个大框架 一个基本的distributed system<br>是怎么搭起来的 然后心里有很多if condition 如果要是满足这个条件 我应该用什么<br>技术 比如如果read heavy那么用cache会提升performance之类的 同时知道应该避免什<br>么东西 比如避免single point of failure 再比如时间和空间的tradeoff在read<br>heavy的时候应该倾向于时间 Write heavy的时候倾向于空间等等</p>
+<p>你总结出来的和我总结出来的大框架和if conditions肯定不完全一样 但因为system<br>design本来就是一个open ended question 所以不用害怕 能够自圆其说 就不会有问题。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2014/12/10/System Design_Useful Materials/" itemprop="url">
                   Useful Materials
                 </a>
@@ -333,6 +485,140 @@
             <h1 id="Useful-Materials"><a href="#Useful-Materials" class="headerlink" title="Useful Materials"></a>Useful Materials</h1><p><a href="http://www.aosabook.org/en/distsys.html#" target="_blank" rel="external">Scalable Web Architecture and Distributed Systems</a><br><a href="http://highscalability.com/blog/2009/8/6/an-unorthodox-approach-to-database-design-the-coming-of-the.html" target="_blank" rel="external">An Unorthodox Approach To Database Design : The Coming Of The Shard</a><br><a href="http://www.oschina.net/translate/scalable-web-architecture-and-distributed-systems?lang=chs&amp;page=1#" target="_blank" rel="external">可扩展Web架构与分布式系统</a><br><a href="http://www.cnblogs.com/ggjucheng/archive/2012/11/13/2768959.html" target="_blank" rel="external">可扩展性设计之数据切分</a><br><a href="http://www.cnblogs.com/ggjucheng/archive/2012/11/15/2771686.html" target="_blank" rel="external">可扩展性设计之Cache与Search的利用</a><br><a href="http://www.kuqin.com/shuoit/20140806/341531.html" target="_blank" rel="external">可扩展架构设计的三个维度</a><br><a href="http://www.jdon.com/scalable.html" target="_blank" rel="external">可伸缩性/可扩展性(Scalable/scalability)</a><br><a href="http://www.jdon.com/37793" target="_blank" rel="external">可伸缩性最佳实战</a></p>
 <p><a href="http://www.cnblogs.com/ggjucheng/archive/2013/01/20/2868837.html" target="_blank" rel="external">internet笔记</a><br><a href="http://www.cnblogs.com/ggjucheng/archive/2012/04/22/2465625.html" target="_blank" rel="external">hadoop笔记本</a><br><a href="http://www.cnblogs.com/ggjucheng/archive/2012/08/18/2645324.html" target="_blank" rel="external">TCP/IP笔记本</a></p>
 <p><a href="http://www.cnblogs.com/ggjucheng/archive/2012/11/13/2768879.html" target="_blank" rel="external">MySQL Replication 常用架构</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/11/22/Developing_Tomcat/" itemprop="url">
+                  Tomcat on Mac
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2014-11-22T00:00:00+09:00" content="2014-11-22">
+              2014-11-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Developing/" itemprop="url" rel="index">
+                    <span itemprop="name">Developing</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/11/22/Developing_Tomcat/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/11/22/Developing_Tomcat/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Tomcat在mac上的安装"><a href="#Tomcat在mac上的安装" class="headerlink" title="Tomcat在mac上的安装"></a>Tomcat在mac上的安装</h2><ul>
+<li>安装java并配置好JAVA_HOME</li>
+<li>下载<a href="http://tomcat.apache.org/download-90.cgi" target="_blank" rel="external">Tomcat</a>并验证md5</li>
+<li>解压到<code>/Library/</code>下（其他目录也可以），命名为Tomcat</li>
+<li>修改文件执行权限，<code>sudo chmod 777 Tomcat</code></li>
+<li>启动Tomcat，执行<code>sh Tomcat/bin/startup.sh</code></li>
+<li>打开<a href="http://localhost:8080" target="_blank" rel="external">http://localhost:8080</a>确认服务是否正常启动。</li>
+</ul>
+<p>上面的配置完成后，我们便可以执行Tomcat安装目录下bin目录中的命令进行启动和停止，但是有些麻烦，我们可以配置一个脚本文件用于控制Tomcat的启动停止。</p>
+<p>在<code>/usr/local/bin</code>目录(任何PATH下的目录都可以）下创建文件tomcat，写入如下内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="keyword">case</span> <span class="variable">$1</span> <span class="keyword">in</span></div><div class="line">start)</div><div class="line">sh /Library/Tomcat/bin/startup.sh</div><div class="line">;;</div><div class="line">stop)</div><div class="line">sh /Library/Tomcat/bin/shutdown.sh</div><div class="line">;;</div><div class="line">restart)</div><div class="line">sh /Library/Tomcat/bin/shutdown.sh</div><div class="line">sh /Library/Tomcat/bin/startup.sh</div><div class="line">;;</div><div class="line">*)</div><div class="line"><span class="built_in">echo</span> “Usage: start|stop|restart”</div><div class="line">;;</div><div class="line"><span class="keyword">esac</span></div><div class="line"><span class="built_in">exit</span> 0</div></pre></td></tr></table></figure>
+<p>修改执行权限<code>chmod 777 tomcat</code>。</p>
+<p>新建一个concole，我们可以通过下面命令控制Tomcat的运行，如果需要更高级的控制，在tomcat脚本文件添加相关内容即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">tomcat start  # 启动</div><div class="line">tomcat stop # 停止</div><div class="line">tomcat restart # 重启</div></pre></td></tr></table></figure>
+<h2 id="Tomcat的配置"><a href="#Tomcat的配置" class="headerlink" title="Tomcat的配置"></a>Tomcat的配置</h2><h2 id="Tomcat-vs-Apache"><a href="#Tomcat-vs-Apache" class="headerlink" title="Tomcat vs Apache"></a>Tomcat vs Apache</h2><p>Apache是web服务器，Tomcat是应用（java）服务器，它只是一个servlet容器，是Apache的扩展。Apache和Tomcat都可以做为独立的web服务器来运行，但是Apache不能直接解释java程序（jsp,serverlet,php）。需要通过插件才能解释。Apache是普通服务器，本身只支持html即普通网页。不过可以通过插件支持php,还可以与Tomcat连通(单向Apache连接Tomcat,就是说通过Apache可以访问Tomcat资源。反之不然)两者都是一种容器，只不过发布的东西不同：Apache是html容器，功能像IIS一样；Tomcat是jsp/servlet容器，用于发布jsp及java的，类似的有IBM的webshere、EBA的Weblogic，sun的JRun等等。Apache和Tomcat是独立的，在通一台服务器上可以集成。打个比方：Apache是一辆卡车，上面可以装一些东西如html等。但是不能装水，要装水必须要有容器（桶），Tomcat就是一个桶（装像Java这样的水），而这个桶也可以不放在卡车上。Apache只支持静态网页，但像asp,php,cgi,jsp等动态网页就需要Tomcat来处理。Apache和Tomcat整合使用：如果客户端请求的是静态页面，则只需要Apache服务器响应请求；如果客户端请求动态页面，则是Tomcat服务器响应请求；因为jsp是服务器端解释代码的，这样整合就可以减少Tomcat的服务开销 。</p>
 
           
         
@@ -488,140 +774,6 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StarbuzzCoffee</span> </span>&#123;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</div><div class="line">		Beverage beverage = <span class="keyword">new</span> Espresso();</div><div class="line">		System.out.println(beverage.getDescription() </div><div class="line">				+ <span class="string">" $"</span> + beverage.cost());</div><div class="line"> </div><div class="line">		Beverage beverage2 = <span class="keyword">new</span> DarkRoast();</div><div class="line">		beverage2 = <span class="keyword">new</span> Mocha(beverage2);</div><div class="line">		beverage2 = <span class="keyword">new</span> Mocha(beverage2);</div><div class="line">		beverage2 = <span class="keyword">new</span> Whip(beverage2);</div><div class="line">		System.out.println(beverage2.getDescription() </div><div class="line">				+ <span class="string">" $"</span> + beverage2.cost());</div><div class="line"> </div><div class="line">		Beverage beverage3 = <span class="keyword">new</span> HouseBlend();</div><div class="line">		beverage3 = <span class="keyword">new</span> Soy(beverage3);</div><div class="line">		beverage3 = <span class="keyword">new</span> Mocha(beverage3);</div><div class="line">		beverage3 = <span class="keyword">new</span> Whip(beverage3);</div><div class="line">		System.out.println(beverage3.getDescription() </div><div class="line">				+ <span class="string">" $"</span> + beverage3.cost());</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>Java I/O中很多类即采用了装饰器模型，将功能结合起来，实现更强大的读取数据或其他操作。</p>
 <p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_decorator_8.png" alt="Design_pattern_decorator_8"></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/11/22/Developing_Tomcat/" itemprop="url">
-                  Tomcat on Mac
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2014-11-22T00:00:00+09:00" content="2014-11-22">
-              2014-11-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Developing/" itemprop="url" rel="index">
-                    <span itemprop="name">Developing</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/11/22/Developing_Tomcat/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/11/22/Developing_Tomcat/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Tomcat在mac上的安装"><a href="#Tomcat在mac上的安装" class="headerlink" title="Tomcat在mac上的安装"></a>Tomcat在mac上的安装</h2><ul>
-<li>安装java并配置好JAVA_HOME</li>
-<li>下载<a href="http://tomcat.apache.org/download-90.cgi" target="_blank" rel="external">Tomcat</a>并验证md5</li>
-<li>解压到<code>/Library/</code>下（其他目录也可以），命名为Tomcat</li>
-<li>修改文件执行权限，<code>sudo chmod 777 Tomcat</code></li>
-<li>启动Tomcat，执行<code>sh Tomcat/bin/startup.sh</code></li>
-<li>打开<a href="http://localhost:8080" target="_blank" rel="external">http://localhost:8080</a>确认服务是否正常启动。</li>
-</ul>
-<p>上面的配置完成后，我们便可以执行Tomcat安装目录下bin目录中的命令进行启动和停止，但是有些麻烦，我们可以配置一个脚本文件用于控制Tomcat的启动停止。</p>
-<p>在<code>/usr/local/bin</code>目录(任何PATH下的目录都可以）下创建文件tomcat，写入如下内容：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="keyword">case</span> <span class="variable">$1</span> <span class="keyword">in</span></div><div class="line">start)</div><div class="line">sh /Library/Tomcat/bin/startup.sh</div><div class="line">;;</div><div class="line">stop)</div><div class="line">sh /Library/Tomcat/bin/shutdown.sh</div><div class="line">;;</div><div class="line">restart)</div><div class="line">sh /Library/Tomcat/bin/shutdown.sh</div><div class="line">sh /Library/Tomcat/bin/startup.sh</div><div class="line">;;</div><div class="line">*)</div><div class="line"><span class="built_in">echo</span> “Usage: start|stop|restart”</div><div class="line">;;</div><div class="line"><span class="keyword">esac</span></div><div class="line"><span class="built_in">exit</span> 0</div></pre></td></tr></table></figure>
-<p>修改执行权限<code>chmod 777 tomcat</code>。</p>
-<p>新建一个concole，我们可以通过下面命令控制Tomcat的运行，如果需要更高级的控制，在tomcat脚本文件添加相关内容即可：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">tomcat start  # 启动</div><div class="line">tomcat stop # 停止</div><div class="line">tomcat restart # 重启</div></pre></td></tr></table></figure>
-<h2 id="Tomcat的配置"><a href="#Tomcat的配置" class="headerlink" title="Tomcat的配置"></a>Tomcat的配置</h2><h2 id="Tomcat-vs-Apache"><a href="#Tomcat-vs-Apache" class="headerlink" title="Tomcat vs Apache"></a>Tomcat vs Apache</h2><p>Apache是web服务器，Tomcat是应用（java）服务器，它只是一个servlet容器，是Apache的扩展。Apache和Tomcat都可以做为独立的web服务器来运行，但是Apache不能直接解释java程序（jsp,serverlet,php）。需要通过插件才能解释。Apache是普通服务器，本身只支持html即普通网页。不过可以通过插件支持php,还可以与Tomcat连通(单向Apache连接Tomcat,就是说通过Apache可以访问Tomcat资源。反之不然)两者都是一种容器，只不过发布的东西不同：Apache是html容器，功能像IIS一样；Tomcat是jsp/servlet容器，用于发布jsp及java的，类似的有IBM的webshere、EBA的Weblogic，sun的JRun等等。Apache和Tomcat是独立的，在通一台服务器上可以集成。打个比方：Apache是一辆卡车，上面可以装一些东西如html等。但是不能装水，要装水必须要有容器（桶），Tomcat就是一个桶（装像Java这样的水），而这个桶也可以不放在卡车上。Apache只支持静态网页，但像asp,php,cgi,jsp等动态网页就需要Tomcat来处理。Apache和Tomcat整合使用：如果客户端请求的是静态页面，则只需要Apache服务器响应请求；如果客户端请求动态页面，则是Tomcat服务器响应请求；因为jsp是服务器端解释代码的，这样整合就可以减少Tomcat的服务开销 。</p>
 
           
         
@@ -1151,185 +1303,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/11/05/Java_Maven(2)/" itemprop="url">
-                  Maven(2)_创建第一个Maven项目
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2014-11-05T00:00:00+09:00" content="2014-11-05">
-              2014-11-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/11/05/Java_Maven(2)/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/11/05/Java_Maven(2)/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>参考<a href="http://tutorials.jenkov.com/maven/maven-tutorial.html#maven-settings-files" target="_blank" rel="external">Maven Tutorial</a>，<a href="https://ayayui.gitbooks.io/tutorialspoint-maven/content/book/maven_creating_project.html" target="_blank" rel="external">Maven - 创建项目</a></p>
-<h2 id="Installing-Maven"><a href="#Installing-Maven" class="headerlink" title="Installing Maven"></a>Installing Maven</h2><p>To install Maven on your own system (computer), go to the Maven download page and follow the instructions there. In summary, what you need to do is:</p>
-<ol>
-<li>Set the JAVA_HOME environment variable to point to a valid Java SDK (e.g. Java 8).</li>
-<li>Download and unzip Maven.</li>
-<li>Set the M2_HOME environment variable to point to the directory you unzipped Maven to.</li>
-<li>Set the M2 environment variable to point to M2_HOME/bin (<code>%M2_HOME%\bin</code> on Windows, <code>$M2_HOME/bin</code> on unix).</li>
-<li>Add M2 to the PATH environment variable (%M2% on Windows, $M2 on unix).</li>
-<li>Open a command prompt and type ‘mvn -version’ (without quotes) and press enter.</li>
-</ol>
-<h2 id="Manual-project-creation"><a href="#Manual-project-creation" class="headerlink" title="Manual project creation"></a>Manual project creation</h2><h3 id="创建项目目录和pom文件"><a href="#创建项目目录和pom文件" class="headerlink" title="创建项目目录和pom文件"></a>创建项目目录和pom文件</h3><p>创建pom.xml文件如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span></span></div><div class="line">         <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></div><div class="line">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0</span></div><div class="line">                      http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></div><div class="line"></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.jenkov<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hello-world<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>可以通过<code>mvn clean</code>测试pom.xml以及环境是否正常：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">pc<span class="_">-a</span>375-2:maven admin$ mvn clean</div><div class="line">[INFO] Scanning <span class="keyword">for</span> projects...</div><div class="line">[INFO]                                                                         </div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">[INFO] Building hello-world 1.0.0</div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">[INFO] </div><div class="line">[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ hello-world ---</div><div class="line">Downloading: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0/plexus-utils-3.0.pom</div><div class="line">Downloaded: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0/plexus-utils-3.0.pom (4 KB at 1.9 KB/sec)</div><div class="line">Downloading: https://repo.maven.apache.org/maven2/org/sonatype/spice/spice-parent/16/spice-parent-16.pom</div><div class="line">Downloaded: https://repo.maven.apache.org/maven2/org/sonatype/spice/spice-parent/16/spice-parent-16.pom (9 KB at 31.8 KB/sec)</div><div class="line">Downloading: https://repo.maven.apache.org/maven2/org/sonatype/forge/forge-parent/5/forge-parent-5.pom</div><div class="line">Downloaded: https://repo.maven.apache.org/maven2/org/sonatype/forge/forge-parent/5/forge-parent-5.pom (9 KB at 31.7 KB/sec)</div><div class="line">Downloading: https://repo.maven.apache.org/maven2/org/apache/maven/maven-plugin-api/2.0.6/maven-plugin-api-2.0.6.jar</div><div class="line">Downloading: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0/plexus-utils-3.0.jar</div><div class="line">Downloaded: https://repo.maven.apache.org/maven2/org/apache/maven/maven-plugin-api/2.0.6/maven-plugin-api-2.0.6.jar (13 KB at 26.2 KB/sec)</div><div class="line">Downloaded: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0/plexus-utils-3.0.jar (221 KB at 292.8 KB/sec)</div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">[INFO] BUILD SUCCESS</div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">[INFO] Total time: 4.157 s</div><div class="line">[INFO] Finished at: 2016-04-12T17:39:37+09:00</div><div class="line">[INFO] Final Memory: 7M/130M</div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">pc<span class="_">-a</span>375-2:maven admin$</div></pre></td></tr></table></figure>
-<h3 id="创建源码目录"><a href="#创建源码目录" class="headerlink" title="创建源码目录"></a>创建源码目录</h3><p>按照maven的标准目录结构在项目录下创建源码目录：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">src</div><div class="line">  main</div><div class="line">    java</div></pre></td></tr></table></figure>
-<h3 id="创建代码文件"><a href="#创建代码文件" class="headerlink" title="创建代码文件"></a>创建代码文件</h3><p>创建java类源码文件<code>HelloWorld.java</code>.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> helloworld;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</div><div class="line"></div><div class="line">		System.out.println(<span class="string">"Hello World, Maven"</span>);</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="构建项目"><a href="#构建项目" class="headerlink" title="构建项目"></a>构建项目</h3><p>运行<code>mvn package</code>, <code>package</code>是默认生命周期的一个阶段。会将编译得到的java class文件打包位一个JAR文件。maven会创建<code>target</code>目录，生成的JAR文件就在里面。JAR包会命名为：<br><code>artifactId-version</code>.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">pc<span class="_">-a</span>375-2:maven admin$ <span class="built_in">cd</span> target</div><div class="line">pc<span class="_">-a</span>375-2:target admin$ ls</div><div class="line">classes			hello-world-1.0.0.jar	maven-archiver		maven-status</div><div class="line">pc<span class="_">-a</span>375-2:target admin$</div></pre></td></tr></table></figure>
-<h2 id="项目模板"><a href="#项目模板" class="headerlink" title="项目模板"></a>项目模板</h2><p>Archetype 是一个 Maven 插件，它的任务是按照项目模板创建一个项目的目录结构。这里，我们将使用 archetype 插件 quickstart 来创建一个简单的 java 应用。</p>
-<p>可以Maven的archetype插件来创建基本的项目，也可以创建高级的项目（根据模板）。要创建一个简单的java应用，我们将使用maven-archetype-quickstart插件。</p>
-<p>Maven 将会开始处理，并且要求你选择需要的archetype。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">[INFO] Scanning for projects...</div><div class="line">[INFO] Searching repository for plugin with prefix: &apos;archetype&apos;.</div><div class="line">[INFO] -------------------------------------------------------------------</div><div class="line">[INFO] Building Maven Default Project</div><div class="line">[INFO]    task-segment: [archetype:generate] (aggregator-style)</div><div class="line">[INFO] -------------------------------------------------------------------</div><div class="line">[INFO] Preparing archetype:generate</div><div class="line">...</div><div class="line">600: remote -&gt; org.trailsframework:trails-archetype (-)</div><div class="line">601: remote -&gt; org.trailsframework:trails-secure-archetype (-)</div><div class="line">602: remote -&gt; org.tynamo:tynamo-archetype (-)</div><div class="line">603: remote -&gt; org.wicketstuff.scala:wicket-scala-archetype (-)</div><div class="line">604: remote -&gt; org.wicketstuff.scala:wicketstuff-scala-archetype </div><div class="line">Basic setup for a project that combines Scala and Wicket,</div><div class="line">depending on the Wicket-Scala project. </div><div class="line">Includes an example Specs test.)</div><div class="line">605: remote -&gt; org.wikbook:wikbook.archetype (-)</div><div class="line">606: remote -&gt; org.xaloon.archetype:xaloon-archetype-wicket-jpa-glassfish (-)</div><div class="line">607: remote -&gt; org.xaloon.archetype:xaloon-archetype-wicket-jpa-spring (-)</div><div class="line">608: remote -&gt; org.xwiki.commons:xwiki-commons-component-archetype </div><div class="line">(Make it easy to create a maven project for creating XWiki Components.)</div><div class="line">609: remote -&gt; org.xwiki.rendering:xwiki-rendering-archetype-macro </div><div class="line">(Make it easy to create a maven project for creating XWiki Rendering Macros.)</div><div class="line">610: remote -&gt; org.zkoss:zk-archetype-component (The ZK Component archetype)</div><div class="line">611: remote -&gt; org.zkoss:zk-archetype-webapp (The ZK wepapp archetype)</div><div class="line">612: remote -&gt; ru.circumflex:circumflex-archetype (-)</div><div class="line">613: remote -&gt; se.vgregion.javg.maven.archetypes:javg-minimal-archetype (-)</div><div class="line">614: remote -&gt; sk.seges.sesam:sesam-annotation-archetype (-)</div><div class="line">Choose a number or apply filter </div><div class="line">(format: [groupId:]artifactId, case sensitive contains): 203:</div></pre></td></tr></table></figure>
-<p>按回车选择默认的选项（203：maven-archetype-quickstart）。</p>
-<p>Maven 将要求提供 archetype 的特定版本。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Choose org.apache.maven.archetypes:maven-archetype-quickstart version:</div><div class="line">1: 1.0-alpha-1</div><div class="line">2: 1.0-alpha-2</div><div class="line">3: 1.0-alpha-3</div><div class="line">4: 1.0-alpha-4</div><div class="line">5: 1.0</div><div class="line">6: 1.1</div><div class="line">Choose a number: 6:</div></pre></td></tr></table></figure>
-<p>按回车选择默认的选项（6：maven-archetype-quickstart:1.1）。</p>
-<p>Maven 将要求提供项目详情。要找要求键入项目详情。如果默认值有提供就按回车。你可以键入你自己的值来覆盖这些默认值。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Define value for property &apos;groupId&apos;: : com.companyname.insurance</div><div class="line">Define value for property &apos;artifactId&apos;: : health</div><div class="line">Define value for property &apos;version&apos;: 1.0-SNAPSHOT:</div><div class="line">Define value for property &apos;package&apos;: com.companyname.insurance:</div><div class="line">Maven 会要求确认项目详情。按回车或者 Y 。</div><div class="line"></div><div class="line">Confirm properties configuration:</div><div class="line">groupId: com.companyname.insurance</div><div class="line">artifactId: health</div><div class="line">version: 1.0-SNAPSHOT</div><div class="line">package: com.companyname.insurance</div><div class="line">Y:</div></pre></td></tr></table></figure>
-<p>现在 Maven 将开始创建项目目录结构并且显示下面的信息：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">[INFO] -----------------------------------------------------------------------</div><div class="line">[INFO] Using following parameters for creating project </div><div class="line">from Old (1.x) Archetype: maven-archetype-quickstart:1.1</div><div class="line">[INFO] -----------------------------------------------------------------------</div><div class="line">[INFO] Parameter: groupId, Value: com.companyname.insurance</div><div class="line">[INFO] Parameter: packageName, Value: com.companyname.insurance</div><div class="line">[INFO] Parameter: package, Value: com.companyname.insurance</div><div class="line">[INFO] Parameter: artifactId, Value: health</div><div class="line">[INFO] Parameter: basedir, Value: C:\MVN</div><div class="line">[INFO] Parameter: version, Value: 1.0-SNAPSHOT</div><div class="line">[INFO] project created from Old (1.x) Archetype in dir: C:\MVN\health</div><div class="line">[INFO] -----------------------------------------------------------------------</div><div class="line">[INFO] BUILD SUCCESSFUL</div><div class="line">[INFO] -----------------------------------------------------------------------</div><div class="line">[INFO] Total time: 4 minutes 12 seconds</div><div class="line">[INFO] Finished at: Fri Jul 13 11:10:12 IST 2012</div><div class="line">[INFO] Final Memory: 20M/90M</div><div class="line">[INFO] -----------------------------------------------------------------------</div></pre></td></tr></table></figure>
-<p>Maven使用如下所示的一套标准目录结构：</p>
-<table>
-<thead>
-<tr>
-<th>目录结构</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>src/main/java</td>
-<td>包含包下的Java源代码文件。</td>
-</tr>
-<tr>
-<td>src/main/test</td>
-<td>包含包下的测试Java源代码文件。</td>
-</tr>
-<tr>
-<td>src/main/resources</td>
-<td>包含图片和properties文件（在上面的例子中，我们需要手动创建此目录）。</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">Maven 为项目生成了一个 POM.xml 文件，如下所示：</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> </span></div><div class="line">   <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></div><div class="line">   <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 </span></div><div class="line">   http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;</div><div class="line">   <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.companyname.insurance<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>health<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">name</span>&gt;</span>health<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.apache.org<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">properties</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.8.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>Maven还创建了一个Java源文件样例和Java测试类文件。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.companyname.insurance;</div><div class="line"></div><div class="line"><span class="keyword">import</span> junit.framework.Test;</div><div class="line"><span class="keyword">import</span> junit.framework.TestCase;</div><div class="line"><span class="keyword">import</span> junit.framework.TestSuite;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Unit test for simple App.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppTest</span> </span></div><div class="line">    <span class="keyword">extends</span> <span class="title">TestCase</span></div><div class="line">&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Create the test case</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> testName name of the test case</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AppTest</span><span class="params">( String testName )</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">super</span>( testName );</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * <span class="doctag">@return</span> the suite of tests being tested</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Test <span class="title">suite</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> TestSuite( AppTest.class );</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Rigourous Test :-)</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testApp</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        assertTrue( <span class="keyword">true</span> );</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>开发者需要按照上面表格提到的要求放置自己的文件，然后Maven会处理构建相关的所有复杂工作。</p>
-<p>在 Maven 中使用一条命令，你就可以创建任意种类的项目，并且可以迅速启动你的开发工作。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1375,7 +1348,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">328</span>
+              <span class="site-state-item-count">329</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

@@ -260,6 +260,133 @@
             
               
                 
+                <a class="post-title-link" href="/2015/08/20/Leetcode_Ugly Number/" itemprop="url">
+                  Ugly Number
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-08-20T00:00:00+09:00" content="2015-08-20">
+              2015-08-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/08/20/Leetcode_Ugly Number/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/20/Leetcode_Ugly Number/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Ugly-Number"><a href="#Ugly-Number" class="headerlink" title="Ugly Number"></a><a href="https://leetcode.com/problems/ugly-number/" target="_blank" rel="external">Ugly Number</a></h1><blockquote>
+<p>Write a program to check whether a given number is an ugly number.</p>
+<p>Ugly numbers are positive numbers whose prime factors only include <code>2, 3, 5</code>. For example, <code>6, 8</code> are ugly while <code>14</code> is not ugly since it includes another prime factor <code>7</code>.</p>
+<p>Note that 1 is typically treated as an ugly number.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>如果一个数是ugly number，通过除以一定次数的<code>2, 3, 5</code>，会正好得到结果1(整除得到的，余数为0)。</p>
+<p>所以依次在除2余数为0时，将其不断除以2，直到余数不为0。检查结果是否为1，如果是则返回<code>true</code>。如果不是，则在除3余数为0时，将其不断除以3，直到余数不为0。检查结果是否为1，如果是则返回<code>true</code>。如果不是，则在除5余数为0时，将其不断除以5，直到余数不为0。检查结果是否为1，如果是则返回<code>true</code>,如果不是则说明2，3，5无法乘得该数，也就是该数有其他的prime，不是ugly number，返回<code>false</code>。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isUgly</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(num==<span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">while</span>(num%<span class="number">2</span>==<span class="number">0</span>) num /= <span class="number">2</span>;</div><div class="line">        <span class="keyword">while</span>(num%<span class="number">3</span>==<span class="number">0</span>) num /= <span class="number">3</span>;</div><div class="line">        <span class="keyword">while</span>(num%<span class="number">5</span>==<span class="number">0</span>) num /= <span class="number">5</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> num == <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/08/20/Leetcode_Linked List Cycle II/" itemprop="url">
                   Linked List Cycle II
                 </a>
@@ -514,142 +641,6 @@
             
               
                 
-                <a class="post-title-link" href="/2015/08/19/Leetcode_Maximal Square/" itemprop="url">
-                  Maximal Square
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-08-19T00:00:00+09:00" content="2015-08-19">
-              2015-08-19
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/08/19/Leetcode_Maximal Square/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/19/Leetcode_Maximal Square/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Maximal-Square"><a href="#Maximal-Square" class="headerlink" title="Maximal Square"></a><a href="https://leetcode.com/problems/maximal-square/" target="_blank" rel="external">Maximal Square</a></h1><blockquote>
-<p>Given a 2D binary matrix filled with 0’s and 1’s, find the largest square containing all 1’s and return its area.</p>
-<p>For example, given the following matrix:</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">1 0 1 0 0</div><div class="line">1 0 1 1 1</div><div class="line">1 1 1 1 1</div><div class="line">1 0 0 1 0</div></pre></td></tr></table></figure>
-<blockquote>
-<p>Return 4.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h3 id="Naive-method"><a href="#Naive-method" class="headerlink" title="Naive method"></a>Naive method</h3><p>对于每个点，向下向右判断是否满足1 square，知道出现0为止。</p>
-<h3 id="Dynamic-Programming-method"><a href="#Dynamic-Programming-method" class="headerlink" title="Dynamic Programming method"></a>Dynamic Programming method</h3><p>如果一个点<code>(i,j)</code>为0，则其square边长为0.<br>如果一个点<code>(i,j)</code>为1，则其square边长为<code>min( min(matrix[i][j-1], matrix[i-1][j]), matrix[i-1][j-1])</code>，也就是 <code>(其左边的一个点和上面的一个点的square边长的较小值)</code>，与<code>(左上的一个点square边长)</code>比较的较小值。</p>
-<p>原因是以<code>(i,j)</code>为右下角的square，其边长<code>L(i, j)</code> 最多为<code>(i-1,j-1)</code>为右下角的square边长<code>L(i-1,j-1)+1</code>，在满足<code>(i,j-L)到(i,j-1)</code>都为1，以及<code>(i-1,j)到(i-L,j)</code>都为1的情况下。</p>
-<ol>
-<li>若满足<code>(i,j-L)到(i,j-1)</code>都为1，则<code>L(i-1，j)&gt;=L(i-1,j-1)</code> </li>
-<li>若满足<code>(i-1,j)到(i-L,j)</code>都为1，则<code>L(i，j-1)&gt;=L(i-1,j-1)</code></li>
-</ol>
-<p>如果满足上面的两条条件，会有<code>L(i, j)</code>的最大值<code>L(i, j)=L(i-1,j-1)+1</code>.<br>如果有至少有一条不满足，则<code>L(i, j)</code>的值受限与较短的那条为1的边。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maximalSquare</span><span class="params">(<span class="keyword">char</span>[][] matrix)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(matrix.length==<span class="number">0</span> || matrix[<span class="number">0</span>].length==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> max = <span class="number">0</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;matrix.length; i++) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;matrix[<span class="number">0</span>].length; j++) &#123;</div><div class="line">                <span class="keyword">if</span>(matrix[i][j]==<span class="string">'0'</span>) &#123;</div><div class="line">                	matrix[i][j] = <span class="number">0</span>;</div><div class="line">                	<span class="keyword">continue</span>;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                	matrix[i][j] = <span class="number">1</span>;</div><div class="line">                &#125;</div><div class="line">                </div><div class="line">                <span class="keyword">if</span>(i&gt;=<span class="number">1</span> &amp;&amp; j&gt;=<span class="number">1</span>) &#123;</div><div class="line">                    <span class="keyword">char</span> bound = (<span class="keyword">char</span>) Math.min( Math.min(matrix[i][j-<span class="number">1</span>], matrix[i-<span class="number">1</span>][j]), matrix[i-<span class="number">1</span>][j-<span class="number">1</span>]);</div><div class="line">                    matrix[i][j] = (<span class="keyword">char</span>) (bound + <span class="number">1</span>);</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span>(matrix[i][j]&gt;max) max = matrix[i][j];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> max * max;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2015/08/19/Leetcode_Unique Binary Search Trees/" itemprop="url">
                   Unique Binary Search Trees
                 </a>
@@ -779,8 +770,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/08/19/Leetcode_Single Number III/" itemprop="url">
-                  Single Number III
+                <a class="post-title-link" href="/2015/08/19/Leetcode_Single Number II/" itemprop="url">
+                  Single Number II
                 </a>
               
             
@@ -823,8 +814,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/08/19/Leetcode_Single Number III/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/19/Leetcode_Single Number III/" itemprop="commentsCount"></span>
+                <a href="/2015/08/19/Leetcode_Single Number II/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/19/Leetcode_Single Number II/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -849,17 +840,15 @@
       
         
           
-            <h1 id="Single-Number-III"><a href="#Single-Number-III" class="headerlink" title="Single Number III"></a><a href="https://leetcode.com/problems/single-number-iii/" target="_blank" rel="external">Single Number III</a></h1><blockquote>
-<p>Given an array of numbers nums, in which exactly two elements appear only once and all the other elements appear exactly twice. Find the two elements that appear only once.</p>
-<p>For example:</p>
-<p>Given nums = [1, 2, 1, 3, 2, 5], return [3, 5].</p>
-<p>Note:<br>The order of the result is not important. So in the above example, [5, 3] is also correct.<br>Your algorithm should run in linear runtime complexity. Could you implement it using only constant space complexity?</p>
+            <h1 id="Single-Number-II"><a href="#Single-Number-II" class="headerlink" title="Single Number II"></a><a href="https://leetcode.com/problems/single-number-ii/" target="_blank" rel="external">Single Number II</a></h1><blockquote>
+<p>Given an array of integers, every element appears three times except for one. Find that single one.</p>
+<p>Note:<br>Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h3 id="Mehtod-1"><a href="#Mehtod-1" class="headerlink" title="Mehtod 1"></a>Mehtod 1</h3><p>使用HashSet，一遍扫描数组，如果元素已经在set中，则从set中移除。<br>按照题目的条件，扫描完后只会剩下两个只出现一遍的元素，取出返回结果</p>
-<h3 id="Mehtod-2"><a href="#Mehtod-2" class="headerlink" title="Mehtod 2"></a>Mehtod 2</h3><p>利用位运算，除去出现次数为2次的数(<a href="http://www.wengweitao.com/lintcode-single-number-i-ii-iii-luo-dan-de-shu.html" target="_blank" rel="external">参考</a>)。</p>
-<p>如果对所有元素进行异或操作，最后剩余的结果是出现次数为1次的两个数的异或结果，此时无法直接得到这两个数具体的值。但是，因为这两个数一定是不同的，所以最终异或的值至少有一个位为1。我们可以找出异或结果中第一个值为1的位，然后根据该位的值是否为1，将数组中的每一个数，分成两个部分。这样每个部分，就可以采用Single number I中的方法得到只出现一次的数。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1"></a>Method 1</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] singleNumber(<span class="keyword">int</span>[] nums) &#123;</div><div class="line">        Set&lt;Integer&gt; record = <span class="keyword">new</span> HashSet&lt;Integer&gt;();</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nums.length; i++) &#123;</div><div class="line">            <span class="keyword">if</span>(record.contains(nums[i])) record.remove(nums[i]);</div><div class="line">            <span class="keyword">else</span> record.add(nums[i]);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> [] res = <span class="keyword">new</span> <span class="keyword">int</span>[record.size()];</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">        Iterator it = record.iterator();</div><div class="line">        <span class="keyword">while</span>(it.hasNext()) &#123;</div><div class="line">        	res[i++] = (<span class="keyword">int</span>) it.next();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2"></a>Method 2</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] singleNumber(<span class="keyword">int</span>[] nums) &#123;</div><div class="line">        <span class="keyword">int</span> xor = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) xor ^= nums[i];</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> pos = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>( ; pos &lt; <span class="number">32</span>; pos++) &#123;</div><div class="line">            <span class="keyword">if</span>(getBit(xor, pos)==<span class="number">1</span>) <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> [] res = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</div><div class="line">            <span class="keyword">if</span>(getBit(nums[i], pos)==<span class="number">1</span>) res[<span class="number">0</span>] ^= nums[i];</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(getBit(nums[i], pos)==<span class="number">0</span>) res[<span class="number">1</span>] ^= nums[i];</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getBit</span><span class="params">(<span class="keyword">int</span> num, <span class="keyword">int</span> pos)</span> </span>&#123;</div><div class="line">        num = num &gt;&gt; pos;</div><div class="line">        <span class="keyword">return</span> num &amp; <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h3 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1"></a>Method 1</h3><p>使用HashMap，一遍扫描数组，如果不在set中，则添加到set中。如果元素已经在set中，且次数为1，则更新为2，如果次数为2，则从set中移除。<br>按照题目的条件，扫描完后只会剩下一个只出现一遍的元素，取出返回结果</p>
+<h3 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2"></a>Method 2</h3><p>使用位操作，尝试消除掉出现3次的数字(<a href="http://www.wengweitao.com/lintcode-single-number-i-ii-iii-luo-dan-de-shu.html" target="_blank" rel="external">参考</a>)。</p>
+<p>若一个数字出现3次，则该数字的二进制表示中每个位置的数值为1的出现次数为3次，如：5的二进制表示为101，若5出现3次，则其二进制表示中的第一个位置和第二个位置出现1的次数和均为3。那么对该位1出现的次数对3取余，最终的结果所对应的就是所要求的Single Number。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="Method-1-1"><a href="#Method-1-1" class="headerlink" title="Method 1"></a>Method 1</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        Map&lt;Integer, Integer&gt; record = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nums.length; i++) &#123;</div><div class="line">            <span class="keyword">if</span>(record.containsKey(nums[i])) &#123;</div><div class="line">                <span class="keyword">if</span>(record.get(nums[i])==<span class="number">2</span>) record.remove(nums[i]);</div><div class="line">                <span class="keyword">else</span> record.put(nums[i], <span class="number">2</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> record.put(nums[i], <span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        Iterator it = record.keySet().iterator();</div><div class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>) it.next();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Method-2-1"><a href="#Method-2-1" class="headerlink" title="Method 2"></a>Method 2</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getBit</span><span class="params">(<span class="keyword">int</span> num, <span class="keyword">int</span> pos)</span> </span>&#123;</div><div class="line">        num = num &gt;&gt; pos;</div><div class="line">        <span class="keyword">return</span> num &amp; <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> pos=<span class="number">0</span>; pos&lt;<span class="number">32</span>; pos++) &#123;</div><div class="line">            <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nums.length; i++) &#123;</div><div class="line">                count += getBit(nums[i], pos);</div><div class="line">            &#125;</div><div class="line">            res |= (count%<span class="number">3</span>) &lt;&lt; pos;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -933,7 +922,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">328</span>
+              <span class="site-state-item-count">329</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

@@ -260,6 +260,133 @@
             
               
                 
+                <a class="post-title-link" href="/2015/09/01/Leetcode_Permutations II /" itemprop="url">
+                  Permutations II
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-09-01T00:00:00+09:00" content="2015-09-01">
+              2015-09-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/01/Leetcode_Permutations II /#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/01/Leetcode_Permutations II /" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Permutations-II"><a href="#Permutations-II" class="headerlink" title="Permutations II "></a><a href="https://leetcode.com/problems/permutations-ii/" target="_blank" rel="external">Permutations II </a></h1><blockquote>
+<p>Given a collection of numbers that might contain duplicates, return all possible unique permutations.</p>
+<p>For example,<br><code>[1,1,2]</code> have the following unique permutations:<br><code>[1,1,2]</code>, <code>[1,2,1]</code>, and <code>[2,1,1]</code>.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>DFS递归搜索，把问题看做是在第1，2，3…放置数的问题，首先选择第一个位置的数，递归选择第二个位置的数…在Permutations I中，只需记录已经使用过了的数字在原数组中的位置，这样在下一步选择数字时不能再使用这些数字。这个问题中，由于数组允许重复值的存在，因此在选择当前位置的数字时，也需要记录这个位置已经使用过的，如果已使用过，则无需再搜索一遍，因为其结果是相同的。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; permuteUnique(<span class="keyword">int</span>[] nums) &#123;</div><div class="line">        List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> ArrayList&lt;List&lt;Integer&gt;&gt;();</div><div class="line">        <span class="keyword">if</span>(nums==<span class="keyword">null</span> || nums.length==<span class="number">0</span>) <span class="keyword">return</span> res;</div><div class="line">        List&lt;Integer&gt; record = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">        <span class="keyword">boolean</span>[] used = <span class="keyword">new</span> <span class="keyword">boolean</span>[nums.length];</div><div class="line">        </div><div class="line">        recPer(nums, res, record, used);</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recPer</span><span class="params">(<span class="keyword">int</span> []nums, List&lt;List&lt;Integer&gt;&gt; res, List&lt;Integer&gt; record, <span class="keyword">boolean</span>[] used)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(record.size()==nums.length) &#123;</div><div class="line">            res.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;(record));</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        Set&lt;Integer&gt; set = <span class="keyword">new</span> HashSet&lt;Integer&gt;();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nums.length; i++) &#123;</div><div class="line">            <span class="keyword">if</span>(used[i] || set.contains(nums[i])) <span class="keyword">continue</span>;</div><div class="line">            set.add(nums[i]);</div><div class="line">            used[i] = <span class="keyword">true</span>;</div><div class="line">            record.add(nums[i]);</div><div class="line">            recPer(nums, res, record, used);</div><div class="line">            used[i] = <span class="keyword">false</span>;</div><div class="line">            record.remove(record.size()-<span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>second time</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; permuteUnique(<span class="keyword">int</span>[] nums) &#123;</div><div class="line">        List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> ArrayList&lt;List&lt;Integer&gt;&gt;();</div><div class="line">        <span class="keyword">if</span>(nums==<span class="keyword">null</span> || nums.length==<span class="number">0</span>) <span class="keyword">return</span> res;</div><div class="line">        Arrays.sort(nums);</div><div class="line">        List&lt;Integer&gt; record = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">        <span class="keyword">boolean</span>[] used = <span class="keyword">new</span> <span class="keyword">boolean</span>[nums.length];</div><div class="line">        recPermuteUnique(nums, used, res, record);</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recPermuteUnique</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">boolean</span>[] used, List&lt;List&lt;Integer&gt;&gt; res, List&lt;Integer&gt; record)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(record.size()==nums.length) &#123;</div><div class="line">            res.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;(record));</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nums.length; i++) &#123;</div><div class="line">                <span class="keyword">if</span>(!used[i]) &#123;</div><div class="line">                    used[i] = <span class="keyword">true</span>;</div><div class="line">                    record.add(nums[i]);</div><div class="line">                    recPermuteUnique(nums, used, res, record);</div><div class="line">                    used[i] = <span class="keyword">false</span>;</div><div class="line">                    record.remove(record.size()-<span class="number">1</span>);</div><div class="line">                    <span class="keyword">while</span>(i+<span class="number">1</span>&lt;nums.length &amp;&amp; nums[i]==nums[i+<span class="number">1</span>]) i ++;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;    </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/09/01/Leetcode_Jump Game/" itemprop="url">
                   Jump Game
                 </a>
@@ -528,6 +655,131 @@
             
               
                 
+                <a class="post-title-link" href="/2015/08/26/Leetcode_Construct Binary Tree from Preorder and Inorder Traversal /" itemprop="url">
+                  Construct Binary Tree from Preorder and Inorder Traversal
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-08-26T00:00:00+09:00" content="2015-08-26">
+              2015-08-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/08/26/Leetcode_Construct Binary Tree from Preorder and Inorder Traversal /#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/26/Leetcode_Construct Binary Tree from Preorder and Inorder Traversal /" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal"><a href="#Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal" class="headerlink" title="Construct Binary Tree from Preorder and Inorder Traversal"></a><a href="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/" target="_blank" rel="external">Construct Binary Tree from Preorder and Inorder Traversal</a></h1><blockquote>
+<p>Given preorder and inorder traversal of a tree, construct the binary tree.</p>
+<p>Note:<br>You may assume that duplicates do not exist in the tree.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>从preorder末尾找到树的的根节点，然后在inorder找到根节点，以此将inorder两分，得到左右子树的size以及推出在preorder，inorder的位置信息，递归建立左右子树赋给根节点。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">buildTree</span><span class="params">(<span class="keyword">int</span>[] preorder, <span class="keyword">int</span>[] inorder)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> recBuild(preorder, inorder, <span class="number">0</span>, <span class="number">0</span>, preorder.length);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">recBuild</span><span class="params">(<span class="keyword">int</span> [] preorder, <span class="keyword">int</span> [] inorder, <span class="keyword">int</span> pstart, <span class="keyword">int</span> istart, <span class="keyword">int</span> size)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(size==<span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        TreeNode root = <span class="keyword">new</span> TreeNode(preorder[pstart]);</div><div class="line">        <span class="keyword">if</span>(size==<span class="number">1</span>) <span class="keyword">return</span> root;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> ipos = istart;</div><div class="line">        <span class="keyword">while</span>(inorder[ipos]!=preorder[pstart]) ipos++;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> lsize = ipos - istart;</div><div class="line">        <span class="keyword">int</span> rsize = size - lsize - <span class="number">1</span>;</div><div class="line">        </div><div class="line">        root.left = recBuild(preorder, inorder, pstart+<span class="number">1</span>, istart, lsize);</div><div class="line">        root.right = recBuild(preorder, inorder, pstart+lsize+<span class="number">1</span>, ipos+<span class="number">1</span>, rsize);</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> root;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/08/26/Leetcode_Construct Binary Tree from Inorder and Postorder Traversal/" itemprop="url">
                   Construct Binary Tree from Inorder and Postorder Traversal
                 </a>
@@ -632,279 +884,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/08/26/Leetcode_Flatten Binary Tree to Linked List/" itemprop="url">
-                  Flatten Binary Tree to Linked List
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-08-26T00:00:00+09:00" content="2015-08-26">
-              2015-08-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/08/26/Leetcode_Flatten Binary Tree to Linked List/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/26/Leetcode_Flatten Binary Tree to Linked List/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Flatten-Binary-Tree-to-Linked-List"><a href="#Flatten-Binary-Tree-to-Linked-List" class="headerlink" title="Flatten Binary Tree to Linked List"></a><a href="">Flatten Binary Tree to Linked List</a></h1><blockquote>
-<p>Given a binary tree, flatten it to a linked list in-place.</p>
-</blockquote>
-<p>For example,<br>Given</p>
-<pre><code>    1
-   / \
-  2   5
- / \   \
-3   4   6
-</code></pre><blockquote>
-<p>The flattened tree should look like:</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">1</div><div class="line"> \</div><div class="line">  2</div><div class="line">   \</div><div class="line">    3</div><div class="line">     \</div><div class="line">      4</div><div class="line">       \</div><div class="line">        5</div><div class="line">         \</div><div class="line">          6</div></pre></td></tr></table></figure>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>前序遍历。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> TreeNode lastNode = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">flatten</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (lastNode != <span class="keyword">null</span>) &#123;</div><div class="line">            lastNode.left = <span class="keyword">null</span>;</div><div class="line">            lastNode.right = root;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        lastNode = root;</div><div class="line">        TreeNode right = root.right;</div><div class="line">        flatten(root.left);</div><div class="line">        flatten(right);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/08/26/Leetcode_Reorder List/" itemprop="url">
-                  Reorder List
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-08-26T00:00:00+09:00" content="2015-08-26">
-              2015-08-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/08/26/Leetcode_Reorder List/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/26/Leetcode_Reorder List/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Reorder-List"><a href="#Reorder-List" class="headerlink" title="Reorder List"></a><a href="https://leetcode.com/problems/reorder-list/" target="_blank" rel="external">Reorder List</a></h1><blockquote>
-<p>Given a singly linked list <code>L: L0→L1→…→Ln-1→Ln</code>,<br>reorder it to: <code>L0→Ln→L1→Ln-1→L2→Ln-2→…</code></p>
-<p>You must do this in-place without altering the nodes’ values.</p>
-<p>For example,<br>Given <code>{1,2,3,4}</code>, reorder it to <code>{1,4,2,3}</code>.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>首先使用快慢指针遍历list，快指针速度为慢指针的两倍，当快指针到达末尾是，慢指针处于链表中间，停止遍历，慢指针在遍历的同时，将遍历过的子链表翻转，遍历结束得到两个子链表，一个从中间指向开头，一个从中间指向末尾（具体要求位置安需求调整）。</p>
-<p><code>1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;6</code></p>
-<p>遍历后：<br><code>1&lt;-2&lt;-3</code>  and    <code>4-&gt;5-&gt;6</code></p>
-<p>从两个子链表开头开始，依次移动指针让子链表1的当前指针指向子链表2的当前指针，同时子链表2的当前指针指向上一轮的子链表1的指针(如果是链表长度为偶数，第一轮时指向null，如果链表长度为奇数，同样指向上一轮的子链表1的指针，有些不同，后面说明)。直到两个子链表移动到末尾。注意处理中间信息的保存和更新。</p>
-<p>另外链表长度为奇数时，需要多一步处理：</p>
-<p><code>1-&gt;2-&gt;3-&gt;4-&gt;5</code></p>
-<p>根据具体的快慢指针设置，这里遍历后得到：</p>
-<p><code>1&lt;-2&lt;-3</code> and <code>4-&gt;5</code></p>
-<p>两个子链表长度不一致，可以容易知道子链表1的开头节点必然是调整后链表的最后一个节点，设为tail，提前移动子链表1的指针到下一位，后面同样处理，正式处理第一轮子链表2的当前指针不是指向null，而是<code>3</code>,也就是子链表1提前移动过的位置。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * public class ListNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     ListNode next;</div><div class="line"> *     ListNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reorderList</span><span class="params">(ListNode head)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span> || head.next==<span class="keyword">null</span> || head.next.next==<span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">        </div><div class="line">        ListNode n1 = head;</div><div class="line">        </div><div class="line">        ListNode n2 = head;</div><div class="line">        ListNode last = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(n2!=<span class="keyword">null</span>) &#123;</div><div class="line">        	n2 = n2.next;</div><div class="line">            count ++;</div><div class="line">            </div><div class="line">            ListNode temp = n1.next;</div><div class="line">            n1.next = last;</div><div class="line">            last = n1;</div><div class="line">            n1 = temp;</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(n2==<span class="keyword">null</span>) <span class="keyword">break</span>;</div><div class="line">            count ++;</div><div class="line">            n2 = n2.next;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        ListNode current = last;</div><div class="line">        <span class="keyword">while</span>(current!=<span class="keyword">null</span>) &#123;</div><div class="line">			current = current.next;</div><div class="line">		&#125;</div><div class="line">        </div><div class="line">        </div><div class="line">        ListNode tail = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">if</span>(count%<span class="number">2</span>!=<span class="number">0</span>) &#123;</div><div class="line">            tail = last;</div><div class="line">            last = last.next;</div><div class="line">            tail.next = <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        ListNode left = <span class="keyword">null</span>;</div><div class="line">        ListNode right = <span class="keyword">null</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(last!=<span class="keyword">null</span>) &#123;</div><div class="line">            left = last.next;</div><div class="line">            right = n1.next;</div><div class="line">            last.next = n1;</div><div class="line">            n1.next = tail;</div><div class="line">            </div><div class="line">            tail = last;</div><div class="line">            </div><div class="line">            last = left;</div><div class="line">            n1 = right;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>second time</p>
-<p>recursive way, stack overflow</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reorderList</span><span class="params">(ListNode head)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">        <span class="keyword">int</span> length = <span class="number">0</span>;</div><div class="line">        ListNode current = head;</div><div class="line">        <span class="keyword">while</span>(current!=<span class="keyword">null</span>) &#123;</div><div class="line">            length ++;</div><div class="line">            current = current.next;</div><div class="line">        &#125;</div><div class="line">        recOrder(head, <span class="number">0</span>, length);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">recOrder</span><span class="params">(ListNode head, <span class="keyword">int</span> pos, <span class="keyword">int</span> length)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(length%<span class="number">2</span>==<span class="number">0</span> &amp;&amp; pos==(length/<span class="number">2</span>-<span class="number">1</span>)) &#123;</div><div class="line">            ListNode temp = head.next.next;</div><div class="line">            head.next.next = <span class="keyword">null</span>;</div><div class="line">            <span class="keyword">return</span> temp;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(length%<span class="number">2</span>==<span class="number">1</span> &amp;&amp; pos==length/<span class="number">2</span>) &#123;</div><div class="line">            ListNode temp = head.next;</div><div class="line">            head.next = <span class="keyword">null</span>;</div><div class="line">            <span class="keyword">return</span> temp;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            ListNode nextNode = recOrder(head.next, pos+<span class="number">1</span>, length);</div><div class="line">            ListNode res = nextNode.next;</div><div class="line">            nextNode.next = head.next;</div><div class="line">            head.next = nextNode;</div><div class="line">            <span class="keyword">return</span> res;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>better solution</p>
-<p><a href="http://www.acmerblog.com/reorder-list-leetcode-6088.html" target="_blank" rel="external">Reorder List(链表重排序)-LeetCode</a></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reorderList</span><span class="params">(ListNode head)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line"></div><div class="line">        ListNode slow = head;</div><div class="line">        ListNode fast = head;</div><div class="line">        <span class="keyword">while</span>(fast.next != <span class="keyword">null</span> &amp;&amp; fast.next.next != <span class="keyword">null</span>)&#123;</div><div class="line">            slow = slow.next;</div><div class="line">            fast = fast.next.next;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        ListNode mid = slow.next;</div><div class="line">        ListNode last = mid;</div><div class="line">        ListNode pre = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">while</span>(last != <span class="keyword">null</span>)&#123;</div><div class="line">            ListNode next = last.next;</div><div class="line">            last.next = pre;</div><div class="line">            pre = last;</div><div class="line">            last = next;</div><div class="line">        &#125;</div><div class="line">        slow.next = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">        <span class="keyword">while</span>(head != <span class="keyword">null</span> &amp;&amp; pre != <span class="keyword">null</span>)&#123;</div><div class="line">            ListNode next1 = head.next;</div><div class="line">            head.next = pre;</div><div class="line">            pre = pre.next;</div><div class="line">            head.next.next = next1;</div><div class="line">            head = next1;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -950,7 +929,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">328</span>
+              <span class="site-state-item-count">329</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

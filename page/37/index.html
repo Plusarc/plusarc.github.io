@@ -260,6 +260,135 @@
             
               
                 
+                <a class="post-title-link" href="/2015/08/10/Leetcode_Multiply Strings/" itemprop="url">
+                  Multiply Strings
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-08-10T00:00:00+09:00" content="2015-08-10">
+              2015-08-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/08/10/Leetcode_Multiply Strings/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/10/Leetcode_Multiply Strings/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Multiply-Strings"><a href="#Multiply-Strings" class="headerlink" title="Multiply Strings"></a><a href="https://leetcode.com/problems/multiply-strings/" target="_blank" rel="external">Multiply Strings</a></h1><blockquote>
+<p>Given two numbers represented as strings, return multiplication of the numbers as a string.</p>
+<p>Note: The numbers can be arbitrarily large and are non-negative.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>首先要注意不能直接转化为数值然后相乘，因为要考虑溢出的问题。</p>
+<p>类似与手工乘法，对于结果建立一个数组，每个元素存储结果对应的每一位，如 <code>385 * 97</code>, <code>个位=5 * 7，十位=8 * 7 + 5 * 9 ，百位=3 * 7 + 8 * 9...</code>, 可以每一位用一个Int表示，存在一个int[]里面。</p>
+<p>结果最大长度是num1.len + num2.len，比如99 * 99，最大不会超过10000，所以4位就够了，对应建立相应数组。</p>
+<p>先将字符串逆序便于从最低位开始计算，最后结果前面的0要清掉。</p>
+<p>参考：<br><a href="http://bangbingsyb.blogspot.jp/2014/11/leetcode-multiply-strings.html" target="_blank" rel="external">[LeetCode] Multiply Strings</a>.</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">multiply</span><span class="params">(String num1, String num2)</span> </span>&#123;</div><div class="line">	    num1 = <span class="keyword">new</span> StringBuilder(num1).reverse().toString();</div><div class="line">	    num2 = <span class="keyword">new</span> StringBuilder(num2).reverse().toString();</div><div class="line">	    <span class="comment">// even 99 * 99 is &lt; 10000, so maximaly 4 digits</span></div><div class="line">	    <span class="keyword">int</span>[] d = <span class="keyword">new</span> <span class="keyword">int</span>[num1.length() + num2.length()];</div><div class="line">	    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num1.length(); i++) &#123;</div><div class="line">	        <span class="keyword">int</span> a = num1.charAt(i) - <span class="string">'0'</span>;</div><div class="line">	        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; num2.length(); j++) &#123;</div><div class="line">	            <span class="keyword">int</span> b = num2.charAt(j) - <span class="string">'0'</span>;</div><div class="line">	            d[i + j] += a * b;</div><div class="line">	        &#125;</div><div class="line">	    &#125;</div><div class="line">	    StringBuilder sb = <span class="keyword">new</span> StringBuilder();</div><div class="line">	    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; d.length; i++) &#123;</div><div class="line">	        <span class="keyword">int</span> digit = d[i] % <span class="number">10</span>;</div><div class="line">	        <span class="keyword">int</span> carry = d[i] / <span class="number">10</span>;</div><div class="line">	        sb.insert(<span class="number">0</span>, digit);</div><div class="line">	        <span class="keyword">if</span> (i &lt; d.length - <span class="number">1</span>)</div><div class="line">	            d[i + <span class="number">1</span>] += carry;</div><div class="line">	        &#125;</div><div class="line">	    <span class="comment">//trim starting zeros</span></div><div class="line">	    <span class="keyword">while</span> (sb.length() &gt; <span class="number">0</span> &amp;&amp; sb.charAt(<span class="number">0</span>) == <span class="string">'0'</span>) &#123;</div><div class="line">	        sb.deleteCharAt(<span class="number">0</span>);</div><div class="line">	    &#125;</div><div class="line">	    <span class="keyword">return</span> sb.length() == <span class="number">0</span> ? <span class="string">"0"</span> : sb.toString();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/08/08/Leetcode_Word Search/" itemprop="url">
                   Word Search
                 </a>
@@ -762,136 +891,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/08/03/Leetcode_Lowest Common Ancestor of a Binary Search Tree/" itemprop="url">
-                  Lowest Common Ancestor of a Binary Search Tree
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-08-03T00:00:00+09:00" content="2015-08-03">
-              2015-08-03
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/08/03/Leetcode_Lowest Common Ancestor of a Binary Search Tree/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/03/Leetcode_Lowest Common Ancestor of a Binary Search Tree/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Lowest-Common-Ancestor-of-a-Binary-Search-Tree"><a href="#Lowest-Common-Ancestor-of-a-Binary-Search-Tree" class="headerlink" title="Lowest Common Ancestor of a Binary Search Tree"></a><a href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/" target="_blank" rel="external">Lowest Common Ancestor of a Binary Search Tree</a></h1><blockquote>
-<p>Given a binary search tree (BST), find the lowest common ancestor (LCA) of two given nodes in the BST.</p>
-<p>According to the definition of LCA on Wikipedia: “The lowest common ancestor is defined between two nodes <code>v</code> and <code>w</code> as the lowest node in <code>T</code> that has both <code>v</code> and <code>w</code> as descendants (where we allow a node to be a descendant of itself).”</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">     _______6______</div><div class="line">    /              \</div><div class="line"> ___2__          ___8__</div><div class="line">/      \        /      \</div><div class="line">0      _4       7       9</div><div class="line">      /  \</div><div class="line">      3   5</div></pre></td></tr></table></figure>
-<blockquote>
-<p>For example, the lowest common ancestor (LCA) of nodes <code>2</code> and <code>8</code> is <code>6</code>. Another example is LCA of nodes <code>2</code> and <code>4</code> is <code>2</code>, since a node can be a descendant of itself according to the LCA definition.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>注意利用BST的性质，如果<code>p.val&lt;root.val&amp;&amp;q.val&gt;root.val) || (p.val&gt;root.val&amp;&amp;q.val&lt;root.val)</code>, 则说明两个子节点一个在左子树，一个在右子树，那么当前的root必定是LCA。否则继续递归搜索左子树或右子树。</p>
-<p>注意<code>root==p || root==q</code>的情况，这时其中的一个节点即是LCA.</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="comment">// 是否允许重复相同值的节点</span></div><div class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(root==p || root==q) <span class="keyword">return</span> root;</div><div class="line">        <span class="keyword">if</span>( (p.val&lt;root.val&amp;&amp;q.val&gt;root.val) || (p.val&gt;root.val&amp;&amp;q.val&lt;root.val) ) <span class="keyword">return</span> root;</div><div class="line">        <span class="keyword">if</span>(p.val&lt;root.val &amp;&amp; q.val&lt;root.val) <span class="keyword">return</span> lowestCommonAncestor(root.left, p, q);</div><div class="line">        <span class="keyword">else</span> <span class="keyword">return</span> lowestCommonAncestor(root.right, p, q);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -937,7 +936,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">328</span>
+              <span class="site-state-item-count">329</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

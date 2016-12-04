@@ -260,8 +260,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/10/04/Leetcode_N-Queens/" itemprop="url">
-                  N-Queens
+                <a class="post-title-link" href="/2015/10/06/Developing_Redis(2)/" itemprop="url">
+                  Redis(2)
                 </a>
               
             
@@ -274,8 +274,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-10-04T00:00:00+09:00" content="2015-10-04">
-              2015-10-04
+            <time itemprop="dateCreated" datetime="2015-10-06T00:00:00+09:00" content="2015-10-06">
+              2015-10-06
             </time>
           </span>
 
@@ -288,8 +288,8 @@
               <span class="post-meta-item-text">分類於</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
+                  <a href="/categories/Developing/" itemprop="url" rel="index">
+                    <span itemprop="name">Developing</span>
                   </a>
                 </span>
 
@@ -304,8 +304,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/10/04/Leetcode_N-Queens/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/04/Leetcode_N-Queens/" itemprop="commentsCount"></span>
+                <a href="/2015/10/06/Developing_Redis(2)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/06/Developing_Redis(2)/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -330,272 +330,111 @@
       
         
           
-            <h1 id="N-Queens"><a href="#N-Queens" class="headerlink" title="N-Queens"></a><a href="https://leetcode.com/problems/n-queens/" target="_blank" rel="external">N-Queens</a></h1><blockquote>
-<p>The n-queens puzzle is the problem of placing n queens on an n×n chessboard such that no two queens attack each other.</p>
-<p>Given an integer <code>n</code>, return all distinct solutions to the n-queens puzzle.</p>
-<p>Each solution contains a distinct board configuration of the n-queens’ placement, where <code>&#39;Q&#39;</code> and <code>&#39;.&#39;</code> both indicate a queen and an empty space respectively.</p>
-<p>For example,<br>There exist two distinct solutions to the 4-queens puzzle:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line"> [&quot;.Q..&quot;,  // Solution 1</div><div class="line">  &quot;...Q&quot;,</div><div class="line">  &quot;Q...&quot;,</div><div class="line">  &quot;..Q.&quot;],</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> [&quot;..Q.&quot;,  // Solution 2</div><div class="line">  &quot;Q...&quot;,</div><div class="line">  &quot;...Q&quot;,</div><div class="line">  &quot;.Q..&quot;]</div><div class="line">]</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>回溯搜索法，并对无解的solution进行剪枝。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> List&lt;List&lt;String&gt;&gt; solveNQueens(<span class="keyword">int</span> n) &#123;</div><div class="line">        List&lt;List&lt;String&gt;&gt; res = <span class="keyword">new</span> ArrayList&lt;List&lt;String&gt;&gt;();</div><div class="line">        <span class="keyword">int</span> [] used = <span class="keyword">new</span> <span class="keyword">int</span>[n];</div><div class="line">        </div><div class="line">        recSolve(n, used, <span class="number">0</span>, res);</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recSolve</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span>[] used, <span class="keyword">int</span> rowPos, List&lt;List&lt;String&gt;&gt; res)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(rowPos==n) &#123;</div><div class="line">            List&lt;String&gt; records = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">            <span class="keyword">char</span>[] record = <span class="keyword">new</span> <span class="keyword">char</span>[n];</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;record.length; i++) record[i] = <span class="string">'.'</span>;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> num: used) &#123;</div><div class="line">                record[num]  = <span class="string">'Q'</span>;</div><div class="line">                records.add(<span class="keyword">new</span> String(record));</div><div class="line">                record[num] = <span class="string">'.'</span>;</div><div class="line">            &#125;</div><div class="line">            res.add(records);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> num=<span class="number">0</span>; num&lt;n; num++) &#123;</div><div class="line">                <span class="keyword">boolean</span> conflict = <span class="keyword">false</span>;</div><div class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> row=<span class="number">0</span>; row&lt;rowPos; row++) &#123;</div><div class="line">                    <span class="keyword">if</span>(num==used[row] || Math.abs(num-used[row])==(rowPos-row)) &#123;</div><div class="line">                        conflict = <span class="keyword">true</span>;</div><div class="line">                        <span class="keyword">break</span>;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span>(conflict) <span class="keyword">continue</span>;</div><div class="line">                used[rowPos] = num;</div><div class="line">                recSolve(n, used, rowPos+<span class="number">1</span>, res);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/10/04/Leetcode_Longest Valid Parentheses/" itemprop="url">
-                  Longest Valid Parentheses
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-10-04T00:00:00+09:00" content="2015-10-04">
-              2015-10-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/10/04/Leetcode_Longest Valid Parentheses/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/04/Leetcode_Longest Valid Parentheses/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Longest-Valid-Parentheses"><a href="#Longest-Valid-Parentheses" class="headerlink" title="Longest Valid Parentheses"></a><a href="https://leetcode.com/problems/longest-valid-parentheses/" target="_blank" rel="external">Longest Valid Parentheses</a></h1><blockquote>
-<p>Given a string containing just the characters <code>&#39;(&#39;</code> and <code>&#39;)&#39;</code>, find the length of the longest valid (well-formed) parentheses substring.</p>
-<p>For <code>&quot;(()&quot;</code>, the longest valid parentheses substring is <code>&quot;()&quot;</code>, which has length = 2.</p>
-<p>Another example is <code>&quot;)()())&quot;</code>, where the longest valid parentheses substring is <code>&quot;()()&quot;</code>, which has <code>length = 4</code>.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>贪心策略，使用栈记录前面的字符以及在字符串中的位置，每次向后扫描，满足Parentheses则弹出栈中的对应长度，并根据当前匹配Parentheses长度判断是否更新max_length.</p>
-<p>具体逻辑参考代码。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">longestValidParentheses</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(s==<span class="keyword">null</span> || s.length()==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        Stack&lt;Pair&gt; stack = <span class="keyword">new</span> Stack&lt;Pair&gt;();</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> max = <span class="number">0</span>;</div><div class="line">        <span class="keyword">char</span> [] cArray = s.toCharArray();</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;cArray.length; i++) &#123;</div><div class="line">            <span class="keyword">char</span> c = cArray[i];</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(c==<span class="string">'('</span>) stack.push(<span class="keyword">new</span> Pair(c, i));</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(c==<span class="string">')'</span>) &#123;</div><div class="line">                <span class="keyword">if</span>(!stack.isEmpty() &amp;&amp; stack.peek().c==<span class="string">'('</span>) &#123;</div><div class="line">                    stack.pop();</div><div class="line">                    <span class="keyword">int</span> length = stack.isEmpty() ? i+<span class="number">1</span> : i - stack.peek().pos;</div><div class="line">                    <span class="keyword">if</span>(length&gt;max) max = length;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                	stack.push(<span class="keyword">new</span> Pair(c, i));</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> max;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Pair</span> </span>&#123;</div><div class="line">        <span class="keyword">char</span> c;</div><div class="line">        <span class="keyword">int</span> pos;</div><div class="line">        Pair(<span class="keyword">char</span> c, <span class="keyword">int</span> pos) &#123;</div><div class="line">            <span class="keyword">this</span>.c = c;</div><div class="line">            <span class="keyword">this</span>.pos = pos;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/10/04/Leetcode_N-Queens II/" itemprop="url">
-                  N-Queens II
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-10-04T00:00:00+09:00" content="2015-10-04">
-              2015-10-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/10/04/Leetcode_N-Queens II/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/04/Leetcode_N-Queens II/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="N-Queens-II"><a href="#N-Queens-II" class="headerlink" title="N-Queens II"></a><a href="https://leetcode.com/problems/n-queens-ii/" target="_blank" rel="external">N-Queens II</a></h1><blockquote>
-<p>Follow up for N-Queens problem.</p>
-<p>Now, instead outputting board configurations, return the total number of distinct solutions.</p>
-<p><img src="http://leetcode.com/wp-content/uploads/2012/03/8-queens.png" alt=""></p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>回溯搜索法，并对无解的solution进行剪枝。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">totalNQueens</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(n==<span class="number">0</span> || n==<span class="number">1</span>) <span class="keyword">return</span> n;</div><div class="line">        List&lt;Integer&gt; pos = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> recCount(pos, n);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">recCount</span><span class="params">(List&lt;Integer&gt; pos, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(pos.size()==n) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> step = pos.size();</div><div class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++) &#123;</div><div class="line">            <span class="keyword">boolean</span> notUsed = <span class="keyword">true</span>;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> r=<span class="number">0</span>; r&lt;pos.size(); r++) &#123;</div><div class="line">                <span class="keyword">if</span>(i==pos.get(r) || Math.abs(i-pos.get(r))==step-r) &#123;</div><div class="line">                    notUsed = <span class="keyword">false</span>;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">            &#125; </div><div class="line">            <span class="keyword">if</span>(notUsed) &#123;</div><div class="line">                pos.add(i);</div><div class="line">                count += recCount(pos, n);</div><div class="line">                pos.remove(pos.size()-<span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> count;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>second time</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">totalNQueens</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> [] used = <span class="keyword">new</span> <span class="keyword">int</span>[n];</div><div class="line">        <span class="keyword">return</span> recTotal(n, used, <span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">recTotal</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span>[] used, <span class="keyword">int</span> rowPos)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(rowPos==n) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> num=<span class="number">0</span>; num&lt;n; num++) &#123;</div><div class="line">                <span class="keyword">boolean</span> conflict = <span class="keyword">false</span>;</div><div class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> row=<span class="number">0</span>; row&lt;rowPos; row++) &#123;</div><div class="line">                    <span class="keyword">if</span>(num==used[row] || Math.abs(num-used[row])==(rowPos-row)) &#123;</div><div class="line">                        conflict = <span class="keyword">true</span>;</div><div class="line">                        <span class="keyword">break</span>;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span>(conflict) <span class="keyword">continue</span>;</div><div class="line">                used[rowPos] = num;</div><div class="line">                count += recTotal(n, used, rowPos+<span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> count;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
+            <h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><p>redis中的事务（transaction）和传统关系型数据库中的事务一样，是一组命令的集合。事务同命令一样都是redis最小的执行单位，一个事务中的命令要么都执行，要么都不执行。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">MULTI</div><div class="line"></div><div class="line">SADD <span class="string">"user:1:following"</span> 2</div><div class="line">SADO <span class="string">"user:2:following"</span> 1</div><div class="line"></div><div class="line">EXEC</div></pre></td></tr></table></figure>
+<p>在执行到EXEC之前，前面的命令并不会马上执行，而是添加到等待执行的事务队列中。如果在EXEC之前事务中断，则事务的所有命令都不会被执行，一旦发送了EXEC命令，所有命令都一定会被执行。</p>
+<p>另外redis事务还保证一个事务内的命令依次执行而不被其他命令插入，也就是在多个客户端的情况下，一旦某个客户端开始执行某个事务，到结束之前，其他客户端的命令都不会被执行。</p>
+<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><ul>
+<li><p>语法错误<br>事务所有命令都不会被执行。</p>
+</li>
+<li><p>运行错误。比如使用散列类型的命令操作集合类型的键。这种错误在事务中会被接受并继续执行，也就是即使某条命令出现允许错误，其后面的命令还是会被执行，整个事务会被完成。</p>
+</li>
+</ul>
+<p><strong>需要注意的是，redis不支持rollback。</strong></p>
+<h2 id="WATCH命令"><a href="#WATCH命令" class="headerlink" title="WATCH命令"></a>WATCH命令</h2><p>很多情况下我们需要保证在我们获得某个键值后，该键值不能被其他客户端修改，直到当前客户端执行事务完成，这时我们可以使用WATCH。WATCH命令可以监控一个或多个键，一旦其中有一个键被修改（或删除），之后的事务就不会被执行（与事务的最后一条性质相违背？没有！！）。监控一直持续到EXEC命令（监控可以在MULTI之前进行，从那时就开始监控，事务中的命令是在EXEC之后才执行的，所以在MULTI命令后可以修改WATCH监控，也就是WATCH作用是，从WATCH开始，到MULTI中间，如果被watch的键被修改，那么这个事务不会被执行）。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">SET key 1</div><div class="line">WATCH key</div><div class="line">SET key 2</div><div class="line">MULTI</div><div class="line">SET key 3</div><div class="line">EXEC</div><div class="line"></div><div class="line">GET key <span class="comment"># 结果是2</span></div></pre></td></tr></table></figure>
+<p>执行EXEC命令后会取消对所有键的监控，也可以 用UNWATCH命令来取消监控。</p>
+<h2 id="生存时间"><a href="#生存时间" class="headerlink" title="生存时间"></a>生存时间</h2><p>在redis可以使用EXPIRE命令设置一个键的生存时间，到时间后redis会自动删除。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">EXPIRE key seconds <span class="comment"># 返回1表示设置成功，0表示失败</span></div><div class="line">EXPIRE session:29e3d 900</div><div class="line"></div><div class="line">TTL key <span class="comment"># 还有多少时间会被删除（秒），-1表示键不存在或没有设置时间</span></div><div class="line"></div><div class="line">PERSIST key<span class="comment"># 取消生存时间设置（恢复为永久保存）</span></div></pre></td></tr></table></figure>
+<p>除了PRESIST外，使用SET或GETSET命令赋值也同时回清除键的生存时间（恢复为永久）。其他命令只对键值进行操作的命令（INCR,LPUSH,HSET,ZREM）都不会影响键的生存时间。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">PEXPIRE key 1000 <span class="comment"># 毫秒位单位</span></div></pre></td></tr></table></figure>
+<h2 id="实现缓存"><a href="#实现缓存" class="headerlink" title="实现缓存"></a>实现缓存</h2><p>为了提高性能和负载能力，我们通常需要将一些访问频率较高或者计算密集的数据结果缓存起来，并希望这些数据能根据具体访问情况自动更新或过期（性能和有效的内存利用）。由于内存有限，我们不可能无限的将所有数据缓存在内存中，需要按照一定的规则淘汰不需要的缓存键，通过配置文件的maxmemory参数我们可以设置redis最大可用内存大小，超出这个限制时redis回根据maxmemory-policy参数指定的策略删除一些键以空出空间。</p>
+<table>
+<thead>
+<tr>
+<th>rule</th>
+<th>explaination</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>volatile-lru</td>
+<td>使用LRU算法删除一个键（只对设置了生存时间的键）</td>
+</tr>
+<tr>
+<td>allkeys-lru</td>
+<td>使用LRU算法删除一个键</td>
+</tr>
+<tr>
+<td>volatile-random</td>
+<td>随见删除一个键（只对设置了生存时间的键）</td>
+</tr>
+<tr>
+<td>allkeys-lru</td>
+<td>随机删除一个键</td>
+</tr>
+<tr>
+<td>valatile-ttl</td>
+<td>删除生存时间最近的一个键</td>
+</tr>
+<tr>
+<td>noeviction</td>
+<td>不删除键，返回错误</td>
+</tr>
+</tbody>
+</table>
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><ul>
+<li>有序集合</li>
+<li>SORT命令</li>
+</ul>
+<p>SORT可以对集合，列表和有序集合类型进行排序（在对有序集合排序时会忽略元素的分数，只针对元素自身的值进行排序，如数字是根据数字大小，还可以通过ALPHA参数实现按照字典顺序排列非数字元素），使用DESC可以实现将元素从大到小排序。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">SORT tag:ruby:posts</div><div class="line">SORT myzset</div><div class="line"></div><div class="line">SORT mylistalpha ALPHA DESC</div></pre></td></tr></table></figure>
+<p>另外SORT还支持LIMIT offset count的用法<br><code>SORT tag:ruby:posts DESC LIMIT 1 2</code></p>
+<ul>
+<li>BY参数</li>
+</ul>
+<p>很多时候列表，集合等中存储的元素值代表的是对象ID，单纯对这些ID排序意义不大，我们需要根据ID对于的对象的某个属性进行排序，这时我们可以使用BY参数。<code>BY 参考键</code>，其中参考键可以是字符串类型键或者是散列类型的某个字段<br>（表示为<code>键名-&gt;字段名</code>）。如果提供了BY参数，SORT命令不在根据元素自身的值进行排序，而是对每个元素使用元素的值替换参考键中的第一个<code>*</code>并获取其值，用以进行排序。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SORT tag:ruby:posts BY post:*-&gt;time DESC</div></pre></td></tr></table></figure>
+<p>除散列类型外，参考键还可以是字符串类型：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SORT list my itemscore:* DESC</div></pre></td></tr></table></figure>
+<p>当某个元素的参考键不存在时，会默认参考键值为0.</p>
+<ul>
+<li>GET参数</li>
+</ul>
+<p>GET参数不影响排序，它的作用是使SORT命令的返回结果不再是元素自身的值，而是GET参数中指定的键值。GET参数的规则和BY参数一样，也支持字符串类型和散列类型的键，并同样使用<code>*</code>作为占位符。另外在一个SORT 命令中可以有多个GET参数（而BY参数只能有一个）。</p>
+<p><code>SORT tag:ruby:posts BY post:*-&gt;time DESC GET post:*title GET post:*-&gt;time GET #</code></p>
+<p>有N个GET参数，每个元素返回的结果就有N行。使用#作为参数可以返回键值本身。</p>
+<ul>
+<li>STORE参数</li>
+</ul>
+<p>可以将排序结果使用STORE保存，返回结果为保存结果个数。</p>
+<p><code>SORT tag:ruby:posts BY post:*-&gt;time DESC GET post:*title GET post:*-&gt;time GET # STORE stor.result</code></p>
+<ul>
+<li>性能优化</li>
+</ul>
+<h2 id="消息通知"><a href="#消息通知" class="headerlink" title="消息通知"></a>消息通知</h2><h3 id="任务队列"><a href="#任务队列" class="headerlink" title="任务队列"></a>任务队列</h3><p>两类实体：生产者和消费者，生产者会将需要处理的任务放入任务队列中，而消费者不断地从任务队列中读入任务信息并执行。使用任务队列可以实现松耦合，使得生产者和消费者都可伸缩，并且在访问量急剧增加的情况下可以根据系统资源情况削峰，降低负载。</p>
+<h3 id="使用redis实现任务队列"><a href="#使用redis实现任务队列" class="headerlink" title="使用redis实现任务队列"></a>使用redis实现任务队列</h3><p>最基本使用redis的列表类型，生产者使用LPUSH加入任务，消费者使用RPOP取出任务并执行（while不断循环，可设置间隔时间）。</p>
+<p>上面的一个确定是消费者需要不断调用RPOP查看是否存在新任务，带了额外的负载压力。我们可以通过BRPOP实现一旦有新任务就通知消费者，消费者在调用BRPOP之后，如果没有任务则会阻塞，知道有新任务加入。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">BRPOP queue 0 <span class="comment"># 0表示一直阻塞，其他表示只会阻塞一定时间</span></div></pre></td></tr></table></figure>
+<h3 id="优先级队列"><a href="#优先级队列" class="headerlink" title="优先级队列"></a>优先级队列</h3><p>有时一个消费者可能能处理相同类型的不同任务，但优先级不同。如VIP客户的订单处理和普通客户的订单处理，可以将不同类型的客户的订单存在不同队列中。BRPOP命令可以同时接收多个键，并处理第一个存在任务的队列的任务。</p>
+<h3 id="『发布-订阅』模式"><a href="#『发布-订阅』模式" class="headerlink" title="『发布/订阅』模式"></a>『发布/订阅』模式</h3><p>除了任务队列以外，redis还提供了一组命令可以让开发者实现”发布/订阅”模式。”发布/订阅”模式同样可以实现进程间的消息传递：订阅者可以订阅一个或若干个频道(channel)，而发布者可以向指定频道发送消息，所有订阅此频道都会收到该消息。</p>
+<p>发布者发布消息:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">PUBLIC channel.1 hi</div></pre></td></tr></table></figure>
+<p>订阅频道的命令是SUBSCRIBE，可以同时订阅多个频道。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SUBSCRIBE channel.1</div></pre></td></tr></table></figure>
+<p>进入订阅状态后客户端可能会收到三种类型的回复。每种类型的回复都包含三个值。第一个值是消息的类型，根据消息类型的不同，第二、第三个值的含义也不同。</p>
+<p>三种类型：</p>
+<ul>
+<li>第一个值为”subsribe”。表示订阅成功的反馈信息，第二个值是订阅成功的频道名称，第三个值是当前客户端订阅的频道数量。</li>
+<li>第一个值为”message”。一般这种类型是我们关心的，表示接受到的消息。第二个值表示频道名称，第三个值表示消息的内容。</li>
+<li>unsubscribe，表示成功取消订阅频道。</li>
+</ul>
+<p>使用UNSUBSCRIBE命令可以取消订阅指定的频道，如果不指定参数则会取消所有订阅频道。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UNSUBSCRIBE channel1 channel2 ...</div></pre></td></tr></table></figure>
+<h3 id="按照规则订阅"><a href="#按照规则订阅" class="headerlink" title="按照规则订阅"></a>按照规则订阅</h3><p>PSUBSCRIBE支持通配符匹配:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">PSUBSCRIBE channel.?*</div><div class="line"></div><div class="line">1) pmessage</div><div class="line">2) channnel.?*</div><div class="line">3) channel.1</div><div class="line">4) <span class="string">"hi!"</span></div></pre></td></tr></table></figure>
+<p>PUNSUBSCRIBE可以退订指定的规则。</p>
+<h2 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h2>
           
         
       
@@ -773,8 +612,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/10/03/Leetcode_Reverse Nodes in k-Group/" itemprop="url">
-                  Reverse Nodes in k-Group
+                <a class="post-title-link" href="/2015/10/04/Leetcode_Longest Valid Parentheses/" itemprop="url">
+                  Longest Valid Parentheses
                 </a>
               
             
@@ -787,8 +626,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-10-03T00:00:00+09:00" content="2015-10-03">
-              2015-10-03
+            <time itemprop="dateCreated" datetime="2015-10-04T00:00:00+09:00" content="2015-10-04">
+              2015-10-04
             </time>
           </span>
 
@@ -817,8 +656,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/10/03/Leetcode_Reverse Nodes in k-Group/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/03/Leetcode_Reverse Nodes in k-Group/" itemprop="commentsCount"></span>
+                <a href="/2015/10/04/Leetcode_Longest Valid Parentheses/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/04/Leetcode_Longest Valid Parentheses/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -843,18 +682,271 @@
       
         
           
-            <h1 id="Reverse-Nodes-in-k-Group"><a href="#Reverse-Nodes-in-k-Group" class="headerlink" title="Reverse Nodes in k-Group"></a><a href="https://leetcode.com/problems/reverse-nodes-in-k-group/" target="_blank" rel="external">Reverse Nodes in k-Group</a></h1><blockquote>
-<p>Given a linked list, reverse the nodes of a linked list k at a time and return its modified list.</p>
-<p>If the number of nodes is not a multiple of k then left-out nodes in the end should remain as it is.</p>
-<p>You may not alter the values in the nodes, only nodes itself may be changed.</p>
-<p>Only constant memory is allowed.</p>
-<p>For example,<br>Given this linked list: <code>1-&gt;2-&gt;3-&gt;4-&gt;5</code></p>
-<p>For k = 2, you should return: <code>2-&gt;1-&gt;4-&gt;3-&gt;5</code></p>
-<p>For k = 3, you should return: <code>3-&gt;2-&gt;1-&gt;4-&gt;5</code></p>
+            <h1 id="Longest-Valid-Parentheses"><a href="#Longest-Valid-Parentheses" class="headerlink" title="Longest Valid Parentheses"></a><a href="https://leetcode.com/problems/longest-valid-parentheses/" target="_blank" rel="external">Longest Valid Parentheses</a></h1><blockquote>
+<p>Given a string containing just the characters <code>&#39;(&#39;</code> and <code>&#39;)&#39;</code>, find the length of the longest valid (well-formed) parentheses substring.</p>
+<p>For <code>&quot;(()&quot;</code>, the longest valid parentheses substring is <code>&quot;()&quot;</code>, which has length = 2.</p>
+<p>Another example is <code>&quot;)()())&quot;</code>, where the longest valid parentheses substring is <code>&quot;()()&quot;</code>, which has <code>length = 4</code>.</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>以<code>k</code>长度为一组，进行翻转，然后将最后一个节点的next设置为递归进行后面的翻转的开头节点，然后返回当前小组的开头节点。</p>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>贪心策略，使用栈记录前面的字符以及在字符串中的位置，每次向后扫描，满足Parentheses则弹出栈中的对应长度，并根据当前匹配Parentheses长度判断是否更新max_length.</p>
 <p>具体逻辑参考代码。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * public class ListNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     ListNode next;</div><div class="line"> *     ListNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseKGroup</span><span class="params">(ListNode head, <span class="keyword">int</span> k)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span> || head.next==<span class="keyword">null</span>) <span class="keyword">return</span> head;</div><div class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">        ListNode current = head;</div><div class="line">        <span class="keyword">while</span>(current!=<span class="keyword">null</span> &amp;&amp; count&lt;k) &#123;</div><div class="line">        	current = current.next;</div><div class="line">        	count ++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(count!=k) <span class="keyword">return</span> head;</div><div class="line">        </div><div class="line">        ListNode last = <span class="keyword">null</span>;</div><div class="line">        current = head;</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span>(i++&lt;k) &#123;</div><div class="line">            <span class="keyword">if</span>(current!=<span class="keyword">null</span>) &#123;</div><div class="line">                ListNode temp = current.next;</div><div class="line">                current.next = last;</div><div class="line">                last = current;</div><div class="line">                current = temp;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        head.next = reverseKGroup(current, k);</div><div class="line">        <span class="keyword">return</span> last;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">longestValidParentheses</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(s==<span class="keyword">null</span> || s.length()==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        Stack&lt;Pair&gt; stack = <span class="keyword">new</span> Stack&lt;Pair&gt;();</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> max = <span class="number">0</span>;</div><div class="line">        <span class="keyword">char</span> [] cArray = s.toCharArray();</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;cArray.length; i++) &#123;</div><div class="line">            <span class="keyword">char</span> c = cArray[i];</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(c==<span class="string">'('</span>) stack.push(<span class="keyword">new</span> Pair(c, i));</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(c==<span class="string">')'</span>) &#123;</div><div class="line">                <span class="keyword">if</span>(!stack.isEmpty() &amp;&amp; stack.peek().c==<span class="string">'('</span>) &#123;</div><div class="line">                    stack.pop();</div><div class="line">                    <span class="keyword">int</span> length = stack.isEmpty() ? i+<span class="number">1</span> : i - stack.peek().pos;</div><div class="line">                    <span class="keyword">if</span>(length&gt;max) max = length;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                	stack.push(<span class="keyword">new</span> Pair(c, i));</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> max;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Pair</span> </span>&#123;</div><div class="line">        <span class="keyword">char</span> c;</div><div class="line">        <span class="keyword">int</span> pos;</div><div class="line">        Pair(<span class="keyword">char</span> c, <span class="keyword">int</span> pos) &#123;</div><div class="line">            <span class="keyword">this</span>.c = c;</div><div class="line">            <span class="keyword">this</span>.pos = pos;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/10/04/Leetcode_N-Queens/" itemprop="url">
+                  N-Queens
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-10-04T00:00:00+09:00" content="2015-10-04">
+              2015-10-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/10/04/Leetcode_N-Queens/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/04/Leetcode_N-Queens/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="N-Queens"><a href="#N-Queens" class="headerlink" title="N-Queens"></a><a href="https://leetcode.com/problems/n-queens/" target="_blank" rel="external">N-Queens</a></h1><blockquote>
+<p>The n-queens puzzle is the problem of placing n queens on an n×n chessboard such that no two queens attack each other.</p>
+<p>Given an integer <code>n</code>, return all distinct solutions to the n-queens puzzle.</p>
+<p>Each solution contains a distinct board configuration of the n-queens’ placement, where <code>&#39;Q&#39;</code> and <code>&#39;.&#39;</code> both indicate a queen and an empty space respectively.</p>
+<p>For example,<br>There exist two distinct solutions to the 4-queens puzzle:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line"> [&quot;.Q..&quot;,  // Solution 1</div><div class="line">  &quot;...Q&quot;,</div><div class="line">  &quot;Q...&quot;,</div><div class="line">  &quot;..Q.&quot;],</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> [&quot;..Q.&quot;,  // Solution 2</div><div class="line">  &quot;Q...&quot;,</div><div class="line">  &quot;...Q&quot;,</div><div class="line">  &quot;.Q..&quot;]</div><div class="line">]</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>回溯搜索法，并对无解的solution进行剪枝。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> List&lt;List&lt;String&gt;&gt; solveNQueens(<span class="keyword">int</span> n) &#123;</div><div class="line">        List&lt;List&lt;String&gt;&gt; res = <span class="keyword">new</span> ArrayList&lt;List&lt;String&gt;&gt;();</div><div class="line">        <span class="keyword">int</span> [] used = <span class="keyword">new</span> <span class="keyword">int</span>[n];</div><div class="line">        </div><div class="line">        recSolve(n, used, <span class="number">0</span>, res);</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recSolve</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span>[] used, <span class="keyword">int</span> rowPos, List&lt;List&lt;String&gt;&gt; res)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(rowPos==n) &#123;</div><div class="line">            List&lt;String&gt; records = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">            <span class="keyword">char</span>[] record = <span class="keyword">new</span> <span class="keyword">char</span>[n];</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;record.length; i++) record[i] = <span class="string">'.'</span>;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> num: used) &#123;</div><div class="line">                record[num]  = <span class="string">'Q'</span>;</div><div class="line">                records.add(<span class="keyword">new</span> String(record));</div><div class="line">                record[num] = <span class="string">'.'</span>;</div><div class="line">            &#125;</div><div class="line">            res.add(records);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> num=<span class="number">0</span>; num&lt;n; num++) &#123;</div><div class="line">                <span class="keyword">boolean</span> conflict = <span class="keyword">false</span>;</div><div class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> row=<span class="number">0</span>; row&lt;rowPos; row++) &#123;</div><div class="line">                    <span class="keyword">if</span>(num==used[row] || Math.abs(num-used[row])==(rowPos-row)) &#123;</div><div class="line">                        conflict = <span class="keyword">true</span>;</div><div class="line">                        <span class="keyword">break</span>;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span>(conflict) <span class="keyword">continue</span>;</div><div class="line">                used[rowPos] = num;</div><div class="line">                recSolve(n, used, rowPos+<span class="number">1</span>, res);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/10/04/Leetcode_N-Queens II/" itemprop="url">
+                  N-Queens II
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-10-04T00:00:00+09:00" content="2015-10-04">
+              2015-10-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/10/04/Leetcode_N-Queens II/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/04/Leetcode_N-Queens II/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="N-Queens-II"><a href="#N-Queens-II" class="headerlink" title="N-Queens II"></a><a href="https://leetcode.com/problems/n-queens-ii/" target="_blank" rel="external">N-Queens II</a></h1><blockquote>
+<p>Follow up for N-Queens problem.</p>
+<p>Now, instead outputting board configurations, return the total number of distinct solutions.</p>
+<p><img src="http://leetcode.com/wp-content/uploads/2012/03/8-queens.png" alt=""></p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>回溯搜索法，并对无解的solution进行剪枝。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">totalNQueens</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(n==<span class="number">0</span> || n==<span class="number">1</span>) <span class="keyword">return</span> n;</div><div class="line">        List&lt;Integer&gt; pos = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> recCount(pos, n);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">recCount</span><span class="params">(List&lt;Integer&gt; pos, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(pos.size()==n) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> step = pos.size();</div><div class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++) &#123;</div><div class="line">            <span class="keyword">boolean</span> notUsed = <span class="keyword">true</span>;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> r=<span class="number">0</span>; r&lt;pos.size(); r++) &#123;</div><div class="line">                <span class="keyword">if</span>(i==pos.get(r) || Math.abs(i-pos.get(r))==step-r) &#123;</div><div class="line">                    notUsed = <span class="keyword">false</span>;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">            &#125; </div><div class="line">            <span class="keyword">if</span>(notUsed) &#123;</div><div class="line">                pos.add(i);</div><div class="line">                count += recCount(pos, n);</div><div class="line">                pos.remove(pos.size()-<span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> count;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>second time</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">totalNQueens</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> [] used = <span class="keyword">new</span> <span class="keyword">int</span>[n];</div><div class="line">        <span class="keyword">return</span> recTotal(n, used, <span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">recTotal</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span>[] used, <span class="keyword">int</span> rowPos)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(rowPos==n) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> num=<span class="number">0</span>; num&lt;n; num++) &#123;</div><div class="line">                <span class="keyword">boolean</span> conflict = <span class="keyword">false</span>;</div><div class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> row=<span class="number">0</span>; row&lt;rowPos; row++) &#123;</div><div class="line">                    <span class="keyword">if</span>(num==used[row] || Math.abs(num-used[row])==(rowPos-row)) &#123;</div><div class="line">                        conflict = <span class="keyword">true</span>;</div><div class="line">                        <span class="keyword">break</span>;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span>(conflict) <span class="keyword">continue</span>;</div><div class="line">                used[rowPos] = num;</div><div class="line">                count += recTotal(n, used, rowPos+<span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> count;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -928,7 +1020,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">328</span>
+              <span class="site-state-item-count">329</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

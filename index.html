@@ -260,7 +260,7 @@
             
               
                 
-                <a class="post-title-link" href="/2016/11/28/Java_EasyMock/" itemprop="url">
+                <a class="post-title-link" href="/2016/12/05/Java_EasyMock/" itemprop="url">
                   Let's EasyMock
                 </a>
               
@@ -274,8 +274,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2016-11-28T00:00:00+09:00" content="2016-11-28">
-              2016-11-28
+            <time itemprop="dateCreated" datetime="2016-12-05T00:00:00+09:00" content="2016-12-05">
+              2016-12-05
             </time>
           </span>
 
@@ -304,8 +304,160 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/11/28/Java_EasyMock/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/11/28/Java_EasyMock/" itemprop="commentsCount"></span>
+                <a href="/2016/12/05/Java_EasyMock/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/12/05/Java_EasyMock/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>和之前自己的project或者在startup的一个明显不同是，colleague的code review和开发的整个生命周期的维护（设计，实现，测试，qa，部署，AB test，logging）。</p>
+<p>在单元测试时，由于很多类的功能都是依赖于其他类的功能，如果在测试一个类是全部引入其依赖的类的对象，会导致高度耦合和复杂度，首先一个问题是，单元测试失败时我们无法定位是哪里的问题，是当前正在测试的类的问题还是其依赖的类的问题。</p>
+<p>单元测试的目的是检测单个function的逻辑是否能工作正常，而不是各个类耦合在一起能否一起完成整体功能（有intergration测试）。所以我们需要模拟依赖的各个类，使得其确定能工作正常（设定其行为）。</p>
+<p>EasyMock就是一个经常使用的Mock工具，我们可以借助其快速生成我们想要的mock object。</p>
+<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><p>Maven</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">  &lt;groupId&gt;org.easymock&lt;/groupId&gt;</div><div class="line">  &lt;artifactId&gt;easymock&lt;/artifactId&gt;</div><div class="line">  &lt;version&gt;3.4&lt;/version&gt;</div><div class="line">  &lt;scope&gt;test&lt;/scope&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
+<h2 id="Mocking"><a href="#Mocking" class="headerlink" title="Mocking"></a>Mocking</h2><h3 id="The-first-Mock-Object"><a href="#The-first-Mock-Object" class="headerlink" title="The first Mock Object"></a>The first Mock Object</h3><p>假设我们现在有下面的test class：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> org.junit.*;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExampleTest</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> ClassUnderTest classUnderTest;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> Collaborator mock;</div><div class="line"></div><div class="line">  <span class="meta">@Before</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> </span>&#123;</div><div class="line">    classUnderTest = <span class="keyword">new</span> ClassUnderTest();</div><div class="line">    classUnderTest.setListener(mock);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@Test</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testRemoveNonExistingDocument</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="comment">// This call should not lead to any notification</span></div><div class="line">    <span class="comment">// of the Mock Object:</span></div><div class="line">    classUnderTest.removeDocument(<span class="string">"Does not exist"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>对于大部分的mock，我们只需要静态import EasyMock的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.easymock.EasyMock.*;</div><div class="line"><span class="keyword">import</span> org.junit.*;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExampleTest</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> ClassUnderTest classUnderTest;</div><div class="line">  <span class="keyword">private</span> Collaborator mock;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>对于创建我们所需要的Mock object，我们只需要：</p>
+<ol>
+<li>创建mock object</li>
+<li>设定我们希望的mock的行为(function及其返回结果)</li>
+<li>切换对象到replay状态</li>
+</ol>
+<p>创建mock object我们可以使用mock方法或者annotations：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Before</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> </span>&#123;</div><div class="line">  mock = mock(Collaborator.class); <span class="comment">// 1</span></div><div class="line">  classUnderTest = <span class="keyword">new</span> ClassUnderTest();</div><div class="line">  classUnderTest.setListener(mock);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testRemoveNonExistingDocument</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="comment">// 2 (we do not expect anything)</span></div><div class="line">  replay(mock); <span class="comment">// 3</span></div><div class="line">  classUnderTest.removeDocument(<span class="string">"Does not exist"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在上面的测试中，我们没有指定任何mock的行为，然后replay it。也就是我们expect no calls，所以在第三步时我们call any of the interface methods时，会得到AssertionError。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">java.lang.AssertionError:</div><div class="line">  <span class="function">Unexpected method call <span class="title">documentRemoved</span><span class="params">(<span class="string">"Does not exist"</span>)</span>:</div><div class="line">    at org.easymock.internal.MockInvocationHandler.<span class="title">invoke</span><span class="params">(MockInvocationHandler.java:<span class="number">29</span>)</span></div><div class="line">    at org.easymock.internal.ObjectMethodsFilter.<span class="title">invoke</span><span class="params">(ObjectMethodsFilter.java:<span class="number">44</span>)</span></div><div class="line">    at $Proxy0.<span class="title">documentRemoved</span><span class="params">(Unknown Source)</span></div><div class="line">    at org.easymock.samples.ClassUnderTest.<span class="title">notifyListenersDocumentRemoved</span><span class="params">(ClassUnderTest.java:<span class="number">74</span>)</span></div><div class="line">    at org.easymock.samples.ClassUnderTest.<span class="title">removeDocument</span><span class="params">(ClassUnderTest.java:<span class="number">33</span>)</span></div><div class="line">    at org.easymock.samples.ExampleTest.<span class="title">testRemoveNonExistingDocument</span><span class="params">(ExampleTest.java:<span class="number">24</span>)</span></div><div class="line">      ...</span></div></pre></td></tr></table></figure>
+<h3 id="Using-annotations"><a href="#Using-annotations" class="headerlink" title="Using annotations"></a>Using annotations</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.easymock.EasyMock.*;</div><div class="line"><span class="keyword">import</span> org.easymock.EasyMockRunner;</div><div class="line"><span class="keyword">import</span> org.easymock.TestSubject;</div><div class="line"><span class="keyword">import</span> org.easymock.Mock;</div><div class="line"><span class="keyword">import</span> org.junit.Test;</div><div class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</div><div class="line"></div><div class="line"><span class="meta">@RunWith</span>(EasyMockRunner.class)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExampleTest</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="meta">@TestSubject</span></div><div class="line">  <span class="keyword">private</span> ClassUnderTest classUnderTest = <span class="keyword">new</span> ClassUnderTest(); <span class="comment">// 2</span></div><div class="line"></div><div class="line">  <span class="meta">@Mock</span></div><div class="line">  <span class="keyword">private</span> Collaborator mock; <span class="comment">// 1</span></div><div class="line"></div><div class="line">  <span class="meta">@Test</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testRemoveNonExistingDocument</span><span class="params">()</span> </span>&#123;</div><div class="line">    replay(mock);</div><div class="line">    classUnderTest.removeDocument(<span class="string">"Does not exist"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>mock会由runner初始化，可以不用添加setUp方法来初始化mock。</p>
+<p>然后有时我们需要其他的runner，这时我们可以JUnit rule来代替runner。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.easymock.EasyMock.*;</div><div class="line"><span class="keyword">import</span> org.easymock.EasyMockRule;</div><div class="line"><span class="keyword">import</span> org.easymock.TestSubject;</div><div class="line"><span class="keyword">import</span> org.easymock.Mock;</div><div class="line"><span class="keyword">import</span> org.junit.Rule;</div><div class="line"><span class="keyword">import</span> org.junit.Test;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExampleTest</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="meta">@Rule</span></div><div class="line">  <span class="keyword">public</span> EasyMockRule mocks = <span class="keyword">new</span> EasyMockRule(<span class="keyword">this</span>);</div><div class="line"></div><div class="line">  <span class="meta">@TestSubject</span></div><div class="line">  <span class="keyword">private</span> ClassUnderTest classUnderTest = <span class="keyword">new</span> ClassUnderTest();</div><div class="line"></div><div class="line">  <span class="meta">@Mock</span></div><div class="line">  <span class="keyword">private</span> Collaborator mock;</div><div class="line"></div><div class="line">  <span class="meta">@Test</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testRemoveNonExistingDocument</span><span class="params">()</span> </span>&#123;</div><div class="line">    replay(mock);</div><div class="line">    classUnderTest.removeDocument(<span class="string">"Does not exist"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>另外annotation可以下面的optional的element：</p>
+<ul>
+<li><code>type</code>，用于指定mock的类型(nice, strict)。</li>
+<li><code>name</code>，用于指定mock名字。</li>
+<li><code>fieldName</code>，用于specifying the target field name where the mock should be injected.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Mock</span>(type = MockType.NICE, name = <span class="string">"mock"</span>, fieldName = <span class="string">"someField"</span>)</div><div class="line"><span class="keyword">private</span> Collaborator mock;</div><div class="line"></div><div class="line"><span class="meta">@Mock</span>(type = MockType.STRICT, name = <span class="string">"anotherMock"</span>, fieldName = <span class="string">"someOtherField"</span>)</div><div class="line"><span class="keyword">private</span> Collaborator anotherMock;</div></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/12/05/Java_EasyMock/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/28/Life_霜月/" itemprop="url">
+                  霜月
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-11-28T00:00:00+09:00" content="2016-11-28">
+              2016-11-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Life/" itemprop="url" rel="index">
+                    <span itemprop="name">Life</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/28/Life_霜月/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/11/28/Life_霜月/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -334,7 +486,7 @@
 <p>虽然有这些难过的事情，但是京都还是和往常一样美的令人感动到想哭。</p>
 <p><img src="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8613.jpg" alt=""><br><img src="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8670.JPG" alt=""><br><img src="http://7xs07u.com1.z0.glb.clouddn.com/IMG_8680.JPG" alt=""></p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/11/28/Java_EasyMock/#more" rel="contents">
+            <a class="btn" href="/2016/11/28/Life_霜月/#more" rel="contents">
               閱讀全文 &raquo;
             </a>
           </div>
@@ -831,131 +983,6 @@ I(\widehat{T};\widehat{S}) = \sum_{\widehat{t}\in \widehat{T}}\sum_{\widehat{s}\
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/06/JobHunting_Summary/" itemprop="url">
-                  Job hunting Summary
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2016-07-06T00:00:00+09:00" content="2016-07-06">
-              2016-07-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Job-Hunting/" itemprop="url" rel="index">
-                    <span itemprop="name">Job Hunting</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/06/JobHunting_Summary/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/06/JobHunting_Summary/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>前面忙于job hunting和研究，很难抽出时间进行阶段性的总结。想到本来就没有什么人关注，所以就很自然地将blog撇开了好久，想着等到事情都处理完后再一起总结一下。</p>
-<p>就职算是告一段落，但是也要开始准备毕业的事情了。不管怎样，这里先忙里偷闲先把在日本的就职过程记录总结一下，可能会对一些同学有帮助，也方便自己后面回顾吧。</p>
-<h2 id="从日本到美帝"><a href="#从日本到美帝" class="headerlink" title="从日本到美帝"></a>从日本到美帝</h2><p>首先是从日本去美国的可能性。美帝IT巨头众多，各个公司招人基数大，engineering culture，以及比较高的薪水，自然是码农的最佳目的地。但是从日本去美帝难度几乎和国内一样，特别是近年来H1B签证的限制。这里关于H1B签证说明一下，H1B签证就是美帝签发一种类型的工作签证，中国等一些国家的公民如果要在美国工作，一般来说是必须要有H1B签证的（在美帝大学毕业的同学在拿到H1B签证之前，可以合法通过opt留在美帝工作29个月），也就是不论是在哪个国家（除了美帝），中国公民需要首先拿到美帝公司的offer，然后公司帮忙申请H1B签证，签证下来之后才能到美帝公司上班。</p>
-<p>可能很多同学会认为不就是个签证，公司offer都有了，签证一般不是问题。对于大部分其他国家确实如此，但是美帝是个例外，因为实在太受欢迎了。为此美帝限制每年只签发约65000个H1B签证，每年只有一次申请机会（一般需要公司帮忙），大概在4月初，官方申明签证的签发是随机抽取的。这几年貌似每年申请数都超过了30万（包括已经在美国的申请者），也就是大概之后20%-30%的中签率，其中印度人之前后搞出一些不公平的方式，比如一些印度外包公司为每个印度人提交多份申请，也就是中签率直接上升好几倍，而中国人的中签率就进一步坑爹了。如果没有抽中，则必须要等到下一年继续抽，在美帝的同学相对还好些，美帝大学毕业后可以申请opt（约29个月？），也就是类似于前面的签证的延长，可以进入公司工作，如果当年没抽中，可以留在公司继续工作等到下一年继续抽。但是还在国内（包括日本。。）的同学就悲剧了，只能等到下一年再抽，运气好一点的，公司可能会帮忙relocate去英国或其他分公司工作着，下一年再抽，有些公司就直接把offer收回了。当然这些还不是最常见的，由于公司在美国以外的地区发了offer后，求职者马上能入职的概率实在很低，没抽中就直接等一年，所以很多公司干脆直接不在美帝之外招人，或者至少是大幅缩减了在美帝之外的国家招人的数量。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/06/JobHunting_Summary/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1001,7 +1028,7 @@ I(\widehat{T};\widehat{S}) = \sum_{\widehat{t}\in \widehat{T}}\sum_{\widehat{s}\
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">328</span>
+              <span class="site-state-item-count">329</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

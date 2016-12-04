@@ -260,6 +260,135 @@
             
               
                 
+                <a class="post-title-link" href="/2015/02/05/Java_classpath指定多个路径 copy/" itemprop="url">
+                  classpath指定多个路径
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-02-05T00:00:00+09:00" content="2015-02-05">
+              2015-02-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/02/05/Java_classpath指定多个路径 copy/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/02/05/Java_classpath指定多个路径 copy/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="classpath指定多个路径"><a href="#classpath指定多个路径" class="headerlink" title="classpath指定多个路径"></a>classpath指定多个路径</h1><p>遇到<a href="http://stackoverflow.com/questions/219585/setting-multiple-jars-in-java-classpath" target="_blank" rel="external">java项目运行时classpath指定的问题</a>，记录一下，运行java程序时通过<code>-cp</code>指定引用的class的路径，包括pacakage和jar包，需要注意的是：</p>
+<ul>
+<li>如果需要添加多个路径是，需要使用<code>-cp &quot;path1:path2&quot;</code>这样把路径包装起来，注意linux下分隔符为<code>:</code>，windows下分隔符为<code>;</code>。</li>
+<li>如果需要引用多个jar包，通配符要用<code>*</code>，而不是<code>*.jar</code>。</li>
+</ul>
+<p>Windows下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -cp <span class="string">"./bin;./lib/*"</span> suggestion.Main</div></pre></td></tr></table></figure>
+<p>Linux下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -cp <span class="string">"./bin:./lib/*"</span> suggestion.Main</div></pre></td></tr></table></figure>
+<p>下面的命令是无效的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 多个路径时需要包装起来，下面是非法的表述</span></div><div class="line">java -cp ./bin:./lib/*.jar suggestion.Main</div><div class="line"></div><div class="line"><span class="comment"># 无法引入所需要的jar包</span></div><div class="line">java -cp <span class="string">"./bin:./lib/*.jar"</span> suggestion.Main</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/02/05/Java_Ant编译编码问题/" itemprop="url">
                   Ant编译编码问题
                 </a>
@@ -919,148 +1048,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/01/02/Design Pattern_Command pattern/" itemprop="url">
-                  Command Pattern
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-01-02T00:00:00+09:00" content="2015-01-02">
-              2015-01-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Design-Pattern/" itemprop="url" rel="index">
-                    <span itemprop="name">Design Pattern</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/01/02/Design Pattern_Command pattern/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/01/02/Design Pattern_Command pattern/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h1><h2 id="定义命令模式"><a href="#定义命令模式" class="headerlink" title="定义命令模式"></a>定义命令模式</h2><p>命令模式将”请求”封装成命令对象，以便使用不同的请求、队列或者日志来参数化其他对象，作为命令执行实际的主体，也就是命令实际的接收者。命令模式还可支持可撤销的操作。</p>
-<p>一个命令对象通过在特定接收者上绑定一组动作来封装一个请求。要做到这一点，命令对象将动作和接收者包装进对象。这个对象只暴露一个execute()方法，当此方法被调用时，接收者就会进行这些动作。从外面开来，调用对象并不知道究竟哪个接收者进行了哪些动作，只知道如果调用exectue()方法，请求的目的就能达到。</p>
-<p>通过对基本命令模式进行扩展，我们可以轻易实现Meta command pattern。meta command pattern可以创建命令的宏，以便依次执行多个命令。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_command_1.png" alt="Design_pattern_command_1"></p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_command_2.png" alt="Design_pattern_command_2"></p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_command_3.png" alt="Design_pattern_command_3"></p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_command_4.png" alt="Design_pattern_command_1"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Command</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LightOnCommand</span> <span class="keyword">implements</span> <span class="title">Command</span> </span>&#123;</div><div class="line">	Light light;</div><div class="line">  </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">LightOnCommand</span><span class="params">(Light light)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.light = light;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span> </span>&#123;</div><div class="line">		light.on();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LightOffCommand</span> <span class="keyword">implements</span> <span class="title">Command</span> </span>&#123;</div><div class="line">	Light light;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">LightOffCommand</span><span class="params">(Light light)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.light = light;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span> </span>&#123;</div><div class="line">		light.off();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleRemoteControl</span> </span>&#123;</div><div class="line">	Command slot;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">SimpleRemoteControl</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCommand</span><span class="params">(Command command)</span> </span>&#123;</div><div class="line">		slot = command;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">buttonWasPressed</span><span class="params">()</span> </span>&#123;</div><div class="line">		slot.execute();</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RemoteControlTest</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		SimpleRemoteControl remote = <span class="keyword">new</span> SimpleRemoteControl();</div><div class="line">		Light light = <span class="keyword">new</span> Light();</div><div class="line">		GarageDoor garageDoor = <span class="keyword">new</span> GarageDoor();</div><div class="line">		LightOnCommand lightOn = <span class="keyword">new</span> LightOnCommand(light);</div><div class="line">		GarageDoorOpenCommand garageOpen = </div><div class="line">		    <span class="keyword">new</span> GarageDoorOpenCommand(garageDoor);</div><div class="line"> </div><div class="line">		remote.setCommand(lightOn);</div><div class="line">		remote.buttonWasPressed();</div><div class="line">		remote.setCommand(garageOpen);</div><div class="line">		remote.buttonWasPressed();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="提供撤销操作"><a href="#提供撤销操作" class="headerlink" title="提供撤销操作"></a>提供撤销操作</h2><p>通过提供在Command提供undo方法，我们可以实现撤销操作。如果有多个命令对象，则需要记录前面一个操作的是哪个命令对象。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Command</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span></span>;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">undo</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LightOffCommand</span> <span class="keyword">implements</span> <span class="title">Command</span> </span>&#123;</div><div class="line">	Light light;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">LightOffCommand</span><span class="params">(Light light)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.light = light;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span> </span>&#123;</div><div class="line">		light.off();</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">undo</span><span class="params">()</span> </span>&#123;</div><div class="line">		light.on();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LightOnCommand</span> <span class="keyword">implements</span> <span class="title">Command</span> </span>&#123;</div><div class="line">	Light light;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">LightOnCommand</span><span class="params">(Light light)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.light = light;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span> </span>&#123;</div><div class="line">		light.on();</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">undo</span><span class="params">()</span> </span>&#123;</div><div class="line">		light.off();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RemoteControlWithUndo</span> </span>&#123;</div><div class="line">	Command[] onCommands;</div><div class="line">	Command[] offCommands;</div><div class="line">	Command undoCommand;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">RemoteControlWithUndo</span><span class="params">()</span> </span>&#123;</div><div class="line">		onCommands = <span class="keyword">new</span> Command[<span class="number">7</span>];</div><div class="line">		offCommands = <span class="keyword">new</span> Command[<span class="number">7</span>];</div><div class="line"> </div><div class="line">		Command noCommand = <span class="keyword">new</span> NoCommand();</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">7</span>;i++) &#123;</div><div class="line">			onCommands[i] = noCommand;</div><div class="line">			offCommands[i] = noCommand;</div><div class="line">		&#125;</div><div class="line">		undoCommand = noCommand;</div><div class="line">	&#125;</div><div class="line">  </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCommand</span><span class="params">(<span class="keyword">int</span> slot, Command onCommand, Command offCommand)</span> </span>&#123;</div><div class="line">		onCommands[slot] = onCommand;</div><div class="line">		offCommands[slot] = offCommand;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onButtonWasPushed</span><span class="params">(<span class="keyword">int</span> slot)</span> </span>&#123;</div><div class="line">		onCommands[slot].execute();</div><div class="line">		undoCommand = onCommands[slot];</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">offButtonWasPushed</span><span class="params">(<span class="keyword">int</span> slot)</span> </span>&#123;</div><div class="line">		offCommands[slot].execute();</div><div class="line">		undoCommand = offCommands[slot];</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">undoButtonWasPushed</span><span class="params">()</span> </span>&#123;</div><div class="line">		undoCommand.undo();</div><div class="line">	&#125;</div><div class="line">  </div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		StringBuffer stringBuff = <span class="keyword">new</span> StringBuffer();</div><div class="line">		stringBuff.append(<span class="string">"\n------ Remote Control -------\n"</span>);</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; onCommands.length; i++) &#123;</div><div class="line">			stringBuff.append(<span class="string">"[slot "</span> + i + <span class="string">"] "</span> + onCommands[i].getClass().getName()</div><div class="line">				+ <span class="string">"    "</span> + offCommands[i].getClass().getName() + <span class="string">"\n"</span>);</div><div class="line">		&#125;</div><div class="line">		stringBuff.append(<span class="string">"[undo] "</span> + undoCommand.getClass().getName() + <span class="string">"\n"</span>);</div><div class="line">		<span class="keyword">return</span> stringBuff.toString();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="使用状态实现撤销"><a href="#使用状态实现撤销" class="headerlink" title="使用状态实现撤销"></a>使用状态实现撤销</h2><p>如果需要实现更复杂的撤销操作，我们需要加入状态，并记录前面的状态。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CeilingFan</span> </span>&#123;</div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> HIGH = <span class="number">3</span>;</div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MEDIUM = <span class="number">2</span>;</div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> LOW = <span class="number">1</span>;</div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> OFF = <span class="number">0</span>;</div><div class="line">	String location;</div><div class="line">	<span class="keyword">int</span> speed;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">CeilingFan</span><span class="params">(String location)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.location = location;</div><div class="line">		speed = OFF;</div><div class="line">	&#125;</div><div class="line">  </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">high</span><span class="params">()</span> </span>&#123;</div><div class="line">		speed = HIGH;</div><div class="line">		System.out.println(location + <span class="string">" ceiling fan is on high"</span>);</div><div class="line">	&#125; </div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">medium</span><span class="params">()</span> </span>&#123;</div><div class="line">		speed = MEDIUM;</div><div class="line">		System.out.println(location + <span class="string">" ceiling fan is on medium"</span>);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">low</span><span class="params">()</span> </span>&#123;</div><div class="line">		speed = LOW;</div><div class="line">		System.out.println(location + <span class="string">" ceiling fan is on low"</span>);</div><div class="line">	&#125;</div><div class="line">  </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">off</span><span class="params">()</span> </span>&#123;</div><div class="line">		speed = OFF;</div><div class="line">		System.out.println(location + <span class="string">" ceiling fan is off"</span>);</div><div class="line">	&#125;</div><div class="line">  </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getSpeed</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> speed;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CeilingFanHighCommand</span> <span class="keyword">implements</span> <span class="title">Command</span> </span>&#123;</div><div class="line">	CeilingFan ceilingFan;</div><div class="line">	<span class="keyword">int</span> prevSpeed;</div><div class="line">  </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">CeilingFanHighCommand</span><span class="params">(CeilingFan ceilingFan)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.ceilingFan = ceilingFan;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span> </span>&#123;</div><div class="line">		prevSpeed = ceilingFan.getSpeed();</div><div class="line">		ceilingFan.high();</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">undo</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (prevSpeed == CeilingFan.HIGH) &#123;</div><div class="line">			ceilingFan.high();</div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (prevSpeed == CeilingFan.MEDIUM) &#123;</div><div class="line">			ceilingFan.medium();</div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (prevSpeed == CeilingFan.LOW) &#123;</div><div class="line">			ceilingFan.low();</div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (prevSpeed == CeilingFan.OFF) &#123;</div><div class="line">			ceilingFan.off();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="使用宏命令"><a href="#使用宏命令" class="headerlink" title="使用宏命令"></a>使用宏命令</h2><p>通过宏命令，我们可以一次执行多个命令。宏命令本身也是封装为一个命令对象。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MacroCommand</span> <span class="keyword">implements</span> <span class="title">Command</span> </span>&#123;</div><div class="line">	Command[] commands;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MacroCommand</span><span class="params">(Command[] commands)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.commands = commands;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; commands.length; i++) &#123;</div><div class="line">			commands[i].execute();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">undo</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; commands.length; i++) &#123;</div><div class="line">			commands[i].undo();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RemoteControl</span> </span>&#123;</div><div class="line">	Command[] onCommands;</div><div class="line">	Command[] offCommands;</div><div class="line">	Command undoCommand;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">RemoteControl</span><span class="params">()</span> </span>&#123;</div><div class="line">		onCommands = <span class="keyword">new</span> Command[<span class="number">7</span>];</div><div class="line">		offCommands = <span class="keyword">new</span> Command[<span class="number">7</span>];</div><div class="line"> </div><div class="line">		Command noCommand = <span class="keyword">new</span> NoCommand();</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">7</span>;i++) &#123;</div><div class="line">			onCommands[i] = noCommand;</div><div class="line">			offCommands[i] = noCommand;</div><div class="line">		&#125;</div><div class="line">		undoCommand = noCommand;</div><div class="line">	&#125;</div><div class="line">  </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCommand</span><span class="params">(<span class="keyword">int</span> slot, Command onCommand, Command offCommand)</span> </span>&#123;</div><div class="line">		onCommands[slot] = onCommand;</div><div class="line">		offCommands[slot] = offCommand;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onButtonWasPushed</span><span class="params">(<span class="keyword">int</span> slot)</span> </span>&#123;</div><div class="line">		onCommands[slot].execute();</div><div class="line">		undoCommand = onCommands[slot];</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">offButtonWasPushed</span><span class="params">(<span class="keyword">int</span> slot)</span> </span>&#123;</div><div class="line">		offCommands[slot].execute();</div><div class="line">		undoCommand = offCommands[slot];</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">undoButtonWasPushed</span><span class="params">()</span> </span>&#123;</div><div class="line">		undoCommand.undo();</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		StringBuffer stringBuff = <span class="keyword">new</span> StringBuffer();</div><div class="line">		stringBuff.append(<span class="string">"\n------ Remote Control -------\n"</span>);</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; onCommands.length; i++) &#123;</div><div class="line">			stringBuff.append(<span class="string">"[slot "</span> + i + <span class="string">"] "</span> + onCommands[i].getClass().getName()</div><div class="line">				+ <span class="string">"    "</span> + offCommands[i].getClass().getName() + <span class="string">"\n"</span>);</div><div class="line">		&#125;</div><div class="line">		stringBuff.append(<span class="string">"[undo] "</span> + undoCommand.getClass().getName() + <span class="string">"\n"</span>);</div><div class="line">		<span class="keyword">return</span> stringBuff.toString();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RemoteLoader</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line"></div><div class="line">		RemoteControl remoteControl = <span class="keyword">new</span> RemoteControl();</div><div class="line"></div><div class="line">		Light light = <span class="keyword">new</span> Light(<span class="string">"Living Room"</span>);</div><div class="line">		TV tv = <span class="keyword">new</span> TV(<span class="string">"Living Room"</span>);</div><div class="line">		Stereo stereo = <span class="keyword">new</span> Stereo(<span class="string">"Living Room"</span>);</div><div class="line">		Hottub hottub = <span class="keyword">new</span> Hottub();</div><div class="line"> </div><div class="line">		LightOnCommand lightOn = <span class="keyword">new</span> LightOnCommand(light);</div><div class="line">		StereoOnCommand stereoOn = <span class="keyword">new</span> StereoOnCommand(stereo);</div><div class="line">		TVOnCommand tvOn = <span class="keyword">new</span> TVOnCommand(tv);</div><div class="line">		HottubOnCommand hottubOn = <span class="keyword">new</span> HottubOnCommand(hottub);</div><div class="line">		LightOffCommand lightOff = <span class="keyword">new</span> LightOffCommand(light);</div><div class="line">		StereoOffCommand stereoOff = <span class="keyword">new</span> StereoOffCommand(stereo);</div><div class="line">		TVOffCommand tvOff = <span class="keyword">new</span> TVOffCommand(tv);</div><div class="line">		HottubOffCommand hottubOff = <span class="keyword">new</span> HottubOffCommand(hottub);</div><div class="line"></div><div class="line">		Command[] partyOn = &#123; lightOn, stereoOn, tvOn, hottubOn&#125;;</div><div class="line">		Command[] partyOff = &#123; lightOff, stereoOff, tvOff, hottubOff&#125;;</div><div class="line">  </div><div class="line">		MacroCommand partyOnMacro = <span class="keyword">new</span> MacroCommand(partyOn);</div><div class="line">		MacroCommand partyOffMacro = <span class="keyword">new</span> MacroCommand(partyOff);</div><div class="line"> </div><div class="line">		remoteControl.setCommand(<span class="number">0</span>, partyOnMacro, partyOffMacro);</div><div class="line">  </div><div class="line">		System.out.println(remoteControl);</div><div class="line">		System.out.println(<span class="string">"--- Pushing Macro On---"</span>);</div><div class="line">		remoteControl.onButtonWasPushed(<span class="number">0</span>);</div><div class="line">		System.out.println(<span class="string">"--- Pushing Macro Off---"</span>);</div><div class="line">		remoteControl.offButtonWasPushed(<span class="number">0</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>命令模式还可以用于日志请求。某些应用需要我们将所有的动作都记录在日志中，并能在系统死机之后，重新调用这些动作恢复到之前到状态。</p>
-<p>也就是执行命令的时候，将历史记录存储在磁盘中。一旦系统死机，就可以将命令对象重新加载，并依次调用这些对象的execture()方法。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1106,7 +1093,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">328</span>
+              <span class="site-state-item-count">329</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

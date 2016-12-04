@@ -260,8 +260,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/09/03/Leetcode_Gas Station/" itemprop="url">
-                  Gas Station
+                <a class="post-title-link" href="/2015/09/04/Leetcode_Course Schedule II/" itemprop="url">
+                  Course Schedule II
                 </a>
               
             
@@ -274,8 +274,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-03T00:00:00+09:00" content="2015-09-03">
-              2015-09-03
+            <time itemprop="dateCreated" datetime="2015-09-04T00:00:00+09:00" content="2015-09-04">
+              2015-09-04
             </time>
           </span>
 
@@ -304,8 +304,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/09/03/Leetcode_Gas Station/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/03/Leetcode_Gas Station/" itemprop="commentsCount"></span>
+                <a href="/2015/09/04/Leetcode_Course Schedule II/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/04/Leetcode_Course Schedule II/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -330,32 +330,25 @@
       
         
           
-            <h1 id="Gas-Station"><a href="#Gas-Station" class="headerlink" title="Gas Station"></a><a href="https://leetcode.com/problems/gas-station/" target="_blank" rel="external">Gas Station</a></h1><blockquote>
-<p>There are <code>N</code> gas stations along a circular route, where the amount of gas at station <code>i</code> is <code>gas[i]</code>.</p>
-<p>You have a car with an unlimited gas tank and it costs <code>cost[i]</code> of gas to travel from station <code>i</code> to its next station <code>(i+1)</code>. You begin the journey with an empty tank at one of the gas stations.</p>
-<p><strong>Return the starting gas station’s index</strong> if you <strong>can travel around the circuit once</strong>, otherwise return <code>-1</code>.</p>
-<p>Note:<br>The solution is guaranteed to be unique.</p>
+            <h1 id="Course-Schedule"><a href="#Course-Schedule" class="headerlink" title="Course Schedule"></a><a href="https://leetcode.com/problems/course-schedule/" target="_blank" rel="external">Course Schedule</a></h1><blockquote>
+<p>There are a total of n courses you have to take, labeled from 0 to n - 1.</p>
+<p>Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: <code>[0,1]</code></p>
+<p>Given the total number of courses and a list of prerequisite pairs, return the ordering of courses you should take to finish all courses.</p>
+<p>There may be multiple correct orders, you just need to return one of them. If it is impossible to finish all courses, return an empty array.</p>
+<p>For example:<br><code>2, [[1,0]]</code></p>
+<p>There are a total of 2 courses to take. To take course 1 you should have finished course 0. So the correct course order is [0,1]</p>
+<p><code>4, [[1,0],[2,0],[3,1],[3,2]]</code></p>
+<p>There are a total of 4 courses to take. To take course 3 you should have finished both courses 1 and 2. Both courses 1 and 2 should be taken after you finished course 0. So one correct course order is [0,1,2,3]. Another correct ordering is[0,2,1,3].</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>理解题目意思很重要，给定围成圈的一些加油站，<code>cost[i]</code>表示从加油站<code>i</code>到加油站<code>i+1</code>所需要花费的油，<code>cost[i]</code>表示从加油站<code>i</code>所存储的油。问从哪个加油站出发可以回到加油站(方向为向右，cost[i]提供的信息)，有唯一一个解或没有解。</p>
-<p>例如:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">num  1  2  3  4  5 </div><div class="line"></div><div class="line">gas  3  2  4  1  6</div><div class="line">cost 2  1  3  6  2</div></pre></td></tr></table></figure>
-<p>若从第一个加油站出发，则会卡在第4个加油站，无法到达第5个加油站。<br>若从第二个加油站出发，同样会卡在第4个加油站。</p>
-<p>若从第5个加油站出发，则能绕一圈回到第五个加油站，也就是解。</p>
-<p>关键的一点是要分析出，从一个加油站<code>i</code>出发(若其不是解，也就是会卡在某个加油站<code>j</code>)，则从<code>i</code>到<code>j</code>的加油站(包括<code>i</code>，<code>j</code>)，都不可能是可行解。</p>
-<p>原因: </p>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>与问题Course Schedule本质相同。课程的组织可以表示为一个有向图，问题本质是检测一个有向图中是否有环，如果一个图有环，则一定存在冲突，也就是环中的课程一定无法参加。对图进行拓扑排序，如果可以进行完整的拓扑排序(输出排序节点等于所有节点数)，则说明是一个有向无环图，否则说明有环。</p>
+<p>这里采用基于队列的拓扑排序：</p>
 <ol>
-<li>假设<code>k</code>是<code>i</code>到<code>j</code>中间的一个加油站(包括<code>i, j</code>)，已<code>k</code>为起点，假设其能抵达<code>j</code>。</li>
-<li>如果需要从加油站<code>j</code>抵达下一个加油站<code>j+1</code>，其条件是，从起点<code>k</code>到达<code>j</code>累计下来的<code>gas</code>（记为<code>cum(k,j)</code>, <code>cum(k,j)&gt;=0</code>,否则无法从<code>j-1</code>抵达<code>j</code>），加上加油站<code>j</code>的<code>gas[j]</code>，必须大于从<code>j</code>到<code>j+1</code>所需要的<code>cost[j]</code>。也就是需要<code>cum(k, j)+gas[j]&gt;=cost[j]</code></li>
-<li>目前知道的是从<code>i</code>出发会卡在<code>j</code>，也就是 <code>cum(i, j)+gas[i]&lt;cost[j]</code>，而<code>cum(i, j) = cum(i, k) + cum(k, j)</code>，而<code>cum(i, k)&gt;=0</code>(否则无法从<code>k-1</code>抵达<code>k</code>)，也就是我们可以得到<code>cum(i, j)&gt;=cum(k, j)</code>, 又<code>cum(i, j)+gas[i]&lt;cost[j]</code>，所以<code>cum(k, j)+gas[i]&lt;cost[j]</code>，也就是无法从<code>j</code>抵达<code>j+1</code>.</li>
+<li>遍历所有边，统计所有节点的入度(就是修课前需要完成的课程数)，和指向的节点(用HashMap存储)。</li>
+<li>将所有入度为0的节点加入队列。</li>
+<li>在队列非空的情况下，取出队列的一个节点，将<code>这个节点加入结果集</code>，将所有这个节点指向的节点的<code>入度-1</code>，如果每个被指向的节点入度变为0，则将其加入队列。</li>
+<li>循环第3步直到队列为空，如果<code>结果集size==numCourses</code>，则成功得到一个完整的拓扑序列，也就是所有课程都可以修完并且顺序记录在结果集中，返回结果集。如果<code>结果集size&lt;numCourse</code>，则存在环，部分课程无法参加，返回空数组。</li>
 </ol>
-<p>结论：<br>从一个加油站<code>i</code>出发(若其不是解，也就是会卡在某个加油站<code>j</code>)，则从<code>i</code>到<code>j</code>的加油站(包括<code>i</code>，<code>j</code>)，都不可能是可行解。</p>
-<p>也就是我们无需计算中间的这些加油站的可行性，直接跳到计算<code>j+1</code>加油站的可行性，当从某个加油站出发，向前走了<code>num-1</code>步(<code>num</code>为加油站个数)，并且下一步也可行，则找到了可行解。</p>
-<p>如果判断所有加油站都不可行，则无解。</p>
-<p>注意处理circle的情况，用取余<code>%</code>实现，注意边界情况。</p>
-<p>虽然代码有两个循环，但是两个循环是同时推进的，时间复杂度为<code>O(N)</code>, Greedy策略.</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">canCompleteCircuit</span><span class="params">(<span class="keyword">int</span>[] gas, <span class="keyword">int</span>[] cost)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> [] remain = <span class="keyword">new</span> <span class="keyword">int</span>[gas.length];</div><div class="line">        <span class="keyword">int</span> length = gas.length;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> start=<span class="number">0</span>; start&lt;length; start++) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> step=<span class="number">0</span>; step&lt;length; step++) &#123;</div><div class="line">                <span class="keyword">int</span> pos = start + step;</div><div class="line">                <span class="keyword">if</span>(remain[pos%length]+gas[pos%length]&gt;=cost[pos%length]) &#123;</div><div class="line">                    <span class="keyword">if</span>(step==length-<span class="number">1</span>) <span class="keyword">return</span> start;</div><div class="line">                    <span class="keyword">else</span> remain[(pos+<span class="number">1</span>)%length] = remain[pos%length]+gas[pos%length] - cost[pos%length];</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    <span class="keyword">if</span>(pos&gt;=length) <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">                    <span class="keyword">else</span> start = pos;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>second time</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">canCompleteCircuit</span><span class="params">(<span class="keyword">int</span>[] gas, <span class="keyword">int</span>[] cost)</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;gas.length; i++) &#123;</div><div class="line">            <span class="keyword">int</span> tank = <span class="number">0</span>;</div><div class="line">            <span class="keyword">int</span> start = i;</div><div class="line">            <span class="keyword">int</span> current = i;</div><div class="line">            <span class="keyword">while</span>(tank+gas[current]&gt;=cost[current]) &#123;</div><div class="line">                tank += (gas[current]-cost[current]);</div><div class="line">                current = (i+<span class="number">1</span>) % gas.length;</div><div class="line">                i ++;</div><div class="line">                <span class="keyword">if</span>(current==start) <span class="keyword">return</span> start;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] findOrder(<span class="keyword">int</span> numCourses, <span class="keyword">int</span>[][] prerequisites) &#123;</div><div class="line">        <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[numCourses];</div><div class="line">        <span class="keyword">int</span> current = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span>[] count = <span class="keyword">new</span> <span class="keyword">int</span>[numCourses];</div><div class="line">        List&lt;List&lt;Integer&gt;&gt; toCourses = <span class="keyword">new</span> ArrayList&lt;List&lt;Integer&gt;&gt;();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;numCourses; i++) toCourses.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;());</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;prerequisites.length; i++) &#123;</div><div class="line">            count[prerequisites[i][<span class="number">0</span>]] ++;</div><div class="line">            toCourses.get(prerequisites[i][<span class="number">1</span>]).add(prerequisites[i][<span class="number">0</span>]);</div><div class="line">        &#125;</div><div class="line">        Queue&lt;Integer&gt; prepares = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;numCourses; i++) &#123;</div><div class="line">            <span class="keyword">if</span>(count[i]==<span class="number">0</span>) &#123;</div><div class="line">                res[current++] = i;</div><div class="line">                prepares.offer(i);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">while</span>(!prepares.isEmpty()) &#123;</div><div class="line">            <span class="keyword">int</span> pre = prepares.poll();</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> to: toCourses.get(pre)) &#123;</div><div class="line">                count[to] --;</div><div class="line">                <span class="keyword">if</span>(count[to]==<span class="number">0</span>) &#123;</div><div class="line">                    res[current++] = to;</div><div class="line">                    prepares.offer(to);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(current==numCourses) <span class="keyword">return</span> res;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">0</span>];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -532,6 +525,151 @@
             
               
                 
+                <a class="post-title-link" href="/2015/09/03/Leetcode_Gas Station/" itemprop="url">
+                  Gas Station
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-09-03T00:00:00+09:00" content="2015-09-03">
+              2015-09-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/03/Leetcode_Gas Station/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/03/Leetcode_Gas Station/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Gas-Station"><a href="#Gas-Station" class="headerlink" title="Gas Station"></a><a href="https://leetcode.com/problems/gas-station/" target="_blank" rel="external">Gas Station</a></h1><blockquote>
+<p>There are <code>N</code> gas stations along a circular route, where the amount of gas at station <code>i</code> is <code>gas[i]</code>.</p>
+<p>You have a car with an unlimited gas tank and it costs <code>cost[i]</code> of gas to travel from station <code>i</code> to its next station <code>(i+1)</code>. You begin the journey with an empty tank at one of the gas stations.</p>
+<p><strong>Return the starting gas station’s index</strong> if you <strong>can travel around the circuit once</strong>, otherwise return <code>-1</code>.</p>
+<p>Note:<br>The solution is guaranteed to be unique.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>理解题目意思很重要，给定围成圈的一些加油站，<code>cost[i]</code>表示从加油站<code>i</code>到加油站<code>i+1</code>所需要花费的油，<code>cost[i]</code>表示从加油站<code>i</code>所存储的油。问从哪个加油站出发可以回到加油站(方向为向右，cost[i]提供的信息)，有唯一一个解或没有解。</p>
+<p>例如:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">num  1  2  3  4  5 </div><div class="line"></div><div class="line">gas  3  2  4  1  6</div><div class="line">cost 2  1  3  6  2</div></pre></td></tr></table></figure>
+<p>若从第一个加油站出发，则会卡在第4个加油站，无法到达第5个加油站。<br>若从第二个加油站出发，同样会卡在第4个加油站。</p>
+<p>若从第5个加油站出发，则能绕一圈回到第五个加油站，也就是解。</p>
+<p>关键的一点是要分析出，从一个加油站<code>i</code>出发(若其不是解，也就是会卡在某个加油站<code>j</code>)，则从<code>i</code>到<code>j</code>的加油站(包括<code>i</code>，<code>j</code>)，都不可能是可行解。</p>
+<p>原因: </p>
+<ol>
+<li>假设<code>k</code>是<code>i</code>到<code>j</code>中间的一个加油站(包括<code>i, j</code>)，已<code>k</code>为起点，假设其能抵达<code>j</code>。</li>
+<li>如果需要从加油站<code>j</code>抵达下一个加油站<code>j+1</code>，其条件是，从起点<code>k</code>到达<code>j</code>累计下来的<code>gas</code>（记为<code>cum(k,j)</code>, <code>cum(k,j)&gt;=0</code>,否则无法从<code>j-1</code>抵达<code>j</code>），加上加油站<code>j</code>的<code>gas[j]</code>，必须大于从<code>j</code>到<code>j+1</code>所需要的<code>cost[j]</code>。也就是需要<code>cum(k, j)+gas[j]&gt;=cost[j]</code></li>
+<li>目前知道的是从<code>i</code>出发会卡在<code>j</code>，也就是 <code>cum(i, j)+gas[i]&lt;cost[j]</code>，而<code>cum(i, j) = cum(i, k) + cum(k, j)</code>，而<code>cum(i, k)&gt;=0</code>(否则无法从<code>k-1</code>抵达<code>k</code>)，也就是我们可以得到<code>cum(i, j)&gt;=cum(k, j)</code>, 又<code>cum(i, j)+gas[i]&lt;cost[j]</code>，所以<code>cum(k, j)+gas[i]&lt;cost[j]</code>，也就是无法从<code>j</code>抵达<code>j+1</code>.</li>
+</ol>
+<p>结论：<br>从一个加油站<code>i</code>出发(若其不是解，也就是会卡在某个加油站<code>j</code>)，则从<code>i</code>到<code>j</code>的加油站(包括<code>i</code>，<code>j</code>)，都不可能是可行解。</p>
+<p>也就是我们无需计算中间的这些加油站的可行性，直接跳到计算<code>j+1</code>加油站的可行性，当从某个加油站出发，向前走了<code>num-1</code>步(<code>num</code>为加油站个数)，并且下一步也可行，则找到了可行解。</p>
+<p>如果判断所有加油站都不可行，则无解。</p>
+<p>注意处理circle的情况，用取余<code>%</code>实现，注意边界情况。</p>
+<p>虽然代码有两个循环，但是两个循环是同时推进的，时间复杂度为<code>O(N)</code>, Greedy策略.</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">canCompleteCircuit</span><span class="params">(<span class="keyword">int</span>[] gas, <span class="keyword">int</span>[] cost)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> [] remain = <span class="keyword">new</span> <span class="keyword">int</span>[gas.length];</div><div class="line">        <span class="keyword">int</span> length = gas.length;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> start=<span class="number">0</span>; start&lt;length; start++) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> step=<span class="number">0</span>; step&lt;length; step++) &#123;</div><div class="line">                <span class="keyword">int</span> pos = start + step;</div><div class="line">                <span class="keyword">if</span>(remain[pos%length]+gas[pos%length]&gt;=cost[pos%length]) &#123;</div><div class="line">                    <span class="keyword">if</span>(step==length-<span class="number">1</span>) <span class="keyword">return</span> start;</div><div class="line">                    <span class="keyword">else</span> remain[(pos+<span class="number">1</span>)%length] = remain[pos%length]+gas[pos%length] - cost[pos%length];</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    <span class="keyword">if</span>(pos&gt;=length) <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">                    <span class="keyword">else</span> start = pos;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>second time</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">canCompleteCircuit</span><span class="params">(<span class="keyword">int</span>[] gas, <span class="keyword">int</span>[] cost)</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;gas.length; i++) &#123;</div><div class="line">            <span class="keyword">int</span> tank = <span class="number">0</span>;</div><div class="line">            <span class="keyword">int</span> start = i;</div><div class="line">            <span class="keyword">int</span> current = i;</div><div class="line">            <span class="keyword">while</span>(tank+gas[current]&gt;=cost[current]) &#123;</div><div class="line">                tank += (gas[current]-cost[current]);</div><div class="line">                current = (i+<span class="number">1</span>) % gas.length;</div><div class="line">                i ++;</div><div class="line">                <span class="keyword">if</span>(current==start) <span class="keyword">return</span> start;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/09/03/Leetcode_Unique Binary Search Trees II/" itemprop="url">
                   Unique Binary Search Trees II
                 </a>
@@ -658,8 +796,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/09/02/Leetcode_Word Ladder/" itemprop="url">
-                  Word Ladder
+                <a class="post-title-link" href="/2015/09/02/Leetcode_Palindrome Partitioning/" itemprop="url">
+                  Palindrome Partitioning
                 </a>
               
             
@@ -702,8 +840,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/09/02/Leetcode_Word Ladder/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/02/Leetcode_Word Ladder/" itemprop="commentsCount"></span>
+                <a href="/2015/09/02/Leetcode_Palindrome Partitioning/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/02/Leetcode_Palindrome Partitioning/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -728,146 +866,15 @@
       
         
           
-            <h1 id="Word-Ladder"><a href="#Word-Ladder" class="headerlink" title="Word Ladder"></a><a href="https://leetcode.com/problems/word-ladder/" target="_blank" rel="external">Word Ladder</a></h1><blockquote>
-<p>Given two words (beginWord and endWord), and a dictionary, find the length of shortest transformation sequence from beginWord to endWord, such that:</p>
-<p>Only one letter can be changed at a time<br>Each intermediate word must exist in the dictionary<br>For example,</p>
-<p>Given:<br><code>start = &quot;hit&quot;</code><br><code>end = &quot;cog&quot;</code><br><code>dict = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;]</code><br>As one shortest transformation is <code>&quot;hit&quot; -&gt; &quot;hot&quot; -&gt; &quot;dot&quot; -&gt; &quot;dog&quot; -&gt; &quot;cog&quot;</code>,<br>return its length <code>5</code>.</p>
-<p>Note:<br>Return 0 if there is no such transformation sequence.<br>All words have the same length.<br>All words contain only lowercase alphabetic characters.</p>
+            <h1 id="Palindrome-Partitioning"><a href="#Palindrome-Partitioning" class="headerlink" title="Palindrome Partitioning"></a><a href="https://leetcode.com/problems/palindrome-partitioning/" target="_blank" rel="external">Palindrome Partitioning</a></h1><blockquote>
+<p>Given a string s, partition s such that every substring of the partition is a palindrome.</p>
+<p>Return all possible palindrome partitioning of s.</p>
+<p>For example, given <code>s = &quot;aab&quot;</code>,<br>Return</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h3 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1"></a>Method 1</h3><p>BFS问题，求最短路径。判断set中可以抵达endWord的词，并判断其是否可以由beginWord抵达，若是，则直接返回距离，若不能，加入队列中。弹出队首，判断set中可以抵达弹出的队首的词，同样，判断其是否可以由beginWord抵达，若是，则直接返回距离，若不能，加入队列中…直到找到可以有beginWord抵达第队列中的词或队列为空。</p>
-<p>对于判断set中能抵达当前词的词，有两种方式，一种是对于当前词，依次对每个字母分别进行改变，判断改变后的词是否在set中，复杂度为<code>O(25*l), 每个字母有25种选择，l为word的长度</code>，是method 1使用的方法。另一种是method 2中的方法，考虑到dict的大小，第一种方法比较高效。</p>
-<p>另外同时注意记录当前当前处理的词的距离，以及每次移除已经遍历过的节点(添加到queue中的节点)。</p>
-<h3 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2"></a>Method 2</h3><p>思路相同，只是对于判断set中能抵达当前词的词，逐一扫描set中所有的词，复杂度为<code>O(s*l), s为dict的大小，l为word的长度</code>。当dict较大时，效率明显低于method1，会超时。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="Method-1-1"><a href="#Method-1-1" class="headerlink" title="Method 1"></a>Method 1</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">ladderLength</span><span class="params">(String beginWord, String endWord, Set&lt;String&gt; wordList)</span> </span>&#123;</div><div class="line">        Queue&lt;String&gt; queue = <span class="keyword">new</span> LinkedList&lt;String&gt;();</div><div class="line">        queue.add(beginWord);</div><div class="line">        wordList.remove(beginWord);</div><div class="line">        <span class="keyword">int</span> level = <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> count = <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> nextCount = <span class="number">0</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(!queue.isEmpty()) &#123;</div><div class="line">            <span class="keyword">char</span> [] word = queue.poll().toCharArray();</div><div class="line">            count --;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;word.length; i++) &#123;</div><div class="line">                <span class="keyword">char</span> c = word[i];</div><div class="line">                <span class="keyword">for</span>(<span class="keyword">char</span> nc=<span class="string">'a'</span>; nc&lt;=<span class="string">'z'</span>; nc++) &#123;</div><div class="line">                    <span class="keyword">if</span>(nc==c) <span class="keyword">continue</span>;</div><div class="line">                    word[i] = nc;</div><div class="line">                    String next = <span class="keyword">new</span> String(word);</div><div class="line">                    <span class="keyword">if</span>(next.equals(endWord)) <span class="keyword">return</span> level + <span class="number">1</span>;</div><div class="line">                    <span class="keyword">if</span>(wordList.contains(next)) &#123;</div><div class="line">                        wordList.remove(next);</div><div class="line">                        queue.add(next);</div><div class="line">                        nextCount ++;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                word[i] = c;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>(count==<span class="number">0</span>) &#123;</div><div class="line">                count = nextCount;</div><div class="line">                nextCount = <span class="number">0</span>;</div><div class="line">                level ++;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Method-2-1"><a href="#Method-2-1" class="headerlink" title="Method 2"></a>Method 2</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">ladderLength</span><span class="params">(String beginWord, String endWord, Set&lt;String&gt; wordDict)</span> </span>&#123;</div><div class="line">        Queue&lt;String&gt; record = <span class="keyword">new</span> LinkedList&lt;String&gt;();</div><div class="line">        record.add(endWord);</div><div class="line">        </div><div class="line">        Iterator&lt;String&gt; it;</div><div class="line">        <span class="keyword">int</span> dis = <span class="number">1</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> currentCount = <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> nextCount = <span class="number">0</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(!record.isEmpty()) &#123;</div><div class="line">            endWord = record.poll();</div><div class="line">            currentCount --;</div><div class="line">            </div><div class="line">            it = wordDict.iterator();</div><div class="line">            <span class="keyword">while</span>(it.hasNext()) &#123;</div><div class="line">                String word = it.next();</div><div class="line">                <span class="keyword">if</span>(editable(word, endWord)) &#123;</div><div class="line">                    <span class="keyword">if</span>(editable(word, beginWord)) &#123;</div><div class="line">                    	System.out.println(word);</div><div class="line">                        <span class="keyword">return</span> dis + <span class="number">2</span>;</div><div class="line">                    &#125; <span class="keyword">else</span> &#123;</div><div class="line">                        nextCount ++;</div><div class="line">                        record.add(word);</div><div class="line">                        it.remove();;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            System.out.println(currentCount + <span class="string">"   "</span> + nextCount);</div><div class="line">            System.out.println(record);</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(currentCount==<span class="number">0</span>) &#123;</div><div class="line">                currentCount = nextCount;</div><div class="line">                nextCount = <span class="number">0</span>;</div><div class="line">                dis ++;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">     &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">editable</span><span class="params">(String word1, String word2)</span> </span>&#123;</div><div class="line">    	<span class="keyword">int</span> dif = <span class="number">0</span>;</div><div class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;word1.length(); i++) &#123;</div><div class="line">    		<span class="keyword">if</span>(word1.charAt(i)!=word2.charAt(i)) dif ++;</div><div class="line">    		<span class="keyword">if</span>(dif&gt;<span class="number">1</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    	&#125;</div><div class="line">    	<span class="keyword">return</span> dif==<span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/09/02/Leetcode_Simplify Path/" itemprop="url">
-                  Simplify Path
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-02T00:00:00+09:00" content="2015-09-02">
-              2015-09-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/02/Leetcode_Simplify Path/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/02/Leetcode_Simplify Path/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Simplify-Path"><a href="#Simplify-Path" class="headerlink" title="Simplify Path"></a><a href="">Simplify Path</a></h1><blockquote>
-<p>Given an absolute path for a file (Unix-style), simplify it.</p>
-<p>For example,<br>path = <code>&quot;/home/&quot;, =&gt; &quot;/home&quot;</code><br>path = <code>&quot;/a/./b/../../c/&quot;, =&gt; &quot;/c&quot;</code></p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>解析路径，分离出每个子元素，并用栈记录路径。</p>
-<p>子元素为<code>.</code>，则无需操作，进行解析下一个子元素。<br>子元素<code>..</code>，则在栈不为空的情况下，返回上一级，也就是弹出栈顶元素。<br>子元素为<code>其他（包括 ... 的情况）</code>，则压入栈。</p>
-<p>另外注意处理一些特殊情况，例如 <code>//</code>, <code>/...</code>, <code>/a//b</code></p>
-<p>也就是一些末尾不是<code>/</code>的情况，或者<code>/</code>连续出现的情况。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">simplifyPath</span><span class="params">(String path)</span> </span>&#123;</div><div class="line">        StringBuffer res = <span class="keyword">new</span> StringBuffer();</div><div class="line">        StringBuffer sub = <span class="keyword">new</span> StringBuffer();</div><div class="line">        Stack&lt;String&gt; stack = <span class="keyword">new</span> Stack&lt;String&gt;();</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;=path.length(); i++) &#123;</div><div class="line">        	<span class="keyword">if</span>(i==path.length() || path.charAt(i)==<span class="string">'/'</span>) &#123;</div><div class="line">        		String ele = sub.toString();</div><div class="line">        		</div><div class="line">        		<span class="keyword">if</span>(i==<span class="number">0</span> || path.charAt(i-<span class="number">1</span>)==<span class="string">'/'</span>) &#123;</div><div class="line">        			<span class="keyword">continue</span>;</div><div class="line">        		&#125; <span class="keyword">else</span> <span class="keyword">if</span>(ele.equals(<span class="string">"."</span>)) &#123;</div><div class="line">                    sub.setLength(<span class="number">0</span>);</div><div class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span>(ele.equals(<span class="string">".."</span>)) &#123;</div><div class="line">                    <span class="keyword">if</span>(!stack.isEmpty()) stack.pop();</div><div class="line">                    sub.setLength(<span class="number">0</span>);</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    stack.push(ele);</div><div class="line">                    sub.setLength(<span class="number">0</span>);</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                sub.append(path.charAt(i));</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(!stack.isEmpty()) &#123;</div><div class="line">            res.insert(<span class="number">0</span>, <span class="string">"/"</span> + stack.pop());</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(res.length()!=<span class="number">0</span> )<span class="keyword">return</span> res.toString();</div><div class="line">        <span class="keyword">else</span> <span class="keyword">return</span> <span class="string">"/"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">  [&quot;aa&quot;,&quot;b&quot;],</div><div class="line">  [&quot;a&quot;,&quot;a&quot;,&quot;b&quot;]</div><div class="line">]</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>DFS搜索可行的解。对于每个当前字母，首先加入累计字符串，进行第一种下一步递归，移到下一个位置。再就是判断当前字母加入累计字符串是否形成Palindrome字符串，如果能，则加入record(用于记录Palindrome字符串)，然后清空累计字符串，移至下一个字符进行下一步递归，如果不能，则无需进行这一种递归。</p>
+<p>Additional improment:<br>遇到要求所有组合、可能、排列等解集的题目，一般都是用DFS + backtracking来做。要分割回文的前提是能够判断回文。在做DFS的时候，如果每次从start出发查找s[start:end]是否是回文，会使算法复杂度大大增加。而在Longest Palindromic Substring这题中已经知道如何用DP来计算任意s[i:j]是否是回文。因此可以先计算该判断矩阵，在DFS的时候用来剪枝，大大提高效率。<br>From : <a href="http://bangbingsyb.blogspot.jp/2014/11/leetcode-palindrome-partitioning-i-ii.html" target="_blank" rel="external">[LeetCode] Palindrome Partitioning I, II</a></p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> List&lt;List&lt;String&gt;&gt; partition(String s) &#123;</div><div class="line">        List&lt;List&lt;String&gt;&gt; res = <span class="keyword">new</span> ArrayList&lt;List&lt;String&gt;&gt;();</div><div class="line">        <span class="keyword">if</span>(s==<span class="keyword">null</span> || s.length()==<span class="number">0</span>) <span class="keyword">return</span> res;</div><div class="line">        List&lt;String&gt; record = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">        recPar(s, <span class="number">0</span>, res, record, <span class="string">""</span>);</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recPar</span><span class="params">(String s, <span class="keyword">int</span> pos, List&lt;List&lt;String&gt;&gt; res, List&lt;String&gt; record, String cum)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(pos==s.length()) &#123;</div><div class="line">            <span class="keyword">if</span>(cum.length()==<span class="number">0</span>) res.add(<span class="keyword">new</span> ArrayList&lt;String&gt;(record));</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            cum = cum + s.charAt(pos);</div><div class="line">            recPar(s, pos+<span class="number">1</span>, res, record, cum);</div><div class="line">            <span class="keyword">if</span>(isPal(cum)) &#123;</div><div class="line">                record.add(cum);</div><div class="line">                recPar(s, pos+<span class="number">1</span>, res, record, <span class="string">""</span>);</div><div class="line">                record.remove(record.size()-<span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPal</span><span class="params">(String record)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> right = record.length() - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(left&lt;right) &#123;</div><div class="line">            <span class="keyword">if</span>(record.charAt(left++)!=record.charAt(right--)) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -941,7 +948,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">328</span>
+              <span class="site-state-item-count">329</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
