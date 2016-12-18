@@ -260,8 +260,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/09/10/Leetcode_Insertion Sort List/" itemprop="url">
-                  Insertion Sort List
+                <a class="post-title-link" href="/2015/09/11/Leetcode_Valid Sudoku/" itemprop="url">
+                  Valid Sudoku
                 </a>
               
             
@@ -274,8 +274,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-10T00:00:00+09:00" content="2015-09-10">
-              2015-09-10
+            <time itemprop="dateCreated" datetime="2015-09-11T00:00:00+09:00" content="2015-09-11">
+              2015-09-11
             </time>
           </span>
 
@@ -304,8 +304,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/09/10/Leetcode_Insertion Sort List/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/10/Leetcode_Insertion Sort List/" itemprop="commentsCount"></span>
+                <a href="/2015/09/11/Leetcode_Valid Sudoku/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/11/Leetcode_Valid Sudoku/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -330,22 +330,23 @@
       
         
           
-            <h1 id="Insertion-Sort-List"><a href="#Insertion-Sort-List" class="headerlink" title="Insertion Sort List"></a><a href="https://leetcode.com/problems/insertion-sort-list/" target="_blank" rel="external">Insertion Sort List</a></h1><blockquote>
-<p>Sort a linked list using insertion sort.</p>
+            <h1 id="Valid-Sudoku"><a href="#Valid-Sudoku" class="headerlink" title="Valid Sudoku"></a><a href="https://leetcode.com/problems/valid-sudoku/" target="_blank" rel="external">Valid Sudoku</a></h1><blockquote>
+<p>Determine if a Sudoku is valid, according to: Sudoku Puzzles - The Rules.</p>
+<p>The Sudoku board could be partially filled, where empty cells are filled with the character ‘.’.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Sudoku-by-L2G-20050714.svg/250px-Sudoku-by-L2G-20050714.svg.png" alt=""></p>
+<p>A partially filled sudoku which is valid.</p>
+<p>Note:<br>A valid Sudoku board (partially filled) is not necessarily solvable. Only the filled cells need to be validated.</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>比较有意思的是要求Insertion sort.</p>
-<p>基于数组的插入排序很好处理：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">InsertSort</span><span class="params">(<span class="keyword">int</span> [] nums)</span> </span>&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;nums.length; i++) &#123;</div><div class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=i; j&gt;<span class="number">0</span> &amp;&amp; nums[j]&lt;nums[j-<span class="number">1</span>]; j--) &#123;</div><div class="line">				swap(nums, j, j-<span class="number">1</span>);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
-<p>基于链表的插入排序，关键一点是如何将当前位置插入前面已经排好序的子链表中。</p>
-<h3 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1"></a>Method 1</h3><p>一种处理方式是，将已排序子链表当做一个独立的链表，将当前节点插入到该链表中。</p>
-<p>例子，原链表<code>5-&gt;4-&gt;3-&gt;2-&gt;1</code>.<br><code>5</code>  ,  <code>4-&gt;3-&gt;2-&gt;1</code>,  注意设置相应指针保留以及更新合适值。<br><code>4-&gt;5</code>  ,  <code>3-&gt;2-&gt;1</code><br><code>3-&gt;4-&gt;5</code>  , <code>2-&gt;1</code><br><code>2-&gt;3-&gt;4-&gt;5</code> , <code>1</code><br><code>1-&gt;2-&gt;3-&gt;4-&gt;5</code></p>
-<h3 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2"></a>Method 2</h3><p>这一种处理方式有些不同，但实质上是一样的。<strong>Method 1</strong>更简洁高效，这里记下Method 2只是为了记录思考过程。</p>
-<p>每次处理一个节点后，将其指针翻转，也就是已排序的链表指针方向已经全部反转了，这样就可以直接将当前节点插入该已排序子链表。</p>
-<p>全部处理完后得到的是一个从大小到小的链表，这时再遍历链表一遍，将指针都翻转，得到从小到大的链表。</p>
-<p>例子，原链表<code>5-&gt;4-&gt;3-&gt;2-&gt;1</code>.<br><code>5</code>  ,  <code>4-&gt;3-&gt;2-&gt;1</code>,  注意设置相应指针保留以及更新合适值。<br><code>4&lt;-5</code>  ,  <code>3-&gt;2-&gt;1</code><br><code>3&lt;-4&lt;-5</code>  , <code>2-&gt;1</code><br><code>2&lt;-3&lt;-4&lt;-5</code> , <code>1</code><br><code>1&lt;-2&lt;-3&lt;-4&lt;-5</code></p>
-<p>再翻转一次：<br><code>1-&gt;2-&gt;3-&gt;4-&gt;5</code></p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="Method-1-1"><a href="#Method-1-1" class="headerlink" title="Method 1"></a>Method 1</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * public class ListNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     ListNode next;</div><div class="line"> *     ListNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">insertionSortList</span><span class="params">(ListNode head)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span> || head.next==<span class="keyword">null</span>) <span class="keyword">return</span> head;</div><div class="line">        </div><div class="line">        ListNode newHead = <span class="keyword">null</span>;</div><div class="line">        </div><div class="line">        ListNode last = <span class="keyword">null</span>;</div><div class="line">        ListNode current = head;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(current!=<span class="keyword">null</span>) &#123;</div><div class="line">            ListNode next = current.next;</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(newHead==<span class="keyword">null</span> || current.val&lt;=newHead.val) &#123;</div><div class="line">            	current.next = newHead;</div><div class="line">            	newHead = current;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">            	ListNode moving = newHead;</div><div class="line">            	<span class="keyword">while</span>(moving.next!=<span class="keyword">null</span> &amp;&amp; moving.next.val&lt;current.val) &#123;</div><div class="line">            		moving = moving.next;</div><div class="line">            	&#125;</div><div class="line">            	ListNode temp = moving.next;</div><div class="line">            	moving.next = current;</div><div class="line">            	current.next = temp;</div><div class="line">            &#125;</div><div class="line">            current = next;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> newHead;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Method-2-1"><a href="#Method-2-1" class="headerlink" title="Method 2"></a>Method 2</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * public class ListNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     ListNode next;</div><div class="line"> *     ListNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">insertionSortList</span><span class="params">(ListNode head)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span> || head.next==<span class="keyword">null</span>) <span class="keyword">return</span> head;</div><div class="line">        </div><div class="line">        ListNode last = <span class="keyword">null</span>;</div><div class="line">        ListNode current = head;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(current!=<span class="keyword">null</span>) &#123;</div><div class="line">            ListNode next = current.next;</div><div class="line">            current.next = last;</div><div class="line">            last = current;</div><div class="line">            </div><div class="line">            <span class="keyword">while</span>(current.next!=<span class="keyword">null</span> &amp;&amp; current.val&lt;current.next.val) &#123;</div><div class="line">                <span class="keyword">int</span> temp = current.val;</div><div class="line">                current.val = current.next.val;</div><div class="line">                current.next.val = temp;</div><div class="line">                current = current.next;</div><div class="line">            &#125;</div><div class="line">            current = next;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        current = last;</div><div class="line">        last = <span class="keyword">null</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(current!=<span class="keyword">null</span>) &#123;</div><div class="line">            ListNode next = current.next;</div><div class="line">            current.next = last;</div><div class="line">            last = current;</div><div class="line">            current = next;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> last;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>本质就是要求每一行不能有重复元素，每一列不能有重复元素，每一个九宫格内不能有重复元素。</p>
+<p>关键是如何记录已经使用过的元素和减少遍历次数。</p>
+<p>这里使用了两种记录方式，都只需要扫描一遍。</p>
+<ol>
+<li>使用HashSet记录已经使用过的元素。</li>
+<li>由于元素是有限的，都在<code>1-9</code>之间，可以采用boolean数组记录是否已经使用过。</li>
+</ol>
+<p>按照行遍历，需要维持 1个行boolean数组(or Set), 3个九宫格boolean数组，9个列boolean数组。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="Boolean-Array-based-method"><a href="#Boolean-Array-based-method" class="headerlink" title="Boolean_Array-based method"></a>Boolean_Array-based method</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isValidSudoku</span><span class="params">(<span class="keyword">char</span>[][] board)</span> </span>&#123;</div><div class="line">        <span class="keyword">boolean</span> [] row = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">boolean</span> [][] boxs = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">boolean</span> [][] lines = <span class="keyword">new</span> <span class="keyword">boolean</span> [<span class="number">9</span>][<span class="number">9</span>];</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">9</span>; i++) &#123;</div><div class="line">            row = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="number">9</span>];</div><div class="line">            <span class="keyword">if</span>(i%<span class="number">3</span>==<span class="number">0</span>) boxs = <span class="keyword">new</span> <span class="keyword">boolean</span> [<span class="number">3</span>][<span class="number">9</span>];</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;<span class="number">9</span>; j++) &#123;</div><div class="line">                <span class="keyword">if</span>(board[i][j]==<span class="string">'.'</span>) <span class="keyword">continue</span>;</div><div class="line">                <span class="keyword">int</span> boxNo = j / <span class="number">3</span>;</div><div class="line">                <span class="keyword">int</span> num = board[i][j] - <span class="string">'1'</span>;</div><div class="line">                <span class="keyword">if</span>(row[num]) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">                <span class="keyword">else</span> row[num] = <span class="keyword">true</span>;</div><div class="line">                </div><div class="line">                <span class="keyword">if</span>(boxs[boxNo][num]) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">                <span class="keyword">else</span> boxs[boxNo][num] = <span class="keyword">true</span>;</div><div class="line">                </div><div class="line">                <span class="keyword">if</span>(lines[j][num]) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">                <span class="keyword">else</span> lines[j][num] = <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="HashSet-based-method"><a href="#HashSet-based-method" class="headerlink" title="HashSet-based method"></a>HashSet-based method</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isValidSudoku</span><span class="params">(<span class="keyword">char</span>[][] board)</span> </span>&#123;</div><div class="line">        Set&lt;Character&gt; row = <span class="keyword">new</span> HashSet&lt;Character&gt;();</div><div class="line">        List&lt;Set&lt;Character&gt;&gt; cols = <span class="keyword">new</span> ArrayList&lt;Set&lt;Character&gt;&gt;();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">9</span>; i++) cols.add(<span class="keyword">new</span> HashSet&lt;Character&gt;());</div><div class="line">        List&lt;Set&lt;Character&gt;&gt; boxs = <span class="keyword">new</span> ArrayList&lt;Set&lt;Character&gt;&gt;();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">3</span>; i++) boxs.add(<span class="keyword">new</span> HashSet&lt;Character&gt;());</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;board.length; i++) &#123;</div><div class="line">        	row.clear();</div><div class="line">        	<span class="keyword">if</span>(i!=<span class="number">0</span> &amp;&amp; i%<span class="number">3</span>==<span class="number">0</span>) &#123;</div><div class="line">        		<span class="keyword">for</span>(<span class="keyword">int</span> cl=<span class="number">0</span>; cl&lt;<span class="number">3</span>; cl++) boxs.get(cl).clear();;</div><div class="line">        	&#125;</div><div class="line">        	</div><div class="line">        	<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;board[<span class="number">0</span>].length; j++) &#123;</div><div class="line">        		<span class="keyword">char</span> ele = board[i][j];</div><div class="line">        		<span class="keyword">if</span>(ele==<span class="string">'.'</span>) <span class="keyword">continue</span>;</div><div class="line">        		<span class="keyword">int</span> box_no = j / <span class="number">3</span>;</div><div class="line">        		</div><div class="line">        		<span class="keyword">if</span>(row.contains(ele)) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        		<span class="keyword">else</span> row.add(ele);</div><div class="line">        		</div><div class="line">        		<span class="keyword">if</span>(cols.get(j).contains(ele)) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        		<span class="keyword">else</span> cols.get(j).add(ele);</div><div class="line">        		</div><div class="line">        		<span class="keyword">if</span>(boxs.get(box_no).contains(ele)) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        		<span class="keyword">else</span> boxs.get(box_no).add(ele);</div><div class="line">        	&#125;</div><div class="line">        &#125;</div><div class="line">    	<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -527,8 +528,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/09/09/Leetcode_Rotate Image/" itemprop="url">
-                  Rotate Image
+                <a class="post-title-link" href="/2015/09/10/Leetcode_Insertion Sort List/" itemprop="url">
+                  Insertion Sort List
                 </a>
               
             
@@ -541,8 +542,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-09T00:00:00+09:00" content="2015-09-09">
-              2015-09-09
+            <time itemprop="dateCreated" datetime="2015-09-10T00:00:00+09:00" content="2015-09-10">
+              2015-09-10
             </time>
           </span>
 
@@ -571,8 +572,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/09/09/Leetcode_Rotate Image/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/09/Leetcode_Rotate Image/" itemprop="commentsCount"></span>
+                <a href="/2015/09/10/Leetcode_Insertion Sort List/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/10/Leetcode_Insertion Sort List/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -597,173 +598,22 @@
       
         
           
-            <h1 id="Rotate-Image"><a href="#Rotate-Image" class="headerlink" title="Rotate Image"></a><a href="https://leetcode.com/problems/rotate-image/" target="_blank" rel="external">Rotate Image</a></h1><blockquote>
-<p>You are given an n x n 2D matrix representing an image.</p>
-<p>Rotate the image by 90 degrees (clockwise).</p>
-<p>Follow up:<br>Could you do this in-place?</p>
+            <h1 id="Insertion-Sort-List"><a href="#Insertion-Sort-List" class="headerlink" title="Insertion Sort List"></a><a href="https://leetcode.com/problems/insertion-sort-list/" target="_blank" rel="external">Insertion Sort List</a></h1><blockquote>
+<p>Sort a linked list using insertion sort.</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>首先要观察出的一点是，一个点<code>(x, y)</code>在顺时针<code>90度</code>旋转后移到的坐标为<code>(y, matrix.length-x)</code>.</p>
-<p>这样最简单的方法就是建立一个新矩阵，对应原来的矩阵，按照对应位置一一复制，然后再复制回原矩阵。</p>
-<p>题中follow up要求do it in-place.</p>
-<p>将matrix看成一圈一圈的正方形，最外一圈，内一圈，内一圈……<br>顺时针<code>90度</code>旋转就是将这些正方形的每条边移动到其顺指针的下一条边，对应的每个点由<code>(x, y)</code>到<code>(y, matrix.length-x)</code>.</p>
-<p>所以旋转整个矩阵，可以：<br>依次旋转最外围正方形，再选择内一圈正方形……直到只有边长为1或0。</p>
-<p>对于旋转正方形，将这些正方形的每条边移动到其顺指针的下一条边，对应的每个点由<code>(x, y)</code>到<code>(y, matrix.length-x)</code>.</p>
-<p>假设有一个矩阵:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1	2	3</div><div class="line">4	5	6</div><div class="line">7	8	9</div></pre></td></tr></table></figure>
-<p>先旋转外围正方形：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1	2	3</div><div class="line">4   	6</div><div class="line">7	8	9</div></pre></td></tr></table></figure>
-<p>每次旋转每条边对应的一个点：</p>
-<p>第一步旋转，1到3位置，3到9位置，9到7位置，7到原来1位置，旋转之后：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">7	2	1</div><div class="line">4		6</div><div class="line">9	8	3</div></pre></td></tr></table></figure>
-<p>第一步旋转，2到6位置，6到8位置，8到4位置，4到原来2位置，旋转之后：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">7	4	1</div><div class="line">8		2</div><div class="line">9	6	3</div></pre></td></tr></table></figure>
-<p>这样外围正方形就旋转完成：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">7	4	1</div><div class="line">8		2</div><div class="line">9	6	3</div></pre></td></tr></table></figure>
-<p>内一圈正方形为<br><code>3</code></p>
-<p>边长为1，无需操作。如果边长大于等于2，一样按照上面的步骤旋转。</p>
-<p>矩阵旋转完成：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">7	4	1</div><div class="line">8	5	2</div><div class="line">9	6	3</div></pre></td></tr></table></figure>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="Assistant-Matrix"><a href="#Assistant-Matrix" class="headerlink" title="Assistant Matrix"></a>Assistant Matrix</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(matrix==<span class="keyword">null</span> || matrix.length==<span class="number">0</span> || matrix[<span class="number">0</span>].length==<span class="number">0</span>) <span class="keyword">return</span>;</div><div class="line">        <span class="keyword">int</span> [][] rotate = <span class="keyword">new</span> <span class="keyword">int</span>[matrix.length][matrix.length];</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;matrix.length; i++) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;matrix[<span class="number">0</span>].length; j++) &#123;</div><div class="line">                rotate[j][matrix.length-<span class="number">1</span>-i] = matrix[i][j];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;matrix.length; i++) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;matrix[<span class="number">0</span>].length; j++) &#123;</div><div class="line">                matrix[i][j] = rotate[i][j];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="In-place"><a href="#In-place" class="headerlink" title="In-place"></a>In-place</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(matrix==<span class="keyword">null</span> || matrix.length==<span class="number">0</span> || matrix[<span class="number">0</span>].length==<span class="number">0</span>) <span class="keyword">return</span>;</div><div class="line">        </div><div class="line">        recRotate(matrix, <span class="number">0</span>, <span class="number">0</span>, matrix.length-<span class="number">2</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recRotate</span><span class="params">(<span class="keyword">int</span> [][] matrix, <span class="keyword">int</span> startX, <span class="keyword">int</span> startY, <span class="keyword">int</span> length)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(length&lt;<span class="number">0</span>) <span class="keyword">return</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;=length; i++) &#123;</div><div class="line">            <span class="keyword">int</span> x = startX;</div><div class="line">            <span class="keyword">int</span> y = startY + i;</div><div class="line">            <span class="keyword">int</span> lastValue = matrix[x][y];</div><div class="line">            </div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> count=<span class="number">0</span>; count&lt;<span class="number">4</span>; count++) &#123;</div><div class="line">                <span class="keyword">int</span> nextX = y;</div><div class="line">                <span class="keyword">int</span> nextY = matrix.length-<span class="number">1</span> - x;</div><div class="line">                <span class="keyword">int</span> nextValue = matrix[nextX][nextY];</div><div class="line">                </div><div class="line">                matrix[nextX][nextY] = lastValue;</div><div class="line">                </div><div class="line">                x = nextX;</div><div class="line">                y = nextY;</div><div class="line">                lastValue = nextValue;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        recRotate(matrix, startX+<span class="number">1</span>, startY+<span class="number">1</span>, length-<span class="number">2</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/09/09/Leetcode_Clone Graph/" itemprop="url">
-                  Clone Graph
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-09T00:00:00+09:00" content="2015-09-09">
-              2015-09-09
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/09/Leetcode_Clone Graph/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/09/Leetcode_Clone Graph/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Clone-Graph"><a href="#Clone-Graph" class="headerlink" title="Clone Graph"></a><a href="https://leetcode.com/problems/clone-graph/" target="_blank" rel="external">Clone Graph</a></h1><blockquote>
-<p>Clone an undirected graph. Each node in the graph contains a label and a list of its neighbors.</p>
-<p>OJ’s undirected graph serialization:<br>Nodes are labeled uniquely.</p>
-<p>We use # as a separator for each node, and , as a separator for node label and each neighbor of the node.<br>As an example, consider the serialized graph <code>{0,1,2#1,2#2,2}</code>.</p>
-<p>The graph has a total of three nodes, and therefore contains three parts as separated by #.</p>
-<p>First node is labeled as 0. Connect node 0 to both nodes 1 and 2.<br>Second node is labeled as 1. Connect node 1 to node 2.<br>Third node is labeled as 2. Connect node 2 to node 2 (itself), thus forming a self-cycle.<br>Visually, the graph looks like the following:</p>
-</blockquote>
-<pre><code>   1
-  / \
- /   \
-0 --- 2
-     / \
-     \_/
-</code></pre><h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>DFS遍历并复制，建立HashMap映射记录已经复制过的节点，以避免重复复制。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><p>third time</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> UndirectedGraphNode <span class="title">cloneGraph</span><span class="params">(UndirectedGraphNode node)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(node==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        Map&lt;UndirectedGraphNode, UndirectedGraphNode&gt; map = <span class="keyword">new</span> HashMap&lt;UndirectedGraphNode, UndirectedGraphNode&gt;();</div><div class="line">        <span class="keyword">return</span> cloneGraph(node, map);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> UndirectedGraphNode <span class="title">cloneGraph</span><span class="params">(UndirectedGraphNode node, Map&lt;UndirectedGraphNode, UndirectedGraphNode&gt; map)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(map.containsKey(node)) <span class="keyword">return</span> map.get(node);</div><div class="line">        UndirectedGraphNode clone = <span class="keyword">new</span> UndirectedGraphNode(node.label);</div><div class="line">        map.put(node, clone);</div><div class="line">        <span class="keyword">for</span>(UndirectedGraphNode neighbor: node.neighbors) &#123;</div><div class="line">            clone.neighbors.add(cloneGraph(neighbor, map));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> clone;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>DFS</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for undirected graph.</div><div class="line"> * class UndirectedGraphNode &#123;</div><div class="line"> *     int label;</div><div class="line"> *     List&lt;UndirectedGraphNode&gt; neighbors;</div><div class="line"> *     UndirectedGraphNode(int x) &#123; label = x; neighbors = new ArrayList&lt;UndirectedGraphNode&gt;(); &#125;</div><div class="line"> * &#125;;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> UndirectedGraphNode <span class="title">cloneGraph</span><span class="params">(UndirectedGraphNode node)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(node==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        </div><div class="line">        Map&lt;UndirectedGraphNode, UndirectedGraphNode&gt; map = <span class="keyword">new</span> HashMap&lt;UndirectedGraphNode, UndirectedGraphNode&gt;();</div><div class="line">        <span class="keyword">return</span> dfsClone(node, map);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> UndirectedGraphNode <span class="title">dfsClone</span><span class="params">(UndirectedGraphNode node, Map&lt;UndirectedGraphNode, UndirectedGraphNode&gt; map)</span> </span>&#123;</div><div class="line">        UndirectedGraphNode copynode = <span class="keyword">new</span> UndirectedGraphNode(node.label);</div><div class="line">        map.put(node, copynode);</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(UndirectedGraphNode neigh: node.neighbors) &#123;</div><div class="line">            <span class="keyword">if</span>(map.containsKey(neigh)) copynode.neighbors.add(map.get(neigh));</div><div class="line">            <span class="keyword">else</span> copynode.neighbors.add(dfsClone(neigh, map));</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> copynode;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>BFS</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> UndirectedGraphNode <span class="title">cloneGraph</span><span class="params">(UndirectedGraphNode node)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(node==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        Map&lt;UndirectedGraphNode, UndirectedGraphNode&gt; map = <span class="keyword">new</span> HashMap&lt;UndirectedGraphNode, UndirectedGraphNode&gt;();</div><div class="line">        Queue&lt;UndirectedGraphNode&gt; queue = <span class="keyword">new</span> LinkedList&lt;UndirectedGraphNode&gt;();</div><div class="line">        <span class="keyword">if</span>(node!=<span class="keyword">null</span>) queue.add(node);</div><div class="line">        <span class="keyword">while</span>(!queue.isEmpty()) &#123;</div><div class="line">            UndirectedGraphNode rnode = queue.poll();</div><div class="line">            UndirectedGraphNode copy;</div><div class="line">            <span class="keyword">if</span>(map.containsKey(rnode)) copy = map.get(rnode);</div><div class="line">            <span class="keyword">else</span> &#123;</div><div class="line">                copy = <span class="keyword">new</span> UndirectedGraphNode(rnode.label);</div><div class="line">                map.put(node, copy);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">for</span>(UndirectedGraphNode neigh: rnode.neighbors) &#123;</div><div class="line">                <span class="keyword">if</span>(map.containsKey(neigh)) copy.neighbors.add(map.get(neigh));</div><div class="line">                <span class="keyword">else</span> &#123;</div><div class="line">                    queue.add(neigh);</div><div class="line">                    UndirectedGraphNode copyNeigh = <span class="keyword">new</span> UndirectedGraphNode(neigh.label);</div><div class="line">                    copy.neighbors.add(copyNeigh);</div><div class="line">                    map.put(neigh, copyNeigh);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> map.get(node);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>比较有意思的是要求Insertion sort.</p>
+<p>基于数组的插入排序很好处理：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">InsertSort</span><span class="params">(<span class="keyword">int</span> [] nums)</span> </span>&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;nums.length; i++) &#123;</div><div class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=i; j&gt;<span class="number">0</span> &amp;&amp; nums[j]&lt;nums[j-<span class="number">1</span>]; j--) &#123;</div><div class="line">				swap(nums, j, j-<span class="number">1</span>);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<p>基于链表的插入排序，关键一点是如何将当前位置插入前面已经排好序的子链表中。</p>
+<h3 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1"></a>Method 1</h3><p>一种处理方式是，将已排序子链表当做一个独立的链表，将当前节点插入到该链表中。</p>
+<p>例子，原链表<code>5-&gt;4-&gt;3-&gt;2-&gt;1</code>.<br><code>5</code>  ,  <code>4-&gt;3-&gt;2-&gt;1</code>,  注意设置相应指针保留以及更新合适值。<br><code>4-&gt;5</code>  ,  <code>3-&gt;2-&gt;1</code><br><code>3-&gt;4-&gt;5</code>  , <code>2-&gt;1</code><br><code>2-&gt;3-&gt;4-&gt;5</code> , <code>1</code><br><code>1-&gt;2-&gt;3-&gt;4-&gt;5</code></p>
+<h3 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2"></a>Method 2</h3><p>这一种处理方式有些不同，但实质上是一样的。<strong>Method 1</strong>更简洁高效，这里记下Method 2只是为了记录思考过程。</p>
+<p>每次处理一个节点后，将其指针翻转，也就是已排序的链表指针方向已经全部反转了，这样就可以直接将当前节点插入该已排序子链表。</p>
+<p>全部处理完后得到的是一个从大小到小的链表，这时再遍历链表一遍，将指针都翻转，得到从小到大的链表。</p>
+<p>例子，原链表<code>5-&gt;4-&gt;3-&gt;2-&gt;1</code>.<br><code>5</code>  ,  <code>4-&gt;3-&gt;2-&gt;1</code>,  注意设置相应指针保留以及更新合适值。<br><code>4&lt;-5</code>  ,  <code>3-&gt;2-&gt;1</code><br><code>3&lt;-4&lt;-5</code>  , <code>2-&gt;1</code><br><code>2&lt;-3&lt;-4&lt;-5</code> , <code>1</code><br><code>1&lt;-2&lt;-3&lt;-4&lt;-5</code></p>
+<p>再翻转一次：<br><code>1-&gt;2-&gt;3-&gt;4-&gt;5</code></p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="Method-1-1"><a href="#Method-1-1" class="headerlink" title="Method 1"></a>Method 1</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * public class ListNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     ListNode next;</div><div class="line"> *     ListNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">insertionSortList</span><span class="params">(ListNode head)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span> || head.next==<span class="keyword">null</span>) <span class="keyword">return</span> head;</div><div class="line">        </div><div class="line">        ListNode newHead = <span class="keyword">null</span>;</div><div class="line">        </div><div class="line">        ListNode last = <span class="keyword">null</span>;</div><div class="line">        ListNode current = head;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(current!=<span class="keyword">null</span>) &#123;</div><div class="line">            ListNode next = current.next;</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(newHead==<span class="keyword">null</span> || current.val&lt;=newHead.val) &#123;</div><div class="line">            	current.next = newHead;</div><div class="line">            	newHead = current;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">            	ListNode moving = newHead;</div><div class="line">            	<span class="keyword">while</span>(moving.next!=<span class="keyword">null</span> &amp;&amp; moving.next.val&lt;current.val) &#123;</div><div class="line">            		moving = moving.next;</div><div class="line">            	&#125;</div><div class="line">            	ListNode temp = moving.next;</div><div class="line">            	moving.next = current;</div><div class="line">            	current.next = temp;</div><div class="line">            &#125;</div><div class="line">            current = next;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> newHead;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Method-2-1"><a href="#Method-2-1" class="headerlink" title="Method 2"></a>Method 2</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * public class ListNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     ListNode next;</div><div class="line"> *     ListNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">insertionSortList</span><span class="params">(ListNode head)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span> || head.next==<span class="keyword">null</span>) <span class="keyword">return</span> head;</div><div class="line">        </div><div class="line">        ListNode last = <span class="keyword">null</span>;</div><div class="line">        ListNode current = head;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(current!=<span class="keyword">null</span>) &#123;</div><div class="line">            ListNode next = current.next;</div><div class="line">            current.next = last;</div><div class="line">            last = current;</div><div class="line">            </div><div class="line">            <span class="keyword">while</span>(current.next!=<span class="keyword">null</span> &amp;&amp; current.val&lt;current.next.val) &#123;</div><div class="line">                <span class="keyword">int</span> temp = current.val;</div><div class="line">                current.val = current.next.val;</div><div class="line">                current.next.val = temp;</div><div class="line">                current = current.next;</div><div class="line">            &#125;</div><div class="line">            current = next;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        current = last;</div><div class="line">        last = <span class="keyword">null</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(current!=<span class="keyword">null</span>) &#123;</div><div class="line">            ListNode next = current.next;</div><div class="line">            current.next = last;</div><div class="line">            last = current;</div><div class="line">            current = next;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> last;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -920,6 +770,153 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/09/09/Leetcode_Rotate Image/" itemprop="url">
+                  Rotate Image
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-09-09T00:00:00+09:00" content="2015-09-09">
+              2015-09-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/09/Leetcode_Rotate Image/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/09/Leetcode_Rotate Image/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Rotate-Image"><a href="#Rotate-Image" class="headerlink" title="Rotate Image"></a><a href="https://leetcode.com/problems/rotate-image/" target="_blank" rel="external">Rotate Image</a></h1><blockquote>
+<p>You are given an n x n 2D matrix representing an image.</p>
+<p>Rotate the image by 90 degrees (clockwise).</p>
+<p>Follow up:<br>Could you do this in-place?</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>首先要观察出的一点是，一个点<code>(x, y)</code>在顺时针<code>90度</code>旋转后移到的坐标为<code>(y, matrix.length-x)</code>.</p>
+<p>这样最简单的方法就是建立一个新矩阵，对应原来的矩阵，按照对应位置一一复制，然后再复制回原矩阵。</p>
+<p>题中follow up要求do it in-place.</p>
+<p>将matrix看成一圈一圈的正方形，最外一圈，内一圈，内一圈……<br>顺时针<code>90度</code>旋转就是将这些正方形的每条边移动到其顺指针的下一条边，对应的每个点由<code>(x, y)</code>到<code>(y, matrix.length-x)</code>.</p>
+<p>所以旋转整个矩阵，可以：<br>依次旋转最外围正方形，再选择内一圈正方形……直到只有边长为1或0。</p>
+<p>对于旋转正方形，将这些正方形的每条边移动到其顺指针的下一条边，对应的每个点由<code>(x, y)</code>到<code>(y, matrix.length-x)</code>.</p>
+<p>假设有一个矩阵:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1	2	3</div><div class="line">4	5	6</div><div class="line">7	8	9</div></pre></td></tr></table></figure>
+<p>先旋转外围正方形：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1	2	3</div><div class="line">4   	6</div><div class="line">7	8	9</div></pre></td></tr></table></figure>
+<p>每次旋转每条边对应的一个点：</p>
+<p>第一步旋转，1到3位置，3到9位置，9到7位置，7到原来1位置，旋转之后：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">7	2	1</div><div class="line">4		6</div><div class="line">9	8	3</div></pre></td></tr></table></figure>
+<p>第一步旋转，2到6位置，6到8位置，8到4位置，4到原来2位置，旋转之后：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">7	4	1</div><div class="line">8		2</div><div class="line">9	6	3</div></pre></td></tr></table></figure>
+<p>这样外围正方形就旋转完成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">7	4	1</div><div class="line">8		2</div><div class="line">9	6	3</div></pre></td></tr></table></figure>
+<p>内一圈正方形为<br><code>3</code></p>
+<p>边长为1，无需操作。如果边长大于等于2，一样按照上面的步骤旋转。</p>
+<p>矩阵旋转完成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">7	4	1</div><div class="line">8	5	2</div><div class="line">9	6	3</div></pre></td></tr></table></figure>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="Assistant-Matrix"><a href="#Assistant-Matrix" class="headerlink" title="Assistant Matrix"></a>Assistant Matrix</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(matrix==<span class="keyword">null</span> || matrix.length==<span class="number">0</span> || matrix[<span class="number">0</span>].length==<span class="number">0</span>) <span class="keyword">return</span>;</div><div class="line">        <span class="keyword">int</span> [][] rotate = <span class="keyword">new</span> <span class="keyword">int</span>[matrix.length][matrix.length];</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;matrix.length; i++) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;matrix[<span class="number">0</span>].length; j++) &#123;</div><div class="line">                rotate[j][matrix.length-<span class="number">1</span>-i] = matrix[i][j];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;matrix.length; i++) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;matrix[<span class="number">0</span>].length; j++) &#123;</div><div class="line">                matrix[i][j] = rotate[i][j];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="In-place"><a href="#In-place" class="headerlink" title="In-place"></a>In-place</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(matrix==<span class="keyword">null</span> || matrix.length==<span class="number">0</span> || matrix[<span class="number">0</span>].length==<span class="number">0</span>) <span class="keyword">return</span>;</div><div class="line">        </div><div class="line">        recRotate(matrix, <span class="number">0</span>, <span class="number">0</span>, matrix.length-<span class="number">2</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recRotate</span><span class="params">(<span class="keyword">int</span> [][] matrix, <span class="keyword">int</span> startX, <span class="keyword">int</span> startY, <span class="keyword">int</span> length)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(length&lt;<span class="number">0</span>) <span class="keyword">return</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;=length; i++) &#123;</div><div class="line">            <span class="keyword">int</span> x = startX;</div><div class="line">            <span class="keyword">int</span> y = startY + i;</div><div class="line">            <span class="keyword">int</span> lastValue = matrix[x][y];</div><div class="line">            </div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> count=<span class="number">0</span>; count&lt;<span class="number">4</span>; count++) &#123;</div><div class="line">                <span class="keyword">int</span> nextX = y;</div><div class="line">                <span class="keyword">int</span> nextY = matrix.length-<span class="number">1</span> - x;</div><div class="line">                <span class="keyword">int</span> nextValue = matrix[nextX][nextY];</div><div class="line">                </div><div class="line">                matrix[nextX][nextY] = lastValue;</div><div class="line">                </div><div class="line">                x = nextX;</div><div class="line">                y = nextY;</div><div class="line">                lastValue = nextValue;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        recRotate(matrix, startX+<span class="number">1</span>, startY+<span class="number">1</span>, length-<span class="number">2</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -965,7 +962,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">329</span>
+              <span class="site-state-item-count">330</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

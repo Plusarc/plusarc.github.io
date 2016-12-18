@@ -260,6 +260,132 @@
             
               
                 
+                <a class="post-title-link" href="/2015/09/12/Leetcode_First Bad Version/" itemprop="url">
+                  First Bad Version
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-09-12T00:00:00+09:00" content="2015-09-12">
+              2015-09-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/12/Leetcode_First Bad Version/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/12/Leetcode_First Bad Version/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="First-Bad-Version"><a href="#First-Bad-Version" class="headerlink" title="First Bad Version"></a><a href="https://leetcode.com/problems/first-bad-version/" target="_blank" rel="external">First Bad Version</a></h1><blockquote>
+<p>You are a product manager and currently leading a team to develop a new product. Unfortunately, the latest version of your product fails the quality check. Since each version is developed based on the previous version, all the versions after a bad version are also bad.</p>
+<p>Suppose you have n versions <code>[1, 2, ..., n]</code> and you want to find out the first bad one, which causes all the following ones to be bad.</p>
+<p>You are given an API <code>bool isBadVersion(version)</code> which will return whether version is bad. Implement a function to find the first bad version. You should minimize the number of calls to the API.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>二分搜索变化形式。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* The isBadVersion API is defined in the parent class VersionControl.</span></div><div class="line">      boolean isBadVersion(int version); */</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> <span class="keyword">extends</span> <span class="title">VersionControl</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">firstBadVersion</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> right = n;</div><div class="line">        <span class="keyword">while</span>(left&lt;=right) &#123;</div><div class="line">            <span class="keyword">int</span> mid = right - (right - left) / <span class="number">2</span>;</div><div class="line">            <span class="keyword">if</span>(isBadVersion(mid)) right = mid - <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> left = mid + <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> left;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/09/12/Leetcode_Word Break II/" itemprop="url">
                   Word Break II
                 </a>
@@ -390,8 +516,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/09/11/Leetcode_Sort List/" itemprop="url">
-                  Sort List
+                <a class="post-title-link" href="/2015/09/11/Leetcode_Pow(x, n) /" itemprop="url">
+                  Pow(x, n)
                 </a>
               
             
@@ -434,8 +560,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/09/11/Leetcode_Sort List/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/11/Leetcode_Sort List/" itemprop="commentsCount"></span>
+                <a href="/2015/09/11/Leetcode_Pow(x, n) /#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/11/Leetcode_Pow(x, n) /" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -460,13 +586,13 @@
       
         
           
-            <h1 id="Sort-List"><a href="#Sort-List" class="headerlink" title="Sort List"></a><a href="https://leetcode.com/problems/sort-list/" target="_blank" rel="external">Sort List</a></h1><blockquote>
-<p>Sort a linked list in O(n log n) time using constant space complexity.</p>
+            <h1 id="Pow-x-n"><a href="#Pow-x-n" class="headerlink" title="Pow(x, n)"></a><a href="https://leetcode.com/problems/powx-n/" target="_blank" rel="external">Pow(x, n)</a></h1><blockquote>
+<p>Implement pow(x, n).</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>这里使用归并排序，无需开辟新的空间，时间复杂度<code>O(log(n))</code>.</p>
-<p>与数组的merge sort不同的是，无法直接通过下标二分数组。</p>
-<p>这里使用快慢指针遍历链表获得链表的前半段和后半段，然后分别对前后半段递归排序，再进行Merge。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * public class ListNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     ListNode next;</div><div class="line"> *     ListNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">sortList</span><span class="params">(ListNode head)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span> || head.next==<span class="keyword">null</span>) <span class="keyword">return</span> head;</div><div class="line">        ListNode slow = head;</div><div class="line">        ListNode fast = head;</div><div class="line">        <span class="keyword">while</span>(fast!=<span class="keyword">null</span>) &#123;</div><div class="line">            fast = fast.next;</div><div class="line">            <span class="keyword">if</span>(fast==<span class="keyword">null</span> || fast.next==<span class="keyword">null</span>) <span class="keyword">break</span>;</div><div class="line">            fast = fast.next;</div><div class="line">            slow = slow.next;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        ListNode nextHead = slow.next;</div><div class="line">        slow.next = <span class="keyword">null</span>;</div><div class="line">        </div><div class="line">        ListNode h1 = sortList(head);</div><div class="line">        ListNode h2 = sortList(nextHead);</div><div class="line">        <span class="keyword">return</span> merge(h1, h2);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">merge</span><span class="params">(ListNode h1, ListNode h2)</span> </span>&#123;</div><div class="line">        ListNode head = <span class="keyword">null</span>;</div><div class="line">        ListNode current = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">while</span>(h1!=<span class="keyword">null</span> || h2!=<span class="keyword">null</span>) &#123;</div><div class="line">            ListNode choose = <span class="keyword">null</span>;</div><div class="line">            <span class="keyword">if</span>(h1!=<span class="keyword">null</span> &amp;&amp; h2!=<span class="keyword">null</span>) &#123;</div><div class="line">                <span class="keyword">if</span>(h1.val&lt;=h2.val) &#123;</div><div class="line">                    choose = h1;</div><div class="line">                    h1 = h1.next;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    choose = h2;</div><div class="line">                    h2 = h2.next;</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span>(h1!=<span class="keyword">null</span>) &#123;</div><div class="line">                choose = h1;</div><div class="line">                h1 = h1.next;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                choose = h2;</div><div class="line">                h2 = h2.next;</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(head==<span class="keyword">null</span>) &#123;</div><div class="line">                head = current = choose;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                current.next = choose;</div><div class="line">                current = choose;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> head;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>最直接的方法是直接将<code>x</code>相乘<code>n</code>次，时间复杂度为<code>O(n)</code>.</p>
+<p>更高效的是二分法处理，<code>x^n = x^(n/2)  *  x^(n/2)  * x^(n%2)</code>，时间复杂度为<code>O(log(n))</code>.</p>
+<p>注意处理，负指数情况以及负指数是<code>Integer.MIN_VALUE</code>的情况。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">myPow</span><span class="params">(<span class="keyword">double</span> x, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(x==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">if</span>(n==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(n&lt;<span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">if</span>(n==Integer.MIN_VALUE) <span class="keyword">return</span> <span class="number">1</span> / (recPow(x, Integer.MAX_VALUE) * x);</div><div class="line">            <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">1</span> / recPow(x, -n);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> recPow(x, n);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">recPow</span><span class="params">(<span class="keyword">double</span> x, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(n==<span class="number">1</span>) <span class="keyword">return</span> x;</div><div class="line">        <span class="keyword">double</span> half = recPow(x, n/<span class="number">2</span>);</div><div class="line">        <span class="keyword">if</span>(n%<span class="number">2</span>==<span class="number">0</span>) <span class="keyword">return</span> half * half;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">return</span> half * half * x;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -642,8 +768,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/09/11/Leetcode_Valid Sudoku/" itemprop="url">
-                  Valid Sudoku
+                <a class="post-title-link" href="/2015/09/11/Leetcode_Sort List/" itemprop="url">
+                  Sort List
                 </a>
               
             
@@ -686,8 +812,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/09/11/Leetcode_Valid Sudoku/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/11/Leetcode_Valid Sudoku/" itemprop="commentsCount"></span>
+                <a href="/2015/09/11/Leetcode_Sort List/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/11/Leetcode_Sort List/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -712,149 +838,13 @@
       
         
           
-            <h1 id="Valid-Sudoku"><a href="#Valid-Sudoku" class="headerlink" title="Valid Sudoku"></a><a href="https://leetcode.com/problems/valid-sudoku/" target="_blank" rel="external">Valid Sudoku</a></h1><blockquote>
-<p>Determine if a Sudoku is valid, according to: Sudoku Puzzles - The Rules.</p>
-<p>The Sudoku board could be partially filled, where empty cells are filled with the character ‘.’.</p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Sudoku-by-L2G-20050714.svg/250px-Sudoku-by-L2G-20050714.svg.png" alt=""></p>
-<p>A partially filled sudoku which is valid.</p>
-<p>Note:<br>A valid Sudoku board (partially filled) is not necessarily solvable. Only the filled cells need to be validated.</p>
+            <h1 id="Sort-List"><a href="#Sort-List" class="headerlink" title="Sort List"></a><a href="https://leetcode.com/problems/sort-list/" target="_blank" rel="external">Sort List</a></h1><blockquote>
+<p>Sort a linked list in O(n log n) time using constant space complexity.</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>本质就是要求每一行不能有重复元素，每一列不能有重复元素，每一个九宫格内不能有重复元素。</p>
-<p>关键是如何记录已经使用过的元素和减少遍历次数。</p>
-<p>这里使用了两种记录方式，都只需要扫描一遍。</p>
-<ol>
-<li>使用HashSet记录已经使用过的元素。</li>
-<li>由于元素是有限的，都在<code>1-9</code>之间，可以采用boolean数组记录是否已经使用过。</li>
-</ol>
-<p>按照行遍历，需要维持 1个行boolean数组(or Set), 3个九宫格boolean数组，9个列boolean数组。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="Boolean-Array-based-method"><a href="#Boolean-Array-based-method" class="headerlink" title="Boolean_Array-based method"></a>Boolean_Array-based method</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isValidSudoku</span><span class="params">(<span class="keyword">char</span>[][] board)</span> </span>&#123;</div><div class="line">        <span class="keyword">boolean</span> [] row = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">boolean</span> [][] boxs = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">boolean</span> [][] lines = <span class="keyword">new</span> <span class="keyword">boolean</span> [<span class="number">9</span>][<span class="number">9</span>];</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">9</span>; i++) &#123;</div><div class="line">            row = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="number">9</span>];</div><div class="line">            <span class="keyword">if</span>(i%<span class="number">3</span>==<span class="number">0</span>) boxs = <span class="keyword">new</span> <span class="keyword">boolean</span> [<span class="number">3</span>][<span class="number">9</span>];</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;<span class="number">9</span>; j++) &#123;</div><div class="line">                <span class="keyword">if</span>(board[i][j]==<span class="string">'.'</span>) <span class="keyword">continue</span>;</div><div class="line">                <span class="keyword">int</span> boxNo = j / <span class="number">3</span>;</div><div class="line">                <span class="keyword">int</span> num = board[i][j] - <span class="string">'1'</span>;</div><div class="line">                <span class="keyword">if</span>(row[num]) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">                <span class="keyword">else</span> row[num] = <span class="keyword">true</span>;</div><div class="line">                </div><div class="line">                <span class="keyword">if</span>(boxs[boxNo][num]) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">                <span class="keyword">else</span> boxs[boxNo][num] = <span class="keyword">true</span>;</div><div class="line">                </div><div class="line">                <span class="keyword">if</span>(lines[j][num]) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">                <span class="keyword">else</span> lines[j][num] = <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="HashSet-based-method"><a href="#HashSet-based-method" class="headerlink" title="HashSet-based method"></a>HashSet-based method</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isValidSudoku</span><span class="params">(<span class="keyword">char</span>[][] board)</span> </span>&#123;</div><div class="line">        Set&lt;Character&gt; row = <span class="keyword">new</span> HashSet&lt;Character&gt;();</div><div class="line">        List&lt;Set&lt;Character&gt;&gt; cols = <span class="keyword">new</span> ArrayList&lt;Set&lt;Character&gt;&gt;();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">9</span>; i++) cols.add(<span class="keyword">new</span> HashSet&lt;Character&gt;());</div><div class="line">        List&lt;Set&lt;Character&gt;&gt; boxs = <span class="keyword">new</span> ArrayList&lt;Set&lt;Character&gt;&gt;();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">3</span>; i++) boxs.add(<span class="keyword">new</span> HashSet&lt;Character&gt;());</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;board.length; i++) &#123;</div><div class="line">        	row.clear();</div><div class="line">        	<span class="keyword">if</span>(i!=<span class="number">0</span> &amp;&amp; i%<span class="number">3</span>==<span class="number">0</span>) &#123;</div><div class="line">        		<span class="keyword">for</span>(<span class="keyword">int</span> cl=<span class="number">0</span>; cl&lt;<span class="number">3</span>; cl++) boxs.get(cl).clear();;</div><div class="line">        	&#125;</div><div class="line">        	</div><div class="line">        	<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;board[<span class="number">0</span>].length; j++) &#123;</div><div class="line">        		<span class="keyword">char</span> ele = board[i][j];</div><div class="line">        		<span class="keyword">if</span>(ele==<span class="string">'.'</span>) <span class="keyword">continue</span>;</div><div class="line">        		<span class="keyword">int</span> box_no = j / <span class="number">3</span>;</div><div class="line">        		</div><div class="line">        		<span class="keyword">if</span>(row.contains(ele)) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        		<span class="keyword">else</span> row.add(ele);</div><div class="line">        		</div><div class="line">        		<span class="keyword">if</span>(cols.get(j).contains(ele)) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        		<span class="keyword">else</span> cols.get(j).add(ele);</div><div class="line">        		</div><div class="line">        		<span class="keyword">if</span>(boxs.get(box_no).contains(ele)) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        		<span class="keyword">else</span> boxs.get(box_no).add(ele);</div><div class="line">        	&#125;</div><div class="line">        &#125;</div><div class="line">    	<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/09/11/Leetcode_Pow(x, n) /" itemprop="url">
-                  Pow(x, n)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-11T00:00:00+09:00" content="2015-09-11">
-              2015-09-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/11/Leetcode_Pow(x, n) /#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/11/Leetcode_Pow(x, n) /" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Pow-x-n"><a href="#Pow-x-n" class="headerlink" title="Pow(x, n)"></a><a href="https://leetcode.com/problems/powx-n/" target="_blank" rel="external">Pow(x, n)</a></h1><blockquote>
-<p>Implement pow(x, n).</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>最直接的方法是直接将<code>x</code>相乘<code>n</code>次，时间复杂度为<code>O(n)</code>.</p>
-<p>更高效的是二分法处理，<code>x^n = x^(n/2)  *  x^(n/2)  * x^(n%2)</code>，时间复杂度为<code>O(log(n))</code>.</p>
-<p>注意处理，负指数情况以及负指数是<code>Integer.MIN_VALUE</code>的情况。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">myPow</span><span class="params">(<span class="keyword">double</span> x, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(x==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">if</span>(n==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(n&lt;<span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">if</span>(n==Integer.MIN_VALUE) <span class="keyword">return</span> <span class="number">1</span> / (recPow(x, Integer.MAX_VALUE) * x);</div><div class="line">            <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">1</span> / recPow(x, -n);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> recPow(x, n);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">recPow</span><span class="params">(<span class="keyword">double</span> x, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(n==<span class="number">1</span>) <span class="keyword">return</span> x;</div><div class="line">        <span class="keyword">double</span> half = recPow(x, n/<span class="number">2</span>);</div><div class="line">        <span class="keyword">if</span>(n%<span class="number">2</span>==<span class="number">0</span>) <span class="keyword">return</span> half * half;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">return</span> half * half * x;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>这里使用归并排序，无需开辟新的空间，时间复杂度<code>O(log(n))</code>.</p>
+<p>与数组的merge sort不同的是，无法直接通过下标二分数组。</p>
+<p>这里使用快慢指针遍历链表获得链表的前半段和后半段，然后分别对前后半段递归排序，再进行Merge。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * public class ListNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     ListNode next;</div><div class="line"> *     ListNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">sortList</span><span class="params">(ListNode head)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span> || head.next==<span class="keyword">null</span>) <span class="keyword">return</span> head;</div><div class="line">        ListNode slow = head;</div><div class="line">        ListNode fast = head;</div><div class="line">        <span class="keyword">while</span>(fast!=<span class="keyword">null</span>) &#123;</div><div class="line">            fast = fast.next;</div><div class="line">            <span class="keyword">if</span>(fast==<span class="keyword">null</span> || fast.next==<span class="keyword">null</span>) <span class="keyword">break</span>;</div><div class="line">            fast = fast.next;</div><div class="line">            slow = slow.next;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        ListNode nextHead = slow.next;</div><div class="line">        slow.next = <span class="keyword">null</span>;</div><div class="line">        </div><div class="line">        ListNode h1 = sortList(head);</div><div class="line">        ListNode h2 = sortList(nextHead);</div><div class="line">        <span class="keyword">return</span> merge(h1, h2);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">merge</span><span class="params">(ListNode h1, ListNode h2)</span> </span>&#123;</div><div class="line">        ListNode head = <span class="keyword">null</span>;</div><div class="line">        ListNode current = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">while</span>(h1!=<span class="keyword">null</span> || h2!=<span class="keyword">null</span>) &#123;</div><div class="line">            ListNode choose = <span class="keyword">null</span>;</div><div class="line">            <span class="keyword">if</span>(h1!=<span class="keyword">null</span> &amp;&amp; h2!=<span class="keyword">null</span>) &#123;</div><div class="line">                <span class="keyword">if</span>(h1.val&lt;=h2.val) &#123;</div><div class="line">                    choose = h1;</div><div class="line">                    h1 = h1.next;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    choose = h2;</div><div class="line">                    h2 = h2.next;</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span>(h1!=<span class="keyword">null</span>) &#123;</div><div class="line">                choose = h1;</div><div class="line">                h1 = h1.next;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                choose = h2;</div><div class="line">                h2 = h2.next;</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(head==<span class="keyword">null</span>) &#123;</div><div class="line">                head = current = choose;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                current.next = choose;</div><div class="line">                current = choose;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> head;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -928,7 +918,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">329</span>
+              <span class="site-state-item-count">330</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

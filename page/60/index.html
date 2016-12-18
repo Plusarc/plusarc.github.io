@@ -260,6 +260,160 @@
             
               
                 
+                <a class="post-title-link" href="/2015/01/05/Java_Log4j/" itemprop="url">
+                  Log4j 2基本使用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-01-05T00:00:00+09:00" content="2015-01-05">
+              2015-01-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/01/05/Java_Log4j/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/01/05/Java_Log4j/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h1><p>Log4j基本的jar包为log4j-core-版本.jar和log4j-api-版本.jar，一般导入这两个jar包足以满足基本使用，其他jar包的功能参考官网。</p>
+<p>在程序中我们可以通过下面的方式获得一个logger,</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Logger logger = LogManager.getLogger(<span class="string">"name of logger"</span>);</div></pre></td></tr></table></figure>
+<p>其中logger_name是在配置文件中指定的，如果没有配置文件或者没有找到对应名字的logger，则会使用默认的logger: 日志级别为ERROR，输出为控制台。</p>
+<p>重点要说明的是日志的级别以及如果配置Logger。Log4j默认有如下级别：trace, debug, info, warn, error, fatal，重要级别依次增加。当然也可以自定义级别，不过一般这些默认级别足够使用，而且也利于扩展和迁移。</p>
+<ul>
+<li>trace一般用于记录程序进行所有的进展信息，数量一般比较多。</li>
+<li>debug一般用于调试输出调试部分所需要查看的信息。</li>
+<li>info一般用于输出重要的关注的信息。</li>
+<li>warn一般用于输出程序可能存在潜在的问题和提示。</li>
+<li>error用于输出错误信息。</li>
+<li>fatal同样用于输出错误信息，一般是程序遇到致命错误需要停止，输出相关信息。</li>
+</ul>
+<p>基本使用如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> org.apache.logging.log4j.LogManager;</div><div class="line"><span class="keyword">import</span> org.apache.logging.log4j.Logger;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LogTest</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> Logger logger = LogManager.getLogger(<span class="keyword">this</span>.class.getName());</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testLog</span><span class="params">()</span> </span>&#123;</div><div class="line">		logger.trace(<span class="string">"this is trace"</span>);</div><div class="line">		logger.info(<span class="string">"important info"</span>);</div><div class="line">		logger.error(<span class="string">"some error happen"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果直接运行上面的代码，trace和info的信息将被丢弃，error及以上信息会被输出到控制台，这时Log4jD的默认配置。</p>
+<h1 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h1><p>我们可以通过配置文件配置logger按照我们所需要的方式工作。配置文件可以为xml,ymal和json格式，一般放在src目录下，如log4j2-test.xml。这里我们介绍基于xml的配置文件，其他文件格式也是类似的，一个简单的配置文件如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">configuration</span> <span class="attr">status</span>=<span class="string">"error"</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--定义appenders--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">appenders</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!--appender 1--&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">Console</span> <span class="attr">name</span>=<span class="string">"Console"</span> <span class="attr">target</span>=<span class="string">"SYSTEM_OUT"</span>&gt;</span></div><div class="line">        	<span class="tag">&lt;<span class="name">ThresholdFilter</span> <span class="attr">level</span>=<span class="string">"info"</span> <span class="attr">onMatch</span>=<span class="string">"ACCEPT"</span> <span class="attr">onMismatch</span>=<span class="string">"DENY"</span>/&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">"%msg%xEx%n"</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">Console</span>&gt;</span></div><div class="line">        </div><div class="line">        <span class="comment">&lt;!--appender 2--&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">Console</span> <span class="attr">name</span>=<span class="string">"allConsole"</span> <span class="attr">target</span>=<span class="string">"SYSTEM_OUT"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">"%msg%xEx%n"</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">Console</span>&gt;</span></div><div class="line">        </div><div class="line">        <span class="comment">&lt;!--appender 3--&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">File</span> <span class="attr">name</span>=<span class="string">"alllog"</span> <span class="attr">fileName</span>=<span class="string">"/Users/chenzb/Desktop/logtest/alllog.log"</span> <span class="attr">append</span>=<span class="string">"false"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">"%msg%xEx%n"</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">File</span>&gt;</span></div><div class="line">        </div><div class="line">        <span class="comment">&lt;!--appender 4--&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">File</span> <span class="attr">name</span>=<span class="string">"keyinfo"</span> <span class="attr">fileName</span>=<span class="string">"/Users/chenzb/Desktop/logtest/keyinfo.log"</span> <span class="attr">append</span>=<span class="string">"true"</span>&gt;</span></div><div class="line">        	<span class="tag">&lt;<span class="name">ThresholdFilter</span> <span class="attr">level</span>=<span class="string">"info"</span> <span class="attr">onMatch</span>=<span class="string">"ACCEPT"</span> <span class="attr">onMismatch</span>=<span class="string">"DENY"</span>/&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">"%msg%xEx%n"</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">File</span>&gt;</span></div><div class="line">        </div><div class="line">        <span class="tag">&lt;<span class="name">RollingFile</span> <span class="attr">name</span>=<span class="string">"rolllog"</span> <span class="attr">fileName</span>=<span class="string">"Users/chenzb/Desktop/logtest/keyinfo.log"</span> <span class="attr">append</span>=<span class="string">"true"</span>"</span></div><div class="line">                     <span class="attr">filePattern</span>=<span class="string">"log/$$&#123;date:yyyy-MM&#125;/app-%d&#123;MM-dd-yyyy&#125;-%i.log.gz"</span>&gt;</div><div class="line">            <span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">"%d&#123;yyyy-MM-dd 'at' HH:mm:ss z&#125; %-5level %class&#123;36&#125; %L %M - %msg%xEx%n"</span>/&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">SizeBasedTriggeringPolicy</span> <span class="attr">size</span>=<span class="string">"10MB"</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">RollingFile</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">appenders</span>&gt;</span></div><div class="line">    </div><div class="line">    <span class="comment">&lt;!--定义logger--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">loggers</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!--默认logger--&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">root</span> <span class="attr">level</span>=<span class="string">"trace"</span>&gt;</span></div><div class="line">        	<span class="comment">&lt;!--这个logger的appender--&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"alllog"</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">root</span>&gt;</span></div><div class="line">        </div><div class="line">        <span class="comment">&lt;!--一个带名字的特定的logger--&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">logger</span> <span class="attr">name</span>=<span class="string">"suggestion"</span> <span class="attr">level</span>=<span class="string">"trace"</span> <span class="attr">additivity</span>=<span class="string">"false"</span>&gt;</span></div><div class="line">        	<span class="comment">&lt;!--这个logger的appender--&gt;</span></div><div class="line">        	<span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"alllog"</span>/&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"keyinfo"</span>/&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"Console"</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">logger</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">loggers</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><configuration>标签声明这是一个配置文件。</configuration></p>
+<h2 id="定义appenders"><a href="#定义appenders" class="headerlink" title="定义appenders"></a>定义appenders</h2><p>首先我们定义所需要的appenders，可以声明任意数量的所需要的appenders，appender记录了日志的输出形式，输出地点，格式，级别过滤等信息。如：</p>
+<p>常用的几种输出形式有Console（输出到控制台），File（输出到文件），RollingFile（超过size自动存为压缩文件）。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">Console</span> <span class="attr">name</span>=<span class="string">"Console"</span> <span class="attr">target</span>=<span class="string">"SYSTEM_OUT"</span>&gt;</span></div><div class="line">        	<span class="tag">&lt;<span class="name">ThresholdFilter</span> <span class="attr">level</span>=<span class="string">"info"</span> <span class="attr">onMatch</span>=<span class="string">"ACCEPT"</span> <span class="attr">onMismatch</span>=<span class="string">"DENY"</span>/&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">"%msg%xEx%n"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">Console</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>这时一个输出到控制台的appender，名字是Console，我们在程序中用于通过logger名字获得logger所使用的参数即是这个参数，目的地是<code>SYSTEM_OUT</code>。另外我们可以通过<code>&lt;ThresholdFilter&gt;</code>定义过滤器，这里我们希望过滤掉info以下的信息，也就是onMismatch，操作是直接拒绝，info及以上的信息accept。也就是只会有info以上的信息会被输出到<code>SYSTEM_OUT</code>。输出的格式为可以通过<patternlayout>定义，info，error的参数标签为<code>%msg</code>。更多的可以定义输出代码位置、时间、级别等信息：</patternlayout></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">"%d&#123;yyyy-MM-dd 'at' HH:mm:ss z&#125; %-5level %class&#123;36&#125; %L %M - %msg%xEx%n"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<p>下面是另一个输出到文件的appender：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">File</span> <span class="attr">name</span>=<span class="string">"keyinfo"</span> <span class="attr">fileName</span>=<span class="string">"/Users/chenzb/Desktop/logtest/keyinfo.log"</span> <span class="attr">append</span>=<span class="string">"true"</span>&gt;</span></div><div class="line">        	<span class="tag">&lt;<span class="name">ThresholdFilter</span> <span class="attr">level</span>=<span class="string">"info"</span> <span class="attr">onMatch</span>=<span class="string">"ACCEPT"</span> <span class="attr">onMismatch</span>=<span class="string">"DENY"</span>/&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">"%msg%xEx%n"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">File</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>可以通过append属性指定是否为追加方式。</p>
+<h2 id="定义loggers"><a href="#定义loggers" class="headerlink" title="定义loggers"></a>定义loggers</h2><p>定义appender后，我们可以定义logger，也就是将会在程序中直接使用的logger的配置。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">logger</span> <span class="attr">name</span>=<span class="string">"suggestion"</span> <span class="attr">level</span>=<span class="string">"trace"</span> <span class="attr">additivity</span>=<span class="string">"false"</span>&gt;</span></div><div class="line">        	<span class="comment">&lt;!--这个logger的appender--&gt;</span></div><div class="line">        	<span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"alllog"</span>/&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"keyinfo"</span>/&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"Console"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">logger</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>这里定义了一个logger，名字为suggestion(用来在程序获得这个logger的实例)，level用于制定这个logger的基本级别，additivity用来指定是否重叠输出，需要注意的是info信息由于级别高于trace，所以它同时也是trace信息，如果additivity为true，则这个info信息将会被输出两次，一次作为info信息，一次trace信息。将additivity设置为false则该信息则只会以其满足的最高级别输出一次。</p>
+<p>对于这个logger，我们使用了三个appender，也就是这个logger所获得信息将会被输出到这个三个appender，再由appender具体根据其配置过滤以及格式等信息输出。</p>
+<p>最终在程序我们可以通过获得该logger的实例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> Logger logger = LogManager.getLogger(<span class="string">"suggestion"</span>);</div></pre></td></tr></table></figure>
+<p>另外如果在配置文件中没有名字为”suggestion”的logger，如果定义了root logger(也就是默认logger)，则会使用root logger，如果没有定义，则会使用Log4j默认配置(只输出error及以上信息到控制台)。</p>
+<p>更多使用参考<a href="http://logging.apache.org/log4j/2.x/manual/configuration.html" target="_blank" rel="external">Apache Log4j官网</a>。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/01/02/Design Pattern_Command pattern/" itemprop="url">
                   Command Pattern
                 </a>
@@ -669,156 +823,6 @@
             
               
                 
-                <a class="post-title-link" href="/2014/12/12/System Design_Scalability/" itemprop="url">
-                  System design_Scalability
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2014-12-12T00:00:00+09:00" content="2014-12-12">
-              2014-12-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/System-design/" itemprop="url" rel="index">
-                    <span itemprop="name">System design</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/12/12/System Design_Scalability/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/12/12/System Design_Scalability/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Scalability"><a href="#Scalability" class="headerlink" title="Scalability"></a>Scalability</h1><p>转自<a href="http://www.lecloud.net/tagged/scalability" target="_blank" rel="external">Scalability for Dummies</a>，非常好的System design介绍文章。</p>
-<p>Just recently I was asked what it would take to make a web service massively scalable. My answer was lengthy and maybe it is also for other people interesting. So I share it with you here in my blog and split it into parts to make it easier to read. New parts are released on a regular basis. Have fun and your comments are always welcomed!</p>
-<h2 id="Part-1-Clones"><a href="#Part-1-Clones" class="headerlink" title="Part 1: Clones"></a>Part 1: Clones</h2><p>Public servers of a scalable web service are hidden behind a load balancer.  This load balancer evenly distributes load (requests from your users) onto your group/cluster of  application servers. That means that if, for example, user Steve interacts with your service, he may be served at his first request by server 2, then with his second request by server 9 and then maybe again by server 2 on his third request. </p>
-<p>Steve should always get the same results of his request back, independent what server he  “landed on”. That leads to the first golden rule for scalability: every server contains exactly the same codebase and does not store any user-related data, like sessions or profile pictures, on local disc or memory. </p>
-<p>Sessions need to be stored in a centralized data store which is accessible to all your application servers. It can be an external database or an external persistent cache, like Redis. An external persistent cache will have better performance than an external database. By external I mean that the data store does not reside on the application servers. Instead, it is somewhere in or near the data center of your application servers. </p>
-<p>But what about deployment? How can you make sure that a code change is sent to all your servers without one server still serving old code? This tricky problem is fortunately already solved by the great tool Capistrano. It requires some learning, especially if you are not into Ruby on Rails, but it is definitely both the effort.</p>
-<p>After “outsourcing” your sessions and serving the same codebase from all your servers, you can now create an image file from one of these servers (AWS calls this AMI - Amazon Machine Image.) Use this AMI as a “super-clone” that all your new instances are based upon. Whenever you start a new instance/clone, just do an initial deployment of your latest code and you are ready!</p>
-<h2 id="Part-2-Database"><a href="#Part-2-Database" class="headerlink" title="Part 2: Database"></a>Part 2: Database</h2><p>After following Part 1 of this series, your servers can now horizontally scale and you can already serve thousands of concurrent requests. But somewhere down the road your application gets slower and slower and finally breaks down. The reason: your database. It’s MySQL, isn’t it?</p>
-<p>Now the required changes are more radical than just adding more cloned servers and may even require some boldness. In the end, you can choose from 2 paths:</p>
-<p><strong>Path #1</strong> is to stick with MySQL and keep the “beast” running. Hire a database administrator (DBA,) tell him to do master-slave replication (read from slaves, write to master) and upgrade your master server by adding RAM, RAM and more RAM. In some months, your DBA will come up with words like “sharding”, “denormalization” and “SQL tuning” and will look worried about the necessary overtime during the next weeks. At that point every new action to keep your database running will be more expensive and time consuming than the previous one. You might have been better off if you had chosen Path #2 while your dataset was still small and easy to migrate.</p>
-<p>**Path #2 means to denormalize right from the beginning and include no more Joins in any database query. You can stay with MySQL, and use it like a NoSQL database, or you can switch to a better and easier to scale NoSQL database like MongoDB or CouchDB. Joins will now need to be done in your application code. The sooner you do this step the less code you will have to change in the future. But even if you successfully switch to the latest and greatest NoSQL database and let your app do the dataset-joins, soon your database requests will again be slower and slower. You will need to introduce a cache.</p>
-<p>But even if successfully switched the latest and greatest NoSQL database and let your app do the dataset-joins, soon your database requests will be again slower and slower. You will need to introduce a cache.</p>
-<h2 id="Part-3-Cache"><a href="#Part-3-Cache" class="headerlink" title="Part 3: Cache"></a>Part 3: Cache</h2><p>After following Part 2 of this series, you now have a scalable database solution. You have no fear of storing terabytes anymore and the world is looking fine. But just for you. Your users still have to suffer slow page requests when a lot of data is fetched from the database. The solution is the implementation of a cache.</p>
-<p>With “cache” I always mean in-memory caches like Memcached or Redis. Please <strong>never do file-based caching</strong>, it makes cloning and auto-scaling of your servers just a pain. </p>
-<p>But back to in-memory caches. A cache is a simple key-value store and it should reside as a buffering layer between your application and your data storage. Whenever your application has to read data it should at first try to retrieve the data from your cache. Only if it’s not in the cache should it then try to get the data from the main data source. Why should you do that? Because a cache is lightning-fast. It holds every dataset in RAM and requests are handled as fast as technically possible. For example, Redis can do several hundreds of thousands of read operations per second when being hosted on a standard server. Also writes, especially increments, are very, very fast. Try that with a database!</p>
-<p>There are 2 patterns of caching your data. An old one and a new one:</p>
-<p><strong>#1 - Cached Database Queries</strong><br>That’s still the most commonly used caching pattern. Whenever you do a query to your database, you store the result dataset in cache. A hashed version of your query is the cache key. The next time you run the query, you first check if it is already in the cache. The next time you run the query, you check at first the cache if there is already a result. This pattern has several issues. The main issue is the expiration. It is hard to delete a cached result when you cache a complex query (who has not?). When one piece of data changes (for example a table cell) you need to delete all cached queries who may include that table cell. You get the point?</p>
-<p><strong>#2 - Cached Objects</strong><br>That’s my strong recommendation and I always prefer this pattern. In general, see your data as an object like you already do in your code (classes, instances, etc.). Let your class assemble a dataset from your database and then store the complete instance of the class or the assembed dataset in the cache. Sounds theoretical, I know, but just look how you normally code. You have, for example, a class called “Product” which has a property called “data”. It is an array containing prices, texts, pictures, and customer reviews of your product. The property “data” is filled by several methods in the class doing several database requests which are hard to cache, since many things relate to each other. Now, do the following: when your class has finished the “assembling” of the data array, directly store the data array, or better yet the complete instance of the class, in the cache! This allows you to easily get rid of the object whenever something did change and makes the overall operation of your code faster and more logical.</p>
-<p>And the best part: it makes asynchronous processing possible! Just imagine an army of worker servers who assemble your objects for you! The application just consumes the latest cached object and nearly never touches the databases anymore!</p>
-<p>Some ideas of objects to cache:</p>
-<p>user sessions (never use the database!)<br>fully rendered blog articles<br>activity streams<br>user&lt;-&gt;friend relationships<br>As you maybe already realized, I am a huge fan of caching. It is easy to understand, very simple to implement and the result is always breathtaking. In general, I am more a friend of Redis than Memcached, because I love the extra database-features of Redis like persistence and the built-in data structures like lists and sets. With Redis and a clever key’ing there may be a chance that you even can get completly rid of a database. But if you just need to cache, take Memcached, because it scales like a charm.</p>
-<p>Happy caching! </p>
-<h2 id="Part-4-Asynchronism"><a href="#Part-4-Asynchronism" class="headerlink" title="Part 4: Asynchronism"></a>Part 4: Asynchronism</h2><p>This 4th part of the series starts with a picture: please imagine that you want to buy bread at your favorite bakery.  So you go into the bakery, ask for a loaf of bread, but there is no bread there! Instead, you are asked to come back in 2 hours when your ordered bread is ready. That’s annoying, isn’t it?</p>
-<p>To avoid such a “please wait a while” - situation, asynchronism needs to be done.  And what’s good for a bakery, is maybe also good for your web service or web app.<br>In general, there are two ways / paradigms asynchronism can be done. </p>
-<p><strong>Async #1</strong><br>Let’s stay in the former bakery picture. The first way of async processing is the “bake the breads at night and sell them in the morning” way. No waiting time at the cash register and a happy customer.  Referring to a web app this means doing the time-consuming work in advance and serving the finished work with a low request time.</p>
-<p>Very often this paradigm is used to turn dynamic content into static content.  Pages of a website, maybe built with a massive framework or CMS, are pre-rendered and locally stored as static HTML files on every change. Often these computing tasks are done on a regular basis, maybe by a script which is called every hour by a cronjob. This pre-computing of overall general data can extremely improve websites and web apps and makes them very scalable and performant. Just imagine the scalability of your website if the script would upload these pre-rendered HTML pages to AWS S3 or Cloudfront or another Content Delivery Network! Your website would be super responsive and could handle millions of visitors per hour!</p>
-<p><strong>Async #2</strong><br>Back to the bakery. Unfortunately, sometimes customers has special requests like a birthday cake with “Happy Birthday, Steve!” on it. The bakery can not foresee these kind of customer wishes, so it must start the task when the customer is in the bakery and tell him to come back at the next day. Refering to a web service that means to handle tasks asynchronously.</p>
-<p>Here is a typical workflow:</p>
-<p>A user comes to your website and starts a very computing intensive task which would take several minutes to finish. So the frontend of your website sends a job onto a job queue and immediately signals back to the user: your job is in work, please continue to the browse the page. The job queue is constantly checked by a bunch of workers for new jobs. If there is a new job then the worker does the job and after some minutes sends a signal that the job was done. The frontend, which constantly checks for new “job is done” - signals, sees that the job was done and informs the user about it. I know, that was a very simplified example. </p>
-<p>If you now want to dive more into the details and actual technical design, I recommend you take a look at the first 3 tutorials on the RabbitMQ website. RabbitMQ is one of many systems which help to implement async processing. You could also use ActiveMQ or a simple Redis list. The basic idea is to have a queue of tasks or jobs that a worker can process. Asynchronism seems complicated, but it is definitely worth your time to learn about it and implement it yourself. Backends become nearly infinitely scalable and frontends become snappy which is good for the overall user experience. </p>
-<p>If you do something time-consuming, try to do it always asynchronously. </p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2014/12/12/Design Pattern_Factory pattern/" itemprop="url">
                   Factory Pattern
                 </a>
@@ -1006,7 +1010,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">329</span>
+              <span class="site-state-item-count">330</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

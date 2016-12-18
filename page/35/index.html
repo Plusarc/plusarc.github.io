@@ -260,8 +260,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/08/14/Leetcode_Maximum Subarray/" itemprop="url">
-                  Maximum Subarray
+                <a class="post-title-link" href="/2015/08/16/Leetcode_Binary Search Tree Iterator/" itemprop="url">
+                  Binary Search Tree Iterator
                 </a>
               
             
@@ -274,8 +274,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-08-14T00:00:00+09:00" content="2015-08-14">
-              2015-08-14
+            <time itemprop="dateCreated" datetime="2015-08-16T00:00:00+09:00" content="2015-08-16">
+              2015-08-16
             </time>
           </span>
 
@@ -304,8 +304,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/08/14/Leetcode_Maximum Subarray/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/14/Leetcode_Maximum Subarray/" itemprop="commentsCount"></span>
+                <a href="/2015/08/16/Leetcode_Binary Search Tree Iterator/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/16/Leetcode_Binary Search Tree Iterator/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -330,149 +330,18 @@
       
         
           
-            <h1 id="Maximum-Subarray"><a href="#Maximum-Subarray" class="headerlink" title="Maximum Subarray "></a><a href="https://leetcode.com/problems/maximum-subarray/" target="_blank" rel="external">Maximum Subarray </a></h1><blockquote>
-<p>Find the contiguous subarray within an array (containing at least one number) which has the largest sum.</p>
-<p>For example, given the array <code>[−2,1,−3,4,−1,2,1,−5,4]</code>,<br>the contiguous subarray <code>[4,−1,2,1]</code> has the largest <code>sum = 6</code>.</p>
+            <h1 id="Binary-Search-Tree-Iterator"><a href="#Binary-Search-Tree-Iterator" class="headerlink" title="Binary Search Tree Iterator "></a><a href="https://leetcode.com/problems/binary-search-tree-iterator/" target="_blank" rel="external">Binary Search Tree Iterator </a></h1><blockquote>
+<p>Implement an iterator over a binary search tree (BST). Your iterator will be initialized with the root node of a BST.</p>
+<p>Calling next() will return the next smallest number in the BST.</p>
+<p>Note: next() and hasNext() should run in average O(1) time and uses O(h) memory, where h is the height of the tree.</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>进阶：矩阵A中有N*N个数，求A的最大的子矩阵。<br>进阶：枚举最大子矩阵的上下边界x和y，将第x行到第y行每一列的数叠加成为一个数。然后就成为了一个初阶的问题。时间复杂度O(n^3)。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> largest = Integer.MIN_VALUE;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> ele : nums) &#123;</div><div class="line">            <span class="keyword">if</span>(sum&gt;=<span class="number">0</span>) sum += ele;</div><div class="line">            <span class="keyword">else</span> sum = ele;</div><div class="line">            largest = Math.max(largest, sum);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> largest;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/08/14/Leetcode_Min Stack/" itemprop="url">
-                  Min Stack
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-08-14T00:00:00+09:00" content="2015-08-14">
-              2015-08-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/08/14/Leetcode_Min Stack/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/14/Leetcode_Min Stack/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Min-Stack"><a href="#Min-Stack" class="headerlink" title="Min Stack"></a><a href="https://leetcode.com/problems/min-stack/" target="_blank" rel="external">Min Stack</a></h1><blockquote>
-<p>Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.</p>
-<p>push(x) – Push element x onto stack.<br>pop() – Removes the element on top of the stack.<br>top() – Get the top element.<br>getMin() – Retrieve the minimum element in the stack.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>关键是getMin操作，如果当前pop的是最小值，就需要遍历整个stack去搜索最小值，则pop的复杂度可能为O(n)。</p>
-<p>增加minStack用于维护最小值，如果push的值小余minStack栈顶的值或minStack为空，则添加到minStack。</p>
-<p>如果一个值m被添加到minStack，说明m是当前push的所有值中最小的，后面又push了很多值，任何比m大的值不会被加入到minStack中，直到出现第一个比m小的值n，会被加入到minStack中。不断pop出，minStack和record中的n是同时被pop出的，这是minStack栈顶为m，一直到minStack和record中的n同时被pop出的，恢复到m被push之前的状态。也就是minStack栈顶一直保持record中的元素的最小值。</p>
-<p><strong>另外在实现中遇到java一个需要很隐蔽但需要注意的问题。</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Stack&lt;Integer&gt; s1 = <span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">Stack&lt;Integer&gt; s2 = <span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">s1.push(<span class="number">200</span>);</div><div class="line">s2.push(<span class="number">200</span>);</div><div class="line">System.out.println(s1.peek()==s2.pop());</div></pre></td></tr></table></figure>
-<p>Return false; 原因在将元素放入Stack，java会自动将整数装箱(boxing)，区间<code>-128-127</code>之外的整数自动装箱时会创建一个新的Integer对象，在判断表达式中两个都是Integer类型，因此不会拆箱也直接比较，默认<code>==</code>操作是比较两个对象的地址。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Stack&lt;Integer&gt; s1 = <span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">Stack&lt;Integer&gt; s2 = <span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">s1.push(<span class="number">1</span>);</div><div class="line">s2.push(<span class="number">1</span>);</div><div class="line">System.out.println(s1.peek()==s2.pop());</div></pre></td></tr></table></figure>
-<p>Return true; 原因是区间在<code>-128-127</code>中的元素在自动装箱时会指向同一个Integer对象。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Stack&lt;Integer&gt; s1 = <span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">Stack&lt;Integer&gt; s2 = <span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">s1.push(<span class="number">1</span>);</div><div class="line">s2.push(<span class="number">1</span>);</div><div class="line">System.out.println(s1.peek()==<span class="number">1</span>);</div></pre></td></tr></table></figure>
-<p>Return true. 在判断式中进行了自动拆箱。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Stack&lt;Integer&gt; s1 = <span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">Stack&lt;Integer&gt; s2 = <span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">s1.push(<span class="keyword">new</span> Integer(<span class="number">1</span>));</div><div class="line">s2.push(<span class="keyword">new</span> Integer(<span class="number">1</span>));</div><div class="line">System.out.println(s1.peek()==s2.pop());</div></pre></td></tr></table></figure>
-<p>Return false，因为没有使用自动装箱。</p>
-<p>##Code</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MinStack</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; stack;</div><div class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; minStack;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MinStack</span><span class="params">()</span> </span>&#123;</div><div class="line">        stack = <span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">        minStack = <span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">        stack.push(x);</div><div class="line">        <span class="keyword">if</span>(minStack.isEmpty() || x&lt;=minStack.peek()) minStack.push(x);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(!stack.isEmpty()) &#123;</div><div class="line">            <span class="keyword">int</span> temp = stack.pop();</div><div class="line">            <span class="keyword">if</span>(minStack.peek()==temp) minStack.pop();</div><div class="line">            <span class="keyword">if</span>(minStack.peek()==stack.pop()) minStack.pop();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> stack.peek();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getMin</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> minStack.peek();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>next操作相当于取出BST的最小节点并将其从树中删除。一直向左子结点遍历知道其左子结点为null时，即为这个树的左子最小节点，获得该节点值。另外需要将这个节点从BST中删除，还需要保持BST的性质。</p>
+<p>若该节点没有子节点，则直接删除。<br>若该节点有右子节点，其父节点的左指针指向该节点的右子节点。<br>如果该节点为根节点，需要将根节点重新设置为根的右子节点。</p>
+<p>遍历完了树就没了，破坏性太大。。然后时间复杂度是O(h)的，无法达到O(1)。上面的方法一般是用于BST删除最小节点时用的。</p>
+<p>second time给出了另一种基于栈的方法，不会破坏树的结构。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for binary tree</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BSTIterator</span> </span>&#123;</div><div class="line">    TreeNode rootNode;</div><div class="line">    TreeNode delNode;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BSTIterator</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">        rootNode = root;</div><div class="line">        delNode = <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/** <span class="doctag">@return</span> whether we have a next smallest number */</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> rootNode!=<span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/** <span class="doctag">@return</span> the next smallest number */</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">next</span><span class="params">()</span> </span>&#123;</div><div class="line">        recDelMin(rootNode);</div><div class="line">        <span class="keyword">if</span>(delNode==rootNode) &#123;</div><div class="line">            <span class="keyword">int</span> temp = delNode.val;</div><div class="line">            rootNode = rootNode.right;</div><div class="line">            <span class="keyword">return</span> temp;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span>  delNode.val;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">recDelMin</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(root.left==<span class="keyword">null</span>) &#123;</div><div class="line">            delNode = root;</div><div class="line">            </div><div class="line">            <span class="keyword">return</span> root.right;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        root.left = recDelMin(root.left);</div><div class="line">        <span class="keyword">return</span> root;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Your BSTIterator will be called like this:</div><div class="line"> * BSTIterator i = new BSTIterator(root);</div><div class="line"> * while (i.hasNext()) v[f()] = i.next();</div><div class="line"> */</div></pre></td></tr></table></figure>
+<p>second time</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for binary tree</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BSTIterator</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> Stack&lt;TreeNode&gt; stack;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BSTIterator</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">        stack = <span class="keyword">new</span> Stack&lt;TreeNode&gt;();</div><div class="line">        addLeft(root);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addLeft</span><span class="params">(TreeNode node)</span> </span>&#123;</div><div class="line">        <span class="keyword">while</span>(node!=<span class="keyword">null</span>) &#123;</div><div class="line">            stack.push(node);</div><div class="line">            node = node.left;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/** <span class="doctag">@return</span> whether we have a next smallest number */</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> !stack.isEmpty();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/** <span class="doctag">@return</span> the next smallest number */</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">next</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(stack.isEmpty()) <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">        TreeNode next = stack.pop();</div><div class="line">        <span class="keyword">if</span>(next.right!=<span class="keyword">null</span>) &#123;</div><div class="line">            addLeft(next.right);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> next.val;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Your BSTIterator will be called like this:</div><div class="line"> * BSTIterator i = new BSTIterator(root);</div><div class="line"> * while (i.hasNext()) v[f()] = i.next();</div><div class="line"> */</div></pre></td></tr></table></figure>
 
           
         
@@ -650,6 +519,131 @@
             
               
                 
+                <a class="post-title-link" href="/2015/08/14/Leetcode_Maximum Subarray/" itemprop="url">
+                  Maximum Subarray
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-08-14T00:00:00+09:00" content="2015-08-14">
+              2015-08-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/08/14/Leetcode_Maximum Subarray/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/14/Leetcode_Maximum Subarray/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Maximum-Subarray"><a href="#Maximum-Subarray" class="headerlink" title="Maximum Subarray "></a><a href="https://leetcode.com/problems/maximum-subarray/" target="_blank" rel="external">Maximum Subarray </a></h1><blockquote>
+<p>Find the contiguous subarray within an array (containing at least one number) which has the largest sum.</p>
+<p>For example, given the array <code>[−2,1,−3,4,−1,2,1,−5,4]</code>,<br>the contiguous subarray <code>[4,−1,2,1]</code> has the largest <code>sum = 6</code>.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>进阶：矩阵A中有N*N个数，求A的最大的子矩阵。<br>进阶：枚举最大子矩阵的上下边界x和y，将第x行到第y行每一列的数叠加成为一个数。然后就成为了一个初阶的问题。时间复杂度O(n^3)。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> largest = Integer.MIN_VALUE;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> ele : nums) &#123;</div><div class="line">            <span class="keyword">if</span>(sum&gt;=<span class="number">0</span>) sum += ele;</div><div class="line">            <span class="keyword">else</span> sum = ele;</div><div class="line">            largest = Math.max(largest, sum);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> largest;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/08/14/Leetcode_Implement Queue using Stacks/" itemprop="url">
                   Implement Queue using Stacks
                 </a>
@@ -778,8 +772,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/08/13/Leetcode_Convert Sorted Array to Binary Search Tree/" itemprop="url">
-                  Convert Sorted Array to Binary Search Tree
+                <a class="post-title-link" href="/2015/08/14/Leetcode_Min Stack/" itemprop="url">
+                  Min Stack
                 </a>
               
             
@@ -792,8 +786,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-08-13T00:00:00+09:00" content="2015-08-13">
-              2015-08-13
+            <time itemprop="dateCreated" datetime="2015-08-14T00:00:00+09:00" content="2015-08-14">
+              2015-08-14
             </time>
           </span>
 
@@ -822,8 +816,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/08/13/Leetcode_Convert Sorted Array to Binary Search Tree/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/13/Leetcode_Convert Sorted Array to Binary Search Tree/" itemprop="commentsCount"></span>
+                <a href="/2015/08/14/Leetcode_Min Stack/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/14/Leetcode_Min Stack/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -848,12 +842,24 @@
       
         
           
-            <h1 id="Convert-Sorted-Array-to-Binary-Search-Tree"><a href="#Convert-Sorted-Array-to-Binary-Search-Tree" class="headerlink" title="Convert Sorted Array to Binary Search Tree"></a><a href="">Convert Sorted Array to Binary Search Tree</a></h1><blockquote>
-<p>Given an array where elements are sorted in ascending order, convert it to a height balanced BST.</p>
+            <h1 id="Min-Stack"><a href="#Min-Stack" class="headerlink" title="Min Stack"></a><a href="https://leetcode.com/problems/min-stack/" target="_blank" rel="external">Min Stack</a></h1><blockquote>
+<p>Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.</p>
+<p>push(x) – Push element x onto stack.<br>pop() – Removes the element on top of the stack.<br>top() – Get the top element.<br>getMin() – Retrieve the minimum element in the stack.</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>递归解决，每次选取当前数组的中心作为根节点，左边的子数组递归构建左子树，右边的子数组递归构建右子树。</p>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>关键是getMin操作，如果当前pop的是最小值，就需要遍历整个stack去搜索最小值，则pop的复杂度可能为O(n)。</p>
+<p>增加minStack用于维护最小值，如果push的值小余minStack栈顶的值或minStack为空，则添加到minStack。</p>
+<p>如果一个值m被添加到minStack，说明m是当前push的所有值中最小的，后面又push了很多值，任何比m大的值不会被加入到minStack中，直到出现第一个比m小的值n，会被加入到minStack中。不断pop出，minStack和record中的n是同时被pop出的，这是minStack栈顶为m，一直到minStack和record中的n同时被pop出的，恢复到m被push之前的状态。也就是minStack栈顶一直保持record中的元素的最小值。</p>
+<p><strong>另外在实现中遇到java一个需要很隐蔽但需要注意的问题。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Stack&lt;Integer&gt; s1 = <span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">Stack&lt;Integer&gt; s2 = <span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">s1.push(<span class="number">200</span>);</div><div class="line">s2.push(<span class="number">200</span>);</div><div class="line">System.out.println(s1.peek()==s2.pop());</div></pre></td></tr></table></figure>
+<p>Return false; 原因在将元素放入Stack，java会自动将整数装箱(boxing)，区间<code>-128-127</code>之外的整数自动装箱时会创建一个新的Integer对象，在判断表达式中两个都是Integer类型，因此不会拆箱也直接比较，默认<code>==</code>操作是比较两个对象的地址。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Stack&lt;Integer&gt; s1 = <span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">Stack&lt;Integer&gt; s2 = <span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">s1.push(<span class="number">1</span>);</div><div class="line">s2.push(<span class="number">1</span>);</div><div class="line">System.out.println(s1.peek()==s2.pop());</div></pre></td></tr></table></figure>
+<p>Return true; 原因是区间在<code>-128-127</code>中的元素在自动装箱时会指向同一个Integer对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Stack&lt;Integer&gt; s1 = <span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">Stack&lt;Integer&gt; s2 = <span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">s1.push(<span class="number">1</span>);</div><div class="line">s2.push(<span class="number">1</span>);</div><div class="line">System.out.println(s1.peek()==<span class="number">1</span>);</div></pre></td></tr></table></figure>
+<p>Return true. 在判断式中进行了自动拆箱。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Stack&lt;Integer&gt; s1 = <span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">Stack&lt;Integer&gt; s2 = <span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">s1.push(<span class="keyword">new</span> Integer(<span class="number">1</span>));</div><div class="line">s2.push(<span class="keyword">new</span> Integer(<span class="number">1</span>));</div><div class="line">System.out.println(s1.peek()==s2.pop());</div></pre></td></tr></table></figure>
+<p>Return false，因为没有使用自动装箱。</p>
 <p>##Code</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">sortedArrayToBST</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> recBuild(nums, <span class="number">0</span>, nums.length-<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">recBuild</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(begin&gt;end) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">if</span>(begin==end) <span class="keyword">return</span> <span class="keyword">new</span> TreeNode(nums[begin]);</div><div class="line">        <span class="keyword">int</span> mid = begin + (end-begin) / <span class="number">2</span>;</div><div class="line">        TreeNode root = <span class="keyword">new</span> TreeNode(nums[mid]);</div><div class="line">        root.left = recBuild(nums, begin, mid-<span class="number">1</span>);</div><div class="line">        root.right = recBuild(nums, mid+<span class="number">1</span>, end);</div><div class="line">        <span class="keyword">return</span> root;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MinStack</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; stack;</div><div class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; minStack;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MinStack</span><span class="params">()</span> </span>&#123;</div><div class="line">        stack = <span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">        minStack = <span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">        stack.push(x);</div><div class="line">        <span class="keyword">if</span>(minStack.isEmpty() || x&lt;=minStack.peek()) minStack.push(x);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(!stack.isEmpty()) &#123;</div><div class="line">            <span class="keyword">int</span> temp = stack.pop();</div><div class="line">            <span class="keyword">if</span>(minStack.peek()==temp) minStack.pop();</div><div class="line">            <span class="keyword">if</span>(minStack.peek()==stack.pop()) minStack.pop();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> stack.peek();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getMin</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> minStack.peek();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -927,7 +933,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">329</span>
+              <span class="site-state-item-count">330</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

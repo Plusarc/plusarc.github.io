@@ -260,8 +260,8 @@
             
               
                 
-                <a class="post-title-link" href="/2014/12/10/System Design_System Design总结/" itemprop="url">
-                  System Design总结
+                <a class="post-title-link" href="/2014/12/12/System Design_Scalability/" itemprop="url">
+                  System design_Scalability
                 </a>
               
             
@@ -274,8 +274,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2014-12-10T00:00:00+09:00" content="2014-12-10">
-              2014-12-10
+            <time itemprop="dateCreated" datetime="2014-12-12T00:00:00+09:00" content="2014-12-12">
+              2014-12-12
             </time>
           </span>
 
@@ -304,8 +304,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2014/12/10/System Design_System Design总结/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/12/10/System Design_System Design总结/" itemprop="commentsCount"></span>
+                <a href="/2014/12/12/System Design_Scalability/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/12/12/System Design_Scalability/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -330,39 +330,37 @@
       
         
           
-            <h1 id="System-Design总结-from-mitbbs"><a href="#System-Design总结-from-mitbbs" class="headerlink" title="System Design总结[from mitbbs]"></a>System Design总结[from mitbbs]</h1><p>最近在准备系统设计方面的内容，找到一篇不错的文章，转自<a href="http://www.mitbbs.com/article_t/JobHunting/32777529.html" target="_blank" rel="external">我的System Design总结</a>，结构有少许调整。</p>
-<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><p>System Design和OO Design不同 System Design在FLAG以及很多大公司中主要<br>是design scalable distributed systems 这里只讨论如何准备这种题目。</p>
-<p>对于0基础的同学们 下面的资料可以按顺序开始看:</p>
-<ol>
-<li><p><a href="http://www.hiredintech.com/app#system-design" target="_blank" rel="external">http://www.hiredintech.com/app#system-design</a><br>这是一个专门准备面试的网站 你只用关心system design部分 有很多的link后面会重<br>复提到 建议看完至少一遍</p>
-</li>
-<li><p><a href="https://www.youtube.com/watch?v=-W9F__D3oY4" target="_blank" rel="external">https://www.youtube.com/watch?v=-W9F__D3oY4</a><br>非常非常好的入门资料 建议看3遍以上！<br>这是1里面提到的资料 是Harvard web app课的最后一节 讲scalability 里面会讲到很<br>多基础概念比如Vertical scaling, Horizontal scaling, Caching, Load balancing,<br>Database replication, Database partitioning 还会提到很多基本思想比如avoid<br>single point of failure<br>再强调一遍 非常好的资料！</p>
-</li>
-<li><p><a href="http://www.lecloud.net/post/7295452622/scalability-for-dummies-part-1-clones" target="_blank" rel="external">http://www.lecloud.net/post/7295452622/scalability-for-dummies-part-1-clones</a><br>前面课程里提到的 Scalability for Dummies 还算不错 可以看一遍 知道基本思想</p>
-</li>
-</ol>
-<p>结束语：当你结束这一部分的学习的时候 你已经比50%的candidate知道的多了(因为很<br>多人都不准备 或者不知道怎么准备system design) 恭喜:)</p>
-<h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><p>这一部分的资料更加零散 每个看的可能不一样 但是你每多看一篇文章或者一个视频<br>你就比别人强一点<br>这部分你会遇到很多新名词 我的建议是每当你遇到一个不懂的概念时 多google一下<br>看看这个概念或者技术是什么意思 优点和缺点各是什么 什么时候用 这些你都知道以<br>后 你就可以把他运用到面试中 让面试官刮目相看了</p>
-<ol>
-<li><p><a href="http://highscalability.com/blog/2009/8/6/an-unorthodox-approach-to-database-design-the-coming-of-the.html" target="_blank" rel="external">http://highscalability.com/blog/2009/8/6/an-unorthodox-approach-to-database-design-the-coming-of-the.html</a><br>Database Sharding是一个很重要的概念 建议看一看</p>
-</li>
-<li><p><a href="http://highscalability.com/all-time-favorites/" target="_blank" rel="external">http://highscalability.com/all-time-favorites/</a><br>这个里面会讲到很多非常流行的网站架构是如何实现的 比如Twitter, Youtube,<br>Pinterest, Google等等 我的建议是看5-6个 然后你应该已经建立起了一些基本的意识<br>还有知道了某些技术和产品的作用和mapping 比如说到cache你会想到memcached和<br>Redis 说到<br>load balancer你会想到 Amazon ELB, F5一类的</p>
-</li>
-<li><p><a href="http://www.infoq.com/" target="_blank" rel="external">http://www.infoq.com/</a><br>5里面很多的文章都会有链接 其中有很多会指向这个网站 这里面有很多的tech talk<br>很不错 可以看看</p>
-</li>
-<li><p><a href="https://www.facebook.com/Engineering/notes" target="_blank" rel="external">https://www.facebook.com/Engineering/notes</a><br>Facebook非常好的技术日志 会讲很多facebook的feature怎么实现的 比如facebook<br>message:<a href="https://www.facebook.com/notes/facebook-engineering/the-underlying-" target="_blank" rel="external">https://www.facebook.com/notes/facebook-engineering/the-underlying-</a><br>technology-of-messages/454991608919 建议看看 尤其是准备面facebook的同学<br>这有一个facebook talk讲storage的<a href="https://www.youtube.com/watch?v=5RfFhMwRAic" target="_blank" rel="external">https://www.youtube.com/watch?v=5RfFhMwRAic</a></p>
-</li>
-<li><p>一些国内网站上的资料<br><a href="http://blog.csdn.net/sigh1988/article/details/9790337" target="_blank" rel="external">http://blog.csdn.net/sigh1988/article/details/9790337</a><br><a href="http://blog.csdn.net/v_july_v/article/details/6279498" target="_blank" rel="external">http://blog.csdn.net/v_july_v/article/details/6279498</a></p>
-</li>
-<li><p>最后一些概念很有用 都是我再看这些资料的时候发现的 如果你没有遇到或者查过<br>建议查查<br>Distributed Hash Table<br>Eventual Consistency vs Strong Consistency<br>Read Heavy vs Write Heavy<br>Consistent Hashing<br>Sticky Sessions<br>Structured Data(uses DynamoDB) vs Unstructured Data(uses S3)<br><a href="http://smartdatacollective.com/michelenemschoff/206391/quick-guide-structured-and-unstructured-data" target="_blank" rel="external">http://smartdatacollective.com/michelenemschoff/206391/quick-guide-structured-and-unstructured-data</a><br><a href="http://stackoverflow.com/questions/18678315/amazon-s3-or-dynamodb" target="_blank" rel="external">http://stackoverflow.com/questions/18678315/amazon-s3-or-dynamodb</a></p>
-</li>
-<li><p>给有兴趣深入研究的人看的<br>Mining Massive Datasets –讲很多big data和data mining的东西<br>Big Data: Principles and best practices of scalable realtime data systems –<br>twitter的前员工讲述如何处理实时数据</p>
-</li>
-<li><p>凌乱的资料 随便看看吧<br><a href="http://highscalability.com/blog/2013/10/28/design-decisions-for" target="_blank" rel="external">http://highscalability.com/blog/2013/10/28/design-decisions-for</a></p>
-</li>
-</ol>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>看多了以后 你的最终目标应该是心里有了一个大框架 一个基本的distributed system<br>是怎么搭起来的 然后心里有很多if condition 如果要是满足这个条件 我应该用什么<br>技术 比如如果read heavy那么用cache会提升performance之类的 同时知道应该避免什<br>么东西 比如避免single point of failure 再比如时间和空间的tradeoff在read<br>heavy的时候应该倾向于时间 Write heavy的时候倾向于空间等等</p>
-<p>你总结出来的和我总结出来的大框架和if conditions肯定不完全一样 但因为system<br>design本来就是一个open ended question 所以不用害怕 能够自圆其说 就不会有问题。</p>
+            <h1 id="Scalability"><a href="#Scalability" class="headerlink" title="Scalability"></a>Scalability</h1><p>转自<a href="http://www.lecloud.net/tagged/scalability" target="_blank" rel="external">Scalability for Dummies</a>，非常好的System design介绍文章。</p>
+<p>Just recently I was asked what it would take to make a web service massively scalable. My answer was lengthy and maybe it is also for other people interesting. So I share it with you here in my blog and split it into parts to make it easier to read. New parts are released on a regular basis. Have fun and your comments are always welcomed!</p>
+<h2 id="Part-1-Clones"><a href="#Part-1-Clones" class="headerlink" title="Part 1: Clones"></a>Part 1: Clones</h2><p>Public servers of a scalable web service are hidden behind a load balancer.  This load balancer evenly distributes load (requests from your users) onto your group/cluster of  application servers. That means that if, for example, user Steve interacts with your service, he may be served at his first request by server 2, then with his second request by server 9 and then maybe again by server 2 on his third request. </p>
+<p>Steve should always get the same results of his request back, independent what server he  “landed on”. That leads to the first golden rule for scalability: every server contains exactly the same codebase and does not store any user-related data, like sessions or profile pictures, on local disc or memory. </p>
+<p>Sessions need to be stored in a centralized data store which is accessible to all your application servers. It can be an external database or an external persistent cache, like Redis. An external persistent cache will have better performance than an external database. By external I mean that the data store does not reside on the application servers. Instead, it is somewhere in or near the data center of your application servers. </p>
+<p>But what about deployment? How can you make sure that a code change is sent to all your servers without one server still serving old code? This tricky problem is fortunately already solved by the great tool Capistrano. It requires some learning, especially if you are not into Ruby on Rails, but it is definitely both the effort.</p>
+<p>After “outsourcing” your sessions and serving the same codebase from all your servers, you can now create an image file from one of these servers (AWS calls this AMI - Amazon Machine Image.) Use this AMI as a “super-clone” that all your new instances are based upon. Whenever you start a new instance/clone, just do an initial deployment of your latest code and you are ready!</p>
+<h2 id="Part-2-Database"><a href="#Part-2-Database" class="headerlink" title="Part 2: Database"></a>Part 2: Database</h2><p>After following Part 1 of this series, your servers can now horizontally scale and you can already serve thousands of concurrent requests. But somewhere down the road your application gets slower and slower and finally breaks down. The reason: your database. It’s MySQL, isn’t it?</p>
+<p>Now the required changes are more radical than just adding more cloned servers and may even require some boldness. In the end, you can choose from 2 paths:</p>
+<p><strong>Path #1</strong> is to stick with MySQL and keep the “beast” running. Hire a database administrator (DBA,) tell him to do master-slave replication (read from slaves, write to master) and upgrade your master server by adding RAM, RAM and more RAM. In some months, your DBA will come up with words like “sharding”, “denormalization” and “SQL tuning” and will look worried about the necessary overtime during the next weeks. At that point every new action to keep your database running will be more expensive and time consuming than the previous one. You might have been better off if you had chosen Path #2 while your dataset was still small and easy to migrate.</p>
+<p>**Path #2 means to denormalize right from the beginning and include no more Joins in any database query. You can stay with MySQL, and use it like a NoSQL database, or you can switch to a better and easier to scale NoSQL database like MongoDB or CouchDB. Joins will now need to be done in your application code. The sooner you do this step the less code you will have to change in the future. But even if you successfully switch to the latest and greatest NoSQL database and let your app do the dataset-joins, soon your database requests will again be slower and slower. You will need to introduce a cache.</p>
+<p>But even if successfully switched the latest and greatest NoSQL database and let your app do the dataset-joins, soon your database requests will be again slower and slower. You will need to introduce a cache.</p>
+<h2 id="Part-3-Cache"><a href="#Part-3-Cache" class="headerlink" title="Part 3: Cache"></a>Part 3: Cache</h2><p>After following Part 2 of this series, you now have a scalable database solution. You have no fear of storing terabytes anymore and the world is looking fine. But just for you. Your users still have to suffer slow page requests when a lot of data is fetched from the database. The solution is the implementation of a cache.</p>
+<p>With “cache” I always mean in-memory caches like Memcached or Redis. Please <strong>never do file-based caching</strong>, it makes cloning and auto-scaling of your servers just a pain. </p>
+<p>But back to in-memory caches. A cache is a simple key-value store and it should reside as a buffering layer between your application and your data storage. Whenever your application has to read data it should at first try to retrieve the data from your cache. Only if it’s not in the cache should it then try to get the data from the main data source. Why should you do that? Because a cache is lightning-fast. It holds every dataset in RAM and requests are handled as fast as technically possible. For example, Redis can do several hundreds of thousands of read operations per second when being hosted on a standard server. Also writes, especially increments, are very, very fast. Try that with a database!</p>
+<p>There are 2 patterns of caching your data. An old one and a new one:</p>
+<p><strong>#1 - Cached Database Queries</strong><br>That’s still the most commonly used caching pattern. Whenever you do a query to your database, you store the result dataset in cache. A hashed version of your query is the cache key. The next time you run the query, you first check if it is already in the cache. The next time you run the query, you check at first the cache if there is already a result. This pattern has several issues. The main issue is the expiration. It is hard to delete a cached result when you cache a complex query (who has not?). When one piece of data changes (for example a table cell) you need to delete all cached queries who may include that table cell. You get the point?</p>
+<p><strong>#2 - Cached Objects</strong><br>That’s my strong recommendation and I always prefer this pattern. In general, see your data as an object like you already do in your code (classes, instances, etc.). Let your class assemble a dataset from your database and then store the complete instance of the class or the assembed dataset in the cache. Sounds theoretical, I know, but just look how you normally code. You have, for example, a class called “Product” which has a property called “data”. It is an array containing prices, texts, pictures, and customer reviews of your product. The property “data” is filled by several methods in the class doing several database requests which are hard to cache, since many things relate to each other. Now, do the following: when your class has finished the “assembling” of the data array, directly store the data array, or better yet the complete instance of the class, in the cache! This allows you to easily get rid of the object whenever something did change and makes the overall operation of your code faster and more logical.</p>
+<p>And the best part: it makes asynchronous processing possible! Just imagine an army of worker servers who assemble your objects for you! The application just consumes the latest cached object and nearly never touches the databases anymore!</p>
+<p>Some ideas of objects to cache:</p>
+<p>user sessions (never use the database!)<br>fully rendered blog articles<br>activity streams<br>user&lt;-&gt;friend relationships<br>As you maybe already realized, I am a huge fan of caching. It is easy to understand, very simple to implement and the result is always breathtaking. In general, I am more a friend of Redis than Memcached, because I love the extra database-features of Redis like persistence and the built-in data structures like lists and sets. With Redis and a clever key’ing there may be a chance that you even can get completly rid of a database. But if you just need to cache, take Memcached, because it scales like a charm.</p>
+<p>Happy caching! </p>
+<h2 id="Part-4-Asynchronism"><a href="#Part-4-Asynchronism" class="headerlink" title="Part 4: Asynchronism"></a>Part 4: Asynchronism</h2><p>This 4th part of the series starts with a picture: please imagine that you want to buy bread at your favorite bakery.  So you go into the bakery, ask for a loaf of bread, but there is no bread there! Instead, you are asked to come back in 2 hours when your ordered bread is ready. That’s annoying, isn’t it?</p>
+<p>To avoid such a “please wait a while” - situation, asynchronism needs to be done.  And what’s good for a bakery, is maybe also good for your web service or web app.<br>In general, there are two ways / paradigms asynchronism can be done. </p>
+<p><strong>Async #1</strong><br>Let’s stay in the former bakery picture. The first way of async processing is the “bake the breads at night and sell them in the morning” way. No waiting time at the cash register and a happy customer.  Referring to a web app this means doing the time-consuming work in advance and serving the finished work with a low request time.</p>
+<p>Very often this paradigm is used to turn dynamic content into static content.  Pages of a website, maybe built with a massive framework or CMS, are pre-rendered and locally stored as static HTML files on every change. Often these computing tasks are done on a regular basis, maybe by a script which is called every hour by a cronjob. This pre-computing of overall general data can extremely improve websites and web apps and makes them very scalable and performant. Just imagine the scalability of your website if the script would upload these pre-rendered HTML pages to AWS S3 or Cloudfront or another Content Delivery Network! Your website would be super responsive and could handle millions of visitors per hour!</p>
+<p><strong>Async #2</strong><br>Back to the bakery. Unfortunately, sometimes customers has special requests like a birthday cake with “Happy Birthday, Steve!” on it. The bakery can not foresee these kind of customer wishes, so it must start the task when the customer is in the bakery and tell him to come back at the next day. Refering to a web service that means to handle tasks asynchronously.</p>
+<p>Here is a typical workflow:</p>
+<p>A user comes to your website and starts a very computing intensive task which would take several minutes to finish. So the frontend of your website sends a job onto a job queue and immediately signals back to the user: your job is in work, please continue to the browse the page. The job queue is constantly checked by a bunch of workers for new jobs. If there is a new job then the worker does the job and after some minutes sends a signal that the job was done. The frontend, which constantly checks for new “job is done” - signals, sees that the job was done and informs the user about it. I know, that was a very simplified example. </p>
+<p>If you now want to dive more into the details and actual technical design, I recommend you take a look at the first 3 tutorials on the RabbitMQ website. RabbitMQ is one of many systems which help to implement async processing. You could also use ActiveMQ or a simple Redis list. The basic idea is to have a queue of tasks or jobs that a worker can process. Asynchronism seems complicated, but it is definitely worth your time to learn about it and implement it yourself. Backends become nearly infinitely scalable and frontends become snappy which is good for the overall user experience. </p>
+<p>If you do something time-consuming, try to do it always asynchronously. </p>
 
           
         
@@ -534,8 +532,8 @@
             
               
                 
-                <a class="post-title-link" href="/2014/11/22/Developing_Tomcat/" itemprop="url">
-                  Tomcat on Mac
+                <a class="post-title-link" href="/2014/12/10/System Design_System Design总结/" itemprop="url">
+                  System Design总结
                 </a>
               
             
@@ -548,8 +546,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2014-11-22T00:00:00+09:00" content="2014-11-22">
-              2014-11-22
+            <time itemprop="dateCreated" datetime="2014-12-10T00:00:00+09:00" content="2014-12-10">
+              2014-12-10
             </time>
           </span>
 
@@ -562,8 +560,8 @@
               <span class="post-meta-item-text">分類於</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Developing/" itemprop="url" rel="index">
-                    <span itemprop="name">Developing</span>
+                  <a href="/categories/System-design/" itemprop="url" rel="index">
+                    <span itemprop="name">System design</span>
                   </a>
                 </span>
 
@@ -578,8 +576,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2014/11/22/Developing_Tomcat/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/11/22/Developing_Tomcat/" itemprop="commentsCount"></span>
+                <a href="/2014/12/10/System Design_System Design总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/12/10/System Design_System Design总结/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -604,21 +602,39 @@
       
         
           
-            <h2 id="Tomcat在mac上的安装"><a href="#Tomcat在mac上的安装" class="headerlink" title="Tomcat在mac上的安装"></a>Tomcat在mac上的安装</h2><ul>
-<li>安装java并配置好JAVA_HOME</li>
-<li>下载<a href="http://tomcat.apache.org/download-90.cgi" target="_blank" rel="external">Tomcat</a>并验证md5</li>
-<li>解压到<code>/Library/</code>下（其他目录也可以），命名为Tomcat</li>
-<li>修改文件执行权限，<code>sudo chmod 777 Tomcat</code></li>
-<li>启动Tomcat，执行<code>sh Tomcat/bin/startup.sh</code></li>
-<li>打开<a href="http://localhost:8080" target="_blank" rel="external">http://localhost:8080</a>确认服务是否正常启动。</li>
-</ul>
-<p>上面的配置完成后，我们便可以执行Tomcat安装目录下bin目录中的命令进行启动和停止，但是有些麻烦，我们可以配置一个脚本文件用于控制Tomcat的启动停止。</p>
-<p>在<code>/usr/local/bin</code>目录(任何PATH下的目录都可以）下创建文件tomcat，写入如下内容：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="keyword">case</span> <span class="variable">$1</span> <span class="keyword">in</span></div><div class="line">start)</div><div class="line">sh /Library/Tomcat/bin/startup.sh</div><div class="line">;;</div><div class="line">stop)</div><div class="line">sh /Library/Tomcat/bin/shutdown.sh</div><div class="line">;;</div><div class="line">restart)</div><div class="line">sh /Library/Tomcat/bin/shutdown.sh</div><div class="line">sh /Library/Tomcat/bin/startup.sh</div><div class="line">;;</div><div class="line">*)</div><div class="line"><span class="built_in">echo</span> “Usage: start|stop|restart”</div><div class="line">;;</div><div class="line"><span class="keyword">esac</span></div><div class="line"><span class="built_in">exit</span> 0</div></pre></td></tr></table></figure>
-<p>修改执行权限<code>chmod 777 tomcat</code>。</p>
-<p>新建一个concole，我们可以通过下面命令控制Tomcat的运行，如果需要更高级的控制，在tomcat脚本文件添加相关内容即可：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">tomcat start  # 启动</div><div class="line">tomcat stop # 停止</div><div class="line">tomcat restart # 重启</div></pre></td></tr></table></figure>
-<h2 id="Tomcat的配置"><a href="#Tomcat的配置" class="headerlink" title="Tomcat的配置"></a>Tomcat的配置</h2><h2 id="Tomcat-vs-Apache"><a href="#Tomcat-vs-Apache" class="headerlink" title="Tomcat vs Apache"></a>Tomcat vs Apache</h2><p>Apache是web服务器，Tomcat是应用（java）服务器，它只是一个servlet容器，是Apache的扩展。Apache和Tomcat都可以做为独立的web服务器来运行，但是Apache不能直接解释java程序（jsp,serverlet,php）。需要通过插件才能解释。Apache是普通服务器，本身只支持html即普通网页。不过可以通过插件支持php,还可以与Tomcat连通(单向Apache连接Tomcat,就是说通过Apache可以访问Tomcat资源。反之不然)两者都是一种容器，只不过发布的东西不同：Apache是html容器，功能像IIS一样；Tomcat是jsp/servlet容器，用于发布jsp及java的，类似的有IBM的webshere、EBA的Weblogic，sun的JRun等等。Apache和Tomcat是独立的，在通一台服务器上可以集成。打个比方：Apache是一辆卡车，上面可以装一些东西如html等。但是不能装水，要装水必须要有容器（桶），Tomcat就是一个桶（装像Java这样的水），而这个桶也可以不放在卡车上。Apache只支持静态网页，但像asp,php,cgi,jsp等动态网页就需要Tomcat来处理。Apache和Tomcat整合使用：如果客户端请求的是静态页面，则只需要Apache服务器响应请求；如果客户端请求动态页面，则是Tomcat服务器响应请求；因为jsp是服务器端解释代码的，这样整合就可以减少Tomcat的服务开销 。</p>
+            <h1 id="System-Design总结-from-mitbbs"><a href="#System-Design总结-from-mitbbs" class="headerlink" title="System Design总结[from mitbbs]"></a>System Design总结[from mitbbs]</h1><p>最近在准备系统设计方面的内容，找到一篇不错的文章，转自<a href="http://www.mitbbs.com/article_t/JobHunting/32777529.html" target="_blank" rel="external">我的System Design总结</a>，结构有少许调整。</p>
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><p>System Design和OO Design不同 System Design在FLAG以及很多大公司中主要<br>是design scalable distributed systems 这里只讨论如何准备这种题目。</p>
+<p>对于0基础的同学们 下面的资料可以按顺序开始看:</p>
+<ol>
+<li><p><a href="http://www.hiredintech.com/app#system-design" target="_blank" rel="external">http://www.hiredintech.com/app#system-design</a><br>这是一个专门准备面试的网站 你只用关心system design部分 有很多的link后面会重<br>复提到 建议看完至少一遍</p>
+</li>
+<li><p><a href="https://www.youtube.com/watch?v=-W9F__D3oY4" target="_blank" rel="external">https://www.youtube.com/watch?v=-W9F__D3oY4</a><br>非常非常好的入门资料 建议看3遍以上！<br>这是1里面提到的资料 是Harvard web app课的最后一节 讲scalability 里面会讲到很<br>多基础概念比如Vertical scaling, Horizontal scaling, Caching, Load balancing,<br>Database replication, Database partitioning 还会提到很多基本思想比如avoid<br>single point of failure<br>再强调一遍 非常好的资料！</p>
+</li>
+<li><p><a href="http://www.lecloud.net/post/7295452622/scalability-for-dummies-part-1-clones" target="_blank" rel="external">http://www.lecloud.net/post/7295452622/scalability-for-dummies-part-1-clones</a><br>前面课程里提到的 Scalability for Dummies 还算不错 可以看一遍 知道基本思想</p>
+</li>
+</ol>
+<p>结束语：当你结束这一部分的学习的时候 你已经比50%的candidate知道的多了(因为很<br>多人都不准备 或者不知道怎么准备system design) 恭喜:)</p>
+<h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><p>这一部分的资料更加零散 每个看的可能不一样 但是你每多看一篇文章或者一个视频<br>你就比别人强一点<br>这部分你会遇到很多新名词 我的建议是每当你遇到一个不懂的概念时 多google一下<br>看看这个概念或者技术是什么意思 优点和缺点各是什么 什么时候用 这些你都知道以<br>后 你就可以把他运用到面试中 让面试官刮目相看了</p>
+<ol>
+<li><p><a href="http://highscalability.com/blog/2009/8/6/an-unorthodox-approach-to-database-design-the-coming-of-the.html" target="_blank" rel="external">http://highscalability.com/blog/2009/8/6/an-unorthodox-approach-to-database-design-the-coming-of-the.html</a><br>Database Sharding是一个很重要的概念 建议看一看</p>
+</li>
+<li><p><a href="http://highscalability.com/all-time-favorites/" target="_blank" rel="external">http://highscalability.com/all-time-favorites/</a><br>这个里面会讲到很多非常流行的网站架构是如何实现的 比如Twitter, Youtube,<br>Pinterest, Google等等 我的建议是看5-6个 然后你应该已经建立起了一些基本的意识<br>还有知道了某些技术和产品的作用和mapping 比如说到cache你会想到memcached和<br>Redis 说到<br>load balancer你会想到 Amazon ELB, F5一类的</p>
+</li>
+<li><p><a href="http://www.infoq.com/" target="_blank" rel="external">http://www.infoq.com/</a><br>5里面很多的文章都会有链接 其中有很多会指向这个网站 这里面有很多的tech talk<br>很不错 可以看看</p>
+</li>
+<li><p><a href="https://www.facebook.com/Engineering/notes" target="_blank" rel="external">https://www.facebook.com/Engineering/notes</a><br>Facebook非常好的技术日志 会讲很多facebook的feature怎么实现的 比如facebook<br>message:<a href="https://www.facebook.com/notes/facebook-engineering/the-underlying-" target="_blank" rel="external">https://www.facebook.com/notes/facebook-engineering/the-underlying-</a><br>technology-of-messages/454991608919 建议看看 尤其是准备面facebook的同学<br>这有一个facebook talk讲storage的<a href="https://www.youtube.com/watch?v=5RfFhMwRAic" target="_blank" rel="external">https://www.youtube.com/watch?v=5RfFhMwRAic</a></p>
+</li>
+<li><p>一些国内网站上的资料<br><a href="http://blog.csdn.net/sigh1988/article/details/9790337" target="_blank" rel="external">http://blog.csdn.net/sigh1988/article/details/9790337</a><br><a href="http://blog.csdn.net/v_july_v/article/details/6279498" target="_blank" rel="external">http://blog.csdn.net/v_july_v/article/details/6279498</a></p>
+</li>
+<li><p>最后一些概念很有用 都是我再看这些资料的时候发现的 如果你没有遇到或者查过<br>建议查查<br>Distributed Hash Table<br>Eventual Consistency vs Strong Consistency<br>Read Heavy vs Write Heavy<br>Consistent Hashing<br>Sticky Sessions<br>Structured Data(uses DynamoDB) vs Unstructured Data(uses S3)<br><a href="http://smartdatacollective.com/michelenemschoff/206391/quick-guide-structured-and-unstructured-data" target="_blank" rel="external">http://smartdatacollective.com/michelenemschoff/206391/quick-guide-structured-and-unstructured-data</a><br><a href="http://stackoverflow.com/questions/18678315/amazon-s3-or-dynamodb" target="_blank" rel="external">http://stackoverflow.com/questions/18678315/amazon-s3-or-dynamodb</a></p>
+</li>
+<li><p>给有兴趣深入研究的人看的<br>Mining Massive Datasets –讲很多big data和data mining的东西<br>Big Data: Principles and best practices of scalable realtime data systems –<br>twitter的前员工讲述如何处理实时数据</p>
+</li>
+<li><p>凌乱的资料 随便看看吧<br><a href="http://highscalability.com/blog/2013/10/28/design-decisions-for" target="_blank" rel="external">http://highscalability.com/blog/2013/10/28/design-decisions-for</a></p>
+</li>
+</ol>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>看多了以后 你的最终目标应该是心里有了一个大框架 一个基本的distributed system<br>是怎么搭起来的 然后心里有很多if condition 如果要是满足这个条件 我应该用什么<br>技术 比如如果read heavy那么用cache会提升performance之类的 同时知道应该避免什<br>么东西 比如避免single point of failure 再比如时间和空间的tradeoff在read<br>heavy的时候应该倾向于时间 Write heavy的时候倾向于空间等等</p>
+<p>你总结出来的和我总结出来的大框架和if conditions肯定不完全一样 但因为system<br>design本来就是一个open ended question 所以不用害怕 能够自圆其说 就不会有问题。</p>
 
           
         
@@ -823,8 +839,8 @@
             
               
                 
-                <a class="post-title-link" href="/2014/11/05/Java_Maven(1)/" itemprop="url">
-                  Maven(1)_Maven基础
+                <a class="post-title-link" href="/2014/11/22/Developing_Tomcat/" itemprop="url">
+                  Tomcat on Mac
                 </a>
               
             
@@ -837,8 +853,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2014-11-05T00:00:00+09:00" content="2014-11-05">
-              2014-11-05
+            <time itemprop="dateCreated" datetime="2014-11-22T00:00:00+09:00" content="2014-11-22">
+              2014-11-22
             </time>
           </span>
 
@@ -851,8 +867,8 @@
               <span class="post-meta-item-text">分類於</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
+                  <a href="/categories/Developing/" itemprop="url" rel="index">
+                    <span itemprop="name">Developing</span>
                   </a>
                 </span>
 
@@ -867,8 +883,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2014/11/05/Java_Maven(1)/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/11/05/Java_Maven(1)/" itemprop="commentsCount"></span>
+                <a href="/2014/11/22/Developing_Tomcat/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/11/22/Developing_Tomcat/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -893,388 +909,21 @@
       
         
           
-            <p>参考<a href="http://ifeve.com/maven-1/" target="_blank" rel="external">Maven入门指南</a>，<a href="http://maven.apache.org/guides/getting-started/index.html" target="_blank" rel="external">Maven Getting Started Guide</a>，<a href="http://tutorials.jenkov.com/maven/maven-tutorial.html#maven-settings-files" target="_blank" rel="external">Maven Tutorial</a></p>
-<p>Maven主要为开发者提供了一个可复用、可维护的工程模型，以及与基于这个模型的构建工具和一系列插件。</p>
-<p>构建工具是将软件项目构建相关的过程自动化的工具。构建一个软件项目通常包含以下一个或多个过程：</p>
-<ul>
-<li>生成源码（如果项目使用自动生成源码）；</li>
-<li>从源码生成项目文档；</li>
-<li>编译源码；</li>
-<li>将编译后的代码打包成JAR文件或者ZIP文件；</li>
-<li>将打包好的代码安装到服务器、仓库或者其它的地方；</li>
+            <h2 id="Tomcat在mac上的安装"><a href="#Tomcat在mac上的安装" class="headerlink" title="Tomcat在mac上的安装"></a>Tomcat在mac上的安装</h2><ul>
+<li>安装java并配置好JAVA_HOME</li>
+<li>下载<a href="http://tomcat.apache.org/download-90.cgi" target="_blank" rel="external">Tomcat</a>并验证md5</li>
+<li>解压到<code>/Library/</code>下（其他目录也可以），命名为Tomcat</li>
+<li>修改文件执行权限，<code>sudo chmod 777 Tomcat</code></li>
+<li>启动Tomcat，执行<code>sh Tomcat/bin/startup.sh</code></li>
+<li>打开<a href="http://localhost:8080" target="_blank" rel="external">http://localhost:8080</a>确认服务是否正常启动。</li>
 </ul>
-<p>有些项目可能需要更多的过程才能完成构建，这些过程一般也可以整合到构建工具中，因此它们也可以实现自动化。</p>
-<p>自动化构建过程的好处是将手动构建过程中犯错的风险降到最低。而且，自动构建工具通常要比手动执行同样的构建过程要快。</p>
-<h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><h3 id="pom-xml"><a href="#pom-xml" class="headerlink" title="pom.xml"></a>pom.xml</h3><p>Maven工程结构和内容被定义在一个xml文件中 - pom.xml，也就是project object model，此文件是整个Maven系统的基础组件，描述了项目的资源，源码，测试代码，依赖等。pom.xml位于项目的根目录下。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Java_Maven_1.png" alt=""></p>
-<p>在执行一条maven命令时，maven会读取项目的pom.xml文件，并根据pom.xml的相关内容执行命令。</p>
-<h3 id="构建生命周期、阶段和目标"><a href="#构建生命周期、阶段和目标" class="headerlink" title="构建生命周期、阶段和目标"></a>构建生命周期、阶段和目标</h3><p>Maven的构建过程从大到小被分为构建生命周期、阶段和目标，其关系为：</p>
-<ul>
-<li><strong>一个生命周期</strong>包含若干个<strong>阶段</strong></li>
-<li><strong>一个阶段</strong>包含若干个<strong>目标</strong></li>
-</ul>
-<p>一般maven使用的命令形式为：<code>mvn command</code>，其中command命令就是构建生命周期、阶段或者目标的名字。如果command为一个生命周期，该生命周期的所有构建阶段都会被执行。如果command为一个生命周期具体的一个构建阶段，那么这个生命周期中，所有处于目标执行阶段之前的阶段以及该目标阶段都会被执行。</p>
-<p>目标操作（goal）表示某个有助于项目构建和管理的特定的任务。</p>
-<ul>
-<li><strong>一个目标操作可以绑定0到多个构建阶段。</strong></li>
-<li><strong>不绑定任何构建阶段的目标操作可以通过直接调用的方式执行。</strong></li>
-</ul>
-<p>执行的顺序取决于目标操作和构建阶段调用的次序。以下面的命令为例，参数clean和package是构建阶段而dependency:copy-dependencies是一个目标操作。</p>
-<p><code>mvn clean dependency:copy-dependencies package</code></p>
-<p>在这里，clean阶段会首先执行，然后是执行dependency:copy-dependencies目标操作，最后是执行package阶段。</p>
-<h3 id="依赖和仓库"><a href="#依赖和仓库" class="headerlink" title="依赖和仓库"></a>依赖和仓库</h3><p>一个大型项目一般都会需要依赖许多外部包，也就是这个项目的依赖。Maven设置了一个本地仓库，所有依赖都会被放在本地仓库（本地的一个目录）中。如果在本地仓库中不存在该依赖，则Maven会从中央仓库下载并放到本地仓库。</p>
-<h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3><p>Maven提供了一系列标准的构建生命周期和构建阶段、目标，如果仍无法满足项目构建的要求，可以使用查找并使用插件来满足需要。</p>
-<p>Maven实际上是一个执行插件的框架，其所有的任务其实都是由插件完成。Maven插件通常用于：</p>
-<ul>
-<li>生成jar包文件</li>
-<li>生成war包文件</li>
-<li>编译源码文件</li>
-<li>代码单元测试</li>
-<li>生成项目文档</li>
-<li>生成项目报告</li>
-</ul>
-<p><strong>一个插件通常提供一系列的目标操作，并且目标操作可以通过以下格式的命令执行</strong>：<br><code>mvn [插件名]:[目标操作名]</code><br>例如，一个Java项目可以通过运行下面的命令使用maven-compiler-plugin的compile目标操作编译。<br><code>mvn compiler:compile</code></p>
-<p><strong>另外插件目标也可以与绑定到构建阶段上（可以是现有的构建阶段）。这样在执行该构建阶段时，所绑定的目标也会一起被执行。</strong></p>
-<p>例如在执行构建阶段时如果需要输出信息，可以使用maven-antrun-plugin插件来打印数据到控制台。</p>
-<p>创建下面的pom.xml文件</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span></span></div><div class="line">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></div><div class="line">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0</span></div><div class="line">    http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;</div><div class="line"><span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.companyname.projectgroup<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>project<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">plugins</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-antrun-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">executions</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">execution</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">id</span>&gt;</span>id.clean<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">phase</span>&gt;</span>clean<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">goals</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">goal</span>&gt;</span>run<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></div><div class="line">         <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">tasks</span>&gt;</span></div><div class="line">               <span class="tag">&lt;<span class="name">echo</span>&gt;</span>clean phase<span class="tag">&lt;/<span class="name">echo</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">tasks</span>&gt;</span></div><div class="line">         <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">execution</span>&gt;</span>     </div><div class="line">   <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>执行<code>mvn clean</code>.</p>
-<p>Maven将会开始处理并且输出clean生命周期的clean阶段的信息。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">[INFO] Scanning for projects...</div><div class="line">[INFO] ------------------------------------------------------------------</div><div class="line">[INFO] Building Unnamed - com.companyname.projectgroup:project:jar:1.0</div><div class="line">[INFO]    task-segment: [post-clean]</div><div class="line">[INFO] ------------------------------------------------------------------</div><div class="line">[INFO] [clean:clean &#123;execution: default-clean&#125;]</div><div class="line">[INFO] [antrun:run &#123;execution: id.clean&#125;]</div><div class="line">[INFO] Executing tasks</div><div class="line">     [echo] clean phase</div><div class="line">[INFO] Executed tasks</div><div class="line">[INFO] ------------------------------------------------------------------</div><div class="line">[INFO] BUILD SUCCESSFUL</div><div class="line">[INFO] ------------------------------------------------------------------</div><div class="line">[INFO] Total time: &lt; 1 second</div><div class="line">[INFO] Finished at: Sat Jul 07 13:38:59 IST 2012</div><div class="line">[INFO] Final Memory: 4M/44M</div><div class="line">[INFO] ------------------------------------------------------------------</div></pre></td></tr></table></figure>
-<p>上面的例子中阐明了下面几个关键概念：</p>
-<ul>
-<li>插件在pom.xml文件中是通过plugins节点明确指定的。</li>
-<li><strong>每个插件可以有多个目标操作。</strong></li>
-<li>你可以使用phase节点来定义插件从哪个节点开始处理。我们已使用的是clean阶段。</li>
-<li>你可以通过绑定任务到插件的目标操作来配置要执行的任务。我们已经绑定了echo任务到maven-antrun-plugin插件的run目标操作。</li>
-<li>以上，Maven会处理剩下的事情。若本地仓库中找不到，Maven会下载插件，并且开始处理。</li>
-</ul>
-<p>Maven提供了下面两类插件：</p>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>构建插件（Build plugins）</td>
-<td>这类插件在构建过程中执行，并且应该配置在pom.xml文件的<build\>节点中。</build\></td>
-</tr>
-<tr>
-<td>报告插件（Reporting plugins）</td>
-<td>这类插件在生成站点过程中执行，并且应该配置在pom.xml文件的<reporting>节点中。</reporting></td>
-</tr>
-</tbody>
-</table>
-<p>下面是一些常用的插件的列表：</p>
-<table>
-<thead>
-<tr>
-<th>插件</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>clean</td>
-<td>构建完成后清理目标，删除目标目录。</td>
-</tr>
-<tr>
-<td>compiler</td>
-<td>编译Java源文件。</td>
-</tr>
-<tr>
-<td>surefile</td>
-<td>运行JUnit单元测试，生成测试报告。</td>
-</tr>
-<tr>
-<td>jar</td>
-<td>从当前项目生成JAR文件。</td>
-</tr>
-<tr>
-<td>war</td>
-<td>从当前项目生成WAR文件。</td>
-</tr>
-<tr>
-<td>javadoc</td>
-<td>生成项目的Javadoc。</td>
-</tr>
-<tr>
-<td>antrun</td>
-<td>运行任意指定构建阶段的一系列ant任务。</td>
-</tr>
-</tbody>
-</table>
-<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>配置文件用于以不同的方式构建项目。比如可能需要在本地环境构建，用于开发和测试，也可能需要构建后用于开发环境。具体可以配置的一些内容包括：</p>
-<ul>
-<li>本地仓库的路径</li>
-<li>当前编译配置选项等</li>
-</ul>
-<p>maven设置了两个配置文件，分别在：</p>
-<ul>
-<li>maven安装目录下： <code>$M2_HOME/conf/settings.xml</code></li>
-<li>用户主目录中： <code>${user.home}/.m2/settings.xml</code></li>
-</ul>
-<p>如果两个文件都存在，则用户目录的配置会覆盖安装目下的配置。</p>
-<p>在POM文件中增加不同的构建配置，可以启用不同的构建过程。当运行Maven时，可以指定要使用的配置。</p>
-<h2 id="POM"><a href="#POM" class="headerlink" title="POM"></a>POM</h2><p>POM意为项目对象模型(Project Object Model)，是Maven中基本单元。它是一个名为pom.xml的XML文件，总是存在于项目的更目录下。</p>
-<p>POM包含了项目相关的信息和Maven用来构建一个或多个项目的各种配置详情。POM文件描述的是构建“什么”，而不是“如何”构建。如何构建是取决于Maven的构建阶段和目标。当然，如果需要，你也可以向Maven构建阶段中添加自定义的目标。</p>
-<p>每一个项目都有一个POM文件。POM文件即pom.xml，应该放在项目的根目录下。一个项目如果分为多个子项目，一般来讲，父项目有一个POM文件，每一个子项目都有一个POM文件。在这种结构下，既可以一步构建整个项目，也可以各个子项目分开构建。</p>
-<p>POM也包含了各种目标操作(goal)和插件。当执行一个任务或者目标操作时，Maven会查找当前目录下的POM。Maven读取POM，从中获得需要的配置信息，然后执行目标操作。部分Maven可以从POM中明确的配置列出如下：</p>
-<ul>
-<li>项目依赖（project dependencies）</li>
-<li>插件（plugins）</li>
-<li>目标操作（goals）</li>
-<li>构建（build profiles）</li>
-<li>项目版本（project version）</li>
-<li>开发者（developers）</li>
-<li>邮件列表（mailing list）</li>
-</ul>
-<p>一个最基本的POM文件如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span></span></div><div class="line">  <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></div><div class="line">  <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0</span></div><div class="line">                      http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;</div><div class="line">  <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></div><div class="line">  </div><div class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.mycompany.app<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>my-app<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><code>groupID</code>表示开发者或者开发公司的唯一ID，一般使用java包的根名作为groupID。<code>artifactId</code>一般是项目名。<code>version</code>指项目版本。</p>
-<p>注意，项目在maven仓库的结构化目中，该结构化目录会与groupID匹配，每一个<code>.</code>会成为目录分隔符，每个词都表示一个目录。如groupID为<code>com.plusaber</code>项目将位于<code>MAVEN_REPO/com/plusaber</code>。类似的，<code>artifactId</code>也会成为<code>MAVEN_REPO/com/plusaber</code>的子目录，另外<code>artifactId</code>也是构建完项目后生成的jar包的文件名的一部分。</p>
-<ul>
-<li><strong>父po</strong>m</li>
-</ul>
-<p>所有的Maven pom文件都继承自一个父pom。如果没有指定父pom，则该pom文件继承自根pom。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Java_Maven_2.png" alt=""></p>
-<p>可以在pom文件指定父pom：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">”http://maven.apache.org/POM/4.0.0″</span></span></div><div class="line"><span class="attr">xmlns:xsi</span>=<span class="string">”http://www.w3.org/2001/XMLSchema-instance”</span></div><div class="line"><span class="attr">xsi:schemaLocation</span>=<span class="string">”http://maven.apache.org/POM/4.0.0</span></div><div class="line"><span class="attr">http:</span>//<span class="attr">maven.apache.org</span>/<span class="attr">xsd</span>/<span class="attr">maven-4.0.0.xsd</span>”&gt;</div><div class="line"><span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.codehaus.mojo<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>my-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">relativePath</span>&gt;</span>../my-parent<span class="tag">&lt;/<span class="name">relativePath</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>my-project<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">...</div></pre></td></tr></table></figure>
-<p>子pom的配置会覆盖父pom的配置，由于继承和覆盖的原因，无法直接通过查看子pom和父pom了解最后的有效pom。这时可以使用<code>mvn help:effective-pom</code>打印出当前的有效pom文件。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line"><span class="comment">&lt;!-- ================================================================= --&gt;</span></div><div class="line"><span class="comment">&lt;!--                                                                   --&gt;</span></div><div class="line"><span class="comment">&lt;!-- Generated by Maven Help Plugin on 2012-07-05T11:41:51             --&gt;</span></div><div class="line"><span class="comment">&lt;!-- See: http://maven.apache.org/plugins/maven-help-plugin/           --&gt;</span></div><div class="line"><span class="comment">&lt;!--                                                                   --&gt;</span></div><div class="line"><span class="comment">&lt;!-- ================================================================= --&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- ================================================================= --&gt;</span></div><div class="line"><span class="comment">&lt;!--                                                                   --&gt;</span></div><div class="line"><span class="comment">&lt;!-- Effective POM for project                                         --&gt;</span></div><div class="line"><span class="comment">&lt;!-- 'com.companyname.project-group:project-name:jar:1.0'              --&gt;</span></div><div class="line"><span class="comment">&lt;!--                                                                   --&gt;</span></div><div class="line"><span class="comment">&lt;!-- ================================================================= --&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/</span></span></div><div class="line">2001/XMLSchema-instance" <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 h</span></div><div class="line">ttp://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;</div><div class="line">  <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.companyname.project-group<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>project<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">build</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">sourceDirectory</span>&gt;</span>C:\MVN\project\src\main\java<span class="tag">&lt;/<span class="name">sourceDirectory</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">scriptSourceDirectory</span>&gt;</span>src/main/scripts<span class="tag">&lt;/<span class="name">scriptSourceDirectory</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">testSourceDirectory</span>&gt;</span>C:\MVN\project\src\test\java<span class="tag">&lt;/<span class="name">testSourceDirectory</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">outputDirectory</span>&gt;</span>C:\MVN\project\target\classes<span class="tag">&lt;/<span class="name">outputDirectory</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">testOutputDirectory</span>&gt;</span>C:\MVN\project\target\test-classes<span class="tag">&lt;/<span class="name">testOutputDirectory</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">resources</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">resource</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">mergeId</span>&gt;</span>resource-0<span class="tag">&lt;/<span class="name">mergeId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">directory</span>&gt;</span>C:\MVN\project\src\main\resources<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">resource</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">resources</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">testResources</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">testResource</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">mergeId</span>&gt;</span>resource-1<span class="tag">&lt;/<span class="name">mergeId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">directory</span>&gt;</span>C:\MVN\project\src\test\resources<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">testResource</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">testResources</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">directory</span>&gt;</span>C:\MVN\project\target<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">finalName</span>&gt;</span>project-1.0<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">pluginManagement</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-antrun-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-assembly-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2-beta-2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-clean-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-dependency-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-deploy-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-ear-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-ejb-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-install-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-jar-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-javadoc-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-plugin-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-rar-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-release-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0-beta-8<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-resources-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-site-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0-beta-7<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-source-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-surefire-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-war-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1-alpha-2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">pluginManagement</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-help-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">build</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">repositories</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">repository</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>false<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>central<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>Maven Repository Switchboard<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://repo1.maven.org/maven2<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">pluginRepositories</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">pluginRepository</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">releases</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">updatePolicy</span>&gt;</span>never<span class="tag">&lt;/<span class="name">updatePolicy</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">releases</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>false<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>central<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>Maven Plugin Repository<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://repo1.maven.org/maven2<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">pluginRepository</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">pluginRepositories</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">reporting</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">outputDirectory</span>&gt;</span>C:\MVN\project\target/site<span class="tag">&lt;/<span class="name">outputDirectory</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">reporting</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>在上面的完整的effective pom.xml中，你可以看到项目构建的所有信息，包括默认的源文件目录结构，输出路径，需要的插件，报告目录，这些信息Maven在执行期望的目标操作时都会用到。</p>
-<p><strong>Maven的pom.xml在大部分情况要求手动写。Maven提供了很多archetype插件用来创建项目以及按规则创建项目结构和pom.xml文件。</strong></p>
-<h2 id="Maven命令"><a href="#Maven命令" class="headerlink" title="Maven命令"></a>Maven命令</h2><p><code>mvn command</code>，其中command命令就是构建生命周期、阶段或者目标的名字。如果command为一个生命周期，该生命周期的所有构建阶段都会被执行。如果command为一个生命周期具体的一个构建阶段，那么这个生命周期中，所有处于目标执行阶段之前的阶段以及该目标阶段都会被执行。<br><code>mvn install</code><br><code>install</code>是默认生命周期的一个阶段，具体任务包括编译项目，将打包的jar文件复制到本地仓库。事实上，在执行install之前，默认生命周期位于install的所有阶段都被执行。</p>
-<p>我们可以向mvn命令传入多个参数，执行多个构建周期或阶段，如：<br><code>mvn clean install</code><br>clean是一个生命周期（简称周期），具体任务是删除maven输入目录中已编译的类文件，然后执行install构建阶段。一个一个顺序执行，互相没有影响。</p>
-<p>也可以执行一个maven目标，这时参数需要将构建阶段与目标名以冒号相连。<br><code>mvn dependency:copy-dependencies</code>，执行<code>dependency</code>构建阶段中的<code>copy-dependencies</code>目标。</p>
-<h2 id="Maven目录结构"><a href="#Maven目录结构" class="headerlink" title="Maven目录结构"></a>Maven目录结构</h2><p>maven的一个主要原则就是约定优先，maven设置了一个<a href="http://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html" target="_blank" rel="external">标准的目录结构</a>，如果在项目中遵循Maven的目录结构，就无需在pom文件中指定源码测试代码等目录。</p>
-<table>
-<thead>
-<tr>
-<th>dir/file</th>
-<th>usage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>src/main/java    Application/Library</td>
-<td>sources</td>
-</tr>
-<tr>
-<td>src/main/resources</td>
-<td>Application/Library resources</td>
-</tr>
-<tr>
-<td>src/main/filters</td>
-<td>Resource filter files</td>
-</tr>
-<tr>
-<td>src/main/webapp</td>
-<td>Web application sources</td>
-</tr>
-<tr>
-<td>src/test/java    Test</td>
-<td>sources</td>
-</tr>
-<tr>
-<td>src/test/resources</td>
-<td>Test resources</td>
-</tr>
-<tr>
-<td>src/test/filters    Test</td>
-<td>resource filter files</td>
-</tr>
-<tr>
-<td>src/it</td>
-<td>Integration Tests (primarily for plugins)</td>
-</tr>
-<tr>
-<td>src/assembly</td>
-<td>Assembly descriptors</td>
-</tr>
-<tr>
-<td>src/site</td>
-<td>Site</td>
-</tr>
-<tr>
-<td>LICENSE.txt</td>
-<td>Project’s license</td>
-</tr>
-<tr>
-<td>NOTICE.txt</td>
-<td>Notices and attributions required by libraries that the project depends on</td>
-</tr>
-<tr>
-<td>README.txt</td>
-<td>Project’s readme</td>
-</tr>
-</tbody>
-</table>
-<h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><h3 id="项目依赖"><a href="#项目依赖" class="headerlink" title="项目依赖"></a>项目依赖</h3><p>Maven提供了依赖管理的功能。你只需要在pom文件里指定依赖jar包的名称、版本号，Maven会自动下载并放到你的Maven本地仓库中。如果这些外部jar包依赖了其它的库，它们也会被下载到你的Maven本地仓库。</p>
-<p>可以通过在pom文件添加dependencies属性中指定项目依赖。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span></span></div><div class="line">  <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></div><div class="line">  <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0</span></div><div class="line">                      http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;</div><div class="line">  <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></div><div class="line"> </div><div class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.mycompany.app<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>my-app<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"> </div><div class="line">  <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">    </div><div class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.jsoup<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jsoup<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.7.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">MAVEN_REPOSITORY_ROOT/junit/junit/4.11</div><div class="line">MAVEN_REPOSITORY_ROOT/org/jsoup/jsoup/1.7.1</div></pre></td></tr></table></figure>
-<p>可以看到，每一个依赖也是由groupID，artifactId和version来描述，和pom文件开头用来标识项目的方式是一样的。</p>
-<p>执行这个pom文件时，如果本地仓库已经有了这两个依赖，maven就不会去中央仓库下载（本地仓库的依赖可以被多个项目使用）。如果没有，maven则会去中央仓库寻找这些依赖并下载到本地仓库。</p>
-<p>需要注意的是，有时候指定的依赖在maven的中央仓库里没有，这是我们需要手动下载这些依赖并放到mavne的本地仓库。这些依赖必须放到与groupId, artifactId和version匹配的字目录中，用<code>/</code>替换<code>.</code>并为每个字段创建相应目录。</p>
-<h3 id="外部依赖"><a href="#外部依赖" class="headerlink" title="外部依赖"></a>外部依赖</h3><p>Maven的外部依赖指的是不在Maven的仓库（包括本地仓库、中央仓库和远程仓库）中的依赖（jar包）。它可能位于你本地硬盘的某个地方，比如web应用的lib目录下。</p>
-<p>可以配置外部依赖如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mydependency<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mydependency<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">scope</span>&gt;</span>system<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">systemPath</span>&gt;</span>$&#123;basedir&#125;\war\WEB-INF\lib\mydependency.jar<span class="tag">&lt;/<span class="name">systemPath</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>groupId和artifactId为依赖的名称，即API的名称。scope属性为system。systemPath属性为jar文件的路径。${basedir}为pom文件所在的目录，路径中的其它部分是相对于该目录而言的。</p>
-<h3 id="快照依赖"><a href="#快照依赖" class="headerlink" title="快照依赖"></a>快照依赖</h3><p>快照依赖指的是那些还在开发中的依赖（jar包）。与其经常地更新版本号来获取最新版本，不如你直接依赖项目的快照版本。快照版本的每一个build版本都会被下载到本地仓库，即使该快照版本已经在本地仓库了。总是下载快照依赖可以确保本地仓库中的每一个build版本都是最新的。</p>
-<p>在pom文件的最开头（设置groupId和artifactId的地方），在版本号后追加-SNAPSHOT，则告诉Maven你的项目是一个快照版本。如：</p>
-<p><code>&lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;</code></p>
-<p>在配置依赖时，在版本号后追加-SNAPSHOT表明依赖的是一个快照版本。如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;com.jenkov&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;java-web-crawler&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
-<p>追加在version后的-SNAPSHOT告诉Maven这是一个快照版本。   </p>
-<h2 id="Maven仓库"><a href="#Maven仓库" class="headerlink" title="Maven仓库"></a>Maven仓库</h2><p>Maven仓库就是存储jar包和一些元数据信息的目录，一般是用于根目录下的<code>.m2</code>文件夹，比如<code>/Users/admin/.m2</code>。其中的元数据即pom文件，描述了该jar包属于哪个项目，以及jar包所需的外部依赖。该元数据信息使得Maven可以递归地下载所有的依赖，直到整个依赖树都下载完毕并放到你的本地仓库中。参考<a href="http://maven.apache.org/guides/introduction/introduction-to-repositories.html" target="_blank" rel="external">Introduction to Repositories</a>。</p>
-<p>Maven有三种类型的仓库：</p>
-<ul>
-<li>本地仓库</li>
-<li>中央仓库</li>
-<li>远程仓库</li>
-</ul>
-<p>Maven根据以上的顺序去仓库中搜索依赖。首先是本地仓库，然后是中央仓库，最后，如果pom文件中配置了远程仓库，则会去远程仓库中查找。</p>
-<h4 id="本地仓库"><a href="#本地仓库" class="headerlink" title="本地仓库"></a>本地仓库</h4><p>本地仓库就是开发者电脑上的一个目录。该仓库包含了Maven下载的所有依赖。一般来讲，一个本地仓库为多个不同的项目服务。因此，Maven只需下载一次，即使有多个项目都依赖它（如junit）。</p>
-<p>通过mvn install命令可以将你自己的项目构建并安装到本地仓库中。这样，你的其它项目就可以通过在pom文件将该jar包作为外部依赖来使用。</p>
-<p>Maven的本地仓库默认在你本机的用户目录下。不过，你可以在Maven的配置文件中修改本地仓库的路径。Maven的配置文件也在用户目录下(user-home/.m2)，文件名为settings.xml。以下示例为本地仓库指定其它的路径：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">localRepository</span>&gt;</span></div><div class="line">        d:\data\java\products\maven\repository</div><div class="line">    <span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></div></pre></td></tr></table></figure>
-<h4 id="中央仓库"><a href="#中央仓库" class="headerlink" title="中央仓库"></a>中央仓库</h4><p>Maven的中央仓库由Maven社区提供。默认情况下，所有不在本地仓库中的依赖都会去这个中央仓库查找。然后Maven会将这些依赖下载到你的本地仓库。访问中央仓库不需要做额外的配置。</p>
-<h4 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h4><p>远程仓库是位于web服务器上的一个仓库，Maven可以从该仓库下载依赖，就像从中央仓库下载依赖一样。远程仓库可以位于Internet上的任何地方，也可以是位于本地网络中。 </p>
-<p>远程仓库一般用于放置组织内部的项目，该项目由多个项目共享。比如，由多个内部项目共用的安全项目。该安全项目不能被外部访问，因此不能放在公开的中央仓库下，而应该放到内部的远程仓库中。</p>
-<p>远程仓库中的依赖也会被Maven下载到本地仓库中。可以在pom文件里配置远程仓库。将以下的xml片段放到属性之后：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">repositories</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">repository</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">id</span>&gt;</span>jenkov.code<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.jenkov.com/maven2/lib<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></div></pre></td></tr></table></figure>
-<h2 id="Maven的构建生命周期、阶段和目标"><a href="#Maven的构建生命周期、阶段和目标" class="headerlink" title="Maven的构建生命周期、阶段和目标"></a>Maven的构建生命周期、阶段和目标</h2><p>当使用Maven构建项目时，会遵循一个构建生命周期。该生命周期分为多个构建阶段，而构建阶段又分为多个构建目标。参考<a href="http://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html" target="_blank" rel="external">Introduction to the Build Lifecycle</a></p>
-<h3 id="构建生命周期"><a href="#构建生命周期" class="headerlink" title="构建生命周期"></a>构建生命周期</h3><p>Maven有三个内嵌的构建生命周期：<code>clean</code>, <code>default</code>, <code>site</code>.</p>
-<p>每一个构建生命期关注项目构建的不同方面。因此，它们是独立地执行的。Maven可以执行多个生命期，但是它们是串行执行的，相互独立，就像你执行了多条独立的Maven命令。</p>
-<h4 id="Clean生命周期"><a href="#Clean生命周期" class="headerlink" title="Clean生命周期"></a>Clean生命周期</h4><p>当我们执行mvn的post-clean命令时，Maven调用clean生命周期，它包含以下阶段：</p>
-<ul>
-<li>pre-clean</li>
-<li>clean</li>
-<li>post-clean</li>
-</ul>
-<p>Maven的clean目标操作（clean:clean）在clean生命周期中被绑定到clean阶段。clean:clean 目标操作通过删除构建目录来删除一个项目构建的输出文件。这样，当mvn clean命令执行时，Maven会删除构建目录。</p>
-<h4 id="default生命周期"><a href="#default生命周期" class="headerlink" title="default生命周期"></a>default生命周期</h4><p>构建生命周期是Maven的最主要的生命周期，用来构建应用。default生命期关注的是项目的编译和打包。clean生命期关注的是从输出目录中删掉临时文件，包括自动生成的源文件、编译后的类文件，之前版本的jar文件等。site生命期关注的是为项目生成文档。实际上，site可以使用文档为项目生成一个完整的网站。</p>
-<h3 id="构建阶段"><a href="#构建阶段" class="headerlink" title="构建阶段"></a>构建阶段</h3><p>每一个构建生命期被分为一系列的构建阶段，构建阶段又被分为构建目标。因此，整个构建过程由一系列的构建生命期、构建阶段和构建目标组成。</p>
-<p>你可以执行一个构建生命期，如clean或site，一个构建阶段，如default生命期的install，或者一个构建目标，如dependency:copy-dependencies。注意：你不能直接执行default生命期，你需要指定default生命期中的一个构建阶段或者构建目标。</p>
-<p>当你执行一个构建阶段时，所有在该构建阶段之前的构建阶段（根据标准构建顺序）都会被执行。因此，执行install阶段，意味着所有位于install阶段前的构建阶段都会被执行，然后才执行install阶段。</p>
-<p>default生命期更多的关注于构建代码。由于你不能直接执行default生命期，你需要执行其中一个构建阶段或者构建目标。default生命期包含了相当多的构建阶段和目标，这里不会所有都介绍。最常用的构建阶段有：</p>
-<ul>
-<li><code>validate</code> - validate the project is correct and all necessary information is available</li>
-<li><code>compile</code> - compile the source code of the project</li>
-<li><code>test</code> - test the compiled source code using a suitable unit * testing framework. These tests should not require the code be packaged or deployed</li>
-<li><code>package</code> - take the compiled code and package it in its distributable format, such as a JAR.</li>
-<li><code>integration-test</code> - process and deploy the package if necessary into an environment where integration tests can be run</li>
-<li><code>verify</code> - run any checks to verify the package is valid and meets quality criteria</li>
-<li><code>install</code> - install the package into the local repository, for use as a dependency in other projects locally</li>
-<li><code>deploy</code> - done in an integration or release environment, copies the final package to the remote repository for sharing with other developers and projects.</li>
-</ul>
-<p>完整的default周期的阶段：</p>
-<table>
-<thead>
-<tr>
-<th>生命周期阶段</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>validate（校验）</td>
-<td>校验项目是否正确并且所有必要的信息可以完成项目的构建过程。</td>
-</tr>
-<tr>
-<td>initialize（初始化）</td>
-<td>初始化构建状态，比如设置属性值。</td>
-</tr>
-<tr>
-<td>generate-sources（生成源代码）</td>
-<td>生成包含在编译阶段中的任何源代码。</td>
-</tr>
-<tr>
-<td>process-sources（处理源代码）</td>
-<td>处理源代码，比如说，过滤任意值。</td>
-</tr>
-<tr>
-<td>generate-resources（生成资源文件）</td>
-<td>生成将会包含在项目包中的资源文件。</td>
-</tr>
-<tr>
-<td>process-resources （处理资源文件）</td>
-<td>复制和处理资源到目标目录，为打包阶段最好准备。</td>
-</tr>
-<tr>
-<td>compile（编译）</td>
-<td>编译项目的源代码。</td>
-</tr>
-<tr>
-<td>process-classes（处理类文件）</td>
-<td>处理编译生成的文件，比如说对Java class文件做字节码改善优化。</td>
-</tr>
-<tr>
-<td>generate-test-sources（生成测试源代码）</td>
-<td>生成包含在编译阶段中的任何测试源代码。</td>
-</tr>
-<tr>
-<td>process-test-sources（处理测试源代码）</td>
-<td>处理测试源代码，比如说，过滤任意值。</td>
-</tr>
-<tr>
-<td>test-compile（编译测试源码）</td>
-<td>编译测试源代码到测试目标目录.</td>
-</tr>
-<tr>
-<td>process-test-classes（处理测试类文件）</td>
-<td>处理测试源码编译生成的文件。</td>
-</tr>
-<tr>
-<td>test（测试）</td>
-<td>使用合适的单元测试框架运行测试（Juint是其中之一）。</td>
-</tr>
-<tr>
-<td>prepare-package（准备打包）</td>
-<td>在实际打包之前，执行任何的必要的操作为打包做准备。</td>
-</tr>
-<tr>
-<td>package（打包）</td>
-<td>将编译后的代码打包成可分发格式的文件，比如JAR、WAR或者EAR文件。</td>
-</tr>
-<tr>
-<td>pre-integration-test（集成测试前）</td>
-<td>在执行集成测试前进行必要的动作。比如说，搭建需要的环境。</td>
-</tr>
-<tr>
-<td>integration-test（集成测试）</td>
-<td>处理和部署项目到可以运行集成测试环境中。</td>
-</tr>
-<tr>
-<td>post-integration-test（集成测试后）</td>
-<td>在执行集成测试完成后进行必要的动作。比如说，清理集成测试环境。</td>
-</tr>
-<tr>
-<td>verify （验证）</td>
-<td>运行任意的检查来验证项目包有效且达到质量标准。</td>
-</tr>
-<tr>
-<td>install（安装）</td>
-<td>安装项目包到本地仓库，这样项目包可以用作其他本地项目的依赖。</td>
-</tr>
-<tr>
-<td>deploy（部署）</td>
-<td>将最终的项目包复制到远程仓库中与其他开发者和项目共享。</td>
-</tr>
-</tbody>
-</table>
-<h3 id="构建目标"><a href="#构建目标" class="headerlink" title="构建目标"></a>构建目标</h3><p>构建目标是Maven构建过程中最细化的步骤。一个目标可以与一个或多个构建阶段绑定，也可以不绑定。如果一个目标没有与任何构建阶段绑定，你只能将该目标的名称作为参数传递给mvn命令来执行它。如果一个目标绑定到多个构建阶段，该目标在绑定的构建阶段执行的同时被执行。</p>
-<h3 id="Maven构建配置"><a href="#Maven构建配置" class="headerlink" title="Maven构建配置"></a>Maven构建配置</h3><p>Maven构建配置使你能使用不同的配置来构建项目。不用创建两个独立的pom文件。你只需使用不同的构建配置指定不同的配置文件，然后使用该配置文件构建项目即可。</p>
-<p>关于构建配置的详细信息可以参考Maven POM参考的<a href="http://maven.apache.org/pom.html#Profiles" target="_blank" rel="external">Profile</a>部分。这里是一个快速的介绍。</p>
-<p>Maven的构建配置在pom文件的profiles属性中指定，例如：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span></span></div><div class="line">         <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></div><div class="line">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0</span></div><div class="line">   http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;</div><div class="line">  <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.jenkov.crawler<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>java-web-crawler<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="tag">&lt;<span class="name">profiles</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">profile</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">id</span>&gt;</span>test<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">activation</span>&gt;</span>...<span class="tag">&lt;/<span class="name">activation</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">build</span>&gt;</span>...<span class="tag">&lt;/<span class="name">build</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">modules</span>&gt;</span>...<span class="tag">&lt;/<span class="name">modules</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">repositories</span>&gt;</span>...<span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">pluginRepositories</span>&gt;</span>...<span class="tag">&lt;/<span class="name">pluginRepositories</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span>...<span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">reporting</span>&gt;</span>...<span class="tag">&lt;/<span class="name">reporting</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span>...<span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">distributionManagement</span>&gt;</span>...<span class="tag">&lt;/<span class="name">distributionManagement</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">profile</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">profiles</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>构建配置描述的是当使用该配置构建项目时，对pom文件所做的修改，比如修改应用使用的配置文件等。profile属性中的值将会覆盖其上层的、位于pom文件中的配置。</p>
-<p>在profile属性中，有一个activation子属性。该属性指定了启用该构建配置的条件。选择构建配置的一种方式是在settings.xml文件中指定；另一种方式是在Maven命令行使用<code>-P profile-name</code>指定。更多细节参考构建配置的文档。</p>
-<h3 id="Maven插件"><a href="#Maven插件" class="headerlink" title="Maven插件"></a>Maven插件</h3><p>使用Maven插件，可以向构建过程添加自定义的动作。创建一个简单的Java类，该类继承一个特殊的Maven类，然后为项目创建一个pom文件。该插件应该位于其项目下。可以参考<a href="http://maven.apache.org/plugin-developers/index.html" target="_blank" rel="external">Plugin Developers Centre</a>。</p>
+<p>上面的配置完成后，我们便可以执行Tomcat安装目录下bin目录中的命令进行启动和停止，但是有些麻烦，我们可以配置一个脚本文件用于控制Tomcat的启动停止。</p>
+<p>在<code>/usr/local/bin</code>目录(任何PATH下的目录都可以）下创建文件tomcat，写入如下内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="keyword">case</span> <span class="variable">$1</span> <span class="keyword">in</span></div><div class="line">start)</div><div class="line">sh /Library/Tomcat/bin/startup.sh</div><div class="line">;;</div><div class="line">stop)</div><div class="line">sh /Library/Tomcat/bin/shutdown.sh</div><div class="line">;;</div><div class="line">restart)</div><div class="line">sh /Library/Tomcat/bin/shutdown.sh</div><div class="line">sh /Library/Tomcat/bin/startup.sh</div><div class="line">;;</div><div class="line">*)</div><div class="line"><span class="built_in">echo</span> “Usage: start|stop|restart”</div><div class="line">;;</div><div class="line"><span class="keyword">esac</span></div><div class="line"><span class="built_in">exit</span> 0</div></pre></td></tr></table></figure>
+<p>修改执行权限<code>chmod 777 tomcat</code>。</p>
+<p>新建一个concole，我们可以通过下面命令控制Tomcat的运行，如果需要更高级的控制，在tomcat脚本文件添加相关内容即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">tomcat start  # 启动</div><div class="line">tomcat stop # 停止</div><div class="line">tomcat restart # 重启</div></pre></td></tr></table></figure>
+<h2 id="Tomcat的配置"><a href="#Tomcat的配置" class="headerlink" title="Tomcat的配置"></a>Tomcat的配置</h2><h2 id="Tomcat-vs-Apache"><a href="#Tomcat-vs-Apache" class="headerlink" title="Tomcat vs Apache"></a>Tomcat vs Apache</h2><p>Apache是web服务器，Tomcat是应用（java）服务器，它只是一个servlet容器，是Apache的扩展。Apache和Tomcat都可以做为独立的web服务器来运行，但是Apache不能直接解释java程序（jsp,serverlet,php）。需要通过插件才能解释。Apache是普通服务器，本身只支持html即普通网页。不过可以通过插件支持php,还可以与Tomcat连通(单向Apache连接Tomcat,就是说通过Apache可以访问Tomcat资源。反之不然)两者都是一种容器，只不过发布的东西不同：Apache是html容器，功能像IIS一样；Tomcat是jsp/servlet容器，用于发布jsp及java的，类似的有IBM的webshere、EBA的Weblogic，sun的JRun等等。Apache和Tomcat是独立的，在通一台服务器上可以集成。打个比方：Apache是一辆卡车，上面可以装一些东西如html等。但是不能装水，要装水必须要有容器（桶），Tomcat就是一个桶（装像Java这样的水），而这个桶也可以不放在卡车上。Apache只支持静态网页，但像asp,php,cgi,jsp等动态网页就需要Tomcat来处理。Apache和Tomcat整合使用：如果客户端请求的是静态页面，则只需要Apache服务器响应请求；如果客户端请求动态页面，则是Tomcat服务器响应请求；因为jsp是服务器端解释代码的，这样整合就可以减少Tomcat的服务开销 。</p>
 
           
         
@@ -1348,7 +997,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">329</span>
+              <span class="site-state-item-count">330</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

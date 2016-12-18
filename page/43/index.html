@@ -260,6 +260,155 @@
             
               
                 
+                <a class="post-title-link" href="/2015/07/16/DSA_Immutable Stack/" itemprop="url">
+                  Immutable Stack and Queue
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-07-16T00:00:00+09:00" content="2015-07-16">
+              2015-07-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/DSA/" itemprop="url" rel="index">
+                    <span itemprop="name">DSA</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/07/16/DSA_Immutable Stack/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/07/16/DSA_Immutable Stack/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Immutable-Stack"><a href="#Immutable-Stack" class="headerlink" title="Immutable Stack"></a><a href="https://blogs.msdn.microsoft.com/ericlippert/2007/12/04/immutability-in-c-part-two-a-simple-immutable-stack/" target="_blank" rel="external">Immutable Stack</a></h1><p>最近实验需要使用到immutable stack，直接复制创建新的栈时间和空间效率都十分低，这里对高效实现immutable stack以及queue进行一个简单的学习总结。由于已经有文章很好的介绍了实现思想，主要是利用链表的思想，这里就直接引用了，具体参考<a href="https://blogs.msdn.microsoft.com/ericlippert/2007/12/04/immutability-in-c-part-two-a-simple-immutable-stack/" target="_blank" rel="external">Immutable Stack</a>.</p>
+<p>Let’s start with something simple: an immutable stack.</p>
+<p>Now, immediately I hear the objection: a stack is by its very nature something that changes. A stack is an abstract data type (ADT) with the interface</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Push</span><span class="params">(T t)</span></span>;</div><div class="line"><span class="function">T <span class="title">Pop</span><span class="params">()</span></span>;</div><div class="line"><span class="keyword">bool</span> IsEmpty &#123; get; &#125;</div></pre></td></tr></table></figure>
+<p>You push stuff onto it, you pop stuff off of it, it changes. How can it be immutable?</p>
+<p>Every time you need to make a data structure immutable, you use basically the same trick: an operation which “changes” the data structure does so by constructing a new data structure. The original data structure stays the same.</p>
+<p>How can that possibly be efficient? Surely we’ll be allocating memory all over the place! Well, actually, in this case, no. An immutable stack is every bit as efficient as a mutable stack. Even better: in some cases, it can be considerably more efficient, as we’ll see.</p>
+<p>Let’s start by defining an interface for our immutable structure. While we’re at it, we’ll fix a problem with the stack ADT above, namely that you cannot interrogate the stack without changing it. And we’ll make the stack enumerable just for the heck of it:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> interface IStack&lt;T&gt; : IEnumerable&lt;T&gt;</div><div class="line">&#123;</div><div class="line">    IStack&lt;T&gt; Push(T value);</div><div class="line">    IStack&lt;T&gt; Pop();</div><div class="line">    <span class="function">T <span class="title">Peek</span><span class="params">()</span></span>;</div><div class="line">    <span class="keyword">bool</span> IsEmpty &#123; get; &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Pushing and popping give you back an entirely new stack, and Peek lets you look at the top of the stack without popping it.</p>
+<p>Now let’s think about constructing one of these things here.</p>
+<p>Clearly if we have an existing stack we can construct a new one by pushing or popping it. But we have to start somewhere. Since every empty stack is the same, it seems sensible to have a singleton empty stack.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> sealed <span class="keyword">class</span> Stack&lt;T&gt; : IStack&lt;T&gt;</div><div class="line">&#123;</div><div class="line">    <span class="keyword">private</span> sealed <span class="keyword">class</span> EmptyStack : IStack&lt;T&gt;</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">public</span> <span class="keyword">bool</span> IsEmpty &#123; get &#123; <span class="keyword">return</span> <span class="literal">true</span>; &#125; &#125;</div><div class="line">        <span class="function"><span class="keyword">public</span> T <span class="title">Peek</span><span class="params">()</span> </span>&#123; <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">"Empty stack"</span>); &#125;</div><div class="line">        <span class="keyword">public</span> IStack&lt;T&gt; Push(T value) &#123; <span class="keyword">return</span> <span class="keyword">new</span> Stack&lt;T&gt;(value, <span class="keyword">this</span>); &#125;</div><div class="line">        <span class="keyword">public</span> IStack&lt;T&gt; Pop() &#123; <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">"Empty stack"</span>); &#125;</div><div class="line">        <span class="keyword">public</span> IEnumerator&lt;T&gt; GetEnumerator() &#123; yield <span class="keyword">break</span>; &#125;</div><div class="line">        IEnumerator IEnumerable.GetEnumerator() &#123; <span class="keyword">return</span> <span class="keyword">this</span>.GetEnumerator(&#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> readonly EmptyStack empty = <span class="keyword">new</span> EmptyStack();</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> IStack&lt;T&gt; Empty &#123; get &#123; <span class="keyword">return</span> empty; &#125; &#125;</div><div class="line">    <span class="keyword">private</span> readonly T head;</div><div class="line">    <span class="keyword">private</span> readonly IStack&lt;T&gt; tail;</div><div class="line">    <span class="keyword">private</span> Stack(T head, IStack&lt;T&gt; tail)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">this</span>.head = head;</div><div class="line">        <span class="keyword">this</span>.tail = tail;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">bool</span> IsEmpty &#123; get &#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125; &#125;</div><div class="line">    <span class="keyword">public</span> T Peek() &#123; <span class="keyword">return</span> head; &#125;</div><div class="line">    <span class="keyword">public</span> IStack&lt;T&gt; Pop() &#123; <span class="keyword">return</span> tail; &#125;</div><div class="line">    <span class="keyword">public</span> IStack&lt;T&gt; Push(T value) &#123; <span class="keyword">return</span> <span class="keyword">new</span> Stack&lt;T&gt;(value, <span class="keyword">this</span>); &#125;</div><div class="line">    <span class="keyword">public</span> IEnumerator&lt;T&gt; GetEnumerator()</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">for</span>(IStack&lt;T&gt; <span class="built_in">stack</span> = <span class="keyword">this</span>; !<span class="built_in">stack</span>.IsEmpty ; <span class="built_in">stack</span> = <span class="built_in">stack</span>.Pop())</div><div class="line">            yield <span class="keyword">return</span> <span class="built_in">stack</span>.Peek();</div><div class="line">    &#125;</div><div class="line">    IEnumerator IEnumerable.GetEnumerator() &#123;<span class="keyword">return</span> <span class="keyword">this</span>.GetEnumerator();&#125;</div></pre></td></tr></table></figure>
+<p>And now we can easily create stacks and push stuff onto them. Notice how the fact that we have immutability means that stacks with the same tail can share state, saving on memory:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">IStack&lt;<span class="keyword">int</span>&gt; s1 = Stack&lt;<span class="keyword">int</span>&gt;.Empty;</div><div class="line">IStack&lt;<span class="keyword">int</span>&gt; s2 = s1.Push(<span class="number">10</span>);</div><div class="line">IStack&lt;<span class="keyword">int</span>&gt; s3 = s2.Push(<span class="number">20</span>);</div><div class="line">IStack&lt;<span class="keyword">int</span>&gt; s4 = s2.Push(<span class="number">30</span>); <span class="comment">// shares its tail with s3.</span></div></pre></td></tr></table></figure>
+<h1 id="Immutable-Queue"><a href="#Immutable-Queue" class="headerlink" title="Immutable Queue"></a>Immutable Queue</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.NoSuchElementException;</div><div class="line"><span class="keyword">import</span> java.util.Queue;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PersistentQueue</span>&lt;<span class="title">E</span>&gt; </span>&#123;</div><div class="line">	</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">PersistentStack</span>&lt;<span class="title">E</span>&gt; </span>&#123;</div><div class="line">		<span class="keyword">private</span> E head;</div><div class="line">		<span class="keyword">private</span> PersistentStack&lt;E&gt; tail;</div><div class="line">		<span class="keyword">private</span> <span class="keyword">int</span> size;</div><div class="line"></div><div class="line">		<span class="function"><span class="keyword">private</span> <span class="title">PersistentStack</span><span class="params">(E obj, PersistentStack&lt;E&gt; tail)</span> </span>&#123;</div><div class="line">			<span class="keyword">this</span>.head = obj;</div><div class="line">			<span class="keyword">this</span>.tail = tail;</div><div class="line">			<span class="keyword">this</span>.size = tail.size + <span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> PersistentStack <span class="title">emptyStack</span><span class="params">()</span> </span>&#123;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">new</span> PersistentStack();</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="function"><span class="keyword">private</span> <span class="title">PersistentStack</span><span class="params">()</span> </span>&#123;</div><div class="line">			<span class="keyword">this</span>.head = <span class="keyword">null</span>;</div><div class="line">			<span class="keyword">this</span>.tail = <span class="keyword">null</span>;</div><div class="line">			<span class="keyword">this</span>.size = <span class="number">0</span>;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="function"><span class="keyword">public</span> PersistentStack&lt;E&gt; <span class="title">toReverseStack</span><span class="params">()</span> </span>&#123;</div><div class="line">			PersistentStack&lt;E&gt; stack = <span class="keyword">new</span> PersistentStack&lt;E&gt;();</div><div class="line">			PersistentStack&lt;E&gt; tail = <span class="keyword">this</span>;</div><div class="line">			<span class="keyword">while</span> (!tail.isEmpty()) &#123;</div><div class="line">				stack = stack.push(tail.head);</div><div class="line">				tail = tail.tail;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">return</span> stack;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> </span>&#123;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">this</span>.size == <span class="number">0</span>;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="function"><span class="keyword">public</span> PersistentStack&lt;E&gt; <span class="title">push</span><span class="params">(E obj)</span> </span>&#123;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">new</span> PersistentStack&lt;E&gt;(obj, <span class="keyword">this</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> PersistentStack&lt;E&gt; order;</div><div class="line">	<span class="keyword">private</span> PersistentStack&lt;E&gt; reverse;</div><div class="line"></div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="title">PersistentQueue</span><span class="params">(PersistentStack&lt;E&gt; order, PersistentStack&lt;E&gt; reverse)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.order = order;</div><div class="line">		<span class="keyword">this</span>.reverse = reverse;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">PersistentQueue</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.order = PersistentStack.emptyStack();</div><div class="line">		<span class="keyword">this</span>.reverse = PersistentStack.emptyStack();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> PersistentQueue&lt;E&gt; <span class="title">enqueue</span><span class="params">(E e)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (<span class="keyword">null</span> == e)</div><div class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException();</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> PersistentQueue&lt;E&gt;(<span class="keyword">this</span>.order.push(e), <span class="keyword">this</span>.reverse);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> PersistentQueue&lt;E&gt; <span class="title">dequeue</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>.isEmpty())</div><div class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException();</div><div class="line">		<span class="keyword">if</span> (!<span class="keyword">this</span>.reverse.isEmpty()) &#123;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">new</span> PersistentQueue&lt;E&gt;(<span class="keyword">this</span>.order, <span class="keyword">this</span>.reverse.tail);</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			<span class="comment">// revers the ordered stack then "clean" that stack</span></div><div class="line">			<span class="keyword">return</span> <span class="keyword">new</span> PersistentQueue&lt;E&gt;(PersistentStack.emptyStack(),</div><div class="line">					<span class="keyword">this</span>.order.toReverseStack().tail);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">balanceQueue</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.reverse = <span class="keyword">this</span>.order.toReverseStack();</div><div class="line">		<span class="keyword">this</span>.order = PersistentStack.emptyStack();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> E <span class="title">peek</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>.isEmpty())</div><div class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException();</div><div class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>.reverse.isEmpty())</div><div class="line">			balanceQueue();</div><div class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.reverse.head;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> size() == <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.order.size + <span class="keyword">this</span>.reverse.size;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="Creating-a-simple-immutable-stack"><a href="#Creating-a-simple-immutable-stack" class="headerlink" title="Creating a simple immutable stack"></a>Creating a simple immutable stack</h1><p><a href="http://blog.slaks.net/2013-06-11/readonly-vs-immutable/" target="_blank" rel="external">Last time</a>, I explained the basic meaning of immutability. The simplest useful example of an immutable class is an immutable stack. Immutable stacks work just like regular stacks – with Push(), Pop(), and Peek() methods – except that instead of mutating the original instance, Push() and Pop() return a new, modified, instance.</p>
+<p>In code, that looks like:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> interface IStack&lt;T&gt; &#123;</div><div class="line">    IStack&lt;T&gt; Push(T element);</div><div class="line">    IStack&lt;T&gt; Pop();</div><div class="line">    <span class="function">T <span class="title">Peek</span><span class="params">()</span></span>;</div><div class="line">    <span class="keyword">bool</span> IsEmpty &#123; get; &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">IStack&lt;<span class="keyword">int</span>&gt; myStack = empty;</div><div class="line">myStack = myStack.Push(<span class="number">1</span>).Push(<span class="number">2</span>).Push(<span class="number">3</span>);</div><div class="line"></div><div class="line"><span class="keyword">while</span> (!myStack.IsEmpty) &#123;</div><div class="line">    Console.WriteLine(myStack.Peek());</div><div class="line">    myStack = myStack.Pop();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Each implementation of this interface would supply a singleton empty instance; since they are immutable; there is no need to have more than one empty instance. Thus, there is no need for a constructor. Since Pop() needs to return the new stack, it cannot return the removed item; therefore, Peek() is the only way to get the item.</p>
+<p>As a side benefit, this pattern naturally enables and encourages fluent interfaces, since each mutation methods returns a new instance. (eg, myStack.Push(1).Push(2).Push(3))</p>
+<p>The naive implementation of this interface would use a list, and copy the list when creating a new stack:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> NaiveStack&lt;T&gt; : IStack&lt;T&gt; &#123;</div><div class="line">    <span class="keyword">private</span> readonly ReadOnlyCollection&lt;T&gt; items;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">NaiveStack</span><span class="params">(IList&lt;T&gt; items)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.items = <span class="keyword">new</span> ReadOnlyCollection&lt;T&gt;(items);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> readonly NaiveStack&lt;T&gt; Empty </div><div class="line">        = <span class="keyword">new</span> NaiveStack&lt;T&gt;(<span class="keyword">new</span> T[<span class="number">0</span>]);</div><div class="line"></div><div class="line">    <span class="keyword">public</span> IStack&lt;T&gt; Push(T element) &#123;</div><div class="line">        var <span class="built_in">list</span> = <span class="keyword">new</span> List&lt;T&gt;(items);</div><div class="line">        <span class="built_in">list</span>.Add(element);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> NaiveStack&lt;T&gt;(<span class="built_in">list</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> IStack&lt;T&gt; Pop() &#123;</div><div class="line">        <span class="keyword">if</span> (IsEmpty)</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> InvalidOperationException(<span class="string">"Stack is empty"</span>);</div><div class="line">        var <span class="built_in">list</span> = <span class="keyword">new</span> List&lt;T&gt;(items);</div><div class="line">        <span class="built_in">list</span>.RemoveAt(<span class="built_in">list</span>.Count - <span class="number">1</span>);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> NaiveStack&lt;T&gt;(<span class="built_in">list</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">Peek</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> items.Last(); &#125;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">bool</span> IsEmpty &#123; </div><div class="line">        get &#123; <span class="keyword">return</span> items.Count == <span class="number">0</span>; &#125; </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>The problem with this approach is that each mutation requires an O(n) copy to create the list behind the new instance. This makes Push() and Pop() awfully slow, and vastly increases the memory footprint until the intermediate instances can be GCd.</p>
+<p>To solve these problems, we can design the stack as a persistent data structure. Instead of copying anything when pushing on to a stack, we cab make the new stack instance hold only the newly added item, and maintain a reference to the previous instance storing the rest of the items. Popping from the stack can then simply return the previous instance. Basically, the stack becomes an immutable single-linked list.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> abstract <span class="keyword">class</span> PersistentStack&lt;T&gt; : IStack&lt;T&gt; &#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> readonly PersistentStack&lt;T&gt; Empty = <span class="keyword">new</span> EmptyNode();</div><div class="line"></div><div class="line">    <span class="keyword">public</span> IStack&lt;T&gt; Push(T element) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> LinkNode(<span class="keyword">this</span>, element);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">class</span> EmptyNode : PersistentStack&lt;T&gt; &#123;</div><div class="line">        <span class="keyword">public</span> override IStack&lt;T&gt; Pop() &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> InvalidOperationException(<span class="string">"Stack is empty"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">public</span> override T <span class="title">Peek</span><span class="params">()</span> </span>&#123; </div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> InvalidOperationException(<span class="string">"Stack is empty"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">public</span> override <span class="keyword">bool</span> IsEmpty &#123; get &#123; <span class="keyword">return</span> <span class="literal">true</span>; &#125; &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">class</span> LinkNode : PersistentStack&lt;T&gt; &#123;</div><div class="line">        readonly IStack&lt;T&gt; previous;</div><div class="line">        readonly T element;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">LinkNode</span><span class="params">(IStack&lt;T&gt; previous, T element)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.previous = previous;</div><div class="line">            <span class="keyword">this</span>.element = element;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">public</span> override IStack&lt;T&gt; Pop() &#123;</div><div class="line">            <span class="keyword">return</span> previous;</div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">public</span> override T <span class="title">Peek</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> element; &#125;</div><div class="line">        <span class="keyword">public</span> override <span class="keyword">bool</span> IsEmpty &#123; get &#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125; &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">public</span> abstract IStack&lt;T&gt; Pop();</div><div class="line">    <span class="function"><span class="keyword">public</span> abstract T <span class="title">Peek</span><span class="params">()</span></span>;</div><div class="line">    <span class="keyword">public</span> abstract <span class="keyword">bool</span> IsEmpty &#123; get; &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>In this implementation, the empty and non-empty nodes are different enough that I decided to use polymorphism rather than if statements. The PersistentStack<t> type contains the only common logic (Push()); everything else is implement by the two concrete classes.</t></p>
+<p>Here, the empty stack truly is a singleton; only one instance will ever be created for each element type. It can only be used as a starting point to create new stacks; the other methods simply throw exceptions. It also serves as the final node in the chain for all non-empty stacks.</p>
+<p>Pushing onto any stack (empty or not) returns a new node that holds the new item and points to the previous stack; popping a non-empty stack simply returns that reference.</p>
+<p>Like other linked lists, this approach implements both Push() and Pop() in O(1) in both memory and time.</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/07/16/Leetcode_Reverse Bits/" itemprop="url">
                   Reverse Bits
                 </a>
@@ -339,6 +488,133 @@
 <h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>从位的角度考虑理解问题，采用位操作.</p>
 <p>##Code</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="comment">// you need treat n as an unsigned value</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">reverseBits</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> reversed = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">32</span>; i++) &#123;</div><div class="line">            reversed = (reversed &lt;&lt; <span class="number">1</span>) | (n &amp; <span class="number">1</span>);</div><div class="line">            n = (n &gt;&gt; <span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> reversed;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/07/14/Leetcode_Search Insert Position/" itemprop="url">
+                  Search Insert Position
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-07-14T00:00:00+09:00" content="2015-07-14">
+              2015-07-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/07/14/Leetcode_Search Insert Position/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/07/14/Leetcode_Search Insert Position/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Search-Insert-Position"><a href="#Search-Insert-Position" class="headerlink" title="Search Insert Position"></a><a href="https://leetcode.com/problems/search-insert-position/" target="_blank" rel="external">Search Insert Position</a></h1><blockquote>
+<p>Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.</p>
+<p>You may assume no duplicates in the array.</p>
+<p>Here are few examples.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[1,3,5,6], 5 → 2</div><div class="line">[1,3,5,6], 2 → 1</div><div class="line">[1,3,5,6], 7 → 4</div><div class="line">[1,3,5,6], 0 → 0</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>二分法搜索调整，搜索大于等于target的值最小的位置(最左边的)，注意处理条件值的设置。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">searchInsert</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> right = nums.length - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(left&lt;=right) &#123;</div><div class="line">            <span class="keyword">int</span> mid = left + (right-left) / <span class="number">2</span>;</div><div class="line">            <span class="keyword">if</span>(nums[mid]&gt;=target) right = mid - <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> left = mid + <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> left;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -516,133 +792,6 @@
             
               
                 
-                <a class="post-title-link" href="/2015/07/14/Leetcode_Search Insert Position/" itemprop="url">
-                  Search Insert Position
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-07-14T00:00:00+09:00" content="2015-07-14">
-              2015-07-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/07/14/Leetcode_Search Insert Position/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/07/14/Leetcode_Search Insert Position/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Search-Insert-Position"><a href="#Search-Insert-Position" class="headerlink" title="Search Insert Position"></a><a href="https://leetcode.com/problems/search-insert-position/" target="_blank" rel="external">Search Insert Position</a></h1><blockquote>
-<p>Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.</p>
-<p>You may assume no duplicates in the array.</p>
-<p>Here are few examples.</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[1,3,5,6], 5 → 2</div><div class="line">[1,3,5,6], 2 → 1</div><div class="line">[1,3,5,6], 7 → 4</div><div class="line">[1,3,5,6], 0 → 0</div></pre></td></tr></table></figure>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>二分法搜索调整，搜索大于等于target的值最小的位置(最左边的)，注意处理条件值的设置。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">searchInsert</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> right = nums.length - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(left&lt;=right) &#123;</div><div class="line">            <span class="keyword">int</span> mid = left + (right-left) / <span class="number">2</span>;</div><div class="line">            <span class="keyword">if</span>(nums[mid]&gt;=target) right = mid - <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> left = mid + <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> left;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2015/07/13/Leetcode_Binary Tree Level Order Traversal II/" itemprop="url">
                   Binary Tree Level Order Traversal II
                 </a>
@@ -753,139 +902,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/07/12/Leetcode_Binary Tree Level Order Traversal/" itemprop="url">
-                  Binary Tree Level Order Traversal
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-07-12T00:00:00+09:00" content="2015-07-12">
-              2015-07-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/07/12/Leetcode_Binary Tree Level Order Traversal/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/07/12/Leetcode_Binary Tree Level Order Traversal/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Binary-Tree-Level-Order-Traversal"><a href="#Binary-Tree-Level-Order-Traversal" class="headerlink" title="Binary Tree Level Order Traversal "></a><a href="https://leetcode.com/problems/binary-tree-level-order-traversal/" target="_blank" rel="external">Binary Tree Level Order Traversal </a></h1><blockquote>
-<p>Given a binary tree, return the level order traversal of its nodes’ values. (ie, from left to right, level by level).</p>
-<p>For example:<br>Given binary tree {3,9,20,#,#,15,7},</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">  3</div><div class="line"> / \</div><div class="line">9  20</div><div class="line">  /  \</div><div class="line"> 15   7</div></pre></td></tr></table></figure>
-<p>return its level order traversal as:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">  [3],</div><div class="line">  [9,20],</div><div class="line">  [15,7]</div><div class="line">]</div></pre></td></tr></table></figure>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h3 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1"></a>Method 1</h3><p>BFS遍历，记录每层元素个数以实现层次区分。</p>
-<h3 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2"></a>Method 2</h3><p>先序遍历，加入level标识，如果该层已访问，则直接添加到对于的层次结果中。如果尚未访问，则先添加该层结果List，再添加当前节点。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="Method-1-1"><a href="#Method-1-1" class="headerlink" title="Method 1"></a>Method 1</h3><p>third time</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) &#123;</div><div class="line">        List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> ArrayList&lt;List&lt;Integer&gt;&gt;();</div><div class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span> res;</div><div class="line">        Queue&lt;TreeNode&gt; queue = <span class="keyword">new</span> LinkedList&lt;TreeNode&gt;();</div><div class="line">        List&lt;Integer&gt; record = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">        queue.offer(root);</div><div class="line">        <span class="keyword">int</span> levelSize = <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(!queue.isEmpty()) &#123;</div><div class="line">            TreeNode node = queue.poll();</div><div class="line">            record.add(node.val);</div><div class="line">            levelSize --;</div><div class="line">            <span class="keyword">if</span>(node.left!=<span class="keyword">null</span>) queue.offer(node.left);</div><div class="line">            <span class="keyword">if</span>(node.right!=<span class="keyword">null</span>) queue.offer(node.right);</div><div class="line">            <span class="keyword">if</span>(levelSize==<span class="number">0</span>) &#123;</div><div class="line">                res.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;(record));</div><div class="line">                record.clear();</div><div class="line">                levelSize = queue.size();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>second time</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) &#123;</div><div class="line">        List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> ArrayList&lt;List&lt;Integer&gt;&gt;();</div><div class="line">        Queue&lt;TreeNode&gt; queue = <span class="keyword">new</span> LinkedList&lt;TreeNode&gt;();</div><div class="line">        <span class="keyword">int</span> levelCount = <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> nextLevelCount = <span class="number">0</span>;</div><div class="line">        <span class="keyword">if</span>(root!=<span class="keyword">null</span>) queue.add(root);</div><div class="line">        </div><div class="line">        List&lt;Integer&gt; level = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">        <span class="keyword">while</span>(!queue.isEmpty()) &#123;</div><div class="line">            TreeNode node = queue.poll();</div><div class="line">            level.add(node.val);</div><div class="line">            levelCount --;</div><div class="line">            <span class="keyword">if</span>(node.left!=<span class="keyword">null</span>) &#123;</div><div class="line">                queue.add(node.left);</div><div class="line">                nextLevelCount ++;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>(node.right!=<span class="keyword">null</span>) &#123;</div><div class="line">                queue.add(node.right);</div><div class="line">                nextLevelCount ++;</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(levelCount==<span class="number">0</span>) &#123;</div><div class="line">                res.add(level);</div><div class="line">                level = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">                levelCount = nextLevelCount;</div><div class="line">                nextLevelCount = <span class="number">0</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Method-2-1"><a href="#Method-2-1" class="headerlink" title="Method 2"></a>Method 2</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) &#123;</div><div class="line">        List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> ArrayList&lt;List&lt;Integer&gt;&gt;();</div><div class="line">        recLevelOrder(root, <span class="number">0</span>, res);</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">recLevelOrder</span><span class="params">(TreeNode root, <span class="keyword">int</span> level, List&lt;List&lt;Integer&gt;&gt; res)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(res.size()&lt;=level) res.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;());</div><div class="line">        res.get(level).add(root.val);</div><div class="line">        </div><div class="line">        recLevelOrder(root.left, level+<span class="number">1</span>, res);</div><div class="line">        recLevelOrder(root.right, level+<span class="number">1</span>, res);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -931,7 +947,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">329</span>
+              <span class="site-state-item-count">330</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

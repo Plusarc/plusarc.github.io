@@ -260,8 +260,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/08/23/Leetcode_Remove Duplicates from Sorted List II /" itemprop="url">
-                  Remove Duplicates from Sorted List II
+                <a class="post-title-link" href="/2015/08/23/Leetcode_House Robber II/" itemprop="url">
+                  House Robber II
                 </a>
               
             
@@ -304,8 +304,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/08/23/Leetcode_Remove Duplicates from Sorted List II /#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/23/Leetcode_Remove Duplicates from Sorted List II /" itemprop="commentsCount"></span>
+                <a href="/2015/08/23/Leetcode_House Robber II/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/23/Leetcode_House Robber II/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -330,13 +330,26 @@
       
         
           
-            <h1 id="Remove-Duplicates-from-Sorted-List-II"><a href="#Remove-Duplicates-from-Sorted-List-II" class="headerlink" title="Remove Duplicates from Sorted List II "></a><a href="https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/" target="_blank" rel="external">Remove Duplicates from Sorted List II </a></h1><blockquote>
-<p>Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.</p>
-<p>For example,<br>Given <code>1-&gt;2-&gt;3-&gt;3-&gt;4-&gt;4-&gt;5</code>, return <code>1-&gt;2-&gt;5</code>.<br>Given <code>1-&gt;1-&gt;1-&gt;2-&gt;3</code>, return <code>2-&gt;3</code>.</p>
+            <h1 id="House-Robber-II"><a href="#House-Robber-II" class="headerlink" title="House Robber II"></a><a href="https://leetcode.com/problems/house-robber-ii/" target="_blank" rel="external">House Robber II</a></h1><blockquote>
+<p>Note: This is an extension of House Robber.</p>
+<p>After robbing those houses on that street, the thief has found himself a new place for his thievery so that he will not get too much attention. This time, all houses at this place are arranged in a circle. That means the first house is the neighbor of the last one. Meanwhile, the security system for these houses remain the same as for those in the previous street.</p>
+<p>Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police.</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>注意边界条件处理，以及从原来的head开始就是重复节点的情况。对于每个值计数，只保留计数为1的节点。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * public class ListNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     ListNode next;</div><div class="line"> *     ListNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">deleteDuplicates</span><span class="params">(ListNode head)</span> </span>&#123;</div><div class="line">        ListNode newHead = <span class="keyword">null</span>;</div><div class="line">        ListNode current = <span class="keyword">null</span>;</div><div class="line">        ListNode move = head;</div><div class="line">        <span class="keyword">while</span>(move!=<span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">int</span> count = <span class="number">1</span>;</div><div class="line">            <span class="keyword">int</span> value = move.val;</div><div class="line">            <span class="keyword">while</span>(move.next!=<span class="keyword">null</span> &amp;&amp; move.next.val==value) &#123;</div><div class="line">                move = move.next;</div><div class="line">                count ++;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>(count==<span class="number">1</span>) &#123;</div><div class="line">                <span class="keyword">if</span>(newHead==<span class="keyword">null</span>) &#123;</div><div class="line">                    newHead = current = move;</div><div class="line">                    move = move.next;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">else</span> &#123;</div><div class="line">                    current.next = move;</div><div class="line">                    current = move;</div><div class="line">                    move = move.next;</div><div class="line">                &#125;</div><div class="line">                current.next = <span class="keyword">null</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                move = move.next;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> newHead;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>类似于House Robber问题，区别是最后一个的选择受第一个影响。</p>
+<p>也就是当做原来的House Robber问题求解后，结果分为几种情况：</p>
+<ol>
+<li>sum计入了num[0]，和num[n]</li>
+<li>sum计入num[0]，但没有计入num[n]</li>
+<li>sum没有计入num[0]，但计入了num[n]</li>
+<li>sum没有计入num[0]，和num[n]</li>
+</ol>
+<p>对于后面3种情况，House Robber的解即是House Robber II的解。<br>唯一不同的是sum同时包含了num[0]和num[n]。这种情况House Robber的解没有办法用于直接作为House Robber的解。</p>
+<p>这里我们直接指定分为两类情况计算，一类是计算不计入num[0]的最优解sum，一类是计算计入num[0]的最优解sum，最大sum一定是这两个中的较大值。</p>
+<p>不计入num[0]，num[n]的选择不受任何影响，还原为原来的House Robber问题，范围为<code>1...n</code></p>
+<p>计入num[0]时，求得最大sum，又分为sum计入num[n]和没有计入num[n]的情况，对于是否计入了num[n]，直接比较sum[n]与sum[n-1]是否相等即可得知。。没有计入num[n]时，sum可以不做调整，因为没有同时选择第一个和最后一个。计入num[n]时，这样需要去掉nums[0]和nums[n]较小的一个。同时与sum[n-1]比较，取较大值。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">rob</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(nums.length==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">if</span>(nums.length==<span class="number">1</span>) <span class="keyword">return</span> nums[<span class="number">0</span>];</div><div class="line">        <span class="keyword">if</span>(nums.length==<span class="number">2</span>) <span class="keyword">return</span> Math.max(nums[<span class="number">0</span>], nums[<span class="number">1</span>]);</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> [] maxTakeFirst = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</div><div class="line">        <span class="keyword">int</span> [] maxPassFirst = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</div><div class="line">        </div><div class="line">        </div><div class="line">        maxTakeFirst[<span class="number">0</span>] = nums[<span class="number">0</span>];</div><div class="line">        maxTakeFirst[<span class="number">1</span>] = nums[<span class="number">0</span>];</div><div class="line">        </div><div class="line">        maxPassFirst[<span class="number">0</span>] = <span class="number">0</span>;</div><div class="line">        maxPassFirst[<span class="number">1</span>] = nums[<span class="number">1</span>];</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>; i&lt;nums.length; i++) &#123;</div><div class="line">        	maxTakeFirst[i] = ((maxTakeFirst[i-<span class="number">2</span>]+nums[i])&gt;maxTakeFirst[i-<span class="number">1</span>]) ? </div><div class="line">        			(maxTakeFirst[i-<span class="number">2</span>]+nums[i]):maxTakeFirst[i-<span class="number">1</span>];</div><div class="line">        			</div><div class="line">        	maxPassFirst[i] = ((maxPassFirst[i-<span class="number">2</span>]+nums[i])&gt;maxPassFirst[i-<span class="number">1</span>]) ? </div><div class="line">                	(maxPassFirst[i-<span class="number">2</span>]+nums[i]):maxPassFirst[i-<span class="number">1</span>];</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(maxTakeFirst[nums.length-<span class="number">1</span>]!=maxTakeFirst[nums.length-<span class="number">2</span>]) &#123;</div><div class="line">        	<span class="keyword">if</span>(nums[nums.length-<span class="number">1</span>]&gt;nums[<span class="number">0</span>]) maxTakeFirst[nums.length-<span class="number">1</span>] -= nums[<span class="number">0</span>];</div><div class="line">        	<span class="keyword">else</span> maxTakeFirst[nums.length-<span class="number">1</span>] -= nums[nums.length-<span class="number">1</span>];</div><div class="line">        	</div><div class="line">        	maxTakeFirst[nums.length-<span class="number">1</span>] = Math.max(maxTakeFirst[nums.length-<span class="number">1</span>], maxTakeFirst[nums.length-<span class="number">2</span>]);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> Math.max(maxTakeFirst[nums.length-<span class="number">1</span>], maxPassFirst[nums.length-<span class="number">1</span>]);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>better solution, <a href="http://segmentfault.com/a/1190000003811581" target="_blank" rel="external">reference</a>.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">rob</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="comment">// 求两种条件下更大的那个，用一个offset表示是哪种条件</span></div><div class="line">        <span class="keyword">return</span> Math.max(rob(nums, <span class="number">0</span>), rob(nums, <span class="number">1</span>));</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">rob</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> offset)</span> </span>&#123;</div><div class="line">        <span class="comment">// 如果长度过小，则直接返回结果</span></div><div class="line">        <span class="keyword">if</span>(nums.length &lt;= <span class="number">1</span> + offset)&#123;</div><div class="line">            <span class="keyword">return</span> nums.length &lt;= offset ? <span class="number">0</span> : nums[<span class="number">0</span> + offset]; </div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> a = nums[<span class="number">0</span> + offset];</div><div class="line">        <span class="comment">// 如果offset是1，则从下标为1的元素开始计算，所以要比较nums[1]和nums[2]</span></div><div class="line">        <span class="keyword">int</span> b = Math.max(nums[<span class="number">0</span> + offset], nums[<span class="number">1</span> + offset]);</div><div class="line">        <span class="comment">// 对于不抢劫最后一个房子的情况，i要小于nums.length - 1</span></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span> + offset; i &lt; nums.length - <span class="number">1</span> + offset; i++)&#123;</div><div class="line">            <span class="keyword">int</span> tmp = b;</div><div class="line">            b = Math.max(a + nums[i], b);</div><div class="line">            a = tmp;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> b;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           
         
       
@@ -509,8 +522,133 @@
             
               
                 
-                <a class="post-title-link" href="/2015/08/22/Leetcode_Isomorphic Strings/" itemprop="url">
-                  Isomorphic Strings
+                <a class="post-title-link" href="/2015/08/23/Leetcode_Remove Duplicates from Sorted List II /" itemprop="url">
+                  Remove Duplicates from Sorted List II
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-08-23T00:00:00+09:00" content="2015-08-23">
+              2015-08-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/08/23/Leetcode_Remove Duplicates from Sorted List II /#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/23/Leetcode_Remove Duplicates from Sorted List II /" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Remove-Duplicates-from-Sorted-List-II"><a href="#Remove-Duplicates-from-Sorted-List-II" class="headerlink" title="Remove Duplicates from Sorted List II "></a><a href="https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/" target="_blank" rel="external">Remove Duplicates from Sorted List II </a></h1><blockquote>
+<p>Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.</p>
+<p>For example,<br>Given <code>1-&gt;2-&gt;3-&gt;3-&gt;4-&gt;4-&gt;5</code>, return <code>1-&gt;2-&gt;5</code>.<br>Given <code>1-&gt;1-&gt;1-&gt;2-&gt;3</code>, return <code>2-&gt;3</code>.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>注意边界条件处理，以及从原来的head开始就是重复节点的情况。对于每个值计数，只保留计数为1的节点。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * public class ListNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     ListNode next;</div><div class="line"> *     ListNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">deleteDuplicates</span><span class="params">(ListNode head)</span> </span>&#123;</div><div class="line">        ListNode newHead = <span class="keyword">null</span>;</div><div class="line">        ListNode current = <span class="keyword">null</span>;</div><div class="line">        ListNode move = head;</div><div class="line">        <span class="keyword">while</span>(move!=<span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">int</span> count = <span class="number">1</span>;</div><div class="line">            <span class="keyword">int</span> value = move.val;</div><div class="line">            <span class="keyword">while</span>(move.next!=<span class="keyword">null</span> &amp;&amp; move.next.val==value) &#123;</div><div class="line">                move = move.next;</div><div class="line">                count ++;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>(count==<span class="number">1</span>) &#123;</div><div class="line">                <span class="keyword">if</span>(newHead==<span class="keyword">null</span>) &#123;</div><div class="line">                    newHead = current = move;</div><div class="line">                    move = move.next;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">else</span> &#123;</div><div class="line">                    current.next = move;</div><div class="line">                    current = move;</div><div class="line">                    move = move.next;</div><div class="line">                &#125;</div><div class="line">                current.next = <span class="keyword">null</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                move = move.next;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> newHead;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/08/22/Leetcode_Add and Search Word/" itemprop="url">
+                  Add and Search Word
                 </a>
               
             
@@ -553,8 +691,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/08/22/Leetcode_Isomorphic Strings/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/22/Leetcode_Isomorphic Strings/" itemprop="commentsCount"></span>
+                <a href="/2015/08/22/Leetcode_Add and Search Word/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/22/Leetcode_Add and Search Word/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -579,18 +717,22 @@
       
         
           
-            <h1 id="Isomorphic-Strings"><a href="#Isomorphic-Strings" class="headerlink" title="Isomorphic Strings"></a><a href="https://leetcode.com/problems/isomorphic-strings/" target="_blank" rel="external">Isomorphic Strings</a></h1><blockquote>
-<p>Given two strings s and t, determine if they are isomorphic.</p>
-<p>Two strings are isomorphic if the characters in s can be replaced to get t.</p>
-<p>All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character but a character may map to itself.</p>
-<p>For example,<br>Given <code>&quot;egg&quot;</code>, <code>&quot;add&quot;</code>, return <code>true</code>.</p>
-<p>Given <code>&quot;foo&quot;</code>, <code>&quot;bar&quot;</code>, return <code>false</code>.</p>
-<p>Given <code>&quot;paper&quot;</code>, <code>&quot;title&quot;</code>, return <code>true</code>.</p>
-<p>Note:<br>You may assume both s and t have the same length.</p>
+            <h1 id="Add-and-Search-Word"><a href="#Add-and-Search-Word" class="headerlink" title="Add and Search Word"></a><a href="https://leetcode.com/problems/add-and-search-word-data-structure-design/" target="_blank" rel="external">Add and Search Word</a></h1><blockquote>
+<p>Design a data structure that supports the following two operations:</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>关键是映射的唯一性，每个字母只能映射一个字母，并且每个字母只能被另一个唯一的字母映射。<br>使用HashMap记录字符串<code>s</code>到字符串<code>t</code>的字母映射，同时使用HashSet辅助记录<code>t</code>的字母是否被多个<code>s</code>不同的字母映射。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isIsomorphic</span><span class="params">(String s, String t)</span> </span>&#123;</div><div class="line">        Map&lt;Character, Character&gt; map = <span class="keyword">new</span> HashMap&lt;Character, Character&gt;();</div><div class="line">        Set&lt;Character&gt; set = <span class="keyword">new</span> HashSet&lt;Character&gt;();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;s.length(); i++) &#123;</div><div class="line">            <span class="keyword">char</span> sc = s.charAt(i);</div><div class="line">            <span class="keyword">char</span> tc = t.charAt(i);</div><div class="line">            <span class="keyword">if</span>(map.containsKey(sc)) &#123;</div><div class="line">                <span class="keyword">if</span>(map.get(sc)!=tc) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">if</span>(set.contains(tc)) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">                map.put(sc, tc);</div><div class="line">                set.add(tc);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">void addWord(word)</div><div class="line">bool search(word)</div><div class="line">search(word) can search a literal word or a regular expression string containing only letters a-z or .. A . means it can represent any one letter.</div></pre></td></tr></table></figure>
+<blockquote>
+<p>For example:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">addWord(&quot;bad&quot;)</div><div class="line">addWord(&quot;dad&quot;)</div><div class="line">addWord(&quot;mad&quot;)</div><div class="line">search(&quot;pad&quot;) -&gt; false</div><div class="line">search(&quot;bad&quot;) -&gt; true</div><div class="line">search(&quot;.ad&quot;) -&gt; true</div><div class="line">search(&quot;b..&quot;) -&gt; true</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Note:<br>You may assume that all words are consist of lowercase letters a-z.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>类似于Implement Trie，不过search增加了一个<code>.</code>匹配符。采用DFS搜索Trie树，每次处理word的一个字符，如果是非<code>.</code>字符，则获得相应的子树，如果该子树为<code>null</code>则匹配失败。如果是<code>.</code>则对于当前节点的所有子节点依次进行DFS，只要有一个子树搜索到结果，就跳过后面的搜索。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TrieNode</span> </span>&#123;</div><div class="line">    <span class="comment">// Initialize your data structure here.</span></div><div class="line">    <span class="keyword">private</span> TrieNode [] records;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> withWord;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TrieNode</span><span class="params">()</span> </span>&#123;</div><div class="line">        records = <span class="keyword">new</span> TrieNode[<span class="number">26</span>];</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setWord</span><span class="params">()</span> </span>&#123;</div><div class="line">        withWord = <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isWord</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> withWord;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> TrieNode <span class="title">getRecord</span><span class="params">(<span class="keyword">char</span> c)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> records[c-<span class="string">'a'</span>];</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setRecord</span><span class="params">(<span class="keyword">char</span> c, TrieNode node)</span> </span>&#123;</div><div class="line">        records[c-<span class="string">'a'</span>] = node;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WordDictionary</span> </span>&#123;</div><div class="line">	</div><div class="line">	<span class="keyword">private</span> TrieNode root;</div><div class="line">	</div><div class="line">	WordDictionary() &#123;</div><div class="line">		root = <span class="keyword">new</span> TrieNode();</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">    <span class="comment">// Adds a word into the data structure.</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addWord</span><span class="params">(String word)</span> </span>&#123;</div><div class="line">    	TrieNode current = root;</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span>(i&lt;word.length() &amp;&amp; current.getRecord(word.charAt(i))!=<span class="keyword">null</span>) &#123;</div><div class="line">            current = current.getRecord(word.charAt(i));</div><div class="line">            i ++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(i==word.length()) &#123;</div><div class="line">            current.setWord();</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">while</span>(i&lt;word.length()) &#123;</div><div class="line">            TrieNode newNode = <span class="keyword">new</span> TrieNode();</div><div class="line">            current.setRecord(word.charAt(i), newNode);</div><div class="line">            current = newNode;</div><div class="line">            i ++;</div><div class="line">        &#125;</div><div class="line">        current.setWord();</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Returns if the word is in the data structure. A word could</span></div><div class="line">    <span class="comment">// contain the dot character '.' to represent any one letter.</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">search</span><span class="params">(String word)</span> </span>&#123;</div><div class="line">    	<span class="keyword">return</span> recSearch(word, <span class="number">0</span>, root);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">recSearch</span><span class="params">(String word, <span class="keyword">int</span> pos, TrieNode root)</span> </span>&#123;</div><div class="line">    	<span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    	<span class="keyword">if</span>(pos==word.length()) <span class="keyword">return</span> root.isWord();</div><div class="line">    	<span class="keyword">if</span>(word.charAt(pos)==<span class="string">'.'</span>) &#123;</div><div class="line">    		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">26</span>; i++) &#123;</div><div class="line">    			<span class="keyword">if</span>(recSearch(word, pos+<span class="number">1</span>, root.getRecord((<span class="keyword">char</span>)(<span class="string">'a'</span>+i)))) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    		&#125;</div><div class="line">    		<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    	&#125; <span class="keyword">else</span> &#123;</div><div class="line">    		<span class="keyword">return</span> recSearch(word, pos+<span class="number">1</span>, root.getRecord(word.charAt(pos)));</div><div class="line">    	&#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Your WordDictionary object will be instantiated and called as such:</span></div><div class="line"><span class="comment">// WordDictionary wordDictionary = new WordDictionary();</span></div><div class="line"><span class="comment">// wordDictionary.addWord("word");</span></div><div class="line"><span class="comment">// wordDictionary.search("pattern");</span></div></pre></td></tr></table></figure>
+<p>second time </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TrieNode</span> </span>&#123;</div><div class="line">    <span class="comment">// Initialize your data structure here.</span></div><div class="line">    TrieNode[] nodes;</div><div class="line">    <span class="keyword">boolean</span> exist;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TrieNode</span><span class="params">()</span> </span>&#123;</div><div class="line">        nodes = <span class="keyword">new</span> TrieNode[<span class="number">26</span>];</div><div class="line">        exist = <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WordDictionary</span> </span>&#123;</div><div class="line">    TrieNode root = <span class="keyword">new</span> TrieNode();</div><div class="line">    <span class="comment">// Adds a word into the data structure.</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addWord</span><span class="params">(String word)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(word==<span class="keyword">null</span> || word.length()==<span class="number">0</span>) <span class="keyword">return</span>;</div><div class="line">        TrieNode move = root;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;word.length(); i++) &#123;</div><div class="line">            <span class="keyword">char</span> c= word.charAt(i); </div><div class="line">            <span class="keyword">if</span>(move.nodes[c-<span class="string">'a'</span>]==<span class="keyword">null</span>) &#123;</div><div class="line">                move.nodes[c-<span class="string">'a'</span>] = <span class="keyword">new</span> TrieNode();</div><div class="line">            &#125;</div><div class="line">            move = move.nodes[c-<span class="string">'a'</span>];</div><div class="line">        &#125;</div><div class="line">        move.exist = <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Returns if the word is in the data structure. A word could</span></div><div class="line">    <span class="comment">// contain the dot character '.' to represent any one letter.</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">search</span><span class="params">(String word)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> search(word, <span class="number">0</span>, root);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">search</span><span class="params">(String word, <span class="keyword">int</span> pos, TrieNode move)</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=pos; i&lt;word.length(); i++) &#123;</div><div class="line">            <span class="keyword">char</span> c = word.charAt(i);</div><div class="line">            <span class="keyword">if</span>(c!=<span class="string">'.'</span>) &#123;</div><div class="line">                <span class="keyword">if</span>(move.nodes[c-<span class="string">'a'</span>]==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">                <span class="keyword">else</span> move = move.nodes[c-<span class="string">'a'</span>];</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;<span class="number">26</span>; j++) &#123;</div><div class="line">                    <span class="keyword">if</span>(move.nodes[j]!=<span class="keyword">null</span> &amp;&amp; search(word, i+<span class="number">1</span>, move.nodes[j])) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> move.exist;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Your WordDictionary object will be instantiated and called as such:</span></div><div class="line"><span class="comment">// WordDictionary wordDictionary = new WordDictionary();</span></div><div class="line"><span class="comment">// wordDictionary.addWord("word");</span></div><div class="line"><span class="comment">// wordDictionary.search("pattern");</span></div></pre></td></tr></table></figure>
           
         
       
@@ -747,146 +889,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/08/22/Leetcode_Find Minimum in Rotated Sorted Array/" itemprop="url">
-                  Find Minimum in Rotated Sorted Array
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-08-22T00:00:00+09:00" content="2015-08-22">
-              2015-08-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/08/22/Leetcode_Find Minimum in Rotated Sorted Array/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/22/Leetcode_Find Minimum in Rotated Sorted Array/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Find-Minimum-in-Rotated-Sorted-Array"><a href="#Find-Minimum-in-Rotated-Sorted-Array" class="headerlink" title="Find Minimum in Rotated Sorted Array"></a><a href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/" target="_blank" rel="external">Find Minimum in Rotated Sorted Array</a></h1><blockquote>
-<p>Suppose a sorted array is rotated at some pivot unknown to you beforehand.</p>
-<p>(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).</p>
-<p>Find the minimum element.</p>
-<p>You may assume no duplicate exists in the array.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>二分法搜索的变化形式。关键是边界case的处理。</p>
-<p>得到了accept solution但觉得边界处理不够系统和简洁，也不太好解释。</p>
-<p>找到了比较简洁和系统的思路和solution，参考：<br><a href="http://bangbingsyb.blogspot.jp/2014/11/leecode-find-minimum-in-rotated-sorted.html" target="_blank" rel="external">Find Minimum in Rotated Sorted Array I, II</a><br><a href="http://bangbingsyb.blogspot.jp/2014/11/leetcode-search-in-rotated-sorted-array.html" target="_blank" rel="external">Search in Rotated Sorted Array I</a></p>
-<p>根据A[mid]和A[end]来判断右半数组是否sorted：<br>原数组：<code>0 1 2 4 5 6 7</code><br>情况1：  <code>6 7 0 1 2 4 5</code><br>情况2：  <code>2 4 5 6 7 0 1</code> </p>
-<p><strong>cases:</strong><br>(1) <font color="red"> <code>A[mid] &lt; A[end]</code> </font>： <code>A[mid : end]</code> sorted =&gt; <strong>min不在<code>A[mid+1 : end]</code>中</strong>,<font color="red"> 搜索<code>A[start : mid]</code> </font><br>(2) <font color="red">  <code>A[mid] &gt; A[end]</code> </font>： <code>A[start : mid]</code> sorted且又因为该情况下<code>A[end]&lt;A[start]</code> =&gt; <strong>min不在<code>A[start : mid]</code>中</strong>, <font color="red">搜索<code>A[mid+1 : end]</code></font><br>(3) <strong>base case</strong>：<br>a. <code>start =  end</code>，必然<code>A[start]为min</code>，为搜寻结束条件。<br>b. <code>start + 1 = end</code>，此时<code>A[mid] =  A[start]</code>，而<code>min = min(A[mid], A[end])</code>。<strong>而这个条件可以合并到(1)和(2)中。</strong></p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="Self-solution"><a href="#Self-solution" class="headerlink" title="Self-solution"></a>Self-solution</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMin</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> right = nums.length-<span class="number">1</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(left&lt;right) &#123;</div><div class="line">            <span class="keyword">if</span>(nums[left]&lt;=nums[right]) <span class="keyword">return</span> nums[left];</div><div class="line">            <span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</div><div class="line">            <span class="keyword">if</span>(nums[mid]&gt;=nums[left]) left = mid+<span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> right = mid;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> nums[left];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Better-solution"><a href="#Better-solution" class="headerlink" title="Better-solution"></a>Better-solution</h3><p>```java<br>public class Solution {<br>    public int findMin(int[] nums) {<br>        int left = 0;<br>        int right = nums.length-1;</p>
-<pre><code>    while(left&lt;right) {
-        int mid = (left + right) / 2;
-        if(nums[mid]&lt;nums[right]) right = mid;
-        else left = mid + 1;
-    }
-    return nums[left];
-}
-</code></pre><p>}</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -932,7 +934,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">329</span>
+              <span class="site-state-item-count">330</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

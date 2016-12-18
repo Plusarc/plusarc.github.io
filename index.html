@@ -260,6 +260,186 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/18/Developing_Autocomplete/" itemprop="url">
+                  Autocomplete
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-12-18T00:00:00+09:00" content="2016-12-18">
+              2016-12-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Developing/" itemprop="url" rel="index">
+                    <span itemprop="name">Developing</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/18/Developing_Autocomplete/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/12/18/Developing_Autocomplete/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Autocomplete"><a href="#Autocomplete" class="headerlink" title="Autocomplete?"></a>Autocomplete?</h3><p>Autocomplete是现代搜索引擎的一个重要功能之一，当用户只输入了query的一部分时我们可以根据输入的这部分预测用户想输入的内容，作为suggestion提供给用户选择，可以有效的节省用户时间和提高搜索体验，同时可能提高搜索质量。</p>
+<p>先看一下公司Paul大神实现的酷炫的Autocomplete:</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/caret_aware_fuzzy.gif" alt=""></p>
+<p>Awesome! So, how does it work?</p>
+<p>最直接的实现方式是，将query log中的queries(query dictionary)构建一棵<a href="https://en.wikipedia.org/wiki/Trie" target="_blank" rel="external">Trie树（前缀树or字典树)</a>，并且对于每个query都给出一个评分（基于count或者其他更加高级的方式）。然后对于用户已经输入的query，去Trie树中搜索以已经输入的内容为前缀的query。</p>
+<p>然而这种方式是非常理想化的，在实际使用中有很多问题。最根本的一个问题是，如果用户的query不是以前缀方式出现在Trie树中，匹配就会失败（用户的query常常会有typos或者query里的词顺序本来就是可以交换的）。</p>
+<p>解决方法是，我们不应该拘泥于前缀（暂时先忘记前缀树），而应该选择在query dictionary(query log里的所有query)寻找尽量和用户已经输入的query相似的queries作为suggestions。Query的similarity可以通过很多种方式进行衡量，最常用的包括<a href="https://en.wikipedia.org/wiki/Levenshtein_distance" target="_blank" rel="external">Levenshtein-distance（编辑距离）</a>或<a href="n gram distance">n-gram distances</a>。这里我们讲使用的是Levenshtein-distance。</p>
+<p>所以我们的问题现在转换为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Input: (D, q, n)</div><div class="line">D -- queries dictionary(millions of queries or more)</div><div class="line">q -- The query input by the current user</div><div class="line">n -- Maximum Levenshtein-distance allowed from q</div><div class="line"></div><div class="line">Output: (suggestions)</div><div class="line">suggestions -- The queries from D whose Levenshtein-distance are smaller than n</div></pre></td></tr></table></figure>
+<p>So, how to solve this problem?</p>
+<h3 id="Here-comes-a-stupid-method"><a href="#Here-comes-a-stupid-method" class="headerlink" title="Here comes a stupid method"></a>Here comes a stupid method</h3><p>最直接的方法当然是，对于<code>D</code>中的每个query计算其与<code>q</code>的Levenshtein-distance，与<code>n</code>进行比较确定是否要作为suggestions。当然最后可能有很多suggestions，我们需要根据distance以及其他features进一步rank suggestions。</p>
+<p>我们来看一下这种方式的复杂度。首先是计算两个query的Levenshtein-distance，比较经典且高效的是基于动态规划的算法：</p>
+<p>要想把字符串(query) <code>S1</code>变成<code>S2</code>，可以经过若干次下列原子操作：</p>
+<ol>
+<li>删除一个字符</li>
+<li>增加一个字符</li>
+<li>更改一个字符</li>
+</ol>
+<p>字符串<code>S1</code>和<code>S2</code>的Levenshtein-distance定义为从<code>S1</code>变成<code>S2</code>所需要原子操作的最少次数。</p>
+<p>设字符串S去掉最后一个字符<code>T</code>后为<code>S&#39;</code>，<code>T1</code>和<code>T2</code>分别是<code>S1</code>和<code>S2</code>的最后一个字符。</p>
+<p>则<code>dist(S1,S2)</code>是下列4个值的最小者：</p>
+<ol>
+<li><code>dist(S1&#39;,S2&#39;)</code>   –当<code>T1==T2</code></li>
+<li><code>1+dist(S1&#39;,S2)</code>  –当<code>T1!=T2</code>，并且删除<code>S1</code>的最后一个字符<code>T1</code></li>
+<li><code>1+dist(S1,S2&#39;)</code>  –当<code>T1!=T2</code>，并且在<code>S1</code>后面增加一个字符<code>T2</code></li>
+<li><code>1+dist(S1&#39;,S2&#39;)</code> –当<code>T1!=T2</code>，并且把<code>S1</code>的最的一个字符<code>T1</code>改成<code>T2</code></li>
+</ol>
+<p>把问题转换为二维矩阵：</p>
+<p><code>M[i][j]</code>表示<code>S1.sub(0,i)</code>和<code>S2.sub(0,j)</code>的编辑距离，则</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">M[0][j]=j</div><div class="line">M[i][0]=i</div><div class="line">M[i][j]=  min(M[i][j-1]+1, M[i-1][j]+1, M[i-1][j-1]+cost)</div><div class="line">where cost = 0 if S1[i]==S2[j], and cost = 1 otherwise.</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minDistance</span><span class="params">(String word1, String word2)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(word1.length()==<span class="number">0</span>) <span class="keyword">return</span> word2.length();</div><div class="line">        <span class="keyword">if</span>(word2.length()==<span class="number">0</span>) <span class="keyword">return</span> word1.length();</div><div class="line">        <span class="keyword">int</span>[][] distances = <span class="keyword">new</span> <span class="keyword">int</span>[word1.length()+<span class="number">1</span>][];</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;distances.length; i++) distances[i] = <span class="keyword">new</span> <span class="keyword">int</span>[word2.length()+<span class="number">1</span>];</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;=word1.length(); i++) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;=word2.length(); j++) &#123;</div><div class="line">                <span class="keyword">if</span>(i==<span class="number">0</span>) distances[i][j] = j;</div><div class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(j==<span class="number">0</span>) distances[i][j] = i;</div><div class="line">                <span class="keyword">else</span> &#123;</div><div class="line">                    <span class="keyword">if</span>(word1.charAt(i-<span class="number">1</span>)==word2.charAt(j-<span class="number">1</span>)) distances[i][j] = distances[i-<span class="number">1</span>][j-<span class="number">1</span>];</div><div class="line">                    <span class="keyword">else</span> &#123;</div><div class="line">                        distances[i][j] = Math.min(distances[i-<span class="number">1</span>][j-<span class="number">1</span>], Math.min(distances[i-<span class="number">1</span>][j], distances[i][j-<span class="number">1</span>])) + <span class="number">1</span>;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> distances[word1.length()][word2.length()];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>计算两个query的编辑距离的算法时间复杂度为<code>O(len(s1)*len(s2))</code>。一般两个query的长度都不会太长，所以还是可以接受的。<br>然而，上面这种直接的方法需要对于<code>D</code>中每一个query计算到<code>q</code>的编辑距离，则处理一个<code>q</code>的时间复杂度约为<code>size(D)*O(average_len(q&#39;」)*len(q))， q&#39; belong to D</code>。</p>
+<p>这在实际情况下是完全不能接受的，我们必须有比这高效得多的方法。下面我们将介绍如何高效的解决这个问题。</p>
+<h3 id="Levenshein-Automaton"><a href="#Levenshein-Automaton" class="headerlink" title="Levenshein Automaton"></a>Levenshein Automaton</h3><p>前面对于每个<code>D</code>中的<code>query</code>，我们计算其到<code>q</code>的编辑距离。当存在很多<code>query</code>是，这会非常的昂贵。</p>
+<p>更好的方法对于给定的<code>q</code>和<code>n</code>，我们可以其对应的Levenshein Automaton（Levenshei自动机）。</p>
+<p>这样在判断<code>query</code>到<code>q</code>Levenshtein-distance是否小于等于<code>q</code>时，我们不需要再去计算其Levenshtein-distance，而是简单的<code>query</code>输入到Levenshein Automaton得到Accept或者Reject结果，时间复杂度将是<code>O(len(query))</code>。</p>
+<p>Levenshein Automaton是一个有限状态自动机，可以识别出和给定<code>q</code>(任意给定字符串)在编辑距离<code>n</code>的所有<code>query</code>(字符串)。也就是得到给定<code>q</code>和<code>n</code>的Levenshein Automaton后，我们可以输入任何query判断是否Accept。</p>
+<p>What？有限状态自动机（Finite State Machine）是啥。。。。。。参考<a href="https://en.wikipedia.org/wiki/Finite-state_machine" target="_blank" rel="external">Finite-state machine</a>.</p>
+<p>Levenshein Automaton是不是有些像什么魔法道具。。So, how can we get this awesome stuff?</p>
+<p>首先我们来构建给定<code>q</code>和<code>n</code>的非确定Levenshein Automaton（也就是一个非确定有限状态自动机形式），Refer to <a href="https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton" target="_blank" rel="external">Nondeterministic finite automaton</a>。</p>
+<p>再明确一下我们要解决的问题：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Input:  (q, n)</div><div class="line">Output: Levenshein Automaton that accepts exactly </div><div class="line">all words(queries) where the Levenshtein-distance to q does not exceed n.</div></pre></td></tr></table></figure>
+<p>也就是给定<code>q=food, n=2</code>，我们需要得到如下的非确定有限状态自动机：</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Autocomple_1.png" alt=""></p>
+<p>直观上理解这个有限状态自动机就是对于输入的query的letter串从前到后替换，删除，插入，匹配等操作，判断是能否在允许的错误个数（编辑次数）内转换成目标字符串<code>q</code>。直观？。。。。。。。。</p>
+<p>上面有限状态自动机中的每个状态(State)以 $$N^e$$表示，<code>N</code>表示已经匹配到<code>q</code>的第<code>N</code>位，<code>e</code>表示<code>error number</code>，也就是已经使用的编辑次数。必须要匹配到<code>q</code>的第<code>len(q)</code>才算匹配完成，同时<code>e</code>在允许的范围内时则是匹配成功，也就是有限状态机的Final state必须是 $$len(q)^0, len(q)^1,…,len(q)^n$$。</p>
+<p>另外上面的有限状态机的水平转移表示匹配了<code>q</code>中对于的字符，不需要使用编辑。垂直表示解释<code>query</code>当前字符为插入字符，使用一次插入编辑操作。对角线转移有两种类型的转移，<code>*</code>表示替换编辑操作，也就是替换<code>query</code>的当前字符来<code>match``q</code>当前字符，使用一次替换编辑操作。$$\varepsilon$$表示删除<code>q</code>的当前字符，使用一次删除编辑操作。</p>
+<p>下面给出一种比较简单的构建NFA的方法的代码，from <a href="http://blog.notdot.net/2010/07/Damn-Cool-Algorithms-Levenshtein-Automata" target="_blank" rel="external">Damn Cool Algorithms: Levenshtein Automata</a>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">levenshtein_automata</span><span class="params">(term, k)</span>:</span></div><div class="line">  nfa = NFA((<span class="number">0</span>, <span class="number">0</span>))</div><div class="line">  <span class="keyword">for</span> i, c <span class="keyword">in</span> enumerate(term):</div><div class="line">    <span class="keyword">for</span> e <span class="keyword">in</span> range(k + <span class="number">1</span>):</div><div class="line">      <span class="comment"># Correct character</span></div><div class="line">      nfa.add_transition((i, e), c, (i + <span class="number">1</span>, e))</div><div class="line">      <span class="keyword">if</span> e &lt; k:</div><div class="line">        <span class="comment"># Deletion</span></div><div class="line">        nfa.add_transition((i, e), NFA.ANY, (i, e + <span class="number">1</span>))</div><div class="line">        <span class="comment"># Insertion</span></div><div class="line">        nfa.add_transition((i, e), NFA.EPSILON, (i + <span class="number">1</span>, e + <span class="number">1</span>))</div><div class="line">        <span class="comment"># Substitution</span></div><div class="line">        nfa.add_transition((i, e), NFA.ANY, (i + <span class="number">1</span>, e + <span class="number">1</span>))</div><div class="line">  <span class="keyword">for</span> e <span class="keyword">in</span> range(k + <span class="number">1</span>):</div><div class="line">    <span class="keyword">if</span> e &lt; k:</div><div class="line">      nfa.add_transition((len(term), e), NFA.ANY, (len(term), e + <span class="number">1</span>))</div><div class="line">    nfa.add_final_state((len(term), e))</div><div class="line">  <span class="keyword">return</span> nfa</div></pre></td></tr></table></figure>
+<p>在得到给定<code>q</code>和<code>n</code>的Levenshein Automaton后，对于一个需要判断的<code>query</code>，我们只需要简单将其输入到Levenshein Automaton，判断处理完后达到的活跃状态中是否包括至少一个Accepted state。</p>
+<p>仍然存在的一个问题是，这里得到是NFA Levenshein Automaton(Nondeterministic finite automaton，非确定有限状态自动机)，而非确定有限状态自动机或非确定有限自动机（NFA）是对每个状态和输入符号对可以有多个可能的下一个状态的有限状态自动机。<br>也就是每次直接使用NFA判断能否accept给定的query时，NFA每次转移后都可能存在多个活跃状态以及epsilon transition(删除<code>q</code>的操作，也就是不需要消耗<code>query</code>输入符号的转移)，会导致更多的计算。</p>
+<p>在形式理论中，对于任何给定NFA，都可以构造一个等价的<a href="https://zh.wikipedia.org/wiki/确定有限状态自动机" target="_blank" rel="external">DFA（确定有限状态自动机）</a>，反之亦然。尽管DFA和NFA有不同的定义，但是它们是等价的。<br>所以通常我们需要使用<a href="https://en.wikipedia.org/wiki/Powerset_construction" target="_blank" rel="external">powerset construction, 幂集构造</a>把NFA转换为DFA，也就是每次transition后都有一个确定的活跃状态。</p>
+<p><a href="http://7xs07u.com1.z0.glb.clouddn.com/Autocomple_3.png" target="_blank" rel="external"></a></p>
+<h3 id="Let’s-build-DFA-Levenshein-Automata"><a href="#Let’s-build-DFA-Levenshein-Automata" class="headerlink" title="Let’s build DFA Levenshein Automata"></a>Let’s build DFA Levenshein Automata</h3><p><a href="https://en.wikipedia.org/wiki/Powerset_construction" target="_blank" rel="external">Powerset construction</a></p>
+<p><a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.16.652" target="_blank" rel="external">Fast String Correction with Levenshtein-Automata</a></p>
+<p>Continuing..</p>
+<h3 id="Any-further-optimization"><a href="#Any-further-optimization" class="headerlink" title="Any further optimization?"></a>Any further optimization?</h3><ul>
+<li>Dictionary Automata with Levenshein Automata</li>
+<li>Caret awareness (by Paul)</li>
+</ul>
+<p>Continuing..</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/05/Java_EasyMock/" itemprop="url">
                   Let's EasyMock
                 </a>
@@ -329,7 +509,7 @@
 
       
         
-          <p>和之前自己的project或者在startup的一个明显不同是，colleague的code review和开发的整个生命周期的维护（设计，实现，测试，qa，部署，AB test，logging）。</p>
+          <p>入职之后开发和之前自己的project或者在startup的一个明显不同是，colleague的code review和开发的整个生命周期的维护（设计，实现，测试，qa，部署，AB test，logging）。</p>
 <p>在单元测试时，由于很多类的功能都是依赖于其他类的功能，如果在测试一个类是全部引入其依赖的类的对象，会导致高度耦合和复杂度，首先一个问题是，单元测试失败时我们无法定位是哪里的问题，是当前正在测试的类的问题还是其依赖的类的问题。</p>
 <p>单元测试的目的是检测单个function的逻辑是否能工作正常，而不是各个类耦合在一起能否一起完成整体功能（有intergration测试）。所以我们需要模拟依赖的各个类，使得其确定能工作正常（设定其行为）。</p>
 <p>EasyMock就是一个经常使用的Mock工具，我们可以借助其快速生成我们想要的mock object。</p>
@@ -843,146 +1023,6 @@ e^{*} = arg \max_{e\in E} p(e)p(f|e)
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/09/Research_Topic Segmentation and alignment of multiple documents.mmd/" itemprop="url">
-                  Topic Segmentation and alignment of multiple documents
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2016-07-09T00:00:00+09:00" content="2016-07-09">
-              2016-07-09
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/research/" itemprop="url" rel="index">
-                    <span itemprop="name">research</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/09/Research_Topic Segmentation and alignment of multiple documents.mmd/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/09/Research_Topic Segmentation and alignment of multiple documents.mmd/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>对于网页文档进行更细粒度的分析可以有效改进检索的精度。一般来说一个文档都是有一个主题的，同时一篇文档中可能包含多个sub-topic，比如一篇关于分析日元汇率上升的文档中，可能包含近期日元的走势及分析，进一步可能包含英国脱欧的分析，对日本旅游业的影响，制造业的影响，与其他货币的比较等内容。尽管这篇文档整体主题是关于经济的，然是具体其中也包含了各个子话题。如果可以识别划分关于不同子话题的段落，可以有效的改进检索。同样的，多个文档可能包含这些子话题的段落，如果能将这些文档的段落中具有相同子话题的文档关联起来，可以进一步挖掘文档间的关系用于改进检索，因为有些用户只是关注文档中某一特定子话题的内容。</p>
-<p>这个任务就是identifying similar segments from multiple similar documents，一个直观的展示是：</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/topic_segment_alignment.png" alt=""></p>
-<p>论文Topic Segmentation with Shared Topic Detection and Alignment of Multiple Documents给出了一个基于Mutual information(MI)的解决方法，以及带有term weights的Weighted mutual information(WMI)的解决方案。</p>
-<p>问题可以定义为：</p>
-<p>terms集合 $T=\lbrace t_1, t_2, …, t_l\rbrace $<br>documents集合 $D=\lbrace d_1, d_2, …, d_n\rbrace $<br>文档 $d$ 的sentences $S_d=\lbrace s_1, s_2, …, s_m\rbrace$,其中$m$表示文档 $d$的sentences的个数。<br>Segments集合（准确的说是topic集合，这里的每个segment不是各个文档的片段，而是一个全局topic）$\widehat{S}=\lbrace \widehat{s_1}, \widehat{s_2}, …, \widehat{s_p}\rbrace $ ,也就是每个文档的$\widehat{s_1}$的topic都是相同的，尽管有些documents的$\widehat{s_1}$是空的，也就是不存在对应的sentence。也就是正如前面所说的，论文中这里指的segment其实就是topic（比较迷惑），而topic数目是要预定义的（尽管这个数字一般是没法确定，取一个大的数字是比较合适的，但是增加计算复杂度。）</p>
-<p>所要解决的问题就是对每个文档进行segmentation以及找出多个文档中各个segment的alignment：<br><span>$$\begin{aligned}
-Seg_d : \lbrace s_1, s_2, ..., s_{n_d}\rbrace  \to \lbrace \widehat{s_{d1}}, \widehat{s_{d2}}, ..., \widehat{s_{?}}\rbrace
-\end{aligned}$$</span><!-- Has MathJax --></p>
-<span>$\lbrace \widehat{s_{d1}}, \widehat{s_{d2}}, ..., \widehat{s_{?}}\rbrace$</span><!-- Has MathJax -->  表示这个文档的segmentation，其中每个$\widehat{s}$表示文档的片段。<br><br>以及各个文档的segmentation的alignment，也就是对于每个文档：<br><span>$$\begin{aligned}
-Ali_d=\lbrace \widehat{s_{d1}}, \widehat{s_{d2}}, ..., \widehat{s_{?}}\rbrace  \to \lbrace \widehat{s_1}, \widehat{s_2}, ..., \widehat{s_p}\rbrace
-\end{aligned}$$</span><!-- Has MathJax -->
-<p>(这里原文的表述和公式相当让人迷惑，所以做了调整)</p>
-<p>其基本假设本质上还是把sentence作为bag of words处理，并假设term和各个topic关联程度不同。比如toyota会和汽车topic关联比较紧密（也就是在关于汽车topic的段落中toyota出现可能性会比关于文学topic的段落中大，也就是topic-model的基本假设），以此定义了mutual inforamtion(MI)，其实就是clustering中MI的定义。<br><span>$$\begin{aligned}
-I(X;Y) = \sum_{x\in X}\sum_{y\in Y}p(x, y)log\frac{p(x,y)}{p(x)p(y)}
-\end{aligned}$$</span><!-- Has MathJax --></p>
-<p>对多个文档进行segmentation以及alignment的问题也就变成了如何划分每个文档以及alignment，使得最终的MI取得最大值，也就是MI就是这个问题的目标函数。具体在这问题中，MI也就是：<br><span>$$\begin{aligned}
-I(\widehat{T};\widehat{S}) = \sum_{\widehat{t}\in \widehat{T}}\sum_{\widehat{s}\in \widehat{S}}p(\widehat{t}, \widehat{s})log\frac{p(\widehat{t},\widehat{s})}{p(\widehat{t})p(\widehat{s})}
-\end{aligned}$$</span><!-- Has MathJax --></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/09/Research_Topic Segmentation and alignment of multiple documents.mmd/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1028,7 +1068,7 @@ I(\widehat{T};\widehat{S}) = \sum_{\widehat{t}\in \widehat{T}}\sum_{\widehat{s}\
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">329</span>
+              <span class="site-state-item-count">330</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

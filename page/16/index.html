@@ -260,6 +260,136 @@
             
               
                 
+                <a class="post-title-link" href="/2015/09/22/Leetcode_Search in Rotated Sorted Array/" itemprop="url">
+                  Search in Rotated Sorted Array
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-09-22T00:00:00+09:00" content="2015-09-22">
+              2015-09-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/22/Leetcode_Search in Rotated Sorted Array/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/22/Leetcode_Search in Rotated Sorted Array/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Search-in-Rotated-Sorted-Array"><a href="#Search-in-Rotated-Sorted-Array" class="headerlink" title="Search in Rotated Sorted Array"></a><a href="https://leetcode.com/problems/search-in-rotated-sorted-array/" target="_blank" rel="external">Search in Rotated Sorted Array</a></h1><blockquote>
+<p>Suppose a sorted array is rotated at some pivot unknown to you beforehand.</p>
+<p>(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).</p>
+<p>You are given a target value to search. If found in the array return its index, otherwise return -1.</p>
+<p>You may assume no duplicate exists in the array.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>二分检索处理。注意题中条件说明不存在重复元素。从中间将数组划分，</p>
+<p>如果左子数组开头元素小于末尾元素，则说明左子数组是有序的，突变点在右子数组中。否则则说明突变点在左子数组中，右子数组是有序的。</p>
+<p>然后进一步的采取措施，如果左子数组是有序的，判断target是否在左子数组中，如果不在则下一步搜寻右子数组。对于右子数组有序的情况也一样操作。</p>
+<p>具体逻辑参考代码。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> right = nums.length - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(left&lt;=right) &#123;</div><div class="line">            <span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</div><div class="line">            <span class="keyword">if</span>(nums[mid]==target) <span class="keyword">return</span> mid;</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(nums[mid]&gt;=nums[left]) &#123;</div><div class="line">            	<span class="keyword">if</span>(nums[left]&lt;=target &amp;&amp; nums[mid]&gt;target) right = mid - <span class="number">1</span>;</div><div class="line">            	<span class="keyword">else</span> left = mid + <span class="number">1</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> &#123;</div><div class="line">            	<span class="keyword">if</span>(nums[mid]&lt;target &amp;&amp; nums[right]&gt;=target) left = mid + <span class="number">1</span>;</div><div class="line">            	<span class="keyword">else</span> right = mid - <span class="number">1</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/09/22/Leetcode_Search in Rotated Sorted Array II/" itemprop="url">
                   Search in Rotated Sorted Array II
                 </a>
@@ -344,6 +474,136 @@
 <p>这种情况就是<code>nums[left]==nums[mid] &amp;&amp; nums[mid]==nums[right]</code>，也就是左子数组和右子数组其中有一个所有的元素都是相同的，另一子数组中可能存在突变点。但是无法二分判断存在于左数组和右数组。只能对left, right判断，如果都不是target，则<code>left++, right--</code>.</p>
 <p>对于这种数组最差情况时间复杂度为<code>O(n)</code>, 而不是一般情况的<code>O(log(n))</code></p>
 <h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(nums==<span class="keyword">null</span> || nums.length==<span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> right = nums.length - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(left&lt;=right) &#123;</div><div class="line">            <span class="keyword">int</span> mid = right - (right - left) / <span class="number">2</span>;</div><div class="line">            <span class="keyword">if</span>(nums[mid]==target) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            <span class="keyword">if</span>(nums[left]&lt;nums[mid]) &#123;</div><div class="line">                <span class="keyword">if</span>(target&gt;=nums[left] &amp;&amp; target&lt;nums[mid]) right = mid - <span class="number">1</span>;</div><div class="line">                <span class="keyword">else</span> left = mid + <span class="number">1</span>;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span>(nums[mid]&lt;nums[right])&#123;</div><div class="line">                <span class="keyword">if</span>(target&gt;nums[mid] &amp;&amp; target&lt;=nums[right]) left = mid + <span class="number">1</span>;</div><div class="line">                <span class="keyword">else</span> right = mid - <span class="number">1</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123; <span class="comment">// nums[left]==nums[mid] &amp;&amp; nums[mid]==nums[right];</span></div><div class="line">                <span class="keyword">if</span>(nums[left]==target || nums[right]==target) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">                left ++;</div><div class="line">                right --;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/09/22/Leetcode_Peeking Iterator/" itemprop="url">
+                  Peeking Iterator
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-09-22T00:00:00+09:00" content="2015-09-22">
+              2015-09-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/22/Leetcode_Peeking Iterator/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/22/Leetcode_Peeking Iterator/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Peeking-Iterator"><a href="#Peeking-Iterator" class="headerlink" title="Peeking Iterator"></a><a href="https://leetcode.com/problems/peeking-iterator/" target="_blank" rel="external">Peeking Iterator</a></h1><blockquote>
+<p>Given an Iterator class interface with methods: <code>next()</code> and <code>hasNext()</code>, design and implement a PeekingIterator that support the <code>peek()</code> operation – <strong>it essentially <code>peek()</code> at the element that will be returned by the next call to <code>next()</code></strong>.</p>
+<p>Here is an example. Assume that the iterator is initialized to the beginning of the list: <code>[1, 2, 3]</code>.</p>
+<p>Call <code>next()</code> gets you <code>1</code>, the first element in the list.</p>
+<p>Now you call <code>peek()</code> and it returns <code>2</code>, the next element. Calling <code>next()</code> after that still return <code>2</code>.</p>
+<p>You call <code>next()</code> the final time and it returns <code>3</code>, the last element. Calling <code>hasNext()</code> after that should return false.</p>
+<p>Follow up: How would you extend your design to be generic and work with all types, not just integer?</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>注意在调用peek()之前必须先调用一次next().</p>
+<p>建立top变量缓存顶部元素，用以peek()操作。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Java Iterator interface reference:</span></div><div class="line"><span class="comment">// https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">PeekingIterator</span> <span class="keyword">implements</span> <span class="title">Iterator</span>&lt;<span class="title">Integer</span>&gt; </span>&#123;</div><div class="line">    Integer top;</div><div class="line">    Iterator&lt;Integer&gt; iter;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">PeekingIterator</span><span class="params">(Iterator&lt;Integer&gt; iterator)</span> </span>&#123;</div><div class="line">	    <span class="comment">// initialize any member here.</span></div><div class="line">	    iter = iterator;</div><div class="line">	    <span class="keyword">if</span>(iter.hasNext()) &#123;</div><div class="line">	        top = iterator.next();</div><div class="line">	    &#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">    <span class="comment">// Returns the next element in the iteration without advancing the iterator.</span></div><div class="line">	<span class="function"><span class="keyword">public</span> Integer <span class="title">peek</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> top;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">// hasNext() and next() should behave the same as in the Iterator interface.</span></div><div class="line">	<span class="comment">// Override them if needed.</span></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> Integer <span class="title">next</span><span class="params">()</span> </span>&#123;</div><div class="line">	    Integer last = top;</div><div class="line">	    top = iter.hasNext() ? iter.next() : <span class="keyword">null</span>;</div><div class="line">	    <span class="keyword">return</span> last;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</div><div class="line">	    <span class="keyword">return</span> top!=<span class="keyword">null</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -483,268 +743,6 @@
 <p>但可以肯定的是可以排除A[end]：因为即使<code>min = A[end]</code>，由于<code>A[end] = A[mid]</code>，排除A[end]并没有让min丢失。所以增加的条件是：</p>
 <p><code>A[mid] = A[end]</code>：搜索<code>A[start : end-1]</code></p>
 <h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMin</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> right = nums.length - <span class="number">1</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(left&lt;right) &#123;</div><div class="line">        	<span class="keyword">if</span>(nums[left]&lt;nums[right]) <span class="keyword">return</span> nums[left];</div><div class="line">            <span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</div><div class="line">            <span class="keyword">if</span>(nums[mid]&gt;nums[right]) &#123;</div><div class="line">                left = mid + <span class="number">1</span>;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span>(nums[mid]&lt;nums[right])&#123;</div><div class="line">                right = mid;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;  <span class="comment">// nums[mid]&lt;nums[right]</span></div><div class="line">            	right --;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> nums[left];</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/09/22/Leetcode_Search in Rotated Sorted Array/" itemprop="url">
-                  Search in Rotated Sorted Array
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-22T00:00:00+09:00" content="2015-09-22">
-              2015-09-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/22/Leetcode_Search in Rotated Sorted Array/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/22/Leetcode_Search in Rotated Sorted Array/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Search-in-Rotated-Sorted-Array"><a href="#Search-in-Rotated-Sorted-Array" class="headerlink" title="Search in Rotated Sorted Array"></a><a href="https://leetcode.com/problems/search-in-rotated-sorted-array/" target="_blank" rel="external">Search in Rotated Sorted Array</a></h1><blockquote>
-<p>Suppose a sorted array is rotated at some pivot unknown to you beforehand.</p>
-<p>(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).</p>
-<p>You are given a target value to search. If found in the array return its index, otherwise return -1.</p>
-<p>You may assume no duplicate exists in the array.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>二分检索处理。注意题中条件说明不存在重复元素。从中间将数组划分，</p>
-<p>如果左子数组开头元素小于末尾元素，则说明左子数组是有序的，突变点在右子数组中。否则则说明突变点在左子数组中，右子数组是有序的。</p>
-<p>然后进一步的采取措施，如果左子数组是有序的，判断target是否在左子数组中，如果不在则下一步搜寻右子数组。对于右子数组有序的情况也一样操作。</p>
-<p>具体逻辑参考代码。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> right = nums.length - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(left&lt;=right) &#123;</div><div class="line">            <span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</div><div class="line">            <span class="keyword">if</span>(nums[mid]==target) <span class="keyword">return</span> mid;</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(nums[mid]&gt;=nums[left]) &#123;</div><div class="line">            	<span class="keyword">if</span>(nums[left]&lt;=target &amp;&amp; nums[mid]&gt;target) right = mid - <span class="number">1</span>;</div><div class="line">            	<span class="keyword">else</span> left = mid + <span class="number">1</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> &#123;</div><div class="line">            	<span class="keyword">if</span>(nums[mid]&lt;target &amp;&amp; nums[right]&gt;=target) left = mid + <span class="number">1</span>;</div><div class="line">            	<span class="keyword">else</span> right = mid - <span class="number">1</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/09/21/Leetcode_Palindrome Partitioning II/" itemprop="url">
-                  Palindrome Partitioning II
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-21T00:00:00+09:00" content="2015-09-21">
-              2015-09-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/21/Leetcode_Palindrome Partitioning II/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/21/Leetcode_Palindrome Partitioning II/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Palindrome-Partitioning-II"><a href="#Palindrome-Partitioning-II" class="headerlink" title="Palindrome Partitioning II"></a><a href="https://leetcode.com/problems/palindrome-partitioning-ii/" target="_blank" rel="external">Palindrome Partitioning II</a></h1><blockquote>
-<p>Given a string <code>s</code>, partition <code>s</code> such that every substring of the partition is a palindrome.</p>
-<p>Return the minimum cuts needed for a palindrome partitioning of <code>s</code>.</p>
-<p>For example, given <code>s = &quot;aab&quot;</code>,<br>Return <code>1</code> since the palindrome partitioning <code>[&quot;aa&quot;,&quot;b&quot;]</code> could be produced using <code>1</code> cut.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>比较直接的方法是直接DFS搜索最小的cut num。会有比较多的重复计算。</p>
-<p>动态规划避免重复计算，设置<code>cutNum[n]</code>记录当前位置<code>n</code>的最小<code>cut num</code>，状态转移方程为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cutNum[0] = 0;</div><div class="line">cutNum[n] = min(cutNum[j-1]+1), isPal(s.substring(j, n))==true   (j=0...n).</div></pre></td></tr></table></figure>
-<p>特殊情况是<code>j=0</code>，且s.substring(0, n)回文，这时<code>cutNum[n]=0</code>.</p>
-<p>只是使用<code>cutNum[]</code>记录前面位置的最小<code>cut num</code>是不够的，这里还有可以使用动态规划的地方，就是判断子串是否是回文字符串，建立<code>palMatrix</code>矩阵，<code>palMatrix[i][j]</code>记录<code>i..j子串</code>是否回文，状态转移方程为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">palMatrix[i][j] = ( s[i]==s.[j] &amp;&amp; ( i-j&lt;=1 || palMatrix[j+1][i-1]))</div></pre></td></tr></table></figure>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="Dynamic-programming-solution"><a href="#Dynamic-programming-solution" class="headerlink" title="Dynamic programming solution"></a>Dynamic programming solution</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minCut</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(s==<span class="keyword">null</span> || s.length()==<span class="number">0</span> || s.length()==<span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> [] cutNum = <span class="keyword">new</span> <span class="keyword">int</span>[s.length()];</div><div class="line">        </div><div class="line">        <span class="keyword">boolean</span> [][] palMatrix = <span class="keyword">new</span> <span class="keyword">boolean</span>[s.length()][s.length()];</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;s.length(); i++) &#123;</div><div class="line">            cutNum[i] = i;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;=i; j++) &#123;</div><div class="line">                <span class="keyword">if</span>(s.charAt(i)==s.charAt(j) &amp;&amp; ( i-j&lt;=<span class="number">1</span> || palMatrix[j+<span class="number">1</span>][i-<span class="number">1</span>])) &#123;</div><div class="line">                    palMatrix[j][i] = <span class="keyword">true</span>;</div><div class="line">                    <span class="keyword">if</span>(j==<span class="number">0</span>) cutNum[i] = <span class="number">0</span>;</div><div class="line">                    <span class="keyword">else</span> cutNum[i] = Math.min(cutNum[i], cutNum[j-<span class="number">1</span>]+<span class="number">1</span>);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> cutNum[s.length()-<span class="number">1</span>];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="DFS-solution"><a href="#DFS-solution" class="headerlink" title="DFS solution"></a>DFS solution</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minCut</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> recCut(s, <span class="number">0</span>, <span class="string">""</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">recCut</span><span class="params">(String s, <span class="keyword">int</span> pos, String record)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(pos==s.length()) &#123;</div><div class="line">            <span class="keyword">if</span>(isPal(record)) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> cutNum = -<span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> notCutNum = -<span class="number">1</span>;</div><div class="line">        </div><div class="line">        record = record + s.charAt(pos);</div><div class="line">        </div><div class="line">        notCutNum = recCut(s, pos+<span class="number">1</span>, record);</div><div class="line">        <span class="keyword">if</span>(isPal(record)) cutNum = recCut(s, pos+<span class="number">1</span>, <span class="string">""</span>);</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(cutNum&gt;=<span class="number">0</span> &amp;&amp; notCutNum&gt;=<span class="number">0</span>) <span class="keyword">return</span> (<span class="number">1</span>+cutNum)&lt;=notCutNum ? (<span class="number">1</span>+cutNum):notCutNum;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(cutNum&gt;=<span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span> + cutNum;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(notCutNum&gt;=<span class="number">0</span>) <span class="keyword">return</span> notCutNum;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPal</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> right = s.length() - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(left&lt;=right) &#123;</div><div class="line">            <span class="keyword">if</span>(s.charAt(left)!=s.charAt(right)) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            left ++;</div><div class="line">            right --;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -948,7 +946,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">329</span>
+              <span class="site-state-item-count">330</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

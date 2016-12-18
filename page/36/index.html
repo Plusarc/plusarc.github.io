@@ -387,8 +387,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/08/12/Leetcode_Word Break/" itemprop="url">
-                  Leetcode_Word Break
+                <a class="post-title-link" href="/2015/08/13/Leetcode_Convert Sorted Array to Binary Search Tree/" itemprop="url">
+                  Convert Sorted Array to Binary Search Tree
                 </a>
               
             
@@ -401,8 +401,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-08-12T00:00:00+09:00" content="2015-08-12">
-              2015-08-12
+            <time itemprop="dateCreated" datetime="2015-08-13T00:00:00+09:00" content="2015-08-13">
+              2015-08-13
             </time>
           </span>
 
@@ -431,8 +431,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/08/12/Leetcode_Word Break/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/12/Leetcode_Word Break/" itemprop="commentsCount"></span>
+                <a href="/2015/08/13/Leetcode_Convert Sorted Array to Binary Search Tree/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/13/Leetcode_Convert Sorted Array to Binary Search Tree/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -457,18 +457,13 @@
       
         
           
-            <h1 id="Word-Break"><a href="#Word-Break" class="headerlink" title="Word Break"></a><a href="https://leetcode.com/problems/word-break/" target="_blank" rel="external">Word Break</a></h1><blockquote>
-<p>Given a string s and a dictionary of words dict, determine if s can be segmented into a space-separated sequence of one or more dictionary words.</p>
-<p>For example, given<br>s = “leetcode”,<br>dict = [“leet”, “code”].</p>
-<p>Return true because “leetcode” can be segmented as “leet code”.</p>
+            <h1 id="Convert-Sorted-Array-to-Binary-Search-Tree"><a href="#Convert-Sorted-Array-to-Binary-Search-Tree" class="headerlink" title="Convert Sorted Array to Binary Search Tree"></a><a href="">Convert Sorted Array to Binary Search Tree</a></h1><blockquote>
+<p>Given an array where elements are sorted in ascending order, convert it to a height balanced BST.</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h3 id="Naive-method"><a href="#Naive-method" class="headerlink" title="Naive method"></a>Naive method</h3><p>对于target word进行所有可能的拆分，并检测所有拆分部分是否都在dict中。</p>
-<h3 id="DP-method"><a href="#DP-method" class="headerlink" title="DP method"></a>DP method</h3><p>问题可以理解为target word中，targetword.substring(0, length)字符串能否由字典中的词构成。子问题为targetword.substring(0, n)字符串能够由字典中的词构成。</p>
-<p>如果targetword.substring(0, n)能够由字典中的词构成，则其必定是由可以由字典中的词构成的子串targetword.substring(0, m)(m&lt;n)，加上字典中的一个词构成的。</p>
-<p>加上b(n)表示0-n的子串能够由字典组成，状态转移方程可以写为：</p>
-<p><code>b(n) = (b(m) &amp;&amp; dict.contains(targetword.substring(m,n))) || dict.contains(targetword)</code></p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><p><strong>Dynamic Programming solution</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">wordBreak</span><span class="params">(String s, Set&lt;String&gt; wordDict)</span> </span>&#123;</div><div class="line">        List&lt;Integer&gt; breakPoint = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">        breakPoint.add(<span class="number">0</span>);</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=s.length(); i++) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> lastBreak: breakPoint) &#123;</div><div class="line">                <span class="keyword">if</span>(wordDict.contains(s.substring(lastBreak, i))) &#123;</div><div class="line">                    breakPoint.add(i);</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> breakPoint.get(breakPoint.size()-<span class="number">1</span>) == s.length();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>递归解决，每次选取当前数组的中心作为根节点，左边的子数组递归构建左子树，右边的子数组递归构建右子树。</p>
+<p>##Code</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">sortedArrayToBST</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> recBuild(nums, <span class="number">0</span>, nums.length-<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">recBuild</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(begin&gt;end) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">if</span>(begin==end) <span class="keyword">return</span> <span class="keyword">new</span> TreeNode(nums[begin]);</div><div class="line">        <span class="keyword">int</span> mid = begin + (end-begin) / <span class="number">2</span>;</div><div class="line">        TreeNode root = <span class="keyword">new</span> TreeNode(nums[mid]);</div><div class="line">        root.left = recBuild(nums, begin, mid-<span class="number">1</span>);</div><div class="line">        root.right = recBuild(nums, mid+<span class="number">1</span>, end);</div><div class="line">        <span class="keyword">return</span> root;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
           
         
       
@@ -649,6 +644,136 @@
             
               
                 
+                <a class="post-title-link" href="/2015/08/12/Leetcode_Word Break/" itemprop="url">
+                  Leetcode_Word Break
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-08-12T00:00:00+09:00" content="2015-08-12">
+              2015-08-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/08/12/Leetcode_Word Break/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/12/Leetcode_Word Break/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Word-Break"><a href="#Word-Break" class="headerlink" title="Word Break"></a><a href="https://leetcode.com/problems/word-break/" target="_blank" rel="external">Word Break</a></h1><blockquote>
+<p>Given a string s and a dictionary of words dict, determine if s can be segmented into a space-separated sequence of one or more dictionary words.</p>
+<p>For example, given<br>s = “leetcode”,<br>dict = [“leet”, “code”].</p>
+<p>Return true because “leetcode” can be segmented as “leet code”.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h3 id="Naive-method"><a href="#Naive-method" class="headerlink" title="Naive method"></a>Naive method</h3><p>对于target word进行所有可能的拆分，并检测所有拆分部分是否都在dict中。</p>
+<h3 id="DP-method"><a href="#DP-method" class="headerlink" title="DP method"></a>DP method</h3><p>问题可以理解为target word中，targetword.substring(0, length)字符串能否由字典中的词构成。子问题为targetword.substring(0, n)字符串能够由字典中的词构成。</p>
+<p>如果targetword.substring(0, n)能够由字典中的词构成，则其必定是由可以由字典中的词构成的子串targetword.substring(0, m)(m&lt;n)，加上字典中的一个词构成的。</p>
+<p>加上b(n)表示0-n的子串能够由字典组成，状态转移方程可以写为：</p>
+<p><code>b(n) = (b(m) &amp;&amp; dict.contains(targetword.substring(m,n))) || dict.contains(targetword)</code></p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><p><strong>Dynamic Programming solution</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">wordBreak</span><span class="params">(String s, Set&lt;String&gt; wordDict)</span> </span>&#123;</div><div class="line">        List&lt;Integer&gt; breakPoint = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">        breakPoint.add(<span class="number">0</span>);</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=s.length(); i++) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> lastBreak: breakPoint) &#123;</div><div class="line">                <span class="keyword">if</span>(wordDict.contains(s.substring(lastBreak, i))) &#123;</div><div class="line">                    breakPoint.add(i);</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> breakPoint.get(breakPoint.size()-<span class="number">1</span>) == s.length();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/08/11/Leetcode_Intersection of Two Linked Lists/" itemprop="url">
                   Intersection of Two Linked Lists
                 </a>
@@ -760,136 +885,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/08/10/Leetcode_Search 2D Matrix/" itemprop="url">
-                  Search a 2D Matrix
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-08-10T00:00:00+09:00" content="2015-08-10">
-              2015-08-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/08/10/Leetcode_Search 2D Matrix/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/10/Leetcode_Search 2D Matrix/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Search-a-2D-Matrix"><a href="#Search-a-2D-Matrix" class="headerlink" title="Search a 2D Matrix"></a><a href="https://leetcode.com/problems/search-a-2d-matrix/" target="_blank" rel="external">Search a 2D Matrix</a></h1><blockquote>
-<p>Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:</p>
-<p>Integers in each row are sorted from left to right.<br>The first integer of each row is greater than the last integer of the previous row.<br>For example,</p>
-<p>Consider the following matrix:</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">  [1,   3,  5,  7],</div><div class="line">  [10, 11, 16, 20],</div><div class="line">  [23, 30, 34, 50]</div><div class="line">]</div></pre></td></tr></table></figure>
-<blockquote>
-<p>Given target = 3, return true.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>先二分查找其可能所在行，即二分搜索第一列中最后一个小余或等于target的元素所在的行，如果这个元素等于target，则直接放回，否则再二分搜索这一行中是否存在这个元素。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">searchMatrix</span><span class="params">(<span class="keyword">int</span>[][] matrix, <span class="keyword">int</span> target)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> begin = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> end = matrix.length - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(begin&lt;=end) &#123;</div><div class="line">            <span class="keyword">int</span> mid = begin + (end-begin) / <span class="number">2</span>;</div><div class="line">            <span class="keyword">if</span>(matrix[mid][<span class="number">0</span>]==target) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(matrix[mid][<span class="number">0</span>]&gt;target) end = mid - <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> begin = mid + <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(end&lt;<span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> right = matrix[<span class="number">0</span>].length - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(left&lt;=right) &#123;</div><div class="line">            <span class="keyword">int</span> mid = left + (right-left) / <span class="number">2</span>;</div><div class="line">            <span class="keyword">if</span>(matrix[end][mid]==target) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(matrix[end][mid]&gt;target) right = mid - <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> left = mid + <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -935,7 +930,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">329</span>
+              <span class="site-state-item-count">330</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

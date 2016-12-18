@@ -260,6 +260,166 @@
             
               
                 
+                <a class="post-title-link" href="/2015/10/24/Leetcode_Edit Distance/" itemprop="url">
+                  Edit Distance
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-10-24T00:00:00+09:00" content="2015-10-24">
+              2015-10-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/10/24/Leetcode_Edit Distance/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/24/Leetcode_Edit Distance/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Edit-Distance"><a href="#Edit-Distance" class="headerlink" title="Edit Distance"></a><a href="https://leetcode.com/problems/edit-distance/" target="_blank" rel="external">Edit Distance</a></h1><blockquote>
+<p>Given two words word1 and word2, find the minimum number of steps required to convert word1 to word2. (each operation is counted as 1 step.)</p>
+<p>You have the following 3 operations permitted on a word:</p>
+<p>a) Insert a character<br>b) Delete a character<br>c) Replace a character</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p><a href="http://segmentfault.com/a/1190000002668221" target="_blank" rel="external">Edit Distance@LeetCode</a><br><a href="http://segmentfault.com/a/1190000003741294" target="_blank" rel="external">[Leetcode] Edit Distance 最小编辑距离</a></p>
+<p>典型的动态规划题目。维护一个二维数组<code>dis[][]</code>，<code>dis[i][j]</code>表示：<code>word1</code>的前<code>i</code>个元素与<code>word2</code>的前<code>j</code>个元素的edit distance值。递推关系为.</p>
+<p>当<code>word1[i] == word2[j]，dis[i][j] = dis[i-1][j - 1]</code>。<br><code>dis[i][j] = min(dis[i - 1][j - 1], dis[i] [j - 1], dis[i - 1][j]) + 1</code>。</p>
+<p><a href="http://blog.csdn.net/beiyetengqing/article/details/8105180" target="_blank" rel="external">编辑距离 (edit distance)</a></p>
+<ol>
+<li>d[0, j] = j;</li>
+<li>d[i, 0] = i;</li>
+<li>d[i, j] = d[i-1, j - 1] if A[i] == B[j]</li>
+<li>d[i, j] = min(d[i-1, j - 1], d[i, j - 1], d[i-1, j]) + 1  if A[i] != B[j]</li>
+</ol>
+<p><a href="http://www.cnblogs.com/zhangchaoyang/articles/2012070.html" target="_blank" rel="external">字符串编辑距离</a></p>
+<p>要想把字符串S1变成S2，可以经过若干次下列原子操作：</p>
+<ol>
+<li>删除一个字符</li>
+<li>增加一个字符</li>
+<li>更改一个字符</li>
+</ol>
+<p>字符串S1和S2的编辑距离定义为从S1变成S2所需要原子操作的最少次数。</p>
+<p>解法跟上面的最长公共子序列十分相似，都是动态规划，把一个问题转换为若干个规模更小的子问题，并且都借助于一个二维矩阵来实现计算。</p>
+<p>约定：字符串S去掉最后一个字符T后为S’，T1和T2分别是S1和S2的最后一个字符。</p>
+<p>则dist(S1,S2)是下列4个值的最小者：</p>
+<p>1.dist(S1’,S2’)–当T1==T2</p>
+<p>2.1+dist(S1’,S2)–当T1!=T2，并且删除S1的最后一个字符T1</p>
+<p>3.1+dist(S1,S2’)–当T1!=T2，并且在S1后面增加一个字符T2</p>
+<p>4.1+dist(S1’,S2’)–当T1!=T2，并且把S1的最的一个字符T1改成T2</p>
+<p>把问题转换为二维矩阵：</p>
+<p>arr[i][j]表示S1.sub(0,i)和S2.sub(0,j)的编辑距离，则</p>
+<p>arr[i][j]=min{1+arr[i][j-1], 1+arr[i-1][j], 1+arr[i-1]<a href="当S1[i]!=S2[j]">j-1</a>, arr[i-1]<a href="当S1[i]==S2[j]">j-1</a>}</p>
+<p>边界情况：arr[0][j]=j, arr[i][0]=i</p>
+<p><a href="http://www.cnblogs.com/lihaozy/archive/2012/12/31/2840152.html" target="_blank" rel="external">Next Explanation</a></p>
+<p><img src="http://images.cnblogs.com/cnblogs_com/rocketfan/WindowsLiveWriter/1c3308468bd0_10B31/image_thumb_1.png" alt=""></p>
+<p>EDIT[i,j]表示对于字符串a从1到i的子串和字符串b从1到j的字串的编辑距离。（字符串下标从1开始)<br>EDIT[i - 1,j] + 1表示对a 在i 位置删除delete操作<br>EDIT[i,j - 1] + 1 表示insert添加操作<br>EDIT[i-1, j - 1] + f(x[i],y[j])这里如果x[i] == y[j] 则 f(x[i],y[j]) == 0 否则 ==1</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><p>second time</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minDistance</span><span class="params">(String word1, String word2)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(word1.length()==<span class="number">0</span>) <span class="keyword">return</span> word2.length();</div><div class="line">        <span class="keyword">if</span>(word2.length()==<span class="number">0</span>) <span class="keyword">return</span> word1.length();</div><div class="line">        <span class="keyword">int</span>[][] distances = <span class="keyword">new</span> <span class="keyword">int</span>[word1.length()+<span class="number">1</span>][];</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;distances.length; i++) distances[i] = <span class="keyword">new</span> <span class="keyword">int</span>[word2.length()+<span class="number">1</span>];</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;=word1.length(); i++) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;=word2.length(); j++) &#123;</div><div class="line">                <span class="keyword">if</span>(i==<span class="number">0</span>) distances[i][j] = j;</div><div class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(j==<span class="number">0</span>) distances[i][j] = i;</div><div class="line">                <span class="keyword">else</span> &#123;</div><div class="line">                    <span class="keyword">if</span>(word1.charAt(i-<span class="number">1</span>)==word2.charAt(j-<span class="number">1</span>)) distances[i][j] = distances[i-<span class="number">1</span>][j-<span class="number">1</span>];</div><div class="line">                    <span class="keyword">else</span> &#123;</div><div class="line">                        distances[i][j] = Math.min(distances[i-<span class="number">1</span>][j-<span class="number">1</span>], Math.min(distances[i-<span class="number">1</span>][j], distances[i][j-<span class="number">1</span>])) + <span class="number">1</span>;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> distances[word1.length()][word2.length()];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minDistance</span><span class="params">(String word1, String word2)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> m = word1.length(), n = word2.length();</div><div class="line">        <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[m + <span class="number">1</span>][n + <span class="number">1</span>];</div><div class="line">        <span class="comment">// 初始化空字符串的情况</span></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++)&#123;</div><div class="line">            dp[i][<span class="number">0</span>] = i;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</div><div class="line">            dp[<span class="number">0</span>][i] = i;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++)&#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++)&#123;</div><div class="line">                <span class="comment">// 增加操作：str1a变成str2后再加上b，得到str2b</span></div><div class="line">                <span class="keyword">int</span> insertion = dp[i][j-<span class="number">1</span>] + <span class="number">1</span>;</div><div class="line">                <span class="comment">// 删除操作：str1a删除a后，再由str1变为str2b</span></div><div class="line">                <span class="keyword">int</span> deletion = dp[i-<span class="number">1</span>][j] + <span class="number">1</span>;</div><div class="line">                <span class="comment">// 替换操作：先由str1变为str2，然后str1a的a替换为b，得到str2b</span></div><div class="line">                <span class="keyword">int</span> replace = dp[i-<span class="number">1</span>][j-<span class="number">1</span>] + (word1.charAt(i - <span class="number">1</span>) == word2.charAt(j - <span class="number">1</span>) ? <span class="number">0</span> : <span class="number">1</span>);</div><div class="line">                <span class="comment">// 三者取最小</span></div><div class="line">                dp[i][j] = Math.min(replace, Math.min(insertion, deletion));</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> dp[m][n];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minDistance</span><span class="params">(String word1, String word2)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[word1.length() + <span class="number">1</span>];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; result.length; i++)</div><div class="line">            result[i] = i;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; word2.length(); i++) &#123;</div><div class="line">            <span class="keyword">int</span>[] newResult = <span class="keyword">new</span> <span class="keyword">int</span>[result.length];</div><div class="line">            newResult[<span class="number">0</span>] = i + <span class="number">1</span>;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; word1.length(); j++) &#123;</div><div class="line">                <span class="keyword">if</span> (word1.charAt(j) == word2.charAt(i)) &#123;</div><div class="line">                    newResult[j + <span class="number">1</span>] = result[j];</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    newResult[j + <span class="number">1</span>]  = Math.min(result[j], Math.min(result[j + <span class="number">1</span>], newResult[j])) + <span class="number">1</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            result = newResult;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result[result.length - <span class="number">1</span>];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/10/23/Leetcode_Text Justification/" itemprop="url">
                   Text Justification
                 </a>
@@ -531,260 +691,6 @@
             
               
                 
-                <a class="post-title-link" href="/2015/10/22/Leetcode_Interleaving String/" itemprop="url">
-                  Interleaving String
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-10-22T00:00:00+09:00" content="2015-10-22">
-              2015-10-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/10/22/Leetcode_Interleaving String/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/22/Leetcode_Interleaving String/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Interleaving-String"><a href="#Interleaving-String" class="headerlink" title="Interleaving String"></a><a href="https://leetcode.com/problems/interleaving-string/" target="_blank" rel="external">Interleaving String</a></h1><blockquote>
-<p>Given s1, s2, s3, find whether s3 is formed by the interleaving of s1 and s2.</p>
-<p>For example,<br>Given:<br><code>s1 = &quot;aabcc&quot;</code>,<br><code>s2 = &quot;dbbca&quot;</code>,</p>
-<p>When <code>s3 = &quot;aadbbcbcac&quot;</code>, return true.<br>When <code>s3 = &quot;aadbbbaccc&quot;</code>, return false.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>test case:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">bcg     bce    bcgbce</div><div class="line">bg      bbe    bbge</div><div class="line">bg      bbe    bbgbe</div><div class="line">bg      bbe    bbbeg</div></pre></td></tr></table></figure>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isInterleave</span><span class="params">(String s1, String s2, String s3)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(s1==<span class="keyword">null</span> || s2==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">if</span>(s3.length() != s1.length() + s2.length()) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">if</span>(s1.length()==<span class="number">0</span>) <span class="keyword">return</span> s2.equals(s3);</div><div class="line">        <span class="keyword">if</span>(s2.length()==<span class="number">0</span>) <span class="keyword">return</span> s1.equals(s3);</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> [][] record = <span class="keyword">new</span> <span class="keyword">int</span>[s1.length()+<span class="number">1</span>][s2.length()+<span class="number">1</span>];</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=s2.length(); i++) &#123;</div><div class="line">            <span class="keyword">if</span>(s2.charAt(i-<span class="number">1</span>)==s3.charAt(i-<span class="number">1</span>)) record[<span class="number">0</span>][i] = i;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=s1.length(); i++) &#123;</div><div class="line">            <span class="keyword">if</span>(s1.charAt(i-<span class="number">1</span>)==s3.charAt(i-<span class="number">1</span>)) record[i][<span class="number">0</span>] = i;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=s1.length(); i++) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;=s2.length(); j++) &#123;</div><div class="line">            	<span class="keyword">if</span>(record[i-<span class="number">1</span>][j]!=<span class="number">0</span>) &#123;</div><div class="line">            		<span class="keyword">if</span>(s1.charAt(i-<span class="number">1</span>)==s3.charAt(i+j-<span class="number">1</span>)) record[i][j] = i + j;</div><div class="line">            	&#125;</div><div class="line">                <span class="keyword">if</span>(record[i][j-<span class="number">1</span>]!=<span class="number">0</span>) &#123;</div><div class="line">                    <span class="keyword">if</span>(s2.charAt(j-<span class="number">1</span>)==s3.charAt(i+j-<span class="number">1</span>)) record[i][j] = i + j;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> record[s1.length()][s2.length()] == s3.length();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/10/22/Leetcode_Wiggle Sort I and II/" itemprop="url">
-                  Wiggle Sort
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-10-22T00:00:00+09:00" content="2015-10-22">
-              2015-10-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/10/22/Leetcode_Wiggle Sort I and II/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/22/Leetcode_Wiggle Sort I and II/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Wiggle-Sort-I"><a href="#Wiggle-Sort-I" class="headerlink" title="Wiggle Sort I"></a><a href="https://leetcode.com/problems/wiggle-sort-ii/" target="_blank" rel="external">Wiggle Sort I</a></h1><blockquote>
-<p>Given an unsorted array nums, reorder it in-place such that nums[0] &lt;= nums[1] &gt;= nums[2] &lt;= nums[3]….</p>
-<p>For example, given <code>nums = [3, 5, 2, 1, 6, 4]</code>, one possible answer is <code>[1, 6, 2, 5, 3, 4]</code>.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>Locked problem, refer to <a href="http://buttercola.blogspot.jp/2015/09/leetcode-wiggle-sort.html" target="_blank" rel="external">Leetcode: Wiggle Sort</a></p>
-<p>A[0] &lt;= A[1] &gt;= A[2] &lt;= A[3] &gt;= A[4] &lt;= A[5]<br>So we could actually observe that there is pattern that<br>A[even] &lt;= A[odd],<br>A[odd] &gt;= A[even].</p>
-<p>Therefore we could go through the array and check this condition does not hold, just swap.</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">wiggleSort</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length &lt;= <span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">         </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length - <span class="number">1</span>; i++) &#123;</div><div class="line">            <span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>) &#123;</div><div class="line">                <span class="keyword">if</span> (nums[i] &gt; nums[i + <span class="number">1</span>]) &#123;</div><div class="line">                    swap(nums, i, i + <span class="number">1</span>);</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">if</span> (nums[i] &lt; nums[i + <span class="number">1</span>]) &#123;</div><div class="line">                    swap(nums, i, i + <span class="number">1</span>);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">     </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> temp = nums[i];</div><div class="line">        nums[i] = nums[j];</div><div class="line">        nums[j] = temp;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2015/10/22/Leetcode_Sudoku Solver/" itemprop="url">
                   Sudoku Solver
                 </a>
@@ -891,6 +797,133 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/10/22/Leetcode_Interleaving String/" itemprop="url">
+                  Interleaving String
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-10-22T00:00:00+09:00" content="2015-10-22">
+              2015-10-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/10/22/Leetcode_Interleaving String/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/22/Leetcode_Interleaving String/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Interleaving-String"><a href="#Interleaving-String" class="headerlink" title="Interleaving String"></a><a href="https://leetcode.com/problems/interleaving-string/" target="_blank" rel="external">Interleaving String</a></h1><blockquote>
+<p>Given s1, s2, s3, find whether s3 is formed by the interleaving of s1 and s2.</p>
+<p>For example,<br>Given:<br><code>s1 = &quot;aabcc&quot;</code>,<br><code>s2 = &quot;dbbca&quot;</code>,</p>
+<p>When <code>s3 = &quot;aadbbcbcac&quot;</code>, return true.<br>When <code>s3 = &quot;aadbbbaccc&quot;</code>, return false.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>test case:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">bcg     bce    bcgbce</div><div class="line">bg      bbe    bbge</div><div class="line">bg      bbe    bbgbe</div><div class="line">bg      bbe    bbbeg</div></pre></td></tr></table></figure>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isInterleave</span><span class="params">(String s1, String s2, String s3)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(s1==<span class="keyword">null</span> || s2==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">if</span>(s3.length() != s1.length() + s2.length()) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">if</span>(s1.length()==<span class="number">0</span>) <span class="keyword">return</span> s2.equals(s3);</div><div class="line">        <span class="keyword">if</span>(s2.length()==<span class="number">0</span>) <span class="keyword">return</span> s1.equals(s3);</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> [][] record = <span class="keyword">new</span> <span class="keyword">int</span>[s1.length()+<span class="number">1</span>][s2.length()+<span class="number">1</span>];</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=s2.length(); i++) &#123;</div><div class="line">            <span class="keyword">if</span>(s2.charAt(i-<span class="number">1</span>)==s3.charAt(i-<span class="number">1</span>)) record[<span class="number">0</span>][i] = i;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=s1.length(); i++) &#123;</div><div class="line">            <span class="keyword">if</span>(s1.charAt(i-<span class="number">1</span>)==s3.charAt(i-<span class="number">1</span>)) record[i][<span class="number">0</span>] = i;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=s1.length(); i++) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;=s2.length(); j++) &#123;</div><div class="line">            	<span class="keyword">if</span>(record[i-<span class="number">1</span>][j]!=<span class="number">0</span>) &#123;</div><div class="line">            		<span class="keyword">if</span>(s1.charAt(i-<span class="number">1</span>)==s3.charAt(i+j-<span class="number">1</span>)) record[i][j] = i + j;</div><div class="line">            	&#125;</div><div class="line">                <span class="keyword">if</span>(record[i][j-<span class="number">1</span>]!=<span class="number">0</span>) &#123;</div><div class="line">                    <span class="keyword">if</span>(s2.charAt(j-<span class="number">1</span>)==s3.charAt(i+j-<span class="number">1</span>)) record[i][j] = i + j;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> record[s1.length()][s2.length()] == s3.length();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -936,7 +969,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">329</span>
+              <span class="site-state-item-count">330</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

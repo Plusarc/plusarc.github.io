@@ -260,6 +260,151 @@
             
               
                 
+                <a class="post-title-link" href="/2016/01/04/Leetcode_Longest Increasing Subsequence/" itemprop="url">
+                  Longest Increasing Subsequence
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-01-04T00:00:00+09:00" content="2016-01-04">
+              2016-01-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/04/Leetcode_Longest Increasing Subsequence/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/04/Leetcode_Longest Increasing Subsequence/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Longest-Increasing-Subsequence"><a href="#Longest-Increasing-Subsequence" class="headerlink" title="Longest Increasing Subsequence"></a><a href="https://leetcode.com/problems/longest-increasing-subsequence/" target="_blank" rel="external">Longest Increasing Subsequence</a></h1><blockquote>
+<p>SGiven an unsorted array of integers, find the length of longest increasing subsequence.</p>
+<p>For example,<br>Given <code>[10, 9, 2, 5, 3, 7, 101, 18]</code>,<br>The longest increasing subsequence is <code>[2, 3, 7, 101]</code>, therefore the length is 4. Note that there may be more than one LIS combination, it is only necessary for you to return the length.</p>
+<p>Your algorithm should run in O(n^2) complexity.</p>
+<p>Follow up: Could you improve it to O(n log n) time complexity?</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>DP n^2 solution</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLIS</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(nums==<span class="keyword">null</span> || nums.length==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span>[] record = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</div><div class="line">        record[<span class="number">0</span>] = <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> max = <span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;nums.length; i++) &#123;</div><div class="line">            record[i] = <span class="number">1</span>;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=i-<span class="number">1</span>; j&gt;=<span class="number">0</span>; j--) &#123;</div><div class="line">                <span class="keyword">if</span>(nums[i]&gt;nums[j]) &#123;</div><div class="line">                    record[i] = Math.max(record[i], record[j] + <span class="number">1</span>);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            max = Math.max(record[i], max);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> max;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>DP n(log n) solution</p>
+<p>refer to <a href="http://www.jiuzhang.com/solutions/longest-increasing-subsequence/" target="_blank" rel="external">Longest Increasing Subsequence</a></p>
+<p><a href="https://www.felix021.com/blog/read.php?1587" target="_blank" rel="external">最长递增子序列 O(NlogN)算法</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//在非递减序列 arr[s..e]（闭区间）上二分查找第一个大于等于key的位置，如果都小于key，就返回e+1</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">upper_bound</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> s, <span class="keyword">int</span> e, <span class="keyword">int</span> key)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> mid;</div><div class="line">    <span class="keyword">if</span> (arr[e] &lt;= key)</div><div class="line">        <span class="keyword">return</span> e + <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span> (s &lt; e)</div><div class="line">    &#123;</div><div class="line">        mid = s + (e - s) / <span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span> (arr[mid] &lt;= key)</div><div class="line">            s = mid + <span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span></div><div class="line">            e = mid;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> s;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">LIS</span><span class="params">(<span class="keyword">int</span> d[], <span class="keyword">int</span> n)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, len = <span class="number">1</span>, *end = (<span class="keyword">int</span> *)alloca(sizeof(<span class="keyword">int</span>) * (n + <span class="number">1</span>));</div><div class="line">    end[<span class="number">1</span>] = d[<span class="number">0</span>]; <span class="comment">//初始化：长度为1的LIS末尾为d[0]</span></div><div class="line">    <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; n; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">int</span> pos = upper_bound(end, <span class="number">1</span>, len, d[i]); <span class="comment">//找到插入位置</span></div><div class="line">        end[pos] = d[i];</div><div class="line">        <span class="keyword">if</span> (len &lt; pos) <span class="comment">//按需要更新LIS长度</span></div><div class="line">            len = pos;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> len;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// O(nlogn) Binary Search</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * <span class="doctag">@param</span> nums: The integer array</div><div class="line">     * <span class="doctag">@return</span>: The length of LIS (longest increasing subsequence)</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">longestIncreasingSubsequence</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span>[] minLast = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length + <span class="number">1</span>];</div><div class="line">        minLast[<span class="number">0</span>] = -<span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= nums.length; i++) &#123;</div><div class="line">            minLast[i] = Integer.MAX_VALUE;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</div><div class="line">            <span class="comment">// find the first number in minLast &gt; nums[i]</span></div><div class="line">            <span class="keyword">int</span> index = binarySearch(minLast, nums[i]);</div><div class="line">            minLast[index] = nums[i];</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = nums.length; i &gt;= <span class="number">1</span>; i--) &#123;</div><div class="line">            <span class="keyword">if</span> (minLast[i] != Integer.MAX_VALUE) &#123;</div><div class="line">                <span class="keyword">return</span> i;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">// find the first number &gt; num</span></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] minLast, <span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> start = <span class="number">0</span>, end = minLast.length - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span> (start + <span class="number">1</span> &lt; end) &#123;</div><div class="line">            <span class="keyword">int</span> mid = (end - start) / <span class="number">2</span> + start;</div><div class="line">            <span class="keyword">if</span> (minLast[mid] == num) &#123;</div><div class="line">                start = mid;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (minLast[mid] &lt; num) &#123;</div><div class="line">                start = mid;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                end = mid;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span> (minLast[start] &gt; num) &#123;</div><div class="line">            <span class="keyword">return</span> start;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> end;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>假设存在一个序列d[1..9] = 2 1 5 3 6 4 8 9 7，可以看出来它的LIS长度为5。<br>下面一步一步试着找出它。<br>我们定义一个序列B，然后令 i = 1 to 9 逐个考察这个序列。<br>此外，我们用一个变量Len来记录现在最长算到多少了</p>
+<p>首先，把d[1]有序地放到B里，令B[1] = 2，就是说当只有1一个数字2的时候，长度为1的LIS的最小末尾是2。这时Len=1</p>
+<p>然后，把d[2]有序地放到B里，令B[1] = 1，就是说长度为1的LIS的最小末尾是1，d[1]=2已经没用了，很容易理解吧。这时Len=1</p>
+<p>接着，d[3] = 5，d[3]&gt;B[1]，所以令B[1+1]=B[2]=d[3]=5，就是说长度为2的LIS的最小末尾是5，很容易理解吧。这时候B[1..2] = 1, 5，Len＝2</p>
+<p>再来，d[4] = 3，它正好加在1,5之间，放在1的位置显然不合适，因为1小于3，长度为1的LIS最小末尾应该是1，这样很容易推知，长度为2的LIS最小末尾是3，于是可以把5淘汰掉，这时候B[1..2] = 1, 3，Len = 2</p>
+<p>继续，d[5] = 6，它在3后面，因为B[2] = 3, 而6在3后面，于是很容易可以推知B[3] = 6, 这时B[1..3] = 1, 3, 6，还是很容易理解吧？ Len = 3 了噢。</p>
+<p>第6个, d[6] = 4，你看它在3和6之间，于是我们就可以把6替换掉，得到B[3] = 4。B[1..3] = 1, 3, 4， Len继续等于3</p>
+<p>第7个, d[7] = 8，它很大，比4大，嗯。于是B[4] = 8。Len变成4了</p>
+<p>第8个, d[8] = 9，得到B[5] = 9，嗯。Len继续增大，到5了。</p>
+<p>最后一个, d[9] = 7，它在B[3] = 4和B[4] = 8之间，所以我们知道，最新的B[4] =7，B[1..5] = 1, 3, 4, 7, 9，Len = 5。</p>
+<p>于是我们知道了LIS的长度为5。</p>
+<p>!!!!! 注意。这个1,3,4,7,9不是LIS，它只是存储的对应长度LIS的最小末尾。有了这个末尾，我们就可以一个一个地插入数据。虽然最后一个d[9] = 7更新进去对于这组数据没有什么意义，但是如果后面再出现两个数字 8 和 9，那么就可以把8更新到d[5], 9更新到d[6]，得出LIS的长度为6。</p>
+<p>然后应该发现一件事情了：在B中插入数据是有序的，而且是进行替换而不需要挪动——也就是说，我们可以使用二分查找，将每一个数字的插入时间优化到O(logN)<del>~</del>于是算法的时间复杂度就降低到了O(NlogN)～！</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/01/01/Life_The true nobility/" itemprop="url">
                   True Nobility
                 </a>
@@ -753,138 +898,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/23/Leetcode_Increasing Triplet Subsequence/" itemprop="url">
-                  Increasing Triplet Subsequence
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-12-23T00:00:00+09:00" content="2015-12-23">
-              2015-12-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/12/23/Leetcode_Increasing Triplet Subsequence/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/12/23/Leetcode_Increasing Triplet Subsequence/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Increasing-Triplet-Subsequence"><a href="#Increasing-Triplet-Subsequence" class="headerlink" title="Increasing Triplet Subsequence"></a><a href="https://leetcode.com/problems/increasing-triplet-subsequence/" target="_blank" rel="external">Increasing Triplet Subsequence</a></h1><blockquote>
-<p>Given an unsorted array return whether an increasing subsequence of length 3 exists or not in the array.</p>
-<p>Formally the function should:</p>
-<blockquote>
-<p>Return true if there exists i, j, k<br>such that arr[i] &lt; arr[j] &lt; arr[k] given 0 ≤ i &lt; j &lt; k ≤ n-1 else return false.</p>
-</blockquote>
-<p>Your algorithm should run in O(n) time complexity and O(1) space complexity.</p>
-<p>Examples:<br>Given <code>[1, 2, 3, 4, 5]</code>,<br>return true.</p>
-<p>Given <code>[5, 4, 3, 2, 1]</code>,<br>return false.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>问题可以转化为确定两个递增的元素firstNum和secondNum（这里简称为递增元素对），然后判断后面是否有元素大于secondNum的。总是更新secondNum使得其大于firstNum且尽量小。数组中也可能会存在多个递增元素对，使用firstCandidate记录潜在的可能比前面递增元素对的secondNum更小的递增元素对的第一个元素，并在出现元素小于之前的secondNum且大于firstCandidate时替换掉原来的递增元素对。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">increasingTriplet</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> firstNum = Integer.MAX_VALUE;</div><div class="line">        <span class="keyword">int</span> secondNum = Integer.MAX_VALUE;</div><div class="line">        <span class="keyword">int</span> firstCandidate = Integer.MAX_VALUE;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nums.length; i++) &#123;</div><div class="line">            <span class="keyword">if</span>(nums[i]&gt;secondNum) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            <span class="keyword">if</span>(nums[i]&lt;=firstNum) &#123;</div><div class="line">            	<span class="comment">// if the firstNum or secondNum is not set yet</span></div><div class="line">                <span class="keyword">if</span>(firstNum==Integer.MAX_VALUE || secondNum==Integer.MAX_VALUE) firstNum = nums[i];</div><div class="line">                <span class="comment">// if the current incresing pair is set and the firstCandidate of next possible incresing pari is not set yet</span></div><div class="line">                <span class="comment">//the firstCandidate is always smaller than firstNum after they were set</span></div><div class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(nums[i]&lt;firstNum &amp;&amp; firstCandidate==Integer.MAX_VALUE) firstCandidate = nums[i];</div><div class="line">                <span class="comment">// when firstCandidate&lt;nums[i]&lt;firstNum&lt;secondNum</span></div><div class="line">                <span class="comment">// we can use (firstCandidate, nums[i]) to replace (firstNum, secondNum)</span></div><div class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(nums[i]&gt;firstCandidate) &#123;</div><div class="line">                    firstNum = firstCandidate;</div><div class="line">                    secondNum = nums[i];</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span>(nums[i]&lt;secondNum)&#123;</div><div class="line">                secondNum = nums[i];</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">increasingTriplet</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(nums.length&lt;<span class="number">2</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">int</span>[] record = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</div><div class="line">        record[<span class="number">0</span>] = nums[<span class="number">0</span>];</div><div class="line">        record[<span class="number">1</span>] = Integer.MAX_VALUE;</div><div class="line">        <span class="keyword">int</span> secondMin = Integer.MAX_VALUE;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;nums.length; i++) &#123;</div><div class="line">            <span class="keyword">if</span>(nums[i]&lt;record[<span class="number">0</span>]) &#123;</div><div class="line">                <span class="keyword">if</span>(record[<span class="number">1</span>]==Integer.MAX_VALUE) record[<span class="number">0</span>] = nums[i];</div><div class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(nums[i]&lt;secondMin) secondMin = nums[i];</div><div class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(nums[i]&gt;secondMin)&#123;</div><div class="line">                    record[<span class="number">0</span>] = secondMin;</div><div class="line">                    record[<span class="number">1</span>] = nums[i];</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span>(nums[i]&gt;record[<span class="number">0</span>] &amp;&amp; nums[i]&lt;record[<span class="number">1</span>])&#123;</div><div class="line">                record[<span class="number">1</span>] = nums[i];</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span>(nums[i]&gt;record[<span class="number">1</span>]) &#123;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -930,7 +943,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">329</span>
+              <span class="site-state-item-count">330</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>

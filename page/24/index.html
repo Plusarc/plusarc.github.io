@@ -391,6 +391,134 @@
             
               
                 
+                <a class="post-title-link" href="/2015/09/02/Leetcode_Palindrome Partitioning/" itemprop="url">
+                  Palindrome Partitioning
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-09-02T00:00:00+09:00" content="2015-09-02">
+              2015-09-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/02/Leetcode_Palindrome Partitioning/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/02/Leetcode_Palindrome Partitioning/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Palindrome-Partitioning"><a href="#Palindrome-Partitioning" class="headerlink" title="Palindrome Partitioning"></a><a href="https://leetcode.com/problems/palindrome-partitioning/" target="_blank" rel="external">Palindrome Partitioning</a></h1><blockquote>
+<p>Given a string s, partition s such that every substring of the partition is a palindrome.</p>
+<p>Return all possible palindrome partitioning of s.</p>
+<p>For example, given <code>s = &quot;aab&quot;</code>,<br>Return</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">  [&quot;aa&quot;,&quot;b&quot;],</div><div class="line">  [&quot;a&quot;,&quot;a&quot;,&quot;b&quot;]</div><div class="line">]</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>DFS搜索可行的解。对于每个当前字母，首先加入累计字符串，进行第一种下一步递归，移到下一个位置。再就是判断当前字母加入累计字符串是否形成Palindrome字符串，如果能，则加入record(用于记录Palindrome字符串)，然后清空累计字符串，移至下一个字符进行下一步递归，如果不能，则无需进行这一种递归。</p>
+<p>Additional improment:<br>遇到要求所有组合、可能、排列等解集的题目，一般都是用DFS + backtracking来做。要分割回文的前提是能够判断回文。在做DFS的时候，如果每次从start出发查找s[start:end]是否是回文，会使算法复杂度大大增加。而在Longest Palindromic Substring这题中已经知道如何用DP来计算任意s[i:j]是否是回文。因此可以先计算该判断矩阵，在DFS的时候用来剪枝，大大提高效率。<br>From : <a href="http://bangbingsyb.blogspot.jp/2014/11/leetcode-palindrome-partitioning-i-ii.html" target="_blank" rel="external">[LeetCode] Palindrome Partitioning I, II</a></p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> List&lt;List&lt;String&gt;&gt; partition(String s) &#123;</div><div class="line">        List&lt;List&lt;String&gt;&gt; res = <span class="keyword">new</span> ArrayList&lt;List&lt;String&gt;&gt;();</div><div class="line">        <span class="keyword">if</span>(s==<span class="keyword">null</span> || s.length()==<span class="number">0</span>) <span class="keyword">return</span> res;</div><div class="line">        List&lt;String&gt; record = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">        recPar(s, <span class="number">0</span>, res, record, <span class="string">""</span>);</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recPar</span><span class="params">(String s, <span class="keyword">int</span> pos, List&lt;List&lt;String&gt;&gt; res, List&lt;String&gt; record, String cum)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(pos==s.length()) &#123;</div><div class="line">            <span class="keyword">if</span>(cum.length()==<span class="number">0</span>) res.add(<span class="keyword">new</span> ArrayList&lt;String&gt;(record));</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            cum = cum + s.charAt(pos);</div><div class="line">            recPar(s, pos+<span class="number">1</span>, res, record, cum);</div><div class="line">            <span class="keyword">if</span>(isPal(cum)) &#123;</div><div class="line">                record.add(cum);</div><div class="line">                recPar(s, pos+<span class="number">1</span>, res, record, <span class="string">""</span>);</div><div class="line">                record.remove(record.size()-<span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPal</span><span class="params">(String record)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> right = record.length() - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(left&lt;right) &#123;</div><div class="line">            <span class="keyword">if</span>(record.charAt(left++)!=record.charAt(right--)) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/09/02/Leetcode_Simplify Path/" itemprop="url">
                   Simplify Path
                 </a>
@@ -470,6 +598,130 @@
 <p>另外注意处理一些特殊情况，例如 <code>//</code>, <code>/...</code>, <code>/a//b</code></p>
 <p>也就是一些末尾不是<code>/</code>的情况，或者<code>/</code>连续出现的情况。</p>
 <h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">simplifyPath</span><span class="params">(String path)</span> </span>&#123;</div><div class="line">        StringBuffer res = <span class="keyword">new</span> StringBuffer();</div><div class="line">        StringBuffer sub = <span class="keyword">new</span> StringBuffer();</div><div class="line">        Stack&lt;String&gt; stack = <span class="keyword">new</span> Stack&lt;String&gt;();</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;=path.length(); i++) &#123;</div><div class="line">        	<span class="keyword">if</span>(i==path.length() || path.charAt(i)==<span class="string">'/'</span>) &#123;</div><div class="line">        		String ele = sub.toString();</div><div class="line">        		</div><div class="line">        		<span class="keyword">if</span>(i==<span class="number">0</span> || path.charAt(i-<span class="number">1</span>)==<span class="string">'/'</span>) &#123;</div><div class="line">        			<span class="keyword">continue</span>;</div><div class="line">        		&#125; <span class="keyword">else</span> <span class="keyword">if</span>(ele.equals(<span class="string">"."</span>)) &#123;</div><div class="line">                    sub.setLength(<span class="number">0</span>);</div><div class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span>(ele.equals(<span class="string">".."</span>)) &#123;</div><div class="line">                    <span class="keyword">if</span>(!stack.isEmpty()) stack.pop();</div><div class="line">                    sub.setLength(<span class="number">0</span>);</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    stack.push(ele);</div><div class="line">                    sub.setLength(<span class="number">0</span>);</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                sub.append(path.charAt(i));</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(!stack.isEmpty()) &#123;</div><div class="line">            res.insert(<span class="number">0</span>, <span class="string">"/"</span> + stack.pop());</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(res.length()!=<span class="number">0</span> )<span class="keyword">return</span> res.toString();</div><div class="line">        <span class="keyword">else</span> <span class="keyword">return</span> <span class="string">"/"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/09/01/DL_Rising Temperature/" itemprop="url">
+                  Rising Temperature
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-09-01T00:00:00+09:00" content="2015-09-01">
+              2015-09-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode-database/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode_database</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/01/DL_Rising Temperature/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/01/DL_Rising Temperature/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Rising-Temperature"><a href="#Rising-Temperature" class="headerlink" title="Rising Temperature"></a><a href="">Rising Temperature</a></h1><blockquote>
+<p>Given a Weather table, write a SQL query to find all dates’ Ids with higher temperature compared to its previous (yesterday’s) dates.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">+---------+------------+------------------+</div><div class="line">| Id(INT) | Date(DATE) | Temperature(INT) |</div><div class="line">+---------+------------+------------------+</div><div class="line">|       1 | 2015-01-01 |               10 |</div><div class="line">|       2 | 2015-01-02 |               25 |</div><div class="line">|       3 | 2015-01-03 |               20 |</div><div class="line">|       4 | 2015-01-04 |               30 |</div><div class="line">+---------+------------+------------------+</div><div class="line">For example, return the following Ids for the above Weather table:</div><div class="line">+----+</div><div class="line">| Id |</div><div class="line">+----+</div><div class="line">|  2 |</div><div class="line">|  4 |</div><div class="line">+----+</div></pre></td></tr></table></figure>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> w1.Id <span class="keyword">FROM</span> Weather <span class="keyword">as</span> w1 <span class="keyword">INNER</span> <span class="keyword">JOIN</span> Weather <span class="keyword">as</span> w2 </div><div class="line"><span class="keyword">ON</span> <span class="keyword">TO_DAYS</span>(w1.Date)=<span class="keyword">TO_DAYS</span>(w2.Date)+<span class="number">1</span> <span class="keyword">and</span> w1.Temperature&gt;w2.Temperature</div></pre></td></tr></table></figure>
 
           
         
@@ -642,262 +894,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/09/01/Leetcode_Group Anagrams/" itemprop="url">
-                  Group Anagrams
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-01T00:00:00+09:00" content="2015-09-01">
-              2015-09-01
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/01/Leetcode_Group Anagrams/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/01/Leetcode_Group Anagrams/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Group-Anagrams"><a href="#Group-Anagrams" class="headerlink" title="Group Anagrams"></a><a href="">Group Anagrams</a></h1><blockquote>
-<p>Given an array of strings, group anagrams together.</p>
-<p>For example, given: <code>[&quot;eat&quot;, &quot;tea&quot;, &quot;tan&quot;, &quot;ate&quot;, &quot;nat&quot;, &quot;bat&quot;]</code>,<br>Return:</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">  [&quot;ate&quot;, &quot;eat&quot;,&quot;tea&quot;],</div><div class="line">  [&quot;nat&quot;,&quot;tan&quot;],</div><div class="line">  [&quot;bat&quot;]</div><div class="line">]</div></pre></td></tr></table></figure>
-<blockquote>
-<p>Note:<br>For the return value, each inner list’s elements must follow the lexicographic order.<br>All inputs will be in lower-case.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h3 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1"></a>Method 1</h3><p>关键是对于每组Anagrams要有相同的hash值，一种方法是对于字符串中的字符进行排序重组字符串，这样Anagrams内的字符串都会有相同的string作为其hash key。另外对于组内必须按字母表排序的要求，可以一开始最整个字符串数组进行排序一次，这样按顺序处理后子组内的字符串list也必定是安字母表排序。</p>
-<h3 id="Mehtod-2"><a href="#Mehtod-2" class="headerlink" title="Mehtod 2"></a>Mehtod 2</h3><p>另外对于每组Anagrams要有相同的hash值的求hash方法，排序过于naive，找了一下发现了<a href="http://www.jiuzhang.com/solutions/anagrams/" target="_blank" rel="external">九章算法</a>上的另一种方法，具体参考代码。</p>
-<p>参考：<br><a href="http://www.jiuzhang.com/solutions/anagrams/" target="_blank" rel="external">九章算法–Anagrams</a></p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="Method-1-1"><a href="#Method-1-1" class="headerlink" title="Method 1"></a>Method 1</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> List&lt;List&lt;String&gt;&gt; groupAnagrams(String[] strs) &#123;</div><div class="line">        List&lt;List&lt;String&gt;&gt; res = <span class="keyword">new</span> ArrayList&lt;List&lt;String&gt;&gt;();</div><div class="line">        <span class="keyword">if</span>(strs==<span class="keyword">null</span> || strs.length==<span class="number">0</span>) <span class="keyword">return</span> res;</div><div class="line">        </div><div class="line">        Arrays.sort(strs);</div><div class="line">        Map&lt;String, List&lt;String&gt;&gt; map = <span class="keyword">new</span> HashMap&lt;String, List&lt;String&gt;&gt;();</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(String s: strs) &#123;</div><div class="line">            <span class="keyword">char</span> [] schars = s.toCharArray();</div><div class="line">            Arrays.sort(schars);</div><div class="line">            String hs = <span class="keyword">new</span> String(schars);</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(map.containsKey(hs)) map.get(hs).add(s);</div><div class="line">            <span class="keyword">else</span> &#123;</div><div class="line">                List&lt;String&gt; temp = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">                temp.add(s);</div><div class="line">                map.put(hs, temp);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(List&lt;String&gt; ele: map.values()) &#123;</div><div class="line">            res.add(ele);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2"></a>Method 2</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">getHash</span><span class="params">(<span class="keyword">int</span>[] count)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> hash = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> a = <span class="number">378551</span>;</div><div class="line">        <span class="keyword">int</span> b = <span class="number">63689</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> num : count) &#123;</div><div class="line">            hash = hash * a + num;</div><div class="line">            a = a * b;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> hash;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> ArrayList&lt;String&gt; <span class="title">anagrams</span><span class="params">(String[] strs)</span> </span>&#123;</div><div class="line">        ArrayList&lt;String&gt; result = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">        HashMap&lt;Integer, ArrayList&lt;String&gt;&gt; map = <span class="keyword">new</span> HashMap&lt;Integer, ArrayList&lt;String&gt;&gt;();</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (String str : strs) &#123;</div><div class="line">            <span class="keyword">int</span>[] count = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">26</span>];</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; str.length(); i++) &#123;</div><div class="line">                count[str.charAt(i) - <span class="string">'a'</span>]++;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="keyword">int</span> hash = getHash(count);</div><div class="line">            <span class="keyword">if</span> (!map.containsKey(hash)) &#123;</div><div class="line">                map.put(hash, <span class="keyword">new</span> ArrayList&lt;String&gt;());</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            map.get(hash).add(str);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (ArrayList&lt;String&gt; tmp : map.values()) &#123;</div><div class="line">            <span class="keyword">if</span> (tmp.size() &gt; <span class="number">1</span>) &#123;</div><div class="line">                result.addAll(tmp);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/09/01/DL_Rising Temperature/" itemprop="url">
-                  Rising Temperature
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-01T00:00:00+09:00" content="2015-09-01">
-              2015-09-01
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode-database/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode_database</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/01/DL_Rising Temperature/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/01/DL_Rising Temperature/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Rising-Temperature"><a href="#Rising-Temperature" class="headerlink" title="Rising Temperature"></a><a href="">Rising Temperature</a></h1><blockquote>
-<p>Given a Weather table, write a SQL query to find all dates’ Ids with higher temperature compared to its previous (yesterday’s) dates.</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">+---------+------------+------------------+</div><div class="line">| Id(INT) | Date(DATE) | Temperature(INT) |</div><div class="line">+---------+------------+------------------+</div><div class="line">|       1 | 2015-01-01 |               10 |</div><div class="line">|       2 | 2015-01-02 |               25 |</div><div class="line">|       3 | 2015-01-03 |               20 |</div><div class="line">|       4 | 2015-01-04 |               30 |</div><div class="line">+---------+------------+------------------+</div><div class="line">For example, return the following Ids for the above Weather table:</div><div class="line">+----+</div><div class="line">| Id |</div><div class="line">+----+</div><div class="line">|  2 |</div><div class="line">|  4 |</div><div class="line">+----+</div></pre></td></tr></table></figure>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> w1.Id <span class="keyword">FROM</span> Weather <span class="keyword">as</span> w1 <span class="keyword">INNER</span> <span class="keyword">JOIN</span> Weather <span class="keyword">as</span> w2 </div><div class="line"><span class="keyword">ON</span> <span class="keyword">TO_DAYS</span>(w1.Date)=<span class="keyword">TO_DAYS</span>(w2.Date)+<span class="number">1</span> <span class="keyword">and</span> w1.Temperature&gt;w2.Temperature</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -943,7 +939,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">329</span>
+              <span class="site-state-item-count">330</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
