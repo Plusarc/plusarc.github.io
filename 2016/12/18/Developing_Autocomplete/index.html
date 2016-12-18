@@ -87,29 +87,29 @@
 
 
 <meta name="description" content="Autocomplete?Autocomplete是现代搜索引擎的一个重要功能之一，当用户只输入了query的一部分时我们可以根据输入的这部分预测用户想输入的内容，作为suggestion提供给用户选择，可以有效的节省用户时间和提高搜索体验，同时可能提高搜索质量。
-先看一下公司Paul大神实现的酷炫的Autocomplete:
+先看一下公司Paul大神实现的awesome的Autocomplete:
+  
 
-Awesome!
-最直接的实现方式是，将query log中的que">
+最直接的实现方式是，将query log中的quer">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Autocomplete">
 <meta property="og:url" content="http://yoursite.com/2016/12/18/Developing_Autocomplete/index.html">
 <meta property="og:site_name" content="Plusaber's Blog">
 <meta property="og:description" content="Autocomplete?Autocomplete是现代搜索引擎的一个重要功能之一，当用户只输入了query的一部分时我们可以根据输入的这部分预测用户想输入的内容，作为suggestion提供给用户选择，可以有效的节省用户时间和提高搜索体验，同时可能提高搜索质量。
-先看一下公司Paul大神实现的酷炫的Autocomplete:
+先看一下公司Paul大神实现的awesome的Autocomplete:
+  
 
-Awesome!
-最直接的实现方式是，将query log中的que">
+最直接的实现方式是，将query log中的quer">
 <meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Autocomplete_caret_aware_fuzzy.gif">
 <meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Autocomple_1.png">
-<meta property="og:updated_time" content="2016-12-18T08:21:46.000Z">
+<meta property="og:updated_time" content="2016-12-18T08:43:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Autocomplete">
 <meta name="twitter:description" content="Autocomplete?Autocomplete是现代搜索引擎的一个重要功能之一，当用户只输入了query的一部分时我们可以根据输入的这部分预测用户想输入的内容，作为suggestion提供给用户选择，可以有效的节省用户时间和提高搜索体验，同时可能提高搜索质量。
-先看一下公司Paul大神实现的酷炫的Autocomplete:
+先看一下公司Paul大神实现的awesome的Autocomplete:
+  
 
-Awesome!
-最直接的实现方式是，将query log中的que">
+最直接的实现方式是，将query log中的quer">
 <meta name="twitter:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Autocomplete_caret_aware_fuzzy.gif">
 
 
@@ -340,9 +340,9 @@ Awesome!
 
       
         <h3 id="Autocomplete"><a href="#Autocomplete" class="headerlink" title="Autocomplete?"></a>Autocomplete?</h3><p>Autocomplete是现代搜索引擎的一个重要功能之一，当用户只输入了query的一部分时我们可以根据输入的这部分预测用户想输入的内容，作为suggestion提供给用户选择，可以有效的节省用户时间和提高搜索体验，同时可能提高搜索质量。</p>
-<p>先看一下公司Paul大神实现的酷炫的Autocomplete:</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Autocomplete_caret_aware_fuzzy.gif" alt=""></p>
-<p>Awesome!</p>
+<p>先看一下公司Paul大神实现的awesome的Autocomplete:</p>
+<p align="center"><br>  <img style="float: center;" src="http://7xs07u.com1.z0.glb.clouddn.com/Autocomplete_caret_aware_fuzzy.gif"><br></p>
+
 <p>最直接的实现方式是，将query log中的queries(query dictionary)构建一棵<a href="https://en.wikipedia.org/wiki/Trie" target="_blank" rel="external">Trie树（前缀树or字典树)</a>，并且对于每个query都给出一个评分（基于count或者其他更加高级的方式）。然后对于用户已经输入的query，去Trie树中搜索以已经输入的内容为前缀的query。</p>
 <p>然而这种方式是非常理想化的，在实际使用中有很多问题。最根本的一个问题是，如果用户的query不是以前缀方式出现在Trie树中，匹配就会失败（用户的query常常会有typos或者query里的词顺序本来就是可以交换的）。</p>
 <p>解决方法是，我们不应该拘泥于前缀（暂时先忘记前缀树），而应该选择在query dictionary(query log里的所有query)寻找尽量和用户已经输入的query相似的queries作为suggestions。Query的similarity可以通过很多种方式进行衡量，最常用的包括<a href="https://en.wikipedia.org/wiki/Levenshtein_distance" target="_blank" rel="external">Levenshtein-distance（编辑距离）</a>或<a href="n gram distance">n-gram distances</a>。这里我们讲使用的是Levenshtein-distance。</p>
