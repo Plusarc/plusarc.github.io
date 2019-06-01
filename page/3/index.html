@@ -438,61 +438,38 @@
       
         
           
-            <h1 id="基础"><a class="markdownIt-Anchor" href="#基础"></a> 基础</h1>
-<h2 id="概念"><a class="markdownIt-Anchor" href="#概念"></a> 概念</h2>
-<h3 id="文档document"><a class="markdownIt-Anchor" href="#文档document"></a> 文档(document)</h3>
-<p>文档也就是传统数据库中的行，但是没有确定的键模式，而是由不确定的键值对组成。在MongoDB中文档一般组织和表示为JavaScript的对象形式。</p>
+            <h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="文档-document"><a href="#文档-document" class="headerlink" title="文档(document)"></a>文档(document)</h3><p>文档也就是传统数据库中的行，但是没有确定的键模式，而是由不确定的键值对组成。在MongoDB中文档一般组织和表示为JavaScript的对象形式。</p>
 <p><code>{&quot;greeting&quot; : &quot;Hello, world!&quot;, &quot;foo&quot; : 3}</code></p>
 <ul>
-<li>
-<p>文档中的键/值对是有序的，上面的文档和下面的文档是不同的。<br>
-<code>{&quot;foo&quot; : 3, &quot;greeting&quot; : &quot;Hello, world!}&quot;</code></p>
+<li><p>文档中的键/值对是有序的，上面的文档和下面的文档是不同的。<br><code>{&quot;foo&quot; : 3, &quot;greeting&quot; : &quot;Hello, world!}&quot;</code></p>
 </li>
-<li>
-<p>文档中的值有几种数据类型，甚至是整个嵌入的文档。</p>
+<li><p>文档中的值有几种数据类型，甚至是整个嵌入的文档。</p>
 </li>
-<li>
-<p>文档的键一般为字符串。</p>
-</li>
-<li>
-<p>文档不能有重复的键。</p>
-</li>
+<li>文档的键一般为字符串。</li>
+<li>文档不能有重复的键。</li>
 </ul>
-<h3 id="集合collection"><a class="markdownIt-Anchor" href="#集合collection"></a> 集合(collection)</h3>
-<p>集合是一组文档的集合。<br>
-集合是无模式的，也就是一个集合里的文档可以是各式各样的，但是一般根据应用和效率的需要，一般还是把相同类型文档划分为不同集合。</p>
-<p>组织集合的一种习惯是使用&quot;.&quot;字符分开的按命名空间划分的子集合。例如，一个带有博客功能的应用可能包含两个集合，分别是blog.posts和blog.authors。这样做的目的只是为组织结构更好些，也就是blog这个集合只是逻辑上的存在，和其子集合没有只是层次上的逻辑关系。</p>
-<h3 id="数据库"><a class="markdownIt-Anchor" href="#数据库"></a> 数据库</h3>
-<p>MongoDB中多个文档组成集合，同样多个集合可以组成数据库。一个MongoDB实例可运行多个数据库。</p>
-<h2 id="启动mongodb"><a class="markdownIt-Anchor" href="#启动mongodb"></a> 启动MongoDB</h2>
-<ul>
+<h3 id="集合-collection"><a href="#集合-collection" class="headerlink" title="集合(collection)"></a>集合(collection)</h3><p>集合是一组文档的集合。<br>集合是无模式的，也就是一个集合里的文档可以是各式各样的，但是一般根据应用和效率的需要，一般还是把相同类型文档划分为不同集合。</p>
+<p>组织集合的一种习惯是使用”.”字符分开的按命名空间划分的子集合。例如，一个带有博客功能的应用可能包含两个集合，分别是blog.posts和blog.authors。这样做的目的只是为组织结构更好些，也就是blog这个集合只是逻辑上的存在，和其子集合没有只是层次上的逻辑关系。</p>
+<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><p>MongoDB中多个文档组成集合，同样多个集合可以组成数据库。一个MongoDB实例可运行多个数据库。</p>
+<h2 id="启动MongoDB"><a href="#启动MongoDB" class="headerlink" title="启动MongoDB"></a>启动MongoDB</h2><ul>
 <li>Download MongoDB</li>
 <li>Decompress</li>
 <li>create directory /data/db with sudo</li>
 <li>进入MonogoDB解压目录bin目录，<code>./mongod</code>启动mongoDB本地实例，在没有参数情况下使用默认数据目录<code>/data/db</code>和27017端口。</li>
 <li>可以通过访问<code>http://localhost:28017</code>来获取数据库的管理信息。</li>
 </ul>
-<h2 id="mongodb-shell"><a class="markdownIt-Anchor" href="#mongodb-shell"></a> MongoDB shell</h2>
-<p>在mongoDB实例启动后，可以执行<code>./mongo</code>启动shell，会自动连接MongoDB服务器。这个shell同时是一个完全的javascript解释器，javascript所有语法都可使用。<br>
-默认shell会连接mongodb服务器的test数据库，并将这个数据库连接复制给全局变量db。这个变量是通过shell访问MongoDB的主要入口点。</p>
-<h2 id="shell中的基本操作"><a class="markdownIt-Anchor" href="#shell中的基本操作"></a> shell中的基本操作</h2>
-<h3 id="创建"><a class="markdownIt-Anchor" href="#创建"></a> 创建</h3>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> post = &#123;<span class="string">"title"</span> : <span class="string">"My Blog Post"</span>,</span><br><span class="line"><span class="string">"content"</span> : <span class="string">"Here's my blog post."</span>,<span class="string">"date"</span> : <span class="keyword">new</span> <span class="built_in">Date</span>()&#125;</span><br><span class="line"></span><br><span class="line"> db.blog.insert(post)</span><br><span class="line">  db.blog.find()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"5037ee4a1084eb3ffeef7228"</span>),</span><br><span class="line">        <span class="string">"title"</span> : <span class="string">"My Blog Post"</span>,</span><br><span class="line">        <span class="string">"content"</span> : <span class="string">"Here's my blog post."</span>,</span><br><span class="line">        <span class="string">"date"</span> : ISODate(<span class="string">"2012-08-24T21:12:09.982Z"</span>)</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="读取"><a class="markdownIt-Anchor" href="#读取"></a> 读取</h3>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">db.blog.findOne()</span><br><span class="line">   &#123;</span><br><span class="line">       <span class="string">"_id"</span> : ObjectId(<span class="string">"5037ee4a1084eb3ffeef7228"</span>),</span><br><span class="line">       <span class="string">"title"</span> : <span class="string">"My Blog Post"</span>,</span><br><span class="line">       <span class="string">"content"</span> : <span class="string">"Here's my blog post."</span>,</span><br><span class="line">       <span class="string">"date"</span> : ISODate(<span class="string">"2012-08-24T21:12:09.982Z"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="更新"><a class="markdownIt-Anchor" href="#更新"></a> 更新</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> post.comments = []</span><br><span class="line">[]</span><br><span class="line"> db.blog.update(&#123;title : <span class="string">"My Blog Post"</span>&#125;, post)</span><br></pre></td></tr></table></figure>
-<p>更新所有键title的值为&quot;My Blog Post&quot;的文档为修改过后的post。</p>
-<h3 id="删除"><a class="markdownIt-Anchor" href="#删除"></a> 删除</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.blog.remove(&#123;title : <span class="string">"My Blog Post"</span>&#125;)</span><br></pre></td></tr></table></figure>
-<h3 id="常用shell命令"><a class="markdownIt-Anchor" href="#常用shell命令"></a> 常用shell命令</h3>
-<p>可以通过<code>help</code>查看常用命令。</p>
+<h2 id="MongoDB-shell"><a href="#MongoDB-shell" class="headerlink" title="MongoDB shell"></a>MongoDB shell</h2><p>在mongoDB实例启动后，可以执行<code>./mongo</code>启动shell，会自动连接MongoDB服务器。这个shell同时是一个完全的javascript解释器，javascript所有语法都可使用。<br>默认shell会连接mongodb服务器的test数据库，并将这个数据库连接复制给全局变量db。这个变量是通过shell访问MongoDB的主要入口点。</p>
+<h2 id="shell中的基本操作"><a href="#shell中的基本操作" class="headerlink" title="shell中的基本操作"></a>shell中的基本操作</h2><h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> post = &#123;<span class="string">"title"</span> : <span class="string">"My Blog Post"</span>,</span><br><span class="line"><span class="string">"content"</span> : <span class="string">"Here's my blog post."</span>,<span class="string">"date"</span> : <span class="keyword">new</span> <span class="built_in">Date</span>()&#125;</span><br><span class="line"></span><br><span class="line"> db.blog.insert(post)</span><br><span class="line">  db.blog.find()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"5037ee4a1084eb3ffeef7228"</span>),</span><br><span class="line">        <span class="string">"title"</span> : <span class="string">"My Blog Post"</span>,</span><br><span class="line">        <span class="string">"content"</span> : <span class="string">"Here's my blog post."</span>,</span><br><span class="line">        <span class="string">"date"</span> : ISODate(<span class="string">"2012-08-24T21:12:09.982Z"</span>)</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="读取"><a href="#读取" class="headerlink" title="读取"></a>读取</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">db.blog.findOne()</span><br><span class="line">   &#123;</span><br><span class="line">       <span class="string">"_id"</span> : ObjectId(<span class="string">"5037ee4a1084eb3ffeef7228"</span>),</span><br><span class="line">       <span class="string">"title"</span> : <span class="string">"My Blog Post"</span>,</span><br><span class="line">       <span class="string">"content"</span> : <span class="string">"Here's my blog post."</span>,</span><br><span class="line">       <span class="string">"date"</span> : ISODate(<span class="string">"2012-08-24T21:12:09.982Z"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> post.comments = []</span><br><span class="line">[]</span><br><span class="line"> db.blog.update(&#123;title : <span class="string">"My Blog Post"</span>&#125;, post)</span><br></pre></td></tr></table></figure>
+<p>更新所有键title的值为”My Blog Post”的文档为修改过后的post。</p>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.blog.remove(&#123;title : <span class="string">"My Blog Post"</span>&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="常用shell命令"><a href="#常用shell命令" class="headerlink" title="常用shell命令"></a>常用shell命令</h3><p>可以通过<code>help</code>查看常用命令。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">help</span></span><br><span class="line">db.help()                    <span class="built_in">help</span> on db methods</span><br><span class="line">db.mycoll.help()             <span class="built_in">help</span> on collection methods</span><br><span class="line">sh.help()                    sharding helpers</span><br><span class="line">rs.help()                    replica <span class="built_in">set</span> helpers</span><br><span class="line"><span class="built_in">help</span> admin                   administrative <span class="built_in">help</span></span><br><span class="line"><span class="built_in">help</span> connect                 connecting to a db <span class="built_in">help</span></span><br><span class="line"><span class="built_in">help</span> keys                    key shortcuts</span><br><span class="line"><span class="built_in">help</span> misc                    misc things to know</span><br><span class="line"><span class="built_in">help</span> mr                      mapreduce</span><br><span class="line"></span><br><span class="line">show dbs                     show database names</span><br><span class="line">show collections             show collections <span class="keyword">in</span> current database</span><br><span class="line">show users                   show users <span class="keyword">in</span> current database</span><br><span class="line">show profile                 show most recent system.profile entries with time = 1ms</span><br><span class="line">show logs                    show the accessible logger names</span><br><span class="line">show <span class="built_in">log</span> [name]              prints out the last segment of <span class="built_in">log</span> <span class="keyword">in</span> memory, <span class="string">'global'</span> is default</span><br><span class="line">use &lt;db_name                <span class="built_in">set</span> current database</span><br><span class="line">db.foo.find()                list objects <span class="keyword">in</span> collection foo</span><br><span class="line">db.foo.find( &#123; a : 1 &#125; )     list objects <span class="keyword">in</span> foo <span class="built_in">where</span> a == 1</span><br><span class="line">it                           result of the last line evaluated; use to further iterate</span><br><span class="line">DBQuery.shellBatchSize = x   <span class="built_in">set</span> default number of items to display on shell</span><br><span class="line"><span class="built_in">exit</span>                         quit the mongo shell</span><br></pre></td></tr></table></figure>
 <p>另外可以使用<code>db.help()</code>查看数据库级别的命令的帮助，集合的相关帮助可以通过<code>db.foo.help()</code>查看。</p>
 <p>另外有个了解函数功能的技巧，就是输入函数但不要输入参数和括号，这样就会现实该函数的JavaScript源代码。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> db.foo.update</span><br><span class="line"><span class="function"><span class="keyword">function</span> (<span class="params"> query , obj , upsert , multi </span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> parsed = <span class="keyword">this</span>._parseUpdate(query, obj, upsert, multi);</span><br><span class="line">    <span class="keyword">var</span> query = parsed.query;</span><br><span class="line">    <span class="keyword">var</span> obj = parsed.obj;</span><br><span class="line">    <span class="keyword">var</span> upsert = parsed.upsert;</span><br><span class="line">    <span class="keyword">var</span> multi = parsed.multi;</span><br><span class="line">    <span class="keyword">var</span> wc = parsed.wc;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> result = <span class="literal">undefined</span>;</span><br><span class="line">    <span class="keyword">var</span> startTime = (<span class="keyword">typeof</span>(_verboseShell) === <span class="string">'undefined'</span> ||</span><br><span class="line">                     !_verboseShell) ? <span class="number">0</span> : <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
-<h2 id="数据类型"><a class="markdownIt-Anchor" href="#数据类型"></a> 数据类型</h2>
-<h3 id="基本类型"><a class="markdownIt-Anchor" href="#基本类型"></a> 基本类型</h3>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h3><div class="table-container">
 <table>
 <thead>
 <tr>
@@ -550,12 +527,10 @@
 <tr>
 <td>Binary Data</td>
 <td>二进制数据。用于存储二进制数据。</td>
-<td></td>
 </tr>
 <tr>
 <td>Min/Max keys</td>
 <td>表示可能的最小/最大值</td>
-<td></td>
 </tr>
 <tr>
 <td>Arrays</td>
@@ -569,6 +544,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <ul>
 <li><strong>数组</strong></li>
 </ul>
@@ -588,40 +564,32 @@
 <p>ObjectId的生成方式与结构</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|时间戳|机器ID|PID|计数器|</span><br></pre></td></tr></table></figure>
 <p>如果插入文档时没有设置<code>&quot;_id&quot;</code>键，系统会自动帮我们创建一个（通常不是有mongodb服务器完成，而是在客户端有驱动程序完成）。</p>
-<h1 id="创建-更新及删除文档"><a class="markdownIt-Anchor" href="#创建-更新及删除文档"></a> 创建、更新及删除文档</h1>
-<h2 id="插入并保存文档"><a class="markdownIt-Anchor" href="#插入并保存文档"></a> 插入并保存文档</h2>
-<p><code>db.foo.insert({&quot;bar&quot;, &quot;baz&quot;})</code></p>
+<h1 id="创建、更新及删除文档"><a href="#创建、更新及删除文档" class="headerlink" title="创建、更新及删除文档"></a>创建、更新及删除文档</h1><h2 id="插入并保存文档"><a href="#插入并保存文档" class="headerlink" title="插入并保存文档"></a>插入并保存文档</h2><p><code>db.foo.insert({&quot;bar&quot;, &quot;baz&quot;})</code></p>
 <p>如果需要插入多个文档，使用批量插入会提高效率，因为以此批量插入只是一个TCP请求，而单个单个文档插入时每个文档插入都需要提交一个TCP请求。批量插入能传递一个由文档构成的数组给数据库。另外批量插入只能对于同一个集合，不能批量插入多个集合。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.foo.batchInsert([&#123;<span class="string">"_id"</span> : <span class="number">0</span>&#125;, &#123;<span class="string">"_id"</span> : <span class="number">1</span>&#125;, &#123;<span class="string">"_id"</span> : <span class="number">2</span>&#125;])</span><br></pre></td></tr></table></figure>
 <p>如果只是导入原始数据（如从mysql），可以使用命令行工具，如<code>mongoimport</code>，而不是批量插入。当前MongoDB消息最大长度为48MB.</p>
 <p>在执行插入的时候，使用的驱动程序会讲数据转换BSON的形式，然后将其送入数据库。数据库只会检查是否包含_id键并且文档不超过16MB，不做其他检查，就只是简单地的文档原样存入数据库中，所以可以避免注入式攻击。但是一般主流语言的驱动程序都会做一定检查，确认是否是有效文档。</p>
-<h2 id="删除文档"><a class="markdownIt-Anchor" href="#删除文档"></a> 删除文档</h2>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.users.remove() <span class="comment">// 删除users集合中所有文档，但不会删除集合本身</span></span><br><span class="line"><span class="comment">// 原有的索引也会保留</span></span><br></pre></td></tr></table></figure>
-<p>remove函数可以接受一个查询作为可选参数。给定这个参数后，只有符合条件的文档才会被删除。例如，删除mailing.list集合中所有&quot;output&quot;为true的人：</p>
+<h2 id="删除文档"><a href="#删除文档" class="headerlink" title="删除文档"></a>删除文档</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.users.remove() <span class="comment">// 删除users集合中所有文档，但不会删除集合本身</span></span><br><span class="line"><span class="comment">// 原有的索引也会保留</span></span><br></pre></td></tr></table></figure>
+<p>remove函数可以接受一个查询作为可选参数。给定这个参数后，只有符合条件的文档才会被删除。例如，删除mailing.list集合中所有”output”为true的人：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.mailing.list.remove(&#123;<span class="string">"opt-out"</span> : <span class="literal">true</span>&#125;)</span><br></pre></td></tr></table></figure>
 <p>删除数据是永久性的，不能撤销，也不能恢复。</p>
-<p><strong>删除速度</strong><br>
-删除文档通常会很快，如果要删除整个集合，直接删除集合（然后重建索引）会更快</p>
+<p><strong>删除速度</strong><br>删除文档通常会很快，如果要删除整个集合，直接删除集合（然后重建索引）会更快</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">db.bar.remove()  <span class="comment">//删除所有文档</span></span><br><span class="line"></span><br><span class="line">db.drop_collection(<span class="string">"bar"</span>) <span class="comment">// 删除集合，比上一种方式要快得多</span></span><br></pre></td></tr></table></figure>
-<h2 id="更新文档"><a class="markdownIt-Anchor" href="#更新文档"></a> 更新文档</h2>
-<p>文档存入数据库后，就可以使用update方法来修改。update有两个参数，一个用来查询文档，用来找出要更新的文档；另一个是修改器（modifier）文档，描述对找到的文档做哪些更改。</p>
+<h2 id="更新文档"><a href="#更新文档" class="headerlink" title="更新文档"></a>更新文档</h2><p>文档存入数据库后，就可以使用update方法来修改。update有两个参数，一个用来查询文档，用来找出要更新的文档；另一个是修改器（modifier）文档，描述对找到的文档做哪些更改。</p>
 <p>更新操作是原子的：如果两个更新同时发生，先到达的执行，接着执行另外一个。</p>
-<h3 id="文档替换"><a class="markdownIt-Anchor" href="#文档替换"></a> 文档替换</h3>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> &#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"4b2b9f67a1f631733d917a7a"</span>),</span><br><span class="line">        <span class="string">"name"</span> : <span class="string">"joe"</span>,</span><br><span class="line">        <span class="string">"friends"</span> : <span class="number">32</span>,</span><br><span class="line">        <span class="string">"enemies"</span> : <span class="number">2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="文档替换"><a href="#文档替换" class="headerlink" title="文档替换"></a>文档替换</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> &#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"4b2b9f67a1f631733d917a7a"</span>),</span><br><span class="line">        <span class="string">"name"</span> : <span class="string">"joe"</span>,</span><br><span class="line">        <span class="string">"friends"</span> : <span class="number">32</span>,</span><br><span class="line">        <span class="string">"enemies"</span> : <span class="number">2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>我们要删除部分字段并更新部分字段，可以执行下面命令：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">var</span> joe = db.users.findOne(&#123;<span class="string">"name"</span> : <span class="string">"joe"</span>&#125;);</span><br><span class="line"> joe.relationships = &#123;<span class="string">"friends"</span> : joe.friends, <span class="string">"enemies"</span> : joe.enemies&#125;; &#123;</span><br><span class="line">        <span class="string">"friends"</span> : <span class="number">32</span>,</span><br><span class="line"><span class="string">"enemies"</span> : <span class="number">2</span></span><br><span class="line">&#125; joe.username = joe.name;</span><br><span class="line"><span class="string">"joe"</span></span><br><span class="line"> <span class="keyword">delete</span> joe.friends;</span><br><span class="line"><span class="literal">true</span></span><br><span class="line"> <span class="keyword">delete</span> joe.enemies;</span><br><span class="line"><span class="literal">true</span></span><br><span class="line"> <span class="keyword">delete</span> joe.name;</span><br><span class="line"><span class="literal">true</span></span><br><span class="line"> db.users.update(&#123;<span class="string">"name"</span> : <span class="string">"joe"</span>&#125;, joe);</span><br></pre></td></tr></table></figure>
 <p>注意在一个集合中_id必须唯一的，也就是如果有多个匹配的文档，update的文档会被插入多次，会导致重复_id，导致失败。例如：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> db.people.find()</span><br><span class="line">    &#123;<span class="string">"_id"</span> : ObjectId(<span class="string">"4b2b9f67a1f631733d917a7b"</span>), <span class="string">"name"</span> : <span class="string">"joe"</span>, <span class="string">"age"</span> : <span class="number">65</span>&#125;,</span><br><span class="line">    &#123;<span class="string">"_id"</span> : ObjectId(<span class="string">"4b2b9f67a1f631733d917a7c"</span>), <span class="string">"name"</span> : <span class="string">"joe"</span>, <span class="string">"age"</span> : <span class="number">20</span>&#125;,</span><br><span class="line">    &#123;<span class="string">"_id"</span> : ObjectId(<span class="string">"4b2b9f67a1f631733d917a7d"</span>), <span class="string">"name"</span> : <span class="string">"joe"</span>, <span class="string">"age"</span> : <span class="number">49</span>&#125;,</span><br><span class="line">    </span><br><span class="line"> joe = db.people.findOne(&#123;<span class="string">"name"</span> : <span class="string">"joe"</span>, <span class="string">"age"</span> : <span class="number">20</span>&#125;);</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"4b2b9f67a1f631733d917a7c"</span>),</span><br><span class="line">        <span class="string">"name"</span> : <span class="string">"joe"</span>,</span><br><span class="line">        <span class="string">"age"</span> : <span class="number">20</span></span><br><span class="line">    &#125;</span><br><span class="line"> joe.age++;</span><br><span class="line"> db.people.update(&#123;<span class="string">"name"</span> : <span class="string">"joe"</span>&#125;, joe);</span><br><span class="line">E11001 duplicate key on update</span><br></pre></td></tr></table></figure>
 <p>最好是使用ObjectId指定要更新的文档：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.people.update(&#123;<span class="string">"_id"</span> : ObjectId(<span class="string">"4b2b9f67a1f631733d917a7c"</span>)&#125;, joe)</span><br></pre></td></tr></table></figure>
-<h3 id="使用修改器"><a class="markdownIt-Anchor" href="#使用修改器"></a> 使用修改器</h3>
-<p>通常文档只有一部分要更新。利用原子的更新修改器，可以使得这个操作非常快。更新修改器是种特殊的键，用来指定复杂的更新操作，比如调整、增加或删除键，还可能是操作数组或者内嵌文档。</p>
+<h3 id="使用修改器"><a href="#使用修改器" class="headerlink" title="使用修改器"></a>使用修改器</h3><p>通常文档只有一部分要更新。利用原子的更新修改器，可以使得这个操作非常快。更新修改器是种特殊的键，用来指定复杂的更新操作，比如调整、增加或删除键，还可能是操作数组或者内嵌文档。</p>
 <p>target doc:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"4b253b067525f35f94b60a31"</span>),</span><br><span class="line">        <span class="string">"url"</span> : <span class="string">"www.example.com"</span>,</span><br><span class="line">        <span class="string">"pageviews"</span> : <span class="number">52</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>增加pageviews：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> db.analytics.update(&#123;<span class="string">"url"</span> : <span class="string">"www.example.com"</span>&#125;,</span><br><span class="line">    ... &#123;<span class="string">"$inc"</span> : &#123;<span class="string">"pageviews"</span> : <span class="number">1</span>&#125;&#125;)</span><br><span class="line"></span><br><span class="line"> db.analytics.find()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"4b253b067525f35f94b60a31"</span>),</span><br><span class="line">        <span class="string">"url"</span> : <span class="string">"www.example.com"</span>,</span><br><span class="line">        <span class="string">"pageviews"</span> : <span class="number">53</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="set修改器"><a class="markdownIt-Anchor" href="#set修改器"></a> <code>$set</code>修改器</h4>
-<p><code>$set</code>用来指定一个键的值，如果这个键不存在，则创建它。</p>
+<h4 id="set修改器"><a href="#set修改器" class="headerlink" title="$set修改器"></a><code>$set</code>修改器</h4><p><code>$set</code>用来指定一个键的值，如果这个键不存在，则创建它。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">db.users.findOne()</span><br><span class="line">   &#123;</span><br><span class="line">       <span class="string">"_id"</span> : ObjectId(<span class="string">"4b253b067525f35f94b60a31"</span>),</span><br><span class="line">       <span class="string">"name"</span> : <span class="string">"joe"</span>,</span><br><span class="line">       <span class="string">"age"</span> : <span class="number">30</span>,</span><br><span class="line">       <span class="string">"sex"</span> : <span class="string">"male"</span>,</span><br><span class="line">       <span class="string">"location"</span> : <span class="string">"Wisconsin"</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <p>添加一个字段进去：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">db.users.update(&#123;<span class="string">"_id"</span> : ObjectId(<span class="string">"4b253b067525f35f94b60a31"</span>)&#125;,</span><br><span class="line">   ... &#123;<span class="string">"$set"</span> : &#123;<span class="string">"favorite book"</span> : <span class="string">"War and Peace"</span>&#125;&#125;)</span><br><span class="line"></span><br><span class="line">db.users.findOne()</span><br><span class="line">   &#123;</span><br><span class="line">       <span class="string">"_id"</span> : ObjectId(<span class="string">"4b253b067525f35f94b60a31"</span>),</span><br><span class="line">       <span class="string">"name"</span> : <span class="string">"joe"</span>,</span><br><span class="line">       <span class="string">"age"</span> : <span class="number">30</span>,</span><br><span class="line">       <span class="string">"sex"</span> : <span class="string">"male"</span>,</span><br><span class="line">       <span class="string">"location"</span> : <span class="string">"Wisconsin"</span>,</span><br><span class="line">       <span class="string">"favorite book"</span> : <span class="string">"War and Peace"</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
@@ -631,12 +599,9 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">db.users.update(&#123;<span class="string">"name"</span> : <span class="string">"joe"</span>&#125;,</span><br><span class="line">   ... &#123;<span class="string">"$unset"</span> : &#123;<span class="string">"favorite book"</span> : <span class="number">1</span>&#125;&#125;)</span><br><span class="line">   </span><br><span class="line"> db.blog.posts.findOne()</span><br><span class="line">   &#123;</span><br><span class="line">       <span class="string">"_id"</span> : ObjectId(<span class="string">"4b253b067525f35f94b60a31"</span>),</span><br><span class="line">       <span class="string">"title"</span> : <span class="string">"A Blog Post"</span>,</span><br><span class="line">       <span class="string">"content"</span> : <span class="string">"..."</span>,</span><br><span class="line">       <span class="string">"author"</span> : &#123;</span><br><span class="line">           <span class="string">"name"</span> : <span class="string">"joe"</span>,</span><br><span class="line">           <span class="string">"email"</span> : <span class="string">"joe@example.com"</span></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <p><code>$set</code>可以修改内嵌文档</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> db.blog.posts.update(&#123;<span class="string">"author.name"</span> : <span class="string">"joe"</span>&#125;,</span><br><span class="line">    ... &#123;<span class="string">"$set"</span> : &#123;<span class="string">"author.name"</span> : <span class="string">"joe schmoe"</span>&#125;&#125;)</span><br><span class="line"></span><br><span class="line"> db.blog.posts.findOne()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"4b253b067525f35f94b60a31"</span>),</span><br><span class="line">        <span class="string">"title"</span> : <span class="string">"A Blog Post"</span>,</span><br><span class="line">        <span class="string">"content"</span> : <span class="string">"..."</span>,</span><br><span class="line">        <span class="string">"author"</span> : &#123;</span><br><span class="line">            <span class="string">"name"</span> : <span class="string">"joe schmoe"</span>,</span><br><span class="line">            <span class="string">"email"</span> : <span class="string">"joe@example.com"</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="增加和减少"><a class="markdownIt-Anchor" href="#增加和减少"></a> 增加和减少</h4>
-<p><code>$inc</code>修改器用来增加已有键的值，或者在键不存在时创建一个键。</p>
+<h4 id="增加和减少"><a href="#增加和减少" class="headerlink" title="增加和减少"></a>增加和减少</h4><p><code>$inc</code>修改器用来增加已有键的值，或者在键不存在时创建一个键。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> db.games.insert(&#123;<span class="string">"game"</span> : <span class="string">"pinball"</span>, <span class="string">"user"</span> : <span class="string">"joe"</span>&#125;)</span><br><span class="line"></span><br><span class="line"> db.games.update(&#123;<span class="string">"game"</span> : <span class="string">"pinball"</span>, <span class="string">"user"</span> : <span class="string">"joe"</span>&#125;,</span><br><span class="line">    ... &#123;<span class="string">"$inc"</span> : &#123;<span class="string">"score"</span> : <span class="number">50</span>&#125;&#125;)</span><br><span class="line"></span><br><span class="line"> db.games.findOne()</span><br><span class="line">    &#123;</span><br><span class="line">         <span class="string">"_id"</span> : ObjectId(<span class="string">"4b2d75476cc613d5ee930164"</span>),</span><br><span class="line">         <span class="string">"game"</span> : <span class="string">"pinball"</span>,</span><br><span class="line">         <span class="string">"user"</span> : <span class="string">"joe"</span>,</span><br><span class="line">         <span class="string">"score"</span> : <span class="number">50</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="数组修改器"><a class="markdownIt-Anchor" href="#数组修改器"></a> 数组修改器</h4>
-<h5 id="push"><a class="markdownIt-Anchor" href="#push"></a> <code>$push</code></h5>
-<p>数组操作只能用于数组的键上。如果指定的键已经存在，<code>$push</code>会向已有的数组末尾添加一个元素，否则则会创建一个新的数组。</p>
+<h4 id="数组修改器"><a href="#数组修改器" class="headerlink" title="数组修改器"></a>数组修改器</h4><h5 id="push"><a href="#push" class="headerlink" title="$push"></a><code>$push</code></h5><p>数组操作只能用于数组的键上。如果指定的键已经存在，<code>$push</code>会向已有的数组末尾添加一个元素，否则则会创建一个新的数组。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"> db.blog.posts.findOne()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"4b2d75476cc613d5ee930164"</span>),</span><br><span class="line">        <span class="string">"title"</span> : <span class="string">"A blog post"</span>,</span><br><span class="line">        <span class="string">"content"</span> : <span class="string">"..."</span></span><br><span class="line">    &#125;</span><br><span class="line">     db.blog.posts.update(&#123;<span class="string">"title"</span> : <span class="string">"A blog post"</span>&#125;,</span><br><span class="line">    ... &#123;<span class="string">"$push"</span> : &#123;<span class="string">"comments"</span> :</span><br><span class="line">    ...     &#123;<span class="string">"name"</span> : <span class="string">"joe"</span>, <span class="string">"email"</span> : <span class="string">"joe@example.com"</span>,</span><br><span class="line">    ...     <span class="string">"content"</span> : <span class="string">"nice post."</span>&#125;&#125;&#125;)</span><br><span class="line">     db.blog.posts.findOne()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"4b2d75476cc613d5ee930164"</span>),</span><br><span class="line">        <span class="string">"title"</span> : <span class="string">"A blog post"</span>,</span><br><span class="line">        <span class="string">"content"</span> : <span class="string">"..."</span>,</span><br><span class="line">        <span class="string">"comments"</span> : [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">"name"</span> : <span class="string">"joe"</span>,</span><br><span class="line">                <span class="string">"email"</span> : <span class="string">"joe@example.com"</span>,</span><br><span class="line">                <span class="string">"content"</span> : <span class="string">"nice post."</span></span><br><span class="line">            &#125;</span><br><span class="line">] &#125;</span><br><span class="line"></span><br><span class="line"> db.blog.posts.update(&#123;<span class="string">"title"</span> : <span class="string">"A blog post"</span>&#125;,</span><br><span class="line">    ... &#123;<span class="string">"$push"</span> : &#123;<span class="string">"comments"</span> :</span><br><span class="line">    ...     &#123;<span class="string">"name"</span> : <span class="string">"bob"</span>, <span class="string">"email"</span> : <span class="string">"bob@example.com"</span>,</span><br><span class="line">    ...     <span class="string">"content"</span> : <span class="string">"good post."</span>&#125;&#125;&#125;)</span><br><span class="line">     db.blog.posts.findOne()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"4b2d75476cc613d5ee930164"</span>),</span><br><span class="line">        <span class="string">"title"</span> : <span class="string">"A blog post"</span>,</span><br><span class="line">        <span class="string">"content"</span> : <span class="string">"..."</span>,</span><br><span class="line">        <span class="string">"comments"</span> : [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">"name"</span> : <span class="string">"joe"</span>,</span><br><span class="line">                <span class="string">"email"</span> : <span class="string">"joe@example.com"</span>,</span><br><span class="line">                <span class="string">"content"</span> : <span class="string">"nice post."</span></span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">"name"</span> : <span class="string">"bob"</span>,</span><br><span class="line">                <span class="string">"email"</span> : <span class="string">"bob@example.com"</span>,</span><br><span class="line">                <span class="string">"content"</span> : <span class="string">"good post."</span></span><br><span class="line">            &#125;</span><br><span class="line">] &#125;</span><br></pre></td></tr></table></figure>
 <p>如果需要同时添加多个元素，可以使用<code>$each</code>，以数组作为参数.</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.stock.ticker.update(&#123;<span class="string">"_id"</span> : <span class="string">"GOOG"</span>&#125;,</span><br><span class="line">   ... &#123;<span class="string">"$push"</span> : &#123;<span class="string">"hourly"</span> : &#123;<span class="string">"$each"</span> : [<span class="number">562.776</span>, <span class="number">562.790</span>, <span class="number">559.123</span>]&#125;&#125;&#125;)</span><br></pre></td></tr></table></figure>
@@ -645,42 +610,34 @@
 <p>如果需要加入数组，并且希望将这个数组中元素排序后再加入：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> db.movies.find(&#123;<span class="string">"genre"</span> : <span class="string">"horror"</span>&#125;,</span><br><span class="line">    ... &#123;<span class="string">"$push"</span> : &#123;<span class="string">"top10"</span> : &#123;</span><br><span class="line">    ...     <span class="string">"$each"</span> : [&#123;<span class="string">"name"</span> : <span class="string">"Nightmare on Elm Street"</span>, <span class="string">"rating"</span> : <span class="number">6.6</span>&#125;,</span><br><span class="line">    ...                &#123;<span class="string">"name"</span> : <span class="string">"Saw"</span>, <span class="string">"rating"</span> : <span class="number">4.3</span>&#125;],</span><br><span class="line">    ...     <span class="string">"$slice"</span> : <span class="number">-10</span>,</span><br><span class="line">    ...     <span class="string">"$sort"</span> : &#123;<span class="string">"rating"</span> : <span class="number">-1</span>&#125;&#125;&#125;&#125;)</span><br><span class="line"><span class="comment">// 按照rating排序</span></span><br></pre></td></tr></table></figure>
 <p>注意<code>$slice</code>和<code>$sort</code>必须要结合<code>$each</code>使用，不能单独使用。</p>
-<h4 id="using-arrays-as-sets"><a class="markdownIt-Anchor" href="#using-arrays-as-sets"></a> using arrays as sets</h4>
-<p>有时我们需要需要判断只有当元素不在该文档的数组里面，才将该元素加入该文档的数组中，则可以在查询文档中使用<code>$ne</code>。</p>
+<h4 id="using-arrays-as-sets"><a href="#using-arrays-as-sets" class="headerlink" title="using arrays as sets"></a>using arrays as sets</h4><p>有时我们需要需要判断只有当元素不在该文档的数组里面，才将该元素加入该文档的数组中，则可以在查询文档中使用<code>$ne</code>。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.papers.update(&#123;<span class="string">"authors cited"</span> : &#123;<span class="string">"$ne"</span> : <span class="string">"Richie"</span>&#125;&#125;,</span><br><span class="line">   ... &#123;<span class="attr">$push</span> : &#123;<span class="string">"authors cited"</span> : <span class="string">"Richie"</span>&#125;&#125;)</span><br></pre></td></tr></table></figure>
 <p>同样可以用<code>$addToSet</code>实现，可以避免重复</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"> db.users.findOne(&#123;<span class="string">"_id"</span> : ObjectId(<span class="string">"4b2d75476cc613d5ee930164"</span>)&#125;)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"4b2d75476cc613d5ee930164"</span>),</span><br><span class="line">        <span class="string">"username"</span> : <span class="string">"joe"</span>,</span><br><span class="line">        <span class="string">"emails"</span> : [</span><br><span class="line">            <span class="string">"joe@example.com"</span>,</span><br><span class="line">            <span class="string">"joe@gmail.com"</span>,</span><br><span class="line">            <span class="string">"joe@yahoo.com"</span></span><br><span class="line">] &#125;</span><br><span class="line"></span><br><span class="line"> db.users.update(&#123;<span class="string">"_id"</span> : ObjectId(<span class="string">"4b2d75476cc613d5ee930164"</span>)&#125;,</span><br><span class="line">    ... &#123;<span class="string">"$addToSet"</span> : &#123;<span class="string">"emails"</span> : <span class="string">"joe@gmail.com"</span>&#125;&#125;)</span><br><span class="line">     db.users.findOne(&#123;<span class="string">"_id"</span> : ObjectId(<span class="string">"4b2d75476cc613d5ee930164"</span>)&#125;)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"4b2d75476cc613d5ee930164"</span>),</span><br><span class="line">        <span class="string">"username"</span> : <span class="string">"joe"</span>,</span><br><span class="line">        <span class="string">"emails"</span> : [</span><br><span class="line">            <span class="string">"joe@example.com"</span>,</span><br><span class="line">            <span class="string">"joe@gmail.com"</span>,</span><br><span class="line">            <span class="string">"joe@yahoo.com"</span>,</span><br><span class="line">] &#125;</span><br><span class="line">     db.users.update(&#123;<span class="string">"_id"</span> : ObjectId(<span class="string">"4b2d75476cc613d5ee930164"</span>)&#125;,</span><br><span class="line">    ... &#123;<span class="string">"$addToSet"</span> : &#123;<span class="string">"emails"</span> : <span class="string">"joe@hotmail.com"</span>&#125;&#125;)</span><br><span class="line">     db.users.findOne(&#123;<span class="string">"_id"</span> : ObjectId(<span class="string">"4b2d75476cc613d5ee930164"</span>)&#125;)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"4b2d75476cc613d5ee930164"</span>),</span><br><span class="line">        <span class="string">"username"</span> : <span class="string">"joe"</span>,</span><br><span class="line">        <span class="string">"emails"</span> : [</span><br><span class="line">            <span class="string">"joe@example.com"</span>,</span><br><span class="line">            <span class="string">"joe@gmail.com"</span>,</span><br><span class="line">            <span class="string">"joe@yahoo.com"</span>,</span><br><span class="line">            <span class="string">"joe@hotmail.com"</span></span><br><span class="line">] &#125;</span><br></pre></td></tr></table></figure>
 <p>将<code>$addToSet</code>和<code>$each</code>结合起来，就可以添加多个不同的值，而使用<code>$ne</code>和<code>$push</code>组合则不能实现。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">db.users.update(&#123;<span class="string">"_id"</span> : ObjectId(<span class="string">"4b2d75476cc613d5ee930164"</span>)&#125;, &#123;<span class="string">"$addToSet"</span> :</span><br><span class="line">  ... &#123;<span class="string">"emails"</span> : &#123;<span class="string">"$each"</span> :</span><br><span class="line">  ...     [<span class="string">"joe@php.net"</span>, <span class="string">"joe@example.com"</span>, <span class="string">"joe@python.org"</span>]&#125;&#125;&#125;)</span><br><span class="line">   db.users.findOne(&#123;<span class="string">"_id"</span> : ObjectId(<span class="string">"4b2d75476cc613d5ee930164"</span>)&#125;)</span><br><span class="line">  &#123;</span><br><span class="line">      <span class="string">"_id"</span> : ObjectId(<span class="string">"4b2d75476cc613d5ee930164"</span>),</span><br><span class="line">      <span class="string">"username"</span> : <span class="string">"joe"</span>,</span><br><span class="line">      <span class="string">"emails"</span> : [</span><br><span class="line">          <span class="string">"joe@example.com"</span>,</span><br><span class="line">          <span class="string">"joe@gmail.com"</span>,</span><br><span class="line">          <span class="string">"joe@yahoo.com"</span>,</span><br><span class="line">          <span class="string">"joe@hotmail.com"</span></span><br><span class="line">          <span class="string">"joe@php.net"</span></span><br><span class="line">          <span class="string">"joe@python.org"</span></span><br><span class="line">   ] &#125;</span><br></pre></td></tr></table></figure>
-<h4 id="删除数组元素"><a class="markdownIt-Anchor" href="#删除数组元素"></a> 删除数组元素</h4>
-<p>可以将数组看做一个队列或栈，使用<code>$pop</code>可以移除开头或结尾的一个元素。<br>
-<code>{&quot;$pop&quot; : {&quot;key&quot; : 1}}</code>移除末尾一个元素，<code>{&quot;$pop&quot; : {&quot;key&quot; : -1}}</code>移除开头一个元素。</p>
+<h4 id="删除数组元素"><a href="#删除数组元素" class="headerlink" title="删除数组元素"></a>删除数组元素</h4><p>可以将数组看做一个队列或栈，使用<code>$pop</code>可以移除开头或结尾的一个元素。<br><code>{&quot;$pop&quot; : {&quot;key&quot; : 1}}</code>移除末尾一个元素，<code>{&quot;$pop&quot; : {&quot;key&quot; : -1}}</code>移除开头一个元素。</p>
 <p>有时我们需要一些要求删除元素，这时可以使用<code>$pull</code></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> db.lists.insert(&#123;<span class="string">"todo"</span> : [<span class="string">"dishes"</span>, <span class="string">"laundry"</span>, <span class="string">"dry cleaning"</span>]&#125;)</span><br><span class="line"> db.lists.update(&#123;&#125;, &#123;<span class="string">"$pull"</span> : &#123;<span class="string">"todo"</span> : <span class="string">"laundry"</span>&#125;&#125;)</span><br><span class="line"> </span><br><span class="line"> db.lists.find()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"4b2d75476cc613d5ee930164"</span>),</span><br><span class="line">        <span class="string">"todo"</span> : [</span><br><span class="line"><span class="string">"dishes"</span>,</span><br><span class="line">            <span class="string">"dry cleaning"</span></span><br><span class="line">] &#125;</span><br></pre></td></tr></table></figure>
 <p>pulling会移除所有匹配的元素。</p>
-<h4 id="数组的定位修改器"><a class="markdownIt-Anchor" href="#数组的定位修改器"></a> 数组的定位修改器</h4>
-<p>如果数组有多个值，而我们只想修改其中一部分，这时我们需要通过位置或者定位操作符<code>$</code>。</p>
+<h4 id="数组的定位修改器"><a href="#数组的定位修改器" class="headerlink" title="数组的定位修改器"></a>数组的定位修改器</h4><p>如果数组有多个值，而我们只想修改其中一部分，这时我们需要通过位置或者定位操作符<code>$</code>。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">db.blog.posts.findOne()</span><br><span class="line">   &#123;</span><br><span class="line">       <span class="string">"_id"</span> : ObjectId(<span class="string">"4b329a216cc613d5ee930192"</span>),</span><br><span class="line">       <span class="string">"content"</span> : <span class="string">"..."</span>,</span><br><span class="line">       <span class="string">"comments"</span> : [</span><br><span class="line">           &#123;</span><br><span class="line">               <span class="string">"comment"</span> : <span class="string">"good post"</span>,</span><br><span class="line">               <span class="string">"author"</span> : <span class="string">"John"</span>,</span><br><span class="line">               <span class="string">"votes"</span> : <span class="number">0</span></span><br><span class="line">              &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">            	<span class="string">"comment"</span> : <span class="string">"i thought it was too short"</span>,</span><br><span class="line">			<span class="string">"author"</span> : <span class="string">"Claire"</span>,</span><br><span class="line">			<span class="string">"votes"</span> : <span class="number">3</span></span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">            		<span class="string">"comment"</span> : <span class="string">"free watches"</span>,</span><br><span class="line">				<span class="string">"author"</span> : <span class="string">"Alice"</span>,</span><br><span class="line">				<span class="string">"votes"</span> : <span class="number">-1</span></span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.blog.update(&#123;<span class="string">"post"</span> : post_id&#125;,</span><br><span class="line">  ... &#123;<span class="string">"$inc"</span> : &#123;<span class="string">"comments.0.votes"</span> : <span class="number">1</span>&#125;&#125;)</span><br></pre></td></tr></table></figure>
 <p>在很多情况下，不预先查询文档就不能知道所有修改数组的下标，我们需要<code>$</code>用来定位查询文档已经匹配的元素在数组中的位置，并进行更新。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">db.blog.update(&#123;<span class="string">"comments.author"</span> : <span class="string">"John"</span>&#125;,</span><br><span class="line">    ... &#123;<span class="string">"$set"</span> : &#123;<span class="string">"comments.$.author"</span> : <span class="string">"Jim"</span>&#125;&#125;)</span><br><span class="line"><span class="comment">// 56  67</span></span><br></pre></td></tr></table></figure>
-<h3 id="upsert"><a class="markdownIt-Anchor" href="#upsert"></a> upsert</h3>
-<p>upsert是一种特殊的更新。如果没有文档符合更新条件，就会以这个条件和更新文档内容为基础创建一个新的文档。如果找到了文档，则正常更新。</p>
+<h3 id="upsert"><a href="#upsert" class="headerlink" title="upsert"></a>upsert</h3><p>upsert是一种特殊的更新。如果没有文档符合更新条件，就会以这个条件和更新文档内容为基础创建一个新的文档。如果找到了文档，则正常更新。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">db.users.update(&#123;<span class="string">"rep"</span> : <span class="number">25</span>&#125;, &#123;<span class="string">"$inc"</span> : &#123;<span class="string">"rep"</span> : <span class="number">3</span>&#125;&#125;, <span class="literal">true</span>)</span><br><span class="line">db.users.findOne()</span><br><span class="line">&#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"4b3295f26cc613d5ee93018f"</span>),</span><br><span class="line"><span class="string">"rep"</span> : <span class="number">28</span> &#125;</span><br></pre></td></tr></table></figure>
 <p>有时有些键在文档插入时需要被设置，但是在随后的修改中不再改变，可以使用<code>$setOnInsert</code></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">db.users.update(&#123;&#125;, &#123;<span class="string">"$setOnInsert"</span> : &#123;<span class="string">"createdAt"</span> : <span class="keyword">new</span> <span class="built_in">Date</span>()&#125;&#125;, <span class="literal">true</span>)</span><br><span class="line">db.users.findOne()</span><br><span class="line">&#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"512b8aefae74c67969e404ca"</span>),</span><br><span class="line">        <span class="string">"createdAt"</span> : ISODate(<span class="string">"2013-02-25T16:01:50.742Z"</span>)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>再执行一遍时，由于文档已经被插入，修改不再执行。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">db.users.update(&#123;&#125;, &#123;<span class="string">"$setOnInsert"</span> : &#123;<span class="string">"createdAt"</span> : <span class="keyword">new</span> <span class="built_in">Date</span>()&#125;&#125;, <span class="literal">true</span>) </span><br><span class="line">db.users.findOne()</span><br><span class="line">&#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"512b8aefae74c67969e404ca"</span>),</span><br><span class="line">        <span class="string">"createdAt"</span> : ISODate(<span class="string">"2013-02-25T16:01:50.742Z"</span>)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="save"><a class="markdownIt-Anchor" href="#save"></a> save</h3>
-<p>save可以在文档不存在时插入，存在时更新。save只有一个参数：文档。要是这个文档含有<code>_id</code>键，save则会调用upsert(以<code>_id</code>作为匹配参数)；否则会调用插入。可以非常方便的使用这个函数在shell中快速修改文档。</p>
+<h3 id="save"><a href="#save" class="headerlink" title="save"></a>save</h3><p>save可以在文档不存在时插入，存在时更新。save只有一个参数：文档。要是这个文档含有<code>_id</code>键，save则会调用upsert(以<code>_id</code>作为匹配参数)；否则会调用插入。可以非常方便的使用这个函数在shell中快速修改文档。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = db.foo.findOne() </span><br><span class="line">x.num = <span class="number">42</span></span><br><span class="line"><span class="number">42</span></span><br><span class="line">&gt; db.foo.save(x)</span><br></pre></td></tr></table></figure>
-<h3 id="更新多个文档"><a class="markdownIt-Anchor" href="#更新多个文档"></a> 更新多个文档</h3>
-<p>默认情况下，更新只能对符合条件匹配的第一个文档执行操作。要是有多个文档符合条件，其余的文档不会发生变化。如果要使所有匹配的文档都得到更新，可以设置update的第4个参数为true。</p>
+<h3 id="更新多个文档"><a href="#更新多个文档" class="headerlink" title="更新多个文档"></a>更新多个文档</h3><p>默认情况下，更新只能对符合条件匹配的第一个文档执行操作。要是有多个文档符合条件，其余的文档不会发生变化。如果要使所有匹配的文档都得到更新，可以设置update的第4个参数为true。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.users.update(&#123;<span class="string">"birthday"</span> : <span class="string">"10/13/1978"</span>&#125;,</span><br><span class="line">... &#123;<span class="string">"$set"</span> : &#123;<span class="string">"gift"</span> : <span class="string">"Happy Birthday!"</span>&#125;&#125;, <span class="literal">false</span>, <span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
 <p>可以通过getLastError查看有多少文档被update。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">db.count.update(&#123;<span class="attr">x</span> : <span class="number">1</span>&#125;, &#123;<span class="attr">$inc</span> : &#123;<span class="attr">x</span> : <span class="number">1</span>&#125;&#125;, <span class="literal">false</span>, <span class="literal">true</span>) db.runCommand(&#123;<span class="attr">getLastError</span> : <span class="number">1</span>&#125;)</span><br><span class="line">&#123;</span><br><span class="line"><span class="string">"err"</span> : <span class="literal">null</span>, <span class="string">"updatedExisting"</span> : <span class="literal">true</span>, <span class="string">"n"</span> : <span class="number">5</span>,</span><br><span class="line"><span class="string">"ok"</span> : <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="返回已更新的文档"><a class="markdownIt-Anchor" href="#返回已更新的文档"></a> 返回已更新的文档</h3>
-<p>用getLastError仅能获得有限的信息，并不能反悔已更新的文档。这个可以使用findAndModify命令实现。</p>
+<h3 id="返回已更新的文档"><a href="#返回已更新的文档" class="headerlink" title="返回已更新的文档"></a>返回已更新的文档</h3><p>用getLastError仅能获得有限的信息，并不能反悔已更新的文档。这个可以使用findAndModify命令实现。</p>
 <p>findAndModify可以使一系列操作：查询，更新(remove)，以原子性操作顺序一起执行完成，而不会发生读取某个值之后该值已经被其他客户端访问，同时满足的文档会被返回，实现在一个操作中返回结果并更新。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ps = db.runCommand(&#123;<span class="string">"findAndModify"</span> : <span class="string">"processes"</span>,</span><br><span class="line">    ... <span class="string">"query"</span> : &#123;<span class="string">"status"</span> : <span class="string">"READY"</span>&#125;,</span><br><span class="line">    ... <span class="string">"sort"</span> : &#123;<span class="string">"priority"</span> : <span class="number">-1</span>&#125;,</span><br><span class="line">    ... <span class="string">"update"</span> : &#123;<span class="string">"$set"</span> : &#123;<span class="string">"status"</span> : <span class="string">"RUNNING"</span>&#125;&#125;)</span><br><span class="line">&#123;</span><br><span class="line"><span class="string">"ok"</span> : <span class="number">1</span>,</span><br><span class="line">        <span class="string">"value"</span> : &#123;</span><br><span class="line">            <span class="string">"_id"</span> : ObjectId(<span class="string">"4b3e7a18005cab32be6291f7"</span>),</span><br><span class="line">            <span class="string">"priority"</span> : <span class="number">1</span>,</span><br><span class="line">            <span class="string">"status"</span> : <span class="string">"READY"</span></span><br><span class="line">&#125; &#125;</span><br></pre></td></tr></table></figure>
 <p>注意，是<strong>先返回结果，然后再更新</strong>，之后再看文档：</p>
@@ -688,6 +645,7 @@
 <p>findAndModify也可以删除文档，也就是返回结果后，不需要更新，而是直接删除文档。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ps = db.runCommand(&#123;<span class="string">"findAndModify"</span> : <span class="string">"processes"</span>, 	<span class="string">"query"</span> : &#123;<span class="string">"status"</span> : <span class="string">"READY"</span>&#125;,</span><br><span class="line">	<span class="string">"sort"</span> : &#123;<span class="string">"priority"</span> : <span class="number">-1</span>&#125;,</span><br><span class="line">	<span class="string">"remove"</span> : <span class="literal">true</span>&#125;).value</span><br><span class="line">do_something(ps)</span><br></pre></td></tr></table></figure>
 <p>findAndModify命令中每个键对应的值如下所示：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -718,64 +676,47 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>uodate和remove中有且只能有一个，并且findAndModify只能处理一个文档，不能执行upsert操作，只能更新已有文档。</p>
-<h1 id="查询"><a class="markdownIt-Anchor" href="#查询"></a> 查询</h1>
-<h2 id="find"><a class="markdownIt-Anchor" href="#find"></a> find</h2>
-<p>查询返回一个集合中符合条件的子集，其参数也是一个文档，成为query selector，说明选择文档的条件。</p>
+<h1 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h1><h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><p>查询返回一个集合中符合条件的子集，其参数也是一个文档，成为query selector，说明选择文档的条件。</p>
 <p>空的文档或不指定查询文档会匹配集合所有的内容。</p>
 <p><code>db.c.find()</code></p>
-<p>查询所有age为27的文档：<br>
-<code>db.users.find({&quot;age&quot; : 27})</code></p>
+<p>查询所有age为27的文档：<br><code>db.users.find({&quot;age&quot; : 27})</code></p>
 <p>如果需要匹配一个字符串，比如username键值位joe</p>
 <p>多个条件AND的关系：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.users.find(&#123;<span class="string">"username"</span> : <span class="string">"joe"</span>&#125;)</span><br><span class="line">db.users.find(&#123;<span class="string">"username"</span> : <span class="string">"joe"</span>, <span class="string">"age"</span> : <span class="number">27</span>&#125;)</span><br></pre></td></tr></table></figure>
-<h3 id="指定返回的键"><a class="markdownIt-Anchor" href="#指定返回的键"></a> 指定返回的键</h3>
-<p>find可以设置第二个参数来指定想要的键，一般_id键总是会被返回，也可以设置为不返回。</p>
+<h3 id="指定返回的键"><a href="#指定返回的键" class="headerlink" title="指定返回的键"></a>指定返回的键</h3><p>find可以设置第二个参数来指定想要的键，一般_id键总是会被返回，也可以设置为不返回。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">db.users.find(&#123;&#125;, &#123;<span class="string">"username"</span> : <span class="number">1</span>, <span class="string">"email"</span> : <span class="number">1</span>&#125;)</span><br><span class="line">&#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"4ba0f0dfd22aa494fd523620"</span>),</span><br><span class="line">        <span class="string">"username"</span> : <span class="string">"joe"</span>,</span><br><span class="line">        <span class="string">"email"</span> : <span class="string">"joe@example.com"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">db.users.find(&#123;&#125;, &#123;<span class="string">"username"</span> : <span class="number">1</span>, <span class="string">"_id"</span> : <span class="number">0</span>&#125;)</span><br><span class="line">&#123;</span><br><span class="line">        <span class="string">"username"</span> : <span class="string">"joe"</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="限制"><a class="markdownIt-Anchor" href="#限制"></a> 限制</h3>
-<p>查询文档中的键值对的值必须是常量或者是代码中的变量，但是不能是其他文档中的键的值。</p>
-<h2 id="查询条件"><a class="markdownIt-Anchor" href="#查询条件"></a> 查询条件</h2>
-<p>前面的查询都是精准匹配，更复杂的有范围，OR，子句，取反等。</p>
-<h3 id="查询条件-2"><a class="markdownIt-Anchor" href="#查询条件-2"></a> 查询条件</h3>
-<p>比较操作符包括<code>$lt</code>, <code>$lte</code>, <code>$gt</code>, <code>$gte</code>,<code>$ne</code></p>
+<h3 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h3><p>查询文档中的键值对的值必须是常量或者是代码中的变量，但是不能是其他文档中的键的值。</p>
+<h2 id="查询条件"><a href="#查询条件" class="headerlink" title="查询条件"></a>查询条件</h2><p>前面的查询都是精准匹配，更复杂的有范围，OR，子句，取反等。</p>
+<h3 id="查询条件-1"><a href="#查询条件-1" class="headerlink" title="查询条件"></a>查询条件</h3><p>比较操作符包括<code>$lt</code>, <code>$lte</code>, <code>$gt</code>, <code>$gte</code>,<code>$ne</code></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">db.users.find(&#123;<span class="string">"age"</span> : &#123;<span class="string">"$gte"</span> : <span class="number">18</span>, <span class="string">"$lte"</span> : <span class="number">30</span>&#125;&#125;)</span><br><span class="line"></span><br><span class="line">start = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">"01/01/2007"</span>)</span><br><span class="line">db.users.find(&#123;<span class="string">"registered"</span> : &#123;<span class="string">"$lt"</span> : start&#125;&#125;)</span><br><span class="line"></span><br><span class="line">db.users.find(&#123;<span class="string">"username"</span> : &#123;<span class="string">"$ne"</span> : <span class="string">"joe"</span>&#125;&#125;)</span><br></pre></td></tr></table></figure>
-<h3 id="or查询"><a class="markdownIt-Anchor" href="#or查询"></a> OR查询</h3>
-<p>MongoDB中有两种方式进行OR查询。 1. <code>$in</code>, <code>$nin</code>可以用来匹配一个键的多个值。 2. <code>$or</code>则更加通用，可以完成多个键值的OR查询。</p>
+<h3 id="OR查询"><a href="#OR查询" class="headerlink" title="OR查询"></a>OR查询</h3><p>MongoDB中有两种方式进行OR查询。 1. <code>$in</code>, <code>$nin</code>可以用来匹配一个键的多个值。 2. <code>$or</code>则更加通用，可以完成多个键值的OR查询。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">db.raffle.find(&#123;<span class="string">"ticket_no"</span> : &#123;<span class="string">"$in"</span> : [<span class="number">725</span>, <span class="number">542</span>, <span class="number">390</span>]&#125;&#125;)</span><br><span class="line">db.users.find(&#123;<span class="string">"user_id"</span> : &#123;<span class="string">"$in"</span> : [<span class="number">12345</span>, <span class="string">"joe"</span>]&#125;)</span><br><span class="line"></span><br><span class="line">db.raffle.find(&#123;<span class="string">"ticket_no"</span> : &#123;<span class="string">"$nin"</span> : [<span class="number">725</span>, <span class="number">542</span>, <span class="number">390</span>]&#125;&#125;)</span><br></pre></td></tr></table></figure>
 <p>使用<code>$in</code>, <code>$nin</code>只能实现对于单个键的OR查询，如果需要多个键的OR查询:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">db.raffle.find(&#123;<span class="string">"$or"</span> : [&#123;<span class="string">"ticket_no"</span> : <span class="number">725</span>&#125;, &#123;<span class="string">"winner"</span> : <span class="literal">true</span>&#125;]&#125;)</span><br><span class="line"></span><br><span class="line">db.raffle.find(&#123;<span class="string">"$or"</span> : [&#123;<span class="string">"ticket_no"</span> : &#123;<span class="string">"$in"</span> : [<span class="number">725</span>, <span class="number">542</span>, <span class="number">390</span>]&#125;&#125;, &#123;<span class="string">"winner"</span> : <span class="literal">true</span>&#125;]&#125;)</span><br></pre></td></tr></table></figure>
-<h3 id="not"><a class="markdownIt-Anchor" href="#not"></a> <code>$not</code></h3>
-<p><code>$not</code>是元条件语句，可以用在其他任何条件之上。<code>$mod</code>会将查询的值除以第一个给定值，若余数等于第二个给定值则返回该结果。</p>
+<h3 id="not"><a href="#not" class="headerlink" title="$not"></a><code>$not</code></h3><p><code>$not</code>是元条件语句，可以用在其他任何条件之上。<code>$mod</code>会将查询的值除以第一个给定值，若余数等于第二个给定值则返回该结果。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">db.users.find(&#123;<span class="string">"id_num"</span> : &#123;<span class="string">"$mod"</span> : [<span class="number">5</span>, <span class="number">1</span>]&#125;&#125;)</span><br><span class="line"></span><br><span class="line">db.users.find(&#123;<span class="string">"id_num"</span> : &#123;<span class="string">"$not"</span> : &#123;<span class="string">"$mod"</span> : [<span class="number">5</span>, <span class="number">1</span>]&#125;&#125;&#125;)</span><br></pre></td></tr></table></figure>
 <p><code>$not</code>和正则表达式结合会非常有用。</p>
-<h3 id="条件句的规则"><a class="markdownIt-Anchor" href="#条件句的规则"></a> 条件句的规则</h3>
-<p>条件句是内层文档的键，而修改器则是外层文档的键。<br>
-一个键可以有多个条件句，但是不能对应多个更新修改器。</p>
-<h2 id="特定类型的查询"><a class="markdownIt-Anchor" href="#特定类型的查询"></a> 特定类型的查询</h2>
-<h3 id="null"><a class="markdownIt-Anchor" href="#null"></a> null</h3>
-<p>null不仅能匹配键值为null的文档，而且也能匹配不存在该键值的文档。</p>
+<h3 id="条件句的规则"><a href="#条件句的规则" class="headerlink" title="条件句的规则"></a>条件句的规则</h3><p>条件句是内层文档的键，而修改器则是外层文档的键。<br>一个键可以有多个条件句，但是不能对应多个更新修改器。</p>
+<h2 id="特定类型的查询"><a href="#特定类型的查询" class="headerlink" title="特定类型的查询"></a>特定类型的查询</h2><h3 id="null"><a href="#null" class="headerlink" title="null"></a>null</h3><p>null不仅能匹配键值为null的文档，而且也能匹配不存在该键值的文档。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">db.c.find()</span><br><span class="line">&#123; <span class="string">"_id"</span> : ObjectId(<span class="string">"4ba0f0dfd22aa494fd523621"</span>), <span class="string">"y"</span> : <span class="literal">null</span> &#125; </span><br><span class="line">&#123; <span class="string">"_id"</span> : ObjectId(<span class="string">"4ba0f0dfd22aa494fd523622"</span>), <span class="string">"y"</span> : <span class="number">1</span> &#125;</span><br><span class="line">&#123; <span class="string">"_id"</span> : ObjectId(<span class="string">"4ba0f148d22aa494fd523623"</span>), <span class="string">"y"</span> : <span class="number">2</span> &#125;</span><br><span class="line"></span><br><span class="line">db.c.find(&#123;<span class="string">"z"</span> : <span class="literal">null</span>&#125;)</span><br><span class="line">&#123; <span class="string">"_id"</span> : ObjectId(<span class="string">"4ba0f0dfd22aa494fd523621"</span>), <span class="string">"y"</span> : <span class="literal">null</span> &#125; </span><br><span class="line">&#123; <span class="string">"_id"</span> : ObjectId(<span class="string">"4ba0f0dfd22aa494fd523622"</span>), <span class="string">"y"</span> : <span class="number">1</span> &#125;</span><br><span class="line">&#123; <span class="string">"_id"</span> : ObjectId(<span class="string">"4ba0f148d22aa494fd523623"</span>), <span class="string">"y"</span> : <span class="number">2</span> &#125;</span><br></pre></td></tr></table></figure>
 <p>如果仅仅想要匹配键值为null的文档，既要检查该键的值是否为null，还要通过<code>$exists</code>条件判定键值是否已经存在。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.c.find(&#123;<span class="string">"z"</span> : &#123;<span class="string">"$in"</span> : [<span class="literal">null</span>], <span class="string">"$exists"</span> : <span class="literal">true</span>&#125;&#125;)</span><br></pre></td></tr></table></figure>
-<h3 id="正则表达式"><a class="markdownIt-Anchor" href="#正则表达式"></a> 正则表达式</h3>
-<p>使用Perl兼容的正则表达式(PCRE)库来匹配正则表达式。</p>
+<h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><p>使用Perl兼容的正则表达式(PCRE)库来匹配正则表达式。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.users.find(&#123;<span class="string">"name"</span> : <span class="regexp">/joe/i</span>&#125;)</span><br></pre></td></tr></table></figure>
-<h3 id="查询数组"><a class="markdownIt-Anchor" href="#查询数组"></a> 查询数组</h3>
-<p>参数只有一个元素时，默认数组中有一个元素匹配就算作匹配。</p>
+<h3 id="查询数组"><a href="#查询数组" class="headerlink" title="查询数组"></a>查询数组</h3><p>参数只有一个元素时，默认数组中有一个元素匹配就算作匹配。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.food.insert(&#123;<span class="string">"fruit"</span> : [<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"peach"</span>]&#125;)</span><br><span class="line">db.food.find(&#123;<span class="string">"fruit"</span> : <span class="string">"banana"</span>&#125;)</span><br></pre></td></tr></table></figure>
-<h4 id="all"><a class="markdownIt-Anchor" href="#all"></a> <code>$all</code></h4>
-<p>如果需要通过多个元素来匹配数组，就要使用<code>$all</code>。顺序无关紧要。</p>
+<h4 id="all"><a href="#all" class="headerlink" title="$all"></a><code>$all</code></h4><p>如果需要通过多个元素来匹配数组，就要使用<code>$all</code>。顺序无关紧要。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">db.food.insert(&#123;<span class="string">"_id"</span> : <span class="number">1</span>, <span class="string">"fruit"</span> : [<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"peach"</span>]&#125;)</span><br><span class="line">db.food.insert(&#123;<span class="string">"_id"</span> : <span class="number">2</span>, <span class="string">"fruit"</span> : [<span class="string">"apple"</span>, <span class="string">"kumquat"</span>, <span class="string">"orange"</span>]&#125;)</span><br><span class="line">db.food.insert(&#123;<span class="string">"_id"</span> : <span class="number">3</span>, <span class="string">"fruit"</span> : [<span class="string">"cherry"</span>, <span class="string">"banana"</span>, <span class="string">"apple"</span>]&#125;)</span><br><span class="line"></span><br><span class="line">db.food.find(&#123;<span class="attr">fruit</span> : &#123;<span class="attr">$all</span> : [<span class="string">"apple"</span>, <span class="string">"banana"</span>]&#125;&#125;)</span><br><span class="line">          &#123;<span class="string">"_id"</span> : <span class="number">1</span>, <span class="string">"fruit"</span> : [<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"peach"</span>]&#125;</span><br><span class="line">          &#123;<span class="string">"_id"</span> : <span class="number">3</span>, <span class="string">"fruit"</span> : [<span class="string">"cherry"</span>, <span class="string">"banana"</span>, <span class="string">"apple"</span>]&#125;</span><br></pre></td></tr></table></figure>
 <p>如果直接以一个完整的数组作为参数，则是完全的精准匹配，包括顺序，元素个数，即是冗余也会被当做不匹配。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.food.find(&#123;<span class="string">"fruit"</span> : [<span class="string">"apple"</span>, <span class="string">"banana"</span>]&#125;) </span><br><span class="line">% 无法匹配</span><br></pre></td></tr></table></figure>
 <p>如果需要匹配指定位置的元素，可以使用key.index语法指定下标(下标从0开始)。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.food.find(&#123;<span class="string">"fruit.2"</span> : <span class="string">"peach"</span>&#125;)</span><br></pre></td></tr></table></figure>
-<h4 id="size"><a class="markdownIt-Anchor" href="#size"></a> <code>$size</code></h4>
-<p>用来指定查询指定长度的数组。</p>
+<h4 id="size"><a href="#size" class="headerlink" title="$size"></a><code>$size</code></h4><p>用来指定查询指定长度的数组。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.food.find(&#123;<span class="string">"fruit"</span> : &#123;<span class="string">"$size"</span> : <span class="number">3</span>&#125;&#125;)</span><br></pre></td></tr></table></figure>
 <p>一种需求是查询一个长度范围的数组，但是<code>$size</code>并不能与其他查询子句组合（如<code>$gt</code>），我们可以通过在文档中添加一个<code>size</code>键的方式实现，每次插入元素时同时更新size。</p>
-<h4 id="slice"><a class="markdownIt-Anchor" href="#slice"></a> <code>$slice</code></h4>
-<p>find的第二个参数是可选的，用来指定返回所需要的键。<code>$slice</code>可以指定返回数组的一个子集合。</p>
+<h4 id="slice"><a href="#slice" class="headerlink" title="$slice"></a><code>$slice</code></h4><p>find的第二个参数是可选的，用来指定返回所需要的键。<code>$slice</code>可以指定返回数组的一个子集合。</p>
 <p>返回前10条评论：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.blog.posts.findOne(criteria, &#123;<span class="string">"comments"</span> : &#123;<span class="string">"$slice"</span> : <span class="number">10</span>&#125;&#125;)</span><br></pre></td></tr></table></figure>
 <p>返回后10条评论：</p>
@@ -784,8 +725,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.blog.posts.findOne(criteria, &#123;<span class="string">"comments"</span> : &#123;<span class="string">"$slice"</span> : [<span class="number">23</span>, <span class="number">10</span>]&#125;&#125;)</span><br></pre></td></tr></table></figure>
 <p>使用<code>$slice</code>时，如果没有具体声明其他键的返回需要，默认会返回所有其他的键。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"4b2d75476cc613d5ee930164"</span>),</span><br><span class="line">        <span class="string">"title"</span> : <span class="string">"A blog post"</span>,</span><br><span class="line">        <span class="string">"content"</span> : <span class="string">"..."</span>,</span><br><span class="line">        <span class="string">"comments"</span> : [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">"name"</span> : <span class="string">"joe"</span>,</span><br><span class="line">                <span class="string">"email"</span> : <span class="string">"joe@example.com"</span>,</span><br><span class="line">                <span class="string">"content"</span> : <span class="string">"nice post."</span></span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">"name"</span> : <span class="string">"bob"</span>,</span><br><span class="line">                <span class="string">"email"</span> : <span class="string">"bob@example.com"</span>,</span><br><span class="line">                <span class="string">"content"</span> : <span class="string">"good post."</span></span><br><span class="line">            &#125;</span><br><span class="line">] &#125;</span><br><span class="line"></span><br><span class="line">db.blog.posts.findOne(criteria, &#123;<span class="string">"comments"</span> : &#123;<span class="string">"$slice"</span> : <span class="number">-1</span>&#125;&#125;)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"4b2d75476cc613d5ee930164"</span>),</span><br><span class="line">        <span class="string">"title"</span> : <span class="string">"A blog post"</span>,</span><br><span class="line">        <span class="string">"content"</span> : <span class="string">"..."</span>,</span><br><span class="line">        <span class="string">"comments"</span> : [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">"name"</span> : <span class="string">"bob"</span>,</span><br><span class="line">                <span class="string">"email"</span> : <span class="string">"bob@example.com"</span>,</span><br><span class="line">                <span class="string">"content"</span> : <span class="string">"good post."</span></span><br><span class="line">            &#125;</span><br><span class="line">] &#125;</span><br></pre></td></tr></table></figure>
-<h4 id="查询内嵌文档"><a class="markdownIt-Anchor" href="#查询内嵌文档"></a> 查询内嵌文档</h4>
-<p>有两种方法可以查询内嵌文档：1. 查询整个文档  2. 只针对其键/值进行查询。</p>
+<h4 id="查询内嵌文档"><a href="#查询内嵌文档" class="headerlink" title="查询内嵌文档"></a>查询内嵌文档</h4><p>有两种方法可以查询内嵌文档：1. 查询整个文档  2. 只针对其键/值进行查询。</p>
 <p>查询整个内嵌文档与普通查询完全相同。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="string">"name"</span> : &#123;</span><br><span class="line">            <span class="string">"first"</span> : <span class="string">"Joe"</span>,</span><br><span class="line">            <span class="string">"last"</span> : <span class="string">"Schmoe"</span></span><br><span class="line">            &#125;,</span><br><span class="line">	<span class="string">"age"</span> : <span class="number">45</span> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">% 完全匹配整个文档</span><br><span class="line">db.people.find(&#123;<span class="string">"name"</span> : &#123;<span class="string">"first"</span> : <span class="string">"Joe"</span>, <span class="string">"last"</span> : <span class="string">"Schmoe"</span>&#125;&#125;)</span><br></pre></td></tr></table></figure>
 <p>如果joe加入一个middle name，上面将无法匹配。更好的方式是针对内嵌文档的特定键值进行查询。</p>
@@ -793,18 +733,16 @@
 <p>用<code>.</code>表示深入内嵌文档内部。点表示法也是待插入文档不能包含<code>.</code>的原因。</p>
 <p>如果是有一个数组包含若干内嵌文档，我们需要找到有满足某组合条件内嵌文档的文档，上面是无法实现的，因为满足各个组合条件的因素并不在同一个内嵌文档中。这时我们需要使用<code>$elemMatch</code>，对于数组的当个文档，需要实现所有的match条件。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">db.blog.find()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"content"</span> : <span class="string">"..."</span>,</span><br><span class="line">        <span class="string">"comments"</span> : [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">"author"</span> : <span class="string">"joe"</span>,</span><br><span class="line">                <span class="string">"score"</span> : <span class="number">3</span>,</span><br><span class="line">                <span class="string">"comment"</span> : <span class="string">"nice post"</span></span><br><span class="line">				&#125;,</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="string">"author"</span> : <span class="string">"mary"</span>,</span><br><span class="line">					<span class="string">"score"</span> : <span class="number">6</span>,</span><br><span class="line">					<span class="string">"comment"</span> : <span class="string">"terrible post"</span></span><br><span class="line">				&#125;</span><br><span class="line">			]</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">b.blog.find(&#123;<span class="string">"comments"</span> : &#123;<span class="string">"author"</span> : <span class="string">"joe"</span>, <span class="string">"score"</span> : &#123;<span class="string">"$gte"</span> : <span class="number">5</span>&#125;&#125;&#125;)</span><br><span class="line">% failed</span><br><span class="line"></span><br><span class="line">db.blog.find(&#123;<span class="string">"comments.author"</span> : <span class="string">"joe"</span>, <span class="string">"comments.score"</span> : &#123;<span class="string">"$gte"</span> : <span class="number">5</span>&#125;&#125;)</span><br><span class="line">% failed, because the author criteria could match a different comment </span><br><span class="line">% than the score criteria. That is, it would <span class="keyword">return</span> the <span class="built_in">document</span> </span><br><span class="line">% shown above: it would match <span class="string">"author"</span> : <span class="string">"joe"</span> <span class="keyword">in</span> the first comment </span><br><span class="line">% and <span class="string">"score"</span> : <span class="number">6</span> <span class="keyword">in</span> the second comment.</span><br><span class="line">		</span><br><span class="line">db.blog.find(&#123;<span class="string">"comments"</span> : &#123;<span class="string">"$elemMatch"</span> : &#123;<span class="string">"author"</span> : <span class="string">"joe"</span>,</span><br><span class="line">                                                  <span class="string">"score"</span> : &#123;<span class="string">"$gte"</span> : <span class="number">5</span>&#125;&#125;&#125;&#125;)</span><br><span class="line">% successful</span><br></pre></td></tr></table></figure>
-<h2 id="where查询"><a class="markdownIt-Anchor" href="#where查询"></a> <code>$where</code>查询</h2>
-<p>键/值对是很有表现力的查询方式，但是仍不能处理所有情况，这是我们也许需要使用<code>$where</code>，用来指定一些更特殊的条件，它可以执行任意javascript作为查询条件判断的一部分。</p>
+<h2 id="where查询"><a href="#where查询" class="headerlink" title="$where查询"></a><code>$where</code>查询</h2><p>键/值对是很有表现力的查询方式，但是仍不能处理所有情况，这是我们也许需要使用<code>$where</code>，用来指定一些更特殊的条件，它可以执行任意javascript作为查询条件判断的一部分。</p>
 <p>如比较文档中的存在两个键值是否相等。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.foo.insert(&#123;<span class="string">"apple"</span> : <span class="number">1</span>, <span class="string">"banana"</span> : <span class="number">6</span>, <span class="string">"peach"</span> : <span class="number">3</span>&#125;)</span><br><span class="line">db.foo.insert(&#123;<span class="string">"apple"</span> : <span class="number">8</span>, <span class="string">"spinach"</span> : <span class="number">4</span>, <span class="string">"watermelon"</span> : <span class="number">4</span>&#125;)</span><br></pre></td></tr></table></figure>
-<p>第二文档存在&quot;spinach&quot;键的值和&quot;watermelon&quot;相等，是符合要求的文档，但是前面的条件句都无法实现这个功能，这时需要使用<code>$where</code>.</p>
+<p>第二文档存在”spinach”键的值和”watermelon”相等，是符合要求的文档，但是前面的条件句都无法实现这个功能，这时需要使用<code>$where</code>.</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">db.foo.find(&#123;<span class="string">"$where"</span> : <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> current <span class="keyword">in</span> <span class="keyword">this</span>) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> other <span class="keyword">in</span> <span class="keyword">this</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span>(current != other &amp;&amp; <span class="keyword">this</span>[current] == <span class="keyword">this</span>[other]) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;&#125;&#125;;</span><br></pre></td></tr></table></figure>
 <p>对于每个文档(用this表示)都使用函数进行判断，如果函数函数返回true，则这个文档将作为结果set的一个文档。</p>
 <p>前面用的是一个函数，也可以用一个字符串来指定<code>$where</code>查询。下面两种表达式是完全等价的：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.foo.find(<span class="string">"$where"</span> : <span class="string">"this.x + this.y == 10"</span>)</span><br><span class="line">db.foo.find(<span class="string">"$where"</span> : <span class="string">"function() &#123;return this.x + this.y == 10&#125;;"</span>)</span><br></pre></td></tr></table></figure>
 <p>不是非常必要时，一定要避免使用<code>$where</code>，因为速度要比常规查询慢的多。每篇文档要从BSON转换为javascript对象，然后通过<code>$where</code>的表达式来判断。</p>
-<h2 id="游标"><a class="markdownIt-Anchor" href="#游标"></a> 游标</h2>
-<p>数据库使用游标来返回find的执行结果。客户端对游标的实现通常能够对最终结果进行有效的控制。可以限制结果的数量，略过部分就诶过，根据任意方向任意键的组合对结果进行各种排序，或者是执行其他一些功能强大的操作。</p>
+<h2 id="游标"><a href="#游标" class="headerlink" title="游标"></a>游标</h2><p>数据库使用游标来返回find的执行结果。客户端对游标的实现通常能够对最终结果进行有效的控制。可以限制结果的数量，略过部分就诶过，根据任意方向任意键的组合对结果进行各种排序，或者是执行其他一些功能强大的操作。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;<span class="number">100</span>; i++) &#123;</span><br><span class="line">	db.collection.insert(&#123;<span class="attr">x</span> : i&#125;); ... &#125;</span><br><span class="line"><span class="keyword">var</span> cursor = db.collection.find();</span><br></pre></td></tr></table></figure>
 <p>这样mongobd不会自动迭代输出所有结果，可以一次查看一条结果。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (cursor.hasNext()) &#123;</span><br><span class="line">    obj = cursor.next();</span><br><span class="line">	<span class="comment">// do stuff ... </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -815,8 +753,7 @@
 <p>此时查询还没有被执行，这些函数都只是构造查询。当我们执行</p>
 <p><code>cursor.hasNext()</code></p>
 <p>查询被发往服务器。shell立即获得前100个结果或者前4mb数据（两者中较小者），这样下次调用next或hasNext()就不必再去服务器上去数据。一旦客户端用完第一组结果，shell会再一次请求数据库得到后面的结果。这个过程会一直持续到游标耗尽或者结果全部返回。</p>
-<h3 id="limit-skip和sort"><a class="markdownIt-Anchor" href="#limit-skip和sort"></a> limit, skip和sort</h3>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.c.find().limit(<span class="number">3</span>)</span><br><span class="line">db.c.find().skip(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="limit-skip和sort"><a href="#limit-skip和sort" class="headerlink" title="limit, skip和sort"></a>limit, skip和sort</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.c.find().limit(<span class="number">3</span>)</span><br><span class="line">db.c.find().skip(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
 <p>sort用一个文档作为参数：一组键/值对。键对应用于排序的键名，值代表排序的方向，1表示升序，-1表示降序。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.c.find().sort(&#123;<span class="attr">username</span> : <span class="number">1</span>, <span class="attr">age</span> : <span class="number">-1</span>&#125;)</span><br></pre></td></tr></table></figure>
 <p>注意有时一个键的值可能是多种类型的，多种类型数据的排序是预先定义好的，从小到大顺序如下：</p>
@@ -835,8 +772,7 @@
 <li>Regular expression</li>
 <li>Maximum value</li>
 </ol>
-<h3 id="避免使用skip略过大量结果"><a class="markdownIt-Anchor" href="#避免使用skip略过大量结果"></a> 避免使用skip略过大量结果</h3>
-<p>skip大量结果速度很很慢，所以要尽量避免。通常可以向文档本身内置查询条件，来避免大的skip，或者利用上次的结果计算下一次查询。</p>
+<h3 id="避免使用skip略过大量结果"><a href="#避免使用skip略过大量结果" class="headerlink" title="避免使用skip略过大量结果"></a>避免使用skip略过大量结果</h3><p>skip大量结果速度很很慢，所以要尽量避免。通常可以向文档本身内置查询条件，来避免大的skip，或者利用上次的结果计算下一次查询。</p>
 <ul>
 <li><strong>不用skip对结果分页</strong></li>
 </ul>
@@ -844,56 +780,38 @@
 <ul>
 <li>随机选取文档</li>
 </ul>
-<p>最慢的方法是计算文档总数，然后选取一个随机数利用find做一次查询。<br>
-另外一种方法是给每个文档添加一个额外的随机键。</p>
-<h3 id="高级查询选项"><a class="markdownIt-Anchor" href="#高级查询选项"></a> 高级查询选项</h3>
-<p>查询分为包装的和普通的两类。</p>
-<p>普通查询：<br>
-<code>var cursor = db.foo.find({&quot;foo&quot; : &quot;bar&quot;})</code></p>
-<p>有几个选项用于包装查询：<br>
-<code>var cursor = db.foo.find({&quot;foo&quot; : &quot;bar&quot;}).sort({&quot;x&quot; : 1})</code></p>
+<p>最慢的方法是计算文档总数，然后选取一个随机数利用find做一次查询。<br>另外一种方法是给每个文档添加一个额外的随机键。</p>
+<h3 id="高级查询选项"><a href="#高级查询选项" class="headerlink" title="高级查询选项"></a>高级查询选项</h3><p>查询分为包装的和普通的两类。</p>
+<p>普通查询：<br><code>var cursor = db.foo.find({&quot;foo&quot; : &quot;bar&quot;})</code></p>
+<p>有几个选项用于包装查询：<br><code>var cursor = db.foo.find({&quot;foo&quot; : &quot;bar&quot;}).sort({&quot;x&quot; : 1})</code></p>
 <p>实际上发送的查询文档不是<code>{&quot;foo&quot; : &quot;bar&quot;}</code>，而是将原始查询文档包装在一个更大的文档中<code>{&quot;$query&quot; : {&quot;foo&quot; : &quot;bar&quot;}, &quot;$orderby&quot; : {&quot;x&quot; : 1}}</code>作为发送的查询文档。</p>
 <p>查询的各种选项：</p>
 <ul>
-<li><code>$maxscan : integer</code><br>
-Specify the maximum number of documents that should be scanned for the query.<br>
-<code>db.foo.find(criteria)._addSpecial(&quot;$maxscan&quot;, 20)</code></li>
+<li><code>$maxscan : integer</code><br>Specify the maximum number of documents that should be scanned for the query.<br><code>db.foo.find(criteria)._addSpecial(&quot;$maxscan&quot;, 20)</code></li>
 </ul>
 <p>This can be useful if you want a query to not to take too long but are not sure how much of a collection will need to be scanned. This will limit your results to whatever was found in the part of the collection that was scanned (i.e., you may miss other documents that match).</p>
 <ul>
-<li>
-<p><code>$min : document</code><br>
-Start criteria for querying. document must exactly match the keys of an index used for the query. This forces the given index to be used for the query.<br>
-This is used internally and you should generally use <code>&quot;$gt&quot;</code> instead of <code>&quot;$min&quot;</code>. You can use <code>&quot;$min&quot;</code> to force the lower bound on an index scan, which may be helpful for complex queries.</p>
+<li><p><code>$min : document</code><br>Start criteria for querying. document must exactly match the keys of an index used for the query. This forces the given index to be used for the query.<br>This is used internally and you should generally use <code>&quot;$gt&quot;</code> instead of <code>&quot;$min&quot;</code>. You can use <code>&quot;$min&quot;</code> to force the lower bound on an index scan, which may be helpful for complex queries.</p>
 </li>
-<li>
-<p><code>$max : document</code><br>
-End criteria for querying. document must exactly match the keys of an index used for the query. This forces the given index to be used for the query.<br>
-If this is used internally, you should generally use <code>&quot;$lt&quot;</code> instead of <code>&quot;$max&quot;</code>. You can use <code>&quot;$max&quot;</code> to force bounds on an index scan, which may be helpful for complex queries.</p>
+<li><p><code>$max : document</code><br>End criteria for querying. document must exactly match the keys of an index used for the query. This forces the given index to be used for the query.<br>If this is used internally, you should generally use <code>&quot;$lt&quot;</code> instead of <code>&quot;$max&quot;</code>. You can use <code>&quot;$max&quot;</code> to force bounds on an index scan, which may be helpful for complex queries.</p>
 </li>
-<li>
-<p><code>$showDiskLoc : true</code><br>
-Adds a <code>&quot;$diskLoc&quot;</code> field to the results that shows where on disk that particular result lives. For example:</p>
+<li><p><code>$showDiskLoc : true</code><br>Adds a <code>&quot;$diskLoc&quot;</code> field to the results that shows where on disk that particular result lives. For example:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.foo.find()._addSpecial(<span class="string">'$showDiskLoc'</span>,<span class="literal">true</span>)</span><br><span class="line">&#123; <span class="string">"_id"</span> : <span class="number">0</span>, <span class="string">"$diskLoc"</span> : &#123; <span class="string">"file"</span> : <span class="number">2</span>, <span class="string">"offset"</span> : <span class="number">154812592</span> &#125; &#125; &#123; <span class="string">"_id"</span> : <span class="number">1</span>, <span class="string">"$diskLoc"</span> : &#123; <span class="string">"file"</span> : <span class="number">2</span>, <span class="string">"offset"</span> : <span class="number">154812628</span> &#125; &#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.foo.find()._addSpecial(<span class="string">'$showDiskLoc'</span>,<span class="literal">true</span>)</span><br><span class="line">&#123; <span class="string">"_id"</span> : <span class="number">0</span>, <span class="string">"$diskLoc"</span> : &#123; <span class="string">"file"</span> : <span class="number">2</span>, <span class="string">"offset"</span> : <span class="number">154812592</span> &#125; &#125; &#123; <span class="string">"_id"</span> : <span class="number">1</span>, <span class="string">"$diskLoc"</span> : &#123; <span class="string">"file"</span> : <span class="number">2</span>, <span class="string">"offset"</span> : <span class="number">154812628</span> &#125; &#125;</span><br></pre></td></tr></table></figure>
 <p>The file number shows which file the document is in. In this case, if we’re using the test database, the document is in test.2. The second field gives the byte offset of each document within the file.</p>
-<h3 id="获取一致结果"><a class="markdownIt-Anchor" href="#获取一致结果"></a> 获取一致结果</h3>
-<p>数据处理通常的一种做法就是先把数据从MongoDB中取出来，然后经过某种变换，，然后存回去。</p>
+<h3 id="获取一致结果"><a href="#获取一致结果" class="headerlink" title="获取一致结果"></a>获取一致结果</h3><p>数据处理通常的一种做法就是先把数据从MongoDB中取出来，然后经过某种变换，，然后存回去。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cursor = db.foo.find();</span><br><span class="line"><span class="keyword">while</span> (cursor.hasNext()) &#123; </span><br><span class="line">	<span class="keyword">var</span> doc = cursor.next(); </span><br><span class="line">	doc = process(doc); </span><br><span class="line">	db.foo.save(doc);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>但是如果文档的改动比较大，尤其是增加了很多数量量，会导致预留空间不够，这时mongodb会将文档移动至集合的末尾处。导致的后果是游标往后面移动又会返回已经被处理但是被移动过的文档。</p>
 <p>解决方法是对查询进行快照，如果使用了<code>$snapshot</code>选项，查询就是针对不变的集合视图运行的，确保查询的结果就是查询执行的那一刻的一致快照。</p>
-<h1 id="索引"><a class="markdownIt-Anchor" href="#索引"></a> 索引</h1>
-<h2 id="索引介绍"><a class="markdownIt-Anchor" href="#索引介绍"></a> 索引介绍</h2>
-<p>如果经常需要基于某个键进行检索，可以对该键建立索引，以提高查询速度。使用explain()可以看到mongodb的执行信息。</p>
+<h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><h2 id="索引介绍"><a href="#索引介绍" class="headerlink" title="索引介绍"></a>索引介绍</h2><p>如果经常需要基于某个键进行检索，可以对该键建立索引，以提高查询速度。使用explain()可以看到mongodb的执行信息。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">1000000</span>; i++) &#123; ... db.users.insert(</span><br><span class="line">... &#123;</span><br><span class="line">...		<span class="string">"i"</span> : i,</span><br><span class="line">		<span class="string">"username"</span> : <span class="string">"user"</span>+i,</span><br><span class="line">		<span class="string">"age"</span> : <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*<span class="number">120</span>), </span><br><span class="line">		<span class="string">"created"</span> : <span class="keyword">new</span> <span class="built_in">Date</span>()</span><br><span class="line">		&#125;</span><br><span class="line">	);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">db.users.find(&#123;<span class="attr">username</span>: <span class="string">"user101"</span>&#125;).explain()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"cursor"</span> : <span class="string">"BasicCursor"</span>,</span><br><span class="line">        <span class="string">"nscanned"</span> : <span class="number">1000000</span>,</span><br><span class="line">        <span class="string">"nscannedObjects"</span> : <span class="number">1000000</span>,</span><br><span class="line">        <span class="string">"n"</span> : <span class="number">1</span>,</span><br><span class="line">		<span class="string">"millis"</span> : <span class="number">721</span>, </span><br><span class="line">		<span class="string">"nYields"</span> : <span class="number">0</span>, </span><br><span class="line">		<span class="string">"nChunkSkips"</span> : <span class="number">0</span>, </span><br><span class="line">		<span class="string">"isMultiKey"</span> : <span class="literal">false</span>, </span><br><span class="line">		<span class="string">"indexOnly"</span> : <span class="literal">false</span>, </span><br><span class="line">		<span class="string">"indexBounds"</span> : &#123;</span><br><span class="line">		&#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">% 建立索引</span><br><span class="line">db.users.ensureIndex(&#123;<span class="string">"username"</span> : <span class="number">1</span>&#125;)</span><br><span class="line"></span><br><span class="line">db.users.find(&#123;<span class="string">"username"</span> : <span class="string">"user101"</span>&#125;).explain()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"cursor"</span> : <span class="string">"BtreeCursor username_1"</span>,</span><br><span class="line">        <span class="string">"nscanned"</span> : <span class="number">1</span>,</span><br><span class="line">        <span class="string">"nscannedObjects"</span> : <span class="number">1</span>,</span><br><span class="line">        <span class="string">"n"</span> : <span class="number">1</span>,</span><br><span class="line">		<span class="string">"millis"</span> : <span class="number">3</span>, </span><br><span class="line">		<span class="string">"nYields"</span> : <span class="number">0</span>, </span><br><span class="line">		<span class="string">"nChunkSkips"</span> : <span class="number">0</span>, </span><br><span class="line">		<span class="string">"isMultiKey"</span> : <span class="literal">false</span>, </span><br><span class="line">		<span class="string">"indexOnly"</span> : <span class="literal">false</span>, </span><br><span class="line">		<span class="string">"indexBounds"</span> : &#123;</span><br><span class="line">            <span class="string">"username"</span> : [</span><br><span class="line">                [</span><br><span class="line">						<span class="string">"user101"</span>,</span><br><span class="line">						<span class="string">"user101"</span></span><br><span class="line">				] ]</span><br><span class="line">	&#125; &#125;</span><br></pre></td></tr></table></figure>
 <p>建立索引：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.users.ensureIndex(&#123;<span class="string">"username"</span> : <span class="number">1</span>&#125;)</span><br></pre></td></tr></table></figure>
 <p>-1, 1指名创建索引的方向，如果索引只有一个键，则方向无关紧要。如果有个键则需要考虑索引的方向问题。</p>
 <p>如果索引包含N个键，则对于前几个键的查询都会有帮助，比如索引<code>{&quot;a&quot; : 1, &quot;b&quot; : 1, &quot;c&quot; : 1}</code>实际上是有了{“a” : 1}, {“a” : 1, “b” : 1}, {“a” : 1, “b” : 1, “c” : 1}索引，但是没有{“b” : 1}, {“a” : 1, “c” : 1}等索引。</p>
 <p>创建索引是每次插入，更新删除时都会产生额外的开销，即使是查询，如果查询要返回集合中一半以上的结果，表扫描效率要高于查索引。</p>
-<h3 id="扩展索引"><a class="markdownIt-Anchor" href="#扩展索引"></a> 扩展索引</h3>
-<p><strong>在建立索引时我们需要考虑以下问题：</strong></p>
+<h3 id="扩展索引"><a href="#扩展索引" class="headerlink" title="扩展索引"></a>扩展索引</h3><p><strong>在建立索引时我们需要考虑以下问题：</strong></p>
 <ul>
 <li>会做怎样的查询？其中哪些键需要索引？</li>
 <li>每个键的索引方向是怎样的？</li>
@@ -905,32 +823,22 @@ Adds a <code>&quot;$diskLoc&quot;</code> field to the results that shows where o
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">user 1, 2015_11_11_2</span><br><span class="line">user 1, 2015_11_11_1...and</span><br><span class="line">user 2, 2015_11_11_6</span><br><span class="line">user 2, 2015_11_10_1</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <p>这样会对用户的日期的查询非常快，但是并不是最好的方式。因为每个用户每天可能有数十条状态更新，如果每个用户的状态索引值都占用类似一页纸一样的空间，但是其中大部分并不是最新值，如果用户数很多，那么内存将无法放下所有索引，发生频繁内存交换。</p>
 <p>如果改变索引顺序为{data : -1, user : 1}，则数据库可以按照时间将更多用户最近的状态保存在内存中，可以有效减少内存交换。</p>
-<h3 id="索引内嵌文档中的键"><a class="markdownIt-Anchor" href="#索引内嵌文档中的键"></a> 索引内嵌文档中的键</h3>
-<p>为内嵌文档的键建立所有那个和位普通的键创建索引没有什么区别。</p>
+<h3 id="索引内嵌文档中的键"><a href="#索引内嵌文档中的键" class="headerlink" title="索引内嵌文档中的键"></a>索引内嵌文档中的键</h3><p>为内嵌文档的键建立所有那个和位普通的键创建索引没有什么区别。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.blog.ensureIndex(&#123;<span class="string">"comments.date"</span> : <span class="number">1</span>&#125;)</span><br></pre></td></tr></table></figure>
 <p>内嵌文档的键索引与普通键索引并无差异，两者也可以联合组成符合索引。</p>
-<h3 id="为排序创建索引"><a class="markdownIt-Anchor" href="#为排序创建索引"></a> 为排序创建索引</h3>
-<p>对于经常需要排序的键，最好建立索引。如果对没有索引的键调用sort，mongodb需要将所有数据提取到内存来做排序，代价非常高且有上限。</p>
-<h3 id="索引名称"><a class="markdownIt-Anchor" href="#索引名称"></a> 索引名称</h3>
-<p>集合中每个索引都有一个字符串类型的名字，来唯一标识索引，如果没有指定名字，默认情况下会将索引的键名连在一起作为该索引的名字。如果索引的键特别多，就不太合适，可以使用下面的方式：</p>
+<h3 id="为排序创建索引"><a href="#为排序创建索引" class="headerlink" title="为排序创建索引"></a>为排序创建索引</h3><p>对于经常需要排序的键，最好建立索引。如果对没有索引的键调用sort，mongodb需要将所有数据提取到内存来做排序，代价非常高且有上限。</p>
+<h3 id="索引名称"><a href="#索引名称" class="headerlink" title="索引名称"></a>索引名称</h3><p>集合中每个索引都有一个字符串类型的名字，来唯一标识索引，如果没有指定名字，默认情况下会将索引的键名连在一起作为该索引的名字。如果索引的键特别多，就不太合适，可以使用下面的方式：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.foo.ensureIndex(&#123;<span class="string">"a"</span> : <span class="number">1</span>, <span class="string">"b"</span> : <span class="number">1</span>, <span class="string">"c"</span> : <span class="number">1</span>, ..., <span class="string">"z"</span> : <span class="number">1</span>&#125;,</span><br><span class="line">    ... &#123;<span class="string">"name"</span> : <span class="string">"alphabet"</span>&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="唯一索引"><a class="markdownIt-Anchor" href="#唯一索引"></a> 唯一索引</h2>
-<p>唯一索引可以确保集合的每一个文档的指定键都有唯一值。</p>
+<h2 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h2><p>唯一索引可以确保集合的每一个文档的指定键都有唯一值。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.people.ensureIndex(&#123;<span class="string">"username"</span> : <span class="number">1</span>&#125;, &#123;<span class="string">"unique"</span> : <span class="literal">true</span>&#125;)</span><br></pre></td></tr></table></figure>
-<h3 id="消除重复"><a class="markdownIt-Anchor" href="#消除重复"></a> 消除重复</h3>
-<p>如果创建唯一索引时已经有数据重复，那么唯一索引的创建会失败。如果希望将所有包含重复值的文档只保留第一个，而删除后面重复的文档，可以使用：</p>
+<h3 id="消除重复"><a href="#消除重复" class="headerlink" title="消除重复"></a>消除重复</h3><p>如果创建唯一索引时已经有数据重复，那么唯一索引的创建会失败。如果希望将所有包含重复值的文档只保留第一个，而删除后面重复的文档，可以使用：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.people.ensureIndex(&#123;<span class="string">"username"</span> : <span class="number">1</span>&#125;, &#123;<span class="string">"unique"</span> : <span class="literal">true</span>, <span class="string">"dropDups"</span> : <span class="literal">true</span>&#125;)</span><br></pre></td></tr></table></figure>
-<h3 id="复合唯一索引"><a class="markdownIt-Anchor" href="#复合唯一索引"></a> 复合唯一索引</h3>
-<p>创建复合唯一索引时，单个键的值可以相同，只要所有键的组合不同就可以。</p>
-<h3 id="explain和hint"><a class="markdownIt-Anchor" href="#explain和hint"></a> explain和hint</h3>
-<h2 id="索引管理"><a class="markdownIt-Anchor" href="#索引管理"></a> 索引管理</h2>
-<p>索引的元信息存储在每个数据库的system.indexes集合中。这是一个保留集合，不能对其插入或者删除文档。操作只能通过ensureIndex或者dropIndexes进行。</p>
+<h3 id="复合唯一索引"><a href="#复合唯一索引" class="headerlink" title="复合唯一索引"></a>复合唯一索引</h3><p>创建复合唯一索引时，单个键的值可以相同，只要所有键的组合不同就可以。</p>
+<h3 id="explain和hint"><a href="#explain和hint" class="headerlink" title="explain和hint"></a>explain和hint</h3><h2 id="索引管理"><a href="#索引管理" class="headerlink" title="索引管理"></a>索引管理</h2><p>索引的元信息存储在每个数据库的system.indexes集合中。这是一个保留集合，不能对其插入或者删除文档。操作只能通过ensureIndex或者dropIndexes进行。</p>
 <p>system.indexes集合包含每个索引的详细信息，同时system.namespaces集合也包含有索引的名字。在system.namespaces集合中哦该，每个集合至少有两个文档与之对应，集合本身名字，以及其_id唯一索引名字，如果还有其他索引，也会有对应信息在system.namespaces中。</p>
-<h3 id="修改索引"><a class="markdownIt-Anchor" href="#修改索引"></a> 修改索引</h3>
-<p>后台建立新的索引（否则建立索引期间会阻塞所有索引期间的请求）。</p>
+<h3 id="修改索引"><a href="#修改索引" class="headerlink" title="修改索引"></a>修改索引</h3><p>后台建立新的索引（否则建立索引期间会阻塞所有索引期间的请求）。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.people.ensureIndex(&#123;<span class="string">"username"</span> : <span class="number">1</span>&#125;, &#123;<span class="string">"background"</span> : <span class="literal">true</span>&#125;)</span><br></pre></td></tr></table></figure>
-<h3 id="删除索引"><a class="markdownIt-Anchor" href="#删除索引"></a> 删除索引</h3>
-<p>查看system.indexes找到索引名字，然后删除：</p>
+<h3 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h3><p>查看system.indexes找到索引名字，然后删除：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">db.people.dropIndex(<span class="string">"x_1_y_1"</span>)</span><br><span class="line">&#123; <span class="string">"nIndexesWas"</span> : <span class="number">3</span>, <span class="string">"ok"</span> : <span class="number">1</span> &#125;</span><br><span class="line">% <span class="number">99</span> <span class="number">130</span></span><br></pre></td></tr></table></figure>
 <p>可以使用通配符删除所有索引(除了_id索引，这个索引只有删除集合时才会被删除)</p>
 <p>另外删除集合也会删除这个集合的所有索引，remove方式不会影响索引。</p>
@@ -1103,8 +1011,7 @@ Adds a <code>&quot;$diskLoc&quot;</code> field to the results that shows where o
       
         
           
-            <h1 id="高可用的网站架构"><a class="markdownIt-Anchor" href="#高可用的网站架构"></a> 高可用的网站架构</h1>
-<p>互联网企业实现高可用架构设计的主要目的是保证服务器硬件故障时服务依然可用，数据依然完整并能够被访问，其主要手段是数据和服务的冗余备份及失效转移。一旦某些服务器宕机，就将服务切换到其他可用的服务器上，如果磁盘损坏，则从备份的磁盘或数据服务器读取数据。</p>
+            <h1 id="高可用的网站架构"><a href="#高可用的网站架构" class="headerlink" title="高可用的网站架构"></a>高可用的网站架构</h1><p>互联网企业实现高可用架构设计的主要目的是保证服务器硬件故障时服务依然可用，数据依然完整并能够被访问，其主要手段是数据和服务的冗余备份及失效转移。一旦某些服务器宕机，就将服务切换到其他可用的服务器上，如果磁盘损坏，则从备份的磁盘或数据服务器读取数据。</p>
 <p>一个典型的网站设计通常遵循如下分层架构：</p>
 <p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c5_1.png" alt="System_design_c5_1"></p>
 <p>各层具有相对独立性，上层依赖下层。应用层主要负责业务具体逻辑处理；服务层负责提供可复用的服务；数据层负责数据的存储与访问。中小型网站在具体部署时，通常将应用层和服务层部署在一起，数据层另外部署。</p>
@@ -1114,14 +1021,11 @@ Adds a <code>&quot;$diskLoc&quot;</code> field to the results that shows where o
 <p>大型网站的分层架构和物理服务器的分布式部署使得位于不同层次的服务具有不同的可用性特点。宕机时产生的影响也不同，高可用的解决方案也不同。</p>
 <p>位于应用层的服务器通常为了应对高并发的访问请求，会通过负载均衡设备将一组服务器组成一个集群共同对外提供服务，当负载均衡设备通过心跳检测等手段监控到某台应用服务器不可用时，就将其剔除，并将请求分发到其他可用的服务器上。服务层的服务器类似。</p>
 <p>数据服务器上存储着数据，为了保证服务器宕机时数据不丢失，数据访问不中断，需要在数据写入时进行数据同步复制，将数据写入多台服务器上，实现数据冗余备份。当数据服务器宕机时，应用程序将访问切换到有备份数据的服务器上。</p>
-<h1 id="高可用的应用"><a class="markdownIt-Anchor" href="#高可用的应用"></a> 高可用的应用</h1>
-<p>应用层主要处理网站应用的业务逻辑，也称业务逻辑层，实现高可用需要的一个特点是应用的无状态性，也就是应用服务器不保存业务的上下文信息，而是仅根据每次请求提交的数据进行相应的业务逻辑处理，多个服务实例（服务器）之间完全对等，请求提交到任意服务器，处理结果都是完全一样的。</p>
-<h2 id="通过负载均衡进行无状态服务的失效转移"><a class="markdownIt-Anchor" href="#通过负载均衡进行无状态服务的失效转移"></a> 通过负载均衡进行无状态服务的失效转移</h2>
-<p>不保存状态的应用给高可用的架构设计带来了巨大便利，因为所有服务器完全对等，可以将请求转移给任何一台可用的服务器而不会影响结果。</p>
+<h1 id="高可用的应用"><a href="#高可用的应用" class="headerlink" title="高可用的应用"></a>高可用的应用</h1><p>应用层主要处理网站应用的业务逻辑，也称业务逻辑层，实现高可用需要的一个特点是应用的无状态性，也就是应用服务器不保存业务的上下文信息，而是仅根据每次请求提交的数据进行相应的业务逻辑处理，多个服务实例（服务器）之间完全对等，请求提交到任意服务器，处理结果都是完全一样的。</p>
+<h2 id="通过负载均衡进行无状态服务的失效转移"><a href="#通过负载均衡进行无状态服务的失效转移" class="headerlink" title="通过负载均衡进行无状态服务的失效转移"></a>通过负载均衡进行无状态服务的失效转移</h2><p>不保存状态的应用给高可用的架构设计带来了巨大便利，因为所有服务器完全对等，可以将请求转移给任何一台可用的服务器而不会影响结果。</p>
 <p>负载均衡实现服务器可用状态实时监控，自动转移失效任务，同时保证每个服务器上的负载相对平均(根据具体性能)，不至于超过负载。</p>
 <p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c5_4.png" alt="System_design_c5_4"></p>
-<h2 id="应用服务器集群的session管理"><a class="markdownIt-Anchor" href="#应用服务器集群的session管理"></a> 应用服务器集群的Session管理</h2>
-<p>实际上很多业务是有状态的，如电子商务网站购物车等。Web应用将这些多次请求修改使用的上下文对象称为Session，在单机情况下，session可由部署在服务器上的web容器管理（如Jboss）。但在使用负载均衡的集群环境中，请求可能被分发到任何一台服务器上，情况要复杂很多。</p>
+<h2 id="应用服务器集群的Session管理"><a href="#应用服务器集群的Session管理" class="headerlink" title="应用服务器集群的Session管理"></a>应用服务器集群的Session管理</h2><p>实际上很多业务是有状态的，如电子商务网站购物车等。Web应用将这些多次请求修改使用的上下文对象称为Session，在单机情况下，session可由部署在服务器上的web容器管理（如Jboss）。但在使用负载均衡的集群环境中，请求可能被分发到任何一台服务器上，情况要复杂很多。</p>
 <p>集群环境下，session管理主要有一下几种手段：</p>
 <ul>
 <li><strong>session复制</strong></li>
@@ -1146,20 +1050,14 @@ Adds a <code>&quot;$diskLoc&quot;</code> field to the results that shows where o
 <p>利用独立部署的Session服务器统一管理Session，服务器每次读写Session时，都访问Session服务器。</p>
 <p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c5_8.png" alt="System_design_c5_8"></p>
 <p>实际上是将应用服务器的状态分离，分为无状态的应用服务器和有状态的Session服务器。</p>
-<h1 id="高可用的服务"><a class="markdownIt-Anchor" href="#高可用的服务"></a> 高可用的服务</h1>
-<p>可复用的服务模块为业务产品提供基础公共服务，大型网站中这些服务通常独立分布式部署，被具体应用远程调用。可复用的服务和应用一有那个，也是无状态服务，因此可以使用类似负载均衡的失效转移策略实现高可用的服务。</p>
+<h1 id="高可用的服务"><a href="#高可用的服务" class="headerlink" title="高可用的服务"></a>高可用的服务</h1><p>可复用的服务模块为业务产品提供基础公共服务，大型网站中这些服务通常独立分布式部署，被具体应用远程调用。可复用的服务和应用一有那个，也是无状态服务，因此可以使用类似负载均衡的失效转移策略实现高可用的服务。</p>
 <p>除此之外，还有一下的几点高可用的服务策略：</p>
 <ul>
-<li>
-<p><strong>分级管理</strong><br>
-运维上将服务器进行分级管理，核心应用和服务使用更好的硬件。同时服务部署上也进行必要的隔离，避免故障的连锁反应，低优先级的服务通过启动不同的线程或者部署在不同的虚拟机上进行隔离，高优先级的服务则需要部署在不同的屋里机上，核心服务和数据甚至需要部署在不同地域的数据中心。</p>
+<li><p><strong>分级管理</strong><br>运维上将服务器进行分级管理，核心应用和服务使用更好的硬件。同时服务部署上也进行必要的隔离，避免故障的连锁反应，低优先级的服务通过启动不同的线程或者部署在不同的虚拟机上进行隔离，高优先级的服务则需要部署在不同的屋里机上，核心服务和数据甚至需要部署在不同地域的数据中心。</p>
 </li>
-<li>
-<p><strong>超时设置</strong><br>
-在应用中设置服务调用的超时时间，一旦超时，通信框架就抛出异常，应用程序根据服务调度策略，可以选择继续重试或者转移请求。</p>
+<li><p><strong>超时设置</strong><br>在应用中设置服务调用的超时时间，一旦超时，通信框架就抛出异常，应用程序根据服务调度策略，可以选择继续重试或者转移请求。</p>
 </li>
-<li>
-<p><strong>异步调用</strong></p>
+<li><p><strong>异步调用</strong></p>
 </li>
 </ul>
 <p>应用对服务的调用通过消息队列等异步方式完成，避免一个服务失败导致整个应用请求失败的情况。</p>
@@ -1172,12 +1070,10 @@ Adds a <code>&quot;$diskLoc&quot;</code> field to the results that shows where o
 </ul>
 <p>有时会出现虚假的服务调用失败，比如服务完成超时，但是后面完成了操作，但是应用还是发出了一个新的请求。服务重复调用是无法避免的，因此需要在服务层保证重复调用和调用一次产生的结果相同，即服务具有幂等性。</p>
 <p>有些服务天然具有幂等性，但有些不是，比如转账等，这时需要设置交易编号等信息进行服务调用有效性验证，以实现幂等性。</p>
-<h1 id="高可用的数据"><a class="markdownIt-Anchor" href="#高可用的数据"></a> 高可用的数据</h1>
-<p>不同于高可用的应用和服务，由于数据存储服务器上保存的数据不同，当某台服务器宕机时，数据访问请求不能任意切换到集群的其他机器上。</p>
+<h1 id="高可用的数据"><a href="#高可用的数据" class="headerlink" title="高可用的数据"></a>高可用的数据</h1><p>不同于高可用的应用和服务，由于数据存储服务器上保存的数据不同，当某台服务器宕机时，数据访问请求不能任意切换到集群的其他机器上。</p>
 <p>保证数据存储高可用的手段是数据备份和失效转移机制。数据备份是保证数据有多个副本，失效不会导致数据的永久丢失。失效转移保证一个数据副本不可访问时，可以快速切换访问数据的其他副本。</p>
 <p>关于缓存的高可用，本质上其不是数据存储服务，缓存服务器宕机引起缓存数据丢失导致服务器负载压力过高应该通过其他手段解决，而不是提高缓存服务本身的高可用。</p>
-<h2 id="cap原理"><a class="markdownIt-Anchor" href="#cap原理"></a> CAP原理</h2>
-<p>为了保证数据的高可用，往往需要牺牲另一个重要指标；数据一致性。</p>
+<h2 id="CAP原理"><a href="#CAP原理" class="headerlink" title="CAP原理"></a>CAP原理</h2><p>为了保证数据的高可用，往往需要牺牲另一个重要指标；数据一致性。</p>
 <p>高可用的数据有如下几个层面的含义：</p>
 <ul>
 <li><strong>数据持久性</strong>：即数据不会丢失，需要将数据备份多个副本</li>
@@ -1194,8 +1090,7 @@ Adds a <code>&quot;$diskLoc&quot;</code> field to the results that shows where o
 <li><strong>数据最终一致</strong>：较弱的一致性，物理存储可能是不一致的，用户访问也可能是不一致的，但是系统经过一段时间（较短的时间段）的自我恢复和修正，数据最终会达到一致。</li>
 </ul>
 <p>因为难以满足数据强一致性，网站通常会综合成本技术，结合数据监控和纠错功能，使存储系统达到用户一致。</p>
-<h2 id="数据备份"><a class="markdownIt-Anchor" href="#数据备份"></a> 数据备份</h2>
-<p>备份分为冷备和热备。</p>
+<h2 id="数据备份"><a href="#数据备份" class="headerlink" title="数据备份"></a>数据备份</h2><p>备份分为冷备和热备。</p>
 <p>冷备的有点是简单和廉价，但是不能保证数据最终一致，因为可能丢失上一次冷备后的更新，同时不能保证数据可用性，因为一般需要较长时间恢复数据。</p>
 <p>所以需要热备，热备可以分为两种：异步热备方式和同步热备方式。</p>
 <p>异步方式是指多份数据副本的写入操作异步完成，应用程序收到数据服务系统的写操作¥成功响应时，只成功了一份，存储系统会异步地写其他副本（这个过程有可能会失败）。通常先由主存储服务器（Master）写入第一份数据然后响应，然后通过异步线程将写操作数据同步到从存储服务器。</p>
@@ -1203,8 +1098,7 @@ Adds a <code>&quot;$diskLoc&quot;</code> field to the results that shows where o
 <p>同步方式是指多份数据副本的写入操作同步完成。为了提高性能，通常需要并发的向多个存储服务器写入数据。没有主从之分，方便管理，但是响应速度慢。</p>
 <p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c5_11.png" alt="System_design_c5_11"></p>
 <p>关系数据库热备一般是Master-Slave同步机制，另外这一机制也可以通过读写分离改善数据库的性能，写操作只访问Master数据库，读操作只访问Slave数据库。</p>
-<h2 id="失效转移"><a class="markdownIt-Anchor" href="#失效转移"></a> 失效转移</h2>
-<p>失效转移由下面三部分组成：</p>
+<h2 id="失效转移"><a href="#失效转移" class="headerlink" title="失效转移"></a>失效转移</h2><p>失效转移由下面三部分组成：</p>
 <ul>
 <li><strong>失效确认</strong></li>
 </ul>
@@ -1215,17 +1109,7 @@ Adds a <code>&quot;$diskLoc&quot;</code> field to the results that shows where o
 <li><strong>数据恢复</strong></li>
 </ul>
 <p>由于某台服务宕机，存储的副本减少，所以需要重新恢复足够的副本数。</p>
-<h1 id="高可用网站的软件质量保证"><a class="markdownIt-Anchor" href="#高可用网站的软件质量保证"></a> 高可用网站的软件质量保证</h1>
-<h2 id="网站发布"><a class="markdownIt-Anchor" href="#网站发布"></a> 网站发布</h2>
-<h2 id="自动化测试"><a class="markdownIt-Anchor" href="#自动化测试"></a> 自动化测试</h2>
-<h2 id="预发布验证"><a class="markdownIt-Anchor" href="#预发布验证"></a> 预发布验证</h2>
-<h2 id="代码控制"><a class="markdownIt-Anchor" href="#代码控制"></a> 代码控制</h2>
-<h2 id="自动化发布"><a class="markdownIt-Anchor" href="#自动化发布"></a> 自动化发布</h2>
-<h2 id="灰度发布"><a class="markdownIt-Anchor" href="#灰度发布"></a> 灰度发布</h2>
-<h1 id="网站运行监控"><a class="markdownIt-Anchor" href="#网站运行监控"></a> 网站运行监控</h1>
-<h2 id="监控数据采集"><a class="markdownIt-Anchor" href="#监控数据采集"></a> 监控数据采集</h2>
-<h2 id="监控管理"><a class="markdownIt-Anchor" href="#监控管理"></a> 监控管理</h2>
-
+<h1 id="高可用网站的软件质量保证"><a href="#高可用网站的软件质量保证" class="headerlink" title="高可用网站的软件质量保证"></a>高可用网站的软件质量保证</h1><h2 id="网站发布"><a href="#网站发布" class="headerlink" title="网站发布"></a>网站发布</h2><h2 id="自动化测试"><a href="#自动化测试" class="headerlink" title="自动化测试"></a>自动化测试</h2><h2 id="预发布验证"><a href="#预发布验证" class="headerlink" title="预发布验证"></a>预发布验证</h2><h2 id="代码控制"><a href="#代码控制" class="headerlink" title="代码控制"></a>代码控制</h2><h2 id="自动化发布"><a href="#自动化发布" class="headerlink" title="自动化发布"></a>自动化发布</h2><h2 id="灰度发布"><a href="#灰度发布" class="headerlink" title="灰度发布"></a>灰度发布</h2><h1 id="网站运行监控"><a href="#网站运行监控" class="headerlink" title="网站运行监控"></a>网站运行监控</h1><h2 id="监控数据采集"><a href="#监控数据采集" class="headerlink" title="监控数据采集"></a>监控数据采集</h2><h2 id="监控管理"><a href="#监控管理" class="headerlink" title="监控管理"></a>监控管理</h2>
           
         
       
@@ -1394,16 +1278,13 @@ Adds a <code>&quot;$diskLoc&quot;</code> field to the results that shows where o
       
         
           
-            <h1 id="网站性能测试"><a class="markdownIt-Anchor" href="#网站性能测试"></a> 网站性能测试</h1>
-<h2 id="性能测试指标"><a class="markdownIt-Anchor" href="#性能测试指标"></a> 性能测试指标</h2>
-<ul>
+            <h1 id="网站性能测试"><a href="#网站性能测试" class="headerlink" title="网站性能测试"></a>网站性能测试</h1><h2 id="性能测试指标"><a href="#性能测试指标" class="headerlink" title="性能测试指标"></a>性能测试指标</h2><ul>
 <li><strong>响应时间</strong>：指应用执行一个请求到相应所需要的时间。</li>
 <li><strong>并发数</strong>：只系统同时处理请求的数目，最大并发数数值也反映了系统的负载特性。</li>
 <li><strong>吞吐量(TPS)</strong>：指单位时间内系统处理的请求量，体现系统的整体处理能力。在系统并发数由小增大的过程中，系统吞吐量先是逐渐增加，达到一个极限后，随着并发数的增加反而下降，达到系统崩溃点后，系统资源耗尽，吞吐量为0。可以理解为吞吐量是每天通过收费站的车辆数目，并发数是高速公路上的车辆数目。</li>
-<li><strong>性能计数器</strong>：描述服务器或者操作系统性能的一些数据指标，如System loab, 内存使用，CPU使用…</li>
+<li><strong>性能计数器</strong>：描述服务器或者操作系统性能的一些数据指标，如System loab, 内存使用，CPU使用..</li>
 </ul>
-<h2 id="性能测试方法"><a class="markdownIt-Anchor" href="#性能测试方法"></a> 性能测试方法</h2>
-<ul>
+<h2 id="性能测试方法"><a href="#性能测试方法" class="headerlink" title="性能测试方法"></a>性能测试方法</h2><ul>
 <li><strong>性能测试</strong>：对系统不断施加压力，验证系统在资源可接受范围内，能否达到性能预期。</li>
 <li><strong>负载测试</strong>：对系统不断增加并发请求以增加系统压力，直到系统的某项或者性能指标达到安全临界值，如果某种资源已经是饱和状态，这时继续提高压力，系统的吞出量不但不能提高，反而会下降。</li>
 <li><strong>压力测试</strong>：超过安全负载的情况下，对系统继续施加压力，直到系统崩溃或者不能再处理任何请求，以此获得系统最大压力承受能力。</li>
@@ -1412,87 +1293,54 @@ Adds a <code>&quot;$diskLoc&quot;</code> field to the results that shows where o
 <p>上面的的增加压力，就是不断增加并发请求数，消耗的系统资源也会变多。</p>
 <p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_2.png" alt="System_design_c4_2"></p>
 <p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_1.png" alt="System_design_c4_1"></p>
-<h2 id="性能测试报告"><a class="markdownIt-Anchor" href="#性能测试报告"></a> 性能测试报告</h2>
-<p>测试结果报告应该能反映上述性能测试曲线的规律，阅读者可以得到系统性能是否满足设计目标和业务要求、系统最大负载能力、系统最大压力承受能力等重要信息。</p>
+<h2 id="性能测试报告"><a href="#性能测试报告" class="headerlink" title="性能测试报告"></a>性能测试报告</h2><p>测试结果报告应该能反映上述性能测试曲线的规律，阅读者可以得到系统性能是否满足设计目标和业务要求、系统最大负载能力、系统最大压力承受能力等重要信息。</p>
 <p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_3.png" alt="System_design_c4_3"></p>
-<h2 id="性能优化策略"><a class="markdownIt-Anchor" href="#性能优化策略"></a> 性能优化策略</h2>
-<p>检查请求处理的各个环节的日志，分析哪个环节响应时间不合理；然后检查监控数据，分析影响性能的主要因素是内存、磁盘、网络还是CPU，是代码或架构问题或者是系统资源确实不足。</p>
+<h2 id="性能优化策略"><a href="#性能优化策略" class="headerlink" title="性能优化策略"></a>性能优化策略</h2><p>检查请求处理的各个环节的日志，分析哪个环节响应时间不合理；然后检查监控数据，分析影响性能的主要因素是内存、磁盘、网络还是CPU，是代码或架构问题或者是系统资源确实不足。</p>
 <p>定位具体原因后，根据具体层次进行优化。</p>
-<h1 id="web前端性能优化"><a class="markdownIt-Anchor" href="#web前端性能优化"></a> Web前端性能优化</h1>
-<p>Web前端一般指业务逻辑之前的部分，包括浏览器加载、网站视图模型、图片服务、CDN服务等，主要优化手段有优化浏览器、使用反向代理、CDN等。</p>
-<h2 id="浏览器访问优化"><a class="markdownIt-Anchor" href="#浏览器访问优化"></a> 浏览器访问优化</h2>
-<ol>
+<h1 id="Web前端性能优化"><a href="#Web前端性能优化" class="headerlink" title="Web前端性能优化"></a>Web前端性能优化</h1><p>Web前端一般指业务逻辑之前的部分，包括浏览器加载、网站视图模型、图片服务、CDN服务等，主要优化手段有优化浏览器、使用反向代理、CDN等。</p>
+<h2 id="浏览器访问优化"><a href="#浏览器访问优化" class="headerlink" title="浏览器访问优化"></a>浏览器访问优化</h2><ol>
 <li>减少HTTP请求，因为每次都要开启线程建立通信链路。如合并CSS, Javascript等。</li>
 <li>使用浏览器缓存。</li>
 <li>启用压缩</li>
 <li>减少Cookie传输</li>
 </ol>
-<h2 id="cdn加速"><a class="markdownIt-Anchor" href="#cdn加速"></a> CDN加速</h2>
-<p>CDN(Content Distribute Network，内容分发网络)的本质仍是一个缓存，将数据缓存在离用户最近的地方。</p>
+<h2 id="CDN加速"><a href="#CDN加速" class="headerlink" title="CDN加速"></a>CDN加速</h2><p>CDN(Content Distribute Network，内容分发网络)的本质仍是一个缓存，将数据缓存在离用户最近的地方。</p>
 <p>CDN能偶缓存的一般是静态资源，如图片，文件，视频等。</p>
 <p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_4.png" alt="System_design_c4_4"></p>
-<h2 id="反向代理"><a class="markdownIt-Anchor" href="#反向代理"></a> 反向代理</h2>
-<p>传统代理服务器位于浏览器一侧，代理浏览器将HTTP请求发送到互联网上，而反向代理服务器位于网站机房一侧，代理网站Web服务器接收HTTP请求。</p>
+<h2 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h2><p>传统代理服务器位于浏览器一侧，代理浏览器将HTTP请求发送到互联网上，而反向代理服务器位于网站机房一侧，代理网站Web服务器接收HTTP请求。</p>
 <p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_5.png" alt="System_design_c4_5"></p>
 <p>和传统代理服务器可以保护浏览器安全一样，反向代理服务器也具有保护网站安全的作用，来自互联网的访问必须经过反向代理服务器。</p>
 <p>除了安全功能，代理服务器也可以通过配置缓存功能加速Web请求。</p>
 <p>此外，反向代理还可以实现负载均衡的功能，通过构建负载均衡的应用集群可以提高系统的总体处理能力，进而改善网站高并发下的性能。</p>
-<h1 id="应用服务器性能优化"><a class="markdownIt-Anchor" href="#应用服务器性能优化"></a> 应用服务器性能优化</h1>
-<p>应用服务器就是处理网站业务的服务器，网站的业务代码都部署在这里，是网站开发最复杂、变化最多的地方，主要优化手段有缓存、集群、异步等。</p>
-<h2 id="分布式缓存"><a class="markdownIt-Anchor" href="#分布式缓存"></a> 分布式缓存</h2>
-<p>任何时候，优先考虑使用缓存优化性能。</p>
-<h3 id="缓存基本原理"><a class="markdownIt-Anchor" href="#缓存基本原理"></a> 缓存基本原理</h3>
-<p>缓存指将数据存储在相对较高访问速度的存储介质中，一方面可以减少访问时间，同时也可能减少计算时间。缓存的本质是一个内存Hash表，网站应用中，数据缓存以一对Key、Value的形式存储在内存Hash表中。</p>
+<h1 id="应用服务器性能优化"><a href="#应用服务器性能优化" class="headerlink" title="应用服务器性能优化"></a>应用服务器性能优化</h1><p>应用服务器就是处理网站业务的服务器，网站的业务代码都部署在这里，是网站开发最复杂、变化最多的地方，主要优化手段有缓存、集群、异步等。</p>
+<h2 id="分布式缓存"><a href="#分布式缓存" class="headerlink" title="分布式缓存"></a>分布式缓存</h2><p>任何时候，优先考虑使用缓存优化性能。</p>
+<h3 id="缓存基本原理"><a href="#缓存基本原理" class="headerlink" title="缓存基本原理"></a>缓存基本原理</h3><p>缓存指将数据存储在相对较高访问速度的存储介质中，一方面可以减少访问时间，同时也可能减少计算时间。缓存的本质是一个内存Hash表，网站应用中，数据缓存以一对Key、Value的形式存储在内存Hash表中。</p>
 <p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_7.png" alt="System_design_c4_7"></p>
 <p>缓存主要用来存放读写比例很高、变化很少的数据，即80%的访问在20%的数据上。通过缓存可以提高数据读取速度，降低存储访问压力。</p>
-<h3 id="合理使用缓存"><a class="markdownIt-Anchor" href="#合理使用缓存"></a> 合理使用缓存</h3>
-<p>几个要注意的问题：<br>
-<strong>频发修改的数据</strong><br>
-<strong>没有热点的访问</strong><br>
-<strong>数据不一致与脏读</strong><br>
-<strong>缓存可用性</strong>：数据库可能在缓存服务崩溃时由于承受突然增加的压力而宕机，进而导致整个网站不可用，称为缓存雪崩。分布式缓存可以在一定程度上改善缓存的可用性。<br>
-<strong>缓存预热</strong>：在启动缓存后，可能需要较长时间重建缓存数据，可以在缓存系统启动时就准备好热点数据然后直接加载。例如，一些元数据可以全部加载。<br>
-<strong>缓存穿透</strong>：如果因为不恰当的业务、或者恶意攻击持续高并发地请求某个不存在的数据，由于缓存没有保存该数据，所有的请求的都会落到数据库上，会对数据库造成很大的压力。一个简单的对策是将这些不存在的数据也缓存起来，value值设置为null。</p>
-<h3 id="分布式缓存架构"><a class="markdownIt-Anchor" href="#分布式缓存架构"></a> 分布式缓存架构</h3>
-<p>分布式缓存指缓存部署在多个服务器组成的集群中，以集群方式提供缓存服务，其架构方式有两种，一种是以JBoss Cache为代表的需要更新同步的分布式缓存，一种是以Memcached为代表的不互相通信的分布式缓存。</p>
+<h3 id="合理使用缓存"><a href="#合理使用缓存" class="headerlink" title="合理使用缓存"></a>合理使用缓存</h3><p>几个要注意的问题：<br><strong>频发修改的数据</strong><br><strong>没有热点的访问</strong><br><strong>数据不一致与脏读</strong><br><strong>缓存可用性</strong>：数据库可能在缓存服务崩溃时由于承受突然增加的压力而宕机，进而导致整个网站不可用，称为缓存雪崩。分布式缓存可以在一定程度上改善缓存的可用性。<br><strong>缓存预热</strong>：在启动缓存后，可能需要较长时间重建缓存数据，可以在缓存系统启动时就准备好热点数据然后直接加载。例如，一些元数据可以全部加载。<br><strong>缓存穿透</strong>：如果因为不恰当的业务、或者恶意攻击持续高并发地请求某个不存在的数据，由于缓存没有保存该数据，所有的请求的都会落到数据库上，会对数据库造成很大的压力。一个简单的对策是将这些不存在的数据也缓存起来，value值设置为null。</p>
+<h3 id="分布式缓存架构"><a href="#分布式缓存架构" class="headerlink" title="分布式缓存架构"></a>分布式缓存架构</h3><p>分布式缓存指缓存部署在多个服务器组成的集群中，以集群方式提供缓存服务，其架构方式有两种，一种是以JBoss Cache为代表的需要更新同步的分布式缓存，一种是以Memcached为代表的不互相通信的分布式缓存。</p>
 <p>JBoss Cache的分布式缓存在集群中所有的服务器中保存相同的缓存数据，当某台服务器有缓存数据更新时，会通知集群中其他机器更新。当集群规模较大时，同步代价非常大，且由于多台服务器存有多份相同的数据，内存利用率不高。</p>
 <p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_8.png" alt="System_design_c4_8"></p>
-<h3 id="memcached"><a class="markdownIt-Anchor" href="#memcached"></a> Memcached</h3>
-<p>Memcached采用一种集中式的缓存集群管理，也就是互不通信的分布式架构模式，缓存与应用分离部署，部署在一组专门的服务器上，应用程序通过一致性Hash等路由算法选择缓存服务器远程访问缓存数据，缓存服务器之间不通信，可以很容易的实现扩容，具有良好的可伸缩性。</p>
+<h3 id="Memcached"><a href="#Memcached" class="headerlink" title="Memcached"></a>Memcached</h3><p>Memcached采用一种集中式的缓存集群管理，也就是互不通信的分布式架构模式，缓存与应用分离部署，部署在一组专门的服务器上，应用程序通过一致性Hash等路由算法选择缓存服务器远程访问缓存数据，缓存服务器之间不通信，可以很容易的实现扩容，具有良好的可伸缩性。</p>
 <p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_9.png" alt="System_design_c4_9"></p>
-<p><strong>简单的通信协议</strong><br>
-<strong>高性能的网络通信</strong><br>
-<strong>高效的内存管理</strong><br>
-Memcached使用了固定空间分配。将内存空间分为一组Slab，每个slab里又包含一组chunk，同一个slab里的每个chunck的大小是固定的，拥有相同大小chunk的slab被组织在一起，称为slab_class。</p>
+<p><strong>简单的通信协议</strong><br><strong>高性能的网络通信</strong><br><strong>高效的内存管理</strong><br>Memcached使用了固定空间分配。将内存空间分为一组Slab，每个slab里又包含一组chunk，同一个slab里的每个chunck的大小是固定的，拥有相同大小chunk的slab被组织在一起，称为slab_class。</p>
 <p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_10.png" alt="System_design_c4_10"></p>
 <p><strong>互不通信的服务器集群架构</strong>：正是这个架构使得集群可以做到几乎无限制的线性伸缩。</p>
-<h2 id="异步操作"><a class="markdownIt-Anchor" href="#异步操作"></a> 异步操作</h2>
-<p>使用消息队列将调用异步化，可以改善网站的扩展性。同时还可以改善网站系统的性能。</p>
+<h2 id="异步操作"><a href="#异步操作" class="headerlink" title="异步操作"></a>异步操作</h2><p>使用消息队列将调用异步化，可以改善网站的扩展性。同时还可以改善网站系统的性能。</p>
 <p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_11.png" alt="System_design_c4_11"></p>
 <p>在不使用消息队列的情况下，用户的请求数据直接写入数据库，在高并发的情况下，会对数据库造成巨大的压力，同时也使得相应延迟加剧。使用消息队列后，用户请求在被发送给消息队列后立即返回，响应延迟可以得到有效改善，再由消息队列的合适数量的消费者进程进行处理，进行数据库读写，不必创建超过负载的处理进程。</p>
-<p>消息队列具有很好的削峰作用–即通过异步处理，将段时间高并发产生的事务消息存储在消息队列中，从而削平高峰期的并发事务。在电子商务网站促销活动中，合理使用消息队列可以有效抵御冲击。</p>
+<p>消息队列具有很好的削峰作用—即通过异步处理，将段时间高并发产生的事务消息存储在消息队列中，从而削平高峰期的并发事务。在电子商务网站促销活动中，合理使用消息队列可以有效抵御冲击。</p>
 <p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_12.png" alt="System_design_c4_12"></p>
-<h2 id="使用集群"><a class="markdownIt-Anchor" href="#使用集群"></a> 使用集群</h2>
-<p>在网站高并发访问场景下，使用负载均衡计数为一个应用构建由多台服务器组成的服务器集群，将并发访问请求分发到多台服务器上处理，避免单一服务器因负载压力过大而响应缓慢，是用户请求具有更好的响应延迟特性。</p>
+<h2 id="使用集群"><a href="#使用集群" class="headerlink" title="使用集群"></a>使用集群</h2><p>在网站高并发访问场景下，使用负载均衡计数为一个应用构建由多台服务器组成的服务器集群，将并发访问请求分发到多台服务器上处理，避免单一服务器因负载压力过大而响应缓慢，是用户请求具有更好的响应延迟特性。</p>
 <p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_13.png" alt="System_design_c4_13"></p>
-<h2 id="代码优化"><a class="markdownIt-Anchor" href="#代码优化"></a> 代码优化</h2>
-<ul>
-<li><strong>多线程</strong><br>
-假设服务器执行都是相同类型服务，估算公式：<br>
-启动线程数=[任务执行时间/(任务执行时间-IO等待时间)] * CPU内核数<br>
-需要注意线程安全问题。</li>
-<li><strong>资源复用</strong><br>
-减少开销大的系统资源创建和销毁，使用单例模式和对象池，线程池。</li>
+<h2 id="代码优化"><a href="#代码优化" class="headerlink" title="代码优化"></a>代码优化</h2><ul>
+<li><strong>多线程</strong><br>假设服务器执行都是相同类型服务，估算公式：<br>启动线程数=[任务执行时间/(任务执行时间-IO等待时间)] * CPU内核数<br>需要注意线程安全问题。</li>
+<li><strong>资源复用</strong><br>减少开销大的系统资源创建和销毁，使用单例模式和对象池，线程池。</li>
 <li><strong>数据结构和高效算法</strong></li>
-<li><strong>垃圾回收</strong><br>
-如在JVM情况下，合理设置Young Generation和Old Generation大小，尽量减少Full GC。根据应用设置合理的回收模式。</li>
+<li><strong>垃圾回收</strong><br>如在JVM情况下，合理设置Young Generation和Old Generation大小，尽量减少Full GC。根据应用设置合理的回收模式。</li>
 </ul>
 <p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_15.png" alt></p>
-<h1 id="存储性能优化"><a class="markdownIt-Anchor" href="#存储性能优化"></a> 存储性能优化</h1>
-<h2 id="机械硬盘-vs-固体硬盘"><a class="markdownIt-Anchor" href="#机械硬盘-vs-固体硬盘"></a> 机械硬盘 vs 固体硬盘</h2>
-<h2 id="b树-vs-lsm树"><a class="markdownIt-Anchor" href="#b树-vs-lsm树"></a> B+树 vs LSM树</h2>
-<h2 id="raid-vs-hdfs"><a class="markdownIt-Anchor" href="#raid-vs-hdfs"></a> RAID vs HDFS</h2>
-
+<h1 id="存储性能优化"><a href="#存储性能优化" class="headerlink" title="存储性能优化"></a>存储性能优化</h1><h2 id="机械硬盘-vs-固体硬盘"><a href="#机械硬盘-vs-固体硬盘" class="headerlink" title="机械硬盘 vs 固体硬盘"></a>机械硬盘 vs 固体硬盘</h2><h2 id="B-树-vs-LSM树"><a href="#B-树-vs-LSM树" class="headerlink" title="B+树 vs LSM树"></a>B+树 vs LSM树</h2><h2 id="RAID-vs-HDFS"><a href="#RAID-vs-HDFS" class="headerlink" title="RAID vs HDFS"></a>RAID vs HDFS</h2>
           
         
       
@@ -1661,31 +1509,25 @@ Memcached使用了固定空间分配。将内存空间分为一组Slab，每个s
       
         
           
-            <h1 id="网站应用攻击与防御"><a class="markdownIt-Anchor" href="#网站应用攻击与防御"></a> 网站应用攻击与防御</h1>
-<h2 id="xss攻击"><a class="markdownIt-Anchor" href="#xss攻击"></a> XSS攻击</h2>
-<p>XSS攻击即夸站点脚本攻击(Cross Site Script)，指黑客通过篡改网页，注入恶意HTML脚本，在用户浏览网页时，控制用户浏览器进行恶意操作的一种攻击方式。</p>
+            <h1 id="网站应用攻击与防御"><a href="#网站应用攻击与防御" class="headerlink" title="网站应用攻击与防御"></a>网站应用攻击与防御</h1><h2 id="XSS攻击"><a href="#XSS攻击" class="headerlink" title="XSS攻击"></a>XSS攻击</h2><p>XSS攻击即夸站点脚本攻击(Cross Site Script)，指黑客通过篡改网页，注入恶意HTML脚本，在用户浏览网页时，控制用户浏览器进行恶意操作的一种攻击方式。</p>
 <p>常见的XSS攻击类型有两种，一种是反射型，攻击者诱使用户点击一个嵌入恶意脚本的链接，达到攻击的目的。</p>
 <p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c8_1.png" alt="System_design_c8_1"></p>
 <p>另一种XSS攻击是持久型XSS攻击，黑客提交含有恶意脚本的请求，保存在被攻击的Web站点的数据库中，用户浏览网页时，恶意脚本被包含在正常页面中，达到攻击的目的。</p>
 <p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c8_2.png" alt="System_design_c8_2"></p>
 <p>XSS防攻击的主要方式有如下两种：</p>
 <p><strong>消毒</strong></p>
-<p>XSS攻击者一般都是通过在请求中嵌入恶意脚本达到攻击目的，这些脚本是一般用户输入中不使用的，如果进行过滤和消毒处理，即对某些html危险字符转义，如&quot;&gt;“转义为”&amp;gt&quot;等，就可以防止大部分攻击。为了避免对不必要的内容转移错误，如&quot;3&lt;5&quot;中的&quot;&lt;“需要进行文本匹配后再转义，如”&lt;img src=“这样的上下文中的”&lt;&quot;才转义。消毒几乎是所有网站最必备的XSS防攻击手段。</p>
+<p>XSS攻击者一般都是通过在请求中嵌入恶意脚本达到攻击目的，这些脚本是一般用户输入中不使用的，如果进行过滤和消毒处理，即对某些html危险字符转义，如”&gt;”转义为”&amp;gt”等，就可以防止大部分攻击。为了避免对不必要的内容转移错误，如”3&lt;5”中的”&lt;”需要进行文本匹配后再转义，如”&lt;img src=”这样的上下文中的”&lt;”才转义。消毒几乎是所有网站最必备的XSS防攻击手段。</p>
 <p><strong>HttpOnly</strong></p>
 <p>浏览器禁止页面JavaScript访问带有HttpOnly属性的Cookie。HttpOnly并不是直接对抗XSS攻击的，而是防止XSS攻击窃取Cookie。对于存放敏感信息的Cookie，如用户认证信息等，可通过对该Cookie添加HttpOnly属性，避免被攻击脚本窃取。</p>
-<h2 id="注入攻击"><a class="markdownIt-Anchor" href="#注入攻击"></a> 注入攻击</h2>
-<p>注入攻击主要有两种形式，SQL注入攻击和OS注入攻击。SQL注入攻击为攻击者在HTTP请求中注入恶意SQL命令(drop table users)，服务器用请求构造参数构造数据库SQL命令时，恶意SQL被一起构造，并在数据库执行。</p>
+<h2 id="注入攻击"><a href="#注入攻击" class="headerlink" title="注入攻击"></a>注入攻击</h2><p>注入攻击主要有两种形式，SQL注入攻击和OS注入攻击。SQL注入攻击为攻击者在HTTP请求中注入恶意SQL命令(drop table users)，服务器用请求构造参数构造数据库SQL命令时，恶意SQL被一起构造，并在数据库执行。</p>
 <p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c8_3.png" alt="System_design_c8_3"></p>
 <p>SQL注入攻击需要攻击者对数据库结构有所了解才能进行，攻击者获取数据库表结构信息的手段有如下几种：</p>
-<p><strong>网站基于开源软件搭建</strong><br>
-<strong>错误回显</strong>：如果网站开启错误回显，即服务器内部500错误会显示到浏览器上。<br>
-<strong>盲注</strong>：网站关闭错误回显，攻击者根据页面变化情况判断SQL语句的执行情况，据此猜测数据库表结构，难度比较大。</p>
+<p><strong>网站基于开源软件搭建</strong><br><strong>错误回显</strong>：如果网站开启错误回显，即服务器内部500错误会显示到浏览器上。<br><strong>盲注</strong>：网站关闭错误回显，攻击者根据页面变化情况判断SQL语句的执行情况，据此猜测数据库表结构，难度比较大。</p>
 <p>防御SQL注入攻击首先要避免被攻击者猜测到表名等数据库表结构信息，此外还可以采用如下方式：</p>
-<p><strong>消毒</strong>：和防XSS攻击一样，请求参数消毒是一种比较简单粗暴又有效的手段。通过正则匹配，过滤请求数据中可能注入的SQL，如&quot;drop table&quot;等。</p>
+<p><strong>消毒</strong>：和防XSS攻击一样，请求参数消毒是一种比较简单粗暴又有效的手段。通过正则匹配，过滤请求数据中可能注入的SQL，如”drop table”等。</p>
 <p><strong>参数绑定</strong>：使用预编译手段，绑定参数是最好的防SQL注入方法。目前许多数据访问层框架，如IBatis，Hibernate等，都实现SQL预编译和参数绑定，攻击者的恶意SQL会被当做SQL的参数，而不是SQL命令被执行。</p>
 <p>除了SQL注入，攻击者还根据具体应用，注入OS命令、编程语言代码等，利用程序漏洞，达到攻击目的。</p>
-<h2 id="csrf攻击"><a class="markdownIt-Anchor" href="#csrf攻击"></a> CSRF攻击</h2>
-<p>CSRF(Cross Site Request Forgery，跨站点请求伪造)，攻击者通过跨站请求，以合法用户的身份进行非法操作，如转账交易等。CSRF的主要手法是利用跨站请求，在用户不知情的情况下，以用户的身份伪造请求。其核心是利用了浏览器Cookie或服务器Session策略，盗取用户身份。</p>
+<h2 id="CSRF攻击"><a href="#CSRF攻击" class="headerlink" title="CSRF攻击"></a>CSRF攻击</h2><p>CSRF(Cross Site Request Forgery，跨站点请求伪造)，攻击者通过跨站请求，以合法用户的身份进行非法操作，如转账交易等。CSRF的主要手法是利用跨站请求，在用户不知情的情况下，以用户的身份伪造请求。其核心是利用了浏览器Cookie或服务器Session策略，盗取用户身份。</p>
 <p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c8_4.png" alt="System_design_c8_4"></p>
 <p>CSRF的防御手段主要是识别请求者身份。主要有下面几种方法：</p>
 <p><strong>表单Token</strong></p>
@@ -1694,65 +1536,52 @@ Memcached使用了固定空间分配。将内存空间分为一组Slab，每个s
 <p>验证码是一种更加简单有效的手段，即请求提交时，需要通过用户输入验证码。</p>
 <p><strong>Referer check</strong></p>
 <p>HTTP请求头的Referer域中记录着请求来源，可通过检查请求来源，验证其是否合法。</p>
-<h2 id="其他攻击和漏洞"><a class="markdownIt-Anchor" href="#其他攻击和漏洞"></a> 其他攻击和漏洞</h2>
-<p><strong>Error Code</strong><br>
-错误回显信息。可以通过配置Web服务器参数，跳转到500页面(HTTP响应码500表示服务器内部错误)到专门的错误页面即可，Web应用常用的MVC框架也有这个功能。</p>
+<h2 id="其他攻击和漏洞"><a href="#其他攻击和漏洞" class="headerlink" title="其他攻击和漏洞"></a>其他攻击和漏洞</h2><p><strong>Error Code</strong><br>错误回显信息。可以通过配置Web服务器参数，跳转到500页面(HTTP响应码500表示服务器内部错误)到专门的错误页面即可，Web应用常用的MVC框架也有这个功能。</p>
 <p><strong>HTML注释</strong>：HTML注释会显示在客户端浏览器。</p>
 <p><strong>文件上传</strong>上传可执行程序以及攻击者获得服务器端命令执行能力。有效的手段是设置上传文件白名单，只允许上传可靠的文件类型。此外还可以修改文件名，使用专门的存储等手段。</p>
 <p><strong>路径遍历</strong>：攻击者在请求的URL中使用相对路径，遍历系统为开放的目录和文件。防御主要是将JS,CSS等资源文件部署在独立服务器，使用独立域名，其他文件不使用静态URL访问，动态参数最好不包含文件路径信息。</p>
-<h2 id="web应用防火墙"><a class="markdownIt-Anchor" href="#web应用防火墙"></a> Web应用防火墙</h2>
-<p>ModSecurity是一个开源的Web应用防火墙，自动探测攻击并保护Web程序，能够同一拦截请求，过滤恶意参数，自动消毒，添加Token等。既可以嵌入到Web应用服务器中，也可以作为一个独立的应用程序启动。</p>
+<h2 id="Web应用防火墙"><a href="#Web应用防火墙" class="headerlink" title="Web应用防火墙"></a>Web应用防火墙</h2><p>ModSecurity是一个开源的Web应用防火墙，自动探测攻击并保护Web程序，能够同一拦截请求，过滤恶意参数，自动消毒，添加Token等。既可以嵌入到Web应用服务器中，也可以作为一个独立的应用程序启动。</p>
 <p>ModSecurity采用处理逻辑与攻击规则集合分离的架构模式。处理逻辑（执行引擎）负责请求和响应的拦截过滤，规则加载执行等功能。而攻击规则集合则负责描述对具体攻击的规则定义、模式识别、防御策略等功能（可以通过文本方式进行描述）。处理逻辑比较稳定，规则集合需要不断针对漏洞进行升级，这时一种可扩展的架构设计。</p>
 <p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c8_5.png" alt="System_design_c8_5"></p>
-<h2 id="网站安全漏洞扫描"><a class="markdownIt-Anchor" href="#网站安全漏洞扫描"></a> 网站安全漏洞扫描</h2>
-<p>网络安全漏洞扫描工具是根据内置规则，构造具有攻击性的URL请求，模拟黑客攻击行为，用以发现网站安全漏洞的工具。</p>
-<h1 id="信息加密技术及密钥安全管理"><a class="markdownIt-Anchor" href="#信息加密技术及密钥安全管理"></a> 信息加密技术及密钥安全管理</h1>
-<p>网站用户账户密码等敏感信息不能以明文存储，必须要进行加密处理。信息加密技术可分为三类：单项散列加密，对称加密和非对称加密。</p>
-<h2 id="单向散列加密"><a class="markdownIt-Anchor" href="#单向散列加密"></a> 单向散列加密</h2>
-<p>单向散列加密是指通过对不同输入长度的信息进行散列计算，得到固定长度的输出，这个散列计算过程是单向的，即不能对固定长度的输出进行逆计算得到输入信息。</p>
+<h2 id="网站安全漏洞扫描"><a href="#网站安全漏洞扫描" class="headerlink" title="网站安全漏洞扫描"></a>网站安全漏洞扫描</h2><p>网络安全漏洞扫描工具是根据内置规则，构造具有攻击性的URL请求，模拟黑客攻击行为，用以发现网站安全漏洞的工具。</p>
+<h1 id="信息加密技术及密钥安全管理"><a href="#信息加密技术及密钥安全管理" class="headerlink" title="信息加密技术及密钥安全管理"></a>信息加密技术及密钥安全管理</h1><p>网站用户账户密码等敏感信息不能以明文存储，必须要进行加密处理。信息加密技术可分为三类：单项散列加密，对称加密和非对称加密。</p>
+<h2 id="单向散列加密"><a href="#单向散列加密" class="headerlink" title="单向散列加密"></a>单向散列加密</h2><p>单向散列加密是指通过对不同输入长度的信息进行散列计算，得到固定长度的输出，这个散列计算过程是单向的，即不能对固定长度的输出进行逆计算得到输入信息。</p>
 <p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c8_6.png" alt="System_design_c8_6"></p>
 <p>利用单向散列加密的特性，可以进行密码加密保存，即用户注册时的密码不直接保存到数据库，而是进行单向散列加密后将密文存入数据库。用户登录时，进行密码验证，同样计算得到输入密码的密文，并和数据库的密文比较。</p>
 <p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c8_7.png" alt="System_design_c8_7"></p>
-<p>这样即使数据库被&quot;拖库&quot;，也不会泄露用户的密码信息。</p>
+<p>这样即使数据库被”拖库”，也不会泄露用户的密码信息。</p>
 <p>虽然不能通过算法将单向散列密文反算得到明文，但是由于人们设置密码具有一定模式，因此通过彩虹表(人们常用密码和对应的密文关系表等)等手段可以进行猜测式破解。</p>
 <p>为了加强单向散列计算的安全性，还会给散列算法加点盐（salt），salt相当于加密的密钥，增加了破解的难度。</p>
 <p>常用的单向散列算法有MD5,SHA等。单向散列算法还有一个特点就是输入的任何微小变化都会导致输出的完全不同，这个特性有时也会被用来生成信息摘要、计算具有高离散程度的随机数等用途。</p>
-<h2 id="对称加密"><a class="markdownIt-Anchor" href="#对称加密"></a> 对称加密</h2>
-<p>所谓对称加密是指加密和解密使用的密钥是同一个密钥（或者可以互相推算）。</p>
+<h2 id="对称加密"><a href="#对称加密" class="headerlink" title="对称加密"></a>对称加密</h2><p>所谓对称加密是指加密和解密使用的密钥是同一个密钥（或者可以互相推算）。</p>
 <p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c8_8.png" alt="System_design_c8_8"></p>
 <p>对称加密通常用在信息需要安全交换或存储的场合，如Cookie加密、通信加密等。</p>
 <p>对称加密的优点是算法简单，加密解密效率高，适合对大量数据加密。缺点是加密解密使用同一个密钥，远程通信的情况下如何安全的交换密钥是个难题，如果密钥丢失，那么所有的加密信息也就失去安全性。</p>
 <p>常用的对称加密算法有DES，RC算法等。对称加密是一种传统加密手段，也是最常用的加密手段，适用于绝大多数需要加密的场合。</p>
-<h2 id="非对称加密"><a class="markdownIt-Anchor" href="#非对称加密"></a> 非对称加密</h2>
-<p>不同于对称加密，非对称加密和解密使用的密钥不是同一密钥，其中一个对外公开，被称为公钥，另一个只有所有者直到，称为私钥。使用公钥加密的信息必须要私钥才能解开，反之，用私钥加密的信息只有用公钥才能解开。理论上不可能通过公钥计算获得私钥。</p>
+<h2 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h2><p>不同于对称加密，非对称加密和解密使用的密钥不是同一密钥，其中一个对外公开，被称为公钥，另一个只有所有者直到，称为私钥。使用公钥加密的信息必须要私钥才能解开，反之，用私钥加密的信息只有用公钥才能解开。理论上不可能通过公钥计算获得私钥。</p>
 <p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c8_9.png" alt="System_design_c8_9"></p>
 <p>非对称加密技术通常用在信息安全传输、数字签名等场合。</p>
 <p>信息发送者A通过公开渠道获得信息接收者B的公钥，对提交信息进行加密，然后发送到B，B得到密文信息后使用私钥解密获得明文信息。即使信息在中途被窃取，没有B的私钥也无法还原明文。</p>
 <p>数字签名的过程则相反，签名者用自己的私钥对信息加密，然后发送给对方，接收方用签名者的公钥对信息进行解密，获得明文信息。由于私钥只有签名者拥有，因此该信息必然是由签名者发送的，不可抵赖，具有签名性质。</p>
 <p>在实际应用中，常常会混合使用对称加密和非对称加密。先使用非对称加密技术对对称密钥进行传输，然后使用对称加密技术进行信息加密解密与交换。另外可以对同一个数据两次使用非对称加密，可同时实现信息的安全传输和数字签名的目的。</p>
 <p>非对称加密的常用算法有RSA算法等。HTTPS传输中浏览器使用的数字证书实质上是经过权威机构认证的非对称加密的公钥。</p>
-<h2 id="密钥安全管理"><a class="markdownIt-Anchor" href="#密钥安全管理"></a> 密钥安全管理</h2>
-<p>上面的加密算法能否达到安全保密关键的一点是密钥的安全。信息的安全是靠密钥保证的。</p>
+<h2 id="密钥安全管理"><a href="#密钥安全管理" class="headerlink" title="密钥安全管理"></a>密钥安全管理</h2><p>上面的加密算法能否达到安全保密关键的一点是密钥的安全。信息的安全是靠密钥保证的。</p>
 <p>改善密钥安全性的手段有两种：</p>
 <p>一种是包密钥和算法放在一个独立的服务器上，甚至做出一个专用的硬件设施，对胃提供加密和解密服务，应用系统通过调用这个服务，实现数据的加密解密。优点是安全性高，但是成本较高，系统开销大，甚至可能称为应用瓶颈。</p>
 <p>另一种方案是将加密解密算法放在应用系统中，密钥则放在独立服务器中，为了提高密钥的安全性，实际存储时，密钥被切分为数片，加密后分别保存在不同的存储介质中，兼顾密钥安全性有改善了性能。</p>
 <p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c8_10.png" alt="System_design_c8_10"></p>
 <p>应用程序调用密钥安全管理系统提供的加密解密服务接口对信息进行加密解密，该接口实现了常用的加密解密算法并根据需求任意扩展。加密解密服务接口则通过密钥服务器的密钥服务取得加密解密密钥，并缓存在本地（定时更新）。而密钥服务器中的密钥则来自多个密钥存储服务器，一个密钥分片后存储在多个服务器中，每个服务器都有专人负责管理。密钥申请者、管理者、安全审核人员通过密钥管理控制台管理更新密钥，没有人能够查看完整的密钥信息。</p>
-<h1 id="信息过滤与反垃圾"><a class="markdownIt-Anchor" href="#信息过滤与反垃圾"></a> 信息过滤与反垃圾</h1>
-<p>常用的信息过滤与反垃圾手段有以下几种。</p>
-<h2 id="文本匹配"><a class="markdownIt-Anchor" href="#文本匹配"></a> 文本匹配</h2>
-<p>文本匹配主要解决敏感词过滤的问题，进行消毒处理或者拒绝发表。</p>
+<h1 id="信息过滤与反垃圾"><a href="#信息过滤与反垃圾" class="headerlink" title="信息过滤与反垃圾"></a>信息过滤与反垃圾</h1><p>常用的信息过滤与反垃圾手段有以下几种。</p>
+<h2 id="文本匹配"><a href="#文本匹配" class="headerlink" title="文本匹配"></a>文本匹配</h2><p>文本匹配主要解决敏感词过滤的问题，进行消毒处理或者拒绝发表。</p>
 <p>如果敏感词较少，可以直接使用正则表达式匹配，但是效率较差，不使用高并发量时以及大数据量时。更好的选择是基于Trie树，或则Trie树的变种，如双数组Trie算法，利用两个稀疏数组存储树结构，base数组存储Trie树的节点，check数组进行状态检查。</p>
 <p>另一种更简单的实现是通过构造多级Hash表进行文本匹配。过滤树的分支可能比较多，为了提高匹配速度，减少不必要的查找，同一层中相同父节点的字可放在Hash表中。</p>
 <p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c8_11.png" alt="System_design_c8_11"></p>
-<p>有时还需要对信息进行降噪预处理，如&quot;笨_%单&quot;。</p>
-<h2 id="分类算法"><a class="markdownIt-Anchor" href="#分类算法"></a> 分类算法</h2>
-<p>用于自动识别广告信息、垃圾邮件等。</p>
+<p>有时还需要对信息进行降噪预处理，如”笨_%单”。</p>
+<h2 id="分类算法"><a href="#分类算法" class="headerlink" title="分类算法"></a>分类算法</h2><p>用于自动识别广告信息、垃圾邮件等。</p>
 <p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c8_12.png" alt="System_design_c8_12"></p>
 <p>比较简单实用的有贝叶斯分类算法，贝叶斯算法认为特征值之间是独立的，所以也成为朴素贝叶斯算法，然而这个假设很多时候是不成立的，特征值之间具有关联性。通过对贝叶斯算法增加特征值的关联依赖处理，得到TAN算法。更进一步，通过对关联规则的聚类挖掘，可以到ARCS(Association Rule Clustering System)等更强大的算法。由于朴素贝叶斯的简单高效，所以其仍然是很多在线系统的首选。</p>
 <p>分类算法除了用于反垃圾，也用于信息自动分类等。</p>
-<h2 id="黑名单"><a class="markdownIt-Anchor" href="#黑名单"></a> 黑名单</h2>
-<p>黑名单可以通过Hash表实现，简单高效，但是内存消耗较大。在黑名单列表非常大时，如果能够容忍小概率的差错，可以使用布隆过滤器代替Hash表(Bloom filter)。Bloom filter是一种常用的处理海量数据的技术。</p>
+<h2 id="黑名单"><a href="#黑名单" class="headerlink" title="黑名单"></a>黑名单</h2><p>黑名单可以通过Hash表实现，简单高效，但是内存消耗较大。在黑名单列表非常大时，如果能够容忍小概率的差错，可以使用布隆过滤器代替Hash表(Bloom filter)。Bloom filter是一种常用的处理海量数据的技术。</p>
 <p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c8_13.png" alt="System_design_c8_13"></p>
 
           
@@ -1923,16 +1752,12 @@ Memcached使用了固定空间分配。将内存空间分为一组Slab，每个s
       
         
           
-            <h1 id="大型网站架构模式"><a class="markdownIt-Anchor" href="#大型网站架构模式"></a> 大型网站架构模式</h1>
-<p>所谓模式就是描述了在我们周围不断重复发生的问题以及该问题解决方案的核心，这样我们可以一次又一次使用该方案而不必重复解决问题。模式的关键在于模式的可重复性，问题与场景的可重复性带来解决方案的可重复使用。</p>
+            <h1 id="大型网站架构模式"><a href="#大型网站架构模式" class="headerlink" title="大型网站架构模式"></a>大型网站架构模式</h1><p>所谓模式就是描述了在我们周围不断重复发生的问题以及该问题解决方案的核心，这样我们可以一次又一次使用该方案而不必重复解决问题。模式的关键在于模式的可重复性，问题与场景的可重复性带来解决方案的可重复使用。</p>
 <p>为了解决大型网站面临的高并发访问、海量数据处理、高可靠运行等一系列问题与挑战，许多公司在实践中提出了许多解决方案，以实现网站高性能、高可用、易伸缩、可扩展、安全等技术架构目标。</p>
-<h2 id="分层"><a class="markdownIt-Anchor" href="#分层"></a> 分层</h2>
-<p>分层是企业应用系统常用的架构模式，将系统在横向维度切分为几个部分（垂直的分为几层），然后通过上层对下层的依赖和调用组成一个完整的系统，如分割为应用层、服务层、数据层，应用层可细分问u视图层、业务逻辑层。服务层可以细分为数据接口层、逻辑处理层。</p>
+<h2 id="分层"><a href="#分层" class="headerlink" title="分层"></a>分层</h2><p>分层是企业应用系统常用的架构模式，将系统在横向维度切分为几个部分（垂直的分为几层），然后通过上层对下层的依赖和调用组成一个完整的系统，如分割为应用层、服务层、数据层，应用层可细分问u视图层、业务逻辑层。服务层可以细分为数据接口层、逻辑处理层。</p>
 <p>不同层可以部署在不同的服务器上，实现低耦合，可伸缩。</p>
-<h2 id="分割"><a class="markdownIt-Anchor" href="#分割"></a> 分割</h2>
-<p>水平分割，例如按照功能将系统分割，包装为高内聚低耦合的模块单元，一方面有助于软件的开发和维护，同样便于不同模块的分布式部署，提高网站的并发处理能力和功能扩张能力。</p>
-<h2 id="分布式"><a class="markdownIt-Anchor" href="#分布式"></a> 分布式</h2>
-<p>对于大型网站，分层和分割的一个主要目的是为了切分后的模块便于分布式部署，可通过增加机器提高并发能力。但分布式需要通过网络，会带来性能的影响，多个服务器也意味着机器出现问题的概率变大，降低网站的可用性。另外一个问题是在分布式的环境中保持数据一致性。</p>
+<h2 id="分割"><a href="#分割" class="headerlink" title="分割"></a>分割</h2><p>水平分割，例如按照功能将系统分割，包装为高内聚低耦合的模块单元，一方面有助于软件的开发和维护，同样便于不同模块的分布式部署，提高网站的并发处理能力和功能扩张能力。</p>
+<h2 id="分布式"><a href="#分布式" class="headerlink" title="分布式"></a>分布式</h2><p>对于大型网站，分层和分割的一个主要目的是为了切分后的模块便于分布式部署，可通过增加机器提高并发能力。但分布式需要通过网络，会带来性能的影响，多个服务器也意味着机器出现问题的概率变大，降低网站的可用性。另外一个问题是在分布式的环境中保持数据一致性。</p>
 <p>几种分布式方案：</p>
 <ol>
 <li>分布式应用和服务：将分层和分割后的应用和服务分布式部署，</li>
@@ -1940,30 +1765,22 @@ Memcached使用了固定空间分配。将内存空间分为一组Slab，每个s
 <li>分布式数据和存储：分布式数据库，NoSQL等。</li>
 <li>分布式计算</li>
 </ol>
-<h2 id="集群"><a class="markdownIt-Anchor" href="#集群"></a> 集群</h2>
-<p>使用分布式虽然已经将分层和分割后的模块独立部署，但是对于用户访问集中的模块，还需要将独立部署的服务器集群化，即多台服务器部署相同服务，通过负载均衡设备共同对外提供服务。通过添加新服务器可以提高服务能力，也就是具有可伸缩性，另外还可以通过失效转移等机制保证可用性。</p>
-<h2 id="缓存"><a class="markdownIt-Anchor" href="#缓存"></a> 缓存</h2>
-<ul>
+<h2 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h2><p>使用分布式虽然已经将分层和分割后的模块独立部署，但是对于用户访问集中的模块，还需要将独立部署的服务器集群化，即多台服务器部署相同服务，通过负载均衡设备共同对外提供服务。通过添加新服务器可以提高服务能力，也就是具有可伸缩性，另外还可以通过失效转移等机制保证可用性。</p>
+<h2 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h2><ul>
 <li><strong>CDN</strong>：内容分发网络，部署在离终端用户最近的网络服务提供商，缓存网站一些静态资源(变化较少的资源)或者热点内容。</li>
 <li><strong>反向代理</strong>：反向代理属于网站前端架构的一部分，部署在网站的前端，当用户请求到达网站的数据中心时，最先访问的就是反向代理服务器，这里缓存网站的静态和热点资源，无需将请求转发给应用服务器就可以返回给用户。</li>
 <li><strong>本地缓存</strong>：在应用服务器本地缓存热点数据，减少访问文件和数据库。</li>
 <li><strong>分布式缓存</strong>：本地缓存一般不够大，另外将数据缓存在一个专门的分布式缓存集群中，通过网络通信访问缓存数据。</li>
 </ul>
-<h2 id="异步"><a class="markdownIt-Anchor" href="#异步"></a> 异步</h2>
-<p>降低软件耦合性，前面分层、分割、分布也是同样的目标。通过异步，业务之间的消息传递不是同步调用，而是将一个业务操作分成多个阶段，每个阶段之间通过共享数据的方式异步执行协作。</p>
+<h2 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h2><p>降低软件耦合性，前面分层、分割、分布也是同样的目标。通过异步，业务之间的消息传递不是同步调用，而是将一个业务操作分成多个阶段，每个阶段之间通过共享数据的方式异步执行协作。</p>
 <p>在单一服务器内部可通过多线程共享内存队列的方式实现异步：在分布式系统中，多个服务器可以通过分布式消息队列实现异步。</p>
 <p>异步架构是典型的生产者消费者模式，两者不存在直接调用，只要保持数据结构不变，批次功能实现可以随意变化而不互相影响，这对网站扩展新功能非常便利。另外，使用异步消息队列还有如下特性。</p>
 <p><strong>提高系统可用性</strong>：消费者服务器发生故障，数据会在消息队列服务器中堆积，生产者可以继续处理业务请求，系统整体无故障。消费者服务器恢复正常后，继续处理消息队列中的数据。</p>
 <p><strong>加快网站相应速度</strong>：处在业务处理前端的生产者服务器可以在处理完业务请求后，将数据写入消息队列后返回，不需要同步等待消费者服务器处理就可以返回，减少相应延迟。</p>
 <p><strong>消除并发访问高峰</strong>：用户访问存在突然的高峰，如果同时同步处理所有访问，会导致网站负载过重，响应延迟。使用消息队列将突然增加的访问请求数据放入消息队列中，等待消费者服务器依次处理，就不会对整个网站负载造成太大压力。</p>
-<h2 id="冗余"><a class="markdownIt-Anchor" href="#冗余"></a> 冗余</h2>
-<p>要保证网站的可用性，需要一定程度的服务器冗余运行，数据冗余备份，这样当某台服务器宕机时，可以将其上的服务和数据访问转移到其他机器上。数据库除了冷备份外，为了保证在线业务高可用，也需要对数据库进行主从分离，实时同步实现热备份。</p>
-<h2 id="自动化"><a class="markdownIt-Anchor" href="#自动化"></a> 自动化</h2>
-<h2 id="安全"><a class="markdownIt-Anchor" href="#安全"></a> 安全</h2>
-<h1 id="大型网站核心要素"><a class="markdownIt-Anchor" href="#大型网站核心要素"></a> 大型网站核心要素</h1>
-<p>除了系统的功能需求外，软件架构还需要关注可能、可用性、伸缩性、扩展性、安全性这个5个架构要素，以及平衡这5个要素之间的关系以实现需求和架构目标。</p>
-<h2 id="性能"><a class="markdownIt-Anchor" href="#性能"></a> 性能</h2>
-<p>性能是网站的一个重要指标，用户无法忍受一个相应缓慢的网站。</p>
+<h2 id="冗余"><a href="#冗余" class="headerlink" title="冗余"></a>冗余</h2><p>要保证网站的可用性，需要一定程度的服务器冗余运行，数据冗余备份，这样当某台服务器宕机时，可以将其上的服务和数据访问转移到其他机器上。数据库除了冷备份外，为了保证在线业务高可用，也需要对数据库进行主从分离，实时同步实现热备份。</p>
+<h2 id="自动化"><a href="#自动化" class="headerlink" title="自动化"></a>自动化</h2><h2 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h2><h1 id="大型网站核心要素"><a href="#大型网站核心要素" class="headerlink" title="大型网站核心要素"></a>大型网站核心要素</h1><p>除了系统的功能需求外，软件架构还需要关注可能、可用性、伸缩性、扩展性、安全性这个5个架构要素，以及平衡这5个要素之间的关系以实现需求和架构目标。</p>
+<h2 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h2><p>性能是网站的一个重要指标，用户无法忍受一个相应缓慢的网站。</p>
 <p>性能的问题无处不在，所以优化的方面也很多：</p>
 <ul>
 <li>在浏览器端，可以通过浏览器缓存、页面压缩、减少cookie传输、JavaScript实现可以在本地实现的功能，减少访问次数</li>
@@ -1976,25 +1793,21 @@ Memcached使用了固定空间分配。将内存空间分为一组Slab，每个s
 <li>NoSQL，Hadoop，分布式计算和存储。</li>
 </ul>
 <p>衡量网站性能有一系列指标，如相应时间、TPS等，可以测试这些指标确定系统是否达到目标。</p>
-<h2 id="可用性"><a class="markdownIt-Anchor" href="#可用性"></a> 可用性</h2>
-<p>高可用架构设计的前提是必然出现服务器宕机，设计目标是服务器宕机时，服务依然可用。</p>
+<h2 id="可用性"><a href="#可用性" class="headerlink" title="可用性"></a>可用性</h2><p>高可用架构设计的前提是必然出现服务器宕机，设计目标是服务器宕机时，服务依然可用。</p>
 <p>实现高可用的主要手段是冗余，应用部署在多台服务器上同时提供服务，数据存储在多台服务器上相互备份，任何一台机器宕机不会影响整体服务，也不会导致数据丢失。</p>
 <p>对于应用服务器，可以通过负载均衡服务器组成一个集群共同对外提供服务，一台机器宕机时可以将服务转移到其他机器上，前提是服务器不在本地保存服务的会话信息。</p>
 <p>对于存储服务器，需要实现实时备份。</p>
-<h2 id="伸缩性"><a class="markdownIt-Anchor" href="#伸缩性"></a> 伸缩性</h2>
-<p>所谓伸缩性是指能否通过不断增加机器来缓解上升用户的并发访问压力和不断增长的数据存储需求。加入新的服务器后是否可以能提供和原来的服务器无差别的服务，集群中可容纳的总得服务器数量是否有限制。</p>
+<h2 id="伸缩性"><a href="#伸缩性" class="headerlink" title="伸缩性"></a>伸缩性</h2><p>所谓伸缩性是指能否通过不断增加机器来缓解上升用户的并发访问压力和不断增长的数据存储需求。加入新的服务器后是否可以能提供和原来的服务器无差别的服务，集群中可容纳的总得服务器数量是否有限制。</p>
 <p>对于应用服务器集群，只要服务器上不保存数据，所有服务器都是对等的，通过使用合适的负载均衡就可以向集群中不断加入服务器。</p>
 <p>对于缓存服务器集群，加入新的服务其可能会导致缓存路由失效，进而导致集群中大部分缓存数据都无法访问。如果应用严重依赖缓存，可能对网站造成严重影响甚至数据库服务崩溃。需要改进缓存路由算法保证缓存数据的可访问性，一个解决方法是一致性hash算法。</p>
 <p>关系数据库虽然支持数据复制，主从热备等机制，但是很难做到大规模集群的可伸缩性，因此关系数据库的集群伸缩方案必须在数据库之外实现，通过路由分区等手段将部署多个数据的服务器组成一个集群。</p>
 <p>至于大部分NoSQL数据库产品，由于其就是为海量数据而生，所以对伸缩性支持都非常好，可以做到在较少操作下实现集群规模的线性伸缩。</p>
-<h2 id="扩展性"><a class="markdownIt-Anchor" href="#扩展性"></a> 扩展性</h2>
-<p>网站的扩展性架构直接关注网站的功能需求。网站快速发展，功能不断扩展，如何设计网站的架构使其能够快速相应需求变化，是网站可扩展的主要目的。</p>
+<h2 id="扩展性"><a href="#扩展性" class="headerlink" title="扩展性"></a>扩展性</h2><p>网站的扩展性架构直接关注网站的功能需求。网站快速发展，功能不断扩展，如何设计网站的架构使其能够快速相应需求变化，是网站可扩展的主要目的。</p>
 <p>衡量网站架构扩展性的好坏的主要标准就是在网站增加新的业务产品时，是否可以实现对现有产品透明无影响，不需要改动或很少改动既有业务功能就可以上线新功能。不同产品之间是否很少耦合，一个产品改动对其他产品无影响。</p>
 <p>网站可伸缩架构的主要手段是事件驱动和分布式服务。</p>
 <p>事件驱动架构在网站使用消息队列实现，将用户请求和其他业务时间构造消息发布到消息队列，消息的处理作为消费者从消息队列中获取消息进行处理。通过这种方式将消息产生和消息处理分离开来，可以透明地增加新的消息生产者任务或者新的消息消费者任务。</p>
 <p>分布式服务则是将业务和可复用的服务分离开来，通过分布式服务框架调用。新增产品可以调用可复用的服务实现自身的业务逻辑，而对现有产品没有任何影响。可复用服务升级变更时，也可以通过提供多版本服务对应用实现透明升级，不需要强制应用同步变更。</p>
-<h2 id="安全性"><a class="markdownIt-Anchor" href="#安全性"></a> 安全性</h2>
-<p>安全架构目的是保证网站不受恶意访问和攻击，保护网站的重要数据不被窃取。</p>
+<h2 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h2><p>安全架构目的是保证网站不受恶意访问和攻击，保护网站的重要数据不被窃取。</p>
 <p>衡量网站安全架构的标准就是针对现存和潜在的各种攻击和窃密手段，是否有可靠的应对策略。</p>
 
           

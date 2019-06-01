@@ -325,7 +325,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/10/08/Research_检索&聚类评价/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/10/08/Research_StanfordNLP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Plusaber">
@@ -345,7 +345,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2015/10/08/Research_检索&聚类评价/" class="post-title-link" itemprop="url">检索&聚类评价</a>
+                <a href="/2015/10/08/Research_StanfordNLP/" class="post-title-link" itemprop="url">Stanford CoreNLP</a>
               
             
           </h1>
@@ -407,8 +407,8 @@
                 </span>
             
                 <span class="post-meta-item-text">Comments: </span>
-                <a href="/2015/10/08/Research_检索&聚类评价/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/08/Research_检索&聚类评价/" itemprop="commentCount"></span>
+                <a href="/2015/10/08/Research_StanfordNLP/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/08/Research_StanfordNLP/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -438,98 +438,7 @@
       
         
           
-            <h1 id="检索Evaluation"><a href="#检索Evaluation" class="headerlink" title="检索Evaluation"></a>检索Evaluation</h1><h2 id="Evaluation-Criteria-of-Unranked-Retrieval"><a href="#Evaluation-Criteria-of-Unranked-Retrieval" class="headerlink" title="Evaluation Criteria of Unranked Retrieval"></a>Evaluation Criteria of Unranked Retrieval</h2><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>-</th>
-<th>Retrieved</th>
-<th>Not-retrieved</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>relevante</td>
-<td>TP(true positive)</td>
-<td>FN(false negative)</td>
-</tr>
-<tr>
-<td>Non-relevant</td>
-<td>FP(false positive)</td>
-<td>TN(true negative)</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3 id="Precision-AND-Recall"><a href="#Precision-AND-Recall" class="headerlink" title="Precision AND Recall"></a><a href="https://en.wikipedia.org/wiki/Precision_and_recall" target="_blank" rel="noopener">Precision AND Recall</a></h3><script type="math/tex; mode=display">
-precision = \frac{TP}{TP+FP}</script><script type="math/tex; mode=display">
-recall = \frac{TP}{TP+FN}</script><h3 id="Precision-Recall-Curve"><a href="#Precision-Recall-Curve" class="headerlink" title="Precision-Recall Curve"></a>Precision-Recall Curve</h3><p>通常precision和recall是呈一种负相关的关系，recall越高，precision越低。precision-recall curve以recall为横坐标，以precision为纵坐标，表示precision-recall变化关系。</p>
-<h3 id="F-Score"><a href="#F-Score" class="headerlink" title="F-Score"></a><a href="https://en.wikipedia.org/wiki/F1_score" target="_blank" rel="noopener">F-Score</a></h3><p>组合precision和recall的评价参数。</p>
-<script type="math/tex; mode=display">
-F = \frac{1}{\alpha\frac 1P + (1-\alpha)\frac 1R} = \frac{(\beta^{2}+1)PR}{\beta^2P+R}</script><p>通常我们取$\beta=1,2,3..=，1$，也就是$\alpha=0.5$，也就是harmonic mean，也写作$F_1$，当取$\beta=1,2,3..$，也就得到$F_1, F_2, F_3..$：</p>
-<script type="math/tex; mode=display">
-F_1 = \frac{2}{\frac 1P + \frac 1R}=\frac{2PR}{R+P}</script><h2 id="Precision-for-Rankded-retrieval"><a href="#Precision-for-Rankded-retrieval" class="headerlink" title="Precision for Rankded retrieval"></a>Precision for Rankded retrieval</h2><h3 id="P-k-AND-R-k"><a href="#P-k-AND-R-k" class="headerlink" title="P@k AND R@k"></a>P@k AND R@k</h3><p>用于表示在top k结果中的precision和Recall，如P@10，表示top 10结果的precision。</p>
-<h3 id="MRR"><a href="#MRR" class="headerlink" title="MRR"></a>MRR</h3><p>也就是Mean reciprocal rank，reciprocal rank表示对于一个query第一个正确结果排名位置的倒数值，也就是$RR=\frac {1}{rank}$。MRR表示多个query的RR的平均值：</p>
-<script type="math/tex; mode=display">
-MRR=\frac{1}{|Q|}\sum^{|Q|}_{i=1}\frac {1}{rank_i}</script><p>维基百科给出了一个很好的例子：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>query</th>
-<th>results</th>
-<th>correct response</th>
-<th>rank</th>
-<th>reciprocal rank</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>cat</td>
-<td>cattern,cati,cats</td>
-<td>cats</td>
-<td>3</td>
-<td>1/3</td>
-</tr>
-<tr>
-<td>torus</td>
-<td>toril,tori,toruses</td>
-<td>tori</td>
-<td>2</td>
-<td>1/2</td>
-</tr>
-<tr>
-<td>virus</td>
-<td>viruses,virii,viri</td>
-<td>viruses</td>
-<td>1</td>
-<td>1</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>$MRR=\frac {(\frac 13 + \frac 12 + 1)}{3}=0.61$</p>
-<h3 id="MAP"><a href="#MAP" class="headerlink" title="MAP"></a>MAP</h3><p>Mean average precision，上面的MRR适合只考虑第一个正确结果检索性能使用，如果有多个正确结果且都要考虑，则应该使用MAP。</p>
-<p>假设query q有m个correct document(or query suggestion etc.).</p>
-<script type="math/tex; mode=display">
-AP(q)=\frac 1m \sum^{i=m}_{i=1}P(RankSet_i)</script><p>$RankSet_i$表示document i排序所在的位置及以上的位置所有的document。假设docuement i=3，排在第7的位置，则$RankSet_3$为1-7的documents，$P(RankSet_i)$即是这个set的precision。</p>
-<p>MAP为多个query的AP的mean：</p>
-<script type="math/tex; mode=display">
-MAP=\frac{1}{|Q|}\sum^{|Q|}_{i=1}{AP(i)}</script><h3 id="DCG-and-nDCG"><a href="#DCG-and-nDCG" class="headerlink" title="DCG and nDCG"></a>DCG and nDCG</h3><p>DCG：Discounted cumulative gain<br>nDCG：Normalized Discounted cumulative gain</p>
-<p>给每个文档指定一个得分，我们希望的得分越高的文档排在越前面。<br>假设一个排名是: $G=[5,2,3,0,10,3]$</p>
-<p>cumulativfe gain可以计算如下：</p>
-<script type="math/tex; mode=display">
-CG[k]=\sum^{k}_{i=1}G[i]</script><p>加上一个惩罚系数，排名越后惩罚越多：</p>
-<script type="math/tex; mode=display">
-DCG[k]=\sum^{k}_{i=1}\frac{G[i]}{log_2(1+i)}</script><p>存在理想的排序$G^`=[10,5,3,3,2,0]$，使得DCG的得分最高。</p>
-<p>使用这个最高得分normal实际的排序，得到就是nDCG得分。</p>
-<script type="math/tex; mode=display">
-nDCG[k]=\frac{DCG[k]}{DCG^`[k]}</script><h2 id="Other-Criteria-of-Effective-IR"><a href="#Other-Criteria-of-Effective-IR" class="headerlink" title="Other Criteria of Effective IR"></a>Other Criteria of Effective IR</h2><ul>
-<li>diversity</li>
-<li>credibility</li>
-<li>comprehensibility</li>
-</ul>
-<h1 id="Clustering-Evaluaition"><a href="#Clustering-Evaluaition" class="headerlink" title="Clustering Evaluaition"></a>Clustering Evaluaition</h1><p>参考<a href="http://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-clustering-1.html" target="_blank" rel="noopener">Evaluation of clustering</a></p>
+            <h1 id="Stanford-CoreNLP"><a href="#Stanford-CoreNLP" class="headerlink" title="Stanford CoreNLP"></a>Stanford CoreNLP</h1><p><a href="http://nlp.stanford.edu/software/corenlp.shtml" target="_blank" rel="noopener">Stanford CoreNLP</a><br><a href="http://nlp.stanford.edu/software/" target="_blank" rel="noopener">The Stanford Natural Language Processing Group</a><br><a href="http://nlp.stanford.edu/software/tagger.shtml" target="_blank" rel="noopener">Stanford Log-linear Part-Of-Speech Tagger</a><br><a href="http://nlp.stanford.edu/software/CRF-NER.shtml" target="_blank" rel="noopener">Stanford Named Entity Recognizer (NER)</a><br><a href="http://nlp.stanford.edu/software/lex-parser.shtml" target="_blank" rel="noopener">The Stanford Parser: A statistical parser</a></p>
 
           
         
@@ -879,33 +788,26 @@ nDCG[k]=\frac{DCG[k]}{DCG^`[k]}</script><h2 id="Other-Criteria-of-Effective-IR">
       
         
           
-            <h2 id="事务"><a class="markdownIt-Anchor" href="#事务"></a> 事务</h2>
-<p>redis中的事务（transaction）和传统关系型数据库中的事务一样，是一组命令的集合。事务同命令一样都是redis最小的执行单位，一个事务中的命令要么都执行，要么都不执行。</p>
+            <h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><p>redis中的事务（transaction）和传统关系型数据库中的事务一样，是一组命令的集合。事务同命令一样都是redis最小的执行单位，一个事务中的命令要么都执行，要么都不执行。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">MULTI</span><br><span class="line"></span><br><span class="line">SADD <span class="string">"user:1:following"</span> 2</span><br><span class="line">SADO <span class="string">"user:2:following"</span> 1</span><br><span class="line"></span><br><span class="line">EXEC</span><br></pre></td></tr></table></figure>
 <p>在执行到EXEC之前，前面的命令并不会马上执行，而是添加到等待执行的事务队列中。如果在EXEC之前事务中断，则事务的所有命令都不会被执行，一旦发送了EXEC命令，所有命令都一定会被执行。</p>
 <p>另外redis事务还保证一个事务内的命令依次执行而不被其他命令插入，也就是在多个客户端的情况下，一旦某个客户端开始执行某个事务，到结束之前，其他客户端的命令都不会被执行。</p>
-<h2 id="错误处理"><a class="markdownIt-Anchor" href="#错误处理"></a> 错误处理</h2>
-<ul>
-<li>
-<p>语法错误<br>
-事务所有命令都不会被执行。</p>
+<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><ul>
+<li><p>语法错误<br>事务所有命令都不会被执行。</p>
 </li>
-<li>
-<p>运行错误。比如使用散列类型的命令操作集合类型的键。这种错误在事务中会被接受并继续执行，也就是即使某条命令出现允许错误，其后面的命令还是会被执行，整个事务会被完成。</p>
+<li><p>运行错误。比如使用散列类型的命令操作集合类型的键。这种错误在事务中会被接受并继续执行，也就是即使某条命令出现允许错误，其后面的命令还是会被执行，整个事务会被完成。</p>
 </li>
 </ul>
 <p><strong>需要注意的是，redis不支持rollback。</strong></p>
-<h2 id="watch命令"><a class="markdownIt-Anchor" href="#watch命令"></a> WATCH命令</h2>
-<p>很多情况下我们需要保证在我们获得某个键值后，该键值不能被其他客户端修改，直到当前客户端执行事务完成，这时我们可以使用WATCH。WATCH命令可以监控一个或多个键，一旦其中有一个键被修改（或删除），之后的事务就不会被执行（与事务的最后一条性质相违背？没有！！）。监控一直持续到EXEC命令（监控可以在MULTI之前进行，从那时就开始监控，事务中的命令是在EXEC之后才执行的，所以在MULTI命令后可以修改WATCH监控，也就是WATCH作用是，从WATCH开始，到MULTI中间，如果被watch的键被修改，那么这个事务不会被执行）。</p>
+<h2 id="WATCH命令"><a href="#WATCH命令" class="headerlink" title="WATCH命令"></a>WATCH命令</h2><p>很多情况下我们需要保证在我们获得某个键值后，该键值不能被其他客户端修改，直到当前客户端执行事务完成，这时我们可以使用WATCH。WATCH命令可以监控一个或多个键，一旦其中有一个键被修改（或删除），之后的事务就不会被执行（与事务的最后一条性质相违背？没有！！）。监控一直持续到EXEC命令（监控可以在MULTI之前进行，从那时就开始监控，事务中的命令是在EXEC之后才执行的，所以在MULTI命令后可以修改WATCH监控，也就是WATCH作用是，从WATCH开始，到MULTI中间，如果被watch的键被修改，那么这个事务不会被执行）。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SET key 1</span><br><span class="line">WATCH key</span><br><span class="line">SET key 2</span><br><span class="line">MULTI</span><br><span class="line">SET key 3</span><br><span class="line">EXEC</span><br><span class="line"></span><br><span class="line">GET key <span class="comment"># 结果是2</span></span><br></pre></td></tr></table></figure>
 <p>执行EXEC命令后会取消对所有键的监控，也可以 用UNWATCH命令来取消监控。</p>
-<h2 id="生存时间"><a class="markdownIt-Anchor" href="#生存时间"></a> 生存时间</h2>
-<p>在redis可以使用EXPIRE命令设置一个键的生存时间，到时间后redis会自动删除。</p>
+<h2 id="生存时间"><a href="#生存时间" class="headerlink" title="生存时间"></a>生存时间</h2><p>在redis可以使用EXPIRE命令设置一个键的生存时间，到时间后redis会自动删除。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">EXPIRE key seconds <span class="comment"># 返回1表示设置成功，0表示失败</span></span><br><span class="line">EXPIRE session:29e3d 900</span><br><span class="line"></span><br><span class="line">TTL key <span class="comment"># 还有多少时间会被删除（秒），-1表示键不存在或没有设置时间</span></span><br><span class="line"></span><br><span class="line">PERSIST key<span class="comment"># 取消生存时间设置（恢复为永久保存）</span></span><br></pre></td></tr></table></figure>
 <p>除了PRESIST外，使用SET或GETSET命令赋值也同时回清除键的生存时间（恢复为永久）。其他命令只对键值进行操作的命令（INCR,LPUSH,HSET,ZREM）都不会影响键的生存时间。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PEXPIRE key 1000 <span class="comment"># 毫秒位单位</span></span><br></pre></td></tr></table></figure>
-<h2 id="实现缓存"><a class="markdownIt-Anchor" href="#实现缓存"></a> 实现缓存</h2>
-<p>为了提高性能和负载能力，我们通常需要将一些访问频率较高或者计算密集的数据结果缓存起来，并希望这些数据能根据具体访问情况自动更新或过期（性能和有效的内存利用）。由于内存有限，我们不可能无限的将所有数据缓存在内存中，需要按照一定的规则淘汰不需要的缓存键，通过配置文件的maxmemory参数我们可以设置redis最大可用内存大小，超出这个限制时redis回根据maxmemory-policy参数指定的策略删除一些键以空出空间。</p>
+<h2 id="实现缓存"><a href="#实现缓存" class="headerlink" title="实现缓存"></a>实现缓存</h2><p>为了提高性能和负载能力，我们通常需要将一些访问频率较高或者计算密集的数据结果缓存起来，并希望这些数据能根据具体访问情况自动更新或过期（性能和有效的内存利用）。由于内存有限，我们不可能无限的将所有数据缓存在内存中，需要按照一定的规则淘汰不需要的缓存键，通过配置文件的maxmemory参数我们可以设置redis最大可用内存大小，超出这个限制时redis回根据maxmemory-policy参数指定的策略删除一些键以空出空间。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -940,20 +842,18 @@ nDCG[k]=\frac{DCG[k]}{DCG^`[k]}</script><h2 id="Other-Criteria-of-Effective-IR">
 </tr>
 </tbody>
 </table>
-<h2 id="排序"><a class="markdownIt-Anchor" href="#排序"></a> 排序</h2>
-<ul>
+</div>
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><ul>
 <li>有序集合</li>
 <li>SORT命令</li>
 </ul>
 <p>SORT可以对集合，列表和有序集合类型进行排序（在对有序集合排序时会忽略元素的分数，只针对元素自身的值进行排序，如数字是根据数字大小，还可以通过ALPHA参数实现按照字典顺序排列非数字元素），使用DESC可以实现将元素从大到小排序。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SORT tag:ruby:posts</span><br><span class="line">SORT myzset</span><br><span class="line"></span><br><span class="line">SORT mylistalpha ALPHA DESC</span><br></pre></td></tr></table></figure>
-<p>另外SORT还支持LIMIT offset count的用法<br>
-<code>SORT tag:ruby:posts DESC LIMIT 1 2</code></p>
+<p>另外SORT还支持LIMIT offset count的用法<br><code>SORT tag:ruby:posts DESC LIMIT 1 2</code></p>
 <ul>
 <li>BY参数</li>
 </ul>
-<p>很多时候列表，集合等中存储的元素值代表的是对象ID，单纯对这些ID排序意义不大，我们需要根据ID对于的对象的某个属性进行排序，这时我们可以使用BY参数。<code>BY 参考键</code>，其中参考键可以是字符串类型键或者是散列类型的某个字段<br>
-（表示为<code>键名-&gt;字段名</code>）。如果提供了BY参数，SORT命令不在根据元素自身的值进行排序，而是对每个元素使用元素的值替换参考键中的第一个<code>*</code>并获取其值，用以进行排序。</p>
+<p>很多时候列表，集合等中存储的元素值代表的是对象ID，单纯对这些ID排序意义不大，我们需要根据ID对于的对象的某个属性进行排序，这时我们可以使用BY参数。<code>BY 参考键</code>，其中参考键可以是字符串类型键或者是散列类型的某个字段<br>（表示为<code>键名-&gt;字段名</code>）。如果提供了BY参数，SORT命令不在根据元素自身的值进行排序，而是对每个元素使用元素的值替换参考键中的第一个<code>*</code>并获取其值，用以进行排序。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SORT tag:ruby:posts BY post:*-&gt;time DESC</span><br></pre></td></tr></table></figure>
 <p>除散列类型外，参考键还可以是字符串类型：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SORT list my itemscore:* DESC</span><br></pre></td></tr></table></figure>
@@ -972,17 +872,12 @@ nDCG[k]=\frac{DCG[k]}{DCG^`[k]}</script><h2 id="Other-Criteria-of-Effective-IR">
 <ul>
 <li>性能优化</li>
 </ul>
-<h2 id="消息通知"><a class="markdownIt-Anchor" href="#消息通知"></a> 消息通知</h2>
-<h3 id="任务队列"><a class="markdownIt-Anchor" href="#任务队列"></a> 任务队列</h3>
-<p>两类实体：生产者和消费者，生产者会将需要处理的任务放入任务队列中，而消费者不断地从任务队列中读入任务信息并执行。使用任务队列可以实现松耦合，使得生产者和消费者都可伸缩，并且在访问量急剧增加的情况下可以根据系统资源情况削峰，降低负载。</p>
-<h3 id="使用redis实现任务队列"><a class="markdownIt-Anchor" href="#使用redis实现任务队列"></a> 使用redis实现任务队列</h3>
-<p>最基本使用redis的列表类型，生产者使用LPUSH加入任务，消费者使用RPOP取出任务并执行（while不断循环，可设置间隔时间）。</p>
+<h2 id="消息通知"><a href="#消息通知" class="headerlink" title="消息通知"></a>消息通知</h2><h3 id="任务队列"><a href="#任务队列" class="headerlink" title="任务队列"></a>任务队列</h3><p>两类实体：生产者和消费者，生产者会将需要处理的任务放入任务队列中，而消费者不断地从任务队列中读入任务信息并执行。使用任务队列可以实现松耦合，使得生产者和消费者都可伸缩，并且在访问量急剧增加的情况下可以根据系统资源情况削峰，降低负载。</p>
+<h3 id="使用redis实现任务队列"><a href="#使用redis实现任务队列" class="headerlink" title="使用redis实现任务队列"></a>使用redis实现任务队列</h3><p>最基本使用redis的列表类型，生产者使用LPUSH加入任务，消费者使用RPOP取出任务并执行（while不断循环，可设置间隔时间）。</p>
 <p>上面的一个确定是消费者需要不断调用RPOP查看是否存在新任务，带了额外的负载压力。我们可以通过BRPOP实现一旦有新任务就通知消费者，消费者在调用BRPOP之后，如果没有任务则会阻塞，知道有新任务加入。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BRPOP queue 0 <span class="comment"># 0表示一直阻塞，其他表示只会阻塞一定时间</span></span><br></pre></td></tr></table></figure>
-<h3 id="优先级队列"><a class="markdownIt-Anchor" href="#优先级队列"></a> 优先级队列</h3>
-<p>有时一个消费者可能能处理相同类型的不同任务，但优先级不同。如VIP客户的订单处理和普通客户的订单处理，可以将不同类型的客户的订单存在不同队列中。BRPOP命令可以同时接收多个键，并处理第一个存在任务的队列的任务。</p>
-<h3 id="发布订阅模式"><a class="markdownIt-Anchor" href="#发布订阅模式"></a> 『发布/订阅』模式</h3>
-<p>除了任务队列以外，redis还提供了一组命令可以让开发者实现&quot;发布/订阅&quot;模式。&quot;发布/订阅&quot;模式同样可以实现进程间的消息传递：订阅者可以订阅一个或若干个频道(channel)，而发布者可以向指定频道发送消息，所有订阅此频道都会收到该消息。</p>
+<h3 id="优先级队列"><a href="#优先级队列" class="headerlink" title="优先级队列"></a>优先级队列</h3><p>有时一个消费者可能能处理相同类型的不同任务，但优先级不同。如VIP客户的订单处理和普通客户的订单处理，可以将不同类型的客户的订单存在不同队列中。BRPOP命令可以同时接收多个键，并处理第一个存在任务的队列的任务。</p>
+<h3 id="『发布-订阅』模式"><a href="#『发布-订阅』模式" class="headerlink" title="『发布/订阅』模式"></a>『发布/订阅』模式</h3><p>除了任务队列以外，redis还提供了一组命令可以让开发者实现”发布/订阅”模式。”发布/订阅”模式同样可以实现进程间的消息传递：订阅者可以订阅一个或若干个频道(channel)，而发布者可以向指定频道发送消息，所有订阅此频道都会收到该消息。</p>
 <p>发布者发布消息:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PUBLIC channel.1 hi</span><br></pre></td></tr></table></figure>
 <p>订阅频道的命令是SUBSCRIBE，可以同时订阅多个频道。</p>
@@ -990,18 +885,16 @@ nDCG[k]=\frac{DCG[k]}{DCG^`[k]}</script><h2 id="Other-Criteria-of-Effective-IR">
 <p>进入订阅状态后客户端可能会收到三种类型的回复。每种类型的回复都包含三个值。第一个值是消息的类型，根据消息类型的不同，第二、第三个值的含义也不同。</p>
 <p>三种类型：</p>
 <ul>
-<li>第一个值为&quot;subsribe&quot;。表示订阅成功的反馈信息，第二个值是订阅成功的频道名称，第三个值是当前客户端订阅的频道数量。</li>
-<li>第一个值为&quot;message&quot;。一般这种类型是我们关心的，表示接受到的消息。第二个值表示频道名称，第三个值表示消息的内容。</li>
+<li>第一个值为”subsribe”。表示订阅成功的反馈信息，第二个值是订阅成功的频道名称，第三个值是当前客户端订阅的频道数量。</li>
+<li>第一个值为”message”。一般这种类型是我们关心的，表示接受到的消息。第二个值表示频道名称，第三个值表示消息的内容。</li>
 <li>unsubscribe，表示成功取消订阅频道。</li>
 </ul>
 <p>使用UNSUBSCRIBE命令可以取消订阅指定的频道，如果不指定参数则会取消所有订阅频道。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UNSUBSCRIBE channel1 channel2 ...</span><br></pre></td></tr></table></figure>
-<h3 id="按照规则订阅"><a class="markdownIt-Anchor" href="#按照规则订阅"></a> 按照规则订阅</h3>
-<p>PSUBSCRIBE支持通配符匹配:</p>
+<h3 id="按照规则订阅"><a href="#按照规则订阅" class="headerlink" title="按照规则订阅"></a>按照规则订阅</h3><p>PSUBSCRIBE支持通配符匹配:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PSUBSCRIBE channel.?*</span><br><span class="line"></span><br><span class="line">1) pmessage</span><br><span class="line">2) channnel.?*</span><br><span class="line">3) channel.1</span><br><span class="line">4) <span class="string">"hi!"</span></span><br></pre></td></tr></table></figure>
 <p>PUNSUBSCRIBE可以退订指定的规则。</p>
-<h2 id="管道"><a class="markdownIt-Anchor" href="#管道"></a> 管道</h2>
-
+<h2 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h2>
           
         
       
@@ -1170,10 +1063,7 @@ nDCG[k]=\frac{DCG[k]}{DCG^`[k]}</script><h2 id="Other-Criteria-of-Effective-IR">
       
         
           
-            <h2 id="introduction"><a class="markdownIt-Anchor" href="#introduction"></a> Introduction</h2>
-<h3 id="key-value数据库"><a class="markdownIt-Anchor" href="#key-value数据库"></a> Key-value数据库</h3>
-<p>Redis是一个key-value数据库，区别与传统的关系型数据库。<br>
-比如一篇文章在redis存储如下：</p>
+            <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><h3 id="Key-value数据库"><a href="#Key-value数据库" class="headerlink" title="Key-value数据库"></a>Key-value数据库</h3><p>Redis是一个key-value数据库，区别与传统的关系型数据库。<br>比如一篇文章在redis存储如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># var[&quot;key&quot;] = &quot;value&quot;</span><br><span class="line">doc[&quot;title&quot;] = &quot;hello, , world&quot;</span><br><span class="line">doc[&quot;author&quot;] = &quot;chen&quot;</span><br><span class="line">doc[&quot;tags&quot;] = [&quot;blog&quot;, &quot;hello&quot;]</span><br></pre></td></tr></table></figure>
 <ul>
 <li>这样存储也与实际doc结构相一致，更加容易操作，而在mysql存储则需要建立一个表存储doc的基本信息，为了表示tags，需要建立第二表存储tags，还需要第三个表连接doc和tags。</li>
@@ -1181,19 +1071,14 @@ nDCG[k]=\frac{DCG[k]}{DCG^`[k]}</script><h2 id="Other-Criteria-of-Effective-IR">
 <li>另外当存在海量的docs时，在关系型数据库中将表示为一张巨大的表，会给索引和检索都带来很大的负担，效率会降低，同时单台机器无法存下过大的表，而垂直增加单台机器的性能是一种很不经济的方式，通过水平扩展增加机器数量是一种更好的解决方案，然而mysql传统关系型数据库对于partition的支持是很差的，难以容易scale。而key-value数据库对于水平扩展具有先天的优势，只需将增加机器，然后将单个单个的文档重新划分到这些机器上，非常容易扩展。</li>
 </ul>
 <p>这些都是key-value数据库的优势，在处理互联网上海量但是非结构化的数据具有很大的优势。key-value数据库对于不同应用和需求也有很多种，如MongoDB,Cassandra,Dynamo等。</p>
-<h3 id="内存存储与持久化"><a class="markdownIt-Anchor" href="#内存存储与持久化"></a> 内存存储与持久化</h3>
-<p>Redis数据库种所有数据都存储在内存种，所以速度非常快，另外redis同时也提供了对持久化的支持，可以将内存的数据异步写到磁盘中。</p>
+<h3 id="内存存储与持久化"><a href="#内存存储与持久化" class="headerlink" title="内存存储与持久化"></a>内存存储与持久化</h3><p>Redis数据库种所有数据都存储在内存种，所以速度非常快，另外redis同时也提供了对持久化的支持，可以将内存的数据异步写到磁盘中。</p>
 <p>另外redis虽然是作为数据库开发的，但是由于其基于内存且提供了很多强大的功能，可以很容易将其用于缓存，队列系统等。</p>
-<h2 id="安装和启动"><a class="markdownIt-Anchor" href="#安装和启动"></a> 安装和启动</h2>
-<h3 id="installation"><a class="markdownIt-Anchor" href="#installation"></a> Installation</h3>
-<ul>
+<h2 id="安装和启动"><a href="#安装和启动" class="headerlink" title="安装和启动"></a>安装和启动</h2><h3 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h3><ul>
 <li>到<a href="http://redis.io/download" target="_blank" rel="noopener">官网</a>下载当前版本。</li>
 <li>解压并编译</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ tar xzf redis-3.0.7.tar.gz</span><br><span class="line">$ <span class="built_in">cd</span> redis-3.0.7</span><br><span class="line">$ make</span><br></pre></td></tr></table></figure>
-<h3 id="启动redis-server"><a class="markdownIt-Anchor" href="#启动redis-server"></a> 启动redis server。</h3>
-<p><code>$ src/redis-server</code><br>
-也可以将<code>redis-server</code>命令直接加入到系统路径里，或者将<code>redis-server</code>复制到<code>/usr/bin/</code>下，这样后面启动redis server就不需要切换到redis目录中。</p>
+<h3 id="启动redis-server。"><a href="#启动redis-server。" class="headerlink" title="启动redis server。"></a>启动redis server。</h3><p><code>$ src/redis-server</code><br>也可以将<code>redis-server</code>命令直接加入到系统路径里，或者将<code>redis-server</code>复制到<code>/usr/bin/</code>下，这样后面启动redis server就不需要切换到redis目录中。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /usr/local/redis-3.0.7 redis安装目录</span></span><br><span class="line">vi ~/.bash_profile <span class="comment">#或者其他系统环境文件</span></span><br><span class="line"><span class="comment"># 添加:</span></span><br><span class="line">PATH=<span class="string">"<span class="variable">$PATH</span>"</span>:/usr/<span class="built_in">local</span>/redis-3.0.7/src</span><br><span class="line"></span><br><span class="line"><span class="built_in">source</span> ~/.bash_profile</span><br></pre></td></tr></table></figure>
 <p>redis默认使用6379端口监听，可以通过<code>--port</code>参数设置。</p>
 <p><code>redis-server --port 6000</code></p>
@@ -1204,21 +1089,16 @@ nDCG[k]=\frac{DCG[k]}{DCG^`[k]}</script><h2 id="Other-Criteria-of-Effective-IR">
 <p>另外如果需要更多的配置，如端口号，持久化文件存放地址等，最好的方式是启动时指定配置文件。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server /path/to/redis/conf</span><br></pre></td></tr></table></figure>
 <p>通过启动参数传递同名的配置选项会覆盖配置文件中相应的参数。</p>
-<h3 id="server交互"><a class="markdownIt-Anchor" href="#server交互"></a> server交互</h3>
-<p>之后可以通过命令行终端或者编程语言接口与server交互。</p>
+<h3 id="server交互"><a href="#server交互" class="headerlink" title="server交互"></a>server交互</h3><p>之后可以通过命令行终端或者编程语言接口与server交互。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ redis-cli</span><br><span class="line"><span class="comment"># redis-cli -h 127.0.0.1 -p 6000 如果需要指定服务所在地址和端口</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># PING 测试连接是否正常</span></span><br><span class="line"></span><br><span class="line">redis&gt; <span class="built_in">set</span> foo bar</span><br><span class="line">OK</span><br><span class="line">redis&gt; get foo</span><br><span class="line"><span class="string">"bar"</span></span><br></pre></td></tr></table></figure>
-<h3 id="停止redis"><a class="markdownIt-Anchor" href="#停止redis"></a> 停止redis</h3>
-<p><code>redis-cli SHUTDOWN</code></p>
-<h2 id="基本使用命令行终端"><a class="markdownIt-Anchor" href="#基本使用命令行终端"></a> 基本使用（命令行终端）</h2>
-<h3 id="redis实例与数据库"><a class="markdownIt-Anchor" href="#redis实例与数据库"></a> redis实例与数据库</h3>
-<p>一个redis实例以默认的配置启动后，提供了多个字典（数据库），客户端可以指定将数据存在哪个数据库中。每个数据库使用一个数字来表示(不支持数据库命名，不同数据库没有不同的访问密码，另外数据库并不是完全隔离的，所以redis里的数据库更像是一种命名空间，所以一个redis实例不适合存储不同应用程序的数据)，默认有16个数据库，可以通过配置参数databases来修改。默认会直接进入0号数据库，可以通过SELECT更换数据库。</p>
+<h3 id="停止redis"><a href="#停止redis" class="headerlink" title="停止redis"></a>停止redis</h3><p><code>redis-cli SHUTDOWN</code></p>
+<h2 id="基本使用（命令行终端）"><a href="#基本使用（命令行终端）" class="headerlink" title="基本使用（命令行终端）"></a>基本使用（命令行终端）</h2><h3 id="redis实例与数据库"><a href="#redis实例与数据库" class="headerlink" title="redis实例与数据库"></a>redis实例与数据库</h3><p>一个redis实例以默认的配置启动后，提供了多个字典（数据库），客户端可以指定将数据存在哪个数据库中。每个数据库使用一个数字来表示(不支持数据库命名，不同数据库没有不同的访问密码，另外数据库并不是完全隔离的，所以redis里的数据库更像是一种命名空间，所以一个redis实例不适合存储不同应用程序的数据)，默认有16个数据库，可以通过配置参数databases来修改。默认会直接进入0号数据库，可以通过SELECT更换数据库。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT 1</span><br></pre></td></tr></table></figure>
-<h3 id="键操作命令"><a class="markdownIt-Anchor" href="#键操作命令"></a> 键操作命令</h3>
-<ul>
-<li>获得符合规则的键名列表<br>
-<code>KEYS pattern # 不区分大小写，可以使用正则表达式</code></li>
+<h3 id="键操作命令"><a href="#键操作命令" class="headerlink" title="键操作命令"></a>键操作命令</h3><ul>
+<li>获得符合规则的键名列表<br><code>KEYS pattern # 不区分大小写，可以使用正则表达式</code></li>
 </ul>
 <p>一些简单的通配符规则：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -1237,7 +1117,7 @@ nDCG[k]=\frac{DCG[k]}{DCG^`[k]}</script><h2 id="Other-Criteria-of-Effective-IR">
 </tr>
 <tr>
 <td>[]</td>
-<td>匹配括号内的任意一个字符，可以使用&quot;-&quot;表示区间，如[a-zA-z]</td>
+<td>匹配括号内的任意一个字符，可以使用”-“表示区间，如[a-zA-z]</td>
 </tr>
 <tr>
 <td>\x</td>
@@ -1245,28 +1125,18 @@ nDCG[k]=\frac{DCG[k]}{DCG^`[k]}</script><h2 id="Other-Criteria-of-Effective-IR">
 </tr>
 </tbody>
 </table>
+</div>
 <ul>
-<li>
-<p>判断键是否存在<br>
-<code>EXISTS key</code><br>
-如果存在则返回整数类型1，否则返回0</p>
+<li><p>判断键是否存在<br><code>EXISTS key</code><br>如果存在则返回整数类型1，否则返回0</p>
 </li>
-<li>
-<p>删除键<br>
-<code>DEL key1 key2 key3 ... # 可以一次删除多个键</code></p>
+<li><p>删除键<br><code>DEL key1 key2 key3 ... # 可以一次删除多个键</code></p>
 </li>
 </ul>
-<p>del命令参数不支持通配符，但是可以结合linux管道和xargs命令实现删除所有符合规则的键，如：<br>
-<code>redis-cli KEYS &quot;*&quot;</code> | xargs redis-cli DEL<br>
-或者以符合规则的键作为参数：<br>
-redis-cli DEL `redis-cli’ KEYS “*” ` # 注意这个一个linux嵌入命令，不是单引号。</p>
+<p>del命令参数不支持通配符，但是可以结合linux管道和xargs命令实现删除所有符合规则的键，如：<br><code>redis-cli KEYS &quot;*&quot;</code> | xargs redis-cli DEL<br>或者以符合规则的键作为参数：<br>redis-cli DEL `redis-cli’ KEYS “*” ` # 注意这个一个linux嵌入命令，不是单引号。</p>
 <ul>
-<li>获得键值的数据类型<br>
-<code>TYPE key</code><br>
-返回值可能为string, hash, list, set, zset(有序集合类型)</li>
+<li>获得键值的数据类型<br><code>TYPE key</code><br>返回值可能为string, hash, list, set, zset(有序集合类型)</li>
 </ul>
-<h3 id="基本操作命令"><a class="markdownIt-Anchor" href="#基本操作命令"></a> 基本操作命令</h3>
-<ul>
+<h3 id="基本操作命令"><a href="#基本操作命令" class="headerlink" title="基本操作命令"></a>基本操作命令</h3><ul>
 <li>赋值与取值</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SET key value</span><br><span class="line">GET key</span><br></pre></td></tr></table></figure>
@@ -1290,8 +1160,7 @@ redis-cli DEL `redis-cli’ KEYS “*” ` # 注意这个一个linux嵌入命令
 <li>位操作</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GETBIT key offset <span class="comment"># 可以对字符串操作</span></span><br><span class="line">SETBIT key offset value</span><br><span class="line">BITCOUNT key [start] [end] <span class="comment"># 1的个数</span></span><br><span class="line">BITOP operation destkey key1 key2 ...</span><br></pre></td></tr></table></figure>
-<h3 id="散列类型"><a class="markdownIt-Anchor" href="#散列类型"></a> 散列类型</h3>
-<p>散列类型适合存储对象，使用对象类别和ID构成键名，使用字段表示对象的属性，而字段值则存储属性值（除了散列类型，redis的其他数据类型同样不支持数据类型嵌套，如集合类型的每个元素都只能是字符串，不能是另一个集合或散列）。</p>
+<h3 id="散列类型"><a href="#散列类型" class="headerlink" title="散列类型"></a>散列类型</h3><p>散列类型适合存储对象，使用对象类别和ID构成键名，使用字段表示对象的属性，而字段值则存储属性值（除了散列类型，redis的其他数据类型同样不支持数据类型嵌套，如集合类型的每个元素都只能是字符串，不能是另一个集合或散列）。</p>
 <ul>
 <li>赋值与取值</li>
 </ul>
@@ -1317,8 +1186,7 @@ redis-cli DEL `redis-cli’ KEYS “*” ` # 注意这个一个linux嵌入命令
 <li>获取字段名或字段值（属性值），字段数量</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">HKEYS key</span><br><span class="line">HVALS key</span><br><span class="line">HLEN key</span><br></pre></td></tr></table></figure>
-<h3 id="列表类型"><a class="markdownIt-Anchor" href="#列表类型"></a> 列表类型</h3>
-<p>列表类型list可以存储一个有序的字符串列表，常用操作是向列表两段添加元素，或者获得列表的一个片段。redis中列表是使用双向链表实现，头尾添加删除很快，注意索引访问速度会比较慢，特别是访问中间的元素。</p>
+<h3 id="列表类型"><a href="#列表类型" class="headerlink" title="列表类型"></a>列表类型</h3><p>列表类型list可以存储一个有序的字符串列表，常用操作是向列表两段添加元素，或者获得列表的一个片段。redis中列表是使用双向链表实现，头尾添加删除很快，注意索引访问速度会比较慢，特别是访问中间的元素。</p>
 <ul>
 <li>向两端加入元素</li>
 </ul>
@@ -1339,58 +1207,37 @@ redis-cli DEL `redis-cli’ KEYS “*” ` # 注意这个一个linux嵌入命令
 <li>删除指定值</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LREM key count value <span class="comment"># 删除列表中前count个值为value的元素</span></span><br><span class="line"><span class="comment"># count&lt;0从右边开始删除，count=0删除所有</span></span><br></pre></td></tr></table></figure>
-<h3 id="集合类型"><a class="markdownIt-Anchor" href="#集合类型"></a> 集合类型</h3>
-<p>集合使用hashset实现。</p>
+<h3 id="集合类型"><a href="#集合类型" class="headerlink" title="集合类型"></a>集合类型</h3><p>集合使用hashset实现。</p>
 <ul>
 <li>增加/删除元素</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SADD key member1 member2 ... <span class="comment"># 返回新增成功的个数</span></span><br><span class="line">SREM key member1 member2 ... <span class="comment"># 返回删除成功的个数</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li>
-<p>获得所有元素<br>
-<code>SMEMBERS key</code></p>
+<li><p>获得所有元素<br><code>SMEMBERS key</code></p>
 </li>
-<li>
-<p>判断是否存在<br>
-<code>SISMEMBER key member</code></p>
+<li><p>判断是否存在<br><code>SISMEMBER key member</code></p>
 </li>
-<li>
-<p>集合间运算</p>
+<li><p>集合间运算</p>
 </li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SDIFF key1 key2 ...</span><br><span class="line">SINTER key1 key2 ...</span><br><span class="line">SUNION key1 key2 ...</span><br><span class="line"></span><br><span class="line">SDIFFSTORE destination key1 key2...</span><br><span class="line">SINTERSTORE destination key1 key2... </span><br><span class="line">SUNIONSTORE destination key1 key2...</span><br></pre></td></tr></table></figure>
 <ul>
-<li>
-<p>元素个数<br>
-<code>SCARD key</code></p>
+<li><p>元素个数<br><code>SCARD key</code></p>
 </li>
-<li>
-<p>随机获得集合元素<br>
-<code>SRANDMEMBER key [count]</code></p>
+<li><p>随机获得集合元素<br><code>SRANDMEMBER key [count]</code></p>
 </li>
-<li>
-<p>随机弹出一个元素<br>
-<code>SPOP key</code></p>
+<li><p>随机弹出一个元素<br><code>SPOP key</code></p>
 </li>
 </ul>
-<h3 id="有序集合类型"><a class="markdownIt-Anchor" href="#有序集合类型"></a> 有序集合类型</h3>
-<p>sorted set，每个元素具有分数（权值）的set，如果将当分数设为index大小，则可以实现list的功能。</p>
+<h3 id="有序集合类型"><a href="#有序集合类型" class="headerlink" title="有序集合类型"></a>有序集合类型</h3><p>sorted set，每个元素具有分数（权值）的set，如果将当分数设为index大小，则可以实现list的功能。</p>
 <ul>
-<li>
-<p>增加元素<br>
-<code>ZADD key score1 member1 score2 ...</code></p>
+<li><p>增加元素<br><code>ZADD key score1 member1 score2 ...</code></p>
 </li>
-<li>
-<p>获得元素的分数<br>
-<code>ZSCORE key member</code></p>
+<li><p>获得元素的分数<br><code>ZSCORE key member</code></p>
 </li>
-<li>
-<p>获得排名在某个范围内的元素列表<br>
-<code>ZRANGE key start stop [WITHSCORES]</code> # 分数从小到大<br>
-<code>Zrevrange key start stop [WITHSCORES]</code> # 分数从大到小</p>
+<li><p>获得排名在某个范围内的元素列表<br><code>ZRANGE key start stop [WITHSCORES]</code> # 分数从小到大<br><code>Zrevrange key start stop [WITHSCORES]</code> # 分数从大到小</p>
 </li>
-<li>
-<p>获得指定分数范围</p>
+<li><p>获得指定分数范围</p>
 </li>
 </ul>
 <p><code>ZRANGEBYSCORE key min max [WITHSCORES] [LIMIT offset count]</code></p>
@@ -2083,15 +1930,15 @@ $$\sum_{i=1}^n a_i=0</script><script type="math/tex; mode=display">f(x_1,x_x,\ld
   
     
       
+    
+      
+    
+      
+    
+      
+    
+      
         
-      
-    
-      
-    
-      
-    
-      
-    
       
     
   

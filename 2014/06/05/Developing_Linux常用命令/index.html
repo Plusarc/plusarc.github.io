@@ -98,18 +98,18 @@
 
 
 
-  <meta name="description" content="Linux常用命令  ssh 用于远程登录服务器，ssh -l chen 192.168.1.49。常用参数是用户名和服务器IP地址。更多参数参考ssh -help。  scp 用于节点之间数据的传输，一般形式为scp [参数] [原路径] [目标路径]。常用参数为-r用于传输文件夹。本地路径直接使用绝对路径或相对路径，远程路径需要加上目标节点地址和用户，形式为username@ip_addre">
+  <meta name="description" content="Linux常用命令ssh用于远程登录服务器，ssh -l chen 192.168.1.49。常用参数是用户名和服务器IP地址。更多参数参考ssh -help。 scp用于节点之间数据的传输，一般形式为scp [参数] [原路径] [目标路径]。常用参数为-r用于传输文件夹。本地路径直接使用绝对路径或相对路径，远程路径需要加上目标节点地址和用户，形式为username@ip_address:/us">
 <meta name="keywords" content="linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux常用命令">
 <meta property="og:url" content="http://yoursite.com/2014/06/05/Developing_Linux常用命令/index.html">
 <meta property="og:site_name" content="Plusaber&#39;s Blog">
-<meta property="og:description" content="Linux常用命令  ssh 用于远程登录服务器，ssh -l chen 192.168.1.49。常用参数是用户名和服务器IP地址。更多参数参考ssh -help。  scp 用于节点之间数据的传输，一般形式为scp [参数] [原路径] [目标路径]。常用参数为-r用于传输文件夹。本地路径直接使用绝对路径或相对路径，远程路径需要加上目标节点地址和用户，形式为username@ip_addre">
+<meta property="og:description" content="Linux常用命令ssh用于远程登录服务器，ssh -l chen 192.168.1.49。常用参数是用户名和服务器IP地址。更多参数参考ssh -help。 scp用于节点之间数据的传输，一般形式为scp [参数] [原路径] [目标路径]。常用参数为-r用于传输文件夹。本地路径直接使用绝对路径或相对路径，远程路径需要加上目标节点地址和用户，形式为username@ip_address:/us">
 <meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2016-01-27T14:08:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux常用命令">
-<meta name="twitter:description" content="Linux常用命令  ssh 用于远程登录服务器，ssh -l chen 192.168.1.49。常用参数是用户名和服务器IP地址。更多参数参考ssh -help。  scp 用于节点之间数据的传输，一般形式为scp [参数] [原路径] [目标路径]。常用参数为-r用于传输文件夹。本地路径直接使用绝对路径或相对路径，远程路径需要加上目标节点地址和用户，形式为username@ip_addre">
+<meta name="twitter:description" content="Linux常用命令ssh用于远程登录服务器，ssh -l chen 192.168.1.49。常用参数是用户名和服务器IP地址。更多参数参考ssh -help。 scp用于节点之间数据的传输，一般形式为scp [参数] [原路径] [目标路径]。常用参数为-r用于传输文件夹。本地路径直接使用绝对路径或相对路径，远程路径需要加上目标节点地址和用户，形式为username@ip_address:/us">
 
 
 
@@ -435,25 +435,15 @@
       
 
       
-        <h1 id="linux常用命令"><a class="markdownIt-Anchor" href="#linux常用命令"></a> Linux常用命令</h1>
-<h2 id="ssh"><a class="markdownIt-Anchor" href="#ssh"></a> <strong>ssh</strong></h2>
-<p>用于远程登录服务器，<code>ssh -l chen 192.168.1.49</code>。常用参数是用户名和服务器IP地址。更多参数参考<code>ssh -help</code>。</p>
-<h2 id="scp"><a class="markdownIt-Anchor" href="#scp"></a> <strong>scp</strong></h2>
-<p>用于节点之间数据的传输，一般形式为<code>scp [参数] [原路径] [目标路径]</code>。常用参数为<code>-r</code>用于传输文件夹。本地路径直接使用绝对路径或相对路径，远程路径需要加上目标节点地址和用户，形式为<code>username@ip_address:/usr/target_path</code>。</p>
+        <h1 id="Linux常用命令"><a href="#Linux常用命令" class="headerlink" title="Linux常用命令"></a>Linux常用命令</h1><h2 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a><strong>ssh</strong></h2><p>用于远程登录服务器，<code>ssh -l chen 192.168.1.49</code>。常用参数是用户名和服务器IP地址。更多参数参考<code>ssh -help</code>。</p>
+<h2 id="scp"><a href="#scp" class="headerlink" title="scp"></a><strong>scp</strong></h2><p>用于节点之间数据的传输，一般形式为<code>scp [参数] [原路径] [目标路径]</code>。常用参数为<code>-r</code>用于传输文件夹。本地路径直接使用绝对路径或相对路径，远程路径需要加上目标节点地址和用户，形式为<code>username@ip_address:/usr/target_path</code>。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scp -r data chen@192.xxx.xx.xx:/home/chen/xxx</span><br><span class="line">scp query.sql chen@192.xxx.xx.xx:/home/chen/xxx</span><br></pre></td></tr></table></figure>
-<h2 id="tar"><a class="markdownIt-Anchor" href="#tar"></a> <strong>tar</strong></h2>
-<p>用于文件压缩解压，如压缩文件<code>tar -zxvf apache-ant-1.8.1-bin.tar.gz</code>。更多参数参考<code>tar -help</code>。</p>
-<h2 id="ps"><a class="markdownIt-Anchor" href="#ps"></a> <strong>ps</strong></h2>
-<p>列出进程信息，可以结合grep过滤留下感兴趣的进程信息。</p>
-<h2 id="kill"><a class="markdownIt-Anchor" href="#kill"></a> <strong>kill</strong></h2>
-<p>根据进程号结束进程。</p>
-<h2 id="netstat"><a class="markdownIt-Anchor" href="#netstat"></a> <strong>netstat</strong></h2>
-<p>查看端口使用情况，<code>sudo netstat -tulpn</code>。</p>
-<h2 id="nohup"><a class="markdownIt-Anchor" href="#nohup"></a> <strong>nohup</strong></h2>
-<p>在命令后加上<code>&amp;</code>使得服务在后台运行：<code>sh run.sh &amp;</code>。这种情况关掉终端服务会停止运<br>
-可以使用nohup使得关掉端口服务也会继续运行：<code>nohup sh run.sh &amp;</code>。</p>
-<h2 id="修改环境配置文件主要有三种方法"><a class="markdownIt-Anchor" href="#修改环境配置文件主要有三种方法"></a> 修改环境配置文件，主要有三种方法：</h2>
-<ul>
+<h2 id="tar"><a href="#tar" class="headerlink" title="tar"></a><strong>tar</strong></h2><p>用于文件压缩解压，如压缩文件<code>tar -zxvf apache-ant-1.8.1-bin.tar.gz</code>。更多参数参考<code>tar -help</code>。</p>
+<h2 id="ps"><a href="#ps" class="headerlink" title="ps"></a><strong>ps</strong></h2><p>列出进程信息，可以结合grep过滤留下感兴趣的进程信息。</p>
+<h2 id="kill"><a href="#kill" class="headerlink" title="kill"></a><strong>kill</strong></h2><p>根据进程号结束进程。</p>
+<h2 id="netstat"><a href="#netstat" class="headerlink" title="netstat"></a><strong>netstat</strong></h2><p>查看端口使用情况，<code>sudo netstat -tulpn</code>。</p>
+<h2 id="nohup"><a href="#nohup" class="headerlink" title="nohup"></a><strong>nohup</strong></h2><p>在命令后加上<code>&amp;</code>使得服务在后台运行：<code>sh run.sh &amp;</code>。这种情况关掉终端服务会停止运<br>可以使用nohup使得关掉端口服务也会继续运行：<code>nohup sh run.sh &amp;</code>。</p>
+<h2 id="修改环境配置文件，主要有三种方法："><a href="#修改环境配置文件，主要有三种方法：" class="headerlink" title="修改环境配置文件，主要有三种方法："></a>修改环境配置文件，主要有三种方法：</h2><ul>
 <li>修改/etc/profile，一般需要root权限。</li>
 <li>修改用户目录下的.bashrc文件，推荐使用。</li>
 <li>直接在shell下修改，终端关闭后配置的内容失效。</li>
@@ -760,7 +750,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#linux常用命令"><span class="nav-number">1.</span> <span class="nav-text"> Linux常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ssh"><span class="nav-number">1.1.</span> <span class="nav-text"> ssh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#scp"><span class="nav-number">1.2.</span> <span class="nav-text"> scp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tar"><span class="nav-number">1.3.</span> <span class="nav-text"> tar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ps"><span class="nav-number">1.4.</span> <span class="nav-text"> ps</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kill"><span class="nav-number">1.5.</span> <span class="nav-text"> kill</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#netstat"><span class="nav-number">1.6.</span> <span class="nav-text"> netstat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nohup"><span class="nav-number">1.7.</span> <span class="nav-text"> nohup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改环境配置文件主要有三种方法"><span class="nav-number">1.8.</span> <span class="nav-text"> 修改环境配置文件，主要有三种方法：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux常用命令"><span class="nav-number">1.</span> <span class="nav-text">Linux常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ssh"><span class="nav-number">1.1.</span> <span class="nav-text">ssh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#scp"><span class="nav-number">1.2.</span> <span class="nav-text">scp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tar"><span class="nav-number">1.3.</span> <span class="nav-text">tar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ps"><span class="nav-number">1.4.</span> <span class="nav-text">ps</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kill"><span class="nav-number">1.5.</span> <span class="nav-text">kill</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#netstat"><span class="nav-number">1.6.</span> <span class="nav-text">netstat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nohup"><span class="nav-number">1.7.</span> <span class="nav-text">nohup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改环境配置文件，主要有三种方法："><span class="nav-number">1.8.</span> <span class="nav-text">修改环境配置文件，主要有三种方法：</span></a></li></ol></li></ol></div>
             
 
           </div>

@@ -98,18 +98,18 @@
 
 
 
-  <meta name="description" content="假设我们要实现鸭子对象及其行为，假设鸭子行为有鸣叫，颜色，飞行等。  Several method  With Extending 很自然的做法是定义一个鸭子父类，然后定义特定鸭子的子类。 由于不同的鸭子有不同的鸣叫，颜色，飞行等行为，如果把这些行为都放在鸭子父类中，则会导致部分不具有这些行为的鸭子也变得具有这些行为，一种弥补方法是对于这些行为什么都不做，但是会导致代码僵化，如果需要改动则需要修改">
+  <meta name="description" content="假设我们要实现鸭子对象及其行为，假设鸭子行为有鸣叫，颜色，飞行等。 Several methodWith Extending很自然的做法是定义一个鸭子父类，然后定义特定鸭子的子类。 由于不同的鸭子有不同的鸣叫，颜色，飞行等行为，如果把这些行为都放在鸭子父类中，则会导致部分不具有这些行为的鸭子也变得具有这些行为，一种弥补方法是对于这些行为什么都不做，但是会导致代码僵化，如果需要改动则需要修改所有鸭子">
 <meta name="keywords" content="design pattern">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Strategy Pattern">
 <meta property="og:url" content="http://yoursite.com/2014/10/10/Design Pattern_Strategy pattern/index.html">
 <meta property="og:site_name" content="Plusaber&#39;s Blog">
-<meta property="og:description" content="假设我们要实现鸭子对象及其行为，假设鸭子行为有鸣叫，颜色，飞行等。  Several method  With Extending 很自然的做法是定义一个鸭子父类，然后定义特定鸭子的子类。 由于不同的鸭子有不同的鸣叫，颜色，飞行等行为，如果把这些行为都放在鸭子父类中，则会导致部分不具有这些行为的鸭子也变得具有这些行为，一种弥补方法是对于这些行为什么都不做，但是会导致代码僵化，如果需要改动则需要修改">
+<meta property="og:description" content="假设我们要实现鸭子对象及其行为，假设鸭子行为有鸣叫，颜色，飞行等。 Several methodWith Extending很自然的做法是定义一个鸭子父类，然后定义特定鸭子的子类。 由于不同的鸭子有不同的鸣叫，颜色，飞行等行为，如果把这些行为都放在鸭子父类中，则会导致部分不具有这些行为的鸭子也变得具有这些行为，一种弥补方法是对于这些行为什么都不做，但是会导致代码僵化，如果需要改动则需要修改所有鸭子">
 <meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2015-12-23T14:47:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Strategy Pattern">
-<meta name="twitter:description" content="假设我们要实现鸭子对象及其行为，假设鸭子行为有鸣叫，颜色，飞行等。  Several method  With Extending 很自然的做法是定义一个鸭子父类，然后定义特定鸭子的子类。 由于不同的鸭子有不同的鸣叫，颜色，飞行等行为，如果把这些行为都放在鸭子父类中，则会导致部分不具有这些行为的鸭子也变得具有这些行为，一种弥补方法是对于这些行为什么都不做，但是会导致代码僵化，如果需要改动则需要修改">
+<meta name="twitter:description" content="假设我们要实现鸭子对象及其行为，假设鸭子行为有鸣叫，颜色，飞行等。 Several methodWith Extending很自然的做法是定义一个鸭子父类，然后定义特定鸭子的子类。 由于不同的鸭子有不同的鸣叫，颜色，飞行等行为，如果把这些行为都放在鸭子父类中，则会导致部分不具有这些行为的鸭子也变得具有这些行为，一种弥补方法是对于这些行为什么都不做，但是会导致代码僵化，如果需要改动则需要修改所有鸭子">
 
 
 
@@ -436,44 +436,32 @@
 
       
         <p>假设我们要实现鸭子对象及其行为，假设鸭子行为有鸣叫，颜色，飞行等。</p>
-<h1 id="several-method"><a class="markdownIt-Anchor" href="#several-method"></a> Several method</h1>
-<h2 id="with-extending"><a class="markdownIt-Anchor" href="#with-extending"></a> With Extending</h2>
-<p>很自然的做法是定义一个鸭子父类，然后定义特定鸭子的子类。</p>
+<h1 id="Several-method"><a href="#Several-method" class="headerlink" title="Several method"></a>Several method</h1><h2 id="With-Extending"><a href="#With-Extending" class="headerlink" title="With Extending"></a>With Extending</h2><p>很自然的做法是定义一个鸭子父类，然后定义特定鸭子的子类。</p>
 <p>由于不同的鸭子有不同的鸣叫，颜色，飞行等行为，如果把这些行为都放在鸭子父类中，则会导致部分不具有这些行为的鸭子也变得具有这些行为，一种弥补方法是对于这些行为什么都不做，但是会导致代码僵化，如果需要改动则需要修改所有鸭子的代码。</p>
-<h2 id="with-interface"><a class="markdownIt-Anchor" href="#with-interface"></a> With Interface</h2>
-<ul>
+<h2 id="With-Interface"><a href="#With-Interface" class="headerlink" title="With Interface"></a>With Interface</h2><ul>
 <li>另一种实现方法是使用接口，把会飞，会叫这些行为各自独立抽象出接口，对于需要具有这些行为的鸭子，使这些鸭子实现相应的接口即可。看起来很不错，但是一个问题是，接口不具有实现代码，也就是无法达到代码的复用，如果某种功能需要更改，比如飞行行为。在这个问题下，如果许多鸭子其实是具有相同的飞行行为的，如果需要进行调整，则同样需要修改所有这些鸭子的飞行行为。</li>
 </ul>
-<h2 id="strategy-mode"><a class="markdownIt-Anchor" href="#strategy-mode"></a> Strategy mode</h2>
-<p>这里问题的关键是：<strong>没有分离出变化部分和稳定部分</strong>。一个设计原则是：</p>
+<h2 id="Strategy-mode"><a href="#Strategy-mode" class="headerlink" title="Strategy mode"></a>Strategy mode</h2><p>这里问题的关键是：<strong>没有分离出变化部分和稳定部分</strong>。一个设计原则是：</p>
 <p><strong>找出应用中可能需要变化之处，把它们独立出来，不要和哪些不需要变化的代码混在一起。</strong></p>
 <ul>
 <li>根据上面的分析，我们应该把变化的部分和不变的不变的部分区分开来。</li>
 </ul>
 <p>假设在这个问题下fly()和quack()行为是会随着鸭子的不同而改变的，但并不是每种鸭子的行为都是不同功能的，部分鸭子会共享某种飞行行为或quack行为。这里我们不使用接口来抽象这些行为，因为前面提到，部分鸭子会共享某种飞行行为或quack行为，使用抽象则会导致无法复用这些代码。这里我们分别建立一组抽象来代表每个行为（可以为接口）。</p>
 <p>然后对于几种不同的行为，分别实现具体类继承定义的抽象behavior。然后在鸭子类引用这些类的实例，通过调用这些实例的实现方法来实现鸭子的相应行为。也就是具体行为的实现是在这些具体行为类中实现的，鸭子只是调用这些实现方法来实现相应行为。</p>
-<p>上面解释的过于抽象，简单说来关键在于：<br>
-<strong>鸭子现在将飞行和鸣叫的动作『委托』别人处理(独立的behavior接口)，而不是定义在鸭子类内部的飞行方法或鸣叫方法(仍然会有相关方法，但是其内容就是简单的引用behavior类的具体实现)。</strong></p>
+<p>上面解释的过于抽象，简单说来关键在于：<br><strong>鸭子现在将飞行和鸣叫的动作『委托』别人处理(独立的behavior接口)，而不是定义在鸭子类内部的飞行方法或鸣叫方法(仍然会有相关方法，但是其内容就是简单的引用behavior类的具体实现)。</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Duck</span> </span>&#123;</span><br><span class="line">	FlyBehaviour flyb;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">performFly</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		flyb.fly();  <span class="comment">// 委托给行为类</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MallarDuck</span> <span class="keyword">extends</span> <span class="title">Duck</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MalllardDuck</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		flyb = <span class="keyword">new</span> HighFlyBehavior();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NanoDuck</span> <span class="keyword">extends</span> <span class="title">Duck</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MalllardDuck</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		flyb = <span class="keyword">new</span> SpaceFlyBehavior();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>另外，在鸭子类中应用behavior类时，需要注意：<br>
-<strong>针对接口编程，而不是针对具体实现编程。</strong></p>
+<p>另外，在鸭子类中应用behavior类时，需要注意：<br><strong>针对接口编程，而不是针对具体实现编程。</strong></p>
 <p>也就是我们在鸭子类中的依赖应该是抽象behavior类引用，而不是behavior的具体实现类，否则会造成鸭子类behavior限定于某个实现类，不利于后面的改变扩展。</p>
 <ul>
 <li>进一步增强，实现动态设定行为。</li>
 </ul>
 <p>前面我们通过在鸭子类内部引用behaviour类来完成具体行为，具体是在鸭子类构造函数内完成behaviour的实例化。由于具体行为是由behaviour类的实例完成，这也就是给我们提供了动态改变鸭子实例的行为，比如通过setFlyBehaviour(FlyBehavior fb)方法设定新的行为实现类，我们便可以在运行时改变鸭子的行为。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Duck</span> </span>&#123;</span><br><span class="line">	FlyBehaviour flyb;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">performFly</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		flyb.fly();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFlyBehaviour</span><span class="params">(FlyBehavior fb)</span> </span>&#123;</span><br><span class="line">		flyb = fb;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="summary"><a class="markdownIt-Anchor" href="#summary"></a> Summary</h1>
-<p>很多时候&quot;有一个&quot;可能比&quot;是一个&quot;更好，这也是一个重要的设计原则：<br>
-<strong>多用组合，少用继承。</strong><br>
-前面提到的还有：<br>
-<strong>找出应用中可能需要变化之处，把它们独立出来，不要和哪些不需要变化的代码混在一起。</strong><br>
-<strong>针对接口编程，而不是针对具体实现编程。</strong></p>
+<h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><p>很多时候”有一个”可能比”是一个”更好，这也是一个重要的设计原则：<br><strong>多用组合，少用继承。</strong><br>前面提到的还有：<br><strong>找出应用中可能需要变化之处，把它们独立出来，不要和哪些不需要变化的代码混在一起。</strong><br><strong>针对接口编程，而不是针对具体实现编程。</strong></p>
 <p>使用组合建立系统具有很大的弹性，不仅可将算法族封装成类，更可以在运行时动态的改变行为，只要组合的行为对象符合正确的接口标准即可。</p>
-<h1 id="strategy-pattern"><a class="markdownIt-Anchor" href="#strategy-pattern"></a> Strategy Pattern</h1>
-<p>前面使用的模式就是策略模式。策略模式定义了算法族，并分别封装起来，让它们之间可以互相替换。此模式让算法的变化独立于使用算法的类。</p>
+<h1 id="Strategy-Pattern"><a href="#Strategy-Pattern" class="headerlink" title="Strategy Pattern"></a>Strategy Pattern</h1><p>前面使用的模式就是策略模式。策略模式定义了算法族，并分别封装起来，让它们之间可以互相替换。此模式让算法的变化独立于使用算法的类。</p>
 
       
     </div>
@@ -766,7 +754,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#several-method"><span class="nav-number">1.</span> <span class="nav-text"> Several method</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#with-extending"><span class="nav-number">1.1.</span> <span class="nav-text"> With Extending</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#with-interface"><span class="nav-number">1.2.</span> <span class="nav-text"> With Interface</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strategy-mode"><span class="nav-number">1.3.</span> <span class="nav-text"> Strategy mode</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#summary"><span class="nav-number">2.</span> <span class="nav-text"> Summary</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#strategy-pattern"><span class="nav-number">3.</span> <span class="nav-text"> Strategy Pattern</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Several-method"><span class="nav-number">1.</span> <span class="nav-text">Several method</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#With-Extending"><span class="nav-number">1.1.</span> <span class="nav-text">With Extending</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#With-Interface"><span class="nav-number">1.2.</span> <span class="nav-text">With Interface</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strategy-mode"><span class="nav-number">1.3.</span> <span class="nav-text">Strategy mode</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Summary"><span class="nav-number">2.</span> <span class="nav-text">Summary</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Strategy-Pattern"><span class="nav-number">3.</span> <span class="nav-text">Strategy Pattern</span></a></li></ol></div>
             
 
           </div>

@@ -98,18 +98,18 @@
 
 
 
-  <meta name="description" content="CLASSPATH、PATH、JAVA_HOME的作用及JAVA环境变量配置  CLASSPATH 它是javac编译器的一个环境变量。用与import、package关键字有关。作用是指定类搜索路径，要使用已经编写好的类，前提当然是能够找到它们了，JVM就是通过CLASSPATH来寻找类的。我们需要把jdk安装目录下的lib子目录中的dt.jar和tools.jar设置到CLASSPATH中，">
+  <meta name="description" content="CLASSPATH、PATH、JAVA_HOME的作用及JAVA环境变量配置CLASSPATH它是javac编译器的一个环境变量。用与import、package关键字有关。作用是指定类搜索路径，要使用已经编写好的类，前提当然是能够找到它们了，JVM就是通过CLASSPATH来寻找类的。我们需要把jdk安装目录下的lib子目录中的dt.jar和tools.jar设置到CLASSPATH中，当然，当">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CLASSPATH、PATH、JAVA_HOME的作用及JAVA环境变量配置">
 <meta property="og:url" content="http://yoursite.com/2014/04/05/Java_classpath,path,JAVA_HOME/index.html">
 <meta property="og:site_name" content="Plusaber&#39;s Blog">
-<meta property="og:description" content="CLASSPATH、PATH、JAVA_HOME的作用及JAVA环境变量配置  CLASSPATH 它是javac编译器的一个环境变量。用与import、package关键字有关。作用是指定类搜索路径，要使用已经编写好的类，前提当然是能够找到它们了，JVM就是通过CLASSPATH来寻找类的。我们需要把jdk安装目录下的lib子目录中的dt.jar和tools.jar设置到CLASSPATH中，">
+<meta property="og:description" content="CLASSPATH、PATH、JAVA_HOME的作用及JAVA环境变量配置CLASSPATH它是javac编译器的一个环境变量。用与import、package关键字有关。作用是指定类搜索路径，要使用已经编写好的类，前提当然是能够找到它们了，JVM就是通过CLASSPATH来寻找类的。我们需要把jdk安装目录下的lib子目录中的dt.jar和tools.jar设置到CLASSPATH中，当然，当">
 <meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2015-12-08T04:56:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CLASSPATH、PATH、JAVA_HOME的作用及JAVA环境变量配置">
-<meta name="twitter:description" content="CLASSPATH、PATH、JAVA_HOME的作用及JAVA环境变量配置  CLASSPATH 它是javac编译器的一个环境变量。用与import、package关键字有关。作用是指定类搜索路径，要使用已经编写好的类，前提当然是能够找到它们了，JVM就是通过CLASSPATH来寻找类的。我们需要把jdk安装目录下的lib子目录中的dt.jar和tools.jar设置到CLASSPATH中，">
+<meta name="twitter:description" content="CLASSPATH、PATH、JAVA_HOME的作用及JAVA环境变量配置CLASSPATH它是javac编译器的一个环境变量。用与import、package关键字有关。作用是指定类搜索路径，要使用已经编写好的类，前提当然是能够找到它们了，JVM就是通过CLASSPATH来寻找类的。我们需要把jdk安装目录下的lib子目录中的dt.jar和tools.jar设置到CLASSPATH中，当然，当">
 
 
 
@@ -435,9 +435,7 @@
       
 
       
-        <h1 id="classpath-path-java_home的作用及java环境变量配置"><a class="markdownIt-Anchor" href="#classpath-path-java_home的作用及java环境变量配置"></a> CLASSPATH、PATH、JAVA_HOME的作用及JAVA环境变量配置</h1>
-<h2 id="classpath"><a class="markdownIt-Anchor" href="#classpath"></a> CLASSPATH</h2>
-<p>它是javac编译器的一个环境变量。用与<code>import、package</code>关键字有关。作用是指定类搜索路径，要使用已经编写好的类，前提当然是能够找到它们了，JVM就是通过CLASSPATH来寻找类的。我们需要把jdk安装目录下的lib子目录中的dt.jar和tools.jar设置到CLASSPATH中，当然，当前目录“.”也必须加入到该变量中。这里<code>CLASSPATH</code>为：</p>
+        <h1 id="CLASSPATH、PATH、JAVA-HOME的作用及JAVA环境变量配置"><a href="#CLASSPATH、PATH、JAVA-HOME的作用及JAVA环境变量配置" class="headerlink" title="CLASSPATH、PATH、JAVA_HOME的作用及JAVA环境变量配置"></a>CLASSPATH、PATH、JAVA_HOME的作用及JAVA环境变量配置</h1><h2 id="CLASSPATH"><a href="#CLASSPATH" class="headerlink" title="CLASSPATH"></a>CLASSPATH</h2><p>它是javac编译器的一个环境变量。用与<code>import、package</code>关键字有关。作用是指定类搜索路径，要使用已经编写好的类，前提当然是能够找到它们了，JVM就是通过CLASSPATH来寻找类的。我们需要把jdk安装目录下的lib子目录中的dt.jar和tools.jar设置到CLASSPATH中，当然，当前目录“.”也必须加入到该变量中。这里<code>CLASSPATH</code>为：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.;C:/Program Files/Java/jdk1.6.0_21/lib/dt.jar;C:/Program Files/Java/</span><br><span class="line">jdk1.6.0_21/lib/tools.jar</span><br></pre></td></tr></table></figure>
 <p>当写下<code>import java.util.*</code>时，编译器面对import关键字时，就知道你要引入java.util这个package中的类,但是编译器如何知道你把这个package放在哪里了呢？所以你首先得告诉编译器这个package的所在位置；如何告诉它呢？就是设置<code>CLASSPATH</code>啦.</p>
 <p>如果java.util这个package在c:/jdk/ 目录下，你得把c:/jdk/这个路径设置到CLASSPATH中去！当编译器面对<code>import java.util.*</code>这个语句时，它先会查找CLASSPATH所指定的目录，并检视子目录java/util是否存在，然后找出名称吻合的已编译文件（.class文件）。如果没有找到就会报错！</p>
@@ -450,19 +448,16 @@
 <p><code>export PATH</code></p>
 <p>重新登陆Linux或执行如下命令让文件中的PATH变量生效：</p>
 <p><code>source .bash_profile</code></p>
-<h2 id="path"><a class="markdownIt-Anchor" href="#path"></a> PATH</h2>
-<p>PATH环境变量。作用是指定命令搜索路径.</p>
+<h2 id="PATH"><a href="#PATH" class="headerlink" title="PATH"></a>PATH</h2><p>PATH环境变量。作用是指定命令搜索路径.</p>
 <p>在命令行下面执行命令如javac编译java程序时，它会到PATH变量所指定的路径中查找看是否能找到相应的命令程序。</p>
 <p>我们需要把jdk安装目录下的bin目录增加到现有的PATH变量中，bin目录中包含经常要用到的可执行文件如<code>javac/java/javadoc</code>等，设置好PATH变量后，就可以在任何目录下执行javac/java等工具了。我们这里设定的PATH值为：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">%SystemRoot%/system32;%SystemRoot%;%SystemRoot%/System32/Wbem;%SYSTEMROOT%/</span><br><span class="line">System32/WindowsPowerShell/v1.0/;C:/Program Files/Common Files/Thunder </span><br><span class="line">Network/KanKan/Codecs;C:/Program Files/Microsoft SQL Server/90/Tools/</span><br><span class="line">binn/;C:/Program Files/Common Files/TTKN/Bin;C:/Program Files/Common Files/</span><br><span class="line">Teleca Shared;C:/Program Files/Java/jdk1.6.0_21/bin</span><br></pre></td></tr></table></figure>
-<p><font color="red"> C:/Program Files/Java/jdk1.6.0_21/bin </font></p>
-<p>上述只有红色部分<code>;C:/Program Files/Java/jdk1.6.0_21/bin</code>是java的PATH变量，注意变量之间需要用&quot;;”隔开。</p>
+<font color="red"> C:/Program Files/Java/jdk1.6.0_21/bin </font>
+
+<p>上述只有红色部分<code>;C:/Program Files/Java/jdk1.6.0_21/bin</code>是java的PATH变量，注意变量之间需要用”;”隔开。</p>
 <p><strong>如果想在运行Java时临时指定JRE搜索Java类的路径</strong>，可以使用 -classpath 选项，Linux上用冒号（:）隔开</p>
-<p><code>java -classpath dir1;dir2,...;dirN Java类</code><br>
-或者<br>
-<code>java -classpath %CLASSPATH%;.;dir1;dir2,...;dirN Java类</code></p>
-<h2 id="java_home"><a class="markdownIt-Anchor" href="#java_home"></a> JAVA_HOME</h2>
-<p><code>JAVA_HOME</code>环境变量，指向jdk的安装目录，Eclipse/NetBeans/Tomcat等软件就是通过搜索<code>JAVA_HOME</code>变量来找到并使用安装好的jdk。这里JAVA_HOME为：</p>
+<p><code>java -classpath dir1;dir2,...;dirN  Java类</code><br>或者<br><code>java -classpath %CLASSPATH%;.;dir1;dir2,...;dirN  Java类</code></p>
+<h2 id="JAVA-HOME"><a href="#JAVA-HOME" class="headerlink" title="JAVA_HOME"></a>JAVA_HOME</h2><p><code>JAVA_HOME</code>环境变量，指向jdk的安装目录，Eclipse/NetBeans/Tomcat等软件就是通过搜索<code>JAVA_HOME</code>变量来找到并使用安装好的jdk。这里JAVA_HOME为：</p>
 <p><code>C:/Program Files/Java/jdk1.6.0_21</code></p>
 <p>转自: <a href="http://www.cnblogs.com/xwdreamer/archive/2010/09/08/2297098.html" target="_blank" rel="noopener">CLASSPATH、PATH、JAVA_HOME的作用及JAVA环境变量配置</a></p>
 
@@ -507,8 +502,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2014/04/06/Java_package, import, path, classpath实例/" rel="prev" title="Java_package, import, path, classpath实例">
-                Java_package, import, path, classpath实例 <i class="fa fa-chevron-right"></i>
+              <a href="/2014/04/06/Java_package, import/" rel="prev" title="Java package, import">
+                Java package, import <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -753,7 +748,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#classpath-path-java_home的作用及java环境变量配置"><span class="nav-number">1.</span> <span class="nav-text"> CLASSPATH、PATH、JAVA_HOME的作用及JAVA环境变量配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#classpath"><span class="nav-number">1.1.</span> <span class="nav-text"> CLASSPATH</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#path"><span class="nav-number">1.2.</span> <span class="nav-text"> PATH</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java_home"><span class="nav-number">1.3.</span> <span class="nav-text"> JAVA_HOME</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CLASSPATH、PATH、JAVA-HOME的作用及JAVA环境变量配置"><span class="nav-number">1.</span> <span class="nav-text">CLASSPATH、PATH、JAVA_HOME的作用及JAVA环境变量配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CLASSPATH"><span class="nav-number">1.1.</span> <span class="nav-text">CLASSPATH</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PATH"><span class="nav-number">1.2.</span> <span class="nav-text">PATH</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JAVA-HOME"><span class="nav-number">1.3.</span> <span class="nav-text">JAVA_HOME</span></a></li></ol></li></ol></div>
             
 
           </div>

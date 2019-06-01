@@ -98,18 +98,18 @@
 
 
 
-  <meta name="description" content="Introduction  Key-value数据库 Redis是一个key-value数据库，区别与传统的关系型数据库。 比如一篇文章在redis存储如下： 1234# var[&amp;quot;key&amp;quot;] = &amp;quot;value&amp;quot;doc[&amp;quot;title&amp;quot;] = &amp;quot;hello, , world&amp;quot;doc[&amp;quot;author&amp;quot;">
+  <meta name="description" content="IntroductionKey-value数据库Redis是一个key-value数据库，区别与传统的关系型数据库。比如一篇文章在redis存储如下： 1234# var[&amp;quot;key&amp;quot;] = &amp;quot;value&amp;quot;doc[&amp;quot;title&amp;quot;] = &amp;quot;hello, , world&amp;quot;doc[&amp;quot;author&amp;quot;] = &amp;">
 <meta name="keywords" content="redis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis(1)">
 <meta property="og:url" content="http://yoursite.com/2015/10/02/Developing_Redis(1)/index.html">
 <meta property="og:site_name" content="Plusaber&#39;s Blog">
-<meta property="og:description" content="Introduction  Key-value数据库 Redis是一个key-value数据库，区别与传统的关系型数据库。 比如一篇文章在redis存储如下： 1234# var[&amp;quot;key&amp;quot;] = &amp;quot;value&amp;quot;doc[&amp;quot;title&amp;quot;] = &amp;quot;hello, , world&amp;quot;doc[&amp;quot;author&amp;quot;">
+<meta property="og:description" content="IntroductionKey-value数据库Redis是一个key-value数据库，区别与传统的关系型数据库。比如一篇文章在redis存储如下： 1234# var[&amp;quot;key&amp;quot;] = &amp;quot;value&amp;quot;doc[&amp;quot;title&amp;quot;] = &amp;quot;hello, , world&amp;quot;doc[&amp;quot;author&amp;quot;] = &amp;">
 <meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2016-04-10T12:45:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis(1)">
-<meta name="twitter:description" content="Introduction  Key-value数据库 Redis是一个key-value数据库，区别与传统的关系型数据库。 比如一篇文章在redis存储如下： 1234# var[&amp;quot;key&amp;quot;] = &amp;quot;value&amp;quot;doc[&amp;quot;title&amp;quot;] = &amp;quot;hello, , world&amp;quot;doc[&amp;quot;author&amp;quot;">
+<meta name="twitter:description" content="IntroductionKey-value数据库Redis是一个key-value数据库，区别与传统的关系型数据库。比如一篇文章在redis存储如下： 1234# var[&amp;quot;key&amp;quot;] = &amp;quot;value&amp;quot;doc[&amp;quot;title&amp;quot;] = &amp;quot;hello, , world&amp;quot;doc[&amp;quot;author&amp;quot;] = &amp;">
 
 
 
@@ -435,10 +435,7 @@
       
 
       
-        <h2 id="introduction"><a class="markdownIt-Anchor" href="#introduction"></a> Introduction</h2>
-<h3 id="key-value数据库"><a class="markdownIt-Anchor" href="#key-value数据库"></a> Key-value数据库</h3>
-<p>Redis是一个key-value数据库，区别与传统的关系型数据库。<br>
-比如一篇文章在redis存储如下：</p>
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><h3 id="Key-value数据库"><a href="#Key-value数据库" class="headerlink" title="Key-value数据库"></a>Key-value数据库</h3><p>Redis是一个key-value数据库，区别与传统的关系型数据库。<br>比如一篇文章在redis存储如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># var[&quot;key&quot;] = &quot;value&quot;</span><br><span class="line">doc[&quot;title&quot;] = &quot;hello, , world&quot;</span><br><span class="line">doc[&quot;author&quot;] = &quot;chen&quot;</span><br><span class="line">doc[&quot;tags&quot;] = [&quot;blog&quot;, &quot;hello&quot;]</span><br></pre></td></tr></table></figure>
 <ul>
 <li>这样存储也与实际doc结构相一致，更加容易操作，而在mysql存储则需要建立一个表存储doc的基本信息，为了表示tags，需要建立第二表存储tags，还需要第三个表连接doc和tags。</li>
@@ -446,19 +443,14 @@
 <li>另外当存在海量的docs时，在关系型数据库中将表示为一张巨大的表，会给索引和检索都带来很大的负担，效率会降低，同时单台机器无法存下过大的表，而垂直增加单台机器的性能是一种很不经济的方式，通过水平扩展增加机器数量是一种更好的解决方案，然而mysql传统关系型数据库对于partition的支持是很差的，难以容易scale。而key-value数据库对于水平扩展具有先天的优势，只需将增加机器，然后将单个单个的文档重新划分到这些机器上，非常容易扩展。</li>
 </ul>
 <p>这些都是key-value数据库的优势，在处理互联网上海量但是非结构化的数据具有很大的优势。key-value数据库对于不同应用和需求也有很多种，如MongoDB,Cassandra,Dynamo等。</p>
-<h3 id="内存存储与持久化"><a class="markdownIt-Anchor" href="#内存存储与持久化"></a> 内存存储与持久化</h3>
-<p>Redis数据库种所有数据都存储在内存种，所以速度非常快，另外redis同时也提供了对持久化的支持，可以将内存的数据异步写到磁盘中。</p>
+<h3 id="内存存储与持久化"><a href="#内存存储与持久化" class="headerlink" title="内存存储与持久化"></a>内存存储与持久化</h3><p>Redis数据库种所有数据都存储在内存种，所以速度非常快，另外redis同时也提供了对持久化的支持，可以将内存的数据异步写到磁盘中。</p>
 <p>另外redis虽然是作为数据库开发的，但是由于其基于内存且提供了很多强大的功能，可以很容易将其用于缓存，队列系统等。</p>
-<h2 id="安装和启动"><a class="markdownIt-Anchor" href="#安装和启动"></a> 安装和启动</h2>
-<h3 id="installation"><a class="markdownIt-Anchor" href="#installation"></a> Installation</h3>
-<ul>
+<h2 id="安装和启动"><a href="#安装和启动" class="headerlink" title="安装和启动"></a>安装和启动</h2><h3 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h3><ul>
 <li>到<a href="http://redis.io/download" target="_blank" rel="noopener">官网</a>下载当前版本。</li>
 <li>解压并编译</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ tar xzf redis-3.0.7.tar.gz</span><br><span class="line">$ <span class="built_in">cd</span> redis-3.0.7</span><br><span class="line">$ make</span><br></pre></td></tr></table></figure>
-<h3 id="启动redis-server"><a class="markdownIt-Anchor" href="#启动redis-server"></a> 启动redis server。</h3>
-<p><code>$ src/redis-server</code><br>
-也可以将<code>redis-server</code>命令直接加入到系统路径里，或者将<code>redis-server</code>复制到<code>/usr/bin/</code>下，这样后面启动redis server就不需要切换到redis目录中。</p>
+<h3 id="启动redis-server。"><a href="#启动redis-server。" class="headerlink" title="启动redis server。"></a>启动redis server。</h3><p><code>$ src/redis-server</code><br>也可以将<code>redis-server</code>命令直接加入到系统路径里，或者将<code>redis-server</code>复制到<code>/usr/bin/</code>下，这样后面启动redis server就不需要切换到redis目录中。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /usr/local/redis-3.0.7 redis安装目录</span></span><br><span class="line">vi ~/.bash_profile <span class="comment">#或者其他系统环境文件</span></span><br><span class="line"><span class="comment"># 添加:</span></span><br><span class="line">PATH=<span class="string">"<span class="variable">$PATH</span>"</span>:/usr/<span class="built_in">local</span>/redis-3.0.7/src</span><br><span class="line"></span><br><span class="line"><span class="built_in">source</span> ~/.bash_profile</span><br></pre></td></tr></table></figure>
 <p>redis默认使用6379端口监听，可以通过<code>--port</code>参数设置。</p>
 <p><code>redis-server --port 6000</code></p>
@@ -469,21 +461,16 @@
 <p>另外如果需要更多的配置，如端口号，持久化文件存放地址等，最好的方式是启动时指定配置文件。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server /path/to/redis/conf</span><br></pre></td></tr></table></figure>
 <p>通过启动参数传递同名的配置选项会覆盖配置文件中相应的参数。</p>
-<h3 id="server交互"><a class="markdownIt-Anchor" href="#server交互"></a> server交互</h3>
-<p>之后可以通过命令行终端或者编程语言接口与server交互。</p>
+<h3 id="server交互"><a href="#server交互" class="headerlink" title="server交互"></a>server交互</h3><p>之后可以通过命令行终端或者编程语言接口与server交互。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ redis-cli</span><br><span class="line"><span class="comment"># redis-cli -h 127.0.0.1 -p 6000 如果需要指定服务所在地址和端口</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># PING 测试连接是否正常</span></span><br><span class="line"></span><br><span class="line">redis&gt; <span class="built_in">set</span> foo bar</span><br><span class="line">OK</span><br><span class="line">redis&gt; get foo</span><br><span class="line"><span class="string">"bar"</span></span><br></pre></td></tr></table></figure>
-<h3 id="停止redis"><a class="markdownIt-Anchor" href="#停止redis"></a> 停止redis</h3>
-<p><code>redis-cli SHUTDOWN</code></p>
-<h2 id="基本使用命令行终端"><a class="markdownIt-Anchor" href="#基本使用命令行终端"></a> 基本使用（命令行终端）</h2>
-<h3 id="redis实例与数据库"><a class="markdownIt-Anchor" href="#redis实例与数据库"></a> redis实例与数据库</h3>
-<p>一个redis实例以默认的配置启动后，提供了多个字典（数据库），客户端可以指定将数据存在哪个数据库中。每个数据库使用一个数字来表示(不支持数据库命名，不同数据库没有不同的访问密码，另外数据库并不是完全隔离的，所以redis里的数据库更像是一种命名空间，所以一个redis实例不适合存储不同应用程序的数据)，默认有16个数据库，可以通过配置参数databases来修改。默认会直接进入0号数据库，可以通过SELECT更换数据库。</p>
+<h3 id="停止redis"><a href="#停止redis" class="headerlink" title="停止redis"></a>停止redis</h3><p><code>redis-cli SHUTDOWN</code></p>
+<h2 id="基本使用（命令行终端）"><a href="#基本使用（命令行终端）" class="headerlink" title="基本使用（命令行终端）"></a>基本使用（命令行终端）</h2><h3 id="redis实例与数据库"><a href="#redis实例与数据库" class="headerlink" title="redis实例与数据库"></a>redis实例与数据库</h3><p>一个redis实例以默认的配置启动后，提供了多个字典（数据库），客户端可以指定将数据存在哪个数据库中。每个数据库使用一个数字来表示(不支持数据库命名，不同数据库没有不同的访问密码，另外数据库并不是完全隔离的，所以redis里的数据库更像是一种命名空间，所以一个redis实例不适合存储不同应用程序的数据)，默认有16个数据库，可以通过配置参数databases来修改。默认会直接进入0号数据库，可以通过SELECT更换数据库。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT 1</span><br></pre></td></tr></table></figure>
-<h3 id="键操作命令"><a class="markdownIt-Anchor" href="#键操作命令"></a> 键操作命令</h3>
-<ul>
-<li>获得符合规则的键名列表<br>
-<code>KEYS pattern # 不区分大小写，可以使用正则表达式</code></li>
+<h3 id="键操作命令"><a href="#键操作命令" class="headerlink" title="键操作命令"></a>键操作命令</h3><ul>
+<li>获得符合规则的键名列表<br><code>KEYS pattern # 不区分大小写，可以使用正则表达式</code></li>
 </ul>
 <p>一些简单的通配符规则：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -502,7 +489,7 @@
 </tr>
 <tr>
 <td>[]</td>
-<td>匹配括号内的任意一个字符，可以使用&quot;-&quot;表示区间，如[a-zA-z]</td>
+<td>匹配括号内的任意一个字符，可以使用”-“表示区间，如[a-zA-z]</td>
 </tr>
 <tr>
 <td>\x</td>
@@ -510,28 +497,18 @@
 </tr>
 </tbody>
 </table>
+</div>
 <ul>
-<li>
-<p>判断键是否存在<br>
-<code>EXISTS key</code><br>
-如果存在则返回整数类型1，否则返回0</p>
+<li><p>判断键是否存在<br><code>EXISTS key</code><br>如果存在则返回整数类型1，否则返回0</p>
 </li>
-<li>
-<p>删除键<br>
-<code>DEL key1 key2 key3 ... # 可以一次删除多个键</code></p>
+<li><p>删除键<br><code>DEL key1 key2 key3 ... # 可以一次删除多个键</code></p>
 </li>
 </ul>
-<p>del命令参数不支持通配符，但是可以结合linux管道和xargs命令实现删除所有符合规则的键，如：<br>
-<code>redis-cli KEYS &quot;*&quot;</code> | xargs redis-cli DEL<br>
-或者以符合规则的键作为参数：<br>
-redis-cli DEL `redis-cli’ KEYS “*” ` # 注意这个一个linux嵌入命令，不是单引号。</p>
+<p>del命令参数不支持通配符，但是可以结合linux管道和xargs命令实现删除所有符合规则的键，如：<br><code>redis-cli KEYS &quot;*&quot;</code> | xargs redis-cli DEL<br>或者以符合规则的键作为参数：<br>redis-cli DEL `redis-cli’ KEYS “*” ` # 注意这个一个linux嵌入命令，不是单引号。</p>
 <ul>
-<li>获得键值的数据类型<br>
-<code>TYPE key</code><br>
-返回值可能为string, hash, list, set, zset(有序集合类型)</li>
+<li>获得键值的数据类型<br><code>TYPE key</code><br>返回值可能为string, hash, list, set, zset(有序集合类型)</li>
 </ul>
-<h3 id="基本操作命令"><a class="markdownIt-Anchor" href="#基本操作命令"></a> 基本操作命令</h3>
-<ul>
+<h3 id="基本操作命令"><a href="#基本操作命令" class="headerlink" title="基本操作命令"></a>基本操作命令</h3><ul>
 <li>赋值与取值</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SET key value</span><br><span class="line">GET key</span><br></pre></td></tr></table></figure>
@@ -555,8 +532,7 @@ redis-cli DEL `redis-cli’ KEYS “*” ` # 注意这个一个linux嵌入命令
 <li>位操作</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GETBIT key offset <span class="comment"># 可以对字符串操作</span></span><br><span class="line">SETBIT key offset value</span><br><span class="line">BITCOUNT key [start] [end] <span class="comment"># 1的个数</span></span><br><span class="line">BITOP operation destkey key1 key2 ...</span><br></pre></td></tr></table></figure>
-<h3 id="散列类型"><a class="markdownIt-Anchor" href="#散列类型"></a> 散列类型</h3>
-<p>散列类型适合存储对象，使用对象类别和ID构成键名，使用字段表示对象的属性，而字段值则存储属性值（除了散列类型，redis的其他数据类型同样不支持数据类型嵌套，如集合类型的每个元素都只能是字符串，不能是另一个集合或散列）。</p>
+<h3 id="散列类型"><a href="#散列类型" class="headerlink" title="散列类型"></a>散列类型</h3><p>散列类型适合存储对象，使用对象类别和ID构成键名，使用字段表示对象的属性，而字段值则存储属性值（除了散列类型，redis的其他数据类型同样不支持数据类型嵌套，如集合类型的每个元素都只能是字符串，不能是另一个集合或散列）。</p>
 <ul>
 <li>赋值与取值</li>
 </ul>
@@ -582,8 +558,7 @@ redis-cli DEL `redis-cli’ KEYS “*” ` # 注意这个一个linux嵌入命令
 <li>获取字段名或字段值（属性值），字段数量</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">HKEYS key</span><br><span class="line">HVALS key</span><br><span class="line">HLEN key</span><br></pre></td></tr></table></figure>
-<h3 id="列表类型"><a class="markdownIt-Anchor" href="#列表类型"></a> 列表类型</h3>
-<p>列表类型list可以存储一个有序的字符串列表，常用操作是向列表两段添加元素，或者获得列表的一个片段。redis中列表是使用双向链表实现，头尾添加删除很快，注意索引访问速度会比较慢，特别是访问中间的元素。</p>
+<h3 id="列表类型"><a href="#列表类型" class="headerlink" title="列表类型"></a>列表类型</h3><p>列表类型list可以存储一个有序的字符串列表，常用操作是向列表两段添加元素，或者获得列表的一个片段。redis中列表是使用双向链表实现，头尾添加删除很快，注意索引访问速度会比较慢，特别是访问中间的元素。</p>
 <ul>
 <li>向两端加入元素</li>
 </ul>
@@ -604,58 +579,37 @@ redis-cli DEL `redis-cli’ KEYS “*” ` # 注意这个一个linux嵌入命令
 <li>删除指定值</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LREM key count value <span class="comment"># 删除列表中前count个值为value的元素</span></span><br><span class="line"><span class="comment"># count&lt;0从右边开始删除，count=0删除所有</span></span><br></pre></td></tr></table></figure>
-<h3 id="集合类型"><a class="markdownIt-Anchor" href="#集合类型"></a> 集合类型</h3>
-<p>集合使用hashset实现。</p>
+<h3 id="集合类型"><a href="#集合类型" class="headerlink" title="集合类型"></a>集合类型</h3><p>集合使用hashset实现。</p>
 <ul>
 <li>增加/删除元素</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SADD key member1 member2 ... <span class="comment"># 返回新增成功的个数</span></span><br><span class="line">SREM key member1 member2 ... <span class="comment"># 返回删除成功的个数</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li>
-<p>获得所有元素<br>
-<code>SMEMBERS key</code></p>
+<li><p>获得所有元素<br><code>SMEMBERS key</code></p>
 </li>
-<li>
-<p>判断是否存在<br>
-<code>SISMEMBER key member</code></p>
+<li><p>判断是否存在<br><code>SISMEMBER key member</code></p>
 </li>
-<li>
-<p>集合间运算</p>
+<li><p>集合间运算</p>
 </li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SDIFF key1 key2 ...</span><br><span class="line">SINTER key1 key2 ...</span><br><span class="line">SUNION key1 key2 ...</span><br><span class="line"></span><br><span class="line">SDIFFSTORE destination key1 key2...</span><br><span class="line">SINTERSTORE destination key1 key2... </span><br><span class="line">SUNIONSTORE destination key1 key2...</span><br></pre></td></tr></table></figure>
 <ul>
-<li>
-<p>元素个数<br>
-<code>SCARD key</code></p>
+<li><p>元素个数<br><code>SCARD key</code></p>
 </li>
-<li>
-<p>随机获得集合元素<br>
-<code>SRANDMEMBER key [count]</code></p>
+<li><p>随机获得集合元素<br><code>SRANDMEMBER key [count]</code></p>
 </li>
-<li>
-<p>随机弹出一个元素<br>
-<code>SPOP key</code></p>
+<li><p>随机弹出一个元素<br><code>SPOP key</code></p>
 </li>
 </ul>
-<h3 id="有序集合类型"><a class="markdownIt-Anchor" href="#有序集合类型"></a> 有序集合类型</h3>
-<p>sorted set，每个元素具有分数（权值）的set，如果将当分数设为index大小，则可以实现list的功能。</p>
+<h3 id="有序集合类型"><a href="#有序集合类型" class="headerlink" title="有序集合类型"></a>有序集合类型</h3><p>sorted set，每个元素具有分数（权值）的set，如果将当分数设为index大小，则可以实现list的功能。</p>
 <ul>
-<li>
-<p>增加元素<br>
-<code>ZADD key score1 member1 score2 ...</code></p>
+<li><p>增加元素<br><code>ZADD key score1 member1 score2 ...</code></p>
 </li>
-<li>
-<p>获得元素的分数<br>
-<code>ZSCORE key member</code></p>
+<li><p>获得元素的分数<br><code>ZSCORE key member</code></p>
 </li>
-<li>
-<p>获得排名在某个范围内的元素列表<br>
-<code>ZRANGE key start stop [WITHSCORES]</code> # 分数从小到大<br>
-<code>Zrevrange key start stop [WITHSCORES]</code> # 分数从大到小</p>
+<li><p>获得排名在某个范围内的元素列表<br><code>ZRANGE key start stop [WITHSCORES]</code> # 分数从小到大<br><code>Zrevrange key start stop [WITHSCORES]</code> # 分数从大到小</p>
 </li>
-<li>
-<p>获得指定分数范围</p>
+<li><p>获得指定分数范围</p>
 </li>
 </ul>
 <p><code>ZRANGEBYSCORE key min max [WITHSCORES] [LIMIT offset count]</code></p>
@@ -955,7 +909,7 @@ redis-cli DEL `redis-cli’ KEYS “*” ` # 注意这个一个linux嵌入命令
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-number">1.</span> <span class="nav-text"> Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#key-value数据库"><span class="nav-number">1.1.</span> <span class="nav-text"> Key-value数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存存储与持久化"><span class="nav-number">1.2.</span> <span class="nav-text"> 内存存储与持久化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装和启动"><span class="nav-number">2.</span> <span class="nav-text"> 安装和启动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#installation"><span class="nav-number">2.1.</span> <span class="nav-text"> Installation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动redis-server"><span class="nav-number">2.2.</span> <span class="nav-text"> 启动redis server。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#server交互"><span class="nav-number">2.3.</span> <span class="nav-text"> server交互</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#停止redis"><span class="nav-number">2.4.</span> <span class="nav-text"> 停止redis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本使用命令行终端"><span class="nav-number">3.</span> <span class="nav-text"> 基本使用（命令行终端）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#redis实例与数据库"><span class="nav-number">3.1.</span> <span class="nav-text"> redis实例与数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#键操作命令"><span class="nav-number">3.2.</span> <span class="nav-text"> 键操作命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本操作命令"><span class="nav-number">3.3.</span> <span class="nav-text"> 基本操作命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#散列类型"><span class="nav-number">3.4.</span> <span class="nav-text"> 散列类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表类型"><span class="nav-number">3.5.</span> <span class="nav-text"> 列表类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集合类型"><span class="nav-number">3.6.</span> <span class="nav-text"> 集合类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有序集合类型"><span class="nav-number">3.7.</span> <span class="nav-text"> 有序集合类型</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Key-value数据库"><span class="nav-number">1.1.</span> <span class="nav-text">Key-value数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存存储与持久化"><span class="nav-number">1.2.</span> <span class="nav-text">内存存储与持久化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装和启动"><span class="nav-number">2.</span> <span class="nav-text">安装和启动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Installation"><span class="nav-number">2.1.</span> <span class="nav-text">Installation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动redis-server。"><span class="nav-number">2.2.</span> <span class="nav-text">启动redis server。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#server交互"><span class="nav-number">2.3.</span> <span class="nav-text">server交互</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#停止redis"><span class="nav-number">2.4.</span> <span class="nav-text">停止redis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本使用（命令行终端）"><span class="nav-number">3.</span> <span class="nav-text">基本使用（命令行终端）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#redis实例与数据库"><span class="nav-number">3.1.</span> <span class="nav-text">redis实例与数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#键操作命令"><span class="nav-number">3.2.</span> <span class="nav-text">键操作命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本操作命令"><span class="nav-number">3.3.</span> <span class="nav-text">基本操作命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#散列类型"><span class="nav-number">3.4.</span> <span class="nav-text">散列类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表类型"><span class="nav-number">3.5.</span> <span class="nav-text">列表类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集合类型"><span class="nav-number">3.6.</span> <span class="nav-text">集合类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有序集合类型"><span class="nav-number">3.7.</span> <span class="nav-text">有序集合类型</span></a></li></ol></li></ol></div>
             
 
           </div>

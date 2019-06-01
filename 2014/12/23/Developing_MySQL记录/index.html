@@ -98,18 +98,18 @@
 
 
 
-  <meta name="description" content="Mac设置mysql命令行 在系统环境加上mysql的路径，关于PATH设置方法可以参考Linux环境变量配置 PATH=&amp;quot;$PATH&amp;quot;:/usr/local/mysql/bin  修改root密码的几种方法：   登录mysql以后，使用 set password for &apos;root&apos;@&apos;localhost&apos; = PASSWORD(&apos;***&apos;);   用mysqladmin">
+  <meta name="description" content="Mac设置mysql命令行在系统环境加上mysql的路径，关于PATH设置方法可以参考Linux环境变量配置 PATH=&amp;quot;$PATH&amp;quot;:/usr/local/mysql/bin 修改root密码的几种方法： 登录mysql以后，使用set password for &amp;#39;root&amp;#39;@&amp;#39;localhost&amp;#39; = PASSWORD(&amp;#39;***&amp;#3">
 <meta name="keywords" content="sql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL记录">
 <meta property="og:url" content="http://yoursite.com/2014/12/23/Developing_MySQL记录/index.html">
 <meta property="og:site_name" content="Plusaber&#39;s Blog">
-<meta property="og:description" content="Mac设置mysql命令行 在系统环境加上mysql的路径，关于PATH设置方法可以参考Linux环境变量配置 PATH=&amp;quot;$PATH&amp;quot;:/usr/local/mysql/bin  修改root密码的几种方法：   登录mysql以后，使用 set password for &apos;root&apos;@&apos;localhost&apos; = PASSWORD(&apos;***&apos;);   用mysqladmin">
+<meta property="og:description" content="Mac设置mysql命令行在系统环境加上mysql的路径，关于PATH设置方法可以参考Linux环境变量配置 PATH=&amp;quot;$PATH&amp;quot;:/usr/local/mysql/bin 修改root密码的几种方法： 登录mysql以后，使用set password for &amp;#39;root&amp;#39;@&amp;#39;localhost&amp;#39; = PASSWORD(&amp;#39;***&amp;#3">
 <meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2016-04-30T06:37:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL记录">
-<meta name="twitter:description" content="Mac设置mysql命令行 在系统环境加上mysql的路径，关于PATH设置方法可以参考Linux环境变量配置 PATH=&amp;quot;$PATH&amp;quot;:/usr/local/mysql/bin  修改root密码的几种方法：   登录mysql以后，使用 set password for &apos;root&apos;@&apos;localhost&apos; = PASSWORD(&apos;***&apos;);   用mysqladmin">
+<meta name="twitter:description" content="Mac设置mysql命令行在系统环境加上mysql的路径，关于PATH设置方法可以参考Linux环境变量配置 PATH=&amp;quot;$PATH&amp;quot;:/usr/local/mysql/bin 修改root密码的几种方法： 登录mysql以后，使用set password for &amp;#39;root&amp;#39;@&amp;#39;localhost&amp;#39; = PASSWORD(&amp;#39;***&amp;#3">
 
 
 
@@ -435,50 +435,29 @@
       
 
       
-        <h3 id="mac设置mysql命令行"><a class="markdownIt-Anchor" href="#mac设置mysql命令行"></a> Mac设置mysql命令行</h3>
-<p>在系统环境加上mysql的路径，关于PATH设置方法可以参考<a href="http://plusaber.net/2014/07/02/Developing_Linux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE/" target="_blank" rel="noopener">Linux环境变量配置</a></p>
+        <h3 id="Mac设置mysql命令行"><a href="#Mac设置mysql命令行" class="headerlink" title="Mac设置mysql命令行"></a>Mac设置mysql命令行</h3><p>在系统环境加上mysql的路径，关于PATH设置方法可以参考<a href="http://plusaber.net/2014/07/02/Developing_Linux环境变量配置/" target="_blank" rel="noopener">Linux环境变量配置</a></p>
 <p><code>PATH=&quot;$PATH&quot;:/usr/local/mysql/bin</code></p>
-<h3 id="修改root密码的几种方法"><a class="markdownIt-Anchor" href="#修改root密码的几种方法"></a> 修改root密码的几种方法：</h3>
-<ul>
-<li>
-<p>登录mysql以后，使用<br>
-<code>set password for 'root'@'localhost' = PASSWORD('***');</code></p>
+<h3 id="修改root密码的几种方法："><a href="#修改root密码的几种方法：" class="headerlink" title="修改root密码的几种方法："></a>修改root密码的几种方法：</h3><ul>
+<li><p>登录mysql以后，使用<br><code>set password for &#39;root&#39;@&#39;localhost&#39; = PASSWORD(&#39;***&#39;);</code></p>
 </li>
-<li>
-<p>用mysqladmin命令<br>
-<code>mysqladmin -u root password &quot;***&quot;</code></p>
+<li><p>用mysqladmin命令<br><code>mysqladmin -u root password &quot;***&quot;</code></p>
 </li>
-<li>
-<p>直接update mysql数据库的user表<br>
-<code>update user set Password = PASSWORD('***') where user = 'root';</code></p>
+<li><p>直接update mysql数据库的user表<br><code>update user set Password = PASSWORD(&#39;***&#39;) where user = &#39;root&#39;;</code></p>
 </li>
 </ul>
-<h3 id="备份与导入"><a class="markdownIt-Anchor" href="#备份与导入"></a> 备份与导入</h3>
-<h4 id="导出"><a class="markdownIt-Anchor" href="#导出"></a> 导出</h4>
-<ul>
-<li>
-<p>导出数据库<br>
-<code>mysqldump -u 用户名 -p 数据库名 &gt; 导出的文件名</code></p>
+<h3 id="备份与导入"><a href="#备份与导入" class="headerlink" title="备份与导入"></a>备份与导入</h3><h4 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h4><ul>
+<li><p>导出数据库<br><code>mysqldump -u 用户名 -p 数据库名 &gt; 导出的文件名</code></p>
 </li>
-<li>
-<p>导出具体表<br>
-<code>mysqldump -u 用户名 -p 数据库名 表名 &gt; 导出的文件名</code></p>
+<li><p>导出具体表<br><code>mysqldump -u 用户名 -p 数据库名 表名 &gt; 导出的文件名</code></p>
 </li>
-<li>
-<p>导出一个数据库结构<br>
-<code>mysqldump -u 用户名 -p 数据库名 -d &gt; 导出的文件名</code><br>
--d表示不导出数据</p>
+<li><p>导出一个数据库结构<br><code>mysqldump -u 用户名 -p 数据库名 -d &gt; 导出的文件名</code><br>-d表示不导出数据</p>
 </li>
-<li>
-<p>导出具体表结构<br>
-<code>mysqldump -u 用户名 -p -d 数据库名 表名 &gt; 导出的文件名</code></p>
+<li><p>导出具体表结构<br><code>mysqldump -u 用户名 -p -d 数据库名 表名 &gt; 导出的文件名</code></p>
 </li>
 </ul>
-<h4 id="导入"><a class="markdownIt-Anchor" href="#导入"></a> 导入</h4>
-<p>使用source语句</p>
+<h4 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h4><p>使用source语句</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">use aol_log;</span><br><span class="line">set names utf8;  #设置字符</span><br><span class="line">source /home/chen/Desktop/logbk.sql;</span><br></pre></td></tr></table></figure>
-<p>参考:<br>
-<a href="http://blog.51yip.com/mysql/139.html" target="_blank" rel="noopener">Linux 简单的mysql备份和导入，以及文件的备份和导入</a></p>
+<p>参考:<br><a href="http://blog.51yip.com/mysql/139.html" target="_blank" rel="noopener">Linux 简单的mysql备份和导入，以及文件的备份和导入</a></p>
 
       
     </div>
@@ -771,7 +750,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#mac设置mysql命令行"><span class="nav-number">1.</span> <span class="nav-text"> Mac设置mysql命令行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改root密码的几种方法"><span class="nav-number">2.</span> <span class="nav-text"> 修改root密码的几种方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#备份与导入"><span class="nav-number">3.</span> <span class="nav-text"> 备份与导入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#导出"><span class="nav-number">3.1.</span> <span class="nav-text"> 导出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#导入"><span class="nav-number">3.2.</span> <span class="nav-text"> 导入</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mac设置mysql命令行"><span class="nav-number">1.</span> <span class="nav-text">Mac设置mysql命令行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改root密码的几种方法："><span class="nav-number">2.</span> <span class="nav-text">修改root密码的几种方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#备份与导入"><span class="nav-number">3.</span> <span class="nav-text">备份与导入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#导出"><span class="nav-number">3.1.</span> <span class="nav-text">导出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#导入"><span class="nav-number">3.2.</span> <span class="nav-text">导入</span></a></li></ol></li></ol></div>
             
 
           </div>

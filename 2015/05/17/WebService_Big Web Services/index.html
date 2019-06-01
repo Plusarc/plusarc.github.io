@@ -98,18 +98,18 @@
 
 
 
-  <meta name="description" content="Web services就是客户端通过HTTP协议向server发送请求，并获得所需要的信息或服务。Web services可以看做一种处于不同机器不同平台上的软件进行交互的一种标准方式。 目前主要有两种类型的Web services： 一种是所谓的big web services，因为其相对于第二种方式比较重量级。big web services使用XML封装请求信息以及回答，按照Simple">
+  <meta name="description" content="Web services就是客户端通过HTTP协议向server发送请求，并获得所需要的信息或服务。Web services可以看做一种处于不同机器不同平台上的软件进行交互的一种标准方式。 目前主要有两种类型的Web services：一种是所谓的big web services，因为其相对于第二种方式比较重量级。big web services使用XML封装请求信息以及回答，按照Simple O">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Big Web Services with Java">
 <meta property="og:url" content="http://yoursite.com/2015/05/17/WebService_Big Web Services/index.html">
 <meta property="og:site_name" content="Plusaber&#39;s Blog">
-<meta property="og:description" content="Web services就是客户端通过HTTP协议向server发送请求，并获得所需要的信息或服务。Web services可以看做一种处于不同机器不同平台上的软件进行交互的一种标准方式。 目前主要有两种类型的Web services： 一种是所谓的big web services，因为其相对于第二种方式比较重量级。big web services使用XML封装请求信息以及回答，按照Simple">
+<meta property="og:description" content="Web services就是客户端通过HTTP协议向server发送请求，并获得所需要的信息或服务。Web services可以看做一种处于不同机器不同平台上的软件进行交互的一种标准方式。 目前主要有两种类型的Web services：一种是所谓的big web services，因为其相对于第二种方式比较重量级。big web services使用XML封装请求信息以及回答，按照Simple O">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/WebService_1.png">
 <meta property="og:updated_time" content="2019-06-01T04:34:25.756Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Big Web Services with Java">
-<meta name="twitter:description" content="Web services就是客户端通过HTTP协议向server发送请求，并获得所需要的信息或服务。Web services可以看做一种处于不同机器不同平台上的软件进行交互的一种标准方式。 目前主要有两种类型的Web services： 一种是所谓的big web services，因为其相对于第二种方式比较重量级。big web services使用XML封装请求信息以及回答，按照Simple">
+<meta name="twitter:description" content="Web services就是客户端通过HTTP协议向server发送请求，并获得所需要的信息或服务。Web services可以看做一种处于不同机器不同平台上的软件进行交互的一种标准方式。 目前主要有两种类型的Web services：一种是所谓的big web services，因为其相对于第二种方式比较重量级。big web services使用XML封装请求信息以及回答，按照Simple O">
 <meta name="twitter:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/WebService_1.png">
 
 
@@ -437,46 +437,27 @@
 
       
         <p>Web services就是客户端通过HTTP协议向server发送请求，并获得所需要的信息或服务。Web services可以看做一种处于不同机器不同平台上的软件进行交互的一种标准方式。</p>
-<p>目前主要有两种类型的Web services：<br>
-一种是所谓的big web services，因为其相对于第二种方式比较重量级。big web services使用XML封装请求信息以及回答，按照Simple Object Asscess Protocol，所以也称为SOAP消息，提供方法信息和作用域信息，另外使用的一项技术是WSDL(web service description language)，web服务描述语言，是一套用于描述SOAP WEB服务的XML词汇。客户端可以通过参考WSDL文档，可以确切的知道可以调用哪些RPC式方法，需要哪些参数，以及返回值数据类型。SOAP的服务都发布有WSDL文档，否则很难使用。对于很多程序语言，WSDL也是用来自动生成客户端stub必须的文档。</p>
+<p>目前主要有两种类型的Web services：<br>一种是所谓的big web services，因为其相对于第二种方式比较重量级。big web services使用XML封装请求信息以及回答，按照Simple Object Asscess Protocol，所以也称为SOAP消息，提供方法信息和作用域信息，另外使用的一项技术是WSDL(web service description language)，web服务描述语言，是一套用于描述SOAP WEB服务的XML词汇。客户端可以通过参考WSDL文档，可以确切的知道可以调用哪些RPC式方法，需要哪些参数，以及返回值数据类型。SOAP的服务都发布有WSDL文档，否则很难使用。对于很多程序语言，WSDL也是用来自动生成客户端stub必须的文档。</p>
 <p>另一种是RESTful webservice，具体两种实现的区别请参考Web Service的<a href>Programmable Web及其分类</a>。这里主要介绍基于java实现big web service.</p>
-<h2 id="big-web-service的基本技术"><a class="markdownIt-Anchor" href="#big-web-service的基本技术"></a> Big web service的基本技术</h2>
-<h3 id="soap"><a class="markdownIt-Anchor" href="#soap"></a> SOAP</h3>
-<p>SOAP是Web Service的基本通信协议，是一种规范，用来定义SOAP消息的XML格式（XMLFormat）。包含在一对 SOAP 元素（SOAPElements）中的、结构正确的 XML 段就是 SOAP 消息。<br>
-SOAP 规范还介绍了如何将程序数据表示为 XML，以及如何使用 SOAP 进行远程过程调用 （RPC）。<br>
-最后SOAP规范还定义了HTTP消息是怎样传输SOAP消息的。这并不代表SOAP只能用HTTP来作为传输协议，MSMQ、SMTP、TCP/IP都可以做SOAP的传输协议。</p>
-<h3 id="wsdl"><a class="markdownIt-Anchor" href="#wsdl"></a> WSDL</h3>
-<p>Web Services Description Language的缩写，是一个用来描述Web服务和说明如何与Web服务通信的XML语言。WSDL是Web Service的描述语言，用于描述Web Service的服务，接口绑定等，为用户提供详细的接口说明书。<br>
-举个例子，你要使用供应商的WebService构建应用程序。你可以向供应商索取使用Web Service的范例，然后按照范例来构建应用程序。这样可能出现意料不到的错误，比如说，你在程序中使用的客户代码的数据类型是integer，而供应商使用的数据类型是string。WSDL详细定义客户端消息的格式，需要什么样的参数，这样可以避免不必要的错误。<br>
-要查看 WSDL 的值，可以假设您要调用由您的一位业务伙伴提供的 SOAP 方法。您可以要求对方提供一些 SOAP 消息示例，然后编写您的应用程序以生成并使用与示例类似的消息。WSDL 通过明确的表示法指定请求消息必须包含的内容以及响应消息的样式。<br>
-WSDL 文件用于说明消息格式的表示法以 XML 架构标准为基础，这意味着它与编程语言无关，而且以标准为基础，因此适用于说明可从不同平台、以不同编程语言访问的 XML Web Service 接口。除说明消息内容外，WSDL 还定义了服务的位置，以及使用什么通信协议与服务进行通信。WSDL 文件定义了编写使用 XML Web Service 的程序所需的全部内容。</p>
+<h2 id="Big-web-service的基本技术"><a href="#Big-web-service的基本技术" class="headerlink" title="Big web service的基本技术"></a>Big web service的基本技术</h2><h3 id="SOAP"><a href="#SOAP" class="headerlink" title="SOAP"></a>SOAP</h3><p>SOAP是Web Service的基本通信协议，是一种规范，用来定义SOAP消息的XML格式（XMLFormat）。包含在一对 SOAP 元素（SOAPElements）中的、结构正确的 XML 段就是 SOAP 消息。<br>SOAP 规范还介绍了如何将程序数据表示为 XML，以及如何使用 SOAP 进行远程过程调用 （RPC）。<br>最后SOAP规范还定义了HTTP消息是怎样传输SOAP消息的。这并不代表SOAP只能用HTTP来作为传输协议，MSMQ、SMTP、TCP/IP都可以做SOAP的传输协议。</p>
+<h3 id="WSDL"><a href="#WSDL" class="headerlink" title="WSDL"></a>WSDL</h3><p>Web Services Description Language的缩写，是一个用来描述Web服务和说明如何与Web服务通信的XML语言。WSDL是Web Service的描述语言，用于描述Web Service的服务，接口绑定等，为用户提供详细的接口说明书。<br>举个例子，你要使用供应商的WebService构建应用程序。你可以向供应商索取使用Web Service的范例，然后按照范例来构建应用程序。这样可能出现意料不到的错误，比如说，你在程序中使用的客户代码的数据类型是integer，而供应商使用的数据类型是string。WSDL详细定义客户端消息的格式，需要什么样的参数，这样可以避免不必要的错误。<br>要查看 WSDL 的值，可以假设您要调用由您的一位业务伙伴提供的 SOAP 方法。您可以要求对方提供一些 SOAP 消息示例，然后编写您的应用程序以生成并使用与示例类似的消息。WSDL 通过明确的表示法指定请求消息必须包含的内容以及响应消息的样式。<br>WSDL 文件用于说明消息格式的表示法以 XML 架构标准为基础，这意味着它与编程语言无关，而且以标准为基础，因此适用于说明可从不同平台、以不同编程语言访问的 XML Web Service 接口。除说明消息内容外，WSDL 还定义了服务的位置，以及使用什么通信协议与服务进行通信。WSDL 文件定义了编写使用 XML Web Service 的程序所需的全部内容。</p>
 <p>Google搜索服务的WSDL文档片断：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">operation</span> <span class="attr">name</span>=<span class="string">"doGoogleSearch"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">message</span>=<span class="string">"typens:doGoogleSearch"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">output</span> <span class="attr">message</span>=<span class="string">"typens:doGoogleSearchRespnse"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">operation</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>一个SOAP RPC调用的HTTP请求</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">POST search/beta2 HTTP/1.1</span><br><span class="line">Host:...</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?xml version="1.0"...&gt;</span></span><br><span class="line"><span class="meta">&lt;soap:Envelop xmln:soap="UTF-8"&gt;</span></span><br><span class="line"><span class="meta">	&lt;soap:body&gt;</span></span><br><span class="line"><span class="meta">		&lt;gs:doGoogleSearch&gt;</span></span><br><span class="line"><span class="meta">			&lt;q&gt;plusaber&lt;/q&gt;</span></span><br><span class="line"><span class="meta">		&lt;/gs:doGoogleSearch&gt;</span></span><br><span class="line"><span class="meta">	&lt;/soap:Body&gt;</span></span><br><span class="line"><span class="meta">&lt;/soap:Envelope&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="uddi"><a class="markdownIt-Anchor" href="#uddi"></a> UDDI</h3>
-<p>UniversalDescription Discovery and Integration即统一描述、发现和集成协议。UDDI实现了一组可公开访问的接口，通过这些接口，网络服务可以向服务信息库注册其服务信息、服务需求者可以找到分散在世界各地的网络服务。<br>
-UDDI 目录条目是介绍所提供的业务和服务的 XML 文件。可以把它比喻成电话本，电话本里记录的是电话信息，而UDDI记录的是Web Service信息。你可以不把Web Service注册到UDDI。但如果要让全球的人知道你的Web Service，最好还是注册到UDDI。<br>
-UDDI 目录还包含若干种方法，可用于搜索构建您的应用程序所需的服务。例如，您可以搜索特定地理位置的服务提供商或者搜索特定的业务类型。之后，UDDI 目录将提供信息、联系方式、链接和技术数据，以便您确定能满足需要的服务。<br>
-UDDI 允许您查找提供所需的Web 服务的公司。如果您已经知道要与谁进行业务合作，但尚不了解它还能提供哪些服务，这时该如何处理呢？WS-Inspection规范允许您浏览特定服务器上提供的 XML Web Service 的集合，从中查找所需的服务。</p>
-<h2 id="big-web-service的java实现"><a class="markdownIt-Anchor" href="#big-web-service的java实现"></a> Big Web Service的Java实现</h2>
-<p>Web Service本质是一种标准，具体每种语言都提供了不同的实现。在Java领域，Big Web Service的标准是JAX-WS，实现框架有：<a href="http://cxf.apache.org/docs/a-simple-jax-ws-service.html" target="_blank" rel="noopener">CXF</a>, axis2, Java 6开始自带的Web Service引擎(自带的<a href="http://docs.oracle.com/javaee/6/tutorial/doc/bnayl.html" target="_blank" rel="noopener">JAX-WS implementation</a>)。</p>
-<h3 id="jax-ws的不同实现框架"><a class="markdownIt-Anchor" href="#jax-ws的不同实现框架"></a> JAX-WS的不同实现框架</h3>
-<p>这里先说明一下为什么存在这些不同的实现框架，特别是Java 6开始自带的Web Service引擎与其他更复杂的框架，参考<a href="http://stackoverflow.com/questions/11566609/difference-between-jax-ws-axis2-cxf" target="_blank" rel="noopener">Difference between Jax-ws, axis2, cxf</a>：<br>
-The JAX-WS implementation built into the JDK really is just the basic soap stuff. If you need any of the more complex WS-* things like WS-Security, WS-RM, WS-Policy, etc…, you need to use one of the alternatives like CXF or Metro or Axis2. It can also depend on what you are trying to integrate with. For example, CXF has top notch Spring support as well as very good OSGi support.</p>
+<h3 id="UDDI"><a href="#UDDI" class="headerlink" title="UDDI"></a>UDDI</h3><p>UniversalDescription Discovery and Integration即统一描述、发现和集成协议。UDDI实现了一组可公开访问的接口，通过这些接口，网络服务可以向服务信息库注册其服务信息、服务需求者可以找到分散在世界各地的网络服务。<br>UDDI 目录条目是介绍所提供的业务和服务的 XML 文件。可以把它比喻成电话本，电话本里记录的是电话信息，而UDDI记录的是Web Service信息。你可以不把Web Service注册到UDDI。但如果要让全球的人知道你的Web Service，最好还是注册到UDDI。<br>UDDI 目录还包含若干种方法，可用于搜索构建您的应用程序所需的服务。例如，您可以搜索特定地理位置的服务提供商或者搜索特定的业务类型。之后，UDDI 目录将提供信息、联系方式、链接和技术数据，以便您确定能满足需要的服务。<br>UDDI 允许您查找提供所需的Web 服务的公司。如果您已经知道要与谁进行业务合作，但尚不了解它还能提供哪些服务，这时该如何处理呢？WS-Inspection规范允许您浏览特定服务器上提供的 XML Web Service 的集合，从中查找所需的服务。</p>
+<h2 id="Big-Web-Service的Java实现"><a href="#Big-Web-Service的Java实现" class="headerlink" title="Big Web Service的Java实现"></a>Big Web Service的Java实现</h2><p>Web Service本质是一种标准，具体每种语言都提供了不同的实现。在Java领域，Big Web Service的标准是JAX-WS，实现框架有：<a href="http://cxf.apache.org/docs/a-simple-jax-ws-service.html" target="_blank" rel="noopener">CXF</a>, axis2, Java 6开始自带的Web Service引擎(自带的<a href="http://docs.oracle.com/javaee/6/tutorial/doc/bnayl.html" target="_blank" rel="noopener">JAX-WS implementation</a>)。</p>
+<h3 id="JAX-WS的不同实现框架"><a href="#JAX-WS的不同实现框架" class="headerlink" title="JAX-WS的不同实现框架"></a>JAX-WS的不同实现框架</h3><p>这里先说明一下为什么存在这些不同的实现框架，特别是Java 6开始自带的Web Service引擎与其他更复杂的框架，参考<a href="http://stackoverflow.com/questions/11566609/difference-between-jax-ws-axis2-cxf" target="_blank" rel="noopener">Difference between Jax-ws, axis2, cxf</a>：<br>The JAX-WS implementation built into the JDK really is just the basic soap stuff. If you need any of the more complex WS-* things like WS-Security, WS-RM, WS-Policy, etc…, you need to use one of the alternatives like CXF or Metro or Axis2. It can also depend on what you are trying to integrate with. For example, CXF has top notch Spring support as well as very good OSGi support.</p>
 <p>CXF also has other things besides just JAX-WS. It has a compliant JAX-RS implementation as well and supports exposing services as both REST and SOAP very well. Has a W3C compliant SOAP/JMS implementation if that type of things is required. Basically, lots of stuff not available from the in-jdk JAX-WS impl.</p>
-<p>Also see:<br>
-<a href="http://stackoverflow.com/questions/1243247/difference-between-apache-cxf-and-axis/1245386#1245386" target="_blank" rel="noopener">Difference between Apache CXF and Axis</a></p>
+<p>Also see:<br><a href="http://stackoverflow.com/questions/1243247/difference-between-apache-cxf-and-axis/1245386#1245386" target="_blank" rel="noopener">Difference between Apache CXF and Axis</a></p>
 <p>也就是Java自带的Web Service引擎提供了SOAP通信的服务，但是不支持更高级的需求，比如Web Service安全性，与Spring结合等。</p>
-<h3 id="创建和使用web-service基本步骤"><a class="markdownIt-Anchor" href="#创建和使用web-service基本步骤"></a> 创建和使用Web Service基本步骤</h3>
-<ol>
+<h3 id="创建和使用Web-Service基本步骤"><a href="#创建和使用Web-Service基本步骤" class="headerlink" title="创建和使用Web Service基本步骤"></a>创建和使用Web Service基本步骤</h3><ol>
 <li>编写服务的接口</li>
 <li>编写服务接口的实现类</li>
 <li>发布</li>
 <li>测试或使用</li>
 </ol>
-<h3 id="使用jax-wsjava自带实现第一个web-service"><a class="markdownIt-Anchor" href="#使用jax-wsjava自带实现第一个web-service"></a> 使用JAX-WS(Java自带)实现第一个Web Service</h3>
-<p>项目结构如下：</p>
+<h3 id="使用JAX-WS-Java自带-实现第一个Web-Service"><a href="#使用JAX-WS-Java自带-实现第一个Web-Service" class="headerlink" title="使用JAX-WS(Java自带)实现第一个Web Service"></a>使用JAX-WS(Java自带)实现第一个Web Service</h3><p>项目结构如下：</p>
 <p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/WebService_1.png" alt="WebService_1"></p>
 <ul>
 <li><strong>编写服务接口HelloWorld</strong></li>
@@ -504,12 +485,11 @@ The JAX-WS implementation built into the JDK really is just the basic soap stuff
 <li><strong>编写客户端，调用服务</strong></li>
 </ul>
 <p>需要利用工具类生成并导入服务的接口类<code>HelloWorld</code>。</p>
-<p>method 1: 使用Eclipse工具生成<br>
-method 2: 通过cxf的命令生成客户端代码。<br>
-进入apache-cxf-2.3.1\bin所在目录，输入命令：</p>
+<p>method 1: 使用Eclipse工具生成<br>method 2: 通过cxf的命令生成客户端代码。<br>进入apache-cxf-2.3.1\bin所在目录，输入命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsdl2java -p com.jaxb.client -d . http://localhost:9999/ws/hello?wsdl</span><br></pre></td></tr></table></figure>
 <p>命令格式为：<code>wsdl2java –p 包名 –d 生成代码存放目录 wsdl的url</code></p>
 <p>wsdl2java用法：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -548,22 +528,22 @@ method 2: 通过cxf的命令生成客户端代码。<br>
 </tr>
 </tbody>
 </table>
+</div>
 <p>另外还需要知道服务wsdl文件中的targetNamespace和name用于定位服务。</p>
-<p><code>targetNamespace=&quot;http://jws/&quot; name=&quot;HelloWorldImplService</code></p>
+<p><code>targetNamespace=&quot;http://jws/&quot; 
+name=&quot;HelloWorldImplService</code></p>
 <p>将生成代码拷贝到client代码目录下或导入。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> client;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.net.MalformedURLException;</span><br><span class="line"><span class="keyword">import</span> java.net.URL;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.xml.namespace.QName;</span><br><span class="line"><span class="keyword">import</span> javax.xml.ws.Service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> jws.HelloWorld;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		URL url = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            url = <span class="keyword">new</span> URL(<span class="string">"http://localhost:9999/ws/hello?wsdl"</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (MalformedURLException e) &#123;</span><br><span class="line">            java.util.logging.Logger.getLogger(HelloWorld.class.getName())</span><br><span class="line">                .log(java.util.logging.Level.INFO, </span><br><span class="line">                     <span class="string">"Can not initialize the default wsdl from &#123;0&#125;"</span>, <span class="string">"http://localhost:9000/helloWorld?wsdl"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        QName qname = <span class="keyword">new</span> QName(<span class="string">"http://jws/"</span>, <span class="string">"HelloWorldImplService"</span>);</span><br><span class="line">        </span><br><span class="line">        Service service = Service.create(url, qname);</span><br><span class="line">        </span><br><span class="line">        HelloWorld hw = service.getPort(HelloWorld.class);</span><br><span class="line">        System.out.println(hw.sayHello(<span class="string">"World"</span>));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello, World</span><br></pre></td></tr></table></figure>
 <p>上面是基本的基于Java 6开始自带的Web Service引擎的helloworld实现，没有使用任何其他包，例如CFX。</p>
-<h2 id="hellowrold基于cxf的实现"><a class="markdownIt-Anchor" href="#hellowrold基于cxf的实现"></a> HelloWrold基于CXF的实现</h2>
-<p>基本流程和上面一致。</p>
+<h2 id="HelloWrold基于CXF的实现"><a href="#HelloWrold基于CXF的实现" class="headerlink" title="HelloWrold基于CXF的实现"></a>HelloWrold基于CXF的实现</h2><p>基本流程和上面一致。</p>
 <p>使用CXF的JaxWsServerFactoryBean类进行发布。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">HelloServiceImpl impl = <span class="keyword">new</span> HelloServiceImpl();</span><br><span class="line">JaxWsServerFactoryBean factoryBean = newJaxWsServerFactoryBean();</span><br><span class="line">factoryBean.setAddress(<span class="string">"http://localhost:8080/WSCXF/helloService"</span>);</span><br><span class="line">factoryBean.setServiceClass(IHelloService.class);<span class="comment">//接口类</span></span><br><span class="line">factoryBean.setServiceBean(impl);</span><br><span class="line">factoryBean.create();</span><br><span class="line">System.out.println(<span class="string">"WS发布成功！"</span>);</span><br></pre></td></tr></table></figure>
 <p>这两种方法都是将服务发布到Jetty下。另外还可以利用cxf和spring整合在tomcat下进行发布。</p>
 <p>客户端使用cxf的调用服务：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">JaxWsProxyFactoryBean soapFactoryBean = newJaxWsProxyFactoryBean();</span><br><span class="line">soapFactoryBean.setAddress(<span class="string">"http://localhost:8080/WSCXF/helloService"</span>);</span><br><span class="line">soapFactoryBean.setServiceClass(IHelloService.class);</span><br><span class="line">Object o = soapFactoryBean.create();</span><br><span class="line">IHelloService helloService = (IHelloService)o;</span><br></pre></td></tr></table></figure>
 <p>可以看出Big web service的生成发布以及调用过程都是基本一致的，只是在各个步骤可以使用不同的框架和实现，不同框架提供了不同程度的安全性，整合等支持。</p>
-<h2 id="cxf和spring整合"><a class="markdownIt-Anchor" href="#cxf和spring整合"></a> CXF和Spring整合</h2>
-<p>参考<a href="http://www.mkyong.com/webservices/jax-ws/jax-ws-hello-world-example-document-style/" target="_blank" rel="noopener">JAX-WS Hello World Example – Document Style</a></p>
+<h2 id="CXF和Spring整合"><a href="#CXF和Spring整合" class="headerlink" title="CXF和Spring整合"></a>CXF和Spring整合</h2><p>参考<a href="http://www.mkyong.com/webservices/jax-ws/jax-ws-hello-world-example-document-style/" target="_blank" rel="noopener">JAX-WS Hello World Example – Document Style</a></p>
 
       
     </div>
@@ -850,7 +830,7 @@ method 2: 通过cxf的命令生成客户端代码。<br>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#big-web-service的基本技术"><span class="nav-number">1.</span> <span class="nav-text"> Big web service的基本技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#soap"><span class="nav-number">1.1.</span> <span class="nav-text"> SOAP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wsdl"><span class="nav-number">1.2.</span> <span class="nav-text"> WSDL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#uddi"><span class="nav-number">1.3.</span> <span class="nav-text"> UDDI</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#big-web-service的java实现"><span class="nav-number">2.</span> <span class="nav-text"> Big Web Service的Java实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jax-ws的不同实现框架"><span class="nav-number">2.1.</span> <span class="nav-text"> JAX-WS的不同实现框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建和使用web-service基本步骤"><span class="nav-number">2.2.</span> <span class="nav-text"> 创建和使用Web Service基本步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用jax-wsjava自带实现第一个web-service"><span class="nav-number">2.3.</span> <span class="nav-text"> 使用JAX-WS(Java自带)实现第一个Web Service</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hellowrold基于cxf的实现"><span class="nav-number">3.</span> <span class="nav-text"> HelloWrold基于CXF的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cxf和spring整合"><span class="nav-number">4.</span> <span class="nav-text"> CXF和Spring整合</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Big-web-service的基本技术"><span class="nav-number">1.</span> <span class="nav-text">Big web service的基本技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SOAP"><span class="nav-number">1.1.</span> <span class="nav-text">SOAP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WSDL"><span class="nav-number">1.2.</span> <span class="nav-text">WSDL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UDDI"><span class="nav-number">1.3.</span> <span class="nav-text">UDDI</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Big-Web-Service的Java实现"><span class="nav-number">2.</span> <span class="nav-text">Big Web Service的Java实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JAX-WS的不同实现框架"><span class="nav-number">2.1.</span> <span class="nav-text">JAX-WS的不同实现框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建和使用Web-Service基本步骤"><span class="nav-number">2.2.</span> <span class="nav-text">创建和使用Web Service基本步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用JAX-WS-Java自带-实现第一个Web-Service"><span class="nav-number">2.3.</span> <span class="nav-text">使用JAX-WS(Java自带)实现第一个Web Service</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HelloWrold基于CXF的实现"><span class="nav-number">3.</span> <span class="nav-text">HelloWrold基于CXF的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CXF和Spring整合"><span class="nav-number">4.</span> <span class="nav-text">CXF和Spring整合</span></a></li></ol></div>
             
 
           </div>

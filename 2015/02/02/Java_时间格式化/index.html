@@ -98,18 +98,18 @@
 
 
 
-  <meta name="description" content="Java中的时间格式化 通过java.util.Date我们可以简单的获取当前时间： Data date = new Date() 通过Data对象我们可以获取很多关于目前时间的信息和操作方法，其中getTime()方法可以获得当前时间的毫秒数，与System.currentTimeMills()方法相同。 Date类提供的一些方法： 1234boolean after(Date date)bo">
+  <meta name="description" content="Java中的时间格式化通过java.util.Date我们可以简单的获取当前时间：Data date = new Date()通过Data对象我们可以获取很多关于目前时间的信息和操作方法，其中getTime()方法可以获得当前时间的毫秒数，与System.currentTimeMills()方法相同。 Date类提供的一些方法： 1234boolean after(Date date)boolea">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java中的时间格式化">
 <meta property="og:url" content="http://yoursite.com/2015/02/02/Java_时间格式化/index.html">
 <meta property="og:site_name" content="Plusaber&#39;s Blog">
-<meta property="og:description" content="Java中的时间格式化 通过java.util.Date我们可以简单的获取当前时间： Data date = new Date() 通过Data对象我们可以获取很多关于目前时间的信息和操作方法，其中getTime()方法可以获得当前时间的毫秒数，与System.currentTimeMills()方法相同。 Date类提供的一些方法： 1234boolean after(Date date)bo">
+<meta property="og:description" content="Java中的时间格式化通过java.util.Date我们可以简单的获取当前时间：Data date = new Date()通过Data对象我们可以获取很多关于目前时间的信息和操作方法，其中getTime()方法可以获得当前时间的毫秒数，与System.currentTimeMills()方法相同。 Date类提供的一些方法： 1234boolean after(Date date)boolea">
 <meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2016-04-30T06:37:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java中的时间格式化">
-<meta name="twitter:description" content="Java中的时间格式化 通过java.util.Date我们可以简单的获取当前时间： Data date = new Date() 通过Data对象我们可以获取很多关于目前时间的信息和操作方法，其中getTime()方法可以获得当前时间的毫秒数，与System.currentTimeMills()方法相同。 Date类提供的一些方法： 1234boolean after(Date date)bo">
+<meta name="twitter:description" content="Java中的时间格式化通过java.util.Date我们可以简单的获取当前时间：Data date = new Date()通过Data对象我们可以获取很多关于目前时间的信息和操作方法，其中getTime()方法可以获得当前时间的毫秒数，与System.currentTimeMills()方法相同。 Date类提供的一些方法： 1234boolean after(Date date)boolea">
 
 
 
@@ -435,15 +435,13 @@
       
 
       
-        <h1 id="java中的时间格式化"><a class="markdownIt-Anchor" href="#java中的时间格式化"></a> Java中的时间格式化</h1>
-<p>通过java.util.Date我们可以简单的获取当前时间：<br>
-<code>Data date = new Date()</code><br>
-通过Data对象我们可以获取很多关于目前时间的信息和操作方法，其中<code>getTime()</code>方法可以获得当前时间的毫秒数，与<code>System.currentTimeMills()</code>方法相同。</p>
+        <h1 id="Java中的时间格式化"><a href="#Java中的时间格式化" class="headerlink" title="Java中的时间格式化"></a>Java中的时间格式化</h1><p>通过java.util.Date我们可以简单的获取当前时间：<br><code>Data date = new Date()</code><br>通过Data对象我们可以获取很多关于目前时间的信息和操作方法，其中<code>getTime()</code>方法可以获得当前时间的毫秒数，与<code>System.currentTimeMills()</code>方法相同。</p>
 <p>Date类提供的一些方法：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">after</span><span class="params">(Date date)</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">before</span><span class="params">(Date date)</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Date date)</span> <span class="comment">// equal-0, before-minus</span></span></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">getTime</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
 <p>很多时候我们需要将时间以某种特定格式输出或使用，这是我们可以使用<code>java.text.SimpleDateFormat</code>类。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd-HH:mm:ss.SSS"</span>);</span><br><span class="line">String currentTime = sdf.format(<span class="keyword">new</span> Date());</span><br></pre></td></tr></table></figure>
 <p>其中yyyy等对应着时间里的元素，具体如下：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -550,6 +548,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>SimpleDateFormat除了可以将Date时间格式化，还提供parse()方法将字符串解析为Date。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat (<span class="string">"yyyy-MM-dd:hh:mm"</span>);</span><br><span class="line">String time = <span class="string">"2015-02-02:08:23"</span>;</span><br><span class="line">Date date = sdf.parse(time);</span><br></pre></td></tr></table></figure>
 <p>另外如果需要设置时间等操作，可以使用Calendar类，这里不再进行扩展。</p>
@@ -599,8 +598,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/02/05/Java_Ant编译编码问题/" rel="prev" title="Ant编译编码问题">
-                Ant编译编码问题 <i class="fa fa-chevron-right"></i>
+              <a href="/2015/02/05/Java_classpath指定多个路径 copy/" rel="prev" title="classpath指定多个路径">
+                classpath指定多个路径 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -845,7 +844,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#java中的时间格式化"><span class="nav-number">1.</span> <span class="nav-text"> Java中的时间格式化</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java中的时间格式化"><span class="nav-number">1.</span> <span class="nav-text">Java中的时间格式化</span></a></li></ol></div>
             
 
           </div>

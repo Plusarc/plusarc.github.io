@@ -98,18 +98,18 @@
 
 
 
-  <meta name="description" content="Elasticsearch配置 Elasticsearch是一个实时分布式搜索和分析引擎，基于REST，我们可以使用Elasticsearch快速的实现全文搜索、结构化搜索、分析。和Apache Solr一样，Elastic Search同样使用Apache Lucene作为核心实现索引和检索功能。 这里首先介绍Elasticsearch的安装。由于Elasticsearch仍处于快速发展阶段，">
+  <meta name="description" content="Elasticsearch配置Elasticsearch是一个实时分布式搜索和分析引擎，基于REST，我们可以使用Elasticsearch快速的实现全文搜索、结构化搜索、分析。和Apache Solr一样，Elastic Search同样使用Apache Lucene作为核心实现索引和检索功能。 这里首先介绍Elasticsearch的安装。由于Elasticsearch仍处于快速发展阶段，所以">
 <meta name="keywords" content="elasticsearch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Elasticsearch配置">
 <meta property="og:url" content="http://yoursite.com/2016/01/05/Developing_Elastic Search(1)配置/index.html">
 <meta property="og:site_name" content="Plusaber&#39;s Blog">
-<meta property="og:description" content="Elasticsearch配置 Elasticsearch是一个实时分布式搜索和分析引擎，基于REST，我们可以使用Elasticsearch快速的实现全文搜索、结构化搜索、分析。和Apache Solr一样，Elastic Search同样使用Apache Lucene作为核心实现索引和检索功能。 这里首先介绍Elasticsearch的安装。由于Elasticsearch仍处于快速发展阶段，">
+<meta property="og:description" content="Elasticsearch配置Elasticsearch是一个实时分布式搜索和分析引擎，基于REST，我们可以使用Elasticsearch快速的实现全文搜索、结构化搜索、分析。和Apache Solr一样，Elastic Search同样使用Apache Lucene作为核心实现索引和检索功能。 这里首先介绍Elasticsearch的安装。由于Elasticsearch仍处于快速发展阶段，所以">
 <meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2016-04-12T12:24:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Elasticsearch配置">
-<meta name="twitter:description" content="Elasticsearch配置 Elasticsearch是一个实时分布式搜索和分析引擎，基于REST，我们可以使用Elasticsearch快速的实现全文搜索、结构化搜索、分析。和Apache Solr一样，Elastic Search同样使用Apache Lucene作为核心实现索引和检索功能。 这里首先介绍Elasticsearch的安装。由于Elasticsearch仍处于快速发展阶段，">
+<meta name="twitter:description" content="Elasticsearch配置Elasticsearch是一个实时分布式搜索和分析引擎，基于REST，我们可以使用Elasticsearch快速的实现全文搜索、结构化搜索、分析。和Apache Solr一样，Elastic Search同样使用Apache Lucene作为核心实现索引和检索功能。 这里首先介绍Elasticsearch的安装。由于Elasticsearch仍处于快速发展阶段，所以">
 
 
 
@@ -435,22 +435,19 @@
       
 
       
-        <h1 id="elasticsearch配置"><a class="markdownIt-Anchor" href="#elasticsearch配置"></a> Elasticsearch配置</h1>
-<p>Elasticsearch是一个实时分布式搜索和分析引擎，基于REST，我们可以使用Elasticsearch快速的实现全文搜索、结构化搜索、分析。和Apache Solr一样，Elastic Search同样使用Apache Lucene作为核心实现索引和检索功能。</p>
+        <h1 id="Elasticsearch配置"><a href="#Elasticsearch配置" class="headerlink" title="Elasticsearch配置"></a>Elasticsearch配置</h1><p>Elasticsearch是一个实时分布式搜索和分析引擎，基于REST，我们可以使用Elasticsearch快速的实现全文搜索、结构化搜索、分析。和Apache Solr一样，Elastic Search同样使用Apache Lucene作为核心实现索引和检索功能。</p>
 <p>这里首先介绍Elasticsearch的安装。由于Elasticsearch仍处于快速发展阶段，所以每个版本的安装方式可能会有不同。这里使用的Elasticsearch版本是2.1.1，Elasticsearch无需安装，只需要直接下载解压，然后运行bin/elasticsearch即可启动Elasticsearch，并默认在9200端口提供RESTful服务。</p>
 <ol>
 <li>下载<a href="https://www.elastic.co/downloads/elasticsearch" target="_blank" rel="noopener">Elastisearch</a></li>
 <li>解压，<code>tar -zxvf 文件</code>。</li>
 <li>运行<code>bin/elasticsearch</code>。</li>
 </ol>
-<p><code>curl 'http://localhost:9200/?pretty'</code>，我们会得到：</p>
+<p><code>curl &#39;http://localhost:9200/?pretty&#39;</code>，我们会得到：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span> : <span class="string">"Namorita"</span>,</span><br><span class="line">  <span class="attr">"cluster_name"</span> : <span class="string">"elasticsearch"</span>,</span><br><span class="line">  <span class="attr">"version"</span> : &#123;</span><br><span class="line">    <span class="attr">"number"</span> : <span class="string">"2.1.1"</span>,</span><br><span class="line">    <span class="attr">"build_hash"</span> : <span class="string">"40e2c53a6b6c2972b3d13846e450e66f4375bd71"</span>,</span><br><span class="line">    <span class="attr">"build_timestamp"</span> : <span class="string">"2015-12-15T13:05:55Z"</span>,</span><br><span class="line">    <span class="attr">"build_snapshot"</span> : <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">"lucene_version"</span> : <span class="string">"5.3.1"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"tagline"</span> : <span class="string">"You Know, for Search"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>另外一个常用的工具是<a href="https://www.elastic.co/downloads/marvel" target="_blank" rel="noopener">Marvel</a>，Elasticsearch的管理和监控工具，目前的最新的版本是2.1，目前版本似乎是要结合数据可视化工具Kibana运行。下面是完整的步骤：</p>
 <p>Step 1: 在Elasticsearch安装Marvel：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bin/plugin install license</span><br><span class="line">bin/plugin install marvel-agent</span><br></pre></td></tr></table></figure>
-<p>Step 2: 下载<a href="https://www.elastic.co/downloads/kibana" target="_blank" rel="noopener">Kibana</a>并解压。<br>
-Step 3: 在Kibana中安装Marvel，<code>bin/kibana plugin --install elasticsearch/marvel/latest</code><br>
-Step 4: 启动Elasticsearch 和 Kibana</p>
+<p>Step 2: 下载<a href="https://www.elastic.co/downloads/kibana" target="_blank" rel="noopener">Kibana</a>并解压。<br>Step 3: 在Kibana中安装Marvel，<code>bin/kibana plugin --install elasticsearch/marvel/latest</code><br>Step 4: 启动Elasticsearch 和 Kibana</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bin/elasticsearch</span><br><span class="line">bin/kibana</span><br></pre></td></tr></table></figure>
 <p>Step 5: 访问<code>http://localhost:5601/app/marvel</code>查看运行的Elasticsearch服务。</p>
 
@@ -745,7 +742,7 @@ Step 4: 启动Elasticsearch 和 Kibana</p>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#elasticsearch配置"><span class="nav-number">1.</span> <span class="nav-text"> Elasticsearch配置</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Elasticsearch配置"><span class="nav-number">1.</span> <span class="nav-text">Elasticsearch配置</span></a></li></ol></div>
             
 
           </div>
