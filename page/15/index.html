@@ -393,135 +393,6 @@
             
               
                 
-                <a class="post-title-link" href="/2015/09/26/Leetcode_Binary Tree Maximum Path Sum/" itemprop="url">
-                  Binary Tree Maximum Path Sum
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-26T00:00:00+09:00" content="2015-09-26">
-              2015-09-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/26/Leetcode_Binary Tree Maximum Path Sum/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/26/Leetcode_Binary Tree Maximum Path Sum/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Binary-Tree-Maximum-Path-Sum"><a href="#Binary-Tree-Maximum-Path-Sum" class="headerlink" title="Binary Tree Maximum Path Sum"></a><a href="https://leetcode.com/problems/binary-tree-maximum-path-sum/" target="_blank" rel="external">Binary Tree Maximum Path Sum</a></h1><blockquote>
-<p>Given a binary tree, find the maximum path sum.</p>
-<p>For this problem, a path is defined as any sequence of nodes from some starting node to any node in the tree along the parent-child connections. The path does not need to go through the root.</p>
-<p>For example:<br>Given the below binary tree,</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">       1</div><div class="line">      / \</div><div class="line">     2   3</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-<p>Return <code>6</code>.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>后序遍历二叉树，遍历后更新节点值为从叶子节点到当前节点路径的最大值，同时返回当前子树存在的路径的最大值。</p>
-<p>具体逻辑参考代码。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxPathSum</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> leftMax = Integer.MIN_VALUE;</div><div class="line">        <span class="keyword">int</span> rightMax = Integer.MIN_VALUE;</div><div class="line">        <span class="keyword">if</span>(root.left!=<span class="keyword">null</span>) leftMax = maxPathSum(root.left);</div><div class="line">        <span class="keyword">if</span>(root.right!=<span class="keyword">null</span>) rightMax = maxPathSum(root.right);</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> currentMax = root.val;</div><div class="line">        <span class="keyword">if</span>(getValue(root.left)&gt;<span class="number">0</span>) currentMax += getValue(root.left);</div><div class="line">        <span class="keyword">if</span>(getValue(root.right)&gt;<span class="number">0</span>) currentMax += getValue(root.right);</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> pathMax = getValue(root.left)&gt;=getValue(root.right) ? getValue(root.left) : getValue(root.right);</div><div class="line">        </div><div class="line">        root.val = root.val + (pathMax&gt;<span class="number">0</span>? pathMax : <span class="number">0</span>);</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> Math.max(currentMax, Math.max(leftMax, rightMax));</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getValue</span><span class="params">(TreeNode node)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(node==<span class="keyword">null</span>) <span class="keyword">return</span> Integer.MIN_VALUE;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">return</span> node.val;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2015/09/25/Leetcode_Populating Next Right Pointers in Each Node II/" itemprop="url">
                   Populating Next Right Pointers in Each Node II
                 </a>
@@ -916,6 +787,139 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/09/22/Leetcode_Search in Rotated Sorted Array II/" itemprop="url">
+                  Search in Rotated Sorted Array II
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-09-22T00:00:00+09:00" content="2015-09-22">
+              2015-09-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/22/Leetcode_Search in Rotated Sorted Array II/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/22/Leetcode_Search in Rotated Sorted Array II/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Search-in-Rotated-Sorted-Array-II"><a href="#Search-in-Rotated-Sorted-Array-II" class="headerlink" title="Search in Rotated Sorted Array II"></a><a href="https://leetcode.com/problems/search-in-rotated-sorted-array-ii/" target="_blank" rel="external">Search in Rotated Sorted Array II</a></h1><blockquote>
+<p>Follow up for “Search in Rotated Sorted Array”:<br>What if duplicates are allowed?</p>
+<p>Would this affect the run-time complexity? How and why?</p>
+<p>Write a function to determine if a given target is in the array.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>上一个<a href="https://leetcode.com/problems/search-in-rotated-sorted-array/" target="_blank" rel="external">Search in Rotated Sorted Array</a>问题的拓展，重复元素可能存在于数组。</p>
+<p>导致的一个变化是，数组元素的开头元素，中间元素，末尾元素可能相等的情况，这时无法直接二分数组进行查找。</p>
+<p>也就是：</p>
+<p><code>if(nums[left]&lt;nums[mid])</code>, 也就是足以证明左子数组的是有序的情况，可以判断target在左子数组，还是在右子数组。<br><code>nums[mid]&lt;nums[right]</code>, 也就是足以证明右子数组是有序的情况，也可以判断target在左子数组，还是在右子数组。</p>
+<p>这也就是<a href="https://leetcode.com/problems/search-in-rotated-sorted-array/" target="_blank" rel="external">Search in Rotated Sorted Array</a>唯一的两种情况。</p>
+<p>对于Search in Rotated Sorted Array II问题，由于允许重复元素，也就是存在<code>if(nums[left]&lt;nums[mid])</code>与<code>nums[mid]&lt;nums[right]</code>都不满足的情况。</p>
+<p>这种情况就是<code>nums[left]==nums[mid] &amp;&amp; nums[mid]==nums[right]</code>，也就是左子数组和右子数组其中有一个所有的元素都是相同的，另一子数组中可能存在突变点。但是无法二分判断存在于左数组和右数组。只能对left, right判断，如果都不是target，则<code>left++, right--</code>.</p>
+<p>对于这种数组最差情况时间复杂度为<code>O(n)</code>, 而不是一般情况的<code>O(log(n))</code></p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(nums==<span class="keyword">null</span> || nums.length==<span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> right = nums.length - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(left&lt;=right) &#123;</div><div class="line">            <span class="keyword">int</span> mid = right - (right - left) / <span class="number">2</span>;</div><div class="line">            <span class="keyword">if</span>(nums[mid]==target) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            <span class="keyword">if</span>(nums[left]&lt;nums[mid]) &#123;</div><div class="line">                <span class="keyword">if</span>(target&gt;=nums[left] &amp;&amp; target&lt;nums[mid]) right = mid - <span class="number">1</span>;</div><div class="line">                <span class="keyword">else</span> left = mid + <span class="number">1</span>;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span>(nums[mid]&lt;nums[right])&#123;</div><div class="line">                <span class="keyword">if</span>(target&gt;nums[mid] &amp;&amp; target&lt;=nums[right]) left = mid + <span class="number">1</span>;</div><div class="line">                <span class="keyword">else</span> right = mid - <span class="number">1</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123; <span class="comment">// nums[left]==nums[mid] &amp;&amp; nums[mid]==nums[right];</span></div><div class="line">                <span class="keyword">if</span>(nums[left]==target || nums[right]==target) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">                left ++;</div><div class="line">                right --;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -961,7 +965,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">330</span>
+              <span class="site-state-item-count">329</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -1041,7 +1045,7 @@
         <div class="copyright" >
   
   &copy;  2014 - 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

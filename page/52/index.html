@@ -260,133 +260,6 @@
             
               
                 
-                <a class="post-title-link" href="/2015/06/16/Leetcode_String toInteger(atoi) /" itemprop="url">
-                  String to Integer (atoi)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-06-16T00:00:00+09:00" content="2015-06-16">
-              2015-06-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/06/16/Leetcode_String toInteger(atoi) /#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/16/Leetcode_String toInteger(atoi) /" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="String-to-Integer-atoi"><a href="#String-to-Integer-atoi" class="headerlink" title="String to Integer (atoi)"></a><a href="https://leetcode.com/problems/string-to-integer-atoi/" target="_blank" rel="external">String to Integer (atoi)</a></h1><blockquote>
-<p>Implement atoi to convert a string to an integer.</p>
-<p>Hint: Carefully consider all possible input cases. If you want a challenge, please do not see below and ask yourself what are the possible input cases.</p>
-<p>Notes: It is intended for this problem to be specified vaguely (ie, no given input specs). You are responsible to gather all the input requirements up front.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>注意处理前面数字正式开始的部分，正负情况，以及越界的情况，在加乘之前进行判断。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>((<span class="keyword">double</span>)num+(<span class="keyword">double</span>)(strArray[i] - <span class="string">'0'</span>)/<span class="number">10</span> &gt; EX_VALUE/<span class="number">10</span>) &#123;</div><div class="line">	<span class="keyword">if</span>(negative) <span class="keyword">return</span> Integer.MIN_VALUE;</div><div class="line">   	<span class="keyword">else</span> <span class="keyword">return</span> Integer.MAX_VALUE;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">myAtoi</span><span class="params">(String str)</span> </span>&#123;</div><div class="line">        <span class="keyword">char</span> [] strArray = str.toCharArray();</div><div class="line">        <span class="keyword">boolean</span> negative = <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">boolean</span> start = <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">int</span> num = <span class="number">0</span>;</div><div class="line">        <span class="keyword">double</span> EX_VALUE = Integer.MAX_VALUE;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;str.length(); i++) &#123;</div><div class="line">            <span class="keyword">if</span>(!start) &#123;</div><div class="line">                <span class="keyword">if</span>(strArray[i]==<span class="string">' '</span>) <span class="keyword">continue</span>;</div><div class="line">                <span class="keyword">if</span>(strArray[i]==<span class="string">'+'</span>||strArray[i]==<span class="string">'-'</span>|| (strArray[i]&gt;=<span class="string">'0'</span>&amp;&amp;strArray[i]&lt;=<span class="string">'9'</span>)) &#123;</div><div class="line">                    start = <span class="keyword">true</span>;</div><div class="line">                    <span class="keyword">if</span>(strArray[i]==<span class="string">'-'</span>) &#123; negative = <span class="keyword">true</span>; EX_VALUE = Integer.MIN_VALUE; EX_VALUE = -EX_VALUE;&#125;</div><div class="line">                    <span class="keyword">if</span>(strArray[i]&gt;=<span class="string">'0'</span>&amp;&amp;strArray[i]&lt;=<span class="string">'9'</span>) &#123;</div><div class="line">                        num = num * <span class="number">10</span> + (<span class="keyword">int</span>)(strArray[i] - <span class="string">'0'</span>);</div><div class="line">                    &#125;</div><div class="line">                &#125; <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">if</span>(strArray[i]&gt;=<span class="string">'0'</span>&amp;&amp;strArray[i]&lt;=<span class="string">'9'</span>) &#123;</div><div class="line">                    <span class="keyword">if</span>((<span class="keyword">double</span>)num+(<span class="keyword">double</span>)(strArray[i] - <span class="string">'0'</span>)/<span class="number">10</span> &gt; EX_VALUE/<span class="number">10</span>) &#123;</div><div class="line">                        <span class="keyword">if</span>(negative) &#123;</div><div class="line">                            <span class="keyword">return</span> Integer.MIN_VALUE;</div><div class="line">                        &#125; <span class="keyword">else</span></div><div class="line">                            <span class="keyword">return</span> Integer.MAX_VALUE;</div><div class="line">                    &#125;</div><div class="line">                    num = num * <span class="number">10</span> + (<span class="keyword">int</span>)(strArray[i] - <span class="string">'0'</span>);</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    <span class="keyword">if</span>(negative) num = -num;</div><div class="line">                    <span class="keyword">return</span> num;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(negative) num = -num;</div><div class="line">        <span class="keyword">return</span> num;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2015/06/16/Blogging_Mathjax/" itemprop="url">
                   MathJax使用
                 </a>
@@ -589,8 +462,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/06/15/Leetcode_Count and Say/" itemprop="url">
-                  Count and Say
+                <a class="post-title-link" href="/2015/06/15/Leetcode_Linked List Cycle/" itemprop="url">
+                  Linked List Cycle
                 </a>
               
             
@@ -633,8 +506,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/06/15/Leetcode_Count and Say/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/15/Leetcode_Count and Say/" itemprop="commentsCount"></span>
+                <a href="/2015/06/15/Leetcode_Linked List Cycle/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/15/Leetcode_Linked List Cycle/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -659,14 +532,12 @@
       
         
           
-            <h1 id="Count-and-Say"><a href="#Count-and-Say" class="headerlink" title="Count and Say"></a><a href="https://leetcode.com/problems/count-and-say/" target="_blank" rel="external">Count and Say</a></h1><blockquote>
-<p>The count-and-say sequence is the sequence of integers beginning as follows:<br><code>1, 11, 21, 1211, 111221, ...</code></p>
+            <h1 id="Linked-List-Cycle"><a href="#Linked-List-Cycle" class="headerlink" title="Linked List Cycle"></a><a href="https://leetcode.com/problems/linked-list-cycle/" target="_blank" rel="external">Linked List Cycle</a></h1><blockquote>
+<p>Given a linked list, determine if it has a cycle in it.</p>
+<p>Follow up:<br>Can you solve it without using extra space?</p>
 </blockquote>
-<p><code>1</code> is read off as <code>&quot;one 1&quot; or 11</code>.<br><code>11</code> is read off as <code>&quot;two 1s&quot; or 21</code>.<br><code>21</code> is read off as <code>&quot;one 2, then one 1&quot; or 1211</code>.<br>Given an integer n, generate the nth sequence.</p>
-<p>Note: The sequence of integers will be represented as a string.</p>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>注意题目题目意思，其参数<code>n</code>是指<code>第n个</code> <code>count and say number</code>。</p>
-<p>对于原数字，统计每个数字个数，并输出个数和这个数字。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">countAndSay</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    	<span class="keyword">if</span>(n&lt;=<span class="number">0</span>) <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">    	</div><div class="line">    	String snum = <span class="string">"1"</span>;</div><div class="line">    	</div><div class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>; i&lt;=n; i++) &#123;</div><div class="line">    		snum = OneCountAndSay(snum);</div><div class="line">    	&#125;</div><div class="line">    	</div><div class="line">    	<span class="keyword">return</span> snum;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">OneCountAndSay</span><span class="params">(String snum)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">        </div><div class="line">        StringBuffer result = <span class="keyword">new</span> StringBuffer();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;snum.length(); i++) &#123;</div><div class="line">            count ++;</div><div class="line">            <span class="keyword">if</span>(i==snum.length()-<span class="number">1</span> || snum.charAt(i)!=snum.charAt(i+<span class="number">1</span>)) &#123;</div><div class="line">                result.append(<span class="string">""</span>+count+snum.charAt(i));</div><div class="line">                count = <span class="number">0</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> result.toString();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>龟兔赛跑。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * class ListNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     ListNode next;</div><div class="line"> *     ListNode(int x) &#123;</div><div class="line"> *         val = x;</div><div class="line"> *         next = null;</div><div class="line"> *     &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasCycle</span><span class="params">(ListNode head)</span> </span>&#123;</div><div class="line">        ListNode slow, fast;</div><div class="line">        slow = fast = head;</div><div class="line">        <span class="keyword">while</span>(fast!=<span class="keyword">null</span>) &#123;</div><div class="line">            fast = fast.next;</div><div class="line">            <span class="keyword">if</span>(fast==<span class="keyword">null</span>) <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">if</span>(fast==slow) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            fast = fast.next;</div><div class="line">            <span class="keyword">if</span>(fast==<span class="keyword">null</span>) <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">if</span>(fast==slow) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            </div><div class="line">            slow = slow.next;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -842,8 +713,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/06/15/Leetcode_Linked List Cycle/" itemprop="url">
-                  Linked List Cycle
+                <a class="post-title-link" href="/2015/06/15/Leetcode_Two Sum/" itemprop="url">
+                  Leetcode_Two Sum
                 </a>
               
             
@@ -886,8 +757,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/06/15/Leetcode_Linked List Cycle/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/15/Leetcode_Linked List Cycle/" itemprop="commentsCount"></span>
+                <a href="/2015/06/15/Leetcode_Two Sum/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/15/Leetcode_Two Sum/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -912,12 +783,153 @@
       
         
           
-            <h1 id="Linked-List-Cycle"><a href="#Linked-List-Cycle" class="headerlink" title="Linked List Cycle"></a><a href="https://leetcode.com/problems/linked-list-cycle/" target="_blank" rel="external">Linked List Cycle</a></h1><blockquote>
-<p>Given a linked list, determine if it has a cycle in it.</p>
-<p>Follow up:<br>Can you solve it without using extra space?</p>
+            <h1 id="Two-Sum"><a href="#Two-Sum" class="headerlink" title="Two Sum"></a><a href="https://leetcode.com/problems/two-sum/" target="_blank" rel="external">Two Sum</a></h1><blockquote>
+<p>Given an array of integers, find two numbers such that they add up to a specific target number.</p>
+<p>The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.</p>
+<p>You may assume that each input would have exactly one solution.</p>
+<p><strong>Input</strong>: numbers={2, 7, 11, 15}, target=9<br><strong>Output</strong>: index1=1, index2=2</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>龟兔赛跑。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * class ListNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     ListNode next;</div><div class="line"> *     ListNode(int x) &#123;</div><div class="line"> *         val = x;</div><div class="line"> *         next = null;</div><div class="line"> *     &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasCycle</span><span class="params">(ListNode head)</span> </span>&#123;</div><div class="line">        ListNode slow, fast;</div><div class="line">        slow = fast = head;</div><div class="line">        <span class="keyword">while</span>(fast!=<span class="keyword">null</span>) &#123;</div><div class="line">            fast = fast.next;</div><div class="line">            <span class="keyword">if</span>(fast==<span class="keyword">null</span>) <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">if</span>(fast==slow) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            fast = fast.next;</div><div class="line">            <span class="keyword">if</span>(fast==<span class="keyword">null</span>) <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">if</span>(fast==slow) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            </div><div class="line">            slow = slow.next;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h3 id="Naive-method"><a href="#Naive-method" class="headerlink" title="Naive method"></a>Naive method</h3><p>暴力穷举法，选择第一个元素，依次选择与后面每个元素求和，看是否等于target，再选择第二个元素，依次选择与后面每个元素求和，直到找到solution。复杂度为O(n^2)</p>
+<blockquote>
+<p>loop1: a[0]+a[1]==target?  a[0]+a[2]==target? … a[0]+a[n-1]==target?<br>loop2: a[1]+a[2]==target? a[1]+a[3]==target? … a[1]+a[n-1]==target?<br>loop..</p>
+</blockquote>
+<h3 id="Two-pointer"><a href="#Two-pointer" class="headerlink" title="Two pointer"></a>Two pointer</h3><p>先对数组进行排序，然后设立左指针left指向第一个元素，右指针right指向最后一个元素。对左右指针元素求和：</p>
+<ul>
+<li>if sum==target，return solution</li>
+<li>if sum&lt;target，left++</li>
+<li>if sum&gt;target，right–</li>
+</ul>
+<p>直到right&lt;left, 则没有solution。复杂度O(n*log(n))。</p>
+<h3 id="HashMap-method"><a href="#HashMap-method" class="headerlink" title="HashMap method"></a>HashMap method</h3><p>把遍历过的元素及其下标都存入hashmap，对于当前遍历的元素ele，判断(target-ele)是否在hashmap，若存在，则返回solution，若不存在，则将(key=ele, value=pos)存入hashmap。</p>
+<p>使用空间换时间的策略，使用hashmap记录所有遍历过的元素，一次遍历。复杂度O(n)。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><p><strong>HashMap method</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</div><div class="line">        </div><div class="line">        HashMap&lt;Integer, Integer&gt; record = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nums.length; i++)&#123;</div><div class="line">            <span class="keyword">if</span>(record.containsKey(target-nums[i])) &#123;</div><div class="line">                <span class="keyword">int</span> [] index = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</div><div class="line">                index[<span class="number">0</span>] = record.get(target-nums[i]);</div><div class="line">                index[<span class="number">1</span>] = i;</div><div class="line">                <span class="keyword">return</span> index;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                record.put(nums[i], i);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Two-pointer-solution"><a href="#Two-pointer-solution" class="headerlink" title="Two pointer solution"></a>Two pointer solution</h3><p>这里解法并不是完整的，题目中要求的是解的index，而不是value，排序后index和value的原来关系已经变化，还需要加一个步骤记录原来index，value关系，或则扫描数组得到对应index。</p>
+<p>这一题solution 1有着明显的优势，所以这里没有给出完整的实现。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</div><div class="line">        <span class="keyword">int</span> [] res = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</div><div class="line">        Arrays.sort(nums, <span class="number">0</span>, nums.length);</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> right = nums.length - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(left&lt;right) &#123;</div><div class="line">            <span class="keyword">int</span> sum = nums[left] + nums[right];</div><div class="line">            <span class="keyword">if</span>(sum&lt;target) left ++;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(sum&gt;target) right --;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(sum==target) &#123;</div><div class="line">                res[<span class="number">0</span>] = nums[left];</div><div class="line">                res[<span class="number">1</span>] = nums[right];</div><div class="line">                <span class="keyword">return</span> res;</div><div class="line">            &#125; </div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/06/15/Leetcode_Balanced Binary Tree/" itemprop="url">
+                  Balanced Binary Tree
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-06-15T00:00:00+09:00" content="2015-06-15">
+              2015-06-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/06/15/Leetcode_Balanced Binary Tree/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/15/Leetcode_Balanced Binary Tree/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Balanced-Binary-Tree"><a href="#Balanced-Binary-Tree" class="headerlink" title="Balanced Binary Tree"></a><a href="https://leetcode.com/submissions/detail/35757307/" target="_blank" rel="external">Balanced Binary Tree</a></h1><blockquote>
+<p>Given a binary tree, determine if it is height-balanced.</p>
+<p>For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of every node never differ by more than 1.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isBalanced</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> recBalanced(root) &gt;= <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">recBalanced</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> leftDepth = recBalanced(root.left);</div><div class="line">        <span class="keyword">if</span>(leftDepth&lt;<span class="number">0</span>) <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> rightDepth = recBalanced(root.right);</div><div class="line">        <span class="keyword">if</span>(rightDepth&lt;<span class="number">0</span>) <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(Math.abs(leftDepth - rightDepth)&gt;<span class="number">1</span>) <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span> + Math.max(leftDepth, rightDepth);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -991,7 +1003,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">330</span>
+              <span class="site-state-item-count">329</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -1071,7 +1083,7 @@
         <div class="copyright" >
   
   &copy;  2014 - 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

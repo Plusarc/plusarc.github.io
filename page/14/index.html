@@ -386,137 +386,6 @@
             
               
                 
-                <a class="post-title-link" href="/2015/09/28/Leetcode_Find the Duplicate Number/" itemprop="url">
-                  Find the Duplicate Number
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-28T00:00:00+09:00" content="2015-09-28">
-              2015-09-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/28/Leetcode_Find the Duplicate Number/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/28/Leetcode_Find the Duplicate Number/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Find-the-Duplicate-Number"><a href="#Find-the-Duplicate-Number" class="headerlink" title="Find the Duplicate Number"></a><a href="https://leetcode.com/problems/find-the-duplicate-number/" target="_blank" rel="external">Find the Duplicate Number</a></h1><blockquote>
-<p>Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist. Assume that there is only one duplicate number, find the duplicate one.</p>
-<p>Note:<br>You must not modify the array (assume the array is read only).<br>You must use only constant, <code>O(1)</code> extra space.<br>Your runtime complexity should be less than <code>O(n^2)</code>.<br>There is only one duplicate number in the array, but it could be repeated more than once.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h3 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution 1"></a>Solution 1</h3><p>因为这个数组的特点非常明显，元素的大小是在1到n之间，而且只有一个元素是重复出现的。那么如果我们存储nums[i] = i + 1，那么对于重复的那个元素j，两个元素都想存放在nums[j-1]中。所以我们可以将元素放入它应该放的位置，比如k应该放在数组的下标k-1的位置。我们遍历数组，将扫描到的数字k放到它应该放的位置k-1，可以将当前元素与nums[k-1]交换，继续将当前位置上交换得到的值放到它应该出现的位置。循环的终止条件是当前位置存放的值就是应该存放的数字，或者当前位置想把数字k交换到它的指定位置时，发现那个位置已经存放了一个k，如果是遇到这个终止条件，那么将需要返回这个值k。 </p>
-<p>参考:<br><a href="http://blog.csdn.net/u014673347/article/details/48783485" target="_blank" rel="external">[leetcode] 287.Find the Duplicate Number</a></p>
-<h3 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution 2"></a>Solution 2</h3><p>二分枚举检索。</p>
-<p>在区别<code>[1, n]</code>中搜索，首先求出中点<code>mid</code>，然后遍历整个数组，统计所有小于等于<code>mid</code>的数的个数，如果个数大于<code>mid</code>，则说明重复值在<code>[mid+1, n]</code>之间，反之，重复值应在<code>[1, mid-1]</code>之间，然后依次类推，知道搜索完成，此时的<code>low</code>就是我们要求的重复值.</p>
-<h3 id="Solution-3"><a href="#Solution-3" class="headerlink" title="Solution 3"></a>Solution 3</h3><p>参考：<br><a href="http://keithschwarz.com/interesting/code/find-duplicate/FindDuplicate.python.html" target="_blank" rel="external">An algorithm for solving the (classic) hard interview problem</a><br><a href="https://leetcode.com/discuss/60852/ac-c-code-with-o-n-time-and-o-1-space" target="_blank" rel="external">AC c++ code with O(n) time and O(1) space.</a><br><a href="http://blog.csdn.net/er_plough/article/details/48783645" target="_blank" rel="external">[leetcode 287]Find the Duplicate Number</a></p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="Solution-1-1"><a href="#Solution-1-1" class="headerlink" title="Solution 1"></a>Solution 1</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findDuplicate</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nums.length; i++) &#123;</div><div class="line">            <span class="keyword">while</span>(nums[i]!=i+<span class="number">1</span> &amp;&amp; nums[nums[i]-<span class="number">1</span>]!=nums[i]) &#123;</div><div class="line">            	<span class="keyword">int</span> temp = nums[nums[i]-<span class="number">1</span>];</div><div class="line">                nums[nums[i]-<span class="number">1</span>] = nums[i];</div><div class="line">                nums[i] = temp;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>(nums[i]!=i+<span class="number">1</span>) <span class="keyword">return</span> nums[i];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Solution-2-1"><a href="#Solution-2-1" class="headerlink" title="Solution 2"></a>Solution 2</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findDuplicate</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> right = nums.length - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(left&lt;=right) &#123;</div><div class="line">        	<span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</div><div class="line">        	<span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">        	<span class="keyword">for</span>(<span class="keyword">int</span> ele: nums) &#123;</div><div class="line">        		<span class="keyword">if</span>(ele&lt;=mid) count ++;</div><div class="line">        	&#125;</div><div class="line">        	<span class="keyword">if</span>(count&lt;=mid) left = mid + <span class="number">1</span>;</div><div class="line">        	<span class="keyword">else</span> right = mid - <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> left;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Solution-3-1"><a href="#Solution-3-1" class="headerlink" title="Solution 3"></a>Solution 3</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findDuplicate</span><span class="params">(<span class="keyword">int</span> [] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> slow =<span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> fast =<span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span>(<span class="number">1</span>) &#123;</div><div class="line">            slow = nums[slow];</div><div class="line">            fast = nums[nums[fast]];</div><div class="line">            <span class="keyword">if</span>(slow == fast)</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        fast = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span>(<span class="number">1</span>) &#123;</div><div class="line">            slow =n ums[slow];</div><div class="line">            fast = nums[fast];</div><div class="line">            <span class="keyword">if</span>(slow == fast) <span class="keyword">return</span> slow;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2015/09/26/Leetcode_Valid Anagram/" itemprop="url">
                   Valid Anagram
                 </a>
@@ -642,8 +511,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/09/26/Leetcode_Recover Binary Search Tree/" itemprop="url">
-                  Recover Binary Search Tree
+                <a class="post-title-link" href="/2015/09/26/Leetcode_Binary Tree Maximum Path Sum/" itemprop="url">
+                  Binary Tree Maximum Path Sum
                 </a>
               
             
@@ -686,8 +555,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/09/26/Leetcode_Recover Binary Search Tree/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/26/Leetcode_Recover Binary Search Tree/" itemprop="commentsCount"></span>
+                <a href="/2015/09/26/Leetcode_Binary Tree Maximum Path Sum/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/26/Leetcode_Binary Tree Maximum Path Sum/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -712,12 +581,16 @@
       
         
           
-            <h1 id="Recover-Binary-Search-Tree"><a href="#Recover-Binary-Search-Tree" class="headerlink" title="Recover Binary Search Tree"></a><a href="https://leetcode.com/problems/recover-binary-search-tree/" target="_blank" rel="external">Recover Binary Search Tree</a></h1><blockquote>
-<p>Two elements of a binary search tree (BST) are swapped by mistake.</p>
-<p>Recover the tree without changing its structure.</p>
+            <h1 id="Binary-Tree-Maximum-Path-Sum"><a href="#Binary-Tree-Maximum-Path-Sum" class="headerlink" title="Binary Tree Maximum Path Sum"></a><a href="https://leetcode.com/problems/binary-tree-maximum-path-sum/" target="_blank" rel="external">Binary Tree Maximum Path Sum</a></h1><blockquote>
+<p>Given a binary tree, find the maximum path sum.</p>
+<p>For this problem, a path is defined as any sequence of nodes from some starting node to any node in the tree along the parent-child connections. The path does not need to go through the root.</p>
+<p>For example:<br>Given the below binary tree,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">       1</div><div class="line">      / \</div><div class="line">     2   3</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+<p>Return <code>6</code>.</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>BST中序遍历输出有序序列，当BST的两个节点被交换后，中序遍历必然会出现不连续的情况，也就是后面的一个值可能会大于前一个节点的值，也就是异常节点，如果交换的两个节点在中序遍历中是紧挨着，这个异常会出现一次，如果不是紧挨着，则这个异常会出现两次。记录异常出现的节点位置，交换其值。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    TreeNode last = <span class="keyword">null</span>;</div><div class="line">    TreeNode abnormal = <span class="keyword">null</span>;</div><div class="line">    TreeNode secondAbnormal = <span class="keyword">null</span>;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recoverTree</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">        recFind(root);</div><div class="line">        <span class="keyword">int</span> abnormalValue = abnormal.val;</div><div class="line">        abnormal.val = secondAbnormal.val;</div><div class="line">        secondAbnormal.val = abnormalValue;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recFind</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">        recFind(root.left);</div><div class="line">        <span class="keyword">if</span>(last!=<span class="keyword">null</span> &amp;&amp;  root.val&lt;=last.val) &#123;</div><div class="line">            <span class="keyword">if</span>(abnormal==<span class="keyword">null</span>) &#123;</div><div class="line">                abnormal = last;</div><div class="line">                secondAbnormal = root;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                secondAbnormal = root;   </div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        last = root;</div><div class="line">        recFind(root.right);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>后序遍历二叉树，遍历后更新节点值为从叶子节点到当前节点路径的最大值，同时返回当前子树存在的路径的最大值。</p>
+<p>具体逻辑参考代码。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxPathSum</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> leftMax = Integer.MIN_VALUE;</div><div class="line">        <span class="keyword">int</span> rightMax = Integer.MIN_VALUE;</div><div class="line">        <span class="keyword">if</span>(root.left!=<span class="keyword">null</span>) leftMax = maxPathSum(root.left);</div><div class="line">        <span class="keyword">if</span>(root.right!=<span class="keyword">null</span>) rightMax = maxPathSum(root.right);</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> currentMax = root.val;</div><div class="line">        <span class="keyword">if</span>(getValue(root.left)&gt;<span class="number">0</span>) currentMax += getValue(root.left);</div><div class="line">        <span class="keyword">if</span>(getValue(root.right)&gt;<span class="number">0</span>) currentMax += getValue(root.right);</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> pathMax = getValue(root.left)&gt;=getValue(root.right) ? getValue(root.left) : getValue(root.right);</div><div class="line">        </div><div class="line">        root.val = root.val + (pathMax&gt;<span class="number">0</span>? pathMax : <span class="number">0</span>);</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> Math.max(currentMax, Math.max(leftMax, rightMax));</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getValue</span><span class="params">(TreeNode node)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(node==<span class="keyword">null</span>) <span class="keyword">return</span> Integer.MIN_VALUE;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">return</span> node.val;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -873,6 +746,131 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/09/26/Leetcode_Recover Binary Search Tree/" itemprop="url">
+                  Recover Binary Search Tree
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-09-26T00:00:00+09:00" content="2015-09-26">
+              2015-09-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/26/Leetcode_Recover Binary Search Tree/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/26/Leetcode_Recover Binary Search Tree/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Recover-Binary-Search-Tree"><a href="#Recover-Binary-Search-Tree" class="headerlink" title="Recover Binary Search Tree"></a><a href="https://leetcode.com/problems/recover-binary-search-tree/" target="_blank" rel="external">Recover Binary Search Tree</a></h1><blockquote>
+<p>Two elements of a binary search tree (BST) are swapped by mistake.</p>
+<p>Recover the tree without changing its structure.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>BST中序遍历输出有序序列，当BST的两个节点被交换后，中序遍历必然会出现不连续的情况，也就是后面的一个值可能会大于前一个节点的值，也就是异常节点，如果交换的两个节点在中序遍历中是紧挨着，这个异常会出现一次，如果不是紧挨着，则这个异常会出现两次。记录异常出现的节点位置，交换其值。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    TreeNode last = <span class="keyword">null</span>;</div><div class="line">    TreeNode abnormal = <span class="keyword">null</span>;</div><div class="line">    TreeNode secondAbnormal = <span class="keyword">null</span>;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recoverTree</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">        recFind(root);</div><div class="line">        <span class="keyword">int</span> abnormalValue = abnormal.val;</div><div class="line">        abnormal.val = secondAbnormal.val;</div><div class="line">        secondAbnormal.val = abnormalValue;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recFind</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">        recFind(root.left);</div><div class="line">        <span class="keyword">if</span>(last!=<span class="keyword">null</span> &amp;&amp;  root.val&lt;=last.val) &#123;</div><div class="line">            <span class="keyword">if</span>(abnormal==<span class="keyword">null</span>) &#123;</div><div class="line">                abnormal = last;</div><div class="line">                secondAbnormal = root;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                secondAbnormal = root;   </div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        last = root;</div><div class="line">        recFind(root.right);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -918,7 +916,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">330</span>
+              <span class="site-state-item-count">329</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -998,7 +996,7 @@
         <div class="copyright" >
   
   &copy;  2014 - 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

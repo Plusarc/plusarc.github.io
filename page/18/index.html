@@ -260,133 +260,6 @@
             
               
                 
-                <a class="post-title-link" href="/2015/09/18/Leetcode_Copy List with Random Pointer/" itemprop="url">
-                  Copy List with Random Pointer
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-18T00:00:00+09:00" content="2015-09-18">
-              2015-09-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/18/Leetcode_Copy List with Random Pointer/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/18/Leetcode_Copy List with Random Pointer/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Copy-List-with-Random-Pointer"><a href="#Copy-List-with-Random-Pointer" class="headerlink" title="Copy List with Random Pointer"></a><a href="https://leetcode.com/problems/copy-list-with-random-pointer/" target="_blank" rel="external">Copy List with Random Pointer</a></h1><blockquote>
-<p>A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null.</p>
-<p>Return a deep copy of the list.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>先遍历复制链表(只是复制label, next), 同时将对应的(oldNode, newNode)存入HashMap。</p>
-<p>再同时遍历新旧链表一遍，将对于的random指针从根据old node的random指针从HashMap中取出。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list with a random pointer.</div><div class="line"> * class RandomListNode &#123;</div><div class="line"> *     int label;</div><div class="line"> *     RandomListNode next, random;</div><div class="line"> *     RandomListNode(int x) &#123; this.label = x; &#125;</div><div class="line"> * &#125;;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> RandomListNode <span class="title">copyRandomList</span><span class="params">(RandomListNode head)</span> </span>&#123;</div><div class="line">        Map&lt;RandomListNode, RandomListNode&gt; map = <span class="keyword">new</span> HashMap&lt;RandomListNode, RandomListNode&gt;();</div><div class="line">        map.put(<span class="keyword">null</span>, <span class="keyword">null</span>);</div><div class="line">        </div><div class="line">        RandomListNode newHead = <span class="keyword">null</span>;</div><div class="line">        RandomListNode lastNode = <span class="keyword">null</span>;</div><div class="line">        </div><div class="line">        RandomListNode old = head;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(old!=<span class="keyword">null</span>) &#123;</div><div class="line">            RandomListNode node = <span class="keyword">new</span> RandomListNode(old.label);</div><div class="line">            map.put(old, node);</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(newHead==<span class="keyword">null</span>) &#123;</div><div class="line">                newHead = node;</div><div class="line">                lastNode = node;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                lastNode.next = node;</div><div class="line">                lastNode = node;</div><div class="line">            &#125;</div><div class="line">            old = old.next;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        old = head;</div><div class="line">        RandomListNode newNode = newHead;</div><div class="line">        <span class="keyword">while</span>(old!=<span class="keyword">null</span>) &#123;</div><div class="line">            newNode.random = map.get(old.random);</div><div class="line">            </div><div class="line">            old = old.next;</div><div class="line">            newNode = newNode.next;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> newHead;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>second time</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> RandomListNode <span class="title">copyRandomList</span><span class="params">(RandomListNode head)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        Map&lt;RandomListNode, RandomListNode&gt; map = <span class="keyword">new</span> HashMap&lt;RandomListNode, RandomListNode&gt;();</div><div class="line">        RandomListNode move = head;</div><div class="line">        <span class="keyword">while</span>(move!=<span class="keyword">null</span>) &#123;</div><div class="line">            RandomListNode node = <span class="keyword">new</span> RandomListNode(move.label);</div><div class="line">            map.put(move, node);</div><div class="line">            move = move.next;</div><div class="line">        &#125;</div><div class="line">        move = head;</div><div class="line">        <span class="keyword">while</span>(move!=<span class="keyword">null</span>) &#123;</div><div class="line">            RandomListNode node = map.get(move);</div><div class="line">            <span class="keyword">if</span>(move.next!=<span class="keyword">null</span>) node.next = map.get(move.next);</div><div class="line">            <span class="keyword">if</span>(move.random!=<span class="keyword">null</span>) node.random = map.get(move.random);</div><div class="line">            move = move.next;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> map.get(head);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2015/09/16/Blogging_Markdown简明语法手册/" itemprop="url">
                   Markdown简明语法手册
                 </a>
@@ -727,6 +600,140 @@
             
               
                 
+                <a class="post-title-link" href="/2015/09/13/Leetcode_Perfect Squares/" itemprop="url">
+                  Perfect Squares
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-09-13T00:00:00+09:00" content="2015-09-13">
+              2015-09-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/13/Leetcode_Perfect Squares/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/13/Leetcode_Perfect Squares/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Perfect-Squares"><a href="#Perfect-Squares" class="headerlink" title="Perfect Squares"></a><a href="https://leetcode.com/problems/perfect-squares/" target="_blank" rel="external">Perfect Squares</a></h1><blockquote>
+<p>Given a positive integer <code>n</code>, find the least number of perfect square numbers (for example, <code>1, 4, 9, 16, ...</code>) which sum to <code>n</code>.</p>
+<p>For example, given <code>n = 12</code>, return <code>3</code> because <code>12 = 4 + 4 + 4</code>; given <code>n = 13</code>, return <code>2</code> because <code>13 = 4 + 9</code>.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p><strong>动态规划法</strong>，accept。</p>
+<p>每个数都能被拆分为一个perfect square的倍数+另一个数，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">13 = 9*1 + 4</div><div class="line">13 = 4*3 + 1</div><div class="line">...</div><div class="line"></div><div class="line">50 = 49*1 + 1</div><div class="line">50 = 25*2 + 0</div><div class="line">50 = 16*3 + 2</div><div class="line">...</div></pre></td></tr></table></figure>
+<p><code>50</code>的mininum square num也一定来自于其中的一个组合。</p>
+<p>而这里可能的组合数远远小于上一种划分方法。同时不必求出<code>0-49</code>每个数的minum square num。</p>
+<p>同时使用HashMap存储已经计算出的数的mininum square num，下次需要求同一个数的minimum square num就可以直接取出。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1"></a>Method 1</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">	Map&lt;Integer, Integer&gt; record = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numSquares</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    	<span class="keyword">if</span>(n==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    	<span class="keyword">if</span>(record.containsKey(n)) <span class="keyword">return</span> record.get(n);</div><div class="line">        <span class="keyword">if</span>((Math.sqrt(n)-(<span class="keyword">int</span>)Math.sqrt(n))==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        </div><div class="line">        List&lt;Integer&gt; squares = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">        <span class="keyword">int</span> sq = <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> base = <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(sq&lt;=n) &#123;</div><div class="line">        	squares.add(sq);</div><div class="line">        	base ++;</div><div class="line">        	sq = base * base;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> min = Integer.MAX_VALUE;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=squares.size()-<span class="number">1</span>; i&gt;=<span class="number">0</span>; i--) &#123;</div><div class="line">        	<span class="keyword">int</span> count = n / squares.get(i);</div><div class="line">        	count += numSquares(n % squares.get(i));</div><div class="line">        	<span class="keyword">if</span>(count&lt;min) min = count;</div><div class="line">        &#125;</div><div class="line">        record.put(n, min);</div><div class="line">        <span class="keyword">return</span> min;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="better-solution"><a href="#better-solution" class="headerlink" title="better solution"></a>better solution</h2><p><a href="http://segmentfault.com/a/1190000003768736" target="_blank" rel="external">[Leetcode] Perfect Squares 完美平方数</a></p>
+<p>复杂度<br>时间 O(N^2) 空间 O(N)</p>
+<p>思路<br>如果一个数x可以表示为一个任意数a加上一个平方数bｘb，也就是x=a+bｘb，那么能组成这个数x最少的平方数个数，就是能组成a最少的平方数个数加上1（因为b*b已经是平方数了）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numSquares</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n+<span class="number">1</span>];</div><div class="line">        <span class="comment">// 将所有非平方数的结果置最大，保证之后比较的时候不被选中</span></div><div class="line">        Arrays.fill(dp, Integer.MAX_VALUE);</div><div class="line">        <span class="comment">// 将所有平方数的结果置1</span></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i * i &lt;= n; i++) dp[i * i] = <span class="number">1</span>;</div><div class="line">        <span class="comment">// 从小到大找任意数a</span></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> a = <span class="number">0</span>; a &lt;= n; a++)&#123;</div><div class="line">            <span class="comment">// 从小到大找平方数bｘb</span></div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> b = <span class="number">0</span>; a + b * b &lt;= n; b++)&#123;</div><div class="line">                <span class="comment">// 因为a+b*b可能本身就是平方数，所以我们要取两个中较小的</span></div><div class="line">                dp[a + b * b] = Math.min(dp[a] + <span class="number">1</span>, dp[a + b * b]);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> dp[n];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/09/13/Leetcode_H-Index II/" itemprop="url">
                   H-Index II
                 </a>
@@ -859,8 +866,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/09/13/Leetcode_Perfect Squares/" itemprop="url">
-                  Perfect Squares
+                <a class="post-title-link" href="/2015/09/12/Leetcode_Word Break II/" itemprop="url">
+                  Word Break II
                 </a>
               
             
@@ -873,8 +880,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-13T00:00:00+09:00" content="2015-09-13">
-              2015-09-13
+            <time itemprop="dateCreated" datetime="2015-09-12T00:00:00+09:00" content="2015-09-12">
+              2015-09-12
             </time>
           </span>
 
@@ -903,8 +910,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/09/13/Leetcode_Perfect Squares/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/13/Leetcode_Perfect Squares/" itemprop="commentsCount"></span>
+                <a href="/2015/09/12/Leetcode_Word Break II/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/12/Leetcode_Word Break II/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -929,21 +936,17 @@
       
         
           
-            <h1 id="Perfect-Squares"><a href="#Perfect-Squares" class="headerlink" title="Perfect Squares"></a><a href="https://leetcode.com/problems/perfect-squares/" target="_blank" rel="external">Perfect Squares</a></h1><blockquote>
-<p>Given a positive integer <code>n</code>, find the least number of perfect square numbers (for example, <code>1, 4, 9, 16, ...</code>) which sum to <code>n</code>.</p>
-<p>For example, given <code>n = 12</code>, return <code>3</code> because <code>12 = 4 + 4 + 4</code>; given <code>n = 13</code>, return <code>2</code> because <code>13 = 4 + 9</code>.</p>
+            <h1 id="Word-Break-II"><a href="#Word-Break-II" class="headerlink" title="Word Break II"></a><a href="https://leetcode.com/problems/word-break-ii/" target="_blank" rel="external">Word Break II</a></h1><blockquote>
+<p>Given a string s and a dictionary of words dict, add spaces in s to construct a sentence where each word is a valid dictionary word.</p>
+<p>Return all such possible sentences.</p>
+<p>For example, given<br>s = <code>&quot;catsanddog&quot;</code>,<br>dict = <code>[&quot;cat&quot;, &quot;cats&quot;, &quot;and&quot;, &quot;sand&quot;, &quot;dog&quot;]</code>.</p>
+<p>A solution is <code>[&quot;cats and dog&quot;, &quot;cat sand dog&quot;]</code>.</p>
 </blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p><strong>动态规划法</strong>，accept。</p>
-<p>每个数都能被拆分为一个perfect square的倍数+另一个数，例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">13 = 9*1 + 4</div><div class="line">13 = 4*3 + 1</div><div class="line">...</div><div class="line"></div><div class="line">50 = 49*1 + 1</div><div class="line">50 = 25*2 + 0</div><div class="line">50 = 16*3 + 2</div><div class="line">...</div></pre></td></tr></table></figure>
-<p><code>50</code>的mininum square num也一定来自于其中的一个组合。</p>
-<p>而这里可能的组合数远远小于上一种划分方法。同时不必求出<code>0-49</code>每个数的minum square num。</p>
-<p>同时使用HashMap存储已经计算出的数的mininum square num，下次需要求同一个数的minimum square num就可以直接取出。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1"></a>Method 1</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">	Map&lt;Integer, Integer&gt; record = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numSquares</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    	<span class="keyword">if</span>(n==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    	<span class="keyword">if</span>(record.containsKey(n)) <span class="keyword">return</span> record.get(n);</div><div class="line">        <span class="keyword">if</span>((Math.sqrt(n)-(<span class="keyword">int</span>)Math.sqrt(n))==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        </div><div class="line">        List&lt;Integer&gt; squares = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">        <span class="keyword">int</span> sq = <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> base = <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(sq&lt;=n) &#123;</div><div class="line">        	squares.add(sq);</div><div class="line">        	base ++;</div><div class="line">        	sq = base * base;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> min = Integer.MAX_VALUE;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=squares.size()-<span class="number">1</span>; i&gt;=<span class="number">0</span>; i--) &#123;</div><div class="line">        	<span class="keyword">int</span> count = n / squares.get(i);</div><div class="line">        	count += numSquares(n % squares.get(i));</div><div class="line">        	<span class="keyword">if</span>(count&lt;min) min = count;</div><div class="line">        &#125;</div><div class="line">        record.put(n, min);</div><div class="line">        <span class="keyword">return</span> min;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="better-solution"><a href="#better-solution" class="headerlink" title="better solution"></a>better solution</h2><p><a href="http://segmentfault.com/a/1190000003768736" target="_blank" rel="external">[Leetcode] Perfect Squares 完美平方数</a></p>
-<p>复杂度<br>时间 O(N^2) 空间 O(N)</p>
-<p>思路<br>如果一个数x可以表示为一个任意数a加上一个平方数bｘb，也就是x=a+bｘb，那么能组成这个数x最少的平方数个数，就是能组成a最少的平方数个数加上1（因为b*b已经是平方数了）。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numSquares</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n+<span class="number">1</span>];</div><div class="line">        <span class="comment">// 将所有非平方数的结果置最大，保证之后比较的时候不被选中</span></div><div class="line">        Arrays.fill(dp, Integer.MAX_VALUE);</div><div class="line">        <span class="comment">// 将所有平方数的结果置1</span></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i * i &lt;= n; i++) dp[i * i] = <span class="number">1</span>;</div><div class="line">        <span class="comment">// 从小到大找任意数a</span></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> a = <span class="number">0</span>; a &lt;= n; a++)&#123;</div><div class="line">            <span class="comment">// 从小到大找平方数bｘb</span></div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> b = <span class="number">0</span>; a + b * b &lt;= n; b++)&#123;</div><div class="line">                <span class="comment">// 因为a+b*b可能本身就是平方数，所以我们要取两个中较小的</span></div><div class="line">                dp[a + b * b] = Math.min(dp[a] + <span class="number">1</span>, dp[a + b * b]);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> dp[n];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>比较直接的解法是直接采用回溯法，但会导致过多的不必要recursion。</p>
+<p><strong>动态规划法</strong>，不同与Word Break问题，这里需要记录所有可能的solution，而不是是否存在solution。所以代替boolean[]表示是否能到达某个位置，采用<code>List&lt;List&lt;Integer&gt;&gt;</code>记录到达每个位置的可能的前面的所有位置。</p>
+<p>最后从后向前递归输出所有能抵达最后位置的路径。</p>
+<p>注意下标的处理，Java中的substring截取的参数与位置的不同。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">wordBreak</span><span class="params">(String s, Set&lt;String&gt; wordDict)</span> </span>&#123;</div><div class="line">        List&lt;String&gt; res = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">        <span class="keyword">if</span>(s==<span class="keyword">null</span> || s.length()==<span class="number">0</span>) <span class="keyword">return</span> res;</div><div class="line">        </div><div class="line">        List&lt;List&lt;Integer&gt;&gt; path = <span class="keyword">new</span> ArrayList&lt;List&lt;Integer&gt;&gt;();  <span class="comment">//第一层存储的是元素，第二层存储的是下标</span></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;s.length(); i++) path.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;());</div><div class="line">        </div><div class="line">        List&lt;Integer&gt; reach = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();  <span class="comment">//存储的是下标</span></div><div class="line">        reach.add(<span class="number">0</span>);</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;s.length(); i++) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> ele: reach) &#123;</div><div class="line">                <span class="keyword">if</span>(wordDict.contains(s.substring(ele, i+<span class="number">1</span>))) path.get(i).add(ele);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>(path.get(i).size()!=<span class="number">0</span>) reach.add(i+<span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        recGen(s, path, s.length()-<span class="number">1</span>, <span class="string">""</span>, res);</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recGen</span><span class="params">(String s, List&lt;List&lt;Integer&gt;&gt; path, <span class="keyword">int</span> pos, String record, List&lt;String&gt; res)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(pos&lt;<span class="number">0</span>) &#123;</div><div class="line">            res.add(record.trim());</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        List&lt;Integer&gt; pathlist = path.get(pos);</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> ele: pathlist) &#123;</div><div class="line">            String newRecord = s.substring(ele, pos+<span class="number">1</span>) + <span class="string">" "</span> + record;</div><div class="line">            recGen(s, path, ele - <span class="number">1</span>, newRecord, res);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -1017,7 +1020,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">330</span>
+              <span class="site-state-item-count">329</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -1097,7 +1100,7 @@
         <div class="copyright" >
   
   &copy;  2014 - 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

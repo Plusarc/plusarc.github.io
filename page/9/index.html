@@ -260,133 +260,6 @@
             
               
                 
-                <a class="post-title-link" href="/2015/10/22/Leetcode_Wiggle Sort I and II/" itemprop="url">
-                  Wiggle Sort
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-10-22T00:00:00+09:00" content="2015-10-22">
-              2015-10-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/10/22/Leetcode_Wiggle Sort I and II/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/22/Leetcode_Wiggle Sort I and II/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Wiggle-Sort-I"><a href="#Wiggle-Sort-I" class="headerlink" title="Wiggle Sort I"></a><a href="https://leetcode.com/problems/wiggle-sort-ii/" target="_blank" rel="external">Wiggle Sort I</a></h1><blockquote>
-<p>Given an unsorted array nums, reorder it in-place such that nums[0] &lt;= nums[1] &gt;= nums[2] &lt;= nums[3]….</p>
-<p>For example, given <code>nums = [3, 5, 2, 1, 6, 4]</code>, one possible answer is <code>[1, 6, 2, 5, 3, 4]</code>.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>Locked problem, refer to <a href="http://buttercola.blogspot.jp/2015/09/leetcode-wiggle-sort.html" target="_blank" rel="external">Leetcode: Wiggle Sort</a></p>
-<p>A[0] &lt;= A[1] &gt;= A[2] &lt;= A[3] &gt;= A[4] &lt;= A[5]<br>So we could actually observe that there is pattern that<br>A[even] &lt;= A[odd],<br>A[odd] &gt;= A[even].</p>
-<p>Therefore we could go through the array and check this condition does not hold, just swap.</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">wiggleSort</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length &lt;= <span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">         </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length - <span class="number">1</span>; i++) &#123;</div><div class="line">            <span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>) &#123;</div><div class="line">                <span class="keyword">if</span> (nums[i] &gt; nums[i + <span class="number">1</span>]) &#123;</div><div class="line">                    swap(nums, i, i + <span class="number">1</span>);</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">if</span> (nums[i] &lt; nums[i + <span class="number">1</span>]) &#123;</div><div class="line">                    swap(nums, i, i + <span class="number">1</span>);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">     </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> temp = nums[i];</div><div class="line">        nums[i] = nums[j];</div><div class="line">        nums[j] = temp;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2015/10/18/Leetcode_Word Pattern/" itemprop="url">
                   Word Pattern
                 </a>
@@ -874,6 +747,135 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/10/15/Leetcode_Walls and Gates/" itemprop="url">
+                  Walls and Gates
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-10-15T00:00:00+09:00" content="2015-10-15">
+              2015-10-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/10/15/Leetcode_Walls and Gates/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/15/Leetcode_Walls and Gates/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Walls-and-Gates"><a href="#Walls-and-Gates" class="headerlink" title="Walls and Gates"></a><a href="">Walls and Gates</a></h1><blockquote>
+<p>You are given a m x n 2D grid initialized with these three possible values.</p>
+<p>-1 - A wall or an obstacle.<br>0 - A gate.<br>INF - Infinity means an empty room. We use the value 231 - 1 = 2147483647 to represent INF as you may assume that the distance to a gate is less than 2147483647. Fill each empty room with the distance to its nearest gate. If it is impossible to reach a gate, it should be filled with INF.<br>For example, given the 2D grid:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt; INF  -1  0  INF</div><div class="line">INF INF INF  -1</div><div class="line">INF  -1 INF  -1</div><div class="line">  0  -1 INF INF </div><div class="line">&gt;</div></pre></td></tr></table></figure>
+<p>After running your function, the 2D grid should be:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;  3  -1   0   1</div><div class="line">&gt;  2   2   1  -1</div><div class="line">&gt;  1  -1   2  -1</div><div class="line">&gt;  0  -1   3   4</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>Lock题目，<a href="http://segmentfault.com/a/1190000003906674" target="_blank" rel="external">参考</a>.</p>
+<p>广度优先遍历，记录层次。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">wallsAndGates</span><span class="params">(<span class="keyword">int</span>[][] rooms)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(rooms.length == <span class="number">0</span>) <span class="keyword">return</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; rooms.length; i++)&#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; rooms[<span class="number">0</span>].length; j++)&#123;</div><div class="line">                <span class="comment">// 如果遇到一个门，从门开始广度优先搜索，标记连通的节点到自己的距离</span></div><div class="line">                <span class="keyword">if</span>(rooms[i][j] == <span class="number">0</span>) bfs(rooms, i, j);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bfs</span><span class="params">(<span class="keyword">int</span>[][] rooms, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span></span>&#123;</div><div class="line">        Queue&lt;Integer&gt; queue = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</div><div class="line">        queue.offer(i * rooms[<span class="number">0</span>].length + j);</div><div class="line">        <span class="keyword">int</span> dist = <span class="number">0</span>;</div><div class="line">        <span class="comment">// 用一个集合记录已经访问过的点</span></div><div class="line">        Set&lt;Integer&gt; visited = <span class="keyword">new</span> HashSet&lt;Integer&gt;();</div><div class="line">        visited.add(i * rooms[<span class="number">0</span>].length + j);</div><div class="line">        <span class="keyword">while</span>(!queue.isEmpty())&#123;</div><div class="line">            <span class="keyword">int</span> size = queue.size();</div><div class="line">            <span class="comment">// 记录深度的搜索</span></div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; size; k++)&#123;</div><div class="line">                Integer curr = queue.poll();</div><div class="line">                <span class="keyword">int</span> row = curr / rooms[<span class="number">0</span>].length;</div><div class="line">                <span class="keyword">int</span> col = curr % rooms[<span class="number">0</span>].length;</div><div class="line">                <span class="comment">// 选取之前标记的值和当前的距离的较小值</span></div><div class="line">                rooms[row][col] = Math.min(rooms[row][col], dist);</div><div class="line">                <span class="keyword">int</span> up = (row - <span class="number">1</span>) * rooms[<span class="number">0</span>].length + col;</div><div class="line">                <span class="keyword">int</span> down = (row + <span class="number">1</span>) * rooms[<span class="number">0</span>].length + col;</div><div class="line">                <span class="keyword">int</span> left = row * rooms[<span class="number">0</span>].length + col - <span class="number">1</span>;</div><div class="line">                <span class="keyword">int</span> right = row * rooms[<span class="number">0</span>].length + col + <span class="number">1</span>;</div><div class="line">                <span class="keyword">if</span>(row &gt; <span class="number">0</span> &amp;&amp; rooms[row - <span class="number">1</span>][col] &gt; <span class="number">0</span> &amp;&amp; !visited.contains(up))&#123;</div><div class="line">                    queue.offer(up);</div><div class="line">                    visited.add(up);</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span>(col &gt; <span class="number">0</span> &amp;&amp; rooms[row][col - <span class="number">1</span>] &gt; <span class="number">0</span> &amp;&amp; !visited.contains(left))&#123;</div><div class="line">                    queue.offer(left);</div><div class="line">                    visited.add(left);</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span>(row &lt; rooms.length - <span class="number">1</span> &amp;&amp; rooms[row + <span class="number">1</span>][col] &gt; <span class="number">0</span> &amp;&amp; !visited.contains(down))&#123;</div><div class="line">                    queue.offer(down);</div><div class="line">                    visited.add(down);</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span>(col &lt; rooms[<span class="number">0</span>].length - <span class="number">1</span> &amp;&amp; rooms[row][col + <span class="number">1</span>] &gt; <span class="number">0</span> &amp;&amp; !visited.contains(right))&#123;</div><div class="line">                    queue.offer(right);</div><div class="line">                    visited.add(right);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            dist++;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -919,7 +921,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">330</span>
+              <span class="site-state-item-count">329</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -999,7 +1001,7 @@
         <div class="copyright" >
   
   &copy;  2014 - 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

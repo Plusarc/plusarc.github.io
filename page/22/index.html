@@ -260,136 +260,6 @@
             
               
                 
-                <a class="post-title-link" href="/2015/09/05/Leetcode_Binary Tree Zigzag Level Order Traversal/" itemprop="url">
-                  Binary Tree Zigzag Level Order Traversal
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-05T00:00:00+09:00" content="2015-09-05">
-              2015-09-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/05/Leetcode_Binary Tree Zigzag Level Order Traversal/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/05/Leetcode_Binary Tree Zigzag Level Order Traversal/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Binary-Tree-Zigzag-Level-Order-Traversal"><a href="#Binary-Tree-Zigzag-Level-Order-Traversal" class="headerlink" title="Binary Tree Zigzag Level Order Traversal"></a><a href="https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/" target="_blank" rel="external">Binary Tree Zigzag Level Order Traversal</a></h1><blockquote>
-<p>Given a binary tree, return the zigzag level order traversal of its nodes’ values. (ie, from left to right, then right to left for the next level and alternate between).</p>
-<p>For example:<br>Given binary tree <code>{3,9,20,#,#,15,7}</code>,</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">  3</div><div class="line"> / \</div><div class="line">9  20</div><div class="line">  /  \</div><div class="line"> 15   7</div></pre></td></tr></table></figure>
-<p>return its zigzag level order traversal as:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">  [3],</div><div class="line">  [20,9],</div><div class="line">  [15,7]</div><div class="line">]</div></pre></td></tr></table></figure>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>跟树的层次遍历一样，仍使用前序遍历实现。采用LinkedList记录每一层的记录，如果是偶数层(0，2，4…)，则直接add记录，如果是奇数层(1,3,5…)，则使用addFirst添加记录(LinkedList长处)。</p>
-<p>也可以仍然用ArrayList记录每一层的记录，在遍历完后需要将奇数层的ArrayList翻转一遍。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; zigzagLevelOrder(TreeNode root) &#123;</div><div class="line">        List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> ArrayList&lt;List&lt;Integer&gt;&gt;();</div><div class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span> res;</div><div class="line">        </div><div class="line">        recZig(root, <span class="number">0</span>, res);</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recZig</span><span class="params">(TreeNode root, <span class="keyword">int</span> level, List&lt;List&lt;Integer&gt;&gt; res)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">        <span class="keyword">if</span>(res.size()&lt;level+<span class="number">1</span>) res.add(<span class="keyword">new</span> LinkedList&lt;Integer&gt;());</div><div class="line">        <span class="keyword">if</span>(level%<span class="number">2</span>==<span class="number">0</span>) res.get(level).add(root.val);</div><div class="line">        <span class="keyword">else</span> ((LinkedList&lt;Integer&gt;)res.get(level)).addFirst(root.val);</div><div class="line">        </div><div class="line">        recZig(root.left, level+<span class="number">1</span>, res);</div><div class="line">        recZig(root.right, level+<span class="number">1</span>, res);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>second time</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; zigzagLevelOrder(TreeNode root) &#123;</div><div class="line">        Stack&lt;TreeNode&gt; stack = <span class="keyword">new</span> Stack&lt;TreeNode&gt;();</div><div class="line">        Stack&lt;TreeNode&gt; nextStack = <span class="keyword">new</span> Stack&lt;TreeNode&gt;();</div><div class="line">        List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> ArrayList&lt;List&lt;Integer&gt;&gt;();</div><div class="line">        <span class="keyword">if</span>(root!=<span class="keyword">null</span>) &#123;</div><div class="line">            stack.push(root);</div><div class="line">            res.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;());</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">while</span>(!stack.isEmpty()) &#123;</div><div class="line">            TreeNode node = stack.pop();</div><div class="line">            res.get(res.size()-<span class="number">1</span>).add(node.val);</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(res.size()%<span class="number">2</span>==<span class="number">1</span>) &#123;</div><div class="line">                <span class="keyword">if</span>(node.left!=<span class="keyword">null</span>) nextStack.push(node.left);</div><div class="line">                <span class="keyword">if</span>(node.right!=<span class="keyword">null</span>) nextStack.push(node.right);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">if</span>(node.right!=<span class="keyword">null</span>) nextStack.push(node.right);</div><div class="line">                <span class="keyword">if</span>(node.left!=<span class="keyword">null</span>) nextStack.push(node.left);</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(stack.isEmpty()) &#123;</div><div class="line">                <span class="keyword">if</span>(!nextStack.isEmpty()) res.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;());</div><div class="line">                Stack&lt;TreeNode&gt; temp = stack;</div><div class="line">                stack = nextStack;</div><div class="line">                nextStack = temp;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2015/09/05/Leetcode_Sort Colors/" itemprop="url">
                   Sort Colors
                 </a>
@@ -523,8 +393,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/09/05/Leetcode_Gray Code/" itemprop="url">
-                  Gray Code
+                <a class="post-title-link" href="/2015/09/05/Leetcode_Restore IP Addresses/" itemprop="url">
+                  Restore IP Addresses
                 </a>
               
             
@@ -567,8 +437,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/09/05/Leetcode_Gray Code/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/05/Leetcode_Gray Code/" itemprop="commentsCount"></span>
+                <a href="/2015/09/05/Leetcode_Restore IP Addresses/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/05/Leetcode_Restore IP Addresses/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -593,19 +463,24 @@
       
         
           
-            <h1 id="Gray-Code"><a href="#Gray-Code" class="headerlink" title="Gray Code"></a><a href="https://leetcode.com/problems/gray-code/" target="_blank" rel="external">Gray Code</a></h1><blockquote>
-<p>The gray code is a binary numeral system where two successive values differ in only one bit.</p>
+            <h1 id="Restore-IP-Addresses"><a href="#Restore-IP-Addresses" class="headerlink" title="Restore IP Addresses"></a><a href="https://leetcode.com/problems/restore-ip-addresses/" target="_blank" rel="external">Restore IP Addresses</a></h1><blockquote>
+<p>Given a string containing only digits, restore it by returning all possible valid IP address combinations.</p>
+<p>For example:<br>Given <code>&quot;25525511135&quot;</code>,</p>
+<p>return <code>[&quot;255.255.11.135&quot;, &quot;255.255.111.35&quot;]</code>. (Order does not matter)</p>
 </blockquote>
-<p>Given a non-negative integer n representing the total number of bits in the code, print the sequence of gray code. A gray code sequence must begin with 0.</p>
-<p>For example, given <code>n = 2</code>, return <code>[0,1,3,2]</code>. Its gray code sequence is:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">00 - 0</div><div class="line">01 - 1</div><div class="line">11 - 3</div><div class="line">10 - 2</div></pre></td></tr></table></figure>
-<p>Note:<br>For a given n, a gray code sequence is not uniquely defined.</p>
-<p>For example, <code>[0,2,3,1]</code> is also a valid gray code sequence according to the above definition.</p>
-<p>For now, the judge is able to judge based on one instance of gray code sequence. Sorry about that.</p>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>本质上可以用DFS的思想解决，每次选择与当前数字只差<code>1</code>位的数字。每次改变当前数字一位，判断生成的这个数字是否已经访问过，如果没有访问过，则将其加入结果集中，同时加入记录已访问数字的HashSet中，以这个数为开始以同样的操作生成只只改变一位的下一个数字，知道生成所有的数字序列。</p>
-<p>不断循环上面的操作知道生成<code>2^n</code>个不同数字列，也就是一组<code>Gray Code</code>.</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">grayCode</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        List&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">        Set&lt;Integer&gt; set = <span class="keyword">new</span> HashSet&lt;Integer&gt;();</div><div class="line">        res.add(<span class="number">0</span>);</div><div class="line">        set.add(<span class="number">0</span>);</div><div class="line">        <span class="keyword">int</span> sum = (<span class="keyword">int</span>) Math.pow(<span class="number">2</span>, n);</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=sum; i++) &#123;</div><div class="line">            <span class="keyword">int</span> num = res.get(i-<span class="number">1</span>);</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;n; j++) &#123;</div><div class="line">                <span class="keyword">int</span> bit = getBit(num, j);</div><div class="line">                <span class="keyword">int</span> generate = setBit(num, j, <span class="number">1</span>-bit);</div><div class="line">                <span class="keyword">if</span>(set.contains(generate)) <span class="keyword">continue</span>;</div><div class="line">                <span class="keyword">else</span> &#123;</div><div class="line">                    set.add(generate);</div><div class="line">                    res.add(generate);</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">getBit</span><span class="params">(<span class="keyword">int</span> num, <span class="keyword">int</span> i)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> num &amp; (<span class="number">1</span> &lt;&lt; i);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">setBit</span><span class="params">(<span class="keyword">int</span> num, <span class="keyword">int</span> i, <span class="keyword">int</span> bit)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(bit==<span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">return</span> num | (<span class="number">1</span> &lt;&lt; i);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> num &amp; ~(<span class="number">1</span> &lt;&lt; i);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>回溯法求解，对于当前的每个数字，选择和累积的数字创建新的字段，或者不创建新的字段，并入到下一个数字的递归中。</p>
+<p>IP地址的条件：这种表示法下，IP地址为32位，4个字段，每个字段范围为0-255。</p>
+<p>根据条件进行回溯:</p>
+<ol>
+<li>累计的数字<code>&gt;255</code>，</li>
+<li>当前位置没有到最后一位，但是字段数达到<code>4</code></li>
+<li>当前为最后一位，但总字段数小余<code>4</code>.</li>
+<li>上一个数字为<code>0</code>的情况。</li>
+</ol>
+<p>最后一个回溯条件是为了注意处理IP地址中连续为0的情况。也就是<code>00010</code>，只能解析为<code>0.0.0.10</code>,不存在字段表示为<code>0.0.01.0</code>的情况。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">restoreIpAddresses</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        List&lt;String&gt; res = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">        <span class="keyword">if</span>(s.length()&lt;<span class="number">4</span>) <span class="keyword">return</span> res;</div><div class="line">        </div><div class="line">        recRes(s, res, <span class="string">""</span>, -<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recRes</span><span class="params">(String s, List&lt;String&gt; res, String record, <span class="keyword">int</span> partNum, <span class="keyword">int</span> count, <span class="keyword">int</span> pos)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(partNum==-<span class="number">1</span>) partNum = <span class="number">0</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(partNum==<span class="number">0</span>) <span class="keyword">return</span>;</div><div class="line">    	partNum = partNum * <span class="number">10</span> + (s.charAt(pos) - <span class="string">'0'</span>);</div><div class="line">        <span class="keyword">if</span>(partNum&gt;<span class="number">255</span>) <span class="keyword">return</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(pos==s.length()-<span class="number">1</span>) &#123;</div><div class="line">        	<span class="keyword">if</span>(count!=<span class="number">3</span>) <span class="keyword">return</span>;</div><div class="line">            res.add(record + partNum);</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>((count+<span class="number">1</span>)&lt;<span class="number">4</span>)recRes(s, res, record+partNum+<span class="string">"."</span>, -<span class="number">1</span>, count+<span class="number">1</span>, pos+<span class="number">1</span>);</div><div class="line">        recRes(s, res, record, partNum, count, pos+<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>second time</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">restoreIpAddresses</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        List&lt;String&gt; res = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">        recRes(s, <span class="number">0</span>, <span class="number">0</span>, res, <span class="string">""</span>, <span class="number">0</span>);</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recRes</span><span class="params">(String s, <span class="keyword">int</span> pos, <span class="keyword">int</span> cum, List&lt;String&gt; res, String record, <span class="keyword">int</span> segNum)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(segNum==<span class="number">4</span> &amp;&amp; pos==s.length()) res.add(record);</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(segNum&gt;=<span class="number">4</span> || pos&gt;=s.length()) <span class="keyword">return</span>;</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">char</span> c = s.charAt(pos);</div><div class="line">            <span class="keyword">if</span>(c==<span class="string">'0'</span> &amp;&amp; cum==<span class="number">0</span>) &#123;</div><div class="line">                <span class="keyword">if</span>(record.length()!=<span class="number">0</span>) record = record + <span class="string">"."</span> + cum;</div><div class="line">                <span class="keyword">else</span> record = record + cum;</div><div class="line">                recRes(s, pos+<span class="number">1</span>, <span class="number">0</span>, res, record, segNum+<span class="number">1</span>);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                cum = <span class="number">10</span> * cum + (c-<span class="string">'0'</span>);</div><div class="line">                <span class="keyword">if</span>(cum&gt;<span class="number">255</span>) <span class="keyword">return</span>;</div><div class="line">                recRes(s, pos+<span class="number">1</span>, cum, res, record, segNum);</div><div class="line">                </div><div class="line">                <span class="keyword">if</span>(record.length()!=<span class="number">0</span>) record = record + <span class="string">"."</span> + cum;</div><div class="line">                <span class="keyword">else</span> record = record + cum;</div><div class="line">                recRes(s, pos+<span class="number">1</span>, <span class="number">0</span>, res, record, segNum+<span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           
         
       
@@ -906,6 +781,140 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/09/04/Leetcode_Surrounded Regions/" itemprop="url">
+                  Surrounded Regions
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-09-04T00:00:00+09:00" content="2015-09-04">
+              2015-09-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/04/Leetcode_Surrounded Regions/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/04/Leetcode_Surrounded Regions/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Surrounded-Regions"><a href="#Surrounded-Regions" class="headerlink" title="Surrounded Regions"></a><a href="https://leetcode.com/problems/surrounded-regions/" target="_blank" rel="external">Surrounded Regions</a></h1><blockquote>
+<p>Given a 2D board containing ‘X’ and ‘O’, capture all regions surrounded by ‘X’.</p>
+</blockquote>
+<p>A region is captured by flipping all ‘O’s into ‘X’s in that surrounded region.</p>
+<p>For example,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">X X X X</div><div class="line">X O O X</div><div class="line">X X O X</div><div class="line">X O X X</div></pre></td></tr></table></figure>
+<p>After running your function, the board should be:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">X X X X</div><div class="line">X X X X</div><div class="line">X X X X</div><div class="line">X O X X</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>这个问题关键是要分析出，不被包围的条件：必须至少有一个点在整个区域的四条边上，也就是至少要有一个点处于整个区域的最外围处。</p>
+<p>分析出这个后，就很自然的扫描四条边上为<code>O</code>的点，以这些点为起点采用BFS，或者DFS遍历这个子连通图，将子连通图所有的点标价为另一种标记，如<code>A</code>，代表其没有被包围。</p>
+<p>在上面操作完成后，再扫描整个区域一遍，对于<code>X</code>的点不做操作，对于<code>O</code>的点，表示其是被包围的点，修改为<code>X</code>，对于<code>A</code>的点，表示其没有被包围，修改为<code>O</code>，另外注意判断和修改的逻辑顺序。</p>
+<p>对于子连通图遍历，一开始很自然的采用了DFS，结果会stack overflow，栈溢出，由于太多递归，修改代码尽量减少递归还是无法避免stack overflow。采用stack直接实现DFS可能会解决问题，没有具体实现。</p>
+<p>修改遍历方式为BFS，accept。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="BFS-solution"><a href="#BFS-solution" class="headerlink" title="BFS solution"></a>BFS solution</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">solve</span><span class="params">(<span class="keyword">char</span>[][] board)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(board==<span class="keyword">null</span> || board.length==<span class="number">0</span> || board[<span class="number">0</span>].length==<span class="number">0</span>) <span class="keyword">return</span>;</div><div class="line">        </div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> y=<span class="number">0</span>, xf=<span class="number">0</span>, xl=board.length-<span class="number">1</span>; y&lt;board[<span class="number">0</span>].length; y++) &#123;</div><div class="line">                <span class="keyword">if</span>(board[xf][y]==<span class="string">'O'</span>) bfs(board, xf, y);</div><div class="line">                <span class="keyword">if</span>(board[xl][y]==<span class="string">'O'</span>) bfs(board, xl, y);</div><div class="line">            &#125;</div><div class="line">        </div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>, yf=<span class="number">0</span>, yl=board[<span class="number">0</span>].length-<span class="number">1</span>; x&lt;board.length; x++) &#123;</div><div class="line">                <span class="keyword">if</span>(board[x][yf]==<span class="string">'O'</span>) bfs(board, x, yf);</div><div class="line">                <span class="keyword">if</span>(board[x][yl]==<span class="string">'O'</span>) bfs(board, x, yl);</div><div class="line">            &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>; x&lt;board.length; x++) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> y=<span class="number">0</span>; y&lt;board[<span class="number">0</span>].length; y++) &#123;</div><div class="line">                <span class="keyword">if</span>(board[x][y]==<span class="string">'O'</span>) board[x][y] = <span class="string">'X'</span>;</div><div class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(board[x][y]==<span class="string">'A'</span>) board[x][y] = <span class="string">'O'</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bfs</span><span class="params">(<span class="keyword">char</span> [][] board, <span class="keyword">int</span> xpos, <span class="keyword">int</span> ypos)</span> </span>&#123;</div><div class="line">        Queue&lt;Integer&gt; queue = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</div><div class="line">        queue.add(xpos*board[<span class="number">0</span>].length + ypos);</div><div class="line"></div><div class="line">        <span class="keyword">while</span>(!queue.isEmpty()) &#123;</div><div class="line">            <span class="keyword">int</span> pos = queue.poll();</div><div class="line">            <span class="keyword">int</span> x = pos / board[<span class="number">0</span>].length;</div><div class="line">            <span class="keyword">int</span> y = pos % board[<span class="number">0</span>].length;</div><div class="line">            <span class="keyword">if</span>(board[x][y]!=<span class="string">'O'</span>) <span class="keyword">continue</span>;</div><div class="line">            board[x][y] = <span class="string">'A'</span>;</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(x+<span class="number">1</span>&lt;board.length &amp;&amp; board[x+<span class="number">1</span>][y]==<span class="string">'O'</span>) queue.add((x+<span class="number">1</span>)*board[<span class="number">0</span>].length + y);</div><div class="line">            <span class="keyword">if</span>(x-<span class="number">1</span>&gt;=<span class="number">0</span> &amp;&amp; board[x-<span class="number">1</span>][y]==<span class="string">'O'</span>) queue.add((x-<span class="number">1</span>)*board[<span class="number">0</span>].length + y);</div><div class="line">            <span class="keyword">if</span>(y+<span class="number">1</span>&lt;board[<span class="number">0</span>].length &amp;&amp; board[x][y+<span class="number">1</span>]==<span class="string">'O'</span>) queue.add(x*board[<span class="number">0</span>].length + (y+<span class="number">1</span>));</div><div class="line">            <span class="keyword">if</span>(y-<span class="number">1</span>&gt;=<span class="number">0</span> &amp;&amp; board[x][y-<span class="number">1</span>]==<span class="string">'O'</span>) queue.add(x*board[<span class="number">0</span>].length + (y-<span class="number">1</span>));</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">char</span> [][] board, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(x&lt;<span class="number">0</span> || x&gt;=board.length || y&lt;<span class="number">0</span> || y&gt;=board[<span class="number">0</span>].length || board[x][y]==<span class="string">'X'</span> || board[x][y]==<span class="string">'A'</span>) <span class="keyword">return</span>;</div><div class="line">        board[x][y] = <span class="string">'A'</span>;</div><div class="line">        dfs(board, x+<span class="number">1</span>, y);</div><div class="line">        dfs(board, x-<span class="number">1</span>, y);</div><div class="line">        dfs(board, x, y+<span class="number">1</span>);</div><div class="line">        dfs(board, x, y-<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs2</span><span class="params">(<span class="keyword">char</span> [][] board, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">        board[x][y] = <span class="string">'A'</span>;</div><div class="line">        <span class="keyword">if</span>(x+<span class="number">1</span>&lt;board.length &amp;&amp; board[x+<span class="number">1</span>][y]==<span class="string">'O'</span>) dfs(board, x+<span class="number">1</span>, y);</div><div class="line">        <span class="keyword">if</span>(x-<span class="number">1</span>&gt;=<span class="number">0</span> &amp;&amp; board[x-<span class="number">1</span>][y]==<span class="string">'O'</span>) dfs(board, x-<span class="number">1</span>, y);</div><div class="line">        <span class="keyword">if</span>(y+<span class="number">1</span>&lt;board[<span class="number">0</span>].length &amp;&amp; board[x][y+<span class="number">1</span>]==<span class="string">'O'</span>) dfs(board, x, y+<span class="number">1</span>);</div><div class="line">        <span class="keyword">if</span>(y-<span class="number">1</span>&gt;=<span class="number">0</span> &amp;&amp; board[x][y-<span class="number">1</span>]==<span class="string">'O'</span>) dfs(board, x, y-<span class="number">1</span>);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -951,7 +960,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">330</span>
+              <span class="site-state-item-count">329</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -1031,7 +1040,7 @@
         <div class="copyright" >
   
   &copy;  2014 - 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

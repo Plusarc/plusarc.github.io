@@ -260,187 +260,6 @@
             
               
                 
-                <a class="post-title-link" href="/2015/11/21/System Design_大型网站高性能架构c4/" itemprop="url">
-                  System Design_大型网站高性能架构
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-11-21T00:00:00+09:00" content="2015-11-21">
-              2015-11-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/System-design/" itemprop="url" rel="index">
-                    <span itemprop="name">System design</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/11/21/System Design_大型网站高性能架构c4/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/11/21/System Design_大型网站高性能架构c4/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="网站性能测试"><a href="#网站性能测试" class="headerlink" title="网站性能测试"></a>网站性能测试</h1><h2 id="性能测试指标"><a href="#性能测试指标" class="headerlink" title="性能测试指标"></a>性能测试指标</h2><ul>
-<li><strong>响应时间</strong>：指应用执行一个请求到相应所需要的时间。</li>
-<li><strong>并发数</strong>：只系统同时处理请求的数目，最大并发数数值也反映了系统的负载特性。</li>
-<li><strong>吞吐量(TPS)</strong>：指单位时间内系统处理的请求量，体现系统的整体处理能力。在系统并发数由小增大的过程中，系统吞吐量先是逐渐增加，达到一个极限后，随着并发数的增加反而下降，达到系统崩溃点后，系统资源耗尽，吞吐量为0。可以理解为吞吐量是每天通过收费站的车辆数目，并发数是高速公路上的车辆数目。</li>
-<li><strong>性能计数器</strong>：描述服务器或者操作系统性能的一些数据指标，如System loab, 内存使用，CPU使用..</li>
-</ul>
-<h2 id="性能测试方法"><a href="#性能测试方法" class="headerlink" title="性能测试方法"></a>性能测试方法</h2><ul>
-<li><strong>性能测试</strong>：对系统不断施加压力，验证系统在资源可接受范围内，能否达到性能预期。</li>
-<li><strong>负载测试</strong>：对系统不断增加并发请求以增加系统压力，直到系统的某项或者性能指标达到安全临界值，如果某种资源已经是饱和状态，这时继续提高压力，系统的吞出量不但不能提高，反而会下降。</li>
-<li><strong>压力测试</strong>：超过安全负载的情况下，对系统继续施加压力，直到系统崩溃或者不能再处理任何请求，以此获得系统最大压力承受能力。</li>
-<li><strong>稳定性测试</strong>：在特定硬件、软件、网络环境下，给系统加载一定业务压力，是系统运行一段较长时间，以测试是否稳定。</li>
-</ul>
-<p>上面的的增加压力，就是不断增加并发请求数，消耗的系统资源也会变多。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_2.png" alt="System_design_c4_2"></p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_1.png" alt="System_design_c4_1"></p>
-<h2 id="性能测试报告"><a href="#性能测试报告" class="headerlink" title="性能测试报告"></a>性能测试报告</h2><p>测试结果报告应该能反映上述性能测试曲线的规律，阅读者可以得到系统性能是否满足设计目标和业务要求、系统最大负载能力、系统最大压力承受能力等重要信息。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_3.png" alt="System_design_c4_3"></p>
-<h2 id="性能优化策略"><a href="#性能优化策略" class="headerlink" title="性能优化策略"></a>性能优化策略</h2><p>检查请求处理的各个环节的日志，分析哪个环节响应时间不合理；然后检查监控数据，分析影响性能的主要因素是内存、磁盘、网络还是CPU，是代码或架构问题或者是系统资源确实不足。</p>
-<p>定位具体原因后，根据具体层次进行优化。</p>
-<h1 id="Web前端性能优化"><a href="#Web前端性能优化" class="headerlink" title="Web前端性能优化"></a>Web前端性能优化</h1><p>Web前端一般指业务逻辑之前的部分，包括浏览器加载、网站视图模型、图片服务、CDN服务等，主要优化手段有优化浏览器、使用反向代理、CDN等。</p>
-<h2 id="浏览器访问优化"><a href="#浏览器访问优化" class="headerlink" title="浏览器访问优化"></a>浏览器访问优化</h2><ol>
-<li>减少HTTP请求，因为每次都要开启线程建立通信链路。如合并CSS, Javascript等。</li>
-<li>使用浏览器缓存。</li>
-<li>启用压缩</li>
-<li>减少Cookie传输</li>
-</ol>
-<h2 id="CDN加速"><a href="#CDN加速" class="headerlink" title="CDN加速"></a>CDN加速</h2><p>CDN(Content Distribute Network，内容分发网络)的本质仍是一个缓存，将数据缓存在离用户最近的地方。</p>
-<p>CDN能偶缓存的一般是静态资源，如图片，文件，视频等。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_4.png" alt="System_design_c4_4"></p>
-<h2 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h2><p>传统代理服务器位于浏览器一侧，代理浏览器将HTTP请求发送到互联网上，而反向代理服务器位于网站机房一侧，代理网站Web服务器接收HTTP请求。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_5.png" alt="System_design_c4_5"></p>
-<p>和传统代理服务器可以保护浏览器安全一样，反向代理服务器也具有保护网站安全的作用，来自互联网的访问必须经过反向代理服务器。</p>
-<p>除了安全功能，代理服务器也可以通过配置缓存功能加速Web请求。</p>
-<p>此外，反向代理还可以实现负载均衡的功能，通过构建负载均衡的应用集群可以提高系统的总体处理能力，进而改善网站高并发下的性能。</p>
-<h1 id="应用服务器性能优化"><a href="#应用服务器性能优化" class="headerlink" title="应用服务器性能优化"></a>应用服务器性能优化</h1><p>应用服务器就是处理网站业务的服务器，网站的业务代码都部署在这里，是网站开发最复杂、变化最多的地方，主要优化手段有缓存、集群、异步等。</p>
-<h2 id="分布式缓存"><a href="#分布式缓存" class="headerlink" title="分布式缓存"></a>分布式缓存</h2><p>任何时候，优先考虑使用缓存优化性能。</p>
-<h3 id="缓存基本原理"><a href="#缓存基本原理" class="headerlink" title="缓存基本原理"></a>缓存基本原理</h3><p>缓存指将数据存储在相对较高访问速度的存储介质中，一方面可以减少访问时间，同时也可能减少计算时间。缓存的本质是一个内存Hash表，网站应用中，数据缓存以一对Key、Value的形式存储在内存Hash表中。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_7.png" alt="System_design_c4_7"></p>
-<p>缓存主要用来存放读写比例很高、变化很少的数据，即80%的访问在20%的数据上。通过缓存可以提高数据读取速度，降低存储访问压力。</p>
-<h3 id="合理使用缓存"><a href="#合理使用缓存" class="headerlink" title="合理使用缓存"></a>合理使用缓存</h3><p>几个要注意的问题：<br><strong>频发修改的数据</strong><br><strong>没有热点的访问</strong><br><strong>数据不一致与脏读</strong><br><strong>缓存可用性</strong>：数据库可能在缓存服务崩溃时由于承受突然增加的压力而宕机，进而导致整个网站不可用，称为缓存雪崩。分布式缓存可以在一定程度上改善缓存的可用性。<br><strong>缓存预热</strong>：在启动缓存后，可能需要较长时间重建缓存数据，可以在缓存系统启动时就准备好热点数据然后直接加载。例如，一些元数据可以全部加载。<br><strong>缓存穿透</strong>：如果因为不恰当的业务、或者恶意攻击持续高并发地请求某个不存在的数据，由于缓存没有保存该数据，所有的请求的都会落到数据库上，会对数据库造成很大的压力。一个简单的对策是将这些不存在的数据也缓存起来，value值设置为null。</p>
-<h3 id="分布式缓存架构"><a href="#分布式缓存架构" class="headerlink" title="分布式缓存架构"></a>分布式缓存架构</h3><p>分布式缓存指缓存部署在多个服务器组成的集群中，以集群方式提供缓存服务，其架构方式有两种，一种是以JBoss Cache为代表的需要更新同步的分布式缓存，一种是以Memcached为代表的不互相通信的分布式缓存。</p>
-<p>JBoss Cache的分布式缓存在集群中所有的服务器中保存相同的缓存数据，当某台服务器有缓存数据更新时，会通知集群中其他机器更新。当集群规模较大时，同步代价非常大，且由于多台服务器存有多份相同的数据，内存利用率不高。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_8.png" alt="System_design_c4_8"></p>
-<h3 id="Memcached"><a href="#Memcached" class="headerlink" title="Memcached"></a>Memcached</h3><p>Memcached采用一种集中式的缓存集群管理，也就是互不通信的分布式架构模式，缓存与应用分离部署，部署在一组专门的服务器上，应用程序通过一致性Hash等路由算法选择缓存服务器远程访问缓存数据，缓存服务器之间不通信，可以很容易的实现扩容，具有良好的可伸缩性。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_9.png" alt="System_design_c4_9"></p>
-<p><strong>简单的通信协议</strong><br><strong>高性能的网络通信</strong><br><strong>高效的内存管理</strong><br>Memcached使用了固定空间分配。将内存空间分为一组Slab，每个slab里又包含一组chunk，同一个slab里的每个chunck的大小是固定的，拥有相同大小chunk的slab被组织在一起，称为slab_class。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_10.png" alt="System_design_c4_10"></p>
-<p><strong>互不通信的服务器集群架构</strong>：正是这个架构使得集群可以做到几乎无限制的线性伸缩。</p>
-<h2 id="异步操作"><a href="#异步操作" class="headerlink" title="异步操作"></a>异步操作</h2><p>使用消息队列将调用异步化，可以改善网站的扩展性。同时还可以改善网站系统的性能。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_11.png" alt="System_design_c4_11"></p>
-<p>在不使用消息队列的情况下，用户的请求数据直接写入数据库，在高并发的情况下，会对数据库造成巨大的压力，同时也使得相应延迟加剧。使用消息队列后，用户请求在被发送给消息队列后立即返回，响应延迟可以得到有效改善，再由消息队列的合适数量的消费者进程进行处理，进行数据库读写，不必创建超过负载的处理进程。</p>
-<p>消息队列具有很好的削峰作用–即通过异步处理，将段时间高并发产生的事务消息存储在消息队列中，从而削平高峰期的并发事务。在电子商务网站促销活动中，合理使用消息队列可以有效抵御冲击。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_12.png" alt="System_design_c4_12"></p>
-<h2 id="使用集群"><a href="#使用集群" class="headerlink" title="使用集群"></a>使用集群</h2><p>在网站高并发访问场景下，使用负载均衡计数为一个应用构建由多台服务器组成的服务器集群，将并发访问请求分发到多台服务器上处理，避免单一服务器因负载压力过大而响应缓慢，是用户请求具有更好的响应延迟特性。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_13.png" alt="System_design_c4_13"></p>
-<h2 id="代码优化"><a href="#代码优化" class="headerlink" title="代码优化"></a>代码优化</h2><ul>
-<li><strong>多线程</strong><br>假设服务器执行都是相同类型服务，估算公式：<br>启动线程数=[任务执行时间/(任务执行时间-IO等待时间)] * CPU内核数<br>需要注意线程安全问题。</li>
-<li><strong>资源复用</strong><br>减少开销大的系统资源创建和销毁，使用单例模式和对象池，线程池。</li>
-<li><strong>数据结构和高效算法</strong></li>
-<li><strong>垃圾回收</strong><br>如在JVM情况下，合理设置Young Generation和Old Generation大小，尽量减少Full GC。根据应用设置合理的回收模式。</li>
-</ul>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_15.png" alt=""></p>
-<h1 id="存储性能优化"><a href="#存储性能优化" class="headerlink" title="存储性能优化"></a>存储性能优化</h1><h2 id="机械硬盘-vs-固体硬盘"><a href="#机械硬盘-vs-固体硬盘" class="headerlink" title="机械硬盘 vs 固体硬盘"></a>机械硬盘 vs 固体硬盘</h2><h2 id="B-树-vs-LSM树"><a href="#B-树-vs-LSM树" class="headerlink" title="B+树 vs LSM树"></a>B+树 vs LSM树</h2><h2 id="RAID-vs-HDFS"><a href="#RAID-vs-HDFS" class="headerlink" title="RAID vs HDFS"></a>RAID vs HDFS</h2>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2015/11/19/System Design_大型网站安全架构/" itemprop="url">
                   System Design_大型网站安全架构
                 </a>
@@ -1067,6 +886,154 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/11/02/Leetcode_Shortest Word Distance/" itemprop="url">
+                  Shortest Word Distance
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-11-02T00:00:00+09:00" content="2015-11-02">
+              2015-11-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/11/02/Leetcode_Shortest Word Distance/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/11/02/Leetcode_Shortest Word Distance/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Shortest-Word-Distance"><a href="#Shortest-Word-Distance" class="headerlink" title="Shortest Word Distance"></a>Shortest Word Distance</h1><h2 id="Shortest-Word-Distance-1"><a href="#Shortest-Word-Distance-1" class="headerlink" title="Shortest Word Distance"></a><a href="http://segmentfault.com/a/1190000003906667" target="_blank" rel="external">Shortest Word Distance</a></h2><blockquote>
+<p>Given a list of words and two words word1 and word2, return the shortest distance between these two words in the list.</p>
+<p>For example, Assume that words = [“practice”, “makes”, “perfect”, “coding”, “makes”].</p>
+<p>Given word1 = “coding”, word2 = “practice”, return 3. Given word1 = “makes”, word2 = “coding”, return 1.</p>
+<p>Note: You may assume that word1 does not equal to word2, and word1 and word2 are both in the list.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p><a href="http://segmentfault.com/a/1190000003906667" target="_blank" rel="external">Shortest Word Distance</a><br><a href="http://blog.csdn.net/crazy__chen/article/details/47859737" target="_blank" rel="external">Shortest Word Distance</a></p>
+<p>双指针法.<br>一个指针指向word1上次出现的位置，一个指针指向word2上次出现的位置。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">shortestDistance</span><span class="params">(String[] words, String word1, String word2)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (words == <span class="keyword">null</span>) <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> idx1 = -<span class="number">1</span>, idx2 = -<span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> diff = words.length;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; words.length; i++) &#123;</div><div class="line">            <span class="keyword">if</span> (words[i].equals(word1)) &#123;</div><div class="line">                idx1 = i;                </div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (words[i].equals(word2)) &#123;</div><div class="line">                idx2 = i;                </div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>(idx1!=-<span class="number">1</span>&amp;&amp;idx2!=-<span class="number">1</span>)&#123;</div><div class="line">                diff = Math.min(diff,Math.abs(idx1-idx2));</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> diff;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Shortest-Word-Distance-II"><a href="#Shortest-Word-Distance-II" class="headerlink" title="Shortest Word Distance II"></a><a href="">Shortest Word Distance II</a></h2><blockquote>
+<p>This is a follow up of Shortest Word Distance. The only difference is now you are given the list of words and your method will be called repeatedly many times with different parameters. How would you optimize<br>it?</p>
+<p>Design a class which receives a list of words in the constructor, and implements a method that takes two<br>words word1 and word2 and return the shortest distance between these two words in the list.</p>
+<p>For example,<br>Assume that words = [“practice”, “makes”, “perfect”, “coding”, “makes”] .<br>Given word1 = “coding” , word2 = “practice” , return 3. Given word1 = “makes” , word2 =<br>“coding” , return 1.</p>
+<p>Note: You may assume that word1 does not equal to word2, and word1 and word2 are both in the list.</p>
+</blockquote>
+<h2 id="Method-1"><a href="#Method-1" class="headerlink" title="Method"></a>Method</h2><p><a href="http://blog.csdn.net/crazy__chen/article/details/47859865" target="_blank" rel="external">Shortest Word Distance II</a></p>
+<p>在构造函数，使用hashMap来记录每个单词的位置.</p>
+<p>在计算最短距离的函数中，两个列表是已排序的，因此可使用类似MergeSort的思路求解最短距离。 </p>
+<h2 id="Code-1"><a href="#Code-1" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WordDistance</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> HashMap&lt;String, List&lt;Integer&gt;&gt; indexer = <span class="keyword">new</span> HashMap&lt;String, List&lt;Integer&gt;&gt;();</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">WordDistance</span><span class="params">(String[] words)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (words == <span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; words.length; i++) &#123;</div><div class="line">            <span class="keyword">if</span> (indexer.containsKey(words[i])) &#123;</div><div class="line">                indexer.get(words[i]).add(i);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                List&lt;Integer&gt; positions = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">                positions.add(i);</div><div class="line">                indexer.put(words[i], positions);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">shortest</span><span class="params">(String word1, String word2)</span> </span>&#123;</div><div class="line">        List&lt;Integer&gt; posList1 = indexer.get(word1);</div><div class="line">        List&lt;Integer&gt; posList2 = indexer.get(word2);</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> diff = Integer.MAX_VALUE;</div><div class="line">        <span class="keyword">while</span> (i &lt; posList1.size() &amp;&amp; j &lt; posList2.size()) &#123;</div><div class="line">            <span class="keyword">int</span> pos1 = posList1.get(i), pos2 = posList2.get(j);</div><div class="line">            <span class="keyword">if</span> (pos1 &lt; pos2) &#123;</div><div class="line">                diff = Math.min(diff, pos2 - pos1);</div><div class="line">                i++;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                diff = Math.min(diff, pos1 - pos2);</div><div class="line">                j++;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> diff;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Shortest-Word-Distance-III"><a href="#Shortest-Word-Distance-III" class="headerlink" title="Shortest Word Distance III"></a><a href="">Shortest Word Distance III</a></h2><blockquote>
+<p>This is a follow up of Shortest Word Distance. The only difference is now word1 could be the same as word2.</p>
+<p>Given a list of words and two words word1 and word2, return the shortest distance between these two words in the list.</p>
+<p>word1 and word2 may be the same and they represent two individual words in the list.</p>
+<p>For example,<br>Assume that words = [“practice”, “makes”, “perfect”, “coding”, “makes”].</p>
+<p>Given word1 = “makes”, word2 = “coding”, return 1.<br>Given word1 = “makes”, word2 = “makes”, return 3.</p>
+<p>Note:<br>You may assume word1 and word2 are both in the list.</p>
+</blockquote>
+<h2 id="Method-2"><a href="#Method-2" class="headerlink" title="Method"></a>Method</h2><p>解法基本与I相同，需要加一个是否是同一位置的判断。 </p>
+<h2 id="Code-2"><a href="#Code-2" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">shortestWordDistance</span><span class="params">(String[] words, String word1, String word2)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> p1 = -<span class="number">1</span>, p2 = -<span class="number">1</span>, distance = words.length;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;words.length; i++)&#123;</div><div class="line">            <span class="keyword">if</span>(words[i].equals(word1))&#123;</div><div class="line">                p1 = i;</div><div class="line">                <span class="keyword">if</span>(p1 != -<span class="number">1</span> &amp;&amp; p2 != -<span class="number">1</span>)&#123;</div><div class="line">                    distance = (p1!=p2) ? Math.min(distance, Math.abs(p1-p2)): distance;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>(words[i].equals(word2))&#123;</div><div class="line">                p2 = i;</div><div class="line">                <span class="keyword">if</span>(p1 != -<span class="number">1</span> &amp;&amp; p2 != -<span class="number">1</span>)&#123;</div><div class="line">                    distance = (p1!=p2) ? Math.min(distance, Math.abs(p1-p2)): distance;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> distance;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -1112,7 +1079,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">330</span>
+              <span class="site-state-item-count">329</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -1192,7 +1159,7 @@
         <div class="copyright" >
   
   &copy;  2014 - 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -761,185 +761,6 @@
             
               
                 
-                <a class="post-title-link" href="/2014/11/05/Java_Maven(2)/" itemprop="url">
-                  Maven(2)_创建第一个Maven项目
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2014-11-05T00:00:00+09:00" content="2014-11-05">
-              2014-11-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/11/05/Java_Maven(2)/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/11/05/Java_Maven(2)/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>参考<a href="http://tutorials.jenkov.com/maven/maven-tutorial.html#maven-settings-files" target="_blank" rel="external">Maven Tutorial</a>，<a href="https://ayayui.gitbooks.io/tutorialspoint-maven/content/book/maven_creating_project.html" target="_blank" rel="external">Maven - 创建项目</a></p>
-<h2 id="Installing-Maven"><a href="#Installing-Maven" class="headerlink" title="Installing Maven"></a>Installing Maven</h2><p>To install Maven on your own system (computer), go to the Maven download page and follow the instructions there. In summary, what you need to do is:</p>
-<ol>
-<li>Set the JAVA_HOME environment variable to point to a valid Java SDK (e.g. Java 8).</li>
-<li>Download and unzip Maven.</li>
-<li>Set the M2_HOME environment variable to point to the directory you unzipped Maven to.</li>
-<li>Set the M2 environment variable to point to M2_HOME/bin (<code>%M2_HOME%\bin</code> on Windows, <code>$M2_HOME/bin</code> on unix).</li>
-<li>Add M2 to the PATH environment variable (%M2% on Windows, $M2 on unix).</li>
-<li>Open a command prompt and type ‘mvn -version’ (without quotes) and press enter.</li>
-</ol>
-<h2 id="Manual-project-creation"><a href="#Manual-project-creation" class="headerlink" title="Manual project creation"></a>Manual project creation</h2><h3 id="创建项目目录和pom文件"><a href="#创建项目目录和pom文件" class="headerlink" title="创建项目目录和pom文件"></a>创建项目目录和pom文件</h3><p>创建pom.xml文件如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span></span></div><div class="line">         <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></div><div class="line">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0</span></div><div class="line">                      http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></div><div class="line"></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.jenkov<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hello-world<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>可以通过<code>mvn clean</code>测试pom.xml以及环境是否正常：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">pc<span class="_">-a</span>375-2:maven admin$ mvn clean</div><div class="line">[INFO] Scanning <span class="keyword">for</span> projects...</div><div class="line">[INFO]                                                                         </div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">[INFO] Building hello-world 1.0.0</div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">[INFO] </div><div class="line">[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ hello-world ---</div><div class="line">Downloading: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0/plexus-utils-3.0.pom</div><div class="line">Downloaded: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0/plexus-utils-3.0.pom (4 KB at 1.9 KB/sec)</div><div class="line">Downloading: https://repo.maven.apache.org/maven2/org/sonatype/spice/spice-parent/16/spice-parent-16.pom</div><div class="line">Downloaded: https://repo.maven.apache.org/maven2/org/sonatype/spice/spice-parent/16/spice-parent-16.pom (9 KB at 31.8 KB/sec)</div><div class="line">Downloading: https://repo.maven.apache.org/maven2/org/sonatype/forge/forge-parent/5/forge-parent-5.pom</div><div class="line">Downloaded: https://repo.maven.apache.org/maven2/org/sonatype/forge/forge-parent/5/forge-parent-5.pom (9 KB at 31.7 KB/sec)</div><div class="line">Downloading: https://repo.maven.apache.org/maven2/org/apache/maven/maven-plugin-api/2.0.6/maven-plugin-api-2.0.6.jar</div><div class="line">Downloading: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0/plexus-utils-3.0.jar</div><div class="line">Downloaded: https://repo.maven.apache.org/maven2/org/apache/maven/maven-plugin-api/2.0.6/maven-plugin-api-2.0.6.jar (13 KB at 26.2 KB/sec)</div><div class="line">Downloaded: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0/plexus-utils-3.0.jar (221 KB at 292.8 KB/sec)</div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">[INFO] BUILD SUCCESS</div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">[INFO] Total time: 4.157 s</div><div class="line">[INFO] Finished at: 2016-04-12T17:39:37+09:00</div><div class="line">[INFO] Final Memory: 7M/130M</div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">pc<span class="_">-a</span>375-2:maven admin$</div></pre></td></tr></table></figure>
-<h3 id="创建源码目录"><a href="#创建源码目录" class="headerlink" title="创建源码目录"></a>创建源码目录</h3><p>按照maven的标准目录结构在项目录下创建源码目录：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">src</div><div class="line">  main</div><div class="line">    java</div></pre></td></tr></table></figure>
-<h3 id="创建代码文件"><a href="#创建代码文件" class="headerlink" title="创建代码文件"></a>创建代码文件</h3><p>创建java类源码文件<code>HelloWorld.java</code>.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> helloworld;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</div><div class="line"></div><div class="line">		System.out.println(<span class="string">"Hello World, Maven"</span>);</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="构建项目"><a href="#构建项目" class="headerlink" title="构建项目"></a>构建项目</h3><p>运行<code>mvn package</code>, <code>package</code>是默认生命周期的一个阶段。会将编译得到的java class文件打包位一个JAR文件。maven会创建<code>target</code>目录，生成的JAR文件就在里面。JAR包会命名为：<br><code>artifactId-version</code>.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">pc<span class="_">-a</span>375-2:maven admin$ <span class="built_in">cd</span> target</div><div class="line">pc<span class="_">-a</span>375-2:target admin$ ls</div><div class="line">classes			hello-world-1.0.0.jar	maven-archiver		maven-status</div><div class="line">pc<span class="_">-a</span>375-2:target admin$</div></pre></td></tr></table></figure>
-<h2 id="项目模板"><a href="#项目模板" class="headerlink" title="项目模板"></a>项目模板</h2><p>Archetype 是一个 Maven 插件，它的任务是按照项目模板创建一个项目的目录结构。这里，我们将使用 archetype 插件 quickstart 来创建一个简单的 java 应用。</p>
-<p>可以Maven的archetype插件来创建基本的项目，也可以创建高级的项目（根据模板）。要创建一个简单的java应用，我们将使用maven-archetype-quickstart插件。</p>
-<p>Maven 将会开始处理，并且要求你选择需要的archetype。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">[INFO] Scanning for projects...</div><div class="line">[INFO] Searching repository for plugin with prefix: &apos;archetype&apos;.</div><div class="line">[INFO] -------------------------------------------------------------------</div><div class="line">[INFO] Building Maven Default Project</div><div class="line">[INFO]    task-segment: [archetype:generate] (aggregator-style)</div><div class="line">[INFO] -------------------------------------------------------------------</div><div class="line">[INFO] Preparing archetype:generate</div><div class="line">...</div><div class="line">600: remote -&gt; org.trailsframework:trails-archetype (-)</div><div class="line">601: remote -&gt; org.trailsframework:trails-secure-archetype (-)</div><div class="line">602: remote -&gt; org.tynamo:tynamo-archetype (-)</div><div class="line">603: remote -&gt; org.wicketstuff.scala:wicket-scala-archetype (-)</div><div class="line">604: remote -&gt; org.wicketstuff.scala:wicketstuff-scala-archetype </div><div class="line">Basic setup for a project that combines Scala and Wicket,</div><div class="line">depending on the Wicket-Scala project. </div><div class="line">Includes an example Specs test.)</div><div class="line">605: remote -&gt; org.wikbook:wikbook.archetype (-)</div><div class="line">606: remote -&gt; org.xaloon.archetype:xaloon-archetype-wicket-jpa-glassfish (-)</div><div class="line">607: remote -&gt; org.xaloon.archetype:xaloon-archetype-wicket-jpa-spring (-)</div><div class="line">608: remote -&gt; org.xwiki.commons:xwiki-commons-component-archetype </div><div class="line">(Make it easy to create a maven project for creating XWiki Components.)</div><div class="line">609: remote -&gt; org.xwiki.rendering:xwiki-rendering-archetype-macro </div><div class="line">(Make it easy to create a maven project for creating XWiki Rendering Macros.)</div><div class="line">610: remote -&gt; org.zkoss:zk-archetype-component (The ZK Component archetype)</div><div class="line">611: remote -&gt; org.zkoss:zk-archetype-webapp (The ZK wepapp archetype)</div><div class="line">612: remote -&gt; ru.circumflex:circumflex-archetype (-)</div><div class="line">613: remote -&gt; se.vgregion.javg.maven.archetypes:javg-minimal-archetype (-)</div><div class="line">614: remote -&gt; sk.seges.sesam:sesam-annotation-archetype (-)</div><div class="line">Choose a number or apply filter </div><div class="line">(format: [groupId:]artifactId, case sensitive contains): 203:</div></pre></td></tr></table></figure>
-<p>按回车选择默认的选项（203：maven-archetype-quickstart）。</p>
-<p>Maven 将要求提供 archetype 的特定版本。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Choose org.apache.maven.archetypes:maven-archetype-quickstart version:</div><div class="line">1: 1.0-alpha-1</div><div class="line">2: 1.0-alpha-2</div><div class="line">3: 1.0-alpha-3</div><div class="line">4: 1.0-alpha-4</div><div class="line">5: 1.0</div><div class="line">6: 1.1</div><div class="line">Choose a number: 6:</div></pre></td></tr></table></figure>
-<p>按回车选择默认的选项（6：maven-archetype-quickstart:1.1）。</p>
-<p>Maven 将要求提供项目详情。要找要求键入项目详情。如果默认值有提供就按回车。你可以键入你自己的值来覆盖这些默认值。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Define value for property &apos;groupId&apos;: : com.companyname.insurance</div><div class="line">Define value for property &apos;artifactId&apos;: : health</div><div class="line">Define value for property &apos;version&apos;: 1.0-SNAPSHOT:</div><div class="line">Define value for property &apos;package&apos;: com.companyname.insurance:</div><div class="line">Maven 会要求确认项目详情。按回车或者 Y 。</div><div class="line"></div><div class="line">Confirm properties configuration:</div><div class="line">groupId: com.companyname.insurance</div><div class="line">artifactId: health</div><div class="line">version: 1.0-SNAPSHOT</div><div class="line">package: com.companyname.insurance</div><div class="line">Y:</div></pre></td></tr></table></figure>
-<p>现在 Maven 将开始创建项目目录结构并且显示下面的信息：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">[INFO] -----------------------------------------------------------------------</div><div class="line">[INFO] Using following parameters for creating project </div><div class="line">from Old (1.x) Archetype: maven-archetype-quickstart:1.1</div><div class="line">[INFO] -----------------------------------------------------------------------</div><div class="line">[INFO] Parameter: groupId, Value: com.companyname.insurance</div><div class="line">[INFO] Parameter: packageName, Value: com.companyname.insurance</div><div class="line">[INFO] Parameter: package, Value: com.companyname.insurance</div><div class="line">[INFO] Parameter: artifactId, Value: health</div><div class="line">[INFO] Parameter: basedir, Value: C:\MVN</div><div class="line">[INFO] Parameter: version, Value: 1.0-SNAPSHOT</div><div class="line">[INFO] project created from Old (1.x) Archetype in dir: C:\MVN\health</div><div class="line">[INFO] -----------------------------------------------------------------------</div><div class="line">[INFO] BUILD SUCCESSFUL</div><div class="line">[INFO] -----------------------------------------------------------------------</div><div class="line">[INFO] Total time: 4 minutes 12 seconds</div><div class="line">[INFO] Finished at: Fri Jul 13 11:10:12 IST 2012</div><div class="line">[INFO] Final Memory: 20M/90M</div><div class="line">[INFO] -----------------------------------------------------------------------</div></pre></td></tr></table></figure>
-<p>Maven使用如下所示的一套标准目录结构：</p>
-<table>
-<thead>
-<tr>
-<th>目录结构</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>src/main/java</td>
-<td>包含包下的Java源代码文件。</td>
-</tr>
-<tr>
-<td>src/main/test</td>
-<td>包含包下的测试Java源代码文件。</td>
-</tr>
-<tr>
-<td>src/main/resources</td>
-<td>包含图片和properties文件（在上面的例子中，我们需要手动创建此目录）。</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">Maven 为项目生成了一个 POM.xml 文件，如下所示：</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> </span></div><div class="line">   <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></div><div class="line">   <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 </span></div><div class="line">   http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;</div><div class="line">   <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.companyname.insurance<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>health<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">name</span>&gt;</span>health<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.apache.org<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">properties</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.8.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>Maven还创建了一个Java源文件样例和Java测试类文件。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.companyname.insurance;</div><div class="line"></div><div class="line"><span class="keyword">import</span> junit.framework.Test;</div><div class="line"><span class="keyword">import</span> junit.framework.TestCase;</div><div class="line"><span class="keyword">import</span> junit.framework.TestSuite;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Unit test for simple App.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppTest</span> </span></div><div class="line">    <span class="keyword">extends</span> <span class="title">TestCase</span></div><div class="line">&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Create the test case</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> testName name of the test case</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AppTest</span><span class="params">( String testName )</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">super</span>( testName );</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * <span class="doctag">@return</span> the suite of tests being tested</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Test <span class="title">suite</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> TestSuite( AppTest.class );</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Rigourous Test :-)</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testApp</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        assertTrue( <span class="keyword">true</span> );</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>开发者需要按照上面表格提到的要求放置自己的文件，然后Maven会处理构建相关的所有复杂工作。</p>
-<p>在 Maven 中使用一条命令，你就可以创建任意种类的项目，并且可以迅速启动你的开发工作。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2014/11/02/Design Pattern_Observer pattern/" itemprop="url">
                   Observer pattern
                 </a>
@@ -1317,6 +1138,127 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/10/02/Kaggle_Preparation/" itemprop="url">
+                  Kaggle_Preparation
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2014-10-02T00:00:00+09:00" content="2014-10-02">
+              2014-10-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/kaggle/" itemprop="url" rel="index">
+                    <span itemprop="name">kaggle</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/10/02/Kaggle_Preparation/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/10/02/Kaggle_Preparation/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Kaggle平台入门资料和参考"><a href="#Kaggle平台入门资料和参考" class="headerlink" title="Kaggle平台入门资料和参考"></a>Kaggle平台入门资料和参考</h1><p><a href="http://blog.csdn.net/u012162613/article/details/41929171" target="_blank" rel="external">大数据竞赛平台——Kaggle 入门篇</a><br><a href="https://www.kaggle.com/wiki/Tutorials" target="_blank" rel="external">Kaggle-Tutorials</a><br><a href="https://www.kaggle.com/c/titanic" target="_blank" rel="external">Competition Demo_Titanic: Machine Learning from Disaster</a><br><a href="http://nanjunxiao.github.io/2015/07/30/Kaggle实战一/#1-_Bike_Sharing_Demand" target="_blank" rel="external">Kaggle实战(一)</a></p>
+<p>Some other concerning information:<br><a href="http://www.36dsj.com/archives/27004" target="_blank" rel="external">开始搞Kaggle比赛</a><br><a href="http://nbviewer.ipython.org/gist/whbzju/ff06fce9fd738dcf8096" target="_blank" rel="external">kaggle上的自行车出租数量预测</a><br><a href="http://www.wujiame.com/blog/2015/04/18/kaggle-bike/" target="_blank" rel="external">Kaggle入门总结</a><br><a href="http://www.zhihu.com/question/24533374" target="_blank" rel="external">参加kaggle竞赛是怎样一种体验？</a><br><a href="http://www.wujiame.com/blog/2015/02/16/random-forest/" target="_blank" rel="external">Random Forest</a><br><a href="http://www.zhihu.com/question/23987009" target="_blank" rel="external">Kaggle如何入门？</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -1362,7 +1304,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">330</span>
+              <span class="site-state-item-count">329</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -1442,7 +1384,7 @@
         <div class="copyright" >
   
   &copy;  2014 - 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -390,138 +390,6 @@
             
               
                 
-                <a class="post-title-link" href="/2015/09/21/Leetcode_Palindrome Partitioning II/" itemprop="url">
-                  Palindrome Partitioning II
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-09-21T00:00:00+09:00" content="2015-09-21">
-              2015-09-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/21/Leetcode_Palindrome Partitioning II/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/21/Leetcode_Palindrome Partitioning II/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Palindrome-Partitioning-II"><a href="#Palindrome-Partitioning-II" class="headerlink" title="Palindrome Partitioning II"></a><a href="https://leetcode.com/problems/palindrome-partitioning-ii/" target="_blank" rel="external">Palindrome Partitioning II</a></h1><blockquote>
-<p>Given a string <code>s</code>, partition <code>s</code> such that every substring of the partition is a palindrome.</p>
-<p>Return the minimum cuts needed for a palindrome partitioning of <code>s</code>.</p>
-<p>For example, given <code>s = &quot;aab&quot;</code>,<br>Return <code>1</code> since the palindrome partitioning <code>[&quot;aa&quot;,&quot;b&quot;]</code> could be produced using <code>1</code> cut.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>比较直接的方法是直接DFS搜索最小的cut num。会有比较多的重复计算。</p>
-<p>动态规划避免重复计算，设置<code>cutNum[n]</code>记录当前位置<code>n</code>的最小<code>cut num</code>，状态转移方程为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cutNum[0] = 0;</div><div class="line">cutNum[n] = min(cutNum[j-1]+1), isPal(s.substring(j, n))==true   (j=0...n).</div></pre></td></tr></table></figure>
-<p>特殊情况是<code>j=0</code>，且s.substring(0, n)回文，这时<code>cutNum[n]=0</code>.</p>
-<p>只是使用<code>cutNum[]</code>记录前面位置的最小<code>cut num</code>是不够的，这里还有可以使用动态规划的地方，就是判断子串是否是回文字符串，建立<code>palMatrix</code>矩阵，<code>palMatrix[i][j]</code>记录<code>i..j子串</code>是否回文，状态转移方程为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">palMatrix[i][j] = ( s[i]==s.[j] &amp;&amp; ( i-j&lt;=1 || palMatrix[j+1][i-1]))</div></pre></td></tr></table></figure>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="Dynamic-programming-solution"><a href="#Dynamic-programming-solution" class="headerlink" title="Dynamic programming solution"></a>Dynamic programming solution</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minCut</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(s==<span class="keyword">null</span> || s.length()==<span class="number">0</span> || s.length()==<span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> [] cutNum = <span class="keyword">new</span> <span class="keyword">int</span>[s.length()];</div><div class="line">        </div><div class="line">        <span class="keyword">boolean</span> [][] palMatrix = <span class="keyword">new</span> <span class="keyword">boolean</span>[s.length()][s.length()];</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;s.length(); i++) &#123;</div><div class="line">            cutNum[i] = i;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;=i; j++) &#123;</div><div class="line">                <span class="keyword">if</span>(s.charAt(i)==s.charAt(j) &amp;&amp; ( i-j&lt;=<span class="number">1</span> || palMatrix[j+<span class="number">1</span>][i-<span class="number">1</span>])) &#123;</div><div class="line">                    palMatrix[j][i] = <span class="keyword">true</span>;</div><div class="line">                    <span class="keyword">if</span>(j==<span class="number">0</span>) cutNum[i] = <span class="number">0</span>;</div><div class="line">                    <span class="keyword">else</span> cutNum[i] = Math.min(cutNum[i], cutNum[j-<span class="number">1</span>]+<span class="number">1</span>);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> cutNum[s.length()-<span class="number">1</span>];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="DFS-solution"><a href="#DFS-solution" class="headerlink" title="DFS solution"></a>DFS solution</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minCut</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> recCut(s, <span class="number">0</span>, <span class="string">""</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">recCut</span><span class="params">(String s, <span class="keyword">int</span> pos, String record)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(pos==s.length()) &#123;</div><div class="line">            <span class="keyword">if</span>(isPal(record)) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> cutNum = -<span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> notCutNum = -<span class="number">1</span>;</div><div class="line">        </div><div class="line">        record = record + s.charAt(pos);</div><div class="line">        </div><div class="line">        notCutNum = recCut(s, pos+<span class="number">1</span>, record);</div><div class="line">        <span class="keyword">if</span>(isPal(record)) cutNum = recCut(s, pos+<span class="number">1</span>, <span class="string">""</span>);</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(cutNum&gt;=<span class="number">0</span> &amp;&amp; notCutNum&gt;=<span class="number">0</span>) <span class="keyword">return</span> (<span class="number">1</span>+cutNum)&lt;=notCutNum ? (<span class="number">1</span>+cutNum):notCutNum;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(cutNum&gt;=<span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span> + cutNum;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(notCutNum&gt;=<span class="number">0</span>) <span class="keyword">return</span> notCutNum;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPal</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> right = s.length() - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(left&lt;=right) &#123;</div><div class="line">            <span class="keyword">if</span>(s.charAt(left)!=s.charAt(right)) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            left ++;</div><div class="line">            right --;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2015/09/20/Leetcode_Max Points on a Line/" itemprop="url">
                   Max Points on a Line
                 </a>
@@ -886,6 +754,133 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/09/18/Leetcode_Copy List with Random Pointer/" itemprop="url">
+                  Copy List with Random Pointer
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2015-09-18T00:00:00+09:00" content="2015-09-18">
+              2015-09-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/18/Leetcode_Copy List with Random Pointer/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/18/Leetcode_Copy List with Random Pointer/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Copy-List-with-Random-Pointer"><a href="#Copy-List-with-Random-Pointer" class="headerlink" title="Copy List with Random Pointer"></a><a href="https://leetcode.com/problems/copy-list-with-random-pointer/" target="_blank" rel="external">Copy List with Random Pointer</a></h1><blockquote>
+<p>A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null.</p>
+<p>Return a deep copy of the list.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>先遍历复制链表(只是复制label, next), 同时将对应的(oldNode, newNode)存入HashMap。</p>
+<p>再同时遍历新旧链表一遍，将对于的random指针从根据old node的random指针从HashMap中取出。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list with a random pointer.</div><div class="line"> * class RandomListNode &#123;</div><div class="line"> *     int label;</div><div class="line"> *     RandomListNode next, random;</div><div class="line"> *     RandomListNode(int x) &#123; this.label = x; &#125;</div><div class="line"> * &#125;;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> RandomListNode <span class="title">copyRandomList</span><span class="params">(RandomListNode head)</span> </span>&#123;</div><div class="line">        Map&lt;RandomListNode, RandomListNode&gt; map = <span class="keyword">new</span> HashMap&lt;RandomListNode, RandomListNode&gt;();</div><div class="line">        map.put(<span class="keyword">null</span>, <span class="keyword">null</span>);</div><div class="line">        </div><div class="line">        RandomListNode newHead = <span class="keyword">null</span>;</div><div class="line">        RandomListNode lastNode = <span class="keyword">null</span>;</div><div class="line">        </div><div class="line">        RandomListNode old = head;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(old!=<span class="keyword">null</span>) &#123;</div><div class="line">            RandomListNode node = <span class="keyword">new</span> RandomListNode(old.label);</div><div class="line">            map.put(old, node);</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(newHead==<span class="keyword">null</span>) &#123;</div><div class="line">                newHead = node;</div><div class="line">                lastNode = node;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                lastNode.next = node;</div><div class="line">                lastNode = node;</div><div class="line">            &#125;</div><div class="line">            old = old.next;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        old = head;</div><div class="line">        RandomListNode newNode = newHead;</div><div class="line">        <span class="keyword">while</span>(old!=<span class="keyword">null</span>) &#123;</div><div class="line">            newNode.random = map.get(old.random);</div><div class="line">            </div><div class="line">            old = old.next;</div><div class="line">            newNode = newNode.next;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> newHead;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>second time</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> RandomListNode <span class="title">copyRandomList</span><span class="params">(RandomListNode head)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        Map&lt;RandomListNode, RandomListNode&gt; map = <span class="keyword">new</span> HashMap&lt;RandomListNode, RandomListNode&gt;();</div><div class="line">        RandomListNode move = head;</div><div class="line">        <span class="keyword">while</span>(move!=<span class="keyword">null</span>) &#123;</div><div class="line">            RandomListNode node = <span class="keyword">new</span> RandomListNode(move.label);</div><div class="line">            map.put(move, node);</div><div class="line">            move = move.next;</div><div class="line">        &#125;</div><div class="line">        move = head;</div><div class="line">        <span class="keyword">while</span>(move!=<span class="keyword">null</span>) &#123;</div><div class="line">            RandomListNode node = map.get(move);</div><div class="line">            <span class="keyword">if</span>(move.next!=<span class="keyword">null</span>) node.next = map.get(move.next);</div><div class="line">            <span class="keyword">if</span>(move.random!=<span class="keyword">null</span>) node.random = map.get(move.random);</div><div class="line">            move = move.next;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> map.get(head);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -931,7 +926,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">330</span>
+              <span class="site-state-item-count">329</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -1011,7 +1006,7 @@
         <div class="copyright" >
   
   &copy;  2014 - 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

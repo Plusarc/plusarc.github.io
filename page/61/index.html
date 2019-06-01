@@ -260,8 +260,8 @@
             
               
                 
-                <a class="post-title-link" href="/2014/12/12/System Design_Scalability/" itemprop="url">
-                  System design_Scalability
+                <a class="post-title-link" href="/2014/12/10/System Design_System Design总结/" itemprop="url">
+                  System Design总结
                 </a>
               
             
@@ -274,8 +274,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2014-12-12T00:00:00+09:00" content="2014-12-12">
-              2014-12-12
+            <time itemprop="dateCreated" datetime="2014-12-10T00:00:00+09:00" content="2014-12-10">
+              2014-12-10
             </time>
           </span>
 
@@ -304,8 +304,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2014/12/12/System Design_Scalability/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/12/12/System Design_Scalability/" itemprop="commentsCount"></span>
+                <a href="/2014/12/10/System Design_System Design总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/12/10/System Design_System Design总结/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -330,37 +330,39 @@
       
         
           
-            <h1 id="Scalability"><a href="#Scalability" class="headerlink" title="Scalability"></a>Scalability</h1><p>转自<a href="http://www.lecloud.net/tagged/scalability" target="_blank" rel="external">Scalability for Dummies</a>，非常好的System design介绍文章。</p>
-<p>Just recently I was asked what it would take to make a web service massively scalable. My answer was lengthy and maybe it is also for other people interesting. So I share it with you here in my blog and split it into parts to make it easier to read. New parts are released on a regular basis. Have fun and your comments are always welcomed!</p>
-<h2 id="Part-1-Clones"><a href="#Part-1-Clones" class="headerlink" title="Part 1: Clones"></a>Part 1: Clones</h2><p>Public servers of a scalable web service are hidden behind a load balancer.  This load balancer evenly distributes load (requests from your users) onto your group/cluster of  application servers. That means that if, for example, user Steve interacts with your service, he may be served at his first request by server 2, then with his second request by server 9 and then maybe again by server 2 on his third request. </p>
-<p>Steve should always get the same results of his request back, independent what server he  “landed on”. That leads to the first golden rule for scalability: every server contains exactly the same codebase and does not store any user-related data, like sessions or profile pictures, on local disc or memory. </p>
-<p>Sessions need to be stored in a centralized data store which is accessible to all your application servers. It can be an external database or an external persistent cache, like Redis. An external persistent cache will have better performance than an external database. By external I mean that the data store does not reside on the application servers. Instead, it is somewhere in or near the data center of your application servers. </p>
-<p>But what about deployment? How can you make sure that a code change is sent to all your servers without one server still serving old code? This tricky problem is fortunately already solved by the great tool Capistrano. It requires some learning, especially if you are not into Ruby on Rails, but it is definitely both the effort.</p>
-<p>After “outsourcing” your sessions and serving the same codebase from all your servers, you can now create an image file from one of these servers (AWS calls this AMI - Amazon Machine Image.) Use this AMI as a “super-clone” that all your new instances are based upon. Whenever you start a new instance/clone, just do an initial deployment of your latest code and you are ready!</p>
-<h2 id="Part-2-Database"><a href="#Part-2-Database" class="headerlink" title="Part 2: Database"></a>Part 2: Database</h2><p>After following Part 1 of this series, your servers can now horizontally scale and you can already serve thousands of concurrent requests. But somewhere down the road your application gets slower and slower and finally breaks down. The reason: your database. It’s MySQL, isn’t it?</p>
-<p>Now the required changes are more radical than just adding more cloned servers and may even require some boldness. In the end, you can choose from 2 paths:</p>
-<p><strong>Path #1</strong> is to stick with MySQL and keep the “beast” running. Hire a database administrator (DBA,) tell him to do master-slave replication (read from slaves, write to master) and upgrade your master server by adding RAM, RAM and more RAM. In some months, your DBA will come up with words like “sharding”, “denormalization” and “SQL tuning” and will look worried about the necessary overtime during the next weeks. At that point every new action to keep your database running will be more expensive and time consuming than the previous one. You might have been better off if you had chosen Path #2 while your dataset was still small and easy to migrate.</p>
-<p>**Path #2 means to denormalize right from the beginning and include no more Joins in any database query. You can stay with MySQL, and use it like a NoSQL database, or you can switch to a better and easier to scale NoSQL database like MongoDB or CouchDB. Joins will now need to be done in your application code. The sooner you do this step the less code you will have to change in the future. But even if you successfully switch to the latest and greatest NoSQL database and let your app do the dataset-joins, soon your database requests will again be slower and slower. You will need to introduce a cache.</p>
-<p>But even if successfully switched the latest and greatest NoSQL database and let your app do the dataset-joins, soon your database requests will be again slower and slower. You will need to introduce a cache.</p>
-<h2 id="Part-3-Cache"><a href="#Part-3-Cache" class="headerlink" title="Part 3: Cache"></a>Part 3: Cache</h2><p>After following Part 2 of this series, you now have a scalable database solution. You have no fear of storing terabytes anymore and the world is looking fine. But just for you. Your users still have to suffer slow page requests when a lot of data is fetched from the database. The solution is the implementation of a cache.</p>
-<p>With “cache” I always mean in-memory caches like Memcached or Redis. Please <strong>never do file-based caching</strong>, it makes cloning and auto-scaling of your servers just a pain. </p>
-<p>But back to in-memory caches. A cache is a simple key-value store and it should reside as a buffering layer between your application and your data storage. Whenever your application has to read data it should at first try to retrieve the data from your cache. Only if it’s not in the cache should it then try to get the data from the main data source. Why should you do that? Because a cache is lightning-fast. It holds every dataset in RAM and requests are handled as fast as technically possible. For example, Redis can do several hundreds of thousands of read operations per second when being hosted on a standard server. Also writes, especially increments, are very, very fast. Try that with a database!</p>
-<p>There are 2 patterns of caching your data. An old one and a new one:</p>
-<p><strong>#1 - Cached Database Queries</strong><br>That’s still the most commonly used caching pattern. Whenever you do a query to your database, you store the result dataset in cache. A hashed version of your query is the cache key. The next time you run the query, you first check if it is already in the cache. The next time you run the query, you check at first the cache if there is already a result. This pattern has several issues. The main issue is the expiration. It is hard to delete a cached result when you cache a complex query (who has not?). When one piece of data changes (for example a table cell) you need to delete all cached queries who may include that table cell. You get the point?</p>
-<p><strong>#2 - Cached Objects</strong><br>That’s my strong recommendation and I always prefer this pattern. In general, see your data as an object like you already do in your code (classes, instances, etc.). Let your class assemble a dataset from your database and then store the complete instance of the class or the assembed dataset in the cache. Sounds theoretical, I know, but just look how you normally code. You have, for example, a class called “Product” which has a property called “data”. It is an array containing prices, texts, pictures, and customer reviews of your product. The property “data” is filled by several methods in the class doing several database requests which are hard to cache, since many things relate to each other. Now, do the following: when your class has finished the “assembling” of the data array, directly store the data array, or better yet the complete instance of the class, in the cache! This allows you to easily get rid of the object whenever something did change and makes the overall operation of your code faster and more logical.</p>
-<p>And the best part: it makes asynchronous processing possible! Just imagine an army of worker servers who assemble your objects for you! The application just consumes the latest cached object and nearly never touches the databases anymore!</p>
-<p>Some ideas of objects to cache:</p>
-<p>user sessions (never use the database!)<br>fully rendered blog articles<br>activity streams<br>user&lt;-&gt;friend relationships<br>As you maybe already realized, I am a huge fan of caching. It is easy to understand, very simple to implement and the result is always breathtaking. In general, I am more a friend of Redis than Memcached, because I love the extra database-features of Redis like persistence and the built-in data structures like lists and sets. With Redis and a clever key’ing there may be a chance that you even can get completly rid of a database. But if you just need to cache, take Memcached, because it scales like a charm.</p>
-<p>Happy caching! </p>
-<h2 id="Part-4-Asynchronism"><a href="#Part-4-Asynchronism" class="headerlink" title="Part 4: Asynchronism"></a>Part 4: Asynchronism</h2><p>This 4th part of the series starts with a picture: please imagine that you want to buy bread at your favorite bakery.  So you go into the bakery, ask for a loaf of bread, but there is no bread there! Instead, you are asked to come back in 2 hours when your ordered bread is ready. That’s annoying, isn’t it?</p>
-<p>To avoid such a “please wait a while” - situation, asynchronism needs to be done.  And what’s good for a bakery, is maybe also good for your web service or web app.<br>In general, there are two ways / paradigms asynchronism can be done. </p>
-<p><strong>Async #1</strong><br>Let’s stay in the former bakery picture. The first way of async processing is the “bake the breads at night and sell them in the morning” way. No waiting time at the cash register and a happy customer.  Referring to a web app this means doing the time-consuming work in advance and serving the finished work with a low request time.</p>
-<p>Very often this paradigm is used to turn dynamic content into static content.  Pages of a website, maybe built with a massive framework or CMS, are pre-rendered and locally stored as static HTML files on every change. Often these computing tasks are done on a regular basis, maybe by a script which is called every hour by a cronjob. This pre-computing of overall general data can extremely improve websites and web apps and makes them very scalable and performant. Just imagine the scalability of your website if the script would upload these pre-rendered HTML pages to AWS S3 or Cloudfront or another Content Delivery Network! Your website would be super responsive and could handle millions of visitors per hour!</p>
-<p><strong>Async #2</strong><br>Back to the bakery. Unfortunately, sometimes customers has special requests like a birthday cake with “Happy Birthday, Steve!” on it. The bakery can not foresee these kind of customer wishes, so it must start the task when the customer is in the bakery and tell him to come back at the next day. Refering to a web service that means to handle tasks asynchronously.</p>
-<p>Here is a typical workflow:</p>
-<p>A user comes to your website and starts a very computing intensive task which would take several minutes to finish. So the frontend of your website sends a job onto a job queue and immediately signals back to the user: your job is in work, please continue to the browse the page. The job queue is constantly checked by a bunch of workers for new jobs. If there is a new job then the worker does the job and after some minutes sends a signal that the job was done. The frontend, which constantly checks for new “job is done” - signals, sees that the job was done and informs the user about it. I know, that was a very simplified example. </p>
-<p>If you now want to dive more into the details and actual technical design, I recommend you take a look at the first 3 tutorials on the RabbitMQ website. RabbitMQ is one of many systems which help to implement async processing. You could also use ActiveMQ or a simple Redis list. The basic idea is to have a queue of tasks or jobs that a worker can process. Asynchronism seems complicated, but it is definitely worth your time to learn about it and implement it yourself. Backends become nearly infinitely scalable and frontends become snappy which is good for the overall user experience. </p>
-<p>If you do something time-consuming, try to do it always asynchronously. </p>
+            <h1 id="System-Design总结-from-mitbbs"><a href="#System-Design总结-from-mitbbs" class="headerlink" title="System Design总结[from mitbbs]"></a>System Design总结[from mitbbs]</h1><p>最近在准备系统设计方面的内容，找到一篇不错的文章，转自<a href="http://www.mitbbs.com/article_t/JobHunting/32777529.html" target="_blank" rel="external">我的System Design总结</a>，结构有少许调整。</p>
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><p>System Design和OO Design不同 System Design在FLAG以及很多大公司中主要<br>是design scalable distributed systems 这里只讨论如何准备这种题目。</p>
+<p>对于0基础的同学们 下面的资料可以按顺序开始看:</p>
+<ol>
+<li><p><a href="http://www.hiredintech.com/app#system-design" target="_blank" rel="external">http://www.hiredintech.com/app#system-design</a><br>这是一个专门准备面试的网站 你只用关心system design部分 有很多的link后面会重<br>复提到 建议看完至少一遍</p>
+</li>
+<li><p><a href="https://www.youtube.com/watch?v=-W9F__D3oY4" target="_blank" rel="external">https://www.youtube.com/watch?v=-W9F__D3oY4</a><br>非常非常好的入门资料 建议看3遍以上！<br>这是1里面提到的资料 是Harvard web app课的最后一节 讲scalability 里面会讲到很<br>多基础概念比如Vertical scaling, Horizontal scaling, Caching, Load balancing,<br>Database replication, Database partitioning 还会提到很多基本思想比如avoid<br>single point of failure<br>再强调一遍 非常好的资料！</p>
+</li>
+<li><p><a href="http://www.lecloud.net/post/7295452622/scalability-for-dummies-part-1-clones" target="_blank" rel="external">http://www.lecloud.net/post/7295452622/scalability-for-dummies-part-1-clones</a><br>前面课程里提到的 Scalability for Dummies 还算不错 可以看一遍 知道基本思想</p>
+</li>
+</ol>
+<p>结束语：当你结束这一部分的学习的时候 你已经比50%的candidate知道的多了(因为很<br>多人都不准备 或者不知道怎么准备system design) 恭喜:)</p>
+<h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><p>这一部分的资料更加零散 每个看的可能不一样 但是你每多看一篇文章或者一个视频<br>你就比别人强一点<br>这部分你会遇到很多新名词 我的建议是每当你遇到一个不懂的概念时 多google一下<br>看看这个概念或者技术是什么意思 优点和缺点各是什么 什么时候用 这些你都知道以<br>后 你就可以把他运用到面试中 让面试官刮目相看了</p>
+<ol>
+<li><p><a href="http://highscalability.com/blog/2009/8/6/an-unorthodox-approach-to-database-design-the-coming-of-the.html" target="_blank" rel="external">http://highscalability.com/blog/2009/8/6/an-unorthodox-approach-to-database-design-the-coming-of-the.html</a><br>Database Sharding是一个很重要的概念 建议看一看</p>
+</li>
+<li><p><a href="http://highscalability.com/all-time-favorites/" target="_blank" rel="external">http://highscalability.com/all-time-favorites/</a><br>这个里面会讲到很多非常流行的网站架构是如何实现的 比如Twitter, Youtube,<br>Pinterest, Google等等 我的建议是看5-6个 然后你应该已经建立起了一些基本的意识<br>还有知道了某些技术和产品的作用和mapping 比如说到cache你会想到memcached和<br>Redis 说到<br>load balancer你会想到 Amazon ELB, F5一类的</p>
+</li>
+<li><p><a href="http://www.infoq.com/" target="_blank" rel="external">http://www.infoq.com/</a><br>5里面很多的文章都会有链接 其中有很多会指向这个网站 这里面有很多的tech talk<br>很不错 可以看看</p>
+</li>
+<li><p><a href="https://www.facebook.com/Engineering/notes" target="_blank" rel="external">https://www.facebook.com/Engineering/notes</a><br>Facebook非常好的技术日志 会讲很多facebook的feature怎么实现的 比如facebook<br>message:<a href="https://www.facebook.com/notes/facebook-engineering/the-underlying-" target="_blank" rel="external">https://www.facebook.com/notes/facebook-engineering/the-underlying-</a><br>technology-of-messages/454991608919 建议看看 尤其是准备面facebook的同学<br>这有一个facebook talk讲storage的<a href="https://www.youtube.com/watch?v=5RfFhMwRAic" target="_blank" rel="external">https://www.youtube.com/watch?v=5RfFhMwRAic</a></p>
+</li>
+<li><p>一些国内网站上的资料<br><a href="http://blog.csdn.net/sigh1988/article/details/9790337" target="_blank" rel="external">http://blog.csdn.net/sigh1988/article/details/9790337</a><br><a href="http://blog.csdn.net/v_july_v/article/details/6279498" target="_blank" rel="external">http://blog.csdn.net/v_july_v/article/details/6279498</a></p>
+</li>
+<li><p>最后一些概念很有用 都是我再看这些资料的时候发现的 如果你没有遇到或者查过<br>建议查查<br>Distributed Hash Table<br>Eventual Consistency vs Strong Consistency<br>Read Heavy vs Write Heavy<br>Consistent Hashing<br>Sticky Sessions<br>Structured Data(uses DynamoDB) vs Unstructured Data(uses S3)<br><a href="http://smartdatacollective.com/michelenemschoff/206391/quick-guide-structured-and-unstructured-data" target="_blank" rel="external">http://smartdatacollective.com/michelenemschoff/206391/quick-guide-structured-and-unstructured-data</a><br><a href="http://stackoverflow.com/questions/18678315/amazon-s3-or-dynamodb" target="_blank" rel="external">http://stackoverflow.com/questions/18678315/amazon-s3-or-dynamodb</a></p>
+</li>
+<li><p>给有兴趣深入研究的人看的<br>Mining Massive Datasets –讲很多big data和data mining的东西<br>Big Data: Principles and best practices of scalable realtime data systems –<br>twitter的前员工讲述如何处理实时数据</p>
+</li>
+<li><p>凌乱的资料 随便看看吧<br><a href="http://highscalability.com/blog/2013/10/28/design-decisions-for" target="_blank" rel="external">http://highscalability.com/blog/2013/10/28/design-decisions-for</a></p>
+</li>
+</ol>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>看多了以后 你的最终目标应该是心里有了一个大框架 一个基本的distributed system<br>是怎么搭起来的 然后心里有很多if condition 如果要是满足这个条件 我应该用什么<br>技术 比如如果read heavy那么用cache会提升performance之类的 同时知道应该避免什<br>么东西 比如避免single point of failure 再比如时间和空间的tradeoff在read<br>heavy的时候应该倾向于时间 Write heavy的时候倾向于空间等等</p>
+<p>你总结出来的和我总结出来的大框架和if conditions肯定不完全一样 但因为system<br>design本来就是一个open ended question 所以不用害怕 能够自圆其说 就不会有问题。</p>
 
           
         
@@ -483,158 +485,6 @@
             <h1 id="Useful-Materials"><a href="#Useful-Materials" class="headerlink" title="Useful Materials"></a>Useful Materials</h1><p><a href="http://www.aosabook.org/en/distsys.html#" target="_blank" rel="external">Scalable Web Architecture and Distributed Systems</a><br><a href="http://highscalability.com/blog/2009/8/6/an-unorthodox-approach-to-database-design-the-coming-of-the.html" target="_blank" rel="external">An Unorthodox Approach To Database Design : The Coming Of The Shard</a><br><a href="http://www.oschina.net/translate/scalable-web-architecture-and-distributed-systems?lang=chs&amp;page=1#" target="_blank" rel="external">可扩展Web架构与分布式系统</a><br><a href="http://www.cnblogs.com/ggjucheng/archive/2012/11/13/2768959.html" target="_blank" rel="external">可扩展性设计之数据切分</a><br><a href="http://www.cnblogs.com/ggjucheng/archive/2012/11/15/2771686.html" target="_blank" rel="external">可扩展性设计之Cache与Search的利用</a><br><a href="http://www.kuqin.com/shuoit/20140806/341531.html" target="_blank" rel="external">可扩展架构设计的三个维度</a><br><a href="http://www.jdon.com/scalable.html" target="_blank" rel="external">可伸缩性/可扩展性(Scalable/scalability)</a><br><a href="http://www.jdon.com/37793" target="_blank" rel="external">可伸缩性最佳实战</a></p>
 <p><a href="http://www.cnblogs.com/ggjucheng/archive/2013/01/20/2868837.html" target="_blank" rel="external">internet笔记</a><br><a href="http://www.cnblogs.com/ggjucheng/archive/2012/04/22/2465625.html" target="_blank" rel="external">hadoop笔记本</a><br><a href="http://www.cnblogs.com/ggjucheng/archive/2012/08/18/2645324.html" target="_blank" rel="external">TCP/IP笔记本</a></p>
 <p><a href="http://www.cnblogs.com/ggjucheng/archive/2012/11/13/2768879.html" target="_blank" rel="external">MySQL Replication 常用架构</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/12/10/System Design_System Design总结/" itemprop="url">
-                  System Design总结
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2014-12-10T00:00:00+09:00" content="2014-12-10">
-              2014-12-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/System-design/" itemprop="url" rel="index">
-                    <span itemprop="name">System design</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/12/10/System Design_System Design总结/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/12/10/System Design_System Design总结/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="System-Design总结-from-mitbbs"><a href="#System-Design总结-from-mitbbs" class="headerlink" title="System Design总结[from mitbbs]"></a>System Design总结[from mitbbs]</h1><p>最近在准备系统设计方面的内容，找到一篇不错的文章，转自<a href="http://www.mitbbs.com/article_t/JobHunting/32777529.html" target="_blank" rel="external">我的System Design总结</a>，结构有少许调整。</p>
-<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><p>System Design和OO Design不同 System Design在FLAG以及很多大公司中主要<br>是design scalable distributed systems 这里只讨论如何准备这种题目。</p>
-<p>对于0基础的同学们 下面的资料可以按顺序开始看:</p>
-<ol>
-<li><p><a href="http://www.hiredintech.com/app#system-design" target="_blank" rel="external">http://www.hiredintech.com/app#system-design</a><br>这是一个专门准备面试的网站 你只用关心system design部分 有很多的link后面会重<br>复提到 建议看完至少一遍</p>
-</li>
-<li><p><a href="https://www.youtube.com/watch?v=-W9F__D3oY4" target="_blank" rel="external">https://www.youtube.com/watch?v=-W9F__D3oY4</a><br>非常非常好的入门资料 建议看3遍以上！<br>这是1里面提到的资料 是Harvard web app课的最后一节 讲scalability 里面会讲到很<br>多基础概念比如Vertical scaling, Horizontal scaling, Caching, Load balancing,<br>Database replication, Database partitioning 还会提到很多基本思想比如avoid<br>single point of failure<br>再强调一遍 非常好的资料！</p>
-</li>
-<li><p><a href="http://www.lecloud.net/post/7295452622/scalability-for-dummies-part-1-clones" target="_blank" rel="external">http://www.lecloud.net/post/7295452622/scalability-for-dummies-part-1-clones</a><br>前面课程里提到的 Scalability for Dummies 还算不错 可以看一遍 知道基本思想</p>
-</li>
-</ol>
-<p>结束语：当你结束这一部分的学习的时候 你已经比50%的candidate知道的多了(因为很<br>多人都不准备 或者不知道怎么准备system design) 恭喜:)</p>
-<h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><p>这一部分的资料更加零散 每个看的可能不一样 但是你每多看一篇文章或者一个视频<br>你就比别人强一点<br>这部分你会遇到很多新名词 我的建议是每当你遇到一个不懂的概念时 多google一下<br>看看这个概念或者技术是什么意思 优点和缺点各是什么 什么时候用 这些你都知道以<br>后 你就可以把他运用到面试中 让面试官刮目相看了</p>
-<ol>
-<li><p><a href="http://highscalability.com/blog/2009/8/6/an-unorthodox-approach-to-database-design-the-coming-of-the.html" target="_blank" rel="external">http://highscalability.com/blog/2009/8/6/an-unorthodox-approach-to-database-design-the-coming-of-the.html</a><br>Database Sharding是一个很重要的概念 建议看一看</p>
-</li>
-<li><p><a href="http://highscalability.com/all-time-favorites/" target="_blank" rel="external">http://highscalability.com/all-time-favorites/</a><br>这个里面会讲到很多非常流行的网站架构是如何实现的 比如Twitter, Youtube,<br>Pinterest, Google等等 我的建议是看5-6个 然后你应该已经建立起了一些基本的意识<br>还有知道了某些技术和产品的作用和mapping 比如说到cache你会想到memcached和<br>Redis 说到<br>load balancer你会想到 Amazon ELB, F5一类的</p>
-</li>
-<li><p><a href="http://www.infoq.com/" target="_blank" rel="external">http://www.infoq.com/</a><br>5里面很多的文章都会有链接 其中有很多会指向这个网站 这里面有很多的tech talk<br>很不错 可以看看</p>
-</li>
-<li><p><a href="https://www.facebook.com/Engineering/notes" target="_blank" rel="external">https://www.facebook.com/Engineering/notes</a><br>Facebook非常好的技术日志 会讲很多facebook的feature怎么实现的 比如facebook<br>message:<a href="https://www.facebook.com/notes/facebook-engineering/the-underlying-" target="_blank" rel="external">https://www.facebook.com/notes/facebook-engineering/the-underlying-</a><br>technology-of-messages/454991608919 建议看看 尤其是准备面facebook的同学<br>这有一个facebook talk讲storage的<a href="https://www.youtube.com/watch?v=5RfFhMwRAic" target="_blank" rel="external">https://www.youtube.com/watch?v=5RfFhMwRAic</a></p>
-</li>
-<li><p>一些国内网站上的资料<br><a href="http://blog.csdn.net/sigh1988/article/details/9790337" target="_blank" rel="external">http://blog.csdn.net/sigh1988/article/details/9790337</a><br><a href="http://blog.csdn.net/v_july_v/article/details/6279498" target="_blank" rel="external">http://blog.csdn.net/v_july_v/article/details/6279498</a></p>
-</li>
-<li><p>最后一些概念很有用 都是我再看这些资料的时候发现的 如果你没有遇到或者查过<br>建议查查<br>Distributed Hash Table<br>Eventual Consistency vs Strong Consistency<br>Read Heavy vs Write Heavy<br>Consistent Hashing<br>Sticky Sessions<br>Structured Data(uses DynamoDB) vs Unstructured Data(uses S3)<br><a href="http://smartdatacollective.com/michelenemschoff/206391/quick-guide-structured-and-unstructured-data" target="_blank" rel="external">http://smartdatacollective.com/michelenemschoff/206391/quick-guide-structured-and-unstructured-data</a><br><a href="http://stackoverflow.com/questions/18678315/amazon-s3-or-dynamodb" target="_blank" rel="external">http://stackoverflow.com/questions/18678315/amazon-s3-or-dynamodb</a></p>
-</li>
-<li><p>给有兴趣深入研究的人看的<br>Mining Massive Datasets –讲很多big data和data mining的东西<br>Big Data: Principles and best practices of scalable realtime data systems –<br>twitter的前员工讲述如何处理实时数据</p>
-</li>
-<li><p>凌乱的资料 随便看看吧<br><a href="http://highscalability.com/blog/2013/10/28/design-decisions-for" target="_blank" rel="external">http://highscalability.com/blog/2013/10/28/design-decisions-for</a></p>
-</li>
-</ol>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>看多了以后 你的最终目标应该是心里有了一个大框架 一个基本的distributed system<br>是怎么搭起来的 然后心里有很多if condition 如果要是满足这个条件 我应该用什么<br>技术 比如如果read heavy那么用cache会提升performance之类的 同时知道应该避免什<br>么东西 比如避免single point of failure 再比如时间和空间的tradeoff在read<br>heavy的时候应该倾向于时间 Write heavy的时候倾向于空间等等</p>
-<p>你总结出来的和我总结出来的大框架和if conditions肯定不完全一样 但因为system<br>design本来就是一个open ended question 所以不用害怕 能够自圆其说 就不会有问题。</p>
 
           
         
@@ -952,6 +802,185 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/11/05/Java_Maven(2)/" itemprop="url">
+                  Maven(2)_创建第一个Maven项目
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2014-11-05T00:00:00+09:00" content="2014-11-05">
+              2014-11-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/11/05/Java_Maven(2)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/11/05/Java_Maven(2)/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>参考<a href="http://tutorials.jenkov.com/maven/maven-tutorial.html#maven-settings-files" target="_blank" rel="external">Maven Tutorial</a>，<a href="https://ayayui.gitbooks.io/tutorialspoint-maven/content/book/maven_creating_project.html" target="_blank" rel="external">Maven - 创建项目</a></p>
+<h2 id="Installing-Maven"><a href="#Installing-Maven" class="headerlink" title="Installing Maven"></a>Installing Maven</h2><p>To install Maven on your own system (computer), go to the Maven download page and follow the instructions there. In summary, what you need to do is:</p>
+<ol>
+<li>Set the JAVA_HOME environment variable to point to a valid Java SDK (e.g. Java 8).</li>
+<li>Download and unzip Maven.</li>
+<li>Set the M2_HOME environment variable to point to the directory you unzipped Maven to.</li>
+<li>Set the M2 environment variable to point to M2_HOME/bin (<code>%M2_HOME%\bin</code> on Windows, <code>$M2_HOME/bin</code> on unix).</li>
+<li>Add M2 to the PATH environment variable (%M2% on Windows, $M2 on unix).</li>
+<li>Open a command prompt and type ‘mvn -version’ (without quotes) and press enter.</li>
+</ol>
+<h2 id="Manual-project-creation"><a href="#Manual-project-creation" class="headerlink" title="Manual project creation"></a>Manual project creation</h2><h3 id="创建项目目录和pom文件"><a href="#创建项目目录和pom文件" class="headerlink" title="创建项目目录和pom文件"></a>创建项目目录和pom文件</h3><p>创建pom.xml文件如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span></span></div><div class="line">         <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></div><div class="line">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0</span></div><div class="line">                      http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></div><div class="line"></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.jenkov<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hello-world<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>可以通过<code>mvn clean</code>测试pom.xml以及环境是否正常：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">pc<span class="_">-a</span>375-2:maven admin$ mvn clean</div><div class="line">[INFO] Scanning <span class="keyword">for</span> projects...</div><div class="line">[INFO]                                                                         </div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">[INFO] Building hello-world 1.0.0</div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">[INFO] </div><div class="line">[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ hello-world ---</div><div class="line">Downloading: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0/plexus-utils-3.0.pom</div><div class="line">Downloaded: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0/plexus-utils-3.0.pom (4 KB at 1.9 KB/sec)</div><div class="line">Downloading: https://repo.maven.apache.org/maven2/org/sonatype/spice/spice-parent/16/spice-parent-16.pom</div><div class="line">Downloaded: https://repo.maven.apache.org/maven2/org/sonatype/spice/spice-parent/16/spice-parent-16.pom (9 KB at 31.8 KB/sec)</div><div class="line">Downloading: https://repo.maven.apache.org/maven2/org/sonatype/forge/forge-parent/5/forge-parent-5.pom</div><div class="line">Downloaded: https://repo.maven.apache.org/maven2/org/sonatype/forge/forge-parent/5/forge-parent-5.pom (9 KB at 31.7 KB/sec)</div><div class="line">Downloading: https://repo.maven.apache.org/maven2/org/apache/maven/maven-plugin-api/2.0.6/maven-plugin-api-2.0.6.jar</div><div class="line">Downloading: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0/plexus-utils-3.0.jar</div><div class="line">Downloaded: https://repo.maven.apache.org/maven2/org/apache/maven/maven-plugin-api/2.0.6/maven-plugin-api-2.0.6.jar (13 KB at 26.2 KB/sec)</div><div class="line">Downloaded: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0/plexus-utils-3.0.jar (221 KB at 292.8 KB/sec)</div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">[INFO] BUILD SUCCESS</div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">[INFO] Total time: 4.157 s</div><div class="line">[INFO] Finished at: 2016-04-12T17:39:37+09:00</div><div class="line">[INFO] Final Memory: 7M/130M</div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">pc<span class="_">-a</span>375-2:maven admin$</div></pre></td></tr></table></figure>
+<h3 id="创建源码目录"><a href="#创建源码目录" class="headerlink" title="创建源码目录"></a>创建源码目录</h3><p>按照maven的标准目录结构在项目录下创建源码目录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">src</div><div class="line">  main</div><div class="line">    java</div></pre></td></tr></table></figure>
+<h3 id="创建代码文件"><a href="#创建代码文件" class="headerlink" title="创建代码文件"></a>创建代码文件</h3><p>创建java类源码文件<code>HelloWorld.java</code>.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> helloworld;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</div><div class="line"></div><div class="line">		System.out.println(<span class="string">"Hello World, Maven"</span>);</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="构建项目"><a href="#构建项目" class="headerlink" title="构建项目"></a>构建项目</h3><p>运行<code>mvn package</code>, <code>package</code>是默认生命周期的一个阶段。会将编译得到的java class文件打包位一个JAR文件。maven会创建<code>target</code>目录，生成的JAR文件就在里面。JAR包会命名为：<br><code>artifactId-version</code>.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">pc<span class="_">-a</span>375-2:maven admin$ <span class="built_in">cd</span> target</div><div class="line">pc<span class="_">-a</span>375-2:target admin$ ls</div><div class="line">classes			hello-world-1.0.0.jar	maven-archiver		maven-status</div><div class="line">pc<span class="_">-a</span>375-2:target admin$</div></pre></td></tr></table></figure>
+<h2 id="项目模板"><a href="#项目模板" class="headerlink" title="项目模板"></a>项目模板</h2><p>Archetype 是一个 Maven 插件，它的任务是按照项目模板创建一个项目的目录结构。这里，我们将使用 archetype 插件 quickstart 来创建一个简单的 java 应用。</p>
+<p>可以Maven的archetype插件来创建基本的项目，也可以创建高级的项目（根据模板）。要创建一个简单的java应用，我们将使用maven-archetype-quickstart插件。</p>
+<p>Maven 将会开始处理，并且要求你选择需要的archetype。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">[INFO] Scanning for projects...</div><div class="line">[INFO] Searching repository for plugin with prefix: &apos;archetype&apos;.</div><div class="line">[INFO] -------------------------------------------------------------------</div><div class="line">[INFO] Building Maven Default Project</div><div class="line">[INFO]    task-segment: [archetype:generate] (aggregator-style)</div><div class="line">[INFO] -------------------------------------------------------------------</div><div class="line">[INFO] Preparing archetype:generate</div><div class="line">...</div><div class="line">600: remote -&gt; org.trailsframework:trails-archetype (-)</div><div class="line">601: remote -&gt; org.trailsframework:trails-secure-archetype (-)</div><div class="line">602: remote -&gt; org.tynamo:tynamo-archetype (-)</div><div class="line">603: remote -&gt; org.wicketstuff.scala:wicket-scala-archetype (-)</div><div class="line">604: remote -&gt; org.wicketstuff.scala:wicketstuff-scala-archetype </div><div class="line">Basic setup for a project that combines Scala and Wicket,</div><div class="line">depending on the Wicket-Scala project. </div><div class="line">Includes an example Specs test.)</div><div class="line">605: remote -&gt; org.wikbook:wikbook.archetype (-)</div><div class="line">606: remote -&gt; org.xaloon.archetype:xaloon-archetype-wicket-jpa-glassfish (-)</div><div class="line">607: remote -&gt; org.xaloon.archetype:xaloon-archetype-wicket-jpa-spring (-)</div><div class="line">608: remote -&gt; org.xwiki.commons:xwiki-commons-component-archetype </div><div class="line">(Make it easy to create a maven project for creating XWiki Components.)</div><div class="line">609: remote -&gt; org.xwiki.rendering:xwiki-rendering-archetype-macro </div><div class="line">(Make it easy to create a maven project for creating XWiki Rendering Macros.)</div><div class="line">610: remote -&gt; org.zkoss:zk-archetype-component (The ZK Component archetype)</div><div class="line">611: remote -&gt; org.zkoss:zk-archetype-webapp (The ZK wepapp archetype)</div><div class="line">612: remote -&gt; ru.circumflex:circumflex-archetype (-)</div><div class="line">613: remote -&gt; se.vgregion.javg.maven.archetypes:javg-minimal-archetype (-)</div><div class="line">614: remote -&gt; sk.seges.sesam:sesam-annotation-archetype (-)</div><div class="line">Choose a number or apply filter </div><div class="line">(format: [groupId:]artifactId, case sensitive contains): 203:</div></pre></td></tr></table></figure>
+<p>按回车选择默认的选项（203：maven-archetype-quickstart）。</p>
+<p>Maven 将要求提供 archetype 的特定版本。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Choose org.apache.maven.archetypes:maven-archetype-quickstart version:</div><div class="line">1: 1.0-alpha-1</div><div class="line">2: 1.0-alpha-2</div><div class="line">3: 1.0-alpha-3</div><div class="line">4: 1.0-alpha-4</div><div class="line">5: 1.0</div><div class="line">6: 1.1</div><div class="line">Choose a number: 6:</div></pre></td></tr></table></figure>
+<p>按回车选择默认的选项（6：maven-archetype-quickstart:1.1）。</p>
+<p>Maven 将要求提供项目详情。要找要求键入项目详情。如果默认值有提供就按回车。你可以键入你自己的值来覆盖这些默认值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Define value for property &apos;groupId&apos;: : com.companyname.insurance</div><div class="line">Define value for property &apos;artifactId&apos;: : health</div><div class="line">Define value for property &apos;version&apos;: 1.0-SNAPSHOT:</div><div class="line">Define value for property &apos;package&apos;: com.companyname.insurance:</div><div class="line">Maven 会要求确认项目详情。按回车或者 Y 。</div><div class="line"></div><div class="line">Confirm properties configuration:</div><div class="line">groupId: com.companyname.insurance</div><div class="line">artifactId: health</div><div class="line">version: 1.0-SNAPSHOT</div><div class="line">package: com.companyname.insurance</div><div class="line">Y:</div></pre></td></tr></table></figure>
+<p>现在 Maven 将开始创建项目目录结构并且显示下面的信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">[INFO] -----------------------------------------------------------------------</div><div class="line">[INFO] Using following parameters for creating project </div><div class="line">from Old (1.x) Archetype: maven-archetype-quickstart:1.1</div><div class="line">[INFO] -----------------------------------------------------------------------</div><div class="line">[INFO] Parameter: groupId, Value: com.companyname.insurance</div><div class="line">[INFO] Parameter: packageName, Value: com.companyname.insurance</div><div class="line">[INFO] Parameter: package, Value: com.companyname.insurance</div><div class="line">[INFO] Parameter: artifactId, Value: health</div><div class="line">[INFO] Parameter: basedir, Value: C:\MVN</div><div class="line">[INFO] Parameter: version, Value: 1.0-SNAPSHOT</div><div class="line">[INFO] project created from Old (1.x) Archetype in dir: C:\MVN\health</div><div class="line">[INFO] -----------------------------------------------------------------------</div><div class="line">[INFO] BUILD SUCCESSFUL</div><div class="line">[INFO] -----------------------------------------------------------------------</div><div class="line">[INFO] Total time: 4 minutes 12 seconds</div><div class="line">[INFO] Finished at: Fri Jul 13 11:10:12 IST 2012</div><div class="line">[INFO] Final Memory: 20M/90M</div><div class="line">[INFO] -----------------------------------------------------------------------</div></pre></td></tr></table></figure>
+<p>Maven使用如下所示的一套标准目录结构：</p>
+<table>
+<thead>
+<tr>
+<th>目录结构</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>src/main/java</td>
+<td>包含包下的Java源代码文件。</td>
+</tr>
+<tr>
+<td>src/main/test</td>
+<td>包含包下的测试Java源代码文件。</td>
+</tr>
+<tr>
+<td>src/main/resources</td>
+<td>包含图片和properties文件（在上面的例子中，我们需要手动创建此目录）。</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">Maven 为项目生成了一个 POM.xml 文件，如下所示：</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> </span></div><div class="line">   <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></div><div class="line">   <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 </span></div><div class="line">   http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;</div><div class="line">   <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.companyname.insurance<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>health<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">name</span>&gt;</span>health<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.apache.org<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">properties</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.8.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>Maven还创建了一个Java源文件样例和Java测试类文件。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.companyname.insurance;</div><div class="line"></div><div class="line"><span class="keyword">import</span> junit.framework.Test;</div><div class="line"><span class="keyword">import</span> junit.framework.TestCase;</div><div class="line"><span class="keyword">import</span> junit.framework.TestSuite;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Unit test for simple App.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppTest</span> </span></div><div class="line">    <span class="keyword">extends</span> <span class="title">TestCase</span></div><div class="line">&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Create the test case</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> testName name of the test case</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AppTest</span><span class="params">( String testName )</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">super</span>( testName );</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * <span class="doctag">@return</span> the suite of tests being tested</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Test <span class="title">suite</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> TestSuite( AppTest.class );</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Rigourous Test :-)</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testApp</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        assertTrue( <span class="keyword">true</span> );</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>开发者需要按照上面表格提到的要求放置自己的文件，然后Maven会处理构建相关的所有复杂工作。</p>
+<p>在 Maven 中使用一条命令，你就可以创建任意种类的项目，并且可以迅速启动你的开发工作。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -997,7 +1026,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">330</span>
+              <span class="site-state-item-count">329</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -1077,7 +1106,7 @@
         <div class="copyright" >
   
   &copy;  2014 - 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

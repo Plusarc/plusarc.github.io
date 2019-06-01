@@ -260,8 +260,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/01/18/Leetcode_Top K Frequent Elements/" itemprop="url">
-                  Top K Frequent Elements
+                <a class="post-title-link" href="/2016/01/17/System Design_大型网站可扩展架构c7/" itemprop="url">
+                  System Design_大型网站可扩展架构
                 </a>
               
             
@@ -274,8 +274,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2016-01-18T00:00:00+09:00" content="2016-01-18">
-              2016-01-18
+            <time itemprop="dateCreated" datetime="2016-01-17T00:00:00+09:00" content="2016-01-17">
+              2016-01-17
             </time>
           </span>
 
@@ -288,8 +288,8 @@
               <span class="post-meta-item-text">分類於</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
+                  <a href="/categories/System-design/" itemprop="url" rel="index">
+                    <span itemprop="name">System design</span>
                   </a>
                 </span>
 
@@ -304,8 +304,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/01/18/Leetcode_Top K Frequent Elements/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/18/Leetcode_Top K Frequent Elements/" itemprop="commentsCount"></span>
+                <a href="/2016/01/17/System Design_大型网站可扩展架构c7/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/17/System Design_大型网站可扩展架构c7/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -329,18 +329,31 @@
 
       
         
-          
-            <h1 id="Top-K-Frequent-Elements"><a href="#Top-K-Frequent-Elements" class="headerlink" title="Top K Frequent Elements"></a><a href="https://leetcode.com/problems/top-k-frequent-elements/" target="_blank" rel="external">Top K Frequent Elements</a></h1><blockquote>
-<p>Given a non-empty array of integers, return the k most frequent elements.</p>
-<p>For example,<br>Given [1,1,1,2,2,3] and k = 2, return [1,2].</p>
-<p>Note:<br>You may assume k is always valid, 1 ≤ k ≤ number of unique elements.<br>Your algorithm’s time complexity must be better than O(n log n), where n is the array’s size.</p>
-</blockquote>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>计数并使用heap筛选top k元素，O(n * log k)</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.Map.Entry;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Frequency</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> num;</div><div class="line">    <span class="keyword">int</span> frequency;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Frequency</span><span class="params">(<span class="keyword">int</span> num, <span class="keyword">int</span> frequency)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.num = num;</div><div class="line">        <span class="keyword">this</span>.frequency = frequency;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">topKFrequent</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</div><div class="line">        Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> num : nums) &#123;</div><div class="line">            <span class="keyword">if</span>(map.containsKey(num)) map.put(num, map.get(num) + <span class="number">1</span>);</div><div class="line">            <span class="keyword">else</span> map.put(num, <span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">        PriorityQueue&lt;Frequency&gt; heap = <span class="keyword">new</span> PriorityQueue&lt;Frequency&gt;(k, <span class="keyword">new</span> Comparator&lt;Frequency&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Frequency f1, Frequency f2)</span> </span>&#123;</div><div class="line">                <span class="keyword">return</span> f1.frequency - f2.frequency;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(Entry&lt;Integer, Integer&gt; entry : map.entrySet()) &#123;</div><div class="line">            <span class="keyword">if</span>(heap.size()&lt;k) heap.offer(<span class="keyword">new</span> Frequency(entry.getKey(), entry.getValue()));</div><div class="line">            <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">if</span>(entry.getValue()&lt;=heap.peek().frequency) <span class="keyword">continue</span>;</div><div class="line">                <span class="keyword">else</span> &#123;</div><div class="line">                    heap.poll();</div><div class="line">                    heap.offer(<span class="keyword">new</span> Frequency(entry.getKey(), entry.getValue()));</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        List&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">        <span class="keyword">while</span>(!heap.isEmpty()) res.add(heap.poll().num);</div><div class="line">        Collections.sort(res);</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>桶排序，O(n)</p>
-<p>refer to<a href="http://blog.csdn.net/itismelzp/article/details/51353832" target="_blank" rel="external">LeetCode:Top K Frequent Elements</a></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">topKFrequent</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</div><div class="line">        </div><div class="line">        </div><div class="line">        Map&lt;Integer,Integer&gt; map = <span class="keyword">new</span> HashMap&lt;Integer,Integer&gt;();</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> len = nums.length;</div><div class="line">        List&lt;Integer&gt;[] bucket = <span class="keyword">new</span> List[len+<span class="number">1</span>];</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> num:nums) &#123;</div><div class="line">            map.put(num, map.getOrDefault(num, <span class="number">0</span>)+<span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> key:map.keySet()) &#123;</div><div class="line">            <span class="keyword">int</span> value = map.get(key);</div><div class="line">            <span class="keyword">if</span>(<span class="keyword">null</span> == bucket[value]) bucket[value] = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">            </div><div class="line">            bucket[value].add(key);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        List&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=bucket.length-<span class="number">1</span>;i&gt;=<span class="number">0</span> &amp;&amp; res.size()&lt;k;i--) &#123;</div><div class="line">            <span class="keyword">if</span>(bucket[i] != <span class="keyword">null</span>) &#123;</div><div class="line">                res.addAll(bucket[i]);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
+          <h1 id="构建可扩展的网站架构"><a href="#构建可扩展的网站架构" class="headerlink" title="构建可扩展的网站架构"></a>构建可扩展的网站架构</h1><p><strong>扩展性</strong></p>
+<p>指对对现有系统影响下，系统功能可持续扩展或提升的能力。表现在系统基础设置稳定不需要经常变更，应用之间较少依赖和耦合，对需求变更可以敏捷响应。也就是系统架构设计层面的开闭原则（对扩展开放，对修改关闭），架构设计考虑未来功能扩展，当系统增加新功能时，不需要对现有系统的结构和代码进行修改。</p>
+<p><strong>伸缩性</strong></p>
+<p>指系统能够通过增加（减少）自身资源规模的方式增强（减少）自己计算处理事务的能力。如果这种增减是成比例的，就被称作线性伸缩性。在网站架构中，通常指利用集群的方式增加服务器数量、提高系统的整体事务吞吐能力。</p>
+<p>低耦合系统更容易扩展和复用。软件架构师的关键能力在于能够将一个大系统分成N个低耦合的子模块，这些子模块包含横向的业务模块，也包含纵向的基础基础模块。</p>
+<p>设计网站可扩展架构的核心思想是模块化，并在此基础上，降低模块间的耦合性，提高模块的复用性。前面提到使用分层和分割的方式进行架构伸缩，分层和分割也是模块化设计的重要手段，利用分层和分割的方式将软件分割为若干个低耦合的独立的组件模块，这些组件模块以消息传递及依赖调用的方式聚合成一个完整的系统。</p>
+<p>在大型网站中，这些模块通过分布式部署的方式，独立的模块部署在独立的服务器（集群）上，从物理上分离模块之间的耦合关系，进一步降低耦合性，提高复用性。</p>
+<p>模块分布式部署后具体聚合方式主要有分布式消息队列和分布式服务。</p>
+<h1 id="利用分布式消息队列降低系统耦合性"><a href="#利用分布式消息队列降低系统耦合性" class="headerlink" title="利用分布式消息队列降低系统耦合性"></a>利用分布式消息队列降低系统耦合性</h1><p>如果模块之间不存在直接调用，那么新增模块或者修改模块就对其他模块影响最小，这样可以实现很高的可扩展性。</p>
+<h2 id="事件驱动架构-Event-Driven-Architecture"><a href="#事件驱动架构-Event-Driven-Architecture" class="headerlink" title="事件驱动架构(Event Driven Architecture)"></a>事件驱动架构(Event Driven Architecture)</h2><p>指通过在低耦合的模块之间传输时间消息，以保持模块的松散耦合，并借助事件消息的通信完成模块间合作，典型的EDA架构就是操作系统中常见的生产者消费者模式。在大型网站架构中，具体实现手段有很多，最常用的是分布式消息队列。</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c7_01.png" alt="System_design_c7_01"></p>
+<p>消息队列利用发布-订阅模式工作，消息发送者发布消息，一个或多个消息接收者订阅消息。发送者和接收者没有直接耦合，可以新增业务为发布者或者接收者而无需影响原有系统业务，从而实现网站业务的可扩展设计。</p>
+<p>另外由于消息发送者不需要等待消息接收者处理数据就可以返回，系统具有更好的响应延迟，同时，在网站访问高峰，消息可以暂时存储在消息队列中等待消息接收者根据自身负载处理能力控制消息处理速度，减轻数据库等后端存储的负载压力。</p>
+<h2 id="分布式消息队列"><a href="#分布式消息队列" class="headerlink" title="分布式消息队列"></a>分布式消息队列</h2><p>队列是一种先进先出的数据结构，分布式消息队列可以看做这种数据结构的分布式部署到独立服务器上，应用程序可以通过远程访问接口使用分布式消息队列，进行消息存取操作，进而实现分布式的异步调用。</p>
+<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c7_02.png" alt="System_design_c7_02"></p>
+<p>消息生产者通过远程接口将消息推送给消息队列服务器随后返回，消息队列服务器根据消息订阅列表查找订阅该消息的消费者程序，将消息队列中的消息按照先进先出FIFO将消息通过远程通信端口发送给消费者程序。</p>
+<p>目前开源的分布式消息队列产品有Apache ActiveMQ等，这些产品另外也对可用性、伸缩性、数据一致性、性能也做了很多改善。</p>
+<p>在伸缩性方面，由于消息队列服务器上的数据可以看做是无状态的，伸缩性设计比较简单。将服务器加入分布式消息队列集群中，通知生产者服务器更改消息队列服务器列表即可。</p>
+<p>在可用性方面，为了避免消费者进行处理缓慢，分布式消息队列服务器内存空间不足造成的问题，如果内存队列已满，会将消息写入磁盘。内存队列消息处理完后，将磁盘内容加载到内存队列继续处理。</p>
+<p>分布式消息队列可以很复杂，比如说支持ESB，SOA；也可以很简单，如用MySQL也可以当做分布式消息队列。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/17/System Design_大型网站可扩展架构c7/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -471,147 +484,6 @@
 <h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">longestIncreasingPath</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(matrix==<span class="keyword">null</span> || matrix.length==<span class="number">0</span> || matrix[<span class="number">0</span>].length==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span>[][] res = <span class="keyword">new</span> <span class="keyword">int</span>[matrix.length][matrix[<span class="number">0</span>].length];</div><div class="line">        <span class="keyword">int</span> max = Integer.MIN_VALUE;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;matrix.length; i++) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;matrix[<span class="number">0</span>].length; j++) &#123;</div><div class="line">            	recLongest(matrix, res, i, j);</div><div class="line">                <span class="keyword">if</span>(res[i][j]&gt;max) max = res[i][j];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> max;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">recLongest</span><span class="params">(<span class="keyword">int</span>[][] matrix, <span class="keyword">int</span>[][] res, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(res[i][j]!=<span class="number">0</span>) <span class="keyword">return</span> res[i][j];</div><div class="line">        res[i][j] = <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(i-<span class="number">1</span>&gt;=<span class="number">0</span> &amp;&amp; matrix[i][j]&gt;matrix[i-<span class="number">1</span>][j] &amp;&amp; recLongest(matrix, res, i-<span class="number">1</span>, j)+<span class="number">1</span>&gt;=res[i][j]) </div><div class="line">            res[i][j] = res[i-<span class="number">1</span>][j] + <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(i+<span class="number">1</span>&lt;matrix.length &amp;&amp; matrix[i][j]&gt;matrix[i+<span class="number">1</span>][j] &amp;&amp; recLongest(matrix, res, i+<span class="number">1</span>, j)+<span class="number">1</span>&gt;=res[i][j]) </div><div class="line">            res[i][j] = res[i+<span class="number">1</span>][j] + <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(j-<span class="number">1</span>&gt;=<span class="number">0</span> &amp;&amp; matrix[i][j]&gt;matrix[i][j-<span class="number">1</span>] &amp;&amp; recLongest(matrix, res, i, j-<span class="number">1</span>)+<span class="number">1</span>&gt;=res[i][j]) </div><div class="line">            res[i][j] = res[i][j-<span class="number">1</span>] + <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(j+<span class="number">1</span>&lt;matrix[<span class="number">0</span>].length &amp;&amp; matrix[i][j]&gt;matrix[i][j+<span class="number">1</span>] &amp;&amp; recLongest(matrix, res, i, j+<span class="number">1</span>)+<span class="number">1</span>&gt;=res[i][j]) </div><div class="line">            res[i][j] = res[i][j+<span class="number">1</span>] + <span class="number">1</span>;</div><div class="line">        <span class="keyword">return</span> res[i][j];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/17/System Design_大型网站可扩展架构c7/" itemprop="url">
-                  System Design_大型网站可扩展架构
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2016-01-17T00:00:00+09:00" content="2016-01-17">
-              2016-01-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/System-design/" itemprop="url" rel="index">
-                    <span itemprop="name">System design</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/17/System Design_大型网站可扩展架构c7/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/17/System Design_大型网站可扩展架构c7/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="构建可扩展的网站架构"><a href="#构建可扩展的网站架构" class="headerlink" title="构建可扩展的网站架构"></a>构建可扩展的网站架构</h1><p><strong>扩展性</strong></p>
-<p>指对对现有系统影响下，系统功能可持续扩展或提升的能力。表现在系统基础设置稳定不需要经常变更，应用之间较少依赖和耦合，对需求变更可以敏捷响应。也就是系统架构设计层面的开闭原则（对扩展开放，对修改关闭），架构设计考虑未来功能扩展，当系统增加新功能时，不需要对现有系统的结构和代码进行修改。</p>
-<p><strong>伸缩性</strong></p>
-<p>指系统能够通过增加（减少）自身资源规模的方式增强（减少）自己计算处理事务的能力。如果这种增减是成比例的，就被称作线性伸缩性。在网站架构中，通常指利用集群的方式增加服务器数量、提高系统的整体事务吞吐能力。</p>
-<p>低耦合系统更容易扩展和复用。软件架构师的关键能力在于能够将一个大系统分成N个低耦合的子模块，这些子模块包含横向的业务模块，也包含纵向的基础基础模块。</p>
-<p>设计网站可扩展架构的核心思想是模块化，并在此基础上，降低模块间的耦合性，提高模块的复用性。前面提到使用分层和分割的方式进行架构伸缩，分层和分割也是模块化设计的重要手段，利用分层和分割的方式将软件分割为若干个低耦合的独立的组件模块，这些组件模块以消息传递及依赖调用的方式聚合成一个完整的系统。</p>
-<p>在大型网站中，这些模块通过分布式部署的方式，独立的模块部署在独立的服务器（集群）上，从物理上分离模块之间的耦合关系，进一步降低耦合性，提高复用性。</p>
-<p>模块分布式部署后具体聚合方式主要有分布式消息队列和分布式服务。</p>
-<h1 id="利用分布式消息队列降低系统耦合性"><a href="#利用分布式消息队列降低系统耦合性" class="headerlink" title="利用分布式消息队列降低系统耦合性"></a>利用分布式消息队列降低系统耦合性</h1><p>如果模块之间不存在直接调用，那么新增模块或者修改模块就对其他模块影响最小，这样可以实现很高的可扩展性。</p>
-<h2 id="事件驱动架构-Event-Driven-Architecture"><a href="#事件驱动架构-Event-Driven-Architecture" class="headerlink" title="事件驱动架构(Event Driven Architecture)"></a>事件驱动架构(Event Driven Architecture)</h2><p>指通过在低耦合的模块之间传输时间消息，以保持模块的松散耦合，并借助事件消息的通信完成模块间合作，典型的EDA架构就是操作系统中常见的生产者消费者模式。在大型网站架构中，具体实现手段有很多，最常用的是分布式消息队列。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c7_01.png" alt="System_design_c7_01"></p>
-<p>消息队列利用发布-订阅模式工作，消息发送者发布消息，一个或多个消息接收者订阅消息。发送者和接收者没有直接耦合，可以新增业务为发布者或者接收者而无需影响原有系统业务，从而实现网站业务的可扩展设计。</p>
-<p>另外由于消息发送者不需要等待消息接收者处理数据就可以返回，系统具有更好的响应延迟，同时，在网站访问高峰，消息可以暂时存储在消息队列中等待消息接收者根据自身负载处理能力控制消息处理速度，减轻数据库等后端存储的负载压力。</p>
-<h2 id="分布式消息队列"><a href="#分布式消息队列" class="headerlink" title="分布式消息队列"></a>分布式消息队列</h2><p>队列是一种先进先出的数据结构，分布式消息队列可以看做这种数据结构的分布式部署到独立服务器上，应用程序可以通过远程访问接口使用分布式消息队列，进行消息存取操作，进而实现分布式的异步调用。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c7_02.png" alt="System_design_c7_02"></p>
-<p>消息生产者通过远程接口将消息推送给消息队列服务器随后返回，消息队列服务器根据消息订阅列表查找订阅该消息的消费者程序，将消息队列中的消息按照先进先出FIFO将消息通过远程通信端口发送给消费者程序。</p>
-<p>目前开源的分布式消息队列产品有Apache ActiveMQ等，这些产品另外也对可用性、伸缩性、数据一致性、性能也做了很多改善。</p>
-<p>在伸缩性方面，由于消息队列服务器上的数据可以看做是无状态的，伸缩性设计比较简单。将服务器加入分布式消息队列集群中，通知生产者服务器更改消息队列服务器列表即可。</p>
-<p>在可用性方面，为了避免消费者进行处理缓慢，分布式消息队列服务器内存空间不足造成的问题，如果内存队列已满，会将消息写入磁盘。内存队列消息处理完后，将磁盘内容加载到内存队列继续处理。</p>
-<p>分布式消息队列可以很复杂，比如说支持ESB，SOA；也可以很简单，如用MySQL也可以当做分布式消息队列。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/17/System Design_大型网站可扩展架构c7/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
-          </div>
         
       
     </div>
@@ -904,6 +776,151 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/04/Leetcode_Longest Increasing Subsequence/" itemprop="url">
+                  Longest Increasing Subsequence
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-01-04T00:00:00+09:00" content="2016-01-04">
+              2016-01-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/04/Leetcode_Longest Increasing Subsequence/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/04/Leetcode_Longest Increasing Subsequence/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Longest-Increasing-Subsequence"><a href="#Longest-Increasing-Subsequence" class="headerlink" title="Longest Increasing Subsequence"></a><a href="https://leetcode.com/problems/longest-increasing-subsequence/" target="_blank" rel="external">Longest Increasing Subsequence</a></h1><blockquote>
+<p>SGiven an unsorted array of integers, find the length of longest increasing subsequence.</p>
+<p>For example,<br>Given <code>[10, 9, 2, 5, 3, 7, 101, 18]</code>,<br>The longest increasing subsequence is <code>[2, 3, 7, 101]</code>, therefore the length is 4. Note that there may be more than one LIS combination, it is only necessary for you to return the length.</p>
+<p>Your algorithm should run in O(n^2) complexity.</p>
+<p>Follow up: Could you improve it to O(n log n) time complexity?</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>DP n^2 solution</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLIS</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(nums==<span class="keyword">null</span> || nums.length==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span>[] record = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</div><div class="line">        record[<span class="number">0</span>] = <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> max = <span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;nums.length; i++) &#123;</div><div class="line">            record[i] = <span class="number">1</span>;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=i-<span class="number">1</span>; j&gt;=<span class="number">0</span>; j--) &#123;</div><div class="line">                <span class="keyword">if</span>(nums[i]&gt;nums[j]) &#123;</div><div class="line">                    record[i] = Math.max(record[i], record[j] + <span class="number">1</span>);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            max = Math.max(record[i], max);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> max;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>DP n(log n) solution</p>
+<p>refer to <a href="http://www.jiuzhang.com/solutions/longest-increasing-subsequence/" target="_blank" rel="external">Longest Increasing Subsequence</a></p>
+<p><a href="https://www.felix021.com/blog/read.php?1587" target="_blank" rel="external">最长递增子序列 O(NlogN)算法</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//在非递减序列 arr[s..e]（闭区间）上二分查找第一个大于等于key的位置，如果都小于key，就返回e+1</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">upper_bound</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> s, <span class="keyword">int</span> e, <span class="keyword">int</span> key)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> mid;</div><div class="line">    <span class="keyword">if</span> (arr[e] &lt;= key)</div><div class="line">        <span class="keyword">return</span> e + <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span> (s &lt; e)</div><div class="line">    &#123;</div><div class="line">        mid = s + (e - s) / <span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span> (arr[mid] &lt;= key)</div><div class="line">            s = mid + <span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span></div><div class="line">            e = mid;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> s;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">LIS</span><span class="params">(<span class="keyword">int</span> d[], <span class="keyword">int</span> n)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, len = <span class="number">1</span>, *end = (<span class="keyword">int</span> *)alloca(sizeof(<span class="keyword">int</span>) * (n + <span class="number">1</span>));</div><div class="line">    end[<span class="number">1</span>] = d[<span class="number">0</span>]; <span class="comment">//初始化：长度为1的LIS末尾为d[0]</span></div><div class="line">    <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; n; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">int</span> pos = upper_bound(end, <span class="number">1</span>, len, d[i]); <span class="comment">//找到插入位置</span></div><div class="line">        end[pos] = d[i];</div><div class="line">        <span class="keyword">if</span> (len &lt; pos) <span class="comment">//按需要更新LIS长度</span></div><div class="line">            len = pos;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> len;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// O(nlogn) Binary Search</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * <span class="doctag">@param</span> nums: The integer array</div><div class="line">     * <span class="doctag">@return</span>: The length of LIS (longest increasing subsequence)</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">longestIncreasingSubsequence</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span>[] minLast = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length + <span class="number">1</span>];</div><div class="line">        minLast[<span class="number">0</span>] = -<span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= nums.length; i++) &#123;</div><div class="line">            minLast[i] = Integer.MAX_VALUE;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</div><div class="line">            <span class="comment">// find the first number in minLast &gt; nums[i]</span></div><div class="line">            <span class="keyword">int</span> index = binarySearch(minLast, nums[i]);</div><div class="line">            minLast[index] = nums[i];</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = nums.length; i &gt;= <span class="number">1</span>; i--) &#123;</div><div class="line">            <span class="keyword">if</span> (minLast[i] != Integer.MAX_VALUE) &#123;</div><div class="line">                <span class="keyword">return</span> i;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">// find the first number &gt; num</span></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] minLast, <span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> start = <span class="number">0</span>, end = minLast.length - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span> (start + <span class="number">1</span> &lt; end) &#123;</div><div class="line">            <span class="keyword">int</span> mid = (end - start) / <span class="number">2</span> + start;</div><div class="line">            <span class="keyword">if</span> (minLast[mid] == num) &#123;</div><div class="line">                start = mid;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (minLast[mid] &lt; num) &#123;</div><div class="line">                start = mid;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                end = mid;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span> (minLast[start] &gt; num) &#123;</div><div class="line">            <span class="keyword">return</span> start;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> end;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>假设存在一个序列d[1..9] = 2 1 5 3 6 4 8 9 7，可以看出来它的LIS长度为5。<br>下面一步一步试着找出它。<br>我们定义一个序列B，然后令 i = 1 to 9 逐个考察这个序列。<br>此外，我们用一个变量Len来记录现在最长算到多少了</p>
+<p>首先，把d[1]有序地放到B里，令B[1] = 2，就是说当只有1一个数字2的时候，长度为1的LIS的最小末尾是2。这时Len=1</p>
+<p>然后，把d[2]有序地放到B里，令B[1] = 1，就是说长度为1的LIS的最小末尾是1，d[1]=2已经没用了，很容易理解吧。这时Len=1</p>
+<p>接着，d[3] = 5，d[3]&gt;B[1]，所以令B[1+1]=B[2]=d[3]=5，就是说长度为2的LIS的最小末尾是5，很容易理解吧。这时候B[1..2] = 1, 5，Len＝2</p>
+<p>再来，d[4] = 3，它正好加在1,5之间，放在1的位置显然不合适，因为1小于3，长度为1的LIS最小末尾应该是1，这样很容易推知，长度为2的LIS最小末尾是3，于是可以把5淘汰掉，这时候B[1..2] = 1, 3，Len = 2</p>
+<p>继续，d[5] = 6，它在3后面，因为B[2] = 3, 而6在3后面，于是很容易可以推知B[3] = 6, 这时B[1..3] = 1, 3, 6，还是很容易理解吧？ Len = 3 了噢。</p>
+<p>第6个, d[6] = 4，你看它在3和6之间，于是我们就可以把6替换掉，得到B[3] = 4。B[1..3] = 1, 3, 4， Len继续等于3</p>
+<p>第7个, d[7] = 8，它很大，比4大，嗯。于是B[4] = 8。Len变成4了</p>
+<p>第8个, d[8] = 9，得到B[5] = 9，嗯。Len继续增大，到5了。</p>
+<p>最后一个, d[9] = 7，它在B[3] = 4和B[4] = 8之间，所以我们知道，最新的B[4] =7，B[1..5] = 1, 3, 4, 7, 9，Len = 5。</p>
+<p>于是我们知道了LIS的长度为5。</p>
+<p>!!!!! 注意。这个1,3,4,7,9不是LIS，它只是存储的对应长度LIS的最小末尾。有了这个末尾，我们就可以一个一个地插入数据。虽然最后一个d[9] = 7更新进去对于这组数据没有什么意义，但是如果后面再出现两个数字 8 和 9，那么就可以把8更新到d[5], 9更新到d[6]，得出LIS的长度为6。</p>
+<p>然后应该发现一件事情了：在B中插入数据是有序的，而且是进行替换而不需要挪动——也就是说，我们可以使用二分查找，将每一个数字的插入时间优化到O(logN)<del>~</del>于是算法的时间复杂度就降低到了O(NlogN)～！</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -949,7 +966,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">330</span>
+              <span class="site-state-item-count">329</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -1029,7 +1046,7 @@
         <div class="copyright" >
   
   &copy;  2014 - 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -260,146 +260,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/07/09/Research_Topic Segmentation and alignment of multiple documents.mmd/" itemprop="url">
-                  Topic Segmentation and alignment of multiple documents
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2016-07-09T00:00:00+09:00" content="2016-07-09">
-              2016-07-09
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/research/" itemprop="url" rel="index">
-                    <span itemprop="name">research</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/09/Research_Topic Segmentation and alignment of multiple documents.mmd/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/09/Research_Topic Segmentation and alignment of multiple documents.mmd/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>对于网页文档进行更细粒度的分析可以有效改进检索的精度。一般来说一个文档都是有一个主题的，同时一篇文档中可能包含多个sub-topic，比如一篇关于分析日元汇率上升的文档中，可能包含近期日元的走势及分析，进一步可能包含英国脱欧的分析，对日本旅游业的影响，制造业的影响，与其他货币的比较等内容。尽管这篇文档整体主题是关于经济的，然是具体其中也包含了各个子话题。如果可以识别划分关于不同子话题的段落，可以有效的改进检索。同样的，多个文档可能包含这些子话题的段落，如果能将这些文档的段落中具有相同子话题的文档关联起来，可以进一步挖掘文档间的关系用于改进检索，因为有些用户只是关注文档中某一特定子话题的内容。</p>
-<p>这个任务就是identifying similar segments from multiple similar documents，一个直观的展示是：</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/topic_segment_alignment.png" alt=""></p>
-<p>论文Topic Segmentation with Shared Topic Detection and Alignment of Multiple Documents给出了一个基于Mutual information(MI)的解决方法，以及带有term weights的Weighted mutual information(WMI)的解决方案。</p>
-<p>问题可以定义为：</p>
-<p>terms集合 $T=\lbrace t_1, t_2, …, t_l\rbrace $<br>documents集合 $D=\lbrace d_1, d_2, …, d_n\rbrace $<br>文档 $d$ 的sentences $S_d=\lbrace s_1, s_2, …, s_m\rbrace$,其中$m$表示文档 $d$的sentences的个数。<br>Segments集合（准确的说是topic集合，这里的每个segment不是各个文档的片段，而是一个全局topic）$\widehat{S}=\lbrace \widehat{s_1}, \widehat{s_2}, …, \widehat{s_p}\rbrace $ ,也就是每个文档的$\widehat{s_1}$的topic都是相同的，尽管有些documents的$\widehat{s_1}$是空的，也就是不存在对应的sentence。也就是正如前面所说的，论文中这里指的segment其实就是topic（比较迷惑），而topic数目是要预定义的（尽管这个数字一般是没法确定，取一个大的数字是比较合适的，但是增加计算复杂度。）</p>
-<p>所要解决的问题就是对每个文档进行segmentation以及找出多个文档中各个segment的alignment：<br><span>$$\begin{aligned}
-Seg_d : \lbrace s_1, s_2, ..., s_{n_d}\rbrace  \to \lbrace \widehat{s_{d1}}, \widehat{s_{d2}}, ..., \widehat{s_{?}}\rbrace
-\end{aligned}$$</span><!-- Has MathJax --></p>
-<span>$\lbrace \widehat{s_{d1}}, \widehat{s_{d2}}, ..., \widehat{s_{?}}\rbrace$</span><!-- Has MathJax -->  表示这个文档的segmentation，其中每个$\widehat{s}$表示文档的片段。<br><br>以及各个文档的segmentation的alignment，也就是对于每个文档：<br><span>$$\begin{aligned}
-Ali_d=\lbrace \widehat{s_{d1}}, \widehat{s_{d2}}, ..., \widehat{s_{?}}\rbrace  \to \lbrace \widehat{s_1}, \widehat{s_2}, ..., \widehat{s_p}\rbrace
-\end{aligned}$$</span><!-- Has MathJax -->
-<p>(这里原文的表述和公式相当让人迷惑，所以做了调整)</p>
-<p>其基本假设本质上还是把sentence作为bag of words处理，并假设term和各个topic关联程度不同。比如toyota会和汽车topic关联比较紧密（也就是在关于汽车topic的段落中toyota出现可能性会比关于文学topic的段落中大，也就是topic-model的基本假设），以此定义了mutual inforamtion(MI)，其实就是clustering中MI的定义。<br><span>$$\begin{aligned}
-I(X;Y) = \sum_{x\in X}\sum_{y\in Y}p(x, y)log\frac{p(x,y)}{p(x)p(y)}
-\end{aligned}$$</span><!-- Has MathJax --></p>
-<p>对多个文档进行segmentation以及alignment的问题也就变成了如何划分每个文档以及alignment，使得最终的MI取得最大值，也就是MI就是这个问题的目标函数。具体在这问题中，MI也就是：<br><span>$$\begin{aligned}
-I(\widehat{T};\widehat{S}) = \sum_{\widehat{t}\in \widehat{T}}\sum_{\widehat{s}\in \widehat{S}}p(\widehat{t}, \widehat{s})log\frac{p(\widehat{t},\widehat{s})}{p(\widehat{t})p(\widehat{s})}
-\end{aligned}$$</span><!-- Has MathJax --></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/09/Research_Topic Segmentation and alignment of multiple documents.mmd/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/07/06/JobHunting_Summary/" itemprop="url">
                   Job hunting Summary
                 </a>
@@ -899,6 +759,134 @@ I(\widehat{T};\widehat{S}) = \sum_{\widehat{t}\in \widehat{T}}\sum_{\widehat{s}\
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/18/Leetcode_Top K Frequent Elements/" itemprop="url">
+                  Top K Frequent Elements
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-01-18T00:00:00+09:00" content="2016-01-18">
+              2016-01-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/18/Leetcode_Top K Frequent Elements/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/18/Leetcode_Top K Frequent Elements/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Top-K-Frequent-Elements"><a href="#Top-K-Frequent-Elements" class="headerlink" title="Top K Frequent Elements"></a><a href="https://leetcode.com/problems/top-k-frequent-elements/" target="_blank" rel="external">Top K Frequent Elements</a></h1><blockquote>
+<p>Given a non-empty array of integers, return the k most frequent elements.</p>
+<p>For example,<br>Given [1,1,1,2,2,3] and k = 2, return [1,2].</p>
+<p>Note:<br>You may assume k is always valid, 1 ≤ k ≤ number of unique elements.<br>Your algorithm’s time complexity must be better than O(n log n), where n is the array’s size.</p>
+</blockquote>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>计数并使用heap筛选top k元素，O(n * log k)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.Map.Entry;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Frequency</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> num;</div><div class="line">    <span class="keyword">int</span> frequency;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Frequency</span><span class="params">(<span class="keyword">int</span> num, <span class="keyword">int</span> frequency)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.num = num;</div><div class="line">        <span class="keyword">this</span>.frequency = frequency;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">topKFrequent</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</div><div class="line">        Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> num : nums) &#123;</div><div class="line">            <span class="keyword">if</span>(map.containsKey(num)) map.put(num, map.get(num) + <span class="number">1</span>);</div><div class="line">            <span class="keyword">else</span> map.put(num, <span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">        PriorityQueue&lt;Frequency&gt; heap = <span class="keyword">new</span> PriorityQueue&lt;Frequency&gt;(k, <span class="keyword">new</span> Comparator&lt;Frequency&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Frequency f1, Frequency f2)</span> </span>&#123;</div><div class="line">                <span class="keyword">return</span> f1.frequency - f2.frequency;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(Entry&lt;Integer, Integer&gt; entry : map.entrySet()) &#123;</div><div class="line">            <span class="keyword">if</span>(heap.size()&lt;k) heap.offer(<span class="keyword">new</span> Frequency(entry.getKey(), entry.getValue()));</div><div class="line">            <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">if</span>(entry.getValue()&lt;=heap.peek().frequency) <span class="keyword">continue</span>;</div><div class="line">                <span class="keyword">else</span> &#123;</div><div class="line">                    heap.poll();</div><div class="line">                    heap.offer(<span class="keyword">new</span> Frequency(entry.getKey(), entry.getValue()));</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        List&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">        <span class="keyword">while</span>(!heap.isEmpty()) res.add(heap.poll().num);</div><div class="line">        Collections.sort(res);</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>桶排序，O(n)</p>
+<p>refer to<a href="http://blog.csdn.net/itismelzp/article/details/51353832" target="_blank" rel="external">LeetCode:Top K Frequent Elements</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">topKFrequent</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</div><div class="line">        </div><div class="line">        </div><div class="line">        Map&lt;Integer,Integer&gt; map = <span class="keyword">new</span> HashMap&lt;Integer,Integer&gt;();</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> len = nums.length;</div><div class="line">        List&lt;Integer&gt;[] bucket = <span class="keyword">new</span> List[len+<span class="number">1</span>];</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> num:nums) &#123;</div><div class="line">            map.put(num, map.getOrDefault(num, <span class="number">0</span>)+<span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> key:map.keySet()) &#123;</div><div class="line">            <span class="keyword">int</span> value = map.get(key);</div><div class="line">            <span class="keyword">if</span>(<span class="keyword">null</span> == bucket[value]) bucket[value] = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">            </div><div class="line">            bucket[value].add(key);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        List&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=bucket.length-<span class="number">1</span>;i&gt;=<span class="number">0</span> &amp;&amp; res.size()&lt;k;i--) &#123;</div><div class="line">            <span class="keyword">if</span>(bucket[i] != <span class="keyword">null</span>) &#123;</div><div class="line">                res.addAll(bucket[i]);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -944,7 +932,7 @@ I(\widehat{T};\widehat{S}) = \sum_{\widehat{t}\in \widehat{T}}\sum_{\widehat{s}\
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">330</span>
+              <span class="site-state-item-count">329</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -1024,7 +1012,7 @@ I(\widehat{T};\widehat{S}) = \sum_{\widehat{t}\in \widehat{T}}\sum_{\widehat{s}\
         <div class="copyright" >
   
   &copy;  2014 - 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
