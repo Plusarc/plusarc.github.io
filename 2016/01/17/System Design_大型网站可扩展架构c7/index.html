@@ -1,24 +1,6 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
-
-  
-
-
-<html class="theme-next mist use-motion">
-<head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-  <meta name="google-site-verification" content="google88d81a02a91db82f" />
 
 
 
@@ -30,47 +12,14 @@
 
 
   
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="system design," />
+<html class="theme-next mist use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
 
 
 
@@ -79,80 +28,115 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+  <meta name="google-site-verification" content="google88d81a02a91db82f">
 
 
 
 
 
 
-<meta name="description" content="构建可扩展的网站架构扩展性
-指对对现有系统影响下，系统功能可持续扩展或提升的能力。表现在系统基础设置稳定不需要经常变更，应用之间较少依赖和耦合，对需求变更可以敏捷响应。也就是系统架构设计层面的开闭原则（对扩展开放，对修改关闭），架构设计考虑未来功能扩展，当系统增加新功能时，不需要对现有系统的结构和代码进行修改。
-伸缩性
-指系统能够通过增加（减少）自身资源规模的方式增强（减少）自己计算处理事务的能力">
-<meta property="og:type" content="article">
-<meta property="og:title" content="System Design_大型网站可扩展架构">
-<meta property="og:url" content="http://yoursite.com/2016/01/17/System Design_大型网站可扩展架构c7/index.html">
-<meta property="og:site_name" content="Plusaber's Blog">
-<meta property="og:description" content="构建可扩展的网站架构扩展性
-指对对现有系统影响下，系统功能可持续扩展或提升的能力。表现在系统基础设置稳定不需要经常变更，应用之间较少依赖和耦合，对需求变更可以敏捷响应。也就是系统架构设计层面的开闭原则（对扩展开放，对修改关闭），架构设计考虑未来功能扩展，当系统增加新功能时，不需要对现有系统的结构和代码进行修改。
-伸缩性
-指系统能够通过增加（减少）自身资源规模的方式增强（减少）自己计算处理事务的能力">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c7_01.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c7_02.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c7_03.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c7_04.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c7_05.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c7_06.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c7_07.png">
-<meta property="og:updated_time" content="2016-06-12T06:39:05.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="System Design_大型网站可扩展架构">
-<meta name="twitter:description" content="构建可扩展的网站架构扩展性
-指对对现有系统影响下，系统功能可持续扩展或提升的能力。表现在系统基础设置稳定不需要经常变更，应用之间较少依赖和耦合，对需求变更可以敏捷响应。也就是系统架构设计层面的开闭原则（对扩展开放，对修改关闭），架构设计考虑未来功能扩展，当系统增加新功能时，不需要对现有系统的结构和代码进行修改。
-伸缩性
-指系统能够通过增加（减少）自身资源规模的方式增强（减少）自己计算处理事务的能力">
-<meta name="twitter:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c7_01.png">
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/favicon.ico?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"right","display":"post"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'LP2H1MWXO2',
+      apiKey: '69bf93a909694ef7f679098292b442ca',
+      indexName: 'Plusaber',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
 
-
-
-  <link rel="canonical" href="http://yoursite.com/2016/01/17/System Design_大型网站可扩展架构c7/"/>
-
-
-  <title> System Design_大型网站可扩展架构 | Plusaber's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</head>
-
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
-
   
 
 
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-79158075-1', 'auto');
-  ga('send', 'pageview');
+
+
+  <meta name="description" content="构建可扩展的网站架构 扩展性 指对对现有系统影响下，系统功能可持续扩展或提升的能力。表现在系统基础设置稳定不需要经常变更，应用之间较少依赖和耦合，对需求变更可以敏捷响应。也就是系统架构设计层面的开闭原则（对扩展开放，对修改关闭），架构设计考虑未来功能扩展，当系统增加新功能时，不需要对现有系统的结构和代码进行修改。 伸缩性 指系统能够通过增加（减少）自身资源规模的方式增强（减少）自己计算处理事务的">
+<meta name="keywords" content="system design">
+<meta property="og:type" content="article">
+<meta property="og:title" content="System Design_大型网站可扩展架构">
+<meta property="og:url" content="http://yoursite.com/2016/01/17/System Design_大型网站可扩展架构c7/index.html">
+<meta property="og:site_name" content="Plusaber&#39;s Blog">
+<meta property="og:description" content="构建可扩展的网站架构 扩展性 指对对现有系统影响下，系统功能可持续扩展或提升的能力。表现在系统基础设置稳定不需要经常变更，应用之间较少依赖和耦合，对需求变更可以敏捷响应。也就是系统架构设计层面的开闭原则（对扩展开放，对修改关闭），架构设计考虑未来功能扩展，当系统增加新功能时，不需要对现有系统的结构和代码进行修改。 伸缩性 指系统能够通过增加（减少）自身资源规模的方式增强（减少）自己计算处理事务的">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c7_01.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c7_02.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c7_03.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c7_04.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c7_05.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c7_06.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c7_07.png">
+<meta property="og:updated_time" content="2019-06-01T04:27:03.716Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="System Design_大型网站可扩展架构">
+<meta name="twitter:description" content="构建可扩展的网站架构 扩展性 指对对现有系统影响下，系统功能可持续扩展或提升的能力。表现在系统基础设置稳定不需要经常变更，应用之间较少依赖和耦合，对需求变更可以敏捷响应。也就是系统架构设计层面的开闭原则（对扩展开放，对修改关闭），架构设计考虑未来功能扩展，当系统增加新功能时，不需要对现有系统的结构和代码进行修改。 伸缩性 指系统能够通过增加（减少）自身资源规模的方式增强（减少）自己计算处理事务的">
+<meta name="twitter:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c7_01.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2016/01/17/System Design_大型网站可扩展架构c7/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
 </script>
 
+  <title>System Design_大型网站可扩展架构 | Plusaber's Blog</title>
+  
 
 
 
@@ -160,97 +144,177 @@
 
 
 
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-right page-post-detail ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Plusaber's Blog</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Plusaber's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
   </div>
-  <p class="site-subtitle"></p>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
+
 
 <nav class="site-nav">
-  
-
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首頁
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分類
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            歸檔
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            標籤
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
 
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
       
     </ul>
   
 
   
+    
+
+  
+
+  
 </nav>
 
- </div>
+
+
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -258,24 +322,37 @@
     
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/01/17/System Design_大型网站可扩展架构c7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Plusaber">
+      <meta itemprop="description" content="Plusaber's Blog">
+      <meta itemprop="image" content="/images/plusaber.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Plusaber's Blog">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                System Design_大型网站可扩展架构
+          <h1 class="post-title" itemprop="name headline">System Design_大型网站可扩展架构
+
               
             
           </h1>
@@ -283,65 +360,91 @@
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2016-01-17T00:00:00+09:00" content="2016-01-17">
-              2016-01-17
-            </time>
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-01-17 00:00:00" itemprop="dateCreated datePublished" datetime="2016-01-17T00:00:00+09:00">2016-01-17</time>
+            
+
+            
           </span>
 
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分類於</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/System-design/" itemprop="url" rel="index">
-                    <span itemprop="name">System design</span>
-                  </a>
-                </span>
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/System-design/" itemprop="url" rel="index"><span itemprop="name">System design</span></a></span>
 
                 
                 
-
               
             </span>
           
 
           
             
+            
+              
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
                 <a href="/2016/01/17/System Design_大型网站可扩展架构c7/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/17/System Design_大型网站可扩展架构c7/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/17/System Design_大型网站可扩展架构c7/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
-          
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
       
 
       
-        <h1 id="构建可扩展的网站架构"><a href="#构建可扩展的网站架构" class="headerlink" title="构建可扩展的网站架构"></a>构建可扩展的网站架构</h1><p><strong>扩展性</strong></p>
+        <h1 id="构建可扩展的网站架构"><a class="markdownIt-Anchor" href="#构建可扩展的网站架构"></a> 构建可扩展的网站架构</h1>
+<p><strong>扩展性</strong></p>
 <p>指对对现有系统影响下，系统功能可持续扩展或提升的能力。表现在系统基础设置稳定不需要经常变更，应用之间较少依赖和耦合，对需求变更可以敏捷响应。也就是系统架构设计层面的开闭原则（对扩展开放，对修改关闭），架构设计考虑未来功能扩展，当系统增加新功能时，不需要对现有系统的结构和代码进行修改。</p>
 <p><strong>伸缩性</strong></p>
 <p>指系统能够通过增加（减少）自身资源规模的方式增强（减少）自己计算处理事务的能力。如果这种增减是成比例的，就被称作线性伸缩性。在网站架构中，通常指利用集群的方式增加服务器数量、提高系统的整体事务吞吐能力。</p>
@@ -349,20 +452,24 @@
 <p>设计网站可扩展架构的核心思想是模块化，并在此基础上，降低模块间的耦合性，提高模块的复用性。前面提到使用分层和分割的方式进行架构伸缩，分层和分割也是模块化设计的重要手段，利用分层和分割的方式将软件分割为若干个低耦合的独立的组件模块，这些组件模块以消息传递及依赖调用的方式聚合成一个完整的系统。</p>
 <p>在大型网站中，这些模块通过分布式部署的方式，独立的模块部署在独立的服务器（集群）上，从物理上分离模块之间的耦合关系，进一步降低耦合性，提高复用性。</p>
 <p>模块分布式部署后具体聚合方式主要有分布式消息队列和分布式服务。</p>
-<h1 id="利用分布式消息队列降低系统耦合性"><a href="#利用分布式消息队列降低系统耦合性" class="headerlink" title="利用分布式消息队列降低系统耦合性"></a>利用分布式消息队列降低系统耦合性</h1><p>如果模块之间不存在直接调用，那么新增模块或者修改模块就对其他模块影响最小，这样可以实现很高的可扩展性。</p>
-<h2 id="事件驱动架构-Event-Driven-Architecture"><a href="#事件驱动架构-Event-Driven-Architecture" class="headerlink" title="事件驱动架构(Event Driven Architecture)"></a>事件驱动架构(Event Driven Architecture)</h2><p>指通过在低耦合的模块之间传输时间消息，以保持模块的松散耦合，并借助事件消息的通信完成模块间合作，典型的EDA架构就是操作系统中常见的生产者消费者模式。在大型网站架构中，具体实现手段有很多，最常用的是分布式消息队列。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c7_01.png" alt="System_design_c7_01"></p>
+<h1 id="利用分布式消息队列降低系统耦合性"><a class="markdownIt-Anchor" href="#利用分布式消息队列降低系统耦合性"></a> 利用分布式消息队列降低系统耦合性</h1>
+<p>如果模块之间不存在直接调用，那么新增模块或者修改模块就对其他模块影响最小，这样可以实现很高的可扩展性。</p>
+<h2 id="事件驱动架构event-driven-architecture"><a class="markdownIt-Anchor" href="#事件驱动架构event-driven-architecture"></a> 事件驱动架构(Event Driven Architecture)</h2>
+<p>指通过在低耦合的模块之间传输时间消息，以保持模块的松散耦合，并借助事件消息的通信完成模块间合作，典型的EDA架构就是操作系统中常见的生产者消费者模式。在大型网站架构中，具体实现手段有很多，最常用的是分布式消息队列。</p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c7_01.png" alt="System_design_c7_01"></p>
 <p>消息队列利用发布-订阅模式工作，消息发送者发布消息，一个或多个消息接收者订阅消息。发送者和接收者没有直接耦合，可以新增业务为发布者或者接收者而无需影响原有系统业务，从而实现网站业务的可扩展设计。</p>
 <p>另外由于消息发送者不需要等待消息接收者处理数据就可以返回，系统具有更好的响应延迟，同时，在网站访问高峰，消息可以暂时存储在消息队列中等待消息接收者根据自身负载处理能力控制消息处理速度，减轻数据库等后端存储的负载压力。</p>
-<h2 id="分布式消息队列"><a href="#分布式消息队列" class="headerlink" title="分布式消息队列"></a>分布式消息队列</h2><p>队列是一种先进先出的数据结构，分布式消息队列可以看做这种数据结构的分布式部署到独立服务器上，应用程序可以通过远程访问接口使用分布式消息队列，进行消息存取操作，进而实现分布式的异步调用。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c7_02.png" alt="System_design_c7_02"></p>
+<h2 id="分布式消息队列"><a class="markdownIt-Anchor" href="#分布式消息队列"></a> 分布式消息队列</h2>
+<p>队列是一种先进先出的数据结构，分布式消息队列可以看做这种数据结构的分布式部署到独立服务器上，应用程序可以通过远程访问接口使用分布式消息队列，进行消息存取操作，进而实现分布式的异步调用。</p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c7_02.png" alt="System_design_c7_02"></p>
 <p>消息生产者通过远程接口将消息推送给消息队列服务器随后返回，消息队列服务器根据消息订阅列表查找订阅该消息的消费者程序，将消息队列中的消息按照先进先出FIFO将消息通过远程通信端口发送给消费者程序。</p>
 <p>目前开源的分布式消息队列产品有Apache ActiveMQ等，这些产品另外也对可用性、伸缩性、数据一致性、性能也做了很多改善。</p>
 <p>在伸缩性方面，由于消息队列服务器上的数据可以看做是无状态的，伸缩性设计比较简单。将服务器加入分布式消息队列集群中，通知生产者服务器更改消息队列服务器列表即可。</p>
 <p>在可用性方面，为了避免消费者进行处理缓慢，分布式消息队列服务器内存空间不足造成的问题，如果内存队列已满，会将消息写入磁盘。内存队列消息处理完后，将磁盘内容加载到内存队列继续处理。</p>
 <p>分布式消息队列可以很复杂，比如说支持ESB，SOA；也可以很简单，如用MySQL也可以当做分布式消息队列。</p>
  <a id="more"></a>
-<h1 id="利用分布式服务打造可复用的业务平台"><a href="#利用分布式服务打造可复用的业务平台" class="headerlink" title="利用分布式服务打造可复用的业务平台"></a>利用分布式服务打造可复用的业务平台</h1><p>使用分布式服务是降低系统耦合性的另一个重要手段。分布式消息队列是通过消息对象分解系统耦合性，不同子系统处理同一个消息。分布式服务则是通过接口分解系统耦合性，不同子系统通过相同的接口进行服务调用。</p>
+<h1 id="利用分布式服务打造可复用的业务平台"><a class="markdownIt-Anchor" href="#利用分布式服务打造可复用的业务平台"></a> 利用分布式服务打造可复用的业务平台</h1>
+<p>使用分布式服务是降低系统耦合性的另一个重要手段。分布式消息队列是通过消息对象分解系统耦合性，不同子系统处理同一个消息。分布式服务则是通过接口分解系统耦合性，不同子系统通过相同的接口进行服务调用。</p>
 <p>网站架构是一个不断发展和变复杂的过程，会逐渐聚合大量子应用和服务组件，这个巨无霸会给整个网站的开发、维护、部署都带来巨大的麻烦:</p>
 <ul>
 <li>编译部署困难</li>
@@ -370,14 +477,15 @@
 <li>数据库连接耗尽</li>
 <li>新增业务困难</li>
 </ul>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c7_03.png" alt="System_design_c7_03"></p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c7_03.png" alt="System_design_c7_03"></p>
 <p>解决方案就是拆分，将模块独立部署，降低系统耦合性。拆分可以分为纵向拆分和横向拆分。</p>
 <p>纵向拆分：将一个大应用拆分为多个小应用，如果新增业务较为独立，那么久直接将其设计部署为一个独立的Web应用系统。</p>
 <p>横向拆分：将复用的业务拆分出来，独立部署为分布式服务，其他子服务和新增服务只需要调用这些分布式服务，不需要依赖具体的模块代码，即可快速搭建一个应用系统，而模块内部业务逻辑变化时，只要接口保持一致就不会影响业务程序和其他模块。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c7_04.png" alt="System_design_c7_04"></p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c7_04.png" alt="System_design_c7_04"></p>
 <p>纵向拆分相对较为简单，通过梳理业务，将较少相关的业务分离使其成为独立的Web应用。而对于横向拆分，不但需要识别可复用的业务，设计服务接口，规范服务依赖关系，还需要一个完善的分布式服务管理框架。</p>
-<h2 id="Web-Service与企业级分布式服务"><a href="#Web-Service与企业级分布式服务" class="headerlink" title="Web Service与企业级分布式服务"></a>Web Service与企业级分布式服务</h2><p>Web Service是企业应用系统开发领域的重要技术，用以整合异构系统及构建分布式系统。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c7_05.png" alt="System_design_c7_05"></p>
+<h2 id="web-service与企业级分布式服务"><a class="markdownIt-Anchor" href="#web-service与企业级分布式服务"></a> Web Service与企业级分布式服务</h2>
+<p>Web Service是企业应用系统开发领域的重要技术，用以整合异构系统及构建分布式系统。</p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c7_05.png" alt="System_design_c7_05"></p>
 <p>服务提供者通过WSDL(Web Services description Language, Web服务描述语言)向注册中心(Service Broker)描述自身提供的服务接口属性，注册中心使用UDDI(Universal Desription, Discovery, and Integration, 统一描述发现和集成)发布服务提供者提供的服务，服务请求者从注册中心检索到服务信息后，通过SOAP(Simple Object Access Protocol, 简单对象访问协议)和服务提供者通信，使用相关服务。</p>
 <p>Web Service具有跨平台和成熟等优点，但是也有如下的缺点：</p>
 <ul>
@@ -387,7 +495,8 @@
 <li>负载的部署和维护手段</li>
 </ul>
 <p>这些问题导致Web Service难以满足大型网站对系统高性能、高可用、易部署、易维护的要求。</p>
-<h2 id="大型网站分布式服务的需求与特点"><a href="#大型网站分布式服务的需求与特点" class="headerlink" title="大型网站分布式服务的需求与特点"></a>大型网站分布式服务的需求与特点</h2><p>对于大型网站，除了Web Service所提供的服务注册与发现，服务调用等标准功能，还需要分布式服务框架能够支持如下特性。</p>
+<h2 id="大型网站分布式服务的需求与特点"><a class="markdownIt-Anchor" href="#大型网站分布式服务的需求与特点"></a> 大型网站分布式服务的需求与特点</h2>
+<p>对于大型网站，除了Web Service所提供的服务注册与发现，服务调用等标准功能，还需要分布式服务框架能够支持如下特性。</p>
 <ul>
 <li><strong>负载均衡</strong></li>
 </ul>
@@ -402,57 +511,66 @@
 <li><strong>版本管理</strong></li>
 <li><strong>实时监控</strong></li>
 </ul>
-<h2 id="分布式服务框架设计"><a href="#分布式服务框架设计" class="headerlink" title="分布式服务框架设计"></a>分布式服务框架设计</h2><p>大型网站需要更简单更高效的分布式服务框架构建其SOA(Service Oriented Architecture, 面向服务的体系架构)。Facebook利用Thrift(一个开源的远程服务调用框架)管理其分布式服务，服务的注册、发现及调用都通过Thrift完成，但是对于一个大型完整可以使用的分布式框架服务，仅有Thrift还远远不够，但是Facebook没有开源其基于Thrift的分布式服务框架。</p>
+<h2 id="分布式服务框架设计"><a class="markdownIt-Anchor" href="#分布式服务框架设计"></a> 分布式服务框架设计</h2>
+<p>大型网站需要更简单更高效的分布式服务框架构建其SOA(Service Oriented Architecture, 面向服务的体系架构)。Facebook利用Thrift(一个开源的远程服务调用框架)管理其分布式服务，服务的注册、发现及调用都通过Thrift完成，但是对于一个大型完整可以使用的分布式框架服务，仅有Thrift还远远不够，但是Facebook没有开源其基于Thrift的分布式服务框架。</p>
 <p>目前有较多成功实施案例的开源分布式框架是Alibaba的Dubbo。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c7_06.png" alt="System_design_c7_06"></p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c7_06.png" alt="System_design_c7_06"></p>
 <p>服务消费者程序通过服务接口使用服务，而服务接口通过代理加载具体服务，具体服务可以是本地的代码模块，也可以是远程的服务，因此对应用较少侵入：应用程序只需要调用服务接口，服务框架根据配置自动调用本地或远程实现。</p>
 <p>服务框架客户端模块通过服务注册中心加载服务提供者列表(服务提供者启动后自动向服务注册中心注册自己可提供的服务接口列表)，查找需要的服务接口，并根据配置的负载均衡策略将服务调用请求发送到某台服务提供者服务器。如果服务调用失败，客户端模块会自动从服务提供者列表专责一个可提供同样服务的另一台服务器重新请求服务，实现服务的自动失效转移，保证服务高可用。</p>
 <p>另外Dubbo的远程服务通信模块支持多种通信协议和数据序列化协议，使用NIO通信框架，具有较高网络通信性能。</p>
-<h1 id="可扩展的数据结构"><a href="#可扩展的数据结构" class="headerlink" title="可扩展的数据结构"></a>可扩展的数据结构</h1><p>传统的关系数据库需要预先定义表的schema，这些规范带来的一个问题就是僵硬的数据结构难以面对需求变更带来的挑战，也就是难以扩展。</p>
+<h1 id="可扩展的数据结构"><a class="markdownIt-Anchor" href="#可扩展的数据结构"></a> 可扩展的数据结构</h1>
+<p>传统的关系数据库需要预先定义表的schema，这些规范带来的一个问题就是僵硬的数据结构难以面对需求变更带来的挑战，也就是难以扩展。</p>
 <p>使用NoSQL数据库的ColumnFamily(列族)设计是一个可行的解决方案，ColumnFamily最早在Google的Bigtable中使用，是一种面向列族的稀疏矩阵存储格式。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c7_07.png" alt="System_design_c7_07"></p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c7_07.png" alt="System_design_c7_07"></p>
 <p>使用支持ColumnFamily结构的NoSQL数据库，创建表时，只需要制定ColumnFamily的名字，无需指定字段(Column)，可以在数据写入时再指定，通过这种方式，数据表可以包含数百万的字段，且可以随时扩展。而在查询时，同样可以通过指定任意字段名称和值进行查询。</p>
 
       
     </div>
 
-    <div>
-      
-        
+    
 
-      
-    </div>
+    
+    
+    
 
-    <div>
-      
-        
+    
 
+    
       
-    </div>
+    
+    
+
+    
 
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/system-design/" rel="tag">#system design</a>
+            <a href="/tags/system-design/" rel="tag"># system design</a>
           
         </div>
+      
+
+      
+      
       
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/01/17/Leetcode_Longest Increasing Path in a Matrix/" rel="next" title="Longest Increasing Path in a Matrix">
-                <i class="fa fa-chevron-left"></i> Longest Increasing Path in a Matrix
+              <a href="/2016/01/05/Developing_Elastic Search(1)配置/" rel="next" title="Elasticsearch配置">
+                <i class="fa fa-chevron-left"></i> Elasticsearch配置
               </a>
             
           </div>
 
+          <span class="post-nav-divider"></span>
+
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/01/18/Leetcode_Top K Frequent Elements/" rel="prev" title="Top K Frequent Elements">
-                Top K Frequent Elements <i class="fa fa-chevron-right"></i>
+              <a href="/2016/01/20/Research_WordNet/" rel="prev" title="WordNet">
+                WordNet <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -462,31 +580,28 @@
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
           </div>
           
 
-
-          
-  <div class="comments" id="comments">
-    
+  
+    <div class="comments" id="comments">
       <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
       </div>
-    
-  </div>
+    </div>
+
+  
+
 
 
         </div>
@@ -508,106 +623,211 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目錄
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            本站概覽
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
           </li>
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/plusaber.jpg"
-               alt="Plusaber" />
-          <p class="site-author-name" itemprop="name">Plusaber</p>
-          <p class="site-description motion-element" itemprop="description">Plusaber's Blog</p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">329</span>
-              <span class="site-state-item-name">文章</span>
-            </a>
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/plusaber.jpg" alt="Plusaber">
+            
+              <p class="site-author-name" itemprop="name">Plusaber</p>
+              <div class="site-description motion-element" itemprop="description">Plusaber's Blog</div>
           </div>
 
           
-            <div class="site-state-item site-state-categories">
-              <a href="/categories">
-                <span class="site-state-item-count">17</span>
-                <span class="site-state-item-name">分類</span>
-              </a>
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">82</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://jp.linkedin.com/in/zebangchen" title="https://jp.linkedin.com/in/zebangchen" rel="noopener" target="_blank">LinkedIn</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://indeed.com" title="https://indeed.com" rel="noopener" target="_blank">Indeed</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://baito.indeed.com" title="https://baito.indeed.com" rel="noopener" target="_blank">Baito</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.kaggle.com" title="https://www.kaggle.com" rel="noopener" target="_blank">Kaggle</a>
+                  </li>
+                
+              </ul>
             </div>
           
 
           
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">52</span>
-                <span class="site-state-item-name">標籤</span>
-              </a>
-            </div>
+            
+          
           
 
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
         </div>
-
-        
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              Links
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.kaggle.com" title="Kaggle" target="_blank">Kaggle</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.algolia.com" title="Algolia" target="_blank">Algolia</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://jp.linkedin.com/in/zebangchen" title="LinkedIn" target="_blank">LinkedIn</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://portal.qiniu.com" title="Qiniu" target="_blank">Qiniu</a>
-                </li>
-              
-            </ul>
-          </div>
-        
-
-      </section>
+      </div>
 
       
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
-              
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#构建可扩展的网站架构"><span class="nav-number">1.</span> <span class="nav-text">构建可扩展的网站架构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#利用分布式消息队列降低系统耦合性"><span class="nav-number">2.</span> <span class="nav-text">利用分布式消息队列降低系统耦合性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#事件驱动架构-Event-Driven-Architecture"><span class="nav-number">2.1.</span> <span class="nav-text">事件驱动架构(Event Driven Architecture)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式消息队列"><span class="nav-number">2.2.</span> <span class="nav-text">分布式消息队列</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#利用分布式服务打造可复用的业务平台"><span class="nav-number">3.</span> <span class="nav-text">利用分布式服务打造可复用的业务平台</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Web-Service与企业级分布式服务"><span class="nav-number">3.1.</span> <span class="nav-text">Web Service与企业级分布式服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大型网站分布式服务的需求与特点"><span class="nav-number">3.2.</span> <span class="nav-text">大型网站分布式服务的需求与特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式服务框架设计"><span class="nav-number">3.3.</span> <span class="nav-text">分布式服务框架设计</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#可扩展的数据结构"><span class="nav-number">4.</span> <span class="nav-text">可扩展的数据结构</span></a></li></ol></div>
             
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#构建可扩展的网站架构"><span class="nav-number">1.</span> <span class="nav-text"> 构建可扩展的网站架构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#利用分布式消息队列降低系统耦合性"><span class="nav-number">2.</span> <span class="nav-text"> 利用分布式消息队列降低系统耦合性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#事件驱动架构event-driven-architecture"><span class="nav-number">2.1.</span> <span class="nav-text"> 事件驱动架构(Event Driven Architecture)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式消息队列"><span class="nav-number">2.2.</span> <span class="nav-text"> 分布式消息队列</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#利用分布式服务打造可复用的业务平台"><span class="nav-number">3.</span> <span class="nav-text"> 利用分布式服务打造可复用的业务平台</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#web-service与企业级分布式服务"><span class="nav-number">3.1.</span> <span class="nav-text"> Web Service与企业级分布式服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大型网站分布式服务的需求与特点"><span class="nav-number">3.2.</span> <span class="nav-text"> 大型网站分布式服务的需求与特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式服务框架设计"><span class="nav-number">3.3.</span> <span class="nav-text"> 分布式服务框架设计</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#可扩展的数据结构"><span class="nav-number">4.</span> <span class="nav-text"> 可扩展的数据结构</span></a></li></ol></div>
+            
+
           </div>
-        </section>
+        </div>
+      <!--/noindex-->
+      
+
       
 
     </div>
   </aside>
+  
 
 
         
@@ -616,41 +836,61 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2014 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Plusaber</span>
+
+  
+
+  
 </div>
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
-</div>
 
-<div class="theme-info">
-  主題 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.1</div>
+
+
+
 
         
+
+
+
+
+
+
+
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -664,112 +904,164 @@
 
 
 
-  
 
 
 
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
-  
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+
+
+
 
 
 
   
-  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
 
 
 
   
 
 
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
 
   
 
-    <script type="text/javascript">
-      var disqus_shortname = 'plusaber';
-      var disqus_identifier = '2016/01/17/System Design_大型网站可扩展架构c7/';
-      var disqus_title = "System Design_大型网站可扩展架构";
-      var disqus_url = 'http://yoursite.com/2016/01/17/System Design_大型网站可扩展架构c7/';
+  
 
-      function run_disqus_script(disqus_script){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      }
+  
 
-      run_disqus_script('count.js');
+  
+  
+  <script id="dsq-count-scr" src="https://plusaber.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://yoursite.com/2016/01/17/System Design_大型网站可扩展架构c7/";
+    this.page.identifier = "2016/01/17/System Design_大型网站可扩展架构c7/";
+    this.page.title = 'System Design_大型网站可扩展架构';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://plusaber.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
       
-        var disqus_config = function () {
-            this.page.url = disqus_url;
-            this.page.identifier = disqus_identifier;
-            this.page.title = disqus_title;
-        };
-        run_disqus_script('embed.js');
-      
-    </script>
-  
-
-
-
-
-  
-  
-
-  
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-  </script>
-
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-      for (i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-      }
-    });
-  </script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('Copy');
+      }, 300);
+    }).append(e);
+  })
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -783,7 +1075,7 @@
   });
 </script>
 
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
@@ -792,9 +1084,6 @@
   
 
   
-
-  
-
 
 </body>
 </html>

@@ -1,24 +1,6 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
-
-  
-
-
-<html class="theme-next mist use-motion">
-<head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-  <meta name="google-site-verification" content="google88d81a02a91db82f" />
 
 
 
@@ -30,47 +12,14 @@
 
 
   
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="system design," />
+<html class="theme-next mist use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
 
 
 
@@ -79,86 +28,121 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+  <meta name="google-site-verification" content="google88d81a02a91db82f">
 
 
 
 
 
 
-<meta name="description" content="网站性能测试性能测试指标
-响应时间：指应用执行一个请求到相应所需要的时间。
-并发数：只系统同时处理请求的数目，最大并发数数值也反映了系统的负载特性。
-吞吐量(TPS)：指单位时间内系统处理的请求量，体现系统的整体处理能力。在系统并发数由小增大的过程中，系统吞吐量先是逐渐增加，达到一个极限后，随着并发数的增加反而下降，达到系统崩溃点后，系统资源耗尽，吞吐量为0。可以理解为吞吐量是每天通过收费站的车辆">
-<meta property="og:type" content="article">
-<meta property="og:title" content="System Design_大型网站高性能架构">
-<meta property="og:url" content="http://yoursite.com/2015/11/21/System Design_大型网站高性能架构c4/index.html">
-<meta property="og:site_name" content="Plusaber's Blog">
-<meta property="og:description" content="网站性能测试性能测试指标
-响应时间：指应用执行一个请求到相应所需要的时间。
-并发数：只系统同时处理请求的数目，最大并发数数值也反映了系统的负载特性。
-吞吐量(TPS)：指单位时间内系统处理的请求量，体现系统的整体处理能力。在系统并发数由小增大的过程中，系统吞吐量先是逐渐增加，达到一个极限后，随着并发数的增加反而下降，达到系统崩溃点后，系统资源耗尽，吞吐量为0。可以理解为吞吐量是每天通过收费站的车辆">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_2.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_1.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_3.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_4.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_5.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_7.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_8.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_9.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_10.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_11.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_12.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_13.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_15.png">
-<meta property="og:updated_time" content="2016-03-18T06:52:34.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="System Design_大型网站高性能架构">
-<meta name="twitter:description" content="网站性能测试性能测试指标
-响应时间：指应用执行一个请求到相应所需要的时间。
-并发数：只系统同时处理请求的数目，最大并发数数值也反映了系统的负载特性。
-吞吐量(TPS)：指单位时间内系统处理的请求量，体现系统的整体处理能力。在系统并发数由小增大的过程中，系统吞吐量先是逐渐增加，达到一个极限后，随着并发数的增加反而下降，达到系统崩溃点后，系统资源耗尽，吞吐量为0。可以理解为吞吐量是每天通过收费站的车辆">
-<meta name="twitter:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_2.png">
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/favicon.ico?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"right","display":"post"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'LP2H1MWXO2',
+      apiKey: '69bf93a909694ef7f679098292b442ca',
+      indexName: 'Plusaber',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
 
-
-
-  <link rel="canonical" href="http://yoursite.com/2015/11/21/System Design_大型网站高性能架构c4/"/>
-
-
-  <title> System Design_大型网站高性能架构 | Plusaber's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</head>
-
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
-
   
 
 
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-79158075-1', 'auto');
-  ga('send', 'pageview');
+
+
+  <meta name="description" content="网站性能测试  性能测试指标  响应时间：指应用执行一个请求到相应所需要的时间。 并发数：只系统同时处理请求的数目，最大并发数数值也反映了系统的负载特性。 吞吐量(TPS)：指单位时间内系统处理的请求量，体现系统的整体处理能力。在系统并发数由小增大的过程中，系统吞吐量先是逐渐增加，达到一个极限后，随着并发数的增加反而下降，达到系统崩溃点后，系统资源耗尽，吞吐量为0。可以理解为吞吐量是每天通过收费">
+<meta name="keywords" content="system design">
+<meta property="og:type" content="article">
+<meta property="og:title" content="System Design_大型网站高性能架构">
+<meta property="og:url" content="http://yoursite.com/2015/11/21/System Design_大型网站高性能架构c4/index.html">
+<meta property="og:site_name" content="Plusaber&#39;s Blog">
+<meta property="og:description" content="网站性能测试  性能测试指标  响应时间：指应用执行一个请求到相应所需要的时间。 并发数：只系统同时处理请求的数目，最大并发数数值也反映了系统的负载特性。 吞吐量(TPS)：指单位时间内系统处理的请求量，体现系统的整体处理能力。在系统并发数由小增大的过程中，系统吞吐量先是逐渐增加，达到一个极限后，随着并发数的增加反而下降，达到系统崩溃点后，系统资源耗尽，吞吐量为0。可以理解为吞吐量是每天通过收费">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_2.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_1.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_3.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_4.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_5.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_7.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_8.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_9.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_10.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_11.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_12.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_13.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_15.png">
+<meta property="og:updated_time" content="2019-06-01T04:39:59.144Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="System Design_大型网站高性能架构">
+<meta name="twitter:description" content="网站性能测试  性能测试指标  响应时间：指应用执行一个请求到相应所需要的时间。 并发数：只系统同时处理请求的数目，最大并发数数值也反映了系统的负载特性。 吞吐量(TPS)：指单位时间内系统处理的请求量，体现系统的整体处理能力。在系统并发数由小增大的过程中，系统吞吐量先是逐渐增加，达到一个极限后，随着并发数的增加反而下降，达到系统崩溃点后，系统资源耗尽，吞吐量为0。可以理解为吞吐量是每天通过收费">
+<meta name="twitter:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_2.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2015/11/21/System Design_大型网站高性能架构c4/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
 </script>
 
+  <title>System Design_大型网站高性能架构 | Plusaber's Blog</title>
+  
 
 
 
@@ -166,97 +150,177 @@
 
 
 
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-right page-post-detail ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Plusaber's Blog</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Plusaber's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
   </div>
-  <p class="site-subtitle"></p>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
+
 
 <nav class="site-nav">
-  
-
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首頁
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分類
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            歸檔
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            標籤
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
 
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
       
     </ul>
   
 
   
+    
+
+  
+
+  
 </nav>
 
- </div>
+
+
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -264,24 +328,37 @@
     
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/11/21/System Design_大型网站高性能架构c4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Plusaber">
+      <meta itemprop="description" content="Plusaber's Blog">
+      <meta itemprop="image" content="/images/plusaber.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Plusaber's Blog">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                System Design_大型网站高性能架构
+          <h1 class="post-title" itemprop="name headline">System Design_大型网站高性能架构
+
               
             
           </h1>
@@ -289,151 +366,217 @@
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-11-21T00:00:00+09:00" content="2015-11-21">
-              2015-11-21
-            </time>
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2015-11-21 00:00:00" itemprop="dateCreated datePublished" datetime="2015-11-21T00:00:00+09:00">2015-11-21</time>
+            
+
+            
           </span>
 
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分類於</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/System-design/" itemprop="url" rel="index">
-                    <span itemprop="name">System design</span>
-                  </a>
-                </span>
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/System-design/" itemprop="url" rel="index"><span itemprop="name">System design</span></a></span>
 
                 
                 
-
               
             </span>
           
 
           
             
+            
+              
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
                 <a href="/2015/11/21/System Design_大型网站高性能架构c4/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/11/21/System Design_大型网站高性能架构c4/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/11/21/System Design_大型网站高性能架构c4/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
-          
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
       
 
       
-        <h1 id="网站性能测试"><a href="#网站性能测试" class="headerlink" title="网站性能测试"></a>网站性能测试</h1><h2 id="性能测试指标"><a href="#性能测试指标" class="headerlink" title="性能测试指标"></a>性能测试指标</h2><ul>
+        <h1 id="网站性能测试"><a class="markdownIt-Anchor" href="#网站性能测试"></a> 网站性能测试</h1>
+<h2 id="性能测试指标"><a class="markdownIt-Anchor" href="#性能测试指标"></a> 性能测试指标</h2>
+<ul>
 <li><strong>响应时间</strong>：指应用执行一个请求到相应所需要的时间。</li>
 <li><strong>并发数</strong>：只系统同时处理请求的数目，最大并发数数值也反映了系统的负载特性。</li>
 <li><strong>吞吐量(TPS)</strong>：指单位时间内系统处理的请求量，体现系统的整体处理能力。在系统并发数由小增大的过程中，系统吞吐量先是逐渐增加，达到一个极限后，随着并发数的增加反而下降，达到系统崩溃点后，系统资源耗尽，吞吐量为0。可以理解为吞吐量是每天通过收费站的车辆数目，并发数是高速公路上的车辆数目。</li>
-<li><strong>性能计数器</strong>：描述服务器或者操作系统性能的一些数据指标，如System loab, 内存使用，CPU使用..</li>
+<li><strong>性能计数器</strong>：描述服务器或者操作系统性能的一些数据指标，如System loab, 内存使用，CPU使用…</li>
 </ul>
-<h2 id="性能测试方法"><a href="#性能测试方法" class="headerlink" title="性能测试方法"></a>性能测试方法</h2><ul>
+<h2 id="性能测试方法"><a class="markdownIt-Anchor" href="#性能测试方法"></a> 性能测试方法</h2>
+<ul>
 <li><strong>性能测试</strong>：对系统不断施加压力，验证系统在资源可接受范围内，能否达到性能预期。</li>
 <li><strong>负载测试</strong>：对系统不断增加并发请求以增加系统压力，直到系统的某项或者性能指标达到安全临界值，如果某种资源已经是饱和状态，这时继续提高压力，系统的吞出量不但不能提高，反而会下降。</li>
 <li><strong>压力测试</strong>：超过安全负载的情况下，对系统继续施加压力，直到系统崩溃或者不能再处理任何请求，以此获得系统最大压力承受能力。</li>
 <li><strong>稳定性测试</strong>：在特定硬件、软件、网络环境下，给系统加载一定业务压力，是系统运行一段较长时间，以测试是否稳定。</li>
 </ul>
 <p>上面的的增加压力，就是不断增加并发请求数，消耗的系统资源也会变多。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_2.png" alt="System_design_c4_2"></p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_1.png" alt="System_design_c4_1"></p>
-<h2 id="性能测试报告"><a href="#性能测试报告" class="headerlink" title="性能测试报告"></a>性能测试报告</h2><p>测试结果报告应该能反映上述性能测试曲线的规律，阅读者可以得到系统性能是否满足设计目标和业务要求、系统最大负载能力、系统最大压力承受能力等重要信息。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_3.png" alt="System_design_c4_3"></p>
-<h2 id="性能优化策略"><a href="#性能优化策略" class="headerlink" title="性能优化策略"></a>性能优化策略</h2><p>检查请求处理的各个环节的日志，分析哪个环节响应时间不合理；然后检查监控数据，分析影响性能的主要因素是内存、磁盘、网络还是CPU，是代码或架构问题或者是系统资源确实不足。</p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_2.png" alt="System_design_c4_2"></p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_1.png" alt="System_design_c4_1"></p>
+<h2 id="性能测试报告"><a class="markdownIt-Anchor" href="#性能测试报告"></a> 性能测试报告</h2>
+<p>测试结果报告应该能反映上述性能测试曲线的规律，阅读者可以得到系统性能是否满足设计目标和业务要求、系统最大负载能力、系统最大压力承受能力等重要信息。</p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_3.png" alt="System_design_c4_3"></p>
+<h2 id="性能优化策略"><a class="markdownIt-Anchor" href="#性能优化策略"></a> 性能优化策略</h2>
+<p>检查请求处理的各个环节的日志，分析哪个环节响应时间不合理；然后检查监控数据，分析影响性能的主要因素是内存、磁盘、网络还是CPU，是代码或架构问题或者是系统资源确实不足。</p>
 <p>定位具体原因后，根据具体层次进行优化。</p>
-<h1 id="Web前端性能优化"><a href="#Web前端性能优化" class="headerlink" title="Web前端性能优化"></a>Web前端性能优化</h1><p>Web前端一般指业务逻辑之前的部分，包括浏览器加载、网站视图模型、图片服务、CDN服务等，主要优化手段有优化浏览器、使用反向代理、CDN等。</p>
-<h2 id="浏览器访问优化"><a href="#浏览器访问优化" class="headerlink" title="浏览器访问优化"></a>浏览器访问优化</h2><ol>
+<h1 id="web前端性能优化"><a class="markdownIt-Anchor" href="#web前端性能优化"></a> Web前端性能优化</h1>
+<p>Web前端一般指业务逻辑之前的部分，包括浏览器加载、网站视图模型、图片服务、CDN服务等，主要优化手段有优化浏览器、使用反向代理、CDN等。</p>
+<h2 id="浏览器访问优化"><a class="markdownIt-Anchor" href="#浏览器访问优化"></a> 浏览器访问优化</h2>
+<ol>
 <li>减少HTTP请求，因为每次都要开启线程建立通信链路。如合并CSS, Javascript等。</li>
 <li>使用浏览器缓存。</li>
 <li>启用压缩</li>
 <li>减少Cookie传输</li>
 </ol>
-<h2 id="CDN加速"><a href="#CDN加速" class="headerlink" title="CDN加速"></a>CDN加速</h2><p>CDN(Content Distribute Network，内容分发网络)的本质仍是一个缓存，将数据缓存在离用户最近的地方。</p>
+<h2 id="cdn加速"><a class="markdownIt-Anchor" href="#cdn加速"></a> CDN加速</h2>
+<p>CDN(Content Distribute Network，内容分发网络)的本质仍是一个缓存，将数据缓存在离用户最近的地方。</p>
 <p>CDN能偶缓存的一般是静态资源，如图片，文件，视频等。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_4.png" alt="System_design_c4_4"></p>
-<h2 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h2><p>传统代理服务器位于浏览器一侧，代理浏览器将HTTP请求发送到互联网上，而反向代理服务器位于网站机房一侧，代理网站Web服务器接收HTTP请求。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_5.png" alt="System_design_c4_5"></p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_4.png" alt="System_design_c4_4"></p>
+<h2 id="反向代理"><a class="markdownIt-Anchor" href="#反向代理"></a> 反向代理</h2>
+<p>传统代理服务器位于浏览器一侧，代理浏览器将HTTP请求发送到互联网上，而反向代理服务器位于网站机房一侧，代理网站Web服务器接收HTTP请求。</p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_5.png" alt="System_design_c4_5"></p>
 <p>和传统代理服务器可以保护浏览器安全一样，反向代理服务器也具有保护网站安全的作用，来自互联网的访问必须经过反向代理服务器。</p>
 <p>除了安全功能，代理服务器也可以通过配置缓存功能加速Web请求。</p>
 <p>此外，反向代理还可以实现负载均衡的功能，通过构建负载均衡的应用集群可以提高系统的总体处理能力，进而改善网站高并发下的性能。</p>
-<h1 id="应用服务器性能优化"><a href="#应用服务器性能优化" class="headerlink" title="应用服务器性能优化"></a>应用服务器性能优化</h1><p>应用服务器就是处理网站业务的服务器，网站的业务代码都部署在这里，是网站开发最复杂、变化最多的地方，主要优化手段有缓存、集群、异步等。</p>
-<h2 id="分布式缓存"><a href="#分布式缓存" class="headerlink" title="分布式缓存"></a>分布式缓存</h2><p>任何时候，优先考虑使用缓存优化性能。</p>
-<h3 id="缓存基本原理"><a href="#缓存基本原理" class="headerlink" title="缓存基本原理"></a>缓存基本原理</h3><p>缓存指将数据存储在相对较高访问速度的存储介质中，一方面可以减少访问时间，同时也可能减少计算时间。缓存的本质是一个内存Hash表，网站应用中，数据缓存以一对Key、Value的形式存储在内存Hash表中。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_7.png" alt="System_design_c4_7"></p>
+<h1 id="应用服务器性能优化"><a class="markdownIt-Anchor" href="#应用服务器性能优化"></a> 应用服务器性能优化</h1>
+<p>应用服务器就是处理网站业务的服务器，网站的业务代码都部署在这里，是网站开发最复杂、变化最多的地方，主要优化手段有缓存、集群、异步等。</p>
+<h2 id="分布式缓存"><a class="markdownIt-Anchor" href="#分布式缓存"></a> 分布式缓存</h2>
+<p>任何时候，优先考虑使用缓存优化性能。</p>
+<h3 id="缓存基本原理"><a class="markdownIt-Anchor" href="#缓存基本原理"></a> 缓存基本原理</h3>
+<p>缓存指将数据存储在相对较高访问速度的存储介质中，一方面可以减少访问时间，同时也可能减少计算时间。缓存的本质是一个内存Hash表，网站应用中，数据缓存以一对Key、Value的形式存储在内存Hash表中。</p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_7.png" alt="System_design_c4_7"></p>
 <p>缓存主要用来存放读写比例很高、变化很少的数据，即80%的访问在20%的数据上。通过缓存可以提高数据读取速度，降低存储访问压力。</p>
-<h3 id="合理使用缓存"><a href="#合理使用缓存" class="headerlink" title="合理使用缓存"></a>合理使用缓存</h3><p>几个要注意的问题：<br><strong>频发修改的数据</strong><br><strong>没有热点的访问</strong><br><strong>数据不一致与脏读</strong><br><strong>缓存可用性</strong>：数据库可能在缓存服务崩溃时由于承受突然增加的压力而宕机，进而导致整个网站不可用，称为缓存雪崩。分布式缓存可以在一定程度上改善缓存的可用性。<br><strong>缓存预热</strong>：在启动缓存后，可能需要较长时间重建缓存数据，可以在缓存系统启动时就准备好热点数据然后直接加载。例如，一些元数据可以全部加载。<br><strong>缓存穿透</strong>：如果因为不恰当的业务、或者恶意攻击持续高并发地请求某个不存在的数据，由于缓存没有保存该数据，所有的请求的都会落到数据库上，会对数据库造成很大的压力。一个简单的对策是将这些不存在的数据也缓存起来，value值设置为null。</p>
-<h3 id="分布式缓存架构"><a href="#分布式缓存架构" class="headerlink" title="分布式缓存架构"></a>分布式缓存架构</h3><p>分布式缓存指缓存部署在多个服务器组成的集群中，以集群方式提供缓存服务，其架构方式有两种，一种是以JBoss Cache为代表的需要更新同步的分布式缓存，一种是以Memcached为代表的不互相通信的分布式缓存。</p>
+<h3 id="合理使用缓存"><a class="markdownIt-Anchor" href="#合理使用缓存"></a> 合理使用缓存</h3>
+<p>几个要注意的问题：<br>
+<strong>频发修改的数据</strong><br>
+<strong>没有热点的访问</strong><br>
+<strong>数据不一致与脏读</strong><br>
+<strong>缓存可用性</strong>：数据库可能在缓存服务崩溃时由于承受突然增加的压力而宕机，进而导致整个网站不可用，称为缓存雪崩。分布式缓存可以在一定程度上改善缓存的可用性。<br>
+<strong>缓存预热</strong>：在启动缓存后，可能需要较长时间重建缓存数据，可以在缓存系统启动时就准备好热点数据然后直接加载。例如，一些元数据可以全部加载。<br>
+<strong>缓存穿透</strong>：如果因为不恰当的业务、或者恶意攻击持续高并发地请求某个不存在的数据，由于缓存没有保存该数据，所有的请求的都会落到数据库上，会对数据库造成很大的压力。一个简单的对策是将这些不存在的数据也缓存起来，value值设置为null。</p>
+<h3 id="分布式缓存架构"><a class="markdownIt-Anchor" href="#分布式缓存架构"></a> 分布式缓存架构</h3>
+<p>分布式缓存指缓存部署在多个服务器组成的集群中，以集群方式提供缓存服务，其架构方式有两种，一种是以JBoss Cache为代表的需要更新同步的分布式缓存，一种是以Memcached为代表的不互相通信的分布式缓存。</p>
 <p>JBoss Cache的分布式缓存在集群中所有的服务器中保存相同的缓存数据，当某台服务器有缓存数据更新时，会通知集群中其他机器更新。当集群规模较大时，同步代价非常大，且由于多台服务器存有多份相同的数据，内存利用率不高。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_8.png" alt="System_design_c4_8"></p>
-<h3 id="Memcached"><a href="#Memcached" class="headerlink" title="Memcached"></a>Memcached</h3><p>Memcached采用一种集中式的缓存集群管理，也就是互不通信的分布式架构模式，缓存与应用分离部署，部署在一组专门的服务器上，应用程序通过一致性Hash等路由算法选择缓存服务器远程访问缓存数据，缓存服务器之间不通信，可以很容易的实现扩容，具有良好的可伸缩性。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_9.png" alt="System_design_c4_9"></p>
-<p><strong>简单的通信协议</strong><br><strong>高性能的网络通信</strong><br><strong>高效的内存管理</strong><br>Memcached使用了固定空间分配。将内存空间分为一组Slab，每个slab里又包含一组chunk，同一个slab里的每个chunck的大小是固定的，拥有相同大小chunk的slab被组织在一起，称为slab_class。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_10.png" alt="System_design_c4_10"></p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_8.png" alt="System_design_c4_8"></p>
+<h3 id="memcached"><a class="markdownIt-Anchor" href="#memcached"></a> Memcached</h3>
+<p>Memcached采用一种集中式的缓存集群管理，也就是互不通信的分布式架构模式，缓存与应用分离部署，部署在一组专门的服务器上，应用程序通过一致性Hash等路由算法选择缓存服务器远程访问缓存数据，缓存服务器之间不通信，可以很容易的实现扩容，具有良好的可伸缩性。</p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_9.png" alt="System_design_c4_9"></p>
+<p><strong>简单的通信协议</strong><br>
+<strong>高性能的网络通信</strong><br>
+<strong>高效的内存管理</strong><br>
+Memcached使用了固定空间分配。将内存空间分为一组Slab，每个slab里又包含一组chunk，同一个slab里的每个chunck的大小是固定的，拥有相同大小chunk的slab被组织在一起，称为slab_class。</p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_10.png" alt="System_design_c4_10"></p>
 <p><strong>互不通信的服务器集群架构</strong>：正是这个架构使得集群可以做到几乎无限制的线性伸缩。</p>
-<h2 id="异步操作"><a href="#异步操作" class="headerlink" title="异步操作"></a>异步操作</h2><p>使用消息队列将调用异步化，可以改善网站的扩展性。同时还可以改善网站系统的性能。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_11.png" alt="System_design_c4_11"></p>
+<h2 id="异步操作"><a class="markdownIt-Anchor" href="#异步操作"></a> 异步操作</h2>
+<p>使用消息队列将调用异步化，可以改善网站的扩展性。同时还可以改善网站系统的性能。</p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_11.png" alt="System_design_c4_11"></p>
 <p>在不使用消息队列的情况下，用户的请求数据直接写入数据库，在高并发的情况下，会对数据库造成巨大的压力，同时也使得相应延迟加剧。使用消息队列后，用户请求在被发送给消息队列后立即返回，响应延迟可以得到有效改善，再由消息队列的合适数量的消费者进程进行处理，进行数据库读写，不必创建超过负载的处理进程。</p>
 <p>消息队列具有很好的削峰作用–即通过异步处理，将段时间高并发产生的事务消息存储在消息队列中，从而削平高峰期的并发事务。在电子商务网站促销活动中，合理使用消息队列可以有效抵御冲击。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_12.png" alt="System_design_c4_12"></p>
-<h2 id="使用集群"><a href="#使用集群" class="headerlink" title="使用集群"></a>使用集群</h2><p>在网站高并发访问场景下，使用负载均衡计数为一个应用构建由多台服务器组成的服务器集群，将并发访问请求分发到多台服务器上处理，避免单一服务器因负载压力过大而响应缓慢，是用户请求具有更好的响应延迟特性。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_13.png" alt="System_design_c4_13"></p>
-<h2 id="代码优化"><a href="#代码优化" class="headerlink" title="代码优化"></a>代码优化</h2><ul>
-<li><strong>多线程</strong><br>假设服务器执行都是相同类型服务，估算公式：<br>启动线程数=[任务执行时间/(任务执行时间-IO等待时间)] * CPU内核数<br>需要注意线程安全问题。</li>
-<li><strong>资源复用</strong><br>减少开销大的系统资源创建和销毁，使用单例模式和对象池，线程池。</li>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_12.png" alt="System_design_c4_12"></p>
+<h2 id="使用集群"><a class="markdownIt-Anchor" href="#使用集群"></a> 使用集群</h2>
+<p>在网站高并发访问场景下，使用负载均衡计数为一个应用构建由多台服务器组成的服务器集群，将并发访问请求分发到多台服务器上处理，避免单一服务器因负载压力过大而响应缓慢，是用户请求具有更好的响应延迟特性。</p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_13.png" alt="System_design_c4_13"></p>
+<h2 id="代码优化"><a class="markdownIt-Anchor" href="#代码优化"></a> 代码优化</h2>
+<ul>
+<li><strong>多线程</strong><br>
+假设服务器执行都是相同类型服务，估算公式：<br>
+启动线程数=[任务执行时间/(任务执行时间-IO等待时间)] * CPU内核数<br>
+需要注意线程安全问题。</li>
+<li><strong>资源复用</strong><br>
+减少开销大的系统资源创建和销毁，使用单例模式和对象池，线程池。</li>
 <li><strong>数据结构和高效算法</strong></li>
-<li><strong>垃圾回收</strong><br>如在JVM情况下，合理设置Young Generation和Old Generation大小，尽量减少Full GC。根据应用设置合理的回收模式。</li>
+<li><strong>垃圾回收</strong><br>
+如在JVM情况下，合理设置Young Generation和Old Generation大小，尽量减少Full GC。根据应用设置合理的回收模式。</li>
 </ul>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c4_15.png" alt=""></p>
-<h1 id="存储性能优化"><a href="#存储性能优化" class="headerlink" title="存储性能优化"></a>存储性能优化</h1><h2 id="机械硬盘-vs-固体硬盘"><a href="#机械硬盘-vs-固体硬盘" class="headerlink" title="机械硬盘 vs 固体硬盘"></a>机械硬盘 vs 固体硬盘</h2><h2 id="B-树-vs-LSM树"><a href="#B-树-vs-LSM树" class="headerlink" title="B+树 vs LSM树"></a>B+树 vs LSM树</h2><h2 id="RAID-vs-HDFS"><a href="#RAID-vs-HDFS" class="headerlink" title="RAID vs HDFS"></a>RAID vs HDFS</h2>
-      
-    </div>
-
-    <div>
-      
-        
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c4_15.png" alt></p>
+<h1 id="存储性能优化"><a class="markdownIt-Anchor" href="#存储性能优化"></a> 存储性能优化</h1>
+<h2 id="机械硬盘-vs-固体硬盘"><a class="markdownIt-Anchor" href="#机械硬盘-vs-固体硬盘"></a> 机械硬盘 vs 固体硬盘</h2>
+<h2 id="b树-vs-lsm树"><a class="markdownIt-Anchor" href="#b树-vs-lsm树"></a> B+树 vs LSM树</h2>
+<h2 id="raid-vs-hdfs"><a class="markdownIt-Anchor" href="#raid-vs-hdfs"></a> RAID vs HDFS</h2>
 
       
     </div>
 
-    <div>
-      
-        
+    
 
+    
+    
+    
+
+    
+
+    
       
-    </div>
+    
+    
+
+    
 
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/system-design/" rel="tag">#system design</a>
+            <a href="/tags/system-design/" rel="tag"># system design</a>
           
         </div>
+      
+
+      
+      
       
 
       
@@ -446,10 +589,12 @@
             
           </div>
 
+          <span class="post-nav-divider"></span>
+
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/11/28/Leetcode_Odd Even Linked List/" rel="prev" title="Odd Even Linked List">
-                Odd Even Linked List <i class="fa fa-chevron-right"></i>
+              <a href="/2015/11/29/System Design_大型网站高可用架构c5/" rel="prev" title="System Design_大型网站高可用架构">
+                System Design_大型网站高可用架构 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -459,31 +604,28 @@
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
           </div>
           
 
-
-          
-  <div class="comments" id="comments">
-    
+  
+    <div class="comments" id="comments">
       <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
       </div>
-    
-  </div>
+    </div>
+
+  
+
 
 
         </div>
@@ -505,106 +647,211 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目錄
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            本站概覽
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
           </li>
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/plusaber.jpg"
-               alt="Plusaber" />
-          <p class="site-author-name" itemprop="name">Plusaber</p>
-          <p class="site-description motion-element" itemprop="description">Plusaber's Blog</p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">329</span>
-              <span class="site-state-item-name">文章</span>
-            </a>
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/plusaber.jpg" alt="Plusaber">
+            
+              <p class="site-author-name" itemprop="name">Plusaber</p>
+              <div class="site-description motion-element" itemprop="description">Plusaber's Blog</div>
           </div>
 
           
-            <div class="site-state-item site-state-categories">
-              <a href="/categories">
-                <span class="site-state-item-count">17</span>
-                <span class="site-state-item-name">分類</span>
-              </a>
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">82</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://jp.linkedin.com/in/zebangchen" title="https://jp.linkedin.com/in/zebangchen" rel="noopener" target="_blank">LinkedIn</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://indeed.com" title="https://indeed.com" rel="noopener" target="_blank">Indeed</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://baito.indeed.com" title="https://baito.indeed.com" rel="noopener" target="_blank">Baito</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.kaggle.com" title="https://www.kaggle.com" rel="noopener" target="_blank">Kaggle</a>
+                  </li>
+                
+              </ul>
             </div>
           
 
           
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">52</span>
-                <span class="site-state-item-name">標籤</span>
-              </a>
-            </div>
+            
+          
           
 
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
         </div>
-
-        
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              Links
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.kaggle.com" title="Kaggle" target="_blank">Kaggle</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.algolia.com" title="Algolia" target="_blank">Algolia</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://jp.linkedin.com/in/zebangchen" title="LinkedIn" target="_blank">LinkedIn</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://portal.qiniu.com" title="Qiniu" target="_blank">Qiniu</a>
-                </li>
-              
-            </ul>
-          </div>
-        
-
-      </section>
+      </div>
 
       
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
-              
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#网站性能测试"><span class="nav-number">1.</span> <span class="nav-text">网站性能测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#性能测试指标"><span class="nav-number">1.1.</span> <span class="nav-text">性能测试指标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能测试方法"><span class="nav-number">1.2.</span> <span class="nav-text">性能测试方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能测试报告"><span class="nav-number">1.3.</span> <span class="nav-text">性能测试报告</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能优化策略"><span class="nav-number">1.4.</span> <span class="nav-text">性能优化策略</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Web前端性能优化"><span class="nav-number">2.</span> <span class="nav-text">Web前端性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器访问优化"><span class="nav-number">2.1.</span> <span class="nav-text">浏览器访问优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CDN加速"><span class="nav-number">2.2.</span> <span class="nav-text">CDN加速</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反向代理"><span class="nav-number">2.3.</span> <span class="nav-text">反向代理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#应用服务器性能优化"><span class="nav-number">3.</span> <span class="nav-text">应用服务器性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式缓存"><span class="nav-number">3.1.</span> <span class="nav-text">分布式缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存基本原理"><span class="nav-number">3.1.1.</span> <span class="nav-text">缓存基本原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#合理使用缓存"><span class="nav-number">3.1.2.</span> <span class="nav-text">合理使用缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式缓存架构"><span class="nav-number">3.1.3.</span> <span class="nav-text">分布式缓存架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Memcached"><span class="nav-number">3.1.4.</span> <span class="nav-text">Memcached</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步操作"><span class="nav-number">3.2.</span> <span class="nav-text">异步操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用集群"><span class="nav-number">3.3.</span> <span class="nav-text">使用集群</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码优化"><span class="nav-number">3.4.</span> <span class="nav-text">代码优化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#存储性能优化"><span class="nav-number">4.</span> <span class="nav-text">存储性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#机械硬盘-vs-固体硬盘"><span class="nav-number">4.1.</span> <span class="nav-text">机械硬盘 vs 固体硬盘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-树-vs-LSM树"><span class="nav-number">4.2.</span> <span class="nav-text">B+树 vs LSM树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RAID-vs-HDFS"><span class="nav-number">4.3.</span> <span class="nav-text">RAID vs HDFS</span></a></li></ol></li></ol></div>
             
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#网站性能测试"><span class="nav-number">1.</span> <span class="nav-text"> 网站性能测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#性能测试指标"><span class="nav-number">1.1.</span> <span class="nav-text"> 性能测试指标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能测试方法"><span class="nav-number">1.2.</span> <span class="nav-text"> 性能测试方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能测试报告"><span class="nav-number">1.3.</span> <span class="nav-text"> 性能测试报告</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能优化策略"><span class="nav-number">1.4.</span> <span class="nav-text"> 性能优化策略</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web前端性能优化"><span class="nav-number">2.</span> <span class="nav-text"> Web前端性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器访问优化"><span class="nav-number">2.1.</span> <span class="nav-text"> 浏览器访问优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cdn加速"><span class="nav-number">2.2.</span> <span class="nav-text"> CDN加速</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反向代理"><span class="nav-number">2.3.</span> <span class="nav-text"> 反向代理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#应用服务器性能优化"><span class="nav-number">3.</span> <span class="nav-text"> 应用服务器性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式缓存"><span class="nav-number">3.1.</span> <span class="nav-text"> 分布式缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存基本原理"><span class="nav-number">3.1.1.</span> <span class="nav-text"> 缓存基本原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#合理使用缓存"><span class="nav-number">3.1.2.</span> <span class="nav-text"> 合理使用缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式缓存架构"><span class="nav-number">3.1.3.</span> <span class="nav-text"> 分布式缓存架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#memcached"><span class="nav-number">3.1.4.</span> <span class="nav-text"> Memcached</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步操作"><span class="nav-number">3.2.</span> <span class="nav-text"> 异步操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用集群"><span class="nav-number">3.3.</span> <span class="nav-text"> 使用集群</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码优化"><span class="nav-number">3.4.</span> <span class="nav-text"> 代码优化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#存储性能优化"><span class="nav-number">4.</span> <span class="nav-text"> 存储性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#机械硬盘-vs-固体硬盘"><span class="nav-number">4.1.</span> <span class="nav-text"> 机械硬盘 vs 固体硬盘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#b树-vs-lsm树"><span class="nav-number">4.2.</span> <span class="nav-text"> B+树 vs LSM树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#raid-vs-hdfs"><span class="nav-number">4.3.</span> <span class="nav-text"> RAID vs HDFS</span></a></li></ol></li></ol></div>
+            
+
           </div>
-        </section>
+        </div>
+      <!--/noindex-->
+      
+
       
 
     </div>
   </aside>
+  
 
 
         
@@ -613,41 +860,61 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2014 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Plusaber</span>
+
+  
+
+  
 </div>
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
-</div>
 
-<div class="theme-info">
-  主題 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.1</div>
+
+
+
 
         
+
+
+
+
+
+
+
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -661,112 +928,164 @@
 
 
 
-  
 
 
 
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
-  
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+
+
+
 
 
 
   
-  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
 
 
 
   
 
 
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
 
   
 
-    <script type="text/javascript">
-      var disqus_shortname = 'plusaber';
-      var disqus_identifier = '2015/11/21/System Design_大型网站高性能架构c4/';
-      var disqus_title = "System Design_大型网站高性能架构";
-      var disqus_url = 'http://yoursite.com/2015/11/21/System Design_大型网站高性能架构c4/';
+  
 
-      function run_disqus_script(disqus_script){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      }
+  
 
-      run_disqus_script('count.js');
+  
+  
+  <script id="dsq-count-scr" src="https://plusaber.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://yoursite.com/2015/11/21/System Design_大型网站高性能架构c4/";
+    this.page.identifier = "2015/11/21/System Design_大型网站高性能架构c4/";
+    this.page.title = 'System Design_大型网站高性能架构';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://plusaber.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
       
-        var disqus_config = function () {
-            this.page.url = disqus_url;
-            this.page.identifier = disqus_identifier;
-            this.page.title = disqus_title;
-        };
-        run_disqus_script('embed.js');
-      
-    </script>
-  
-
-
-
-
-  
-  
-
-  
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-  </script>
-
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-      for (i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-      }
-    });
-  </script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('Copy');
+      }, 300);
+    }).append(e);
+  })
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -780,7 +1099,7 @@
   });
 </script>
 
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
@@ -789,9 +1108,6 @@
   
 
   
-
-  
-
 
 </body>
 </html>

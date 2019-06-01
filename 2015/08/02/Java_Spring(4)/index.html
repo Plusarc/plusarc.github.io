@@ -1,24 +1,6 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
-
-  
-
-
-<html class="theme-next mist use-motion">
-<head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-  <meta name="google-site-verification" content="google88d81a02a91db82f" />
 
 
 
@@ -30,47 +12,14 @@
 
 
   
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="java,spring," />
+<html class="theme-next mist use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
 
 
 
@@ -79,79 +28,120 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+  <meta name="google-site-verification" content="google88d81a02a91db82f">
 
 
 
 
 
 
-<meta name="description" content="面向切面编程(AOP)依赖注入让相互协作的软件组件保持松散耦合，而AOP编程允许把遍布应用的功能分离出来形成可重用的组件。
-面向切面编程往往被定义为促使应用程序分离关注点的一项技术。系统通常由许多不同组件组成，每一个组件各负责一块特定功能。一些组件除了实现自身核心的功能之外，还经常承担额外的职责。诸如日志、事务管理和安全之类的系统服务经常融入到有自身核心业务逻辑的组件中去，这些系统业务通常称为横切">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Spring(4)_面向切面编程(AOP)">
-<meta property="og:url" content="http://yoursite.com/2015/08/02/Java_Spring(4)/index.html">
-<meta property="og:site_name" content="Plusaber's Blog">
-<meta property="og:description" content="面向切面编程(AOP)依赖注入让相互协作的软件组件保持松散耦合，而AOP编程允许把遍布应用的功能分离出来形成可重用的组件。
-面向切面编程往往被定义为促使应用程序分离关注点的一项技术。系统通常由许多不同组件组成，每一个组件各负责一块特定功能。一些组件除了实现自身核心的功能之外，还经常承担额外的职责。诸如日志、事务管理和安全之类的系统服务经常融入到有自身核心业务逻辑的组件中去，这些系统业务通常称为横切">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Spring_aop_example1.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Spring_aop_example2.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Spring_aop1.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Spring_aop9.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Spring_aop2.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Spring_aop3.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Spring_aop4.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Spring_aop5.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Spring_aop7.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Spring_aop5.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Spring_aop6.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Spring_aop8.png">
-<meta property="og:updated_time" content="2016-05-08T08:13:33.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spring(4)_面向切面编程(AOP)">
-<meta name="twitter:description" content="面向切面编程(AOP)依赖注入让相互协作的软件组件保持松散耦合，而AOP编程允许把遍布应用的功能分离出来形成可重用的组件。
-面向切面编程往往被定义为促使应用程序分离关注点的一项技术。系统通常由许多不同组件组成，每一个组件各负责一块特定功能。一些组件除了实现自身核心的功能之外，还经常承担额外的职责。诸如日志、事务管理和安全之类的系统服务经常融入到有自身核心业务逻辑的组件中去，这些系统业务通常称为横切">
-<meta name="twitter:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Spring_aop_example1.png">
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/favicon.ico?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"right","display":"post"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'LP2H1MWXO2',
+      apiKey: '69bf93a909694ef7f679098292b442ca',
+      indexName: 'Plusaber',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
 
-
-
-  <link rel="canonical" href="http://yoursite.com/2015/08/02/Java_Spring(4)/"/>
-
-
-  <title> Spring(4)_面向切面编程(AOP) | Plusaber's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</head>
-
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
-
   
 
 
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-79158075-1', 'auto');
-  ga('send', 'pageview');
+
+
+  <meta name="description" content="面向切面编程(AOP) 依赖注入让相互协作的软件组件保持松散耦合，而AOP编程允许把遍布应用的功能分离出来形成可重用的组件。 面向切面编程往往被定义为促使应用程序分离关注点的一项技术。系统通常由许多不同组件组成，每一个组件各负责一块特定功能。一些组件除了实现自身核心的功能之外，还经常承担额外的职责。诸如日志、事务管理和安全之类的系统服务经常融入到有自身核心业务逻辑的组件中去，这些系统业务通常称为">
+<meta name="keywords" content="java,spring">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring(4)_面向切面编程(AOP)">
+<meta property="og:url" content="http://yoursite.com/2015/08/02/Java_Spring(4)/index.html">
+<meta property="og:site_name" content="Plusaber&#39;s Blog">
+<meta property="og:description" content="面向切面编程(AOP) 依赖注入让相互协作的软件组件保持松散耦合，而AOP编程允许把遍布应用的功能分离出来形成可重用的组件。 面向切面编程往往被定义为促使应用程序分离关注点的一项技术。系统通常由许多不同组件组成，每一个组件各负责一块特定功能。一些组件除了实现自身核心的功能之外，还经常承担额外的职责。诸如日志、事务管理和安全之类的系统服务经常融入到有自身核心业务逻辑的组件中去，这些系统业务通常称为">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Spring_aop_example1.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Spring_aop_example2.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Spring_aop1.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Spring_aop9.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Spring_aop2.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Spring_aop3.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Spring_aop4.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Spring_aop5.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Spring_aop7.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Spring_aop5.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Spring_aop6.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Spring_aop8.png">
+<meta property="og:updated_time" content="2019-06-01T04:27:26.112Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring(4)_面向切面编程(AOP)">
+<meta name="twitter:description" content="面向切面编程(AOP) 依赖注入让相互协作的软件组件保持松散耦合，而AOP编程允许把遍布应用的功能分离出来形成可重用的组件。 面向切面编程往往被定义为促使应用程序分离关注点的一项技术。系统通常由许多不同组件组成，每一个组件各负责一块特定功能。一些组件除了实现自身核心的功能之外，还经常承担额外的职责。诸如日志、事务管理和安全之类的系统服务经常融入到有自身核心业务逻辑的组件中去，这些系统业务通常称为">
+<meta name="twitter:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Spring_aop_example1.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2015/08/02/Java_Spring(4)/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
 </script>
 
+  <title>Spring(4)_面向切面编程(AOP) | Plusaber's Blog</title>
+  
 
 
 
@@ -159,97 +149,177 @@
 
 
 
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-right page-post-detail ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Plusaber's Blog</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Plusaber's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
   </div>
-  <p class="site-subtitle"></p>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
+
 
 <nav class="site-nav">
-  
-
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首頁
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分類
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            歸檔
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            標籤
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
 
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
       
     </ul>
   
 
   
+    
+
+  
+
+  
 </nav>
 
- </div>
+
+
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -257,24 +327,37 @@
     
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/08/02/Java_Spring(4)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Plusaber">
+      <meta itemprop="description" content="Plusaber's Blog">
+      <meta itemprop="image" content="/images/plusaber.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Plusaber's Blog">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                Spring(4)_面向切面编程(AOP)
+          <h1 class="post-title" itemprop="name headline">Spring(4)_面向切面编程(AOP)
+
               
             
           </h1>
@@ -282,65 +365,91 @@
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-08-02T00:00:00+09:00" content="2015-08-02">
-              2015-08-02
-            </time>
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2015-08-02 00:00:00" itemprop="dateCreated datePublished" datetime="2015-08-02T00:00:00+09:00">2015-08-02</time>
+            
+
+            
           </span>
 
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分類於</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
 
                 
                 
-
               
             </span>
           
 
           
             
+            
+              
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
                 <a href="/2015/08/02/Java_Spring(4)/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/02/Java_Spring(4)/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/08/02/Java_Spring(4)/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
-          
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
       
 
       
-        <h1 id="面向切面编程-AOP"><a href="#面向切面编程-AOP" class="headerlink" title="面向切面编程(AOP)"></a>面向切面编程(AOP)</h1><p>依赖注入让相互协作的软件组件保持松散耦合，而AOP编程允许把遍布应用的功能分离出来形成可重用的组件。</p>
+        <h1 id="面向切面编程aop"><a class="markdownIt-Anchor" href="#面向切面编程aop"></a> 面向切面编程(AOP)</h1>
+<p>依赖注入让相互协作的软件组件保持松散耦合，而AOP编程允许把遍布应用的功能分离出来形成可重用的组件。</p>
 <p>面向切面编程往往被定义为促使应用程序分离关注点的一项技术。系统通常由许多不同组件组成，每一个组件各负责一块特定功能。一些组件除了实现自身核心的功能之外，还经常承担额外的职责。诸如日志、事务管理和安全之类的系统服务经常融入到有自身核心业务逻辑的组件中去，这些系统业务通常称为<strong>横切关注点</strong>，因为它们总是跨越系统的多个组件。</p>
 <p>如果将这些关注点，分散到多个组件中去，代码将出现双重复杂性：</p>
 <ul>
@@ -348,24 +457,26 @@
 <li>组件的代码可能会因为处理这些横切关注点的使用（也就是与自身核心业务无关的代码）变得混乱。一个像地址簿增加地址条目的方法应该只关注如何添加地址，而不是同时需要关注是不是安全或者是否需要支持事务。</li>
 </ul>
 <p>下面图片展示了这种复杂性。左边的业务对象与系统级服务集合的过于紧密。每个对象不但需要知道它需要日志，安全控制，事务处理，而且还要亲自执行这些服务。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Spring_aop_example1.png" alt="Spring_aop_example1"></p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Spring_aop_example1.png" alt="Spring_aop_example1"></p>
 <p>AOP使这些服务模块化，并以声明的方式讲它们应用到需要影响的组件中去。结果是功能组件具有更高内聚性以及更加关注自身业务，完全不需要了解系统服务的复杂性，从而保持POJO简单。</p>
 <p>如下面图片所示，AOP可以让我们使用各种功能层去包裹核心业务。这些功能层也声明的方式应用到系统中，核心业务甚至根本不知道这些服务的存在。使得我们可以将横切关注点和业务逻辑模块分离。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Spring_aop_example2.png" alt="Spring_aop_example2"></p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Spring_aop_example2.png" alt="Spring_aop_example2"></p>
 <p>假设knight在执行任务之前需要辅助者进行一些操作，最直接的方式是由knight自己直接调用。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.io.PrintStream;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Minstrel</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> PrintStream stream;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Minstrel</span><span class="params">(PrintStream stream)</span> </span>&#123;</div><div class="line">      <span class="keyword">this</span>.stream = stream;</div><div class="line">  &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">singBeforeQuest</span><span class="params">()</span> </span>&#123;</div><div class="line">      stream.println(<span class="string">"Fa la la, the knight is so brave!"</span>);</div><div class="line">  &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">singAfterQuest</span><span class="params">()</span> </span>&#123;</div><div class="line">      stream.println(<span class="string">"Tee hee hee, the brave knight "</span> +</div><div class="line">        <span class="string">"did embark on a quest!"</span>);</div><div class="line">  &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.springinaction.knights;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BraveKnight</span> <span class="keyword">implements</span> <span class="title">Knight</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> Quest quest;</div><div class="line">    <span class="keyword">private</span> Minstrel minstrel;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BraveKnight</span><span class="params">(Quest quest, Minstrel minstrel)</span> </span>&#123;</div><div class="line">      <span class="keyword">this</span>.quest = quest;</div><div class="line">      <span class="keyword">this</span>.minstrel = minstrel;</div><div class="line">&#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">embarkOnQuest</span><span class="params">()</span> <span class="keyword">throws</span> QuestException </span>&#123;</div><div class="line">      minstrel.singBeforeQuest();</div><div class="line">      quest.embark();</div><div class="line">      minstrel.singAfterQuest();</div><div class="line">  &#125; </div><div class="line">&#125;</div><div class="line"><span class="comment">//Should a knight manage his own minstrel?</span></div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.PrintStream;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Minstrel</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> PrintStream stream;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Minstrel</span><span class="params">(PrintStream stream)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.stream = stream;</span><br><span class="line">  &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">singBeforeQuest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      stream.println(<span class="string">"Fa la la, the knight is so brave!"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">singAfterQuest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      stream.println(<span class="string">"Tee hee hee, the brave knight "</span> +</span><br><span class="line">        <span class="string">"did embark on a quest!"</span>);</span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.springinaction.knights;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BraveKnight</span> <span class="keyword">implements</span> <span class="title">Knight</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Quest quest;</span><br><span class="line">    <span class="keyword">private</span> Minstrel minstrel;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BraveKnight</span><span class="params">(Quest quest, Minstrel minstrel)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.quest = quest;</span><br><span class="line">      <span class="keyword">this</span>.minstrel = minstrel;</span><br><span class="line">&#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">embarkOnQuest</span><span class="params">()</span> <span class="keyword">throws</span> QuestException </span>&#123;</span><br><span class="line">      minstrel.singBeforeQuest();</span><br><span class="line">      quest.embark();</span><br><span class="line">      minstrel.singAfterQuest();</span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Should a knight manage his own minstrel?</span></span><br></pre></td></tr></table></figure>
 <p>这样做可以达到预期效果，但是knight引入不少与自身业务无关的代码，如果需要更多的战斗前准备，代码将会变得很混乱和难以修改。我们希望kinght只需关注自己的业务，Minstrel能自己判断并在knight战斗前后执行相应操作。</p>
 <p>我们可以把Minstrel抽象为一个切面：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;&gt;</div><div class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></div><div class="line">  <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></div><div class="line">  <span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></div><div class="line">  <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/aop</span></div><div class="line">      http://www.springframework.org/schema/aop/spring-aop-3.2.xsd</div><div class="line">    http://www.springframework.org/schema/beans</div><div class="line">      http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;</div><div class="line">  <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"knight"</span> <span class="attr">class</span>=<span class="string">"com.springinaction.knights.BraveKnight"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">ref</span>=<span class="string">"quest"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"quest"</span> <span class="attr">class</span>=<span class="string">"com.springinaction.knights.SlayDragonQuest"</span>&gt;</span> <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">value</span>=<span class="string">"#&#123;T(System).out&#125;"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"minstrel"</span> <span class="attr">class</span>=<span class="string">"com.springinaction.knights.Minstrel"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">value</span>=<span class="string">"#&#123;T(System).out&#125;"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span> </div><div class="line">  <span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">"minstrel"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"embark"</span></span></div><div class="line">        <span class="attr">expression</span>=<span class="string">"execution(* *.embarkOnQuest(..))"</span>/&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">pointcut-ref</span>=<span class="string">"embark"</span></span></div><div class="line">          <span class="attr">method</span>=<span class="string">"singBeforeQuest"</span>/&gt;</div><div class="line">      <span class="tag">&lt;<span class="name">aop:after</span> <span class="attr">pointcut-ref</span>=<span class="string">"embark"</span></span></div><div class="line">          <span class="attr">method</span>=<span class="string">"singAfterQuest"</span>/&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/aop</span></span></span><br><span class="line"><span class="tag"><span class="string">      http://www.springframework.org/schema/aop/spring-aop-3.2.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">    http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">      http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"knight"</span> <span class="attr">class</span>=<span class="string">"com.springinaction.knights.BraveKnight"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">ref</span>=<span class="string">"quest"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"quest"</span> <span class="attr">class</span>=<span class="string">"com.springinaction.knights.SlayDragonQuest"</span>&gt;</span> <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">value</span>=<span class="string">"#&#123;T(System).out&#125;"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"minstrel"</span> <span class="attr">class</span>=<span class="string">"com.springinaction.knights.Minstrel"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">value</span>=<span class="string">"#&#123;T(System).out&#125;"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span> </span><br><span class="line">  <span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">"minstrel"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"embark"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">expression</span>=<span class="string">"execution(* *.embarkOnQuest(..))"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">pointcut-ref</span>=<span class="string">"embark"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">method</span>=<span class="string">"singBeforeQuest"</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">aop:after</span> <span class="attr">pointcut-ref</span>=<span class="string">"embark"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">method</span>=<span class="string">"singAfterQuest"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这里使用Spring的AOP配置的命名空间把Minstrel Bean声明为一个切面。首先把其声明一个bean，然后在<code>&lt;aop:aspect&gt;</code>元素中引用该Bean。更加具体的语法说明会在后面介绍。</p>
 <p><strong>简而言之，横切关注点可以被描述为影响应用多处的功能，而切面可以帮助我们模块化横切关注点。</strong></p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Spring_aop1.png" alt=""></p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Spring_aop1.png" alt></p>
 <p>上面图片展示了一个被划分为模块的典型应用。每个模块的核心功能都是为特定业务领域提供服务，但是这些模块都需要类是的辅助功能，例如安全和事务管理。</p>
 <p>继承和委托是最常见的实现重用通用功能的面向对象技术。但继承往往会导致一个脆弱的对象体系；而使用委托可能需要对委托对象进行复杂的调用。</p>
 <p>切面提供了取代继承和委托的另一种选择，而且在很多场景下更清晰简洁。在使用面向切面编程时，我们仍然在一个地方定义通用功能，但是我们可以通过声明的方式定义这个功能以何种方式在何处应用，而无需修改受影响的类。横切关注点可以被模块化为特殊的类，这些类被称为切面。这样做有两个好处：首先，每个关注点现在都只集中于一处，而不是分散到多处代码；其次，服务被服务模块更加简洁，因为它们只包含主要关注点（自身核心功能）的代码，而横切关注点的代码被转移到切面中了。</p>
-<h1 id="AOP-术语"><a href="#AOP-术语" class="headerlink" title="AOP 术语"></a>AOP 术语</h1><p>在我们开始使用 AOP 工作之前，让我们熟悉一下 AOP 概念和术语。这些术语并不特定于 Spring，而是与 AOP 有关的。</p>
-<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><table>
+<h1 id="aop-术语"><a class="markdownIt-Anchor" href="#aop-术语"></a> AOP 术语</h1>
+<p>在我们开始使用 AOP 工作之前，让我们熟悉一下 AOP 概念和术语。这些术语并不特定于 Spring，而是与 AOP 有关的。</p>
+<h2 id="概念"><a class="markdownIt-Anchor" href="#概念"></a> 概念</h2>
+<table>
 <thead>
 <tr>
 <th>项</th>
@@ -387,7 +498,7 @@
 </tr>
 <tr>
 <td>Pointcut</td>
-<td>是join point的子集，包含一个或多个连接点，我们会将通知插入这些点执行。如果说Advice定义了切面(Aspect)的”什么”和”何时”，那么切点定义了切面的”何处”，切点定义会匹配通知所要织入的一个或多个连接点。我们通常使用明确的类和方法名称来指定这些切点，或是利用正则表达式定义匹配的类和方法名称模式来指定这些切点。有些AOP框架允许我们创建动态的切点，可以根据运行时的决策（比如方法的参数值）来决定是否应用通知。</td>
+<td>是join point的子集，包含一个或多个连接点，我们会将通知插入这些点执行。如果说Advice定义了切面(Aspect)的&quot;什么&quot;和&quot;何时&quot;，那么切点定义了切面的&quot;何处&quot;，切点定义会匹配通知所要织入的一个或多个连接点。我们通常使用明确的类和方法名称来指定这些切点，或是利用正则表达式定义匹配的类和方法名称模式来指定这些切点。有些AOP框架允许我们创建动态的切点，可以根据运行时的决策（比如方法的参数值）来决定是否应用通知。</td>
 </tr>
 <tr>
 <td>Introduction</td>
@@ -403,8 +514,9 @@
 </tr>
 </tbody>
 </table>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Spring_aop9.png" alt=""></p>
-<h2 id="通知的类型"><a href="#通知的类型" class="headerlink" title="通知的类型"></a>通知的类型</h2><p>Spring Aspect应用5中类型的通知：</p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Spring_aop9.png" alt></p>
+<h2 id="通知的类型"><a class="markdownIt-Anchor" href="#通知的类型"></a> 通知的类型</h2>
+<p>Spring Aspect应用5中类型的通知：</p>
 <table>
 <thead>
 <tr>
@@ -435,7 +547,8 @@
 </tr>
 </tbody>
 </table>
-<h2 id="Spring对AOP的支持"><a href="#Spring对AOP的支持" class="headerlink" title="Spring对AOP的支持"></a>Spring对AOP的支持</h2><p>并不是所有的AOP框架都是一样的，它们在连接点模型上可能有强弱之分。有的允许对字段修饰符级别应用通知，而另一些只支持与方法调用相关的连接点。它们织入切面的方式和时机也有所不同。但是无论如何，创建切点来定义切面织入的连接点是AOP框架的基本功能。</p>
+<h2 id="spring对aop的支持"><a class="markdownIt-Anchor" href="#spring对aop的支持"></a> Spring对AOP的支持</h2>
+<p>并不是所有的AOP框架都是一样的，它们在连接点模型上可能有强弱之分。有的允许对字段修饰符级别应用通知，而另一些只支持与方法调用相关的连接点。它们织入切面的方式和时机也有所不同。但是无论如何，创建切点来定义切面织入的连接点是AOP框架的基本功能。</p>
 <p>AOP框架主要有：</p>
 <ul>
 <li>AspectJ</li>
@@ -450,13 +563,17 @@
 <li>注入式AspectJ切面</li>
 </ul>
 <p>前3种都是Spring基于代理的AOP变体，因此Spring对AOP的支持局限于<strong>方法拦截</strong>。如果AOP需求超过了简单方法拦截的范畴（比如构造器或属性拦截），那么应该考虑在AspectJ里实现切面，利用Spring的DI把Spring Bean注入到AspectJ切面里。</p>
-<h3 id="Spring在运行期通知对象"><a href="#Spring在运行期通知对象" class="headerlink" title="Spring在运行期通知对象"></a>Spring在运行期通知对象</h3><p>通过在代理类中包括切面，Spring在运行期将切面织入到Spring管理的Bean中。如图所示，代理类封装了目标类，并拦截被通知的方法的调用，再将调用转发给真正的目标Bean。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Spring_aop2.png" alt=""></p>
-<p>当拦截到方法调用时，在调用目标Bean方法之前，代理会执行切面逻辑。<br>直到应用需要被代理的Bean时，Spring才创建代理对象。如果使用的是ApplicationContext，在ApplicationContext从BeanFactory中加载所有bean时，Spring创建被代理的对象。因为Spring运行时才创建代理对象，所以我们不需要特殊的编译期来织入Spring AOP的切面。</p>
-<h3 id="Spring只支持方法连接点"><a href="#Spring只支持方法连接点" class="headerlink" title="Spring只支持方法连接点"></a>Spring只支持方法连接点</h3><p>正如前面所提到过的，各种AOP实现支持多种不同的连接点模型。因为Spring基于动态代理，所以Spring只支持方法连接点。这与其他一些AOP框架是不同的，例如AspectJ和Jboss，除了方法切点，它们还提供了字段和构造器接入点。Spring缺少对字段连接点的支持，无法让我们创建细粒度的通知，例如拦截对象字段的修改。而且Spring也不支持构造器连接点，我们无法在Bean创建时应用通知。</p>
+<h3 id="spring在运行期通知对象"><a class="markdownIt-Anchor" href="#spring在运行期通知对象"></a> Spring在运行期通知对象</h3>
+<p>通过在代理类中包括切面，Spring在运行期将切面织入到Spring管理的Bean中。如图所示，代理类封装了目标类，并拦截被通知的方法的调用，再将调用转发给真正的目标Bean。</p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Spring_aop2.png" alt></p>
+<p>当拦截到方法调用时，在调用目标Bean方法之前，代理会执行切面逻辑。<br>
+直到应用需要被代理的Bean时，Spring才创建代理对象。如果使用的是ApplicationContext，在ApplicationContext从BeanFactory中加载所有bean时，Spring创建被代理的对象。因为Spring运行时才创建代理对象，所以我们不需要特殊的编译期来织入Spring AOP的切面。</p>
+<h3 id="spring只支持方法连接点"><a class="markdownIt-Anchor" href="#spring只支持方法连接点"></a> Spring只支持方法连接点</h3>
+<p>正如前面所提到过的，各种AOP实现支持多种不同的连接点模型。因为Spring基于动态代理，所以Spring只支持方法连接点。这与其他一些AOP框架是不同的，例如AspectJ和Jboss，除了方法切点，它们还提供了字段和构造器接入点。Spring缺少对字段连接点的支持，无法让我们创建细粒度的通知，例如拦截对象字段的修改。而且Spring也不支持构造器连接点，我们无法在Bean创建时应用通知。</p>
 <p>但是方法可以满足绝大部分的需求，如果需要方法连接之外的连接点拦截，我们可以利用Aspect来协助Spring AOP。</p>
-<h1 id="Spring中基于XML的AOP"><a href="#Spring中基于XML的AOP" class="headerlink" title="Spring中基于XML的AOP"></a>Spring中基于XML的AOP</h1><p>为了在本节的描述中使用 aop 命名空间标签，你需要导入 spring-aop j架构，如下所述：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></div><div class="line">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> </div><div class="line">    <span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></div><div class="line">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></div><div class="line">    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd </div><div class="line">    http://www.springframework.org/schema/aop </div><div class="line">    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "&gt;</div><div class="line"></div><div class="line">   <span class="comment">&lt;!-- bean definition &amp; AOP specific configuration --&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></div></pre></td></tr></table></figure>
+<h1 id="spring中基于xml的aop"><a class="markdownIt-Anchor" href="#spring中基于xml的aop"></a> Spring中基于XML的AOP</h1>
+<p>为了在本节的描述中使用 aop 命名空间标签，你需要导入 spring-aop j架构，如下所述：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd </span></span></span><br><span class="line"><span class="tag"><span class="string">    http://www.springframework.org/schema/aop </span></span></span><br><span class="line"><span class="tag"><span class="string">    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- bean definition &amp; AOP specific configuration --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <table>
 <thead>
 <tr>
@@ -511,19 +628,21 @@
 </tr>
 </tbody>
 </table>
-<h2 id="声明一个-aspect"><a href="#声明一个-aspect" class="headerlink" title="声明一个 aspect"></a>声明一个 aspect</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">id</span>=<span class="string">"myAspect"</span> <span class="attr">ref</span>=<span class="string">"aBean"</span>&gt;</span></div><div class="line">   ...</div><div class="line">   <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"aBean"</span> <span class="attr">class</span>=<span class="string">"..."</span>&gt;</span></div><div class="line">...</div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="声明一个-aspect"><a class="markdownIt-Anchor" href="#声明一个-aspect"></a> 声明一个 aspect</h2>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">id</span>=<span class="string">"myAspect"</span> <span class="attr">ref</span>=<span class="string">"aBean"</span>&gt;</span></span><br><span class="line">   ...</span><br><span class="line">   <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"aBean"</span> <span class="attr">class</span>=<span class="string">"..."</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这样，“aBean”将被配置和依赖注入，并在aspect被使用。</p>
-<h2 id="声明一个切入点"><a href="#声明一个切入点" class="headerlink" title="声明一个切入点"></a>声明一个切入点</h2><p>一个切入点有助于确定使用不同通知执行的感兴趣的连接点（即方法）。在处理基于配置的 XML 架构时，切入点将会按照如下所示定义：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">id</span>=<span class="string">"myAspect"</span> <span class="attr">ref</span>=<span class="string">"aBean"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"businessService"</span></span></div><div class="line">      <span class="attr">expression</span>=<span class="string">"execution(* com.xyz.myapp.service.*.*(..))"</span>/&gt;</div><div class="line">   ...</div><div class="line">   <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"aBean"</span> <span class="attr">class</span>=<span class="string">"..."</span>&gt;</span></div><div class="line">...</div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="声明一个切入点"><a class="markdownIt-Anchor" href="#声明一个切入点"></a> 声明一个切入点</h2>
+<p>一个切入点有助于确定使用不同通知执行的感兴趣的连接点（即方法）。在处理基于配置的 XML 架构时，切入点将会按照如下所示定义：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">id</span>=<span class="string">"myAspect"</span> <span class="attr">ref</span>=<span class="string">"aBean"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"businessService"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">expression</span>=<span class="string">"execution(* com.xyz.myapp.service.*.*(..))"</span>/&gt;</span></span><br><span class="line">   ...</span><br><span class="line">   <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"aBean"</span> <span class="attr">class</span>=<span class="string">"..."</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>下面的示例定义了一个名为 “businessService” 的切入点，该切入点将与 com.tutorialspoint 包下的 Student 类中的 getName() 方法相匹配：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">id</span>=<span class="string">"myAspect"</span> <span class="attr">ref</span>=<span class="string">"aBean"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"businessService"</span></span></div><div class="line">      <span class="attr">expression</span>=<span class="string">"execution(* com.tutorialspoint.Student.getName(..))"</span>/&gt;</div><div class="line">   ...</div><div class="line">   <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"aBean"</span> <span class="attr">class</span>=<span class="string">"..."</span>&gt;</span></div><div class="line">...</div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Spring_aop3.png" alt=""></p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Spring_aop4.png" alt=""></p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Spring_aop5.png" alt=""></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">id</span>=<span class="string">"myAspect"</span> <span class="attr">ref</span>=<span class="string">"aBean"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"businessService"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">expression</span>=<span class="string">"execution(* com.tutorialspoint.Student.getName(..))"</span>/&gt;</span></span><br><span class="line">   ...</span><br><span class="line">   <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"aBean"</span> <span class="attr">class</span>=<span class="string">"..."</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Spring_aop3.png" alt></p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Spring_aop4.png" alt></p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Spring_aop5.png" alt></p>
 <p>另外，Spring 2.5还引入了一个新的bean()指示器，该指示器允许我们在切点表达式中使用Bean的ID来表示Bean，用来限制切点只匹配特定的Bean。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">execution(* com.tutorialspoint.Student.getName(..)) and bean(student1)</div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">execution(* com.tutorialspoint.Student.getName(..)) and bean(student1)</span><br></pre></td></tr></table></figure>
 <p>或者</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">execution(* com.tutorialspoint.Student.getName(..)) and !bean(student1)</div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">execution(* com.tutorialspoint.Student.getName(..)) and !bean(student1)</span><br></pre></td></tr></table></figure>
 <p>更多的指示器，Spring uses AspectJ’s pointcut expression language to define Spring aspects.</p>
 <table>
 <thead>
@@ -571,91 +690,112 @@
 </tr>
 </tbody>
 </table>
-<h2 id="声明通知"><a href="#声明通知" class="headerlink" title="声明通知"></a>声明通知</h2><p>你可以使用 <aop:{advice name}=""> 元素在一个中声明五个通知中的任何一个，如下所示：</aop:{advice></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">id</span>=<span class="string">"myAspect"</span> <span class="attr">ref</span>=<span class="string">"aBean"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"businessService"</span></span></div><div class="line">         <span class="attr">expression</span>=<span class="string">"execution(* com.xyz.myapp.service.*.*(..))"</span>/&gt;</div><div class="line">      <span class="comment">&lt;!-- a before advice definition --&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">pointcut-ref</span>=<span class="string">"businessService"</span> </span></div><div class="line">         <span class="attr">method</span>=<span class="string">"doRequiredTask"</span>/&gt;</div><div class="line">      <span class="comment">&lt;!-- an after advice definition --&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">aop:after</span> <span class="attr">pointcut-ref</span>=<span class="string">"businessService"</span> </span></div><div class="line">         <span class="attr">method</span>=<span class="string">"doRequiredTask"</span>/&gt;</div><div class="line">      <span class="comment">&lt;!-- an after-returning advice definition --&gt;</span></div><div class="line">      <span class="comment">&lt;!--The doRequiredTask method must have parameter named retVal --&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">aop:after-returning</span> <span class="attr">pointcut-ref</span>=<span class="string">"businessService"</span></span></div><div class="line">         <span class="attr">returning</span>=<span class="string">"retVal"</span></div><div class="line">         <span class="attr">method</span>=<span class="string">"doRequiredTask"</span>/&gt;</div><div class="line">      <span class="comment">&lt;!-- an after-throwing advice definition --&gt;</span></div><div class="line">      <span class="comment">&lt;!--The doRequiredTask method must have parameter named ex --&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">aop:after-throwing</span> <span class="attr">pointcut-ref</span>=<span class="string">"businessService"</span></span></div><div class="line">         <span class="attr">throwing</span>=<span class="string">"ex"</span></div><div class="line">         <span class="attr">method</span>=<span class="string">"doRequiredTask"</span>/&gt;</div><div class="line">      <span class="comment">&lt;!-- an around advice definition --&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">aop:around</span> <span class="attr">pointcut-ref</span>=<span class="string">"businessService"</span> </span></div><div class="line">         <span class="attr">method</span>=<span class="string">"doRequiredTask"</span>/&gt;</div><div class="line">   ...</div><div class="line">   <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"aBean"</span> <span class="attr">class</span>=<span class="string">"..."</span>&gt;</span></div><div class="line">...</div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Spring_aop7.png" alt=""></p>
-<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.tutorialspoint;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Logging</span> </span>&#123;</div><div class="line">   <span class="comment">/** </span></div><div class="line">    * This is the method which I would like to execute</div><div class="line">    * before a selected method execution.</div><div class="line">    */</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beforeAdvice</span><span class="params">()</span></span>&#123;</div><div class="line">      System.out.println(<span class="string">"Going to setup student profile."</span>);</div><div class="line">   &#125;</div><div class="line">   <span class="comment">/** </span></div><div class="line">    * This is the method which I would like to execute</div><div class="line">    * after a selected method execution.</div><div class="line">    */</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterAdvice</span><span class="params">()</span></span>&#123;</div><div class="line">      System.out.println(<span class="string">"Student profile has been setup."</span>);</div><div class="line">   &#125;</div><div class="line">   <span class="comment">/** </span></div><div class="line">    * This is the method which I would like to execute</div><div class="line">    * when any method returns.</div><div class="line">    */</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterReturningAdvice</span><span class="params">(Object retVal)</span></span>&#123;</div><div class="line">      System.out.println(<span class="string">"Returning:"</span> + retVal.toString() );</div><div class="line">   &#125;</div><div class="line">   <span class="comment">/**</span></div><div class="line">    * This is the method which I would like to execute</div><div class="line">    * if there is an exception raised.</div><div class="line">    */</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">AfterThrowingAdvice</span><span class="params">(IllegalArgumentException ex)</span></span>&#123;</div><div class="line">      System.out.println(<span class="string">"There has been an exception: "</span> + ex.toString());   </div><div class="line">   &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.tutorialspoint;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</div><div class="line">   <span class="keyword">private</span> Integer age;</div><div class="line">   <span class="keyword">private</span> String name;</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(Integer age)</span> </span>&#123;</div><div class="line">      <span class="keyword">this</span>.age = age;</div><div class="line">   &#125;</div><div class="line">   <span class="function"><span class="keyword">public</span> Integer <span class="title">getAge</span><span class="params">()</span> </span>&#123;</div><div class="line">      System.out.println(<span class="string">"Age : "</span> + age );</div><div class="line">      <span class="keyword">return</span> age;</div><div class="line">   &#125;</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">      <span class="keyword">this</span>.name = name;</div><div class="line">   &#125;</div><div class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">      System.out.println(<span class="string">"Name : "</span> + name );</div><div class="line">      <span class="keyword">return</span> name;</div><div class="line">   &#125;  </div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printThrowException</span><span class="params">()</span></span>&#123;</div><div class="line">       System.out.println(<span class="string">"Exception raised"</span>);</div><div class="line">       <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException();</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.tutorialspoint;</div><div class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</div><div class="line"><span class="keyword">import</span> org.springframework.context.support.ClassPathXmlApplicationContext;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainApp</span> </span>&#123;</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">      ApplicationContext context = </div><div class="line">             <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"Beans.xml"</span>);</div><div class="line">      Student student = (Student) context.getBean(<span class="string">"student"</span>);</div><div class="line">      student.getName();</div><div class="line">      student.getAge();      </div><div class="line">      student.printThrowException();</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></div><div class="line">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> </div><div class="line">    <span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></div><div class="line">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></div><div class="line">    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd </div><div class="line">    http://www.springframework.org/schema/aop </div><div class="line">    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "&gt;</div><div class="line"></div><div class="line">   <span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">id</span>=<span class="string">"log"</span> <span class="attr">ref</span>=<span class="string">"logging"</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"selectAll"</span> </span></div><div class="line">         <span class="attr">expression</span>=<span class="string">"execution(* com.tutorialspoint.*.*(..))"</span>/&gt;</div><div class="line">         <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">pointcut-ref</span>=<span class="string">"selectAll"</span> <span class="attr">method</span>=<span class="string">"beforeAdvice"</span>/&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">aop:after</span> <span class="attr">pointcut-ref</span>=<span class="string">"selectAll"</span> <span class="attr">method</span>=<span class="string">"afterAdvice"</span>/&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">aop:after-returning</span> <span class="attr">pointcut-ref</span>=<span class="string">"selectAll"</span> </span></div><div class="line">                              <span class="attr">returning</span>=<span class="string">"retVal"</span></div><div class="line">                              <span class="attr">method</span>=<span class="string">"afterReturningAdvice"</span>/&gt;</div><div class="line">         <span class="tag">&lt;<span class="name">aop:after-throwing</span> <span class="attr">pointcut-ref</span>=<span class="string">"selectAll"</span> </span></div><div class="line">                             <span class="attr">throwing</span>=<span class="string">"ex"</span></div><div class="line">                             <span class="attr">method</span>=<span class="string">"AfterThrowingAdvice"</span>/&gt;</div><div class="line">      <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></div><div class="line"></div><div class="line">   <span class="comment">&lt;!-- Definition for student bean --&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"student"</span> <span class="attr">class</span>=<span class="string">"com.tutorialspoint.Student"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span>  <span class="attr">value</span>=<span class="string">"Zara"</span> /&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"age"</span>  <span class="attr">value</span>=<span class="string">"11"</span>/&gt;</span>      </div><div class="line">   <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"></div><div class="line">   <span class="comment">&lt;!-- Definition for logging aspect --&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"logging"</span> <span class="attr">class</span>=<span class="string">"com.tutorialspoint.Logging"</span>/&gt;</span> </div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Going to setup student profile.</div><div class="line">Name : Zara</div><div class="line">Student profile has been setup.</div><div class="line">Returning:Zara</div><div class="line">Going to setup student profile.</div><div class="line">Age : 11</div><div class="line">Student profile has been setup.</div><div class="line">Returning:11</div><div class="line">Going to setup student profile.</div><div class="line">Exception raised</div><div class="line">Student profile has been setup.</div><div class="line">There has been an exception: java.lang.IllegalArgumentException</div><div class="line">.....</div><div class="line">other exception content</div></pre></td></tr></table></figure>
-<h1 id="Spring中基于-AspectJ注解的-AOP"><a href="#Spring中基于-AspectJ注解的-AOP" class="headerlink" title="Spring中基于@AspectJ注解的 AOP"></a>Spring中基于@AspectJ注解的 AOP</h1><p>@AspectJ 作为通过 Java 5 注释注释的普通的 Java 类，它指的是声明 aspects 的一种风格。通过在你的基于架构的 XML 配置文件中包含以下元素，@AspectJ 支持是可用的。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">aop:aspectj-autoproxy</span>/&gt;</span></div></pre></td></tr></table></figure>
-<h2 id="声明一个-aspect-1"><a href="#声明一个-aspect-1" class="headerlink" title="声明一个 aspect"></a>声明一个 aspect</h2><p>Aspects 类和其他任何正常的 bean 一样，除了它们将会用 @AspectJ 注释之外，它和其他类一样可能有方法和字段，如下所示：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> org.xyz;</div><div class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Aspect;</div><div class="line"><span class="meta">@Aspect</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AspectModule</span> </span>&#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="声明通知"><a class="markdownIt-Anchor" href="#声明通知"></a> 声明通知</h2>
+<p>你可以使用 &lt;aop:{ADVICE NAME}&gt; 元素在一个中声明五个通知中的任何一个，如下所示：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">id</span>=<span class="string">"myAspect"</span> <span class="attr">ref</span>=<span class="string">"aBean"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"businessService"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">expression</span>=<span class="string">"execution(* com.xyz.myapp.service.*.*(..))"</span>/&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- a before advice definition --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">pointcut-ref</span>=<span class="string">"businessService"</span> </span></span><br><span class="line"><span class="tag">         <span class="attr">method</span>=<span class="string">"doRequiredTask"</span>/&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- an after advice definition --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">aop:after</span> <span class="attr">pointcut-ref</span>=<span class="string">"businessService"</span> </span></span><br><span class="line"><span class="tag">         <span class="attr">method</span>=<span class="string">"doRequiredTask"</span>/&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- an after-returning advice definition --&gt;</span></span><br><span class="line">      <span class="comment">&lt;!--The doRequiredTask method must have parameter named retVal --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">aop:after-returning</span> <span class="attr">pointcut-ref</span>=<span class="string">"businessService"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">returning</span>=<span class="string">"retVal"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">method</span>=<span class="string">"doRequiredTask"</span>/&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- an after-throwing advice definition --&gt;</span></span><br><span class="line">      <span class="comment">&lt;!--The doRequiredTask method must have parameter named ex --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">aop:after-throwing</span> <span class="attr">pointcut-ref</span>=<span class="string">"businessService"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">throwing</span>=<span class="string">"ex"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">method</span>=<span class="string">"doRequiredTask"</span>/&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- an around advice definition --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">aop:around</span> <span class="attr">pointcut-ref</span>=<span class="string">"businessService"</span> </span></span><br><span class="line"><span class="tag">         <span class="attr">method</span>=<span class="string">"doRequiredTask"</span>/&gt;</span></span><br><span class="line">   ...</span><br><span class="line">   <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"aBean"</span> <span class="attr">class</span>=<span class="string">"..."</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Spring_aop7.png" alt></p>
+<h2 id="example"><a class="markdownIt-Anchor" href="#example"></a> Example</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.tutorialspoint;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Logging</span> </span>&#123;</span><br><span class="line">   <span class="comment">/** </span></span><br><span class="line"><span class="comment">    * This is the method which I would like to execute</span></span><br><span class="line"><span class="comment">    * before a selected method execution.</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beforeAdvice</span><span class="params">()</span></span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"Going to setup student profile."</span>);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">/** </span></span><br><span class="line"><span class="comment">    * This is the method which I would like to execute</span></span><br><span class="line"><span class="comment">    * after a selected method execution.</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterAdvice</span><span class="params">()</span></span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"Student profile has been setup."</span>);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">/** </span></span><br><span class="line"><span class="comment">    * This is the method which I would like to execute</span></span><br><span class="line"><span class="comment">    * when any method returns.</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterReturningAdvice</span><span class="params">(Object retVal)</span></span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"Returning:"</span> + retVal.toString() );</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * This is the method which I would like to execute</span></span><br><span class="line"><span class="comment">    * if there is an exception raised.</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">AfterThrowingAdvice</span><span class="params">(IllegalArgumentException ex)</span></span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"There has been an exception: "</span> + ex.toString());   </span><br><span class="line">   &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.tutorialspoint;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">   <span class="keyword">private</span> Integer age;</span><br><span class="line">   <span class="keyword">private</span> String name;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(Integer age)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.age = age;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> Integer <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"Age : "</span> + age );</span><br><span class="line">      <span class="keyword">return</span> age;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.name = name;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"Name : "</span> + name );</span><br><span class="line">      <span class="keyword">return</span> name;</span><br><span class="line">   &#125;  </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printThrowException</span><span class="params">()</span></span>&#123;</span><br><span class="line">       System.out.println(<span class="string">"Exception raised"</span>);</span><br><span class="line">       <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.tutorialspoint;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.support.ClassPathXmlApplicationContext;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainApp</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      ApplicationContext context = </span><br><span class="line">             <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"Beans.xml"</span>);</span><br><span class="line">      Student student = (Student) context.getBean(<span class="string">"student"</span>);</span><br><span class="line">      student.getName();</span><br><span class="line">      student.getAge();      </span><br><span class="line">      student.printThrowException();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd </span></span></span><br><span class="line"><span class="tag"><span class="string">    http://www.springframework.org/schema/aop </span></span></span><br><span class="line"><span class="tag"><span class="string">    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">id</span>=<span class="string">"log"</span> <span class="attr">ref</span>=<span class="string">"logging"</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"selectAll"</span> </span></span><br><span class="line"><span class="tag">         <span class="attr">expression</span>=<span class="string">"execution(* com.tutorialspoint.*.*(..))"</span>/&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">pointcut-ref</span>=<span class="string">"selectAll"</span> <span class="attr">method</span>=<span class="string">"beforeAdvice"</span>/&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">aop:after</span> <span class="attr">pointcut-ref</span>=<span class="string">"selectAll"</span> <span class="attr">method</span>=<span class="string">"afterAdvice"</span>/&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">aop:after-returning</span> <span class="attr">pointcut-ref</span>=<span class="string">"selectAll"</span> </span></span><br><span class="line"><span class="tag">                              <span class="attr">returning</span>=<span class="string">"retVal"</span></span></span><br><span class="line"><span class="tag">                              <span class="attr">method</span>=<span class="string">"afterReturningAdvice"</span>/&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">aop:after-throwing</span> <span class="attr">pointcut-ref</span>=<span class="string">"selectAll"</span> </span></span><br><span class="line"><span class="tag">                             <span class="attr">throwing</span>=<span class="string">"ex"</span></span></span><br><span class="line"><span class="tag">                             <span class="attr">method</span>=<span class="string">"AfterThrowingAdvice"</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- Definition for student bean --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"student"</span> <span class="attr">class</span>=<span class="string">"com.tutorialspoint.Student"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span>  <span class="attr">value</span>=<span class="string">"Zara"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"age"</span>  <span class="attr">value</span>=<span class="string">"11"</span>/&gt;</span>      </span><br><span class="line">   <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- Definition for logging aspect --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"logging"</span> <span class="attr">class</span>=<span class="string">"com.tutorialspoint.Logging"</span>/&gt;</span> </span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Going to setup student profile.</span><br><span class="line">Name : Zara</span><br><span class="line">Student profile has been setup.</span><br><span class="line">Returning:Zara</span><br><span class="line">Going to setup student profile.</span><br><span class="line">Age : 11</span><br><span class="line">Student profile has been setup.</span><br><span class="line">Returning:11</span><br><span class="line">Going to setup student profile.</span><br><span class="line">Exception raised</span><br><span class="line">Student profile has been setup.</span><br><span class="line">There has been an exception: java.lang.IllegalArgumentException</span><br><span class="line">.....</span><br><span class="line">other exception content</span><br></pre></td></tr></table></figure>
+<h1 id="spring中基于aspectj注解的-aop"><a class="markdownIt-Anchor" href="#spring中基于aspectj注解的-aop"></a> Spring中基于@AspectJ注解的 AOP</h1>
+<p>@AspectJ 作为通过 Java 5 注释注释的普通的 Java 类，它指的是声明 aspects 的一种风格。通过在你的基于架构的 XML 配置文件中包含以下元素，@AspectJ 支持是可用的。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:aspectj-autoproxy</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="声明一个-aspect-2"><a class="markdownIt-Anchor" href="#声明一个-aspect-2"></a> 声明一个 aspect</h2>
+<p>Aspects 类和其他任何正常的 bean 一样，除了它们将会用 @AspectJ 注释之外，它和其他类一样可能有方法和字段，如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.xyz;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Aspect;</span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AspectModule</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>它们将在 XML 中按照如下进行配置，就和其他任何 bean 一样：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"myAspect"</span> <span class="attr">class</span>=<span class="string">"org.xyz.AspectModule"</span>&gt;</span></div><div class="line">   <span class="comment">&lt;!-- configure properties of aspect here as normal --&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
-<h2 id="声明一个切入点-1"><a href="#声明一个切入点-1" class="headerlink" title="声明一个切入点"></a>声明一个切入点</h2><p>一个切入点有助于确定使用不同建议执行的感兴趣的连接点（即方法）。在处理基于配置的 XML 架构时，切入点的声明有两个部分：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"myAspect"</span> <span class="attr">class</span>=<span class="string">"org.xyz.AspectModule"</span>&gt;</span></span><br><span class="line">   <span class="comment">&lt;!-- configure properties of aspect here as normal --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="声明一个切入点-2"><a class="markdownIt-Anchor" href="#声明一个切入点-2"></a> 声明一个切入点</h2>
+<p>一个切入点有助于确定使用不同建议执行的感兴趣的连接点（即方法）。在处理基于配置的 XML 架构时，切入点的声明有两个部分：</p>
 <p>一个切入点表达式决定了我们对哪个方法被执行感兴趣。</p>
-<p>一个切入点标签包含一个名称和任意数量的参数。方法的真正内容是不相干的，并且实际上它应该是空的。<br>下面的示例中定义了一个名为 ‘businessService’ 的切入点，该切入点将与 com.tutorialspoint 包下的类中可用的每一个方法相匹配：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Pointcut;</div><div class="line"><span class="meta">@Pointcut</span>(<span class="string">"execution(* com.xyz.myapp.service.*.*(..))"</span>) <span class="comment">// expression </span></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">businessService</span><span class="params">()</span> </span>&#123;&#125;  <span class="comment">// signature</span></div></pre></td></tr></table></figure>
+<p>一个切入点标签包含一个名称和任意数量的参数。方法的真正内容是不相干的，并且实际上它应该是空的。<br>
+下面的示例中定义了一个名为 ‘businessService’ 的切入点，该切入点将与 com.tutorialspoint 包下的类中可用的每一个方法相匹配：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Pointcut;</span><br><span class="line"><span class="meta">@Pointcut</span>(<span class="string">"execution(* com.xyz.myapp.service.*.*(..))"</span>) <span class="comment">// expression </span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">businessService</span><span class="params">()</span> </span>&#123;&#125;  <span class="comment">// signature</span></span><br></pre></td></tr></table></figure>
 <p>下面的示例中定义了一个名为 ‘getname’ 的切入点，该切入点将与 com.tutorialspoint 包下的 Student 类中的 getName() 方法相匹配：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Pointcut;</div><div class="line"><span class="meta">@Pointcut</span>(<span class="string">"execution(* com.tutorialspoint.Student.getName(..))"</span>) </div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">getname</span><span class="params">()</span> </span>&#123;&#125;</div></pre></td></tr></table></figure>
-<h2 id="声明建议"><a href="#声明建议" class="headerlink" title="声明建议"></a>声明建议</h2><p>你可以使用 @{ADVICE-NAME} 注释声明五个建议中的任意一个，如下所示。这假设你已经定义了一个切入点标签方法 businessService()：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Before</span>(<span class="string">"businessService()"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doBeforeTask</span><span class="params">()</span></span>&#123;</div><div class="line"> ...</div><div class="line">&#125;</div><div class="line"><span class="meta">@After</span>(<span class="string">"businessService()"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAfterTask</span><span class="params">()</span></span>&#123;</div><div class="line"> ...</div><div class="line">&#125;</div><div class="line"><span class="meta">@AfterReturning</span>(pointcut = <span class="string">"businessService()"</span>, returning=<span class="string">"retVal"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAfterReturnningTask</span><span class="params">(Object retVal)</span></span>&#123;</div><div class="line">  <span class="comment">// you can intercept retVal here.</span></div><div class="line">  ...</div><div class="line">&#125;</div><div class="line"><span class="meta">@AfterThrowing</span>(pointcut = <span class="string">"businessService()"</span>, throwing=<span class="string">"ex"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAfterThrowingTask</span><span class="params">(Exception ex)</span></span>&#123;</div><div class="line">  <span class="comment">// you can intercept thrown exception here.</span></div><div class="line">  ...</div><div class="line">&#125;</div><div class="line"><span class="meta">@Around</span>(<span class="string">"businessService()"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAroundTask</span><span class="params">()</span></span>&#123;</div><div class="line"> ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.tutorialspoint;</div><div class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Aspect;</div><div class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Pointcut;</div><div class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Before;</div><div class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.After;</div><div class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.AfterThrowing;</div><div class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.AfterReturning;</div><div class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Around;</div><div class="line"><span class="meta">@Aspect</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Logging</span> </span>&#123;</div><div class="line">   <span class="comment">/** Following is the definition for a pointcut to select</span></div><div class="line">    *  all the methods available. So advice will be called</div><div class="line">    *  for all the methods.</div><div class="line">    */</div><div class="line">   <span class="meta">@Pointcut</span>(<span class="string">"execution(* com.tutorialspoint.*.*(..))"</span>)</div><div class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">selectAll</span><span class="params">()</span></span>&#123;&#125;</div><div class="line">   <span class="comment">/** </span></div><div class="line">    * This is the method which I would like to execute</div><div class="line">    * before a selected method execution.</div><div class="line">    */</div><div class="line">   <span class="meta">@Before</span>(<span class="string">"selectAll()"</span>)</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beforeAdvice</span><span class="params">()</span></span>&#123;</div><div class="line">      System.out.println(<span class="string">"Going to setup student profile."</span>);</div><div class="line">   &#125;</div><div class="line">   <span class="comment">/** </span></div><div class="line">    * This is the method which I would like to execute</div><div class="line">    * after a selected method execution.</div><div class="line">    */</div><div class="line">   <span class="meta">@After</span>(<span class="string">"selectAll()"</span>)</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterAdvice</span><span class="params">()</span></span>&#123;</div><div class="line">      System.out.println(<span class="string">"Student profile has been setup."</span>);</div><div class="line">   &#125;</div><div class="line">   <span class="comment">/** </span></div><div class="line">    * This is the method which I would like to execute</div><div class="line">    * when any method returns.</div><div class="line">    */</div><div class="line">   <span class="meta">@AfterReturning</span>(pointcut = <span class="string">"selectAll()"</span>, returning=<span class="string">"retVal"</span>)</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterReturningAdvice</span><span class="params">(Object retVal)</span></span>&#123;</div><div class="line">      System.out.println(<span class="string">"Returning:"</span> + retVal.toString() );</div><div class="line">   &#125;</div><div class="line">   <span class="comment">/**</span></div><div class="line">    * This is the method which I would like to execute</div><div class="line">    * if there is an exception raised by any method.</div><div class="line">    */</div><div class="line">   <span class="meta">@AfterThrowing</span>(pointcut = <span class="string">"selectAll()"</span>, throwing = <span class="string">"ex"</span>)</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">AfterThrowingAdvice</span><span class="params">(IllegalArgumentException ex)</span></span>&#123;</div><div class="line">      System.out.println(<span class="string">"There has been an exception: "</span> + ex.toString());   </div><div class="line">   &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.tutorialspoint;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</div><div class="line">   <span class="keyword">private</span> Integer age;</div><div class="line">   <span class="keyword">private</span> String name;</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(Integer age)</span> </span>&#123;</div><div class="line">      <span class="keyword">this</span>.age = age;</div><div class="line">   &#125;</div><div class="line">   <span class="function"><span class="keyword">public</span> Integer <span class="title">getAge</span><span class="params">()</span> </span>&#123;</div><div class="line">      System.out.println(<span class="string">"Age : "</span> + age );</div><div class="line">      <span class="keyword">return</span> age;</div><div class="line">   &#125;</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">      <span class="keyword">this</span>.name = name;</div><div class="line">   &#125;</div><div class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">      System.out.println(<span class="string">"Name : "</span> + name );</div><div class="line">      <span class="keyword">return</span> name;</div><div class="line">   &#125;</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printThrowException</span><span class="params">()</span></span>&#123;</div><div class="line">      System.out.println(<span class="string">"Exception raised"</span>);</div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException();</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.tutorialspoint;</div><div class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</div><div class="line"><span class="keyword">import</span> org.springframework.context.support.ClassPathXmlApplicationContext;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainApp</span> </span>&#123;</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">      ApplicationContext context = </div><div class="line">             <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"Beans.xml"</span>);</div><div class="line">      Student student = (Student) context.getBean(<span class="string">"student"</span>);</div><div class="line">      student.getName();</div><div class="line">      student.getAge();     </div><div class="line">      student.printThrowException();</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></div><div class="line">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> </div><div class="line">    <span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></div><div class="line">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></div><div class="line">    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd </div><div class="line">    http://www.springframework.org/schema/aop </div><div class="line">    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">aop:aspectj-autoproxy</span>/&gt;</span></div><div class="line"></div><div class="line">   <span class="comment">&lt;!-- Definition for student bean --&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"student"</span> <span class="attr">class</span>=<span class="string">"com.tutorialspoint.Student"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span>  <span class="attr">value</span>=<span class="string">"Zara"</span> /&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"age"</span>  <span class="attr">value</span>=<span class="string">"11"</span>/&gt;</span>      </div><div class="line">   <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"></div><div class="line">   <span class="comment">&lt;!-- Definition for logging aspect --&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"logging"</span> <span class="attr">class</span>=<span class="string">"com.tutorialspoint.Logging"</span>/&gt;</span> </div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Pointcut;</span><br><span class="line"><span class="meta">@Pointcut</span>(<span class="string">"execution(* com.tutorialspoint.Student.getName(..))"</span>) </span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">getname</span><span class="params">()</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="声明建议"><a class="markdownIt-Anchor" href="#声明建议"></a> 声明建议</h2>
+<p>你可以使用 @{ADVICE-NAME} 注释声明五个建议中的任意一个，如下所示。这假设你已经定义了一个切入点标签方法 businessService()：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Before</span>(<span class="string">"businessService()"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doBeforeTask</span><span class="params">()</span></span>&#123;</span><br><span class="line"> ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@After</span>(<span class="string">"businessService()"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAfterTask</span><span class="params">()</span></span>&#123;</span><br><span class="line"> ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@AfterReturning</span>(pointcut = <span class="string">"businessService()"</span>, returning=<span class="string">"retVal"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAfterReturnningTask</span><span class="params">(Object retVal)</span></span>&#123;</span><br><span class="line">  <span class="comment">// you can intercept retVal here.</span></span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@AfterThrowing</span>(pointcut = <span class="string">"businessService()"</span>, throwing=<span class="string">"ex"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAfterThrowingTask</span><span class="params">(Exception ex)</span></span>&#123;</span><br><span class="line">  <span class="comment">// you can intercept thrown exception here.</span></span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Around</span>(<span class="string">"businessService()"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAroundTask</span><span class="params">()</span></span>&#123;</span><br><span class="line"> ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="example-2"><a class="markdownIt-Anchor" href="#example-2"></a> Example</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.tutorialspoint;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Aspect;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Pointcut;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Before;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.After;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.AfterThrowing;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.AfterReturning;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Around;</span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Logging</span> </span>&#123;</span><br><span class="line">   <span class="comment">/** Following is the definition for a pointcut to select</span></span><br><span class="line"><span class="comment">    *  all the methods available. So advice will be called</span></span><br><span class="line"><span class="comment">    *  for all the methods.</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@Pointcut</span>(<span class="string">"execution(* com.tutorialspoint.*.*(..))"</span>)</span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">selectAll</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">   <span class="comment">/** </span></span><br><span class="line"><span class="comment">    * This is the method which I would like to execute</span></span><br><span class="line"><span class="comment">    * before a selected method execution.</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@Before</span>(<span class="string">"selectAll()"</span>)</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beforeAdvice</span><span class="params">()</span></span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"Going to setup student profile."</span>);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">/** </span></span><br><span class="line"><span class="comment">    * This is the method which I would like to execute</span></span><br><span class="line"><span class="comment">    * after a selected method execution.</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@After</span>(<span class="string">"selectAll()"</span>)</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterAdvice</span><span class="params">()</span></span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"Student profile has been setup."</span>);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">/** </span></span><br><span class="line"><span class="comment">    * This is the method which I would like to execute</span></span><br><span class="line"><span class="comment">    * when any method returns.</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@AfterReturning</span>(pointcut = <span class="string">"selectAll()"</span>, returning=<span class="string">"retVal"</span>)</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterReturningAdvice</span><span class="params">(Object retVal)</span></span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"Returning:"</span> + retVal.toString() );</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * This is the method which I would like to execute</span></span><br><span class="line"><span class="comment">    * if there is an exception raised by any method.</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@AfterThrowing</span>(pointcut = <span class="string">"selectAll()"</span>, throwing = <span class="string">"ex"</span>)</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">AfterThrowingAdvice</span><span class="params">(IllegalArgumentException ex)</span></span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"There has been an exception: "</span> + ex.toString());   </span><br><span class="line">   &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.tutorialspoint;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">   <span class="keyword">private</span> Integer age;</span><br><span class="line">   <span class="keyword">private</span> String name;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(Integer age)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.age = age;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> Integer <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"Age : "</span> + age );</span><br><span class="line">      <span class="keyword">return</span> age;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.name = name;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"Name : "</span> + name );</span><br><span class="line">      <span class="keyword">return</span> name;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printThrowException</span><span class="params">()</span></span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"Exception raised"</span>);</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.tutorialspoint;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.support.ClassPathXmlApplicationContext;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainApp</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      ApplicationContext context = </span><br><span class="line">             <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"Beans.xml"</span>);</span><br><span class="line">      Student student = (Student) context.getBean(<span class="string">"student"</span>);</span><br><span class="line">      student.getName();</span><br><span class="line">      student.getAge();     </span><br><span class="line">      student.printThrowException();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd </span></span></span><br><span class="line"><span class="tag"><span class="string">    http://www.springframework.org/schema/aop </span></span></span><br><span class="line"><span class="tag"><span class="string">    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:aspectj-autoproxy</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- Definition for student bean --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"student"</span> <span class="attr">class</span>=<span class="string">"com.tutorialspoint.Student"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span>  <span class="attr">value</span>=<span class="string">"Zara"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"age"</span>  <span class="attr">value</span>=<span class="string">"11"</span>/&gt;</span>      </span><br><span class="line">   <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- Definition for logging aspect --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"logging"</span> <span class="attr">class</span>=<span class="string">"com.tutorialspoint.Logging"</span>/&gt;</span> </span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>一旦你已经完成的创建了源文件和 bean 配置文件，让我们运行一下应用程序。如果你的应用程序一切都正常的话，这将会输出以下消息：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Going to setup student profile.</div><div class="line">Name : Zara</div><div class="line">Student profile has been setup.</div><div class="line">Returning:Zara</div><div class="line">Going to setup student profile.</div><div class="line">Age : 11</div><div class="line">Student profile has been setup.</div><div class="line">Returning:11</div><div class="line">Going to setup student profile.</div><div class="line">Exception raised</div><div class="line">Student profile has been setup.</div><div class="line">There has been an exception: java.lang.IllegalArgumentException</div><div class="line">.....</div><div class="line">other exception content</div></pre></td></tr></table></figure>
-<h1 id="Further"><a href="#Further" class="headerlink" title="Further"></a>Further</h1><h2 id="环绕通知的编写"><a href="#环绕通知的编写" class="headerlink" title="环绕通知的编写"></a>环绕通知的编写</h2><p>基于@AspectJ注解：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> concert;</div><div class="line"><span class="keyword">import</span> org.aspectj.lang.ProceedingJoinPoint;</div><div class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Around;</div><div class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Aspect;</div><div class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Pointcut;</div><div class="line"><span class="meta">@Aspect</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Audience</span> </span>&#123;</div><div class="line">  <span class="meta">@Pointcut</span>(<span class="string">"execution(** concert.Performance.perform(..))"</span>)</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">performance</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line">  <span class="meta">@Around</span>(<span class="string">"performance()"</span>)</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">watchPerformance</span><span class="params">(ProceedingJoinPoint jp)</span> </span>&#123;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">      System.out.println(<span class="string">"Silencing cell phones"</span>);</div><div class="line">      System.out.println(<span class="string">"Taking seats"</span>);</div><div class="line">      jp.proceed();</div><div class="line">      System.out.println(<span class="string">"CLAP CLAP CLAP!!!"</span>);</div><div class="line">    &#125; <span class="keyword">catch</span> (Throwable e) &#123;</div><div class="line">      System.out.println(<span class="string">"Demanding a refund"</span>);</div><div class="line">&#125; &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Going to setup student profile.</span><br><span class="line">Name : Zara</span><br><span class="line">Student profile has been setup.</span><br><span class="line">Returning:Zara</span><br><span class="line">Going to setup student profile.</span><br><span class="line">Age : 11</span><br><span class="line">Student profile has been setup.</span><br><span class="line">Returning:11</span><br><span class="line">Going to setup student profile.</span><br><span class="line">Exception raised</span><br><span class="line">Student profile has been setup.</span><br><span class="line">There has been an exception: java.lang.IllegalArgumentException</span><br><span class="line">.....</span><br><span class="line">other exception content</span><br></pre></td></tr></table></figure>
+<h1 id="further"><a class="markdownIt-Anchor" href="#further"></a> Further</h1>
+<h2 id="环绕通知的编写"><a class="markdownIt-Anchor" href="#环绕通知的编写"></a> 环绕通知的编写</h2>
+<p>基于@AspectJ注解：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> concert;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.ProceedingJoinPoint;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Around;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Aspect;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Pointcut;</span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Audience</span> </span>&#123;</span><br><span class="line">  <span class="meta">@Pointcut</span>(<span class="string">"execution(** concert.Performance.perform(..))"</span>)</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">performance</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">  <span class="meta">@Around</span>(<span class="string">"performance()"</span>)</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">watchPerformance</span><span class="params">(ProceedingJoinPoint jp)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      System.out.println(<span class="string">"Silencing cell phones"</span>);</span><br><span class="line">      System.out.println(<span class="string">"Taking seats"</span>);</span><br><span class="line">      jp.proceed();</span><br><span class="line">      System.out.println(<span class="string">"CLAP CLAP CLAP!!!"</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Throwable e) &#123;</span><br><span class="line">      System.out.println(<span class="string">"Demanding a refund"</span>);</span><br><span class="line">&#125; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>基于XML的也是同样配置。</p>
-<h2 id="为通知传递参数"><a href="#为通知传递参数" class="headerlink" title="为通知传递参数"></a>为通知传递参数</h2><p>基于@AspectJ注解：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> soundsystem;</div><div class="line"><span class="keyword">import</span> java.util.HashMap;</div><div class="line"><span class="keyword">import</span> java.util.Map;</div><div class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Aspect;</div><div class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Before;</div><div class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Pointcut;</div><div class="line"><span class="meta">@Aspect</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TrackCounter</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> Map&lt;Integer, Integer&gt; trackCounts =</div><div class="line">      <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</div><div class="line">  <span class="meta">@Pointcut</span>(</div><div class="line">     <span class="string">"execution(* soundsystem.CompactDisc.playTrack(int)) "</span> +</div><div class="line">     <span class="string">"&amp;&amp; args(trackNumber)"</span>)</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">trackPlayed</span><span class="params">(<span class="keyword">int</span> trackNumber)</span> </span>&#123;&#125;</div><div class="line">  <span class="meta">@Before</span>(<span class="string">"trackPlayed(trackNumber)"</span>)</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">countTrack</span><span class="params">(<span class="keyword">int</span> trackNumber)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> currentCount = getPlayCount(trackNumber);</div><div class="line">    trackCounts.put(trackNumber, currentCount + <span class="number">1</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPlayCount</span><span class="params">(<span class="keyword">int</span> trackNumber)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> trackCounts.containsKey(trackNumber)</div><div class="line"> &#125; &#125;</div></pre></td></tr></table></figure>
-<p>基于XML的配置：<br><img src="http://7xs07u.com1.z0.glb.clouddn.com/Spring_aop5.png" alt=""></p>
-<h2 id="通过切面引入新功能"><a href="#通过切面引入新功能" class="headerlink" title="通过切面引入新功能"></a>通过切面引入新功能</h2><p>我们前面做的其实就是为对象已经拥有的方法添加了新功能。同样的，我们也可以为一个对象添加新的方法。利用Spring的Introduction我们可以为Spring Bean添加新方法。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Spring_aop6.png" alt=""></p>
+<h2 id="为通知传递参数"><a class="markdownIt-Anchor" href="#为通知传递参数"></a> 为通知传递参数</h2>
+<p>基于@AspectJ注解：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> soundsystem;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Aspect;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Before;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Pointcut;</span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TrackCounter</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> Map&lt;Integer, Integer&gt; trackCounts =</span><br><span class="line">      <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">  <span class="meta">@Pointcut</span>(</span><br><span class="line">     <span class="string">"execution(* soundsystem.CompactDisc.playTrack(int)) "</span> +</span><br><span class="line">     <span class="string">"&amp;&amp; args(trackNumber)"</span>)</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">trackPlayed</span><span class="params">(<span class="keyword">int</span> trackNumber)</span> </span>&#123;&#125;</span><br><span class="line">  <span class="meta">@Before</span>(<span class="string">"trackPlayed(trackNumber)"</span>)</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">countTrack</span><span class="params">(<span class="keyword">int</span> trackNumber)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> currentCount = getPlayCount(trackNumber);</span><br><span class="line">    trackCounts.put(trackNumber, currentCount + <span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPlayCount</span><span class="params">(<span class="keyword">int</span> trackNumber)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> trackCounts.containsKey(trackNumber)</span><br><span class="line"> &#125; &#125;</span><br></pre></td></tr></table></figure>
+<p>基于XML的配置：<br>
+<img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Spring_aop5.png" alt></p>
+<h2 id="通过切面引入新功能"><a class="markdownIt-Anchor" href="#通过切面引入新功能"></a> 通过切面引入新功能</h2>
+<p>我们前面做的其实就是为对象已经拥有的方法添加了新功能。同样的，我们也可以为一个对象添加新的方法。利用Spring的Introduction我们可以为Spring Bean添加新方法。</p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Spring_aop6.png" alt></p>
 <p>使用Spring AOP，我们可以为Bean引入新的方法。拦截调用并委托给实现该方法的其他对象。实际上，Bean的实现被拆分到了多个类。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> concert;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Encoreable</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">performEncore</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> concert;</div><div class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Aspect;</div><div class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.DeclareParents;</div><div class="line"><span class="meta">@Aspect</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EncoreableIntroducer</span> </span>&#123;</div><div class="line">  <span class="meta">@DeclareParents</span>(value=<span class="string">"concert.Performance+"</span>,</div><div class="line">                  defaultImpl=DefaultEncoreable.class)</div><div class="line">  <span class="keyword">public</span> <span class="keyword">static</span> Encoreable encoreable;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> concert;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Encoreable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">performEncore</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> concert;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Aspect;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.DeclareParents;</span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EncoreableIntroducer</span> </span>&#123;</span><br><span class="line">  <span class="meta">@DeclareParents</span>(value=<span class="string">"concert.Performance+"</span>,</span><br><span class="line">                  defaultImpl=DefaultEncoreable.class)</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> Encoreable encoreable;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>基于XML的配置：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">aop:aspect</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">aop:declare-parents</span></span></div><div class="line">    <span class="attr">types-matching</span>=<span class="string">"concert.Performance+"</span></div><div class="line">    <span class="attr">implement-interface</span>=<span class="string">"concert.Encoreable"</span></div><div class="line">    <span class="attr">default-impl</span>=<span class="string">"concert.DefaultEncoreable"</span></div><div class="line">    /&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></div></pre></td></tr></table></figure>
-<h1 id="注入AspectJ切面"><a href="#注入AspectJ切面" class="headerlink" title="注入AspectJ切面"></a>注入AspectJ切面</h1><p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Spring_aop8.png" alt=""></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">aop:declare-parents</span></span></span><br><span class="line"><span class="tag">    <span class="attr">types-matching</span>=<span class="string">"concert.Performance+"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">implement-interface</span>=<span class="string">"concert.Encoreable"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">default-impl</span>=<span class="string">"concert.DefaultEncoreable"</span></span></span><br><span class="line"><span class="tag">    /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="注入aspectj切面"><a class="markdownIt-Anchor" href="#注入aspectj切面"></a> 注入AspectJ切面</h1>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Spring_aop8.png" alt></p>
 
       
     </div>
 
-    <div>
-      
-        
+    
 
-      
-    </div>
+    
+    
+    
 
-    <div>
-      
-        
+    
 
+    
       
-    </div>
+    
+    
+
+    
 
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/java/" rel="tag">#java</a>
+            <a href="/tags/java/" rel="tag"># java</a>
           
-            <a href="/tags/spring/" rel="tag">#spring</a>
+            <a href="/tags/spring/" rel="tag"># spring</a>
           
         </div>
+      
+
+      
+      
       
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/08/02/Leetcode_Kth Smallest Element BST md/" rel="next" title="Invert Kth Smallest Element in a BST">
-                <i class="fa fa-chevron-left"></i> Invert Kth Smallest Element in a BST
+              <a href="/2015/07/23/Java_Spring(3)/" rel="next" title="Spring(3)_事件处理">
+                <i class="fa fa-chevron-left"></i> Spring(3)_事件处理
               </a>
             
           </div>
 
+          <span class="post-nav-divider"></span>
+
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/08/02/Leetcode_Combination Sum II/" rel="prev" title="Combination Sum II">
-                Combination Sum II <i class="fa fa-chevron-right"></i>
+              <a href="/2015/09/16/Blogging_Markdown简明语法手册/" rel="prev" title="Markdown简明语法手册">
+                Markdown简明语法手册 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -665,31 +805,28 @@
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
           </div>
           
 
-
-          
-  <div class="comments" id="comments">
-    
+  
+    <div class="comments" id="comments">
       <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
       </div>
-    
-  </div>
+    </div>
+
+  
+
 
 
         </div>
@@ -711,106 +848,211 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目錄
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            本站概覽
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
           </li>
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/plusaber.jpg"
-               alt="Plusaber" />
-          <p class="site-author-name" itemprop="name">Plusaber</p>
-          <p class="site-description motion-element" itemprop="description">Plusaber's Blog</p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">329</span>
-              <span class="site-state-item-name">文章</span>
-            </a>
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/plusaber.jpg" alt="Plusaber">
+            
+              <p class="site-author-name" itemprop="name">Plusaber</p>
+              <div class="site-description motion-element" itemprop="description">Plusaber's Blog</div>
           </div>
 
           
-            <div class="site-state-item site-state-categories">
-              <a href="/categories">
-                <span class="site-state-item-count">17</span>
-                <span class="site-state-item-name">分類</span>
-              </a>
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">82</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://jp.linkedin.com/in/zebangchen" title="https://jp.linkedin.com/in/zebangchen" rel="noopener" target="_blank">LinkedIn</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://indeed.com" title="https://indeed.com" rel="noopener" target="_blank">Indeed</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://baito.indeed.com" title="https://baito.indeed.com" rel="noopener" target="_blank">Baito</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.kaggle.com" title="https://www.kaggle.com" rel="noopener" target="_blank">Kaggle</a>
+                  </li>
+                
+              </ul>
             </div>
           
 
           
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">52</span>
-                <span class="site-state-item-name">標籤</span>
-              </a>
-            </div>
+            
+          
           
 
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
         </div>
-
-        
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              Links
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.kaggle.com" title="Kaggle" target="_blank">Kaggle</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.algolia.com" title="Algolia" target="_blank">Algolia</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://jp.linkedin.com/in/zebangchen" title="LinkedIn" target="_blank">LinkedIn</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://portal.qiniu.com" title="Qiniu" target="_blank">Qiniu</a>
-                </li>
-              
-            </ul>
-          </div>
-        
-
-      </section>
+      </div>
 
       
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
-              
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#面向切面编程-AOP"><span class="nav-number">1.</span> <span class="nav-text">面向切面编程(AOP)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AOP-术语"><span class="nav-number">2.</span> <span class="nav-text">AOP 术语</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">2.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通知的类型"><span class="nav-number">2.2.</span> <span class="nav-text">通知的类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring对AOP的支持"><span class="nav-number">2.3.</span> <span class="nav-text">Spring对AOP的支持</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring在运行期通知对象"><span class="nav-number">2.3.1.</span> <span class="nav-text">Spring在运行期通知对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring只支持方法连接点"><span class="nav-number">2.3.2.</span> <span class="nav-text">Spring只支持方法连接点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring中基于XML的AOP"><span class="nav-number">3.</span> <span class="nav-text">Spring中基于XML的AOP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#声明一个-aspect"><span class="nav-number">3.1.</span> <span class="nav-text">声明一个 aspect</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明一个切入点"><span class="nav-number">3.2.</span> <span class="nav-text">声明一个切入点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明通知"><span class="nav-number">3.3.</span> <span class="nav-text">声明通知</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Example"><span class="nav-number">3.4.</span> <span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring中基于-AspectJ注解的-AOP"><span class="nav-number">4.</span> <span class="nav-text">Spring中基于@AspectJ注解的 AOP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#声明一个-aspect-1"><span class="nav-number">4.1.</span> <span class="nav-text">声明一个 aspect</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明一个切入点-1"><span class="nav-number">4.2.</span> <span class="nav-text">声明一个切入点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明建议"><span class="nav-number">4.3.</span> <span class="nav-text">声明建议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Example-1"><span class="nav-number">4.4.</span> <span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Further"><span class="nav-number">5.</span> <span class="nav-text">Further</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#环绕通知的编写"><span class="nav-number">5.1.</span> <span class="nav-text">环绕通知的编写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为通知传递参数"><span class="nav-number">5.2.</span> <span class="nav-text">为通知传递参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过切面引入新功能"><span class="nav-number">5.3.</span> <span class="nav-text">通过切面引入新功能</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注入AspectJ切面"><span class="nav-number">6.</span> <span class="nav-text">注入AspectJ切面</span></a></li></ol></div>
             
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#面向切面编程aop"><span class="nav-number">1.</span> <span class="nav-text"> 面向切面编程(AOP)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#aop-术语"><span class="nav-number">2.</span> <span class="nav-text"> AOP 术语</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">2.1.</span> <span class="nav-text"> 概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通知的类型"><span class="nav-number">2.2.</span> <span class="nav-text"> 通知的类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring对aop的支持"><span class="nav-number">2.3.</span> <span class="nav-text"> Spring对AOP的支持</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#spring在运行期通知对象"><span class="nav-number">2.3.1.</span> <span class="nav-text"> Spring在运行期通知对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spring只支持方法连接点"><span class="nav-number">2.3.2.</span> <span class="nav-text"> Spring只支持方法连接点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#spring中基于xml的aop"><span class="nav-number">3.</span> <span class="nav-text"> Spring中基于XML的AOP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#声明一个-aspect"><span class="nav-number">3.1.</span> <span class="nav-text"> 声明一个 aspect</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明一个切入点"><span class="nav-number">3.2.</span> <span class="nav-text"> 声明一个切入点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明通知"><span class="nav-number">3.3.</span> <span class="nav-text"> 声明通知</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#example"><span class="nav-number">3.4.</span> <span class="nav-text"> Example</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#spring中基于aspectj注解的-aop"><span class="nav-number">4.</span> <span class="nav-text"> Spring中基于@AspectJ注解的 AOP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#声明一个-aspect-2"><span class="nav-number">4.1.</span> <span class="nav-text"> 声明一个 aspect</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明一个切入点-2"><span class="nav-number">4.2.</span> <span class="nav-text"> 声明一个切入点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明建议"><span class="nav-number">4.3.</span> <span class="nav-text"> 声明建议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#example-2"><span class="nav-number">4.4.</span> <span class="nav-text"> Example</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#further"><span class="nav-number">5.</span> <span class="nav-text"> Further</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#环绕通知的编写"><span class="nav-number">5.1.</span> <span class="nav-text"> 环绕通知的编写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为通知传递参数"><span class="nav-number">5.2.</span> <span class="nav-text"> 为通知传递参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过切面引入新功能"><span class="nav-number">5.3.</span> <span class="nav-text"> 通过切面引入新功能</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注入aspectj切面"><span class="nav-number">6.</span> <span class="nav-text"> 注入AspectJ切面</span></a></li></ol></div>
+            
+
           </div>
-        </section>
+        </div>
+      <!--/noindex-->
+      
+
       
 
     </div>
   </aside>
+  
 
 
         
@@ -819,41 +1061,61 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2014 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Plusaber</span>
+
+  
+
+  
 </div>
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
-</div>
 
-<div class="theme-info">
-  主題 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.1</div>
+
+
+
 
         
+
+
+
+
+
+
+
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -867,112 +1129,164 @@
 
 
 
-  
 
 
 
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
-  
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+
+
+
 
 
 
   
-  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
 
 
 
   
 
 
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
 
   
 
-    <script type="text/javascript">
-      var disqus_shortname = 'plusaber';
-      var disqus_identifier = '2015/08/02/Java_Spring(4)/';
-      var disqus_title = "Spring(4)_面向切面编程(AOP)";
-      var disqus_url = 'http://yoursite.com/2015/08/02/Java_Spring(4)/';
+  
 
-      function run_disqus_script(disqus_script){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      }
+  
 
-      run_disqus_script('count.js');
+  
+  
+  <script id="dsq-count-scr" src="https://plusaber.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://yoursite.com/2015/08/02/Java_Spring(4)/";
+    this.page.identifier = "2015/08/02/Java_Spring(4)/";
+    this.page.title = 'Spring(4)_面向切面编程(AOP)';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://plusaber.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
       
-        var disqus_config = function () {
-            this.page.url = disqus_url;
-            this.page.identifier = disqus_identifier;
-            this.page.title = disqus_title;
-        };
-        run_disqus_script('embed.js');
-      
-    </script>
-  
-
-
-
-
-  
-  
-
-  
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-  </script>
-
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-      for (i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-      }
-    });
-  </script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('Copy');
+      }, 300);
+    }).append(e);
+  })
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -986,7 +1300,7 @@
   });
 </script>
 
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
@@ -995,9 +1309,6 @@
   
 
   
-
-  
-
 
 </body>
 </html>

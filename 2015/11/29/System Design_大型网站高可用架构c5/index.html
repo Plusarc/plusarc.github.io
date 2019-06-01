@@ -1,24 +1,6 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
-
-  
-
-
-<html class="theme-next mist use-motion">
-<head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-  <meta name="google-site-verification" content="google88d81a02a91db82f" />
 
 
 
@@ -30,47 +12,14 @@
 
 
   
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="system design," />
+<html class="theme-next mist use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
 
 
 
@@ -79,85 +28,120 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+  <meta name="google-site-verification" content="google88d81a02a91db82f">
 
 
 
 
 
 
-<meta name="description" content="高可用的网站架构互联网企业实现高可用架构设计的主要目的是保证服务器硬件故障时服务依然可用，数据依然完整并能够被访问，其主要手段是数据和服务的冗余备份及失效转移。一旦某些服务器宕机，就将服务切换到其他可用的服务器上，如果磁盘损坏，则从备份的磁盘或数据服务器读取数据。
-一个典型的网站设计通常遵循如下分层架构：
-
-各层具有相对独立性，上层依赖下层。应用层主要负责业务具体逻辑处理；服务层负责提供可复用的服">
-<meta property="og:type" content="article">
-<meta property="og:title" content="System Design_大型网站高可用架构">
-<meta property="og:url" content="http://yoursite.com/2015/11/29/System Design_大型网站高可用架构c5/index.html">
-<meta property="og:site_name" content="Plusaber's Blog">
-<meta property="og:description" content="高可用的网站架构互联网企业实现高可用架构设计的主要目的是保证服务器硬件故障时服务依然可用，数据依然完整并能够被访问，其主要手段是数据和服务的冗余备份及失效转移。一旦某些服务器宕机，就将服务切换到其他可用的服务器上，如果磁盘损坏，则从备份的磁盘或数据服务器读取数据。
-一个典型的网站设计通常遵循如下分层架构：
-
-各层具有相对独立性，上层依赖下层。应用层主要负责业务具体逻辑处理；服务层负责提供可复用的服">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c5_1.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c5_2.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c5_3.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c5_4.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c5_5.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c5_6.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c5_7.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c5_8.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c5_9.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c5_10.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c5_11.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c5_12.png">
-<meta property="og:updated_time" content="2016-03-18T06:54:30.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="System Design_大型网站高可用架构">
-<meta name="twitter:description" content="高可用的网站架构互联网企业实现高可用架构设计的主要目的是保证服务器硬件故障时服务依然可用，数据依然完整并能够被访问，其主要手段是数据和服务的冗余备份及失效转移。一旦某些服务器宕机，就将服务切换到其他可用的服务器上，如果磁盘损坏，则从备份的磁盘或数据服务器读取数据。
-一个典型的网站设计通常遵循如下分层架构：
-
-各层具有相对独立性，上层依赖下层。应用层主要负责业务具体逻辑处理；服务层负责提供可复用的服">
-<meta name="twitter:image" content="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c5_1.png">
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/favicon.ico?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"right","display":"post"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'LP2H1MWXO2',
+      apiKey: '69bf93a909694ef7f679098292b442ca',
+      indexName: 'Plusaber',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
 
-
-
-  <link rel="canonical" href="http://yoursite.com/2015/11/29/System Design_大型网站高可用架构c5/"/>
-
-
-  <title> System Design_大型网站高可用架构 | Plusaber's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</head>
-
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
-
   
 
 
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-79158075-1', 'auto');
-  ga('send', 'pageview');
+
+
+  <meta name="description" content="高可用的网站架构 互联网企业实现高可用架构设计的主要目的是保证服务器硬件故障时服务依然可用，数据依然完整并能够被访问，其主要手段是数据和服务的冗余备份及失效转移。一旦某些服务器宕机，就将服务切换到其他可用的服务器上，如果磁盘损坏，则从备份的磁盘或数据服务器读取数据。 一个典型的网站设计通常遵循如下分层架构：  各层具有相对独立性，上层依赖下层。应用层主要负责业务具体逻辑处理；服务层负责提供可复用">
+<meta name="keywords" content="system design">
+<meta property="og:type" content="article">
+<meta property="og:title" content="System Design_大型网站高可用架构">
+<meta property="og:url" content="http://yoursite.com/2015/11/29/System Design_大型网站高可用架构c5/index.html">
+<meta property="og:site_name" content="Plusaber&#39;s Blog">
+<meta property="og:description" content="高可用的网站架构 互联网企业实现高可用架构设计的主要目的是保证服务器硬件故障时服务依然可用，数据依然完整并能够被访问，其主要手段是数据和服务的冗余备份及失效转移。一旦某些服务器宕机，就将服务切换到其他可用的服务器上，如果磁盘损坏，则从备份的磁盘或数据服务器读取数据。 一个典型的网站设计通常遵循如下分层架构：  各层具有相对独立性，上层依赖下层。应用层主要负责业务具体逻辑处理；服务层负责提供可复用">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c5_1.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c5_2.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c5_3.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c5_4.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c5_5.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c5_6.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c5_7.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c5_8.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c5_9.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c5_10.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c5_11.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c5_12.png">
+<meta property="og:updated_time" content="2019-06-01T04:39:30.320Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="System Design_大型网站高可用架构">
+<meta name="twitter:description" content="高可用的网站架构 互联网企业实现高可用架构设计的主要目的是保证服务器硬件故障时服务依然可用，数据依然完整并能够被访问，其主要手段是数据和服务的冗余备份及失效转移。一旦某些服务器宕机，就将服务切换到其他可用的服务器上，如果磁盘损坏，则从备份的磁盘或数据服务器读取数据。 一个典型的网站设计通常遵循如下分层架构：  各层具有相对独立性，上层依赖下层。应用层主要负责业务具体逻辑处理；服务层负责提供可复用">
+<meta name="twitter:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c5_1.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2015/11/29/System Design_大型网站高可用架构c5/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
 </script>
 
+  <title>System Design_大型网站高可用架构 | Plusaber's Blog</title>
+  
 
 
 
@@ -165,97 +149,177 @@
 
 
 
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-right page-post-detail ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Plusaber's Blog</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Plusaber's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
   </div>
-  <p class="site-subtitle"></p>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
+
 
 <nav class="site-nav">
-  
-
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首頁
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分類
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            歸檔
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            標籤
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
 
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
       
     </ul>
   
 
   
+    
+
+  
+
+  
 </nav>
 
- </div>
+
+
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -263,24 +327,37 @@
     
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/11/29/System Design_大型网站高可用架构c5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Plusaber">
+      <meta itemprop="description" content="Plusaber's Blog">
+      <meta itemprop="image" content="/images/plusaber.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Plusaber's Blog">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                System Design_大型网站高可用架构
+          <h1 class="post-title" itemprop="name headline">System Design_大型网站高可用架构
+
               
             
           </h1>
@@ -288,111 +365,146 @@
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-11-29T00:00:00+09:00" content="2015-11-29">
-              2015-11-29
-            </time>
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2015-11-29 00:00:00" itemprop="dateCreated datePublished" datetime="2015-11-29T00:00:00+09:00">2015-11-29</time>
+            
+
+            
           </span>
 
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分類於</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/System-design/" itemprop="url" rel="index">
-                    <span itemprop="name">System design</span>
-                  </a>
-                </span>
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/System-design/" itemprop="url" rel="index"><span itemprop="name">System design</span></a></span>
 
                 
                 
-
               
             </span>
           
 
           
             
+            
+              
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
                 <a href="/2015/11/29/System Design_大型网站高可用架构c5/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/11/29/System Design_大型网站高可用架构c5/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/11/29/System Design_大型网站高可用架构c5/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
-          
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
       
 
       
-        <h1 id="高可用的网站架构"><a href="#高可用的网站架构" class="headerlink" title="高可用的网站架构"></a>高可用的网站架构</h1><p>互联网企业实现高可用架构设计的主要目的是保证服务器硬件故障时服务依然可用，数据依然完整并能够被访问，其主要手段是数据和服务的冗余备份及失效转移。一旦某些服务器宕机，就将服务切换到其他可用的服务器上，如果磁盘损坏，则从备份的磁盘或数据服务器读取数据。</p>
+        <h1 id="高可用的网站架构"><a class="markdownIt-Anchor" href="#高可用的网站架构"></a> 高可用的网站架构</h1>
+<p>互联网企业实现高可用架构设计的主要目的是保证服务器硬件故障时服务依然可用，数据依然完整并能够被访问，其主要手段是数据和服务的冗余备份及失效转移。一旦某些服务器宕机，就将服务切换到其他可用的服务器上，如果磁盘损坏，则从备份的磁盘或数据服务器读取数据。</p>
 <p>一个典型的网站设计通常遵循如下分层架构：</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c5_1.png" alt="System_design_c5_1"></p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c5_1.png" alt="System_design_c5_1"></p>
 <p>各层具有相对独立性，上层依赖下层。应用层主要负责业务具体逻辑处理；服务层负责提供可复用的服务；数据层负责数据的存储与访问。中小型网站在具体部署时，通常将应用层和服务层部署在一起，数据层另外部署。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c5_2.png" alt="System_design_c5_2"></p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c5_2.png" alt="System_design_c5_2"></p>
 <p>复杂的大型网站会有更细的划分粒度：</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c5_3.png" alt="System_design_c5_3"></p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c5_3.png" alt="System_design_c5_3"></p>
 <p>大型网站的分层架构和物理服务器的分布式部署使得位于不同层次的服务具有不同的可用性特点。宕机时产生的影响也不同，高可用的解决方案也不同。</p>
 <p>位于应用层的服务器通常为了应对高并发的访问请求，会通过负载均衡设备将一组服务器组成一个集群共同对外提供服务，当负载均衡设备通过心跳检测等手段监控到某台应用服务器不可用时，就将其剔除，并将请求分发到其他可用的服务器上。服务层的服务器类似。</p>
 <p>数据服务器上存储着数据，为了保证服务器宕机时数据不丢失，数据访问不中断，需要在数据写入时进行数据同步复制，将数据写入多台服务器上，实现数据冗余备份。当数据服务器宕机时，应用程序将访问切换到有备份数据的服务器上。</p>
-<h1 id="高可用的应用"><a href="#高可用的应用" class="headerlink" title="高可用的应用"></a>高可用的应用</h1><p>应用层主要处理网站应用的业务逻辑，也称业务逻辑层，实现高可用需要的一个特点是应用的无状态性，也就是应用服务器不保存业务的上下文信息，而是仅根据每次请求提交的数据进行相应的业务逻辑处理，多个服务实例（服务器）之间完全对等，请求提交到任意服务器，处理结果都是完全一样的。</p>
-<h2 id="通过负载均衡进行无状态服务的失效转移"><a href="#通过负载均衡进行无状态服务的失效转移" class="headerlink" title="通过负载均衡进行无状态服务的失效转移"></a>通过负载均衡进行无状态服务的失效转移</h2><p>不保存状态的应用给高可用的架构设计带来了巨大便利，因为所有服务器完全对等，可以将请求转移给任何一台可用的服务器而不会影响结果。</p>
+<h1 id="高可用的应用"><a class="markdownIt-Anchor" href="#高可用的应用"></a> 高可用的应用</h1>
+<p>应用层主要处理网站应用的业务逻辑，也称业务逻辑层，实现高可用需要的一个特点是应用的无状态性，也就是应用服务器不保存业务的上下文信息，而是仅根据每次请求提交的数据进行相应的业务逻辑处理，多个服务实例（服务器）之间完全对等，请求提交到任意服务器，处理结果都是完全一样的。</p>
+<h2 id="通过负载均衡进行无状态服务的失效转移"><a class="markdownIt-Anchor" href="#通过负载均衡进行无状态服务的失效转移"></a> 通过负载均衡进行无状态服务的失效转移</h2>
+<p>不保存状态的应用给高可用的架构设计带来了巨大便利，因为所有服务器完全对等，可以将请求转移给任何一台可用的服务器而不会影响结果。</p>
 <p>负载均衡实现服务器可用状态实时监控，自动转移失效任务，同时保证每个服务器上的负载相对平均(根据具体性能)，不至于超过负载。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c5_4.png" alt="System_design_c5_4"></p>
-<h2 id="应用服务器集群的Session管理"><a href="#应用服务器集群的Session管理" class="headerlink" title="应用服务器集群的Session管理"></a>应用服务器集群的Session管理</h2><p>实际上很多业务是有状态的，如电子商务网站购物车等。Web应用将这些多次请求修改使用的上下文对象称为Session，在单机情况下，session可由部署在服务器上的web容器管理（如Jboss）。但在使用负载均衡的集群环境中，请求可能被分发到任何一台服务器上，情况要复杂很多。</p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c5_4.png" alt="System_design_c5_4"></p>
+<h2 id="应用服务器集群的session管理"><a class="markdownIt-Anchor" href="#应用服务器集群的session管理"></a> 应用服务器集群的Session管理</h2>
+<p>实际上很多业务是有状态的，如电子商务网站购物车等。Web应用将这些多次请求修改使用的上下文对象称为Session，在单机情况下，session可由部署在服务器上的web容器管理（如Jboss）。但在使用负载均衡的集群环境中，请求可能被分发到任何一台服务器上，情况要复杂很多。</p>
 <p>集群环境下，session管理主要有一下几种手段：</p>
 <ul>
 <li><strong>session复制</strong></li>
 </ul>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c5_5.png" alt="System_design_c5_5"></p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c5_5.png" alt="System_design_c5_5"></p>
 <p>集群中所有服务器同步session对象。当集群规模很大时，负担很重。</p>
 <ul>
 <li><strong>Session绑定</strong></li>
 </ul>
 <p>session绑定可以利用负载均衡的原地址Hash算法实现，负载均衡总是将来源于同一IP的请求分发到同一台服务器上（或Cookie信息）。这时负载均衡必须工作在HTTP协议层上。Session绑定也称为会话粘滞。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c5_6.png" alt="System_design_c5_6"></p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c5_6.png" alt="System_design_c5_6"></p>
 <p>但是不符合系统高可用的要求，某台服务器宕机后，其上的session信息都会丢失。没有得到广泛使用。</p>
 <ul>
 <li><strong>利用Cookie记录session</strong></li>
 </ul>
 <p>将session记录放在客户端，每次请求服务器时，将session放在请求中发给服务器，服务器处理完请求后再将修改过的session响应发给客户端。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c5_7.png" alt="System_design_c5_7"></p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c5_7.png" alt="System_design_c5_7"></p>
 <p>缺点是Cookie大小有限制，传输Cookie会影响性能。还有可能浏览器关闭Cookie支持等情况。但是因为其便利性，仍得到了广泛使用。</p>
 <ul>
 <li><strong>Session服务器</strong></li>
 </ul>
 <p>利用独立部署的Session服务器统一管理Session，服务器每次读写Session时，都访问Session服务器。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c5_8.png" alt="System_design_c5_8"></p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c5_8.png" alt="System_design_c5_8"></p>
 <p>实际上是将应用服务器的状态分离，分为无状态的应用服务器和有状态的Session服务器。</p>
-<h1 id="高可用的服务"><a href="#高可用的服务" class="headerlink" title="高可用的服务"></a>高可用的服务</h1><p>可复用的服务模块为业务产品提供基础公共服务，大型网站中这些服务通常独立分布式部署，被具体应用远程调用。可复用的服务和应用一有那个，也是无状态服务，因此可以使用类似负载均衡的失效转移策略实现高可用的服务。</p>
+<h1 id="高可用的服务"><a class="markdownIt-Anchor" href="#高可用的服务"></a> 高可用的服务</h1>
+<p>可复用的服务模块为业务产品提供基础公共服务，大型网站中这些服务通常独立分布式部署，被具体应用远程调用。可复用的服务和应用一有那个，也是无状态服务，因此可以使用类似负载均衡的失效转移策略实现高可用的服务。</p>
 <p>除此之外，还有一下的几点高可用的服务策略：</p>
 <ul>
-<li><p><strong>分级管理</strong><br>运维上将服务器进行分级管理，核心应用和服务使用更好的硬件。同时服务部署上也进行必要的隔离，避免故障的连锁反应，低优先级的服务通过启动不同的线程或者部署在不同的虚拟机上进行隔离，高优先级的服务则需要部署在不同的屋里机上，核心服务和数据甚至需要部署在不同地域的数据中心。</p>
+<li>
+<p><strong>分级管理</strong><br>
+运维上将服务器进行分级管理，核心应用和服务使用更好的硬件。同时服务部署上也进行必要的隔离，避免故障的连锁反应，低优先级的服务通过启动不同的线程或者部署在不同的虚拟机上进行隔离，高优先级的服务则需要部署在不同的屋里机上，核心服务和数据甚至需要部署在不同地域的数据中心。</p>
 </li>
-<li><p><strong>超时设置</strong><br>在应用中设置服务调用的超时时间，一旦超时，通信框架就抛出异常，应用程序根据服务调度策略，可以选择继续重试或者转移请求。</p>
+<li>
+<p><strong>超时设置</strong><br>
+在应用中设置服务调用的超时时间，一旦超时，通信框架就抛出异常，应用程序根据服务调度策略，可以选择继续重试或者转移请求。</p>
 </li>
-<li><p><strong>异步调用</strong></p>
+<li>
+<p><strong>异步调用</strong></p>
 </li>
 </ul>
 <p>应用对服务的调用通过消息队列等异步方式完成，避免一个服务失败导致整个应用请求失败的情况。</p>
@@ -405,10 +517,12 @@
 </ul>
 <p>有时会出现虚假的服务调用失败，比如服务完成超时，但是后面完成了操作，但是应用还是发出了一个新的请求。服务重复调用是无法避免的，因此需要在服务层保证重复调用和调用一次产生的结果相同，即服务具有幂等性。</p>
 <p>有些服务天然具有幂等性，但有些不是，比如转账等，这时需要设置交易编号等信息进行服务调用有效性验证，以实现幂等性。</p>
-<h1 id="高可用的数据"><a href="#高可用的数据" class="headerlink" title="高可用的数据"></a>高可用的数据</h1><p>不同于高可用的应用和服务，由于数据存储服务器上保存的数据不同，当某台服务器宕机时，数据访问请求不能任意切换到集群的其他机器上。</p>
+<h1 id="高可用的数据"><a class="markdownIt-Anchor" href="#高可用的数据"></a> 高可用的数据</h1>
+<p>不同于高可用的应用和服务，由于数据存储服务器上保存的数据不同，当某台服务器宕机时，数据访问请求不能任意切换到集群的其他机器上。</p>
 <p>保证数据存储高可用的手段是数据备份和失效转移机制。数据备份是保证数据有多个副本，失效不会导致数据的永久丢失。失效转移保证一个数据副本不可访问时，可以快速切换访问数据的其他副本。</p>
 <p>关于缓存的高可用，本质上其不是数据存储服务，缓存服务器宕机引起缓存数据丢失导致服务器负载压力过高应该通过其他手段解决，而不是提高缓存服务本身的高可用。</p>
-<h2 id="CAP原理"><a href="#CAP原理" class="headerlink" title="CAP原理"></a>CAP原理</h2><p>为了保证数据的高可用，往往需要牺牲另一个重要指标；数据一致性。</p>
+<h2 id="cap原理"><a class="markdownIt-Anchor" href="#cap原理"></a> CAP原理</h2>
+<p>为了保证数据的高可用，往往需要牺牲另一个重要指标；数据一致性。</p>
 <p>高可用的数据有如下几个层面的含义：</p>
 <ul>
 <li><strong>数据持久性</strong>：即数据不会丢失，需要将数据备份多个副本</li>
@@ -416,7 +530,7 @@
 <li><strong>数据一致性</strong>：在数据有多个副本情况下，如果网络等出现故障，会导致部分副本更新成功，部分可能会失败，这时副本间的数据就会不一致。</li>
 </ul>
 <p>CAP原理任务，一个提供数据服务的存储系统无法同时满足数据一致性（Consistency)、数据可用性（Availibility）、分区耐受性（Patition Tolerance,系统具有跨网络分区的伸缩性）。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c5_9.png" alt="System_design_c5_9"></p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c5_9.png" alt="System_design_c5_9"></p>
 <p>在大型网站应用中，数据规模总是快速扩张的，因此可伸缩性即分区耐受性必不可少。规模变大以后，节点失效的可能也会变大，要想保证应用可用，就必须保证数据的可用性。所以在互联网应用中，通常会强化分布式存储系统的可用性和伸缩性，而在一定程度上放弃一致性。尽管如此，系统需要对分布式数据处理系统的数据不一致性进行弥补，以避免数据不正确。</p>
 <p>具体数据一致性又可分为如下几点：</p>
 <ul>
@@ -425,61 +539,80 @@
 <li><strong>数据最终一致</strong>：较弱的一致性，物理存储可能是不一致的，用户访问也可能是不一致的，但是系统经过一段时间（较短的时间段）的自我恢复和修正，数据最终会达到一致。</li>
 </ul>
 <p>因为难以满足数据强一致性，网站通常会综合成本技术，结合数据监控和纠错功能，使存储系统达到用户一致。</p>
-<h2 id="数据备份"><a href="#数据备份" class="headerlink" title="数据备份"></a>数据备份</h2><p>备份分为冷备和热备。</p>
+<h2 id="数据备份"><a class="markdownIt-Anchor" href="#数据备份"></a> 数据备份</h2>
+<p>备份分为冷备和热备。</p>
 <p>冷备的有点是简单和廉价，但是不能保证数据最终一致，因为可能丢失上一次冷备后的更新，同时不能保证数据可用性，因为一般需要较长时间恢复数据。</p>
 <p>所以需要热备，热备可以分为两种：异步热备方式和同步热备方式。</p>
 <p>异步方式是指多份数据副本的写入操作异步完成，应用程序收到数据服务系统的写操作¥成功响应时，只成功了一份，存储系统会异步地写其他副本（这个过程有可能会失败）。通常先由主存储服务器（Master）写入第一份数据然后响应，然后通过异步线程将写操作数据同步到从存储服务器。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c5_10.png" alt="System_design_c5_10"></p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c5_10.png" alt="System_design_c5_10"></p>
 <p>同步方式是指多份数据副本的写入操作同步完成。为了提高性能，通常需要并发的向多个存储服务器写入数据。没有主从之分，方便管理，但是响应速度慢。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c5_11.png" alt="System_design_c5_11"></p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c5_11.png" alt="System_design_c5_11"></p>
 <p>关系数据库热备一般是Master-Slave同步机制，另外这一机制也可以通过读写分离改善数据库的性能，写操作只访问Master数据库，读操作只访问Slave数据库。</p>
-<h2 id="失效转移"><a href="#失效转移" class="headerlink" title="失效转移"></a>失效转移</h2><p>失效转移由下面三部分组成：</p>
+<h2 id="失效转移"><a class="markdownIt-Anchor" href="#失效转移"></a> 失效转移</h2>
+<p>失效转移由下面三部分组成：</p>
 <ul>
 <li><strong>失效确认</strong></li>
 </ul>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/System_design_c5_12.png" alt="System_design_c5_12"></p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/System_design_c5_12.png" alt="System_design_c5_12"></p>
 <p>通常通过心跳检测和应用程序访问失败报告确认服务器是否宕机。对于访问失败报告，系统还需要再发送一次心跳检测进行确认。</p>
 <ul>
 <li><strong>访问转移</strong></li>
 <li><strong>数据恢复</strong></li>
 </ul>
 <p>由于某台服务宕机，存储的副本减少，所以需要重新恢复足够的副本数。</p>
-<h1 id="高可用网站的软件质量保证"><a href="#高可用网站的软件质量保证" class="headerlink" title="高可用网站的软件质量保证"></a>高可用网站的软件质量保证</h1><h2 id="网站发布"><a href="#网站发布" class="headerlink" title="网站发布"></a>网站发布</h2><h2 id="自动化测试"><a href="#自动化测试" class="headerlink" title="自动化测试"></a>自动化测试</h2><h2 id="预发布验证"><a href="#预发布验证" class="headerlink" title="预发布验证"></a>预发布验证</h2><h2 id="代码控制"><a href="#代码控制" class="headerlink" title="代码控制"></a>代码控制</h2><h2 id="自动化发布"><a href="#自动化发布" class="headerlink" title="自动化发布"></a>自动化发布</h2><h2 id="灰度发布"><a href="#灰度发布" class="headerlink" title="灰度发布"></a>灰度发布</h2><h1 id="网站运行监控"><a href="#网站运行监控" class="headerlink" title="网站运行监控"></a>网站运行监控</h1><h2 id="监控数据采集"><a href="#监控数据采集" class="headerlink" title="监控数据采集"></a>监控数据采集</h2><h2 id="监控管理"><a href="#监控管理" class="headerlink" title="监控管理"></a>监控管理</h2>
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
+<h1 id="高可用网站的软件质量保证"><a class="markdownIt-Anchor" href="#高可用网站的软件质量保证"></a> 高可用网站的软件质量保证</h1>
+<h2 id="网站发布"><a class="markdownIt-Anchor" href="#网站发布"></a> 网站发布</h2>
+<h2 id="自动化测试"><a class="markdownIt-Anchor" href="#自动化测试"></a> 自动化测试</h2>
+<h2 id="预发布验证"><a class="markdownIt-Anchor" href="#预发布验证"></a> 预发布验证</h2>
+<h2 id="代码控制"><a class="markdownIt-Anchor" href="#代码控制"></a> 代码控制</h2>
+<h2 id="自动化发布"><a class="markdownIt-Anchor" href="#自动化发布"></a> 自动化发布</h2>
+<h2 id="灰度发布"><a class="markdownIt-Anchor" href="#灰度发布"></a> 灰度发布</h2>
+<h1 id="网站运行监控"><a class="markdownIt-Anchor" href="#网站运行监控"></a> 网站运行监控</h1>
+<h2 id="监控数据采集"><a class="markdownIt-Anchor" href="#监控数据采集"></a> 监控数据采集</h2>
+<h2 id="监控管理"><a class="markdownIt-Anchor" href="#监控管理"></a> 监控管理</h2>
 
       
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
 
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/system-design/" rel="tag">#system design</a>
+            <a href="/tags/system-design/" rel="tag"># system design</a>
           
         </div>
+      
+
+      
+      
       
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/11/28/Leetcode_Odd Even Linked List/" rel="next" title="Odd Even Linked List">
-                <i class="fa fa-chevron-left"></i> Odd Even Linked List
+              <a href="/2015/11/21/System Design_大型网站高性能架构c4/" rel="next" title="System Design_大型网站高性能架构">
+                <i class="fa fa-chevron-left"></i> System Design_大型网站高性能架构
               </a>
             
           </div>
+
+          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -494,31 +627,28 @@
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
           </div>
           
 
-
-          
-  <div class="comments" id="comments">
-    
+  
+    <div class="comments" id="comments">
       <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
       </div>
-    
-  </div>
+    </div>
+
+  
+
 
 
         </div>
@@ -540,106 +670,211 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目錄
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            本站概覽
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
           </li>
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/plusaber.jpg"
-               alt="Plusaber" />
-          <p class="site-author-name" itemprop="name">Plusaber</p>
-          <p class="site-description motion-element" itemprop="description">Plusaber's Blog</p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">329</span>
-              <span class="site-state-item-name">文章</span>
-            </a>
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/plusaber.jpg" alt="Plusaber">
+            
+              <p class="site-author-name" itemprop="name">Plusaber</p>
+              <div class="site-description motion-element" itemprop="description">Plusaber's Blog</div>
           </div>
 
           
-            <div class="site-state-item site-state-categories">
-              <a href="/categories">
-                <span class="site-state-item-count">17</span>
-                <span class="site-state-item-name">分類</span>
-              </a>
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">82</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://jp.linkedin.com/in/zebangchen" title="https://jp.linkedin.com/in/zebangchen" rel="noopener" target="_blank">LinkedIn</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://indeed.com" title="https://indeed.com" rel="noopener" target="_blank">Indeed</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://baito.indeed.com" title="https://baito.indeed.com" rel="noopener" target="_blank">Baito</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.kaggle.com" title="https://www.kaggle.com" rel="noopener" target="_blank">Kaggle</a>
+                  </li>
+                
+              </ul>
             </div>
           
 
           
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">52</span>
-                <span class="site-state-item-name">標籤</span>
-              </a>
-            </div>
+            
+          
           
 
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
         </div>
-
-        
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              Links
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.kaggle.com" title="Kaggle" target="_blank">Kaggle</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.algolia.com" title="Algolia" target="_blank">Algolia</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://jp.linkedin.com/in/zebangchen" title="LinkedIn" target="_blank">LinkedIn</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://portal.qiniu.com" title="Qiniu" target="_blank">Qiniu</a>
-                </li>
-              
-            </ul>
-          </div>
-        
-
-      </section>
+      </div>
 
       
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
-              
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#高可用的网站架构"><span class="nav-number">1.</span> <span class="nav-text">高可用的网站架构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高可用的应用"><span class="nav-number">2.</span> <span class="nav-text">高可用的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#通过负载均衡进行无状态服务的失效转移"><span class="nav-number">2.1.</span> <span class="nav-text">通过负载均衡进行无状态服务的失效转移</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用服务器集群的Session管理"><span class="nav-number">2.2.</span> <span class="nav-text">应用服务器集群的Session管理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高可用的服务"><span class="nav-number">3.</span> <span class="nav-text">高可用的服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高可用的数据"><span class="nav-number">4.</span> <span class="nav-text">高可用的数据</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CAP原理"><span class="nav-number">4.1.</span> <span class="nav-text">CAP原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据备份"><span class="nav-number">4.2.</span> <span class="nav-text">数据备份</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#失效转移"><span class="nav-number">4.3.</span> <span class="nav-text">失效转移</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高可用网站的软件质量保证"><span class="nav-number">5.</span> <span class="nav-text">高可用网站的软件质量保证</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#网站发布"><span class="nav-number">5.1.</span> <span class="nav-text">网站发布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动化测试"><span class="nav-number">5.2.</span> <span class="nav-text">自动化测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#预发布验证"><span class="nav-number">5.3.</span> <span class="nav-text">预发布验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码控制"><span class="nav-number">5.4.</span> <span class="nav-text">代码控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动化发布"><span class="nav-number">5.5.</span> <span class="nav-text">自动化发布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#灰度发布"><span class="nav-number">5.6.</span> <span class="nav-text">灰度发布</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网站运行监控"><span class="nav-number">6.</span> <span class="nav-text">网站运行监控</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#监控数据采集"><span class="nav-number">6.1.</span> <span class="nav-text">监控数据采集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#监控管理"><span class="nav-number">6.2.</span> <span class="nav-text">监控管理</span></a></li></ol></li></ol></div>
             
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#高可用的网站架构"><span class="nav-number">1.</span> <span class="nav-text"> 高可用的网站架构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高可用的应用"><span class="nav-number">2.</span> <span class="nav-text"> 高可用的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#通过负载均衡进行无状态服务的失效转移"><span class="nav-number">2.1.</span> <span class="nav-text"> 通过负载均衡进行无状态服务的失效转移</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用服务器集群的session管理"><span class="nav-number">2.2.</span> <span class="nav-text"> 应用服务器集群的Session管理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高可用的服务"><span class="nav-number">3.</span> <span class="nav-text"> 高可用的服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高可用的数据"><span class="nav-number">4.</span> <span class="nav-text"> 高可用的数据</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cap原理"><span class="nav-number">4.1.</span> <span class="nav-text"> CAP原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据备份"><span class="nav-number">4.2.</span> <span class="nav-text"> 数据备份</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#失效转移"><span class="nav-number">4.3.</span> <span class="nav-text"> 失效转移</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高可用网站的软件质量保证"><span class="nav-number">5.</span> <span class="nav-text"> 高可用网站的软件质量保证</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#网站发布"><span class="nav-number">5.1.</span> <span class="nav-text"> 网站发布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动化测试"><span class="nav-number">5.2.</span> <span class="nav-text"> 自动化测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#预发布验证"><span class="nav-number">5.3.</span> <span class="nav-text"> 预发布验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码控制"><span class="nav-number">5.4.</span> <span class="nav-text"> 代码控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动化发布"><span class="nav-number">5.5.</span> <span class="nav-text"> 自动化发布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#灰度发布"><span class="nav-number">5.6.</span> <span class="nav-text"> 灰度发布</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网站运行监控"><span class="nav-number">6.</span> <span class="nav-text"> 网站运行监控</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#监控数据采集"><span class="nav-number">6.1.</span> <span class="nav-text"> 监控数据采集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#监控管理"><span class="nav-number">6.2.</span> <span class="nav-text"> 监控管理</span></a></li></ol></li></ol></div>
+            
+
           </div>
-        </section>
+        </div>
+      <!--/noindex-->
+      
+
       
 
     </div>
   </aside>
+  
 
 
         
@@ -648,41 +883,61 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2014 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Plusaber</span>
+
+  
+
+  
 </div>
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
-</div>
 
-<div class="theme-info">
-  主題 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.1</div>
+
+
+
 
         
+
+
+
+
+
+
+
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -696,112 +951,164 @@
 
 
 
-  
 
 
 
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
-  
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+
+
+
 
 
 
   
-  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
 
 
 
   
 
 
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
 
   
 
-    <script type="text/javascript">
-      var disqus_shortname = 'plusaber';
-      var disqus_identifier = '2015/11/29/System Design_大型网站高可用架构c5/';
-      var disqus_title = "System Design_大型网站高可用架构";
-      var disqus_url = 'http://yoursite.com/2015/11/29/System Design_大型网站高可用架构c5/';
+  
 
-      function run_disqus_script(disqus_script){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      }
+  
 
-      run_disqus_script('count.js');
+  
+  
+  <script id="dsq-count-scr" src="https://plusaber.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://yoursite.com/2015/11/29/System Design_大型网站高可用架构c5/";
+    this.page.identifier = "2015/11/29/System Design_大型网站高可用架构c5/";
+    this.page.title = 'System Design_大型网站高可用架构';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://plusaber.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
       
-        var disqus_config = function () {
-            this.page.url = disqus_url;
-            this.page.identifier = disqus_identifier;
-            this.page.title = disqus_title;
-        };
-        run_disqus_script('embed.js');
-      
-    </script>
-  
-
-
-
-
-  
-  
-
-  
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-  </script>
-
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-      for (i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-      }
-    });
-  </script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('Copy');
+      }, 300);
+    }).append(e);
+  })
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -815,7 +1122,7 @@
   });
 </script>
 
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
@@ -824,9 +1131,6 @@
   
 
   
-
-  
-
 
 </body>
 </html>

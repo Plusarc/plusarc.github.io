@@ -1,24 +1,6 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
-
-  
-
-
-<html class="theme-next mist use-motion">
-<head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-  <meta name="google-site-verification" content="google88d81a02a91db82f" />
 
 
 
@@ -30,47 +12,14 @@
 
 
   
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="java,maven," />
+<html class="theme-next mist use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
 
 
 
@@ -79,72 +28,107 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+  <meta name="google-site-verification" content="google88d81a02a91db82f">
 
 
 
 
 
 
-<meta name="description" content="参考Maven Tutorial，Maven - 创建项目
-Installing MavenTo install Maven on your own system (computer), go to the Maven download page and follow the instructions there. In summary, what you need to do is:
-
-Set">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Maven(2)_创建第一个Maven项目">
-<meta property="og:url" content="http://yoursite.com/2014/11/05/Java_Maven(2)/index.html">
-<meta property="og:site_name" content="Plusaber's Blog">
-<meta property="og:description" content="参考Maven Tutorial，Maven - 创建项目
-Installing MavenTo install Maven on your own system (computer), go to the Maven download page and follow the instructions there. In summary, what you need to do is:
-
-Set">
-<meta property="og:updated_time" content="2016-04-29T02:30:16.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Maven(2)_创建第一个Maven项目">
-<meta name="twitter:description" content="参考Maven Tutorial，Maven - 创建项目
-Installing MavenTo install Maven on your own system (computer), go to the Maven download page and follow the instructions there. In summary, what you need to do is:
-
-Set">
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/favicon.ico?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"right","display":"post"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'LP2H1MWXO2',
+      apiKey: '69bf93a909694ef7f679098292b442ca',
+      indexName: 'Plusaber',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
 
-
-
-  <link rel="canonical" href="http://yoursite.com/2014/11/05/Java_Maven(2)/"/>
-
-
-  <title> Maven(2)_创建第一个Maven项目 | Plusaber's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</head>
-
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
-
   
 
 
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-79158075-1', 'auto');
-  ga('send', 'pageview');
+
+
+  <meta name="description" content="参考Maven Tutorial，Maven - 创建项目  Installing Maven To install Maven on your own system (computer), go to the Maven download page and follow the instructions there. In summary, what you need to do is:  Se">
+<meta name="keywords" content="java,maven">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Maven(2)_创建第一个Maven项目">
+<meta property="og:url" content="http://yoursite.com/2014/11/05/Java_Maven(2)/index.html">
+<meta property="og:site_name" content="Plusaber&#39;s Blog">
+<meta property="og:description" content="参考Maven Tutorial，Maven - 创建项目  Installing Maven To install Maven on your own system (computer), go to the Maven download page and follow the instructions there. In summary, what you need to do is:  Se">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2016-04-29T02:30:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Maven(2)_创建第一个Maven项目">
+<meta name="twitter:description" content="参考Maven Tutorial，Maven - 创建项目  Installing Maven To install Maven on your own system (computer), go to the Maven download page and follow the instructions there. In summary, what you need to do is:  Se">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2014/11/05/Java_Maven(2)/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
 </script>
 
+  <title>Maven(2)_创建第一个Maven项目 | Plusaber's Blog</title>
+  
 
 
 
@@ -152,97 +136,177 @@ Set">
 
 
 
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-right page-post-detail ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Plusaber's Blog</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Plusaber's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
   </div>
-  <p class="site-subtitle"></p>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
+
 
 <nav class="site-nav">
-  
-
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首頁
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分類
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            歸檔
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            標籤
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
 
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
       
     </ul>
   
 
   
+    
+
+  
+
+  
 </nav>
 
- </div>
+
+
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -250,24 +314,37 @@ Set">
     
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2014/11/05/Java_Maven(2)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Plusaber">
+      <meta itemprop="description" content="Plusaber's Blog">
+      <meta itemprop="image" content="/images/plusaber.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Plusaber's Blog">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                Maven(2)_创建第一个Maven项目
+          <h1 class="post-title" itemprop="name headline">Maven(2)_创建第一个Maven项目
+
               
             
           </h1>
@@ -275,66 +352,92 @@ Set">
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2014-11-05T00:00:00+09:00" content="2014-11-05">
-              2014-11-05
-            </time>
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2014-11-05 00:00:00" itemprop="dateCreated datePublished" datetime="2014-11-05T00:00:00+09:00">2014-11-05</time>
+            
+
+            
           </span>
 
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分類於</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
 
                 
                 
-
               
             </span>
           
 
           
             
+            
+              
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
                 <a href="/2014/11/05/Java_Maven(2)/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/11/05/Java_Maven(2)/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/11/05/Java_Maven(2)/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
-          
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
       
 
       
-        <p>参考<a href="http://tutorials.jenkov.com/maven/maven-tutorial.html#maven-settings-files" target="_blank" rel="external">Maven Tutorial</a>，<a href="https://ayayui.gitbooks.io/tutorialspoint-maven/content/book/maven_creating_project.html" target="_blank" rel="external">Maven - 创建项目</a></p>
-<h2 id="Installing-Maven"><a href="#Installing-Maven" class="headerlink" title="Installing Maven"></a>Installing Maven</h2><p>To install Maven on your own system (computer), go to the Maven download page and follow the instructions there. In summary, what you need to do is:</p>
+        <p>参考<a href="http://tutorials.jenkov.com/maven/maven-tutorial.html#maven-settings-files" target="_blank" rel="noopener">Maven Tutorial</a>，<a href="https://ayayui.gitbooks.io/tutorialspoint-maven/content/book/maven_creating_project.html" target="_blank" rel="noopener">Maven - 创建项目</a></p>
+<h2 id="installing-maven"><a class="markdownIt-Anchor" href="#installing-maven"></a> Installing Maven</h2>
+<p>To install Maven on your own system (computer), go to the Maven download page and follow the instructions there. In summary, what you need to do is:</p>
 <ol>
 <li>Set the JAVA_HOME environment variable to point to a valid Java SDK (e.g. Java 8).</li>
 <li>Download and unzip Maven.</li>
@@ -343,28 +446,35 @@ Set">
 <li>Add M2 to the PATH environment variable (%M2% on Windows, $M2 on unix).</li>
 <li>Open a command prompt and type ‘mvn -version’ (without quotes) and press enter.</li>
 </ol>
-<h2 id="Manual-project-creation"><a href="#Manual-project-creation" class="headerlink" title="Manual project creation"></a>Manual project creation</h2><h3 id="创建项目目录和pom文件"><a href="#创建项目目录和pom文件" class="headerlink" title="创建项目目录和pom文件"></a>创建项目目录和pom文件</h3><p>创建pom.xml文件如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span></span></div><div class="line">         <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></div><div class="line">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0</span></div><div class="line">                      http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></div><div class="line"></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.jenkov<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hello-world<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="manual-project-creation"><a class="markdownIt-Anchor" href="#manual-project-creation"></a> Manual project creation</h2>
+<h3 id="创建项目目录和pom文件"><a class="markdownIt-Anchor" href="#创建项目目录和pom文件"></a> 创建项目目录和pom文件</h3>
+<p>创建pom.xml文件如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0</span></span></span><br><span class="line"><span class="tag"><span class="string">                      http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.jenkov<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hello-world<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>可以通过<code>mvn clean</code>测试pom.xml以及环境是否正常：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">pc<span class="_">-a</span>375-2:maven admin$ mvn clean</div><div class="line">[INFO] Scanning <span class="keyword">for</span> projects...</div><div class="line">[INFO]                                                                         </div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">[INFO] Building hello-world 1.0.0</div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">[INFO] </div><div class="line">[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ hello-world ---</div><div class="line">Downloading: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0/plexus-utils-3.0.pom</div><div class="line">Downloaded: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0/plexus-utils-3.0.pom (4 KB at 1.9 KB/sec)</div><div class="line">Downloading: https://repo.maven.apache.org/maven2/org/sonatype/spice/spice-parent/16/spice-parent-16.pom</div><div class="line">Downloaded: https://repo.maven.apache.org/maven2/org/sonatype/spice/spice-parent/16/spice-parent-16.pom (9 KB at 31.8 KB/sec)</div><div class="line">Downloading: https://repo.maven.apache.org/maven2/org/sonatype/forge/forge-parent/5/forge-parent-5.pom</div><div class="line">Downloaded: https://repo.maven.apache.org/maven2/org/sonatype/forge/forge-parent/5/forge-parent-5.pom (9 KB at 31.7 KB/sec)</div><div class="line">Downloading: https://repo.maven.apache.org/maven2/org/apache/maven/maven-plugin-api/2.0.6/maven-plugin-api-2.0.6.jar</div><div class="line">Downloading: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0/plexus-utils-3.0.jar</div><div class="line">Downloaded: https://repo.maven.apache.org/maven2/org/apache/maven/maven-plugin-api/2.0.6/maven-plugin-api-2.0.6.jar (13 KB at 26.2 KB/sec)</div><div class="line">Downloaded: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0/plexus-utils-3.0.jar (221 KB at 292.8 KB/sec)</div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">[INFO] BUILD SUCCESS</div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">[INFO] Total time: 4.157 s</div><div class="line">[INFO] Finished at: 2016-04-12T17:39:37+09:00</div><div class="line">[INFO] Final Memory: 7M/130M</div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">pc<span class="_">-a</span>375-2:maven admin$</div></pre></td></tr></table></figure>
-<h3 id="创建源码目录"><a href="#创建源码目录" class="headerlink" title="创建源码目录"></a>创建源码目录</h3><p>按照maven的标准目录结构在项目录下创建源码目录：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">src</div><div class="line">  main</div><div class="line">    java</div></pre></td></tr></table></figure>
-<h3 id="创建代码文件"><a href="#创建代码文件" class="headerlink" title="创建代码文件"></a>创建代码文件</h3><p>创建java类源码文件<code>HelloWorld.java</code>.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> helloworld;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</div><div class="line"></div><div class="line">		System.out.println(<span class="string">"Hello World, Maven"</span>);</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="构建项目"><a href="#构建项目" class="headerlink" title="构建项目"></a>构建项目</h3><p>运行<code>mvn package</code>, <code>package</code>是默认生命周期的一个阶段。会将编译得到的java class文件打包位一个JAR文件。maven会创建<code>target</code>目录，生成的JAR文件就在里面。JAR包会命名为：<br><code>artifactId-version</code>.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">pc<span class="_">-a</span>375-2:maven admin$ <span class="built_in">cd</span> target</div><div class="line">pc<span class="_">-a</span>375-2:target admin$ ls</div><div class="line">classes			hello-world-1.0.0.jar	maven-archiver		maven-status</div><div class="line">pc<span class="_">-a</span>375-2:target admin$</div></pre></td></tr></table></figure>
-<h2 id="项目模板"><a href="#项目模板" class="headerlink" title="项目模板"></a>项目模板</h2><p>Archetype 是一个 Maven 插件，它的任务是按照项目模板创建一个项目的目录结构。这里，我们将使用 archetype 插件 quickstart 来创建一个简单的 java 应用。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">pc-a375-2:maven admin$ mvn clean</span><br><span class="line">[INFO] Scanning <span class="keyword">for</span> projects...</span><br><span class="line">[INFO]                                                                         </span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] Building hello-world 1.0.0</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ hello-world ---</span><br><span class="line">Downloading: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0/plexus-utils-3.0.pom</span><br><span class="line">Downloaded: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0/plexus-utils-3.0.pom (4 KB at 1.9 KB/sec)</span><br><span class="line">Downloading: https://repo.maven.apache.org/maven2/org/sonatype/spice/spice-parent/16/spice-parent-16.pom</span><br><span class="line">Downloaded: https://repo.maven.apache.org/maven2/org/sonatype/spice/spice-parent/16/spice-parent-16.pom (9 KB at 31.8 KB/sec)</span><br><span class="line">Downloading: https://repo.maven.apache.org/maven2/org/sonatype/forge/forge-parent/5/forge-parent-5.pom</span><br><span class="line">Downloaded: https://repo.maven.apache.org/maven2/org/sonatype/forge/forge-parent/5/forge-parent-5.pom (9 KB at 31.7 KB/sec)</span><br><span class="line">Downloading: https://repo.maven.apache.org/maven2/org/apache/maven/maven-plugin-api/2.0.6/maven-plugin-api-2.0.6.jar</span><br><span class="line">Downloading: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0/plexus-utils-3.0.jar</span><br><span class="line">Downloaded: https://repo.maven.apache.org/maven2/org/apache/maven/maven-plugin-api/2.0.6/maven-plugin-api-2.0.6.jar (13 KB at 26.2 KB/sec)</span><br><span class="line">Downloaded: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0/plexus-utils-3.0.jar (221 KB at 292.8 KB/sec)</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] BUILD SUCCESS</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] Total time: 4.157 s</span><br><span class="line">[INFO] Finished at: 2016-04-12T17:39:37+09:00</span><br><span class="line">[INFO] Final Memory: 7M/130M</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">pc-a375-2:maven admin$</span><br></pre></td></tr></table></figure>
+<h3 id="创建源码目录"><a class="markdownIt-Anchor" href="#创建源码目录"></a> 创建源码目录</h3>
+<p>按照maven的标准目录结构在项目录下创建源码目录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">src</span><br><span class="line">  main</span><br><span class="line">    java</span><br></pre></td></tr></table></figure>
+<h3 id="创建代码文件"><a class="markdownIt-Anchor" href="#创建代码文件"></a> 创建代码文件</h3>
+<p>创建java类源码文件<code>HelloWorld.java</code>.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> helloworld;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</span><br><span class="line"></span><br><span class="line">		System.out.println(<span class="string">"Hello World, Maven"</span>);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="构建项目"><a class="markdownIt-Anchor" href="#构建项目"></a> 构建项目</h3>
+<p>运行<code>mvn package</code>, <code>package</code>是默认生命周期的一个阶段。会将编译得到的java class文件打包位一个JAR文件。maven会创建<code>target</code>目录，生成的JAR文件就在里面。JAR包会命名为：<br>
+<code>artifactId-version</code>.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pc-a375-2:maven admin$ <span class="built_in">cd</span> target</span><br><span class="line">pc-a375-2:target admin$ ls</span><br><span class="line">classes			hello-world-1.0.0.jar	maven-archiver		maven-status</span><br><span class="line">pc-a375-2:target admin$</span><br></pre></td></tr></table></figure>
+<h2 id="项目模板"><a class="markdownIt-Anchor" href="#项目模板"></a> 项目模板</h2>
+<p>Archetype 是一个 Maven 插件，它的任务是按照项目模板创建一个项目的目录结构。这里，我们将使用 archetype 插件 quickstart 来创建一个简单的 java 应用。</p>
 <p>可以Maven的archetype插件来创建基本的项目，也可以创建高级的项目（根据模板）。要创建一个简单的java应用，我们将使用maven-archetype-quickstart插件。</p>
 <p>Maven 将会开始处理，并且要求你选择需要的archetype。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">[INFO] Scanning for projects...</div><div class="line">[INFO] Searching repository for plugin with prefix: &apos;archetype&apos;.</div><div class="line">[INFO] -------------------------------------------------------------------</div><div class="line">[INFO] Building Maven Default Project</div><div class="line">[INFO]    task-segment: [archetype:generate] (aggregator-style)</div><div class="line">[INFO] -------------------------------------------------------------------</div><div class="line">[INFO] Preparing archetype:generate</div><div class="line">...</div><div class="line">600: remote -&gt; org.trailsframework:trails-archetype (-)</div><div class="line">601: remote -&gt; org.trailsframework:trails-secure-archetype (-)</div><div class="line">602: remote -&gt; org.tynamo:tynamo-archetype (-)</div><div class="line">603: remote -&gt; org.wicketstuff.scala:wicket-scala-archetype (-)</div><div class="line">604: remote -&gt; org.wicketstuff.scala:wicketstuff-scala-archetype </div><div class="line">Basic setup for a project that combines Scala and Wicket,</div><div class="line">depending on the Wicket-Scala project. </div><div class="line">Includes an example Specs test.)</div><div class="line">605: remote -&gt; org.wikbook:wikbook.archetype (-)</div><div class="line">606: remote -&gt; org.xaloon.archetype:xaloon-archetype-wicket-jpa-glassfish (-)</div><div class="line">607: remote -&gt; org.xaloon.archetype:xaloon-archetype-wicket-jpa-spring (-)</div><div class="line">608: remote -&gt; org.xwiki.commons:xwiki-commons-component-archetype </div><div class="line">(Make it easy to create a maven project for creating XWiki Components.)</div><div class="line">609: remote -&gt; org.xwiki.rendering:xwiki-rendering-archetype-macro </div><div class="line">(Make it easy to create a maven project for creating XWiki Rendering Macros.)</div><div class="line">610: remote -&gt; org.zkoss:zk-archetype-component (The ZK Component archetype)</div><div class="line">611: remote -&gt; org.zkoss:zk-archetype-webapp (The ZK wepapp archetype)</div><div class="line">612: remote -&gt; ru.circumflex:circumflex-archetype (-)</div><div class="line">613: remote -&gt; se.vgregion.javg.maven.archetypes:javg-minimal-archetype (-)</div><div class="line">614: remote -&gt; sk.seges.sesam:sesam-annotation-archetype (-)</div><div class="line">Choose a number or apply filter </div><div class="line">(format: [groupId:]artifactId, case sensitive contains): 203:</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">[INFO] Scanning for projects...</span><br><span class="line">[INFO] Searching repository for plugin with prefix: &apos;archetype&apos;.</span><br><span class="line">[INFO] -------------------------------------------------------------------</span><br><span class="line">[INFO] Building Maven Default Project</span><br><span class="line">[INFO]    task-segment: [archetype:generate] (aggregator-style)</span><br><span class="line">[INFO] -------------------------------------------------------------------</span><br><span class="line">[INFO] Preparing archetype:generate</span><br><span class="line">...</span><br><span class="line">600: remote -&gt; org.trailsframework:trails-archetype (-)</span><br><span class="line">601: remote -&gt; org.trailsframework:trails-secure-archetype (-)</span><br><span class="line">602: remote -&gt; org.tynamo:tynamo-archetype (-)</span><br><span class="line">603: remote -&gt; org.wicketstuff.scala:wicket-scala-archetype (-)</span><br><span class="line">604: remote -&gt; org.wicketstuff.scala:wicketstuff-scala-archetype </span><br><span class="line">Basic setup for a project that combines Scala and Wicket,</span><br><span class="line">depending on the Wicket-Scala project. </span><br><span class="line">Includes an example Specs test.)</span><br><span class="line">605: remote -&gt; org.wikbook:wikbook.archetype (-)</span><br><span class="line">606: remote -&gt; org.xaloon.archetype:xaloon-archetype-wicket-jpa-glassfish (-)</span><br><span class="line">607: remote -&gt; org.xaloon.archetype:xaloon-archetype-wicket-jpa-spring (-)</span><br><span class="line">608: remote -&gt; org.xwiki.commons:xwiki-commons-component-archetype </span><br><span class="line">(Make it easy to create a maven project for creating XWiki Components.)</span><br><span class="line">609: remote -&gt; org.xwiki.rendering:xwiki-rendering-archetype-macro </span><br><span class="line">(Make it easy to create a maven project for creating XWiki Rendering Macros.)</span><br><span class="line">610: remote -&gt; org.zkoss:zk-archetype-component (The ZK Component archetype)</span><br><span class="line">611: remote -&gt; org.zkoss:zk-archetype-webapp (The ZK wepapp archetype)</span><br><span class="line">612: remote -&gt; ru.circumflex:circumflex-archetype (-)</span><br><span class="line">613: remote -&gt; se.vgregion.javg.maven.archetypes:javg-minimal-archetype (-)</span><br><span class="line">614: remote -&gt; sk.seges.sesam:sesam-annotation-archetype (-)</span><br><span class="line">Choose a number or apply filter </span><br><span class="line">(format: [groupId:]artifactId, case sensitive contains): 203:</span><br></pre></td></tr></table></figure>
 <p>按回车选择默认的选项（203：maven-archetype-quickstart）。</p>
 <p>Maven 将要求提供 archetype 的特定版本。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Choose org.apache.maven.archetypes:maven-archetype-quickstart version:</div><div class="line">1: 1.0-alpha-1</div><div class="line">2: 1.0-alpha-2</div><div class="line">3: 1.0-alpha-3</div><div class="line">4: 1.0-alpha-4</div><div class="line">5: 1.0</div><div class="line">6: 1.1</div><div class="line">Choose a number: 6:</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Choose org.apache.maven.archetypes:maven-archetype-quickstart version:</span><br><span class="line">1: 1.0-alpha-1</span><br><span class="line">2: 1.0-alpha-2</span><br><span class="line">3: 1.0-alpha-3</span><br><span class="line">4: 1.0-alpha-4</span><br><span class="line">5: 1.0</span><br><span class="line">6: 1.1</span><br><span class="line">Choose a number: 6:</span><br></pre></td></tr></table></figure>
 <p>按回车选择默认的选项（6：maven-archetype-quickstart:1.1）。</p>
 <p>Maven 将要求提供项目详情。要找要求键入项目详情。如果默认值有提供就按回车。你可以键入你自己的值来覆盖这些默认值。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Define value for property &apos;groupId&apos;: : com.companyname.insurance</div><div class="line">Define value for property &apos;artifactId&apos;: : health</div><div class="line">Define value for property &apos;version&apos;: 1.0-SNAPSHOT:</div><div class="line">Define value for property &apos;package&apos;: com.companyname.insurance:</div><div class="line">Maven 会要求确认项目详情。按回车或者 Y 。</div><div class="line"></div><div class="line">Confirm properties configuration:</div><div class="line">groupId: com.companyname.insurance</div><div class="line">artifactId: health</div><div class="line">version: 1.0-SNAPSHOT</div><div class="line">package: com.companyname.insurance</div><div class="line">Y:</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Define value for property &apos;groupId&apos;: : com.companyname.insurance</span><br><span class="line">Define value for property &apos;artifactId&apos;: : health</span><br><span class="line">Define value for property &apos;version&apos;: 1.0-SNAPSHOT:</span><br><span class="line">Define value for property &apos;package&apos;: com.companyname.insurance:</span><br><span class="line">Maven 会要求确认项目详情。按回车或者 Y 。</span><br><span class="line"></span><br><span class="line">Confirm properties configuration:</span><br><span class="line">groupId: com.companyname.insurance</span><br><span class="line">artifactId: health</span><br><span class="line">version: 1.0-SNAPSHOT</span><br><span class="line">package: com.companyname.insurance</span><br><span class="line">Y:</span><br></pre></td></tr></table></figure>
 <p>现在 Maven 将开始创建项目目录结构并且显示下面的信息：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">[INFO] -----------------------------------------------------------------------</div><div class="line">[INFO] Using following parameters for creating project </div><div class="line">from Old (1.x) Archetype: maven-archetype-quickstart:1.1</div><div class="line">[INFO] -----------------------------------------------------------------------</div><div class="line">[INFO] Parameter: groupId, Value: com.companyname.insurance</div><div class="line">[INFO] Parameter: packageName, Value: com.companyname.insurance</div><div class="line">[INFO] Parameter: package, Value: com.companyname.insurance</div><div class="line">[INFO] Parameter: artifactId, Value: health</div><div class="line">[INFO] Parameter: basedir, Value: C:\MVN</div><div class="line">[INFO] Parameter: version, Value: 1.0-SNAPSHOT</div><div class="line">[INFO] project created from Old (1.x) Archetype in dir: C:\MVN\health</div><div class="line">[INFO] -----------------------------------------------------------------------</div><div class="line">[INFO] BUILD SUCCESSFUL</div><div class="line">[INFO] -----------------------------------------------------------------------</div><div class="line">[INFO] Total time: 4 minutes 12 seconds</div><div class="line">[INFO] Finished at: Fri Jul 13 11:10:12 IST 2012</div><div class="line">[INFO] Final Memory: 20M/90M</div><div class="line">[INFO] -----------------------------------------------------------------------</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[INFO] -----------------------------------------------------------------------</span><br><span class="line">[INFO] Using following parameters for creating project </span><br><span class="line">from Old (1.x) Archetype: maven-archetype-quickstart:1.1</span><br><span class="line">[INFO] -----------------------------------------------------------------------</span><br><span class="line">[INFO] Parameter: groupId, Value: com.companyname.insurance</span><br><span class="line">[INFO] Parameter: packageName, Value: com.companyname.insurance</span><br><span class="line">[INFO] Parameter: package, Value: com.companyname.insurance</span><br><span class="line">[INFO] Parameter: artifactId, Value: health</span><br><span class="line">[INFO] Parameter: basedir, Value: C:\MVN</span><br><span class="line">[INFO] Parameter: version, Value: 1.0-SNAPSHOT</span><br><span class="line">[INFO] project created from Old (1.x) Archetype in dir: C:\MVN\health</span><br><span class="line">[INFO] -----------------------------------------------------------------------</span><br><span class="line">[INFO] BUILD SUCCESSFUL</span><br><span class="line">[INFO] -----------------------------------------------------------------------</span><br><span class="line">[INFO] Total time: 4 minutes 12 seconds</span><br><span class="line">[INFO] Finished at: Fri Jul 13 11:10:12 IST 2012</span><br><span class="line">[INFO] Final Memory: 20M/90M</span><br><span class="line">[INFO] -----------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
 <p>Maven使用如下所示的一套标准目录结构：</p>
 <table>
 <thead>
@@ -388,38 +498,43 @@ Set">
 </tr>
 </tbody>
 </table>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">Maven 为项目生成了一个 POM.xml 文件，如下所示：</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> </span></div><div class="line">   <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></div><div class="line">   <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 </span></div><div class="line">   http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;</div><div class="line">   <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.companyname.insurance<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>health<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">name</span>&gt;</span>health<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.apache.org<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">properties</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.8.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">Maven 为项目生成了一个 POM.xml 文件，如下所示：</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> </span></span><br><span class="line"><span class="tag">   <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">   <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 </span></span></span><br><span class="line"><span class="tag"><span class="string">   http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.companyname.insurance<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>health<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">name</span>&gt;</span>health<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.apache.org<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.8.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>Maven还创建了一个Java源文件样例和Java测试类文件。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.companyname.insurance;</div><div class="line"></div><div class="line"><span class="keyword">import</span> junit.framework.Test;</div><div class="line"><span class="keyword">import</span> junit.framework.TestCase;</div><div class="line"><span class="keyword">import</span> junit.framework.TestSuite;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Unit test for simple App.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppTest</span> </span></div><div class="line">    <span class="keyword">extends</span> <span class="title">TestCase</span></div><div class="line">&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Create the test case</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> testName name of the test case</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AppTest</span><span class="params">( String testName )</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">super</span>( testName );</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * <span class="doctag">@return</span> the suite of tests being tested</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Test <span class="title">suite</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> TestSuite( AppTest.class );</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Rigourous Test :-)</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testApp</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        assertTrue( <span class="keyword">true</span> );</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.companyname.insurance;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> junit.framework.Test;</span><br><span class="line"><span class="keyword">import</span> junit.framework.TestCase;</span><br><span class="line"><span class="keyword">import</span> junit.framework.TestSuite;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Unit test for simple App.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppTest</span> </span></span><br><span class="line"><span class="class">    <span class="keyword">extends</span> <span class="title">TestCase</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Create the test case</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> testName name of the test case</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AppTest</span><span class="params">( String testName )</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>( testName );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> the suite of tests being tested</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Test <span class="title">suite</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> TestSuite( AppTest.class );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Rigourous Test :-)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testApp</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        assertTrue( <span class="keyword">true</span> );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>开发者需要按照上面表格提到的要求放置自己的文件，然后Maven会处理构建相关的所有复杂工作。</p>
 <p>在 Maven 中使用一条命令，你就可以创建任意种类的项目，并且可以迅速启动你的开发工作。</p>
 
       
     </div>
 
-    <div>
-      
-        
+    
 
-      
-    </div>
+    
+    
+    
 
-    <div>
-      
-        
+    
 
+    
       
-    </div>
+    
+    
+
+    
 
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/java/" rel="tag">#java</a>
+            <a href="/tags/java/" rel="tag"># java</a>
           
-            <a href="/tags/maven/" rel="tag">#maven</a>
+            <a href="/tags/maven/" rel="tag"># maven</a>
           
         </div>
+      
+
+      
+      
       
 
       
@@ -432,10 +547,12 @@ Set">
             
           </div>
 
+          <span class="post-nav-divider"></span>
+
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2014/11/22/Developing_Tomcat/" rel="prev" title="Tomcat on Mac">
-                Tomcat on Mac <i class="fa fa-chevron-right"></i>
+              <a href="/2014/11/22/Design Pattern_Decorator pattern/" rel="prev" title="Decorator pattern">
+                Decorator pattern <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -445,31 +562,28 @@ Set">
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
           </div>
           
 
-
-          
-  <div class="comments" id="comments">
-    
+  
+    <div class="comments" id="comments">
       <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
       </div>
-    
-  </div>
+    </div>
+
+  
+
 
 
         </div>
@@ -491,106 +605,211 @@ Set">
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目錄
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            本站概覽
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
           </li>
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/plusaber.jpg"
-               alt="Plusaber" />
-          <p class="site-author-name" itemprop="name">Plusaber</p>
-          <p class="site-description motion-element" itemprop="description">Plusaber's Blog</p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">329</span>
-              <span class="site-state-item-name">文章</span>
-            </a>
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/plusaber.jpg" alt="Plusaber">
+            
+              <p class="site-author-name" itemprop="name">Plusaber</p>
+              <div class="site-description motion-element" itemprop="description">Plusaber's Blog</div>
           </div>
 
           
-            <div class="site-state-item site-state-categories">
-              <a href="/categories">
-                <span class="site-state-item-count">17</span>
-                <span class="site-state-item-name">分類</span>
-              </a>
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">82</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://jp.linkedin.com/in/zebangchen" title="https://jp.linkedin.com/in/zebangchen" rel="noopener" target="_blank">LinkedIn</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://indeed.com" title="https://indeed.com" rel="noopener" target="_blank">Indeed</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://baito.indeed.com" title="https://baito.indeed.com" rel="noopener" target="_blank">Baito</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.kaggle.com" title="https://www.kaggle.com" rel="noopener" target="_blank">Kaggle</a>
+                  </li>
+                
+              </ul>
             </div>
           
 
           
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">52</span>
-                <span class="site-state-item-name">標籤</span>
-              </a>
-            </div>
+            
+          
           
 
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
         </div>
-
-        
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              Links
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.kaggle.com" title="Kaggle" target="_blank">Kaggle</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.algolia.com" title="Algolia" target="_blank">Algolia</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://jp.linkedin.com/in/zebangchen" title="LinkedIn" target="_blank">LinkedIn</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://portal.qiniu.com" title="Qiniu" target="_blank">Qiniu</a>
-                </li>
-              
-            </ul>
-          </div>
-        
-
-      </section>
+      </div>
 
       
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
-              
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Installing-Maven"><span class="nav-number">1.</span> <span class="nav-text">Installing Maven</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Manual-project-creation"><span class="nav-number">2.</span> <span class="nav-text">Manual project creation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建项目目录和pom文件"><span class="nav-number">2.1.</span> <span class="nav-text">创建项目目录和pom文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建源码目录"><span class="nav-number">2.2.</span> <span class="nav-text">创建源码目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建代码文件"><span class="nav-number">2.3.</span> <span class="nav-text">创建代码文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建项目"><span class="nav-number">2.4.</span> <span class="nav-text">构建项目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目模板"><span class="nav-number">3.</span> <span class="nav-text">项目模板</span></a></li></ol></div>
             
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#installing-maven"><span class="nav-number">1.</span> <span class="nav-text"> Installing Maven</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#manual-project-creation"><span class="nav-number">2.</span> <span class="nav-text"> Manual project creation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建项目目录和pom文件"><span class="nav-number">2.1.</span> <span class="nav-text"> 创建项目目录和pom文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建源码目录"><span class="nav-number">2.2.</span> <span class="nav-text"> 创建源码目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建代码文件"><span class="nav-number">2.3.</span> <span class="nav-text"> 创建代码文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建项目"><span class="nav-number">2.4.</span> <span class="nav-text"> 构建项目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目模板"><span class="nav-number">3.</span> <span class="nav-text"> 项目模板</span></a></li></ol></div>
+            
+
           </div>
-        </section>
+        </div>
+      <!--/noindex-->
+      
+
       
 
     </div>
   </aside>
+  
 
 
         
@@ -599,41 +818,61 @@ Set">
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2014 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Plusaber</span>
+
+  
+
+  
 </div>
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
-</div>
 
-<div class="theme-info">
-  主題 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.1</div>
+
+
+
 
         
+
+
+
+
+
+
+
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -647,112 +886,164 @@ Set">
 
 
 
-  
 
 
 
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
-  
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+
+
+
 
 
 
   
-  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
 
 
 
   
 
 
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
 
   
 
-    <script type="text/javascript">
-      var disqus_shortname = 'plusaber';
-      var disqus_identifier = '2014/11/05/Java_Maven(2)/';
-      var disqus_title = "Maven(2)_创建第一个Maven项目";
-      var disqus_url = 'http://yoursite.com/2014/11/05/Java_Maven(2)/';
+  
 
-      function run_disqus_script(disqus_script){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      }
+  
 
-      run_disqus_script('count.js');
+  
+  
+  <script id="dsq-count-scr" src="https://plusaber.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://yoursite.com/2014/11/05/Java_Maven(2)/";
+    this.page.identifier = "2014/11/05/Java_Maven(2)/";
+    this.page.title = 'Maven(2)_创建第一个Maven项目';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://plusaber.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
       
-        var disqus_config = function () {
-            this.page.url = disqus_url;
-            this.page.identifier = disqus_identifier;
-            this.page.title = disqus_title;
-        };
-        run_disqus_script('embed.js');
-      
-    </script>
-  
-
-
-
-
-  
-  
-
-  
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-  </script>
-
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-      for (i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-      }
-    });
-  </script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('Copy');
+      }, 300);
+    }).append(e);
+  })
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -766,7 +1057,7 @@ Set">
   });
 </script>
 
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
@@ -775,9 +1066,6 @@ Set">
   
 
   
-
-  
-
 
 </body>
 </html>

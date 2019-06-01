@@ -1,24 +1,6 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
-
-  
-
-
-<html class="theme-next mist use-motion">
-<head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-  <meta name="google-site-verification" content="google88d81a02a91db82f" />
 
 
 
@@ -30,47 +12,14 @@
 
 
   
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
+<html class="theme-next mist use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
 
 
 
@@ -79,68 +28,108 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+  <meta name="google-site-verification" content="google88d81a02a91db82f">
 
 
 
 
 
 
-<meta name="description" content="Web services就是客户端通过HTTP协议向server发送请求，并获得所需要的信息或服务。Web services可以看做一种处于不同机器不同平台上的软件进行交互的一种标准方式。
-目前主要有两种类型的Web services：一种是所谓的big web services，因为其相对于第二种方式比较重量级。big web services使用XML封装请求信息以及回答，按照Simple O">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Big Web Services with Java">
-<meta property="og:url" content="http://yoursite.com/2015/05/17/WebService_Big Web Services/index.html">
-<meta property="og:site_name" content="Plusaber's Blog">
-<meta property="og:description" content="Web services就是客户端通过HTTP协议向server发送请求，并获得所需要的信息或服务。Web services可以看做一种处于不同机器不同平台上的软件进行交互的一种标准方式。
-目前主要有两种类型的Web services：一种是所谓的big web services，因为其相对于第二种方式比较重量级。big web services使用XML封装请求信息以及回答，按照Simple O">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/WebService_1.png">
-<meta property="og:updated_time" content="2016-04-30T06:32:46.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Big Web Services with Java">
-<meta name="twitter:description" content="Web services就是客户端通过HTTP协议向server发送请求，并获得所需要的信息或服务。Web services可以看做一种处于不同机器不同平台上的软件进行交互的一种标准方式。
-目前主要有两种类型的Web services：一种是所谓的big web services，因为其相对于第二种方式比较重量级。big web services使用XML封装请求信息以及回答，按照Simple O">
-<meta name="twitter:image" content="http://7xs07u.com1.z0.glb.clouddn.com/WebService_1.png">
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/favicon.ico?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"right","display":"post"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'LP2H1MWXO2',
+      apiKey: '69bf93a909694ef7f679098292b442ca',
+      indexName: 'Plusaber',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
 
-
-
-  <link rel="canonical" href="http://yoursite.com/2015/05/17/WebService_Big Web Services/"/>
-
-
-  <title> Big Web Services with Java | Plusaber's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</head>
-
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
-
   
 
 
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-79158075-1', 'auto');
-  ga('send', 'pageview');
+
+
+  <meta name="description" content="Web services就是客户端通过HTTP协议向server发送请求，并获得所需要的信息或服务。Web services可以看做一种处于不同机器不同平台上的软件进行交互的一种标准方式。 目前主要有两种类型的Web services： 一种是所谓的big web services，因为其相对于第二种方式比较重量级。big web services使用XML封装请求信息以及回答，按照Simple">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Big Web Services with Java">
+<meta property="og:url" content="http://yoursite.com/2015/05/17/WebService_Big Web Services/index.html">
+<meta property="og:site_name" content="Plusaber&#39;s Blog">
+<meta property="og:description" content="Web services就是客户端通过HTTP协议向server发送请求，并获得所需要的信息或服务。Web services可以看做一种处于不同机器不同平台上的软件进行交互的一种标准方式。 目前主要有两种类型的Web services： 一种是所谓的big web services，因为其相对于第二种方式比较重量级。big web services使用XML封装请求信息以及回答，按照Simple">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/WebService_1.png">
+<meta property="og:updated_time" content="2019-06-01T04:34:25.756Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Big Web Services with Java">
+<meta name="twitter:description" content="Web services就是客户端通过HTTP协议向server发送请求，并获得所需要的信息或服务。Web services可以看做一种处于不同机器不同平台上的软件进行交互的一种标准方式。 目前主要有两种类型的Web services： 一种是所谓的big web services，因为其相对于第二种方式比较重量级。big web services使用XML封装请求信息以及回答，按照Simple">
+<meta name="twitter:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/WebService_1.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2015/05/17/WebService_Big Web Services/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
 </script>
 
+  <title>Big Web Services with Java | Plusaber's Blog</title>
+  
 
 
 
@@ -148,97 +137,177 @@
 
 
 
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-right page-post-detail ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Plusaber's Blog</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Plusaber's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
   </div>
-  <p class="site-subtitle"></p>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
+
 
 <nav class="site-nav">
-  
-
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首頁
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分類
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            歸檔
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            標籤
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
 
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
       
     </ul>
   
 
   
+    
+
+  
+
+  
 </nav>
 
- </div>
+
+
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -246,24 +315,37 @@
     
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/05/17/WebService_Big Web Services/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Plusaber">
+      <meta itemprop="description" content="Plusaber's Blog">
+      <meta itemprop="image" content="/images/plusaber.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Plusaber's Blog">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                Big Web Services with Java
+          <h1 class="post-title" itemprop="name headline">Big Web Services with Java
+
               
             
           </h1>
@@ -271,58 +353,83 @@
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-05-17T00:00:00+09:00" content="2015-05-17">
-              2015-05-17
-            </time>
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2015-05-17 00:00:00" itemprop="dateCreated datePublished" datetime="2015-05-17T00:00:00+09:00">2015-05-17</time>
+            
+
+            
           </span>
 
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分類於</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/WebService/" itemprop="url" rel="index">
-                    <span itemprop="name">WebService</span>
-                  </a>
-                </span>
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/WebService/" itemprop="url" rel="index"><span itemprop="name">WebService</span></a></span>
 
                 
                 
-
               
             </span>
           
 
           
             
+            
+              
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
                 <a href="/2015/05/17/WebService_Big Web Services/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/05/17/WebService_Big Web Services/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/05/17/WebService_Big Web Services/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
-          
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -330,32 +437,51 @@
 
       
         <p>Web services就是客户端通过HTTP协议向server发送请求，并获得所需要的信息或服务。Web services可以看做一种处于不同机器不同平台上的软件进行交互的一种标准方式。</p>
-<p>目前主要有两种类型的Web services：<br>一种是所谓的big web services，因为其相对于第二种方式比较重量级。big web services使用XML封装请求信息以及回答，按照Simple Object Asscess Protocol，所以也称为SOAP消息，提供方法信息和作用域信息，另外使用的一项技术是WSDL(web service description language)，web服务描述语言，是一套用于描述SOAP WEB服务的XML词汇。客户端可以通过参考WSDL文档，可以确切的知道可以调用哪些RPC式方法，需要哪些参数，以及返回值数据类型。SOAP的服务都发布有WSDL文档，否则很难使用。对于很多程序语言，WSDL也是用来自动生成客户端stub必须的文档。</p>
-<p>另一种是RESTful webservice，具体两种实现的区别请参考Web Service的<a href="">Programmable Web及其分类</a>。这里主要介绍基于java实现big web service.</p>
-<h2 id="Big-web-service的基本技术"><a href="#Big-web-service的基本技术" class="headerlink" title="Big web service的基本技术"></a>Big web service的基本技术</h2><h3 id="SOAP"><a href="#SOAP" class="headerlink" title="SOAP"></a>SOAP</h3><p>SOAP是Web Service的基本通信协议，是一种规范，用来定义SOAP消息的XML格式（XMLFormat）。包含在一对 SOAP 元素（SOAPElements）中的、结构正确的 XML 段就是 SOAP 消息。<br>SOAP 规范还介绍了如何将程序数据表示为 XML，以及如何使用 SOAP 进行远程过程调用 （RPC）。<br>最后SOAP规范还定义了HTTP消息是怎样传输SOAP消息的。这并不代表SOAP只能用HTTP来作为传输协议，MSMQ、SMTP、TCP/IP都可以做SOAP的传输协议。</p>
-<h3 id="WSDL"><a href="#WSDL" class="headerlink" title="WSDL"></a>WSDL</h3><p>Web Services Description Language的缩写，是一个用来描述Web服务和说明如何与Web服务通信的XML语言。WSDL是Web Service的描述语言，用于描述Web Service的服务，接口绑定等，为用户提供详细的接口说明书。<br>举个例子，你要使用供应商的WebService构建应用程序。你可以向供应商索取使用Web Service的范例，然后按照范例来构建应用程序。这样可能出现意料不到的错误，比如说，你在程序中使用的客户代码的数据类型是integer，而供应商使用的数据类型是string。WSDL详细定义客户端消息的格式，需要什么样的参数，这样可以避免不必要的错误。<br>要查看 WSDL 的值，可以假设您要调用由您的一位业务伙伴提供的 SOAP 方法。您可以要求对方提供一些 SOAP 消息示例，然后编写您的应用程序以生成并使用与示例类似的消息。WSDL 通过明确的表示法指定请求消息必须包含的内容以及响应消息的样式。<br>WSDL 文件用于说明消息格式的表示法以 XML 架构标准为基础，这意味着它与编程语言无关，而且以标准为基础，因此适用于说明可从不同平台、以不同编程语言访问的 XML Web Service 接口。除说明消息内容外，WSDL 还定义了服务的位置，以及使用什么通信协议与服务进行通信。WSDL 文件定义了编写使用 XML Web Service 的程序所需的全部内容。</p>
+<p>目前主要有两种类型的Web services：<br>
+一种是所谓的big web services，因为其相对于第二种方式比较重量级。big web services使用XML封装请求信息以及回答，按照Simple Object Asscess Protocol，所以也称为SOAP消息，提供方法信息和作用域信息，另外使用的一项技术是WSDL(web service description language)，web服务描述语言，是一套用于描述SOAP WEB服务的XML词汇。客户端可以通过参考WSDL文档，可以确切的知道可以调用哪些RPC式方法，需要哪些参数，以及返回值数据类型。SOAP的服务都发布有WSDL文档，否则很难使用。对于很多程序语言，WSDL也是用来自动生成客户端stub必须的文档。</p>
+<p>另一种是RESTful webservice，具体两种实现的区别请参考Web Service的<a href>Programmable Web及其分类</a>。这里主要介绍基于java实现big web service.</p>
+<h2 id="big-web-service的基本技术"><a class="markdownIt-Anchor" href="#big-web-service的基本技术"></a> Big web service的基本技术</h2>
+<h3 id="soap"><a class="markdownIt-Anchor" href="#soap"></a> SOAP</h3>
+<p>SOAP是Web Service的基本通信协议，是一种规范，用来定义SOAP消息的XML格式（XMLFormat）。包含在一对 SOAP 元素（SOAPElements）中的、结构正确的 XML 段就是 SOAP 消息。<br>
+SOAP 规范还介绍了如何将程序数据表示为 XML，以及如何使用 SOAP 进行远程过程调用 （RPC）。<br>
+最后SOAP规范还定义了HTTP消息是怎样传输SOAP消息的。这并不代表SOAP只能用HTTP来作为传输协议，MSMQ、SMTP、TCP/IP都可以做SOAP的传输协议。</p>
+<h3 id="wsdl"><a class="markdownIt-Anchor" href="#wsdl"></a> WSDL</h3>
+<p>Web Services Description Language的缩写，是一个用来描述Web服务和说明如何与Web服务通信的XML语言。WSDL是Web Service的描述语言，用于描述Web Service的服务，接口绑定等，为用户提供详细的接口说明书。<br>
+举个例子，你要使用供应商的WebService构建应用程序。你可以向供应商索取使用Web Service的范例，然后按照范例来构建应用程序。这样可能出现意料不到的错误，比如说，你在程序中使用的客户代码的数据类型是integer，而供应商使用的数据类型是string。WSDL详细定义客户端消息的格式，需要什么样的参数，这样可以避免不必要的错误。<br>
+要查看 WSDL 的值，可以假设您要调用由您的一位业务伙伴提供的 SOAP 方法。您可以要求对方提供一些 SOAP 消息示例，然后编写您的应用程序以生成并使用与示例类似的消息。WSDL 通过明确的表示法指定请求消息必须包含的内容以及响应消息的样式。<br>
+WSDL 文件用于说明消息格式的表示法以 XML 架构标准为基础，这意味着它与编程语言无关，而且以标准为基础，因此适用于说明可从不同平台、以不同编程语言访问的 XML Web Service 接口。除说明消息内容外，WSDL 还定义了服务的位置，以及使用什么通信协议与服务进行通信。WSDL 文件定义了编写使用 XML Web Service 的程序所需的全部内容。</p>
 <p>Google搜索服务的WSDL文档片断：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">operation</span> <span class="attr">name</span>=<span class="string">"doGoogleSearch"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">message</span>=<span class="string">"typens:doGoogleSearch"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">output</span> <span class="attr">message</span>=<span class="string">"typens:doGoogleSearchRespnse"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">operation</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">operation</span> <span class="attr">name</span>=<span class="string">"doGoogleSearch"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">message</span>=<span class="string">"typens:doGoogleSearch"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">output</span> <span class="attr">message</span>=<span class="string">"typens:doGoogleSearchRespnse"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">operation</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>一个SOAP RPC调用的HTTP请求</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">POST search/beta2 HTTP/1.1</div><div class="line">Host:...</div><div class="line">...</div><div class="line"></div><div class="line">&lt;?xml version="1.0"...&gt;</div><div class="line">&lt;soap:Envelop xmln:soap="UTF-8"&gt;</div><div class="line">	&lt;soap:body&gt;</div><div class="line">		&lt;gs:doGoogleSearch&gt;</div><div class="line">			&lt;q&gt;plusaber&lt;/q&gt;</div><div class="line">		&lt;/gs:doGoogleSearch&gt;</div><div class="line">	&lt;/soap:Body&gt;</div><div class="line">&lt;/soap:Envelope&gt;</div></pre></td></tr></table></figure>
-<h3 id="UDDI"><a href="#UDDI" class="headerlink" title="UDDI"></a>UDDI</h3><p>UniversalDescription Discovery and Integration即统一描述、发现和集成协议。UDDI实现了一组可公开访问的接口，通过这些接口，网络服务可以向服务信息库注册其服务信息、服务需求者可以找到分散在世界各地的网络服务。<br>UDDI 目录条目是介绍所提供的业务和服务的 XML 文件。可以把它比喻成电话本，电话本里记录的是电话信息，而UDDI记录的是Web Service信息。你可以不把Web Service注册到UDDI。但如果要让全球的人知道你的Web Service，最好还是注册到UDDI。<br>UDDI 目录还包含若干种方法，可用于搜索构建您的应用程序所需的服务。例如，您可以搜索特定地理位置的服务提供商或者搜索特定的业务类型。之后，UDDI 目录将提供信息、联系方式、链接和技术数据，以便您确定能满足需要的服务。<br>UDDI 允许您查找提供所需的Web 服务的公司。如果您已经知道要与谁进行业务合作，但尚不了解它还能提供哪些服务，这时该如何处理呢？WS-Inspection规范允许您浏览特定服务器上提供的 XML Web Service 的集合，从中查找所需的服务。</p>
-<h2 id="Big-Web-Service的Java实现"><a href="#Big-Web-Service的Java实现" class="headerlink" title="Big Web Service的Java实现"></a>Big Web Service的Java实现</h2><p>Web Service本质是一种标准，具体每种语言都提供了不同的实现。在Java领域，Big Web Service的标准是JAX-WS，实现框架有：<a href="http://cxf.apache.org/docs/a-simple-jax-ws-service.html" target="_blank" rel="external">CXF</a>, axis2, Java 6开始自带的Web Service引擎(自带的<a href="http://docs.oracle.com/javaee/6/tutorial/doc/bnayl.html" target="_blank" rel="external">JAX-WS implementation</a>)。</p>
-<h3 id="JAX-WS的不同实现框架"><a href="#JAX-WS的不同实现框架" class="headerlink" title="JAX-WS的不同实现框架"></a>JAX-WS的不同实现框架</h3><p>这里先说明一下为什么存在这些不同的实现框架，特别是Java 6开始自带的Web Service引擎与其他更复杂的框架，参考<a href="http://stackoverflow.com/questions/11566609/difference-between-jax-ws-axis2-cxf" target="_blank" rel="external">Difference between Jax-ws, axis2, cxf</a>：<br>The JAX-WS implementation built into the JDK really is just the basic soap stuff. If you need any of the more complex WS-* things like WS-Security, WS-RM, WS-Policy, etc…, you need to use one of the alternatives like CXF or Metro or Axis2. It can also depend on what you are trying to integrate with. For example, CXF has top notch Spring support as well as very good OSGi support.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">POST search/beta2 HTTP/1.1</span><br><span class="line">Host:...</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?xml version="1.0"...&gt;</span></span><br><span class="line"><span class="meta">&lt;soap:Envelop xmln:soap="UTF-8"&gt;</span></span><br><span class="line"><span class="meta">	&lt;soap:body&gt;</span></span><br><span class="line"><span class="meta">		&lt;gs:doGoogleSearch&gt;</span></span><br><span class="line"><span class="meta">			&lt;q&gt;plusaber&lt;/q&gt;</span></span><br><span class="line"><span class="meta">		&lt;/gs:doGoogleSearch&gt;</span></span><br><span class="line"><span class="meta">	&lt;/soap:Body&gt;</span></span><br><span class="line"><span class="meta">&lt;/soap:Envelope&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="uddi"><a class="markdownIt-Anchor" href="#uddi"></a> UDDI</h3>
+<p>UniversalDescription Discovery and Integration即统一描述、发现和集成协议。UDDI实现了一组可公开访问的接口，通过这些接口，网络服务可以向服务信息库注册其服务信息、服务需求者可以找到分散在世界各地的网络服务。<br>
+UDDI 目录条目是介绍所提供的业务和服务的 XML 文件。可以把它比喻成电话本，电话本里记录的是电话信息，而UDDI记录的是Web Service信息。你可以不把Web Service注册到UDDI。但如果要让全球的人知道你的Web Service，最好还是注册到UDDI。<br>
+UDDI 目录还包含若干种方法，可用于搜索构建您的应用程序所需的服务。例如，您可以搜索特定地理位置的服务提供商或者搜索特定的业务类型。之后，UDDI 目录将提供信息、联系方式、链接和技术数据，以便您确定能满足需要的服务。<br>
+UDDI 允许您查找提供所需的Web 服务的公司。如果您已经知道要与谁进行业务合作，但尚不了解它还能提供哪些服务，这时该如何处理呢？WS-Inspection规范允许您浏览特定服务器上提供的 XML Web Service 的集合，从中查找所需的服务。</p>
+<h2 id="big-web-service的java实现"><a class="markdownIt-Anchor" href="#big-web-service的java实现"></a> Big Web Service的Java实现</h2>
+<p>Web Service本质是一种标准，具体每种语言都提供了不同的实现。在Java领域，Big Web Service的标准是JAX-WS，实现框架有：<a href="http://cxf.apache.org/docs/a-simple-jax-ws-service.html" target="_blank" rel="noopener">CXF</a>, axis2, Java 6开始自带的Web Service引擎(自带的<a href="http://docs.oracle.com/javaee/6/tutorial/doc/bnayl.html" target="_blank" rel="noopener">JAX-WS implementation</a>)。</p>
+<h3 id="jax-ws的不同实现框架"><a class="markdownIt-Anchor" href="#jax-ws的不同实现框架"></a> JAX-WS的不同实现框架</h3>
+<p>这里先说明一下为什么存在这些不同的实现框架，特别是Java 6开始自带的Web Service引擎与其他更复杂的框架，参考<a href="http://stackoverflow.com/questions/11566609/difference-between-jax-ws-axis2-cxf" target="_blank" rel="noopener">Difference between Jax-ws, axis2, cxf</a>：<br>
+The JAX-WS implementation built into the JDK really is just the basic soap stuff. If you need any of the more complex WS-* things like WS-Security, WS-RM, WS-Policy, etc…, you need to use one of the alternatives like CXF or Metro or Axis2. It can also depend on what you are trying to integrate with. For example, CXF has top notch Spring support as well as very good OSGi support.</p>
 <p>CXF also has other things besides just JAX-WS. It has a compliant JAX-RS implementation as well and supports exposing services as both REST and SOAP very well. Has a W3C compliant SOAP/JMS implementation if that type of things is required. Basically, lots of stuff not available from the in-jdk JAX-WS impl.</p>
-<p>Also see:<br><a href="http://stackoverflow.com/questions/1243247/difference-between-apache-cxf-and-axis/1245386#1245386" target="_blank" rel="external">Difference between Apache CXF and Axis</a></p>
+<p>Also see:<br>
+<a href="http://stackoverflow.com/questions/1243247/difference-between-apache-cxf-and-axis/1245386#1245386" target="_blank" rel="noopener">Difference between Apache CXF and Axis</a></p>
 <p>也就是Java自带的Web Service引擎提供了SOAP通信的服务，但是不支持更高级的需求，比如Web Service安全性，与Spring结合等。</p>
-<h3 id="创建和使用Web-Service基本步骤"><a href="#创建和使用Web-Service基本步骤" class="headerlink" title="创建和使用Web Service基本步骤"></a>创建和使用Web Service基本步骤</h3><ol>
+<h3 id="创建和使用web-service基本步骤"><a class="markdownIt-Anchor" href="#创建和使用web-service基本步骤"></a> 创建和使用Web Service基本步骤</h3>
+<ol>
 <li>编写服务的接口</li>
 <li>编写服务接口的实现类</li>
 <li>发布</li>
 <li>测试或使用</li>
 </ol>
-<h3 id="使用JAX-WS-Java自带-实现第一个Web-Service"><a href="#使用JAX-WS-Java自带-实现第一个Web-Service" class="headerlink" title="使用JAX-WS(Java自带)实现第一个Web Service"></a>使用JAX-WS(Java自带)实现第一个Web Service</h3><p>项目结构如下：</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/WebService_1.png" alt="WebService_1"></p>
+<h3 id="使用jax-wsjava自带实现第一个web-service"><a class="markdownIt-Anchor" href="#使用jax-wsjava自带实现第一个web-service"></a> 使用JAX-WS(Java自带)实现第一个Web Service</h3>
+<p>项目结构如下：</p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/WebService_1.png" alt="WebService_1"></p>
 <ul>
 <li><strong>编写服务接口HelloWorld</strong></li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> jws;</div><div class="line"></div><div class="line"><span class="keyword">import</span> javax.jws.WebParam;</div><div class="line"><span class="keyword">import</span> javax.jws.WebService;</div><div class="line"></div><div class="line"><span class="meta">@WebService</span>  </div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">HelloWorld</span> </span>&#123;  </div><div class="line">     </div><div class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">sayHello</span><span class="params">(@WebParam(name=<span class="string">"who"</span>)</span> String who)</span>;  </div><div class="line">     </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> jws;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.jws.WebParam;</span><br><span class="line"><span class="keyword">import</span> javax.jws.WebService;</span><br><span class="line"></span><br><span class="line"><span class="meta">@WebService</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">HelloWorld</span> </span>&#123;  </span><br><span class="line">     </span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">sayHello</span><span class="params">(@WebParam(name=<span class="string">"who"</span>)</span> String who)</span>;  </span><br><span class="line">     </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>注意<code>@WebService</code>是必须要有的，用于指定这是一个Web Service服务类。</p>
 <p>另外要暴露给客户端的方法需要注明为@WebMethod。<code>@WebMethod</code>是用来标注在WebService的方法即操作上的，通过它我们可以指定某一个操作的操作名、使用SOAP绑定时的Action名称，以及该方法是否允许发布为WebService。<code>@WebMethod</code>有三个属性：operationName、action和exclude。如果接口中方法不希望作为WebService访问的时候就可以通过<code>@WebMethod</code>来指定将其排除在外(<code>@WebMethod(exclude=true)</code>)。</p>
 <p><code>@Oneway</code>是标注在Service接口的操作方法上的。使用<code>@Oneway</code>标注的方法表示它不需要等待服务端的返回，也不需要预留资源来处理服务端的返回。</p>
@@ -363,23 +489,25 @@
 <ul>
 <li><strong>编写服务接口HelloWorld实现类</strong></li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> jws;</div><div class="line"></div><div class="line"><span class="keyword">import</span> javax.jws.WebMethod;</div><div class="line"><span class="keyword">import</span> javax.jws.WebService;</div><div class="line"></div><div class="line"><span class="comment">// endpointInterface用于指定实现的接口</span></div><div class="line"><span class="comment">// 同时也设定了服务的targetName和name，后面client定位这个服务时需要用到</span></div><div class="line"></div><div class="line"><span class="meta">@WebService</span>(endpointInterface = <span class="string">"jws.HelloWorld"</span>)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorldImpl</span> <span class="keyword">implements</span> <span class="title">HelloWorld</span> </span>&#123; </div><div class="line">	     </div><div class="line">	   <span class="meta">@Override</span>  </div><div class="line">	   <span class="meta">@WebMethod</span>(exclude=<span class="keyword">true</span>)  </div><div class="line">	   <span class="function"><span class="keyword">public</span> String <span class="title">sayHello</span><span class="params">(String who)</span> </span>&#123;  </div><div class="line">	      <span class="keyword">return</span><span class="string">"Hello, "</span> + who;  </div><div class="line">	   &#125;  </div><div class="line">	   </div><div class="line">	&#125;</div></pre></td></tr></table></figure>
-<p><a href="http://stackoverflow.com/questions/13417454/javax-xml-ws-webserviceexception-undefined-port-type-java-struts-soap-wsdl" target="_blank" rel="external">javax.xml.ws.WebServiceException: Undefined port type Java Struts SOAP WSDL</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> jws;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.jws.WebMethod;</span><br><span class="line"><span class="keyword">import</span> javax.jws.WebService;</span><br><span class="line"></span><br><span class="line"><span class="comment">// endpointInterface用于指定实现的接口</span></span><br><span class="line"><span class="comment">// 同时也设定了服务的targetName和name，后面client定位这个服务时需要用到</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@WebService</span>(endpointInterface = <span class="string">"jws.HelloWorld"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorldImpl</span> <span class="keyword">implements</span> <span class="title">HelloWorld</span> </span>&#123; </span><br><span class="line">	     </span><br><span class="line">	   <span class="meta">@Override</span>  </span><br><span class="line">	   <span class="meta">@WebMethod</span>(exclude=<span class="keyword">true</span>)  </span><br><span class="line">	   <span class="function"><span class="keyword">public</span> String <span class="title">sayHello</span><span class="params">(String who)</span> </span>&#123;  </span><br><span class="line">	      <span class="keyword">return</span><span class="string">"Hello, "</span> + who;  </span><br><span class="line">	   &#125;  </span><br><span class="line">	   </span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="http://stackoverflow.com/questions/13417454/javax-xml-ws-webserviceexception-undefined-port-type-java-struts-soap-wsdl" target="_blank" rel="noopener">javax.xml.ws.WebServiceException: Undefined port type Java Struts SOAP WSDL</a></p>
 <ul>
 <li><strong>发布服务</strong></li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> jws;</div><div class="line"></div><div class="line"><span class="keyword">import</span> javax.xml.ws.Endpoint;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServerTest</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">deployService</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"Server start ……"</span>);</div><div class="line">        HelloWorld service = <span class="keyword">new</span> HelloWorldImpl();</div><div class="line">        String address = <span class="string">"http://localhost:9999/ws/hello"</span>;</div><div class="line">        Endpoint.publish(address, service);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</div><div class="line">        deployService();</div><div class="line">        System.out.println(<span class="string">"server ready ……"</span>);</div><div class="line">        Thread.sleep(<span class="number">1000</span> * <span class="number">60</span>);</div><div class="line">        System.out.println(<span class="string">"server exiting"</span>);</div><div class="line">        System.exit(<span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> jws;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.xml.ws.Endpoint;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServerTest</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">deployService</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Server start ……"</span>);</span><br><span class="line">        HelloWorld service = <span class="keyword">new</span> HelloWorldImpl();</span><br><span class="line">        String address = <span class="string">"http://localhost:9999/ws/hello"</span>;</span><br><span class="line">        Endpoint.publish(address, service);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        deployService();</span><br><span class="line">        System.out.println(<span class="string">"server ready ……"</span>);</span><br><span class="line">        Thread.sleep(<span class="number">1000</span> * <span class="number">60</span>);</span><br><span class="line">        System.out.println(<span class="string">"server exiting"</span>);</span><br><span class="line">        System.exit(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li><strong>(可跳过)验证服务</strong></li>
 </ul>
 <p>打开浏览器，输入<code>http://localhost:9999/ws/hello?wsdl</code>，可以验证服务的WSDL文件(mac的safari不显示，可以用Chrome验证)。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--</span></div><div class="line"> Published by JAX-WS RI (http://jax-ws.java.net). RI's version is JAX-WS RI 2.2.9-b130926.1035 svn-revision#5f6196f2b90e9460065a4c2f4e30e065b245e51e. </div><div class="line">--&gt;</div><div class="line"><span class="comment">&lt;!--</span></div><div class="line"> Generated by JAX-WS RI (http://jax-ws.java.net). RI's version is JAX-WS RI 2.2.9-b130926.1035 svn-revision#5f6196f2b90e9460065a4c2f4e30e065b245e51e. </div><div class="line">--&gt;</div><div class="line"><span class="tag">&lt;<span class="name">definitions</span> <span class="attr">xmlns:wsu</span>=<span class="string">"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"</span> <span class="attr">xmlns:wsp</span>=<span class="string">"http://www.w3.org/ns/ws-policy"</span> <span class="attr">xmlns:wsp1_2</span>=<span class="string">"http://schemas.xmlsoap.org/ws/2004/09/policy"</span> <span class="attr">xmlns:wsam</span>=<span class="string">"http://www.w3.org/2007/05/addressing/metadata"</span> <span class="attr">xmlns:soap</span>=<span class="string">"http://schemas.xmlsoap.org/wsdl/soap/"</span> <span class="attr">xmlns:tns</span>=<span class="string">"http://jws/"</span> <span class="attr">xmlns:xsd</span>=<span class="string">"http://www.w3.org/2001/XMLSchema"</span> <span class="attr">xmlns</span>=<span class="string">"http://schemas.xmlsoap.org/wsdl/"</span> <span class="attr">targetNamespace</span>=<span class="string">"http://jws/"</span> <span class="attr">name</span>=<span class="string">"HelloWorldImplService"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">types</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">xsd:schema</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">xsd:import</span> <span class="attr">namespace</span>=<span class="string">"http://jws/"</span> <span class="attr">schemaLocation</span>=<span class="string">"http://localhost:9999/ws/hello?xsd=1"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">xsd:schema</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">types</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">message</span> <span class="attr">name</span>=<span class="string">"sayHello"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">part</span> <span class="attr">name</span>=<span class="string">"parameters"</span> <span class="attr">element</span>=<span class="string">"tns:sayHello"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">message</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">message</span> <span class="attr">name</span>=<span class="string">"sayHelloResponse"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">part</span> <span class="attr">name</span>=<span class="string">"parameters"</span> <span class="attr">element</span>=<span class="string">"tns:sayHelloResponse"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">message</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">portType</span> <span class="attr">name</span>=<span class="string">"HelloWorld"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">operation</span> <span class="attr">name</span>=<span class="string">"sayHello"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">wsam:Action</span>=<span class="string">"http://jws/HelloWorld/sayHelloRequest"</span> <span class="attr">message</span>=<span class="string">"tns:sayHello"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">output</span> <span class="attr">wsam:Action</span>=<span class="string">"http://jws/HelloWorld/sayHelloResponse"</span> <span class="attr">message</span>=<span class="string">"tns:sayHelloResponse"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">operation</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">portType</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">binding</span> <span class="attr">name</span>=<span class="string">"HelloWorldImplPortBinding"</span> <span class="attr">type</span>=<span class="string">"tns:HelloWorld"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">soap:binding</span> <span class="attr">transport</span>=<span class="string">"http://schemas.xmlsoap.org/soap/http"</span> <span class="attr">style</span>=<span class="string">"document"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">operation</span> <span class="attr">name</span>=<span class="string">"sayHello"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">soap:operation</span> <span class="attr">soapAction</span>=<span class="string">""</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">soap:body</span> <span class="attr">use</span>=<span class="string">"literal"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">input</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">output</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">soap:body</span> <span class="attr">use</span>=<span class="string">"literal"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">output</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">operation</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">binding</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">service</span> <span class="attr">name</span>=<span class="string">"HelloWorldImplService"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">port</span> <span class="attr">name</span>=<span class="string">"HelloWorldImplPort"</span> <span class="attr">binding</span>=<span class="string">"tns:HelloWorldImplPortBinding"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">soap:address</span> <span class="attr">location</span>=<span class="string">"http://localhost:9999/ws/hello"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">port</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">service</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">definitions</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment"> Published by JAX-WS RI (http://jax-ws.java.net). RI's version is JAX-WS RI 2.2.9-b130926.1035 svn-revision#5f6196f2b90e9460065a4c2f4e30e065b245e51e. </span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment"> Generated by JAX-WS RI (http://jax-ws.java.net). RI's version is JAX-WS RI 2.2.9-b130926.1035 svn-revision#5f6196f2b90e9460065a4c2f4e30e065b245e51e. </span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">definitions</span> <span class="attr">xmlns:wsu</span>=<span class="string">"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"</span> <span class="attr">xmlns:wsp</span>=<span class="string">"http://www.w3.org/ns/ws-policy"</span> <span class="attr">xmlns:wsp1_2</span>=<span class="string">"http://schemas.xmlsoap.org/ws/2004/09/policy"</span> <span class="attr">xmlns:wsam</span>=<span class="string">"http://www.w3.org/2007/05/addressing/metadata"</span> <span class="attr">xmlns:soap</span>=<span class="string">"http://schemas.xmlsoap.org/wsdl/soap/"</span> <span class="attr">xmlns:tns</span>=<span class="string">"http://jws/"</span> <span class="attr">xmlns:xsd</span>=<span class="string">"http://www.w3.org/2001/XMLSchema"</span> <span class="attr">xmlns</span>=<span class="string">"http://schemas.xmlsoap.org/wsdl/"</span> <span class="attr">targetNamespace</span>=<span class="string">"http://jws/"</span> <span class="attr">name</span>=<span class="string">"HelloWorldImplService"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">types</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">xsd:schema</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">xsd:import</span> <span class="attr">namespace</span>=<span class="string">"http://jws/"</span> <span class="attr">schemaLocation</span>=<span class="string">"http://localhost:9999/ws/hello?xsd=1"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">xsd:schema</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">types</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">message</span> <span class="attr">name</span>=<span class="string">"sayHello"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">part</span> <span class="attr">name</span>=<span class="string">"parameters"</span> <span class="attr">element</span>=<span class="string">"tns:sayHello"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">message</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">message</span> <span class="attr">name</span>=<span class="string">"sayHelloResponse"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">part</span> <span class="attr">name</span>=<span class="string">"parameters"</span> <span class="attr">element</span>=<span class="string">"tns:sayHelloResponse"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">message</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">portType</span> <span class="attr">name</span>=<span class="string">"HelloWorld"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">operation</span> <span class="attr">name</span>=<span class="string">"sayHello"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">wsam:Action</span>=<span class="string">"http://jws/HelloWorld/sayHelloRequest"</span> <span class="attr">message</span>=<span class="string">"tns:sayHello"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">output</span> <span class="attr">wsam:Action</span>=<span class="string">"http://jws/HelloWorld/sayHelloResponse"</span> <span class="attr">message</span>=<span class="string">"tns:sayHelloResponse"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">operation</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">portType</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">binding</span> <span class="attr">name</span>=<span class="string">"HelloWorldImplPortBinding"</span> <span class="attr">type</span>=<span class="string">"tns:HelloWorld"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">soap:binding</span> <span class="attr">transport</span>=<span class="string">"http://schemas.xmlsoap.org/soap/http"</span> <span class="attr">style</span>=<span class="string">"document"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">operation</span> <span class="attr">name</span>=<span class="string">"sayHello"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">soap:operation</span> <span class="attr">soapAction</span>=<span class="string">""</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">soap:body</span> <span class="attr">use</span>=<span class="string">"literal"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">input</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">output</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">soap:body</span> <span class="attr">use</span>=<span class="string">"literal"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">output</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">operation</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">binding</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">service</span> <span class="attr">name</span>=<span class="string">"HelloWorldImplService"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">port</span> <span class="attr">name</span>=<span class="string">"HelloWorldImplPort"</span> <span class="attr">binding</span>=<span class="string">"tns:HelloWorldImplPortBinding"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">soap:address</span> <span class="attr">location</span>=<span class="string">"http://localhost:9999/ws/hello"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">port</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">service</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">definitions</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li><strong>编写客户端，调用服务</strong></li>
 </ul>
 <p>需要利用工具类生成并导入服务的接口类<code>HelloWorld</code>。</p>
-<p>method 1: 使用Eclipse工具生成<br>method 2: 通过cxf的命令生成客户端代码。<br>进入apache-cxf-2.3.1\bin所在目录，输入命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wsdl2java -p com.jaxb.client <span class="_">-d</span> . http://localhost:9999/ws/hello?wsdl</div></pre></td></tr></table></figure>
+<p>method 1: 使用Eclipse工具生成<br>
+method 2: 通过cxf的命令生成客户端代码。<br>
+进入apache-cxf-2.3.1\bin所在目录，输入命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsdl2java -p com.jaxb.client -d . http://localhost:9999/ws/hello?wsdl</span><br></pre></td></tr></table></figure>
 <p>命令格式为：<code>wsdl2java –p 包名 –d 生成代码存放目录 wsdl的url</code></p>
 <p>wsdl2java用法：</p>
 <table>
@@ -421,39 +549,45 @@
 </tbody>
 </table>
 <p>另外还需要知道服务wsdl文件中的targetNamespace和name用于定位服务。</p>
-<p><code>targetNamespace=&quot;http://jws/&quot; 
-name=&quot;HelloWorldImplService</code></p>
+<p><code>targetNamespace=&quot;http://jws/&quot; name=&quot;HelloWorldImplService</code></p>
 <p>将生成代码拷贝到client代码目录下或导入。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> client;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.net.MalformedURLException;</div><div class="line"><span class="keyword">import</span> java.net.URL;</div><div class="line"></div><div class="line"><span class="keyword">import</span> javax.xml.namespace.QName;</div><div class="line"><span class="keyword">import</span> javax.xml.ws.Service;</div><div class="line"></div><div class="line"><span class="keyword">import</span> jws.HelloWorld;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		URL url = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            url = <span class="keyword">new</span> URL(<span class="string">"http://localhost:9999/ws/hello?wsdl"</span>);</div><div class="line">        &#125; <span class="keyword">catch</span> (MalformedURLException e) &#123;</div><div class="line">            java.util.logging.Logger.getLogger(HelloWorld.class.getName())</div><div class="line">                .log(java.util.logging.Level.INFO, </div><div class="line">                     <span class="string">"Can not initialize the default wsdl from &#123;0&#125;"</span>, <span class="string">"http://localhost:9000/helloWorld?wsdl"</span>);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        QName qname = <span class="keyword">new</span> QName(<span class="string">"http://jws/"</span>, <span class="string">"HelloWorldImplService"</span>);</div><div class="line">        </div><div class="line">        Service service = Service.create(url, qname);</div><div class="line">        </div><div class="line">        HelloWorld hw = service.getPort(HelloWorld.class);</div><div class="line">        System.out.println(hw.sayHello(<span class="string">"World"</span>));</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Hello, World</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> client;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.net.MalformedURLException;</span><br><span class="line"><span class="keyword">import</span> java.net.URL;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.xml.namespace.QName;</span><br><span class="line"><span class="keyword">import</span> javax.xml.ws.Service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> jws.HelloWorld;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		URL url = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            url = <span class="keyword">new</span> URL(<span class="string">"http://localhost:9999/ws/hello?wsdl"</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (MalformedURLException e) &#123;</span><br><span class="line">            java.util.logging.Logger.getLogger(HelloWorld.class.getName())</span><br><span class="line">                .log(java.util.logging.Level.INFO, </span><br><span class="line">                     <span class="string">"Can not initialize the default wsdl from &#123;0&#125;"</span>, <span class="string">"http://localhost:9000/helloWorld?wsdl"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        QName qname = <span class="keyword">new</span> QName(<span class="string">"http://jws/"</span>, <span class="string">"HelloWorldImplService"</span>);</span><br><span class="line">        </span><br><span class="line">        Service service = Service.create(url, qname);</span><br><span class="line">        </span><br><span class="line">        HelloWorld hw = service.getPort(HelloWorld.class);</span><br><span class="line">        System.out.println(hw.sayHello(<span class="string">"World"</span>));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello, World</span><br></pre></td></tr></table></figure>
 <p>上面是基本的基于Java 6开始自带的Web Service引擎的helloworld实现，没有使用任何其他包，例如CFX。</p>
-<h2 id="HelloWrold基于CXF的实现"><a href="#HelloWrold基于CXF的实现" class="headerlink" title="HelloWrold基于CXF的实现"></a>HelloWrold基于CXF的实现</h2><p>基本流程和上面一致。</p>
+<h2 id="hellowrold基于cxf的实现"><a class="markdownIt-Anchor" href="#hellowrold基于cxf的实现"></a> HelloWrold基于CXF的实现</h2>
+<p>基本流程和上面一致。</p>
 <p>使用CXF的JaxWsServerFactoryBean类进行发布。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">HelloServiceImpl impl = <span class="keyword">new</span> HelloServiceImpl();</div><div class="line">JaxWsServerFactoryBean factoryBean = newJaxWsServerFactoryBean();</div><div class="line">factoryBean.setAddress(<span class="string">"http://localhost:8080/WSCXF/helloService"</span>);</div><div class="line">factoryBean.setServiceClass(IHelloService.class);<span class="comment">//接口类</span></div><div class="line">factoryBean.setServiceBean(impl);</div><div class="line">factoryBean.create();</div><div class="line">System.out.println(<span class="string">"WS发布成功！"</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">HelloServiceImpl impl = <span class="keyword">new</span> HelloServiceImpl();</span><br><span class="line">JaxWsServerFactoryBean factoryBean = newJaxWsServerFactoryBean();</span><br><span class="line">factoryBean.setAddress(<span class="string">"http://localhost:8080/WSCXF/helloService"</span>);</span><br><span class="line">factoryBean.setServiceClass(IHelloService.class);<span class="comment">//接口类</span></span><br><span class="line">factoryBean.setServiceBean(impl);</span><br><span class="line">factoryBean.create();</span><br><span class="line">System.out.println(<span class="string">"WS发布成功！"</span>);</span><br></pre></td></tr></table></figure>
 <p>这两种方法都是将服务发布到Jetty下。另外还可以利用cxf和spring整合在tomcat下进行发布。</p>
 <p>客户端使用cxf的调用服务：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">JaxWsProxyFactoryBean soapFactoryBean = newJaxWsProxyFactoryBean();</div><div class="line">soapFactoryBean.setAddress(<span class="string">"http://localhost:8080/WSCXF/helloService"</span>);</div><div class="line">soapFactoryBean.setServiceClass(IHelloService.class);</div><div class="line">Object o = soapFactoryBean.create();</div><div class="line">IHelloService helloService = (IHelloService)o;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">JaxWsProxyFactoryBean soapFactoryBean = newJaxWsProxyFactoryBean();</span><br><span class="line">soapFactoryBean.setAddress(<span class="string">"http://localhost:8080/WSCXF/helloService"</span>);</span><br><span class="line">soapFactoryBean.setServiceClass(IHelloService.class);</span><br><span class="line">Object o = soapFactoryBean.create();</span><br><span class="line">IHelloService helloService = (IHelloService)o;</span><br></pre></td></tr></table></figure>
 <p>可以看出Big web service的生成发布以及调用过程都是基本一致的，只是在各个步骤可以使用不同的框架和实现，不同框架提供了不同程度的安全性，整合等支持。</p>
-<h2 id="CXF和Spring整合"><a href="#CXF和Spring整合" class="headerlink" title="CXF和Spring整合"></a>CXF和Spring整合</h2><p>参考<a href="http://www.mkyong.com/webservices/jax-ws/jax-ws-hello-world-example-document-style/" target="_blank" rel="external">JAX-WS Hello World Example – Document Style</a></p>
+<h2 id="cxf和spring整合"><a class="markdownIt-Anchor" href="#cxf和spring整合"></a> CXF和Spring整合</h2>
+<p>参考<a href="http://www.mkyong.com/webservices/jax-ws/jax-ws-hello-world-example-document-style/" target="_blank" rel="noopener">JAX-WS Hello World Example – Document Style</a></p>
 
       
     </div>
 
-    <div>
-      
-        
+    
 
-      
-    </div>
+    
+    
+    
 
-    <div>
-      
-        
+    
 
+    
       
-    </div>
+    
+    
+
+    
 
     <footer class="post-footer">
+      
+
+      
+      
       
 
       
@@ -465,6 +599,8 @@ name=&quot;HelloWorldImplService</code></p>
               </a>
             
           </div>
+
+          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -479,31 +615,28 @@ name=&quot;HelloWorldImplService</code></p>
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
           </div>
           
 
-
-          
-  <div class="comments" id="comments">
-    
+  
+    <div class="comments" id="comments">
       <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
       </div>
-    
-  </div>
+    </div>
+
+  
+
 
 
         </div>
@@ -525,106 +658,211 @@ name=&quot;HelloWorldImplService</code></p>
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目錄
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            本站概覽
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
           </li>
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/plusaber.jpg"
-               alt="Plusaber" />
-          <p class="site-author-name" itemprop="name">Plusaber</p>
-          <p class="site-description motion-element" itemprop="description">Plusaber's Blog</p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">329</span>
-              <span class="site-state-item-name">文章</span>
-            </a>
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/plusaber.jpg" alt="Plusaber">
+            
+              <p class="site-author-name" itemprop="name">Plusaber</p>
+              <div class="site-description motion-element" itemprop="description">Plusaber's Blog</div>
           </div>
 
           
-            <div class="site-state-item site-state-categories">
-              <a href="/categories">
-                <span class="site-state-item-count">17</span>
-                <span class="site-state-item-name">分類</span>
-              </a>
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">82</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://jp.linkedin.com/in/zebangchen" title="https://jp.linkedin.com/in/zebangchen" rel="noopener" target="_blank">LinkedIn</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://indeed.com" title="https://indeed.com" rel="noopener" target="_blank">Indeed</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://baito.indeed.com" title="https://baito.indeed.com" rel="noopener" target="_blank">Baito</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.kaggle.com" title="https://www.kaggle.com" rel="noopener" target="_blank">Kaggle</a>
+                  </li>
+                
+              </ul>
             </div>
           
 
           
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">52</span>
-                <span class="site-state-item-name">標籤</span>
-              </a>
-            </div>
+            
+          
           
 
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
         </div>
-
-        
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              Links
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.kaggle.com" title="Kaggle" target="_blank">Kaggle</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.algolia.com" title="Algolia" target="_blank">Algolia</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://jp.linkedin.com/in/zebangchen" title="LinkedIn" target="_blank">LinkedIn</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://portal.qiniu.com" title="Qiniu" target="_blank">Qiniu</a>
-                </li>
-              
-            </ul>
-          </div>
-        
-
-      </section>
+      </div>
 
       
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
-              
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Big-web-service的基本技术"><span class="nav-number">1.</span> <span class="nav-text">Big web service的基本技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SOAP"><span class="nav-number">1.1.</span> <span class="nav-text">SOAP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WSDL"><span class="nav-number">1.2.</span> <span class="nav-text">WSDL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UDDI"><span class="nav-number">1.3.</span> <span class="nav-text">UDDI</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Big-Web-Service的Java实现"><span class="nav-number">2.</span> <span class="nav-text">Big Web Service的Java实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JAX-WS的不同实现框架"><span class="nav-number">2.1.</span> <span class="nav-text">JAX-WS的不同实现框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建和使用Web-Service基本步骤"><span class="nav-number">2.2.</span> <span class="nav-text">创建和使用Web Service基本步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用JAX-WS-Java自带-实现第一个Web-Service"><span class="nav-number">2.3.</span> <span class="nav-text">使用JAX-WS(Java自带)实现第一个Web Service</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HelloWrold基于CXF的实现"><span class="nav-number">3.</span> <span class="nav-text">HelloWrold基于CXF的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CXF和Spring整合"><span class="nav-number">4.</span> <span class="nav-text">CXF和Spring整合</span></a></li></ol></div>
             
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#big-web-service的基本技术"><span class="nav-number">1.</span> <span class="nav-text"> Big web service的基本技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#soap"><span class="nav-number">1.1.</span> <span class="nav-text"> SOAP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wsdl"><span class="nav-number">1.2.</span> <span class="nav-text"> WSDL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#uddi"><span class="nav-number">1.3.</span> <span class="nav-text"> UDDI</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#big-web-service的java实现"><span class="nav-number">2.</span> <span class="nav-text"> Big Web Service的Java实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jax-ws的不同实现框架"><span class="nav-number">2.1.</span> <span class="nav-text"> JAX-WS的不同实现框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建和使用web-service基本步骤"><span class="nav-number">2.2.</span> <span class="nav-text"> 创建和使用Web Service基本步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用jax-wsjava自带实现第一个web-service"><span class="nav-number">2.3.</span> <span class="nav-text"> 使用JAX-WS(Java自带)实现第一个Web Service</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hellowrold基于cxf的实现"><span class="nav-number">3.</span> <span class="nav-text"> HelloWrold基于CXF的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cxf和spring整合"><span class="nav-number">4.</span> <span class="nav-text"> CXF和Spring整合</span></a></li></ol></div>
+            
+
           </div>
-        </section>
+        </div>
+      <!--/noindex-->
+      
+
       
 
     </div>
   </aside>
+  
 
 
         
@@ -633,41 +871,61 @@ name=&quot;HelloWorldImplService</code></p>
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2014 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Plusaber</span>
+
+  
+
+  
 </div>
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
-</div>
 
-<div class="theme-info">
-  主題 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.1</div>
+
+
+
 
         
+
+
+
+
+
+
+
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -681,112 +939,164 @@ name=&quot;HelloWorldImplService</code></p>
 
 
 
-  
 
 
 
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
-  
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+
+
+
 
 
 
   
-  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
 
 
 
   
 
 
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
 
   
 
-    <script type="text/javascript">
-      var disqus_shortname = 'plusaber';
-      var disqus_identifier = '2015/05/17/WebService_Big Web Services/';
-      var disqus_title = "Big Web Services with Java";
-      var disqus_url = 'http://yoursite.com/2015/05/17/WebService_Big Web Services/';
+  
 
-      function run_disqus_script(disqus_script){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      }
+  
 
-      run_disqus_script('count.js');
+  
+  
+  <script id="dsq-count-scr" src="https://plusaber.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://yoursite.com/2015/05/17/WebService_Big Web Services/";
+    this.page.identifier = "2015/05/17/WebService_Big Web Services/";
+    this.page.title = 'Big Web Services with Java';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://plusaber.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
       
-        var disqus_config = function () {
-            this.page.url = disqus_url;
-            this.page.identifier = disqus_identifier;
-            this.page.title = disqus_title;
-        };
-        run_disqus_script('embed.js');
-      
-    </script>
-  
-
-
-
-
-  
-  
-
-  
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-  </script>
-
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-      for (i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-      }
-    });
-  </script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('Copy');
+      }, 300);
+    }).append(e);
+  })
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -800,7 +1110,7 @@ name=&quot;HelloWorldImplService</code></p>
   });
 </script>
 
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
@@ -809,9 +1119,6 @@ name=&quot;HelloWorldImplService</code></p>
   
 
   
-
-  
-
 
 </body>
 </html>

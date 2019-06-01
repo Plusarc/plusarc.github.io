@@ -1,24 +1,6 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
-
-  
-
-
-<html class="theme-next mist use-motion">
-<head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-  <meta name="google-site-verification" content="google88d81a02a91db82f" />
 
 
 
@@ -30,47 +12,14 @@
 
 
   
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="design pattern," />
+<html class="theme-next mist use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
 
 
 
@@ -79,87 +28,119 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+  <meta name="google-site-verification" content="google88d81a02a91db82f">
 
 
 
 
 
 
-<meta name="description" content="适配器模式适配器模式是个相当好理解的模式，可以参考生活中的电源适配器。
-
-假设已有一个软件系统，我们希望它能和一个新的厂商类库搭配使用，但是这个新厂商所设计的接口和旧厂商的接口不同。
-
-这时我们就可以写一个类，实现新厂商接口，但真正提供服务是被封装的旧厂商(反过来也可以，甚至是双向适配器)。外部客户只需要调用新厂商接口，而不需要直到内部是谁实现的。这个适配器相当于一个中间人，将客户锁发出的请求转成">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Adapter pattern">
-<meta property="og:url" content="http://yoursite.com/2015/03/10/Design Pattern_Adapter pattern/index.html">
-<meta property="og:site_name" content="Plusaber's Blog">
-<meta property="og:description" content="适配器模式适配器模式是个相当好理解的模式，可以参考生活中的电源适配器。
-
-假设已有一个软件系统，我们希望它能和一个新的厂商类库搭配使用，但是这个新厂商所设计的接口和旧厂商的接口不同。
-
-这时我们就可以写一个类，实现新厂商接口，但真正提供服务是被封装的旧厂商(反过来也可以，甚至是双向适配器)。外部客户只需要调用新厂商接口，而不需要直到内部是谁实现的。这个适配器相当于一个中间人，将客户锁发出的请求转成">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_1.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_2.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_3.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_4.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_5.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_6.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_7.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_8.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_10.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_11.png">
-<meta property="og:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_12.png">
-<meta property="og:updated_time" content="2016-03-18T06:32:06.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Adapter pattern">
-<meta name="twitter:description" content="适配器模式适配器模式是个相当好理解的模式，可以参考生活中的电源适配器。
-
-假设已有一个软件系统，我们希望它能和一个新的厂商类库搭配使用，但是这个新厂商所设计的接口和旧厂商的接口不同。
-
-这时我们就可以写一个类，实现新厂商接口，但真正提供服务是被封装的旧厂商(反过来也可以，甚至是双向适配器)。外部客户只需要调用新厂商接口，而不需要直到内部是谁实现的。这个适配器相当于一个中间人，将客户锁发出的请求转成">
-<meta name="twitter:image" content="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_1.png">
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/favicon.ico?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"right","display":"post"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'LP2H1MWXO2',
+      apiKey: '69bf93a909694ef7f679098292b442ca',
+      indexName: 'Plusaber',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
 
-
-
-  <link rel="canonical" href="http://yoursite.com/2015/03/10/Design Pattern_Adapter pattern/"/>
-
-
-  <title> Adapter pattern | Plusaber's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</head>
-
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-hk">
-
   
 
 
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-79158075-1', 'auto');
-  ga('send', 'pageview');
+
+
+  <meta name="description" content="适配器模式 适配器模式是个相当好理解的模式，可以参考生活中的电源适配器。  假设已有一个软件系统，我们希望它能和一个新的厂商类库搭配使用，但是这个新厂商所设计的接口和旧厂商的接口不同。  这时我们就可以写一个类，实现新厂商接口，但真正提供服务是被封装的旧厂商(反过来也可以，甚至是双向适配器)。外部客户只需要调用新厂商接口，而不需要直到内部是谁实现的。这个适配器相当于一个中间人，将客户锁发出的请求">
+<meta name="keywords" content="design pattern">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Adapter pattern">
+<meta property="og:url" content="http://yoursite.com/2015/03/10/Design Pattern_Adapter pattern/index.html">
+<meta property="og:site_name" content="Plusaber&#39;s Blog">
+<meta property="og:description" content="适配器模式 适配器模式是个相当好理解的模式，可以参考生活中的电源适配器。  假设已有一个软件系统，我们希望它能和一个新的厂商类库搭配使用，但是这个新厂商所设计的接口和旧厂商的接口不同。  这时我们就可以写一个类，实现新厂商接口，但真正提供服务是被封装的旧厂商(反过来也可以，甚至是双向适配器)。外部客户只需要调用新厂商接口，而不需要直到内部是谁实现的。这个适配器相当于一个中间人，将客户锁发出的请求">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Design_pattern_adapter_1.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Design_pattern_adapter_2.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Design_pattern_adapter_3.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Design_pattern_adapter_4.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Design_pattern_adapter_5.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Design_pattern_adapter_6.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Design_pattern_adapter_7.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Design_pattern_adapter_8.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Design_pattern_adapter_10.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Design_pattern_adapter_11.png">
+<meta property="og:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Design_pattern_adapter_12.png">
+<meta property="og:updated_time" content="2019-06-01T04:41:24.094Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Adapter pattern">
+<meta name="twitter:description" content="适配器模式 适配器模式是个相当好理解的模式，可以参考生活中的电源适配器。  假设已有一个软件系统，我们希望它能和一个新的厂商类库搭配使用，但是这个新厂商所设计的接口和旧厂商的接口不同。  这时我们就可以写一个类，实现新厂商接口，但真正提供服务是被封装的旧厂商(反过来也可以，甚至是双向适配器)。外部客户只需要调用新厂商接口，而不需要直到内部是谁实现的。这个适配器相当于一个中间人，将客户锁发出的请求">
+<meta name="twitter:image" content="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Design_pattern_adapter_1.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2015/03/10/Design Pattern_Adapter pattern/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
 </script>
 
+  <title>Adapter pattern | Plusaber's Blog</title>
+  
 
 
 
@@ -167,97 +148,177 @@
 
 
 
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-right page-post-detail ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Plusaber's Blog</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Plusaber's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
   </div>
-  <p class="site-subtitle"></p>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
+
 
 <nav class="site-nav">
-  
-
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首頁
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分類
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            歸檔
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            標籤
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
 
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
       
     </ul>
   
 
   
+    
+
+  
+
+  
 </nav>
 
- </div>
+
+
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -265,24 +326,37 @@
     
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/03/10/Design Pattern_Adapter pattern/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Plusaber">
+      <meta itemprop="description" content="Plusaber's Blog">
+      <meta itemprop="image" content="/images/plusaber.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Plusaber's Blog">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                Adapter pattern
+          <h1 class="post-title" itemprop="name headline">Adapter pattern
+
               
             
           </h1>
@@ -290,77 +364,103 @@
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2015-03-10T00:00:00+09:00" content="2015-03-10">
-              2015-03-10
-            </time>
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2015-03-10 00:00:00" itemprop="dateCreated datePublished" datetime="2015-03-10T00:00:00+09:00">2015-03-10</time>
+            
+
+            
           </span>
 
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分類於</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Design-Pattern/" itemprop="url" rel="index">
-                    <span itemprop="name">Design Pattern</span>
-                  </a>
-                </span>
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Design-Pattern/" itemprop="url" rel="index"><span itemprop="name">Design Pattern</span></a></span>
 
                 
                 
-
               
             </span>
           
 
           
             
+            
+              
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
                 <a href="/2015/03/10/Design Pattern_Adapter pattern/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/03/10/Design Pattern_Adapter pattern/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/03/10/Design Pattern_Adapter pattern/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
-          
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
       
 
       
-        <h1 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h1><p>适配器模式是个相当好理解的模式，可以参考生活中的电源适配器。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_1.png" alt="Design_pattern_adapter_1"></p>
+        <h1 id="适配器模式"><a class="markdownIt-Anchor" href="#适配器模式"></a> 适配器模式</h1>
+<p>适配器模式是个相当好理解的模式，可以参考生活中的电源适配器。</p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Design_pattern_adapter_1.png" alt="Design_pattern_adapter_1"></p>
 <p>假设已有一个软件系统，我们希望它能和一个新的厂商类库搭配使用，但是这个新厂商所设计的接口和旧厂商的接口不同。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_2.png" alt="Design_pattern_adapter_2"></p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Design_pattern_adapter_2.png" alt="Design_pattern_adapter_2"></p>
 <p>这时我们就可以写一个类，实现新厂商接口，但真正提供服务是被封装的旧厂商(反过来也可以，甚至是双向适配器)。外部客户只需要调用新厂商接口，而不需要直到内部是谁实现的。这个适配器相当于一个中间人，将客户锁发出的请求转成厂商类所能理解的请求。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_3.png" alt="Design_pattern_adapter_3"></p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_4.png" alt="Design_pattern_adapter_4"></p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Design_pattern_adapter_3.png" alt="Design_pattern_adapter_3"></p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Design_pattern_adapter_4.png" alt="Design_pattern_adapter_4"></p>
 <p>假设我们缺少鸭子对象，需要使用火鸡对象来冒充鸭子。我们可以这样做：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Duck</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quack</span><span class="params">()</span></span>;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MallardDuck</span> <span class="keyword">implements</span> <span class="title">Duck</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quack</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Quack"</span>);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"I'm flying"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Turkey</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gobble</span><span class="params">()</span></span>;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WildTurkey</span> <span class="keyword">implements</span> <span class="title">Turkey</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gobble</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Gobble gobble"</span>);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"I'm flying a short distance"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Duck</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quack</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MallardDuck</span> <span class="keyword">implements</span> <span class="title">Duck</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Quack"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"I'm flying"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Turkey</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gobble</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WildTurkey</span> <span class="keyword">implements</span> <span class="title">Turkey</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gobble</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Gobble gobble"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"I'm flying a short distance"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>写个适配器：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TurkeyAdapter</span> <span class="keyword">implements</span> <span class="title">Duck</span> </span>&#123;</div><div class="line">	Turkey turkey;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">TurkeyAdapter</span><span class="params">(Turkey turkey)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.turkey = turkey;</div><div class="line">	&#125;</div><div class="line">    </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quack</span><span class="params">()</span> </span>&#123;</div><div class="line">		turkey.gobble();</div><div class="line">	&#125;</div><div class="line">  </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</div><div class="line">			turkey.fly();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DuckTestDrive</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		MallardDuck duck = <span class="keyword">new</span> MallardDuck();</div><div class="line"> </div><div class="line">		WildTurkey turkey = <span class="keyword">new</span> WildTurkey();</div><div class="line">		Duck turkeyAdapter = <span class="keyword">new</span> TurkeyAdapter(turkey);</div><div class="line">   </div><div class="line">		System.out.println(<span class="string">"The Turkey says..."</span>);</div><div class="line">		turkey.gobble();</div><div class="line">		turkey.fly();</div><div class="line"> </div><div class="line">		System.out.println(<span class="string">"\nThe Duck says..."</span>);</div><div class="line">		testDuck(duck);</div><div class="line">  </div><div class="line">		System.out.println(<span class="string">"\nThe TurkeyAdapter says..."</span>);</div><div class="line">		testDuck(turkeyAdapter);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testDuck</span><span class="params">(Duck duck)</span> </span>&#123;</div><div class="line">		duck.quack();</div><div class="line">		duck.fly();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TurkeyAdapter</span> <span class="keyword">implements</span> <span class="title">Duck</span> </span>&#123;</span><br><span class="line">	Turkey turkey;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">TurkeyAdapter</span><span class="params">(Turkey turkey)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.turkey = turkey;</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		turkey.gobble();</span><br><span class="line">	&#125;</span><br><span class="line">  </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">			turkey.fly();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DuckTestDrive</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		MallardDuck duck = <span class="keyword">new</span> MallardDuck();</span><br><span class="line"> </span><br><span class="line">		WildTurkey turkey = <span class="keyword">new</span> WildTurkey();</span><br><span class="line">		Duck turkeyAdapter = <span class="keyword">new</span> TurkeyAdapter(turkey);</span><br><span class="line">   </span><br><span class="line">		System.out.println(<span class="string">"The Turkey says..."</span>);</span><br><span class="line">		turkey.gobble();</span><br><span class="line">		turkey.fly();</span><br><span class="line"> </span><br><span class="line">		System.out.println(<span class="string">"\nThe Duck says..."</span>);</span><br><span class="line">		testDuck(duck);</span><br><span class="line">  </span><br><span class="line">		System.out.println(<span class="string">"\nThe TurkeyAdapter says..."</span>);</span><br><span class="line">		testDuck(turkeyAdapter);</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testDuck</span><span class="params">(Duck duck)</span> </span>&#123;</span><br><span class="line">		duck.quack();</span><br><span class="line">		duck.fly();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这里鸭子是目标接口，火鸡就是被适配者。</p>
 <p>客户使用适配器的过程如下：</p>
 <ul>
@@ -369,21 +469,28 @@
 <li>客户收到调用的结果，但并未察觉这一切是适配器在起转换作用。</li>
 </ul>
 <p>同样的，我们也可以写一个适配器将鸭子转为火鸡。</p>
-<h2 id="定义适配器模式"><a href="#定义适配器模式" class="headerlink" title="定义适配器模式"></a>定义适配器模式</h2><p>适配器模式将一个类的接口，转换为客户期望的另一个接口。适配器让原本接口不兼容的类可以互相合作。</p>
+<h2 id="定义适配器模式"><a class="markdownIt-Anchor" href="#定义适配器模式"></a> 定义适配器模式</h2>
+<p>适配器模式将一个类的接口，转换为客户期望的另一个接口。适配器让原本接口不兼容的类可以互相合作。</p>
 <p>同样适配器可以将改变的部分封装起来，被适配者接口改变时，客户端代码也不需要修改。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_5.png" alt="Design_pattern_adapter_5"></p>
-<h2 id="对象适配器和类适配器"><a href="#对象适配器和类适配器" class="headerlink" title="对象适配器和类适配器"></a>对象适配器和类适配器</h2><p>适配器主要有两类：对象适配器和类适配器。前面在鸭子的例子使用的是对象适配器。对象适配器使用的是组合，而类适配器使用的是继承(多继承)。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_6.png" alt="Design_pattern_adapter_6"></p>
-<h2 id="Java的枚举器"><a href="#Java的枚举器" class="headerlink" title="Java的枚举器"></a>Java的枚举器</h2><p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_7.png" alt="Design_pattern_adapter_7"></p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_8.png" alt="Design_pattern_adapter_8"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EnumerationIterator</span> <span class="keyword">implements</span> <span class="title">Iterator</span> </span>&#123;</div><div class="line">	Enumeration enumeration;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">EnumerationIterator</span><span class="params">(Enumeration enumeration)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.enumeration = enumeration;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> enumeration.hasMoreElements();</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">next</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> enumeration.nextElement();</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EnumerationIteratorTestDrive</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span> <span class="params">(String args[])</span> </span>&#123;</div><div class="line">		Vector v = <span class="keyword">new</span> Vector(Arrays.asList(args));</div><div class="line">		Iterator iterator = <span class="keyword">new</span> EnumerationIterator(v.elements());</div><div class="line">		<span class="keyword">while</span> (iterator.hasNext()) &#123;</div><div class="line">			System.out.println(iterator.next());</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Design_pattern_adapter_5.png" alt="Design_pattern_adapter_5"></p>
+<h2 id="对象适配器和类适配器"><a class="markdownIt-Anchor" href="#对象适配器和类适配器"></a> 对象适配器和类适配器</h2>
+<p>适配器主要有两类：对象适配器和类适配器。前面在鸭子的例子使用的是对象适配器。对象适配器使用的是组合，而类适配器使用的是继承(多继承)。</p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Design_pattern_adapter_6.png" alt="Design_pattern_adapter_6"></p>
+<h2 id="java的枚举器"><a class="markdownIt-Anchor" href="#java的枚举器"></a> Java的枚举器</h2>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Design_pattern_adapter_7.png" alt="Design_pattern_adapter_7"></p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Design_pattern_adapter_8.png" alt="Design_pattern_adapter_8"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EnumerationIterator</span> <span class="keyword">implements</span> <span class="title">Iterator</span> </span>&#123;</span><br><span class="line">	Enumeration enumeration;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">EnumerationIterator</span><span class="params">(Enumeration enumeration)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.enumeration = enumeration;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> enumeration.hasMoreElements();</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> enumeration.nextElement();</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EnumerationIteratorTestDrive</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span> <span class="params">(String args[])</span> </span>&#123;</span><br><span class="line">		Vector v = <span class="keyword">new</span> Vector(Arrays.asList(args));</span><br><span class="line">		Iterator iterator = <span class="keyword">new</span> EnumerationIterator(v.elements());</span><br><span class="line">		<span class="keyword">while</span> (iterator.hasNext()) &#123;</span><br><span class="line">			System.out.println(iterator.next());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>比较装饰器、适配器和外观：</p>
-<p>装饰者：不改变接口，但加入责任<br>适配器：将一个接口转成另一个接口<br>外观：让接口更简单</p>
-<h1 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h1><p>外观模式的意图是简化接口，而适配器的意图是将接口转换。使用外观模式，我们通过创建一个接口简化而统一的类，用来包装子系统中一个或多个复杂的类。</p>
+<p>装饰者：不改变接口，但加入责任<br>
+适配器：将一个接口转成另一个接口<br>
+外观：让接口更简单</p>
+<h1 id="外观模式"><a class="markdownIt-Anchor" href="#外观模式"></a> 外观模式</h1>
+<p>外观模式的意图是简化接口，而适配器的意图是将接口转换。使用外观模式，我们通过创建一个接口简化而统一的类，用来包装子系统中一个或多个复杂的类。</p>
 <p>外观模式提供了一个统一的接口，用来访问子系统中的一群接口。外观定义了一个高层接口，让子系统更容易使用。</p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_10.png" alt="Design_pattern_adapter_10"></p>
-<p>这也符合了OO的另一个设计原则：最少知识原则<br><strong>最少知识原则：只和你的密友谈话。</strong></p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Design_pattern_adapter_10.png" alt="Design_pattern_adapter_10"></p>
+<p>这也符合了OO的另一个设计原则：最少知识原则<br>
+<strong>最少知识原则：只和你的密友谈话。</strong></p>
 <p>这个原则希望我们在设计中，不要让太多的类耦合在一起，免得修改系统中的一部分，会信息到更多的部分。我们需要尽量使类对其他类对象的依赖尽可能的少。除了上面的外观模式，另一个指导原则就是：就任何对象而言，在该对象的方法内，我们只应该调用属于一下范围的方法：</p>
 <ul>
 <li>该对象本身</li>
@@ -391,33 +498,38 @@
 <li>此方法所创建或实例化的任何对象</li>
 <li>对象的任何组件(组合方式的成员变量)</li>
 </ul>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_11.png" alt="Design_pattern_adapter_11"></p>
-<p><img src="http://7xs07u.com1.z0.glb.clouddn.com/Design_pattern_adapter_12.png" alt="Design_pattern_adapter_12"></p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Design_pattern_adapter_11.png" alt="Design_pattern_adapter_11"></p>
+<p><img src="https://plusaberblog.s3-ap-northeast-1.amazonaws.com/image/Design_pattern_adapter_12.png" alt="Design_pattern_adapter_12"></p>
 
       
     </div>
 
-    <div>
-      
-        
+    
 
-      
-    </div>
+    
+    
+    
 
-    <div>
-      
-        
+    
 
+    
       
-    </div>
+    
+    
+
+    
 
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/design-pattern/" rel="tag">#design pattern</a>
+            <a href="/tags/design-pattern/" rel="tag"># design pattern</a>
           
         </div>
+      
+
+      
+      
       
 
       
@@ -429,6 +541,8 @@
               </a>
             
           </div>
+
+          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -443,31 +557,28 @@
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
           </div>
           
 
-
-          
-  <div class="comments" id="comments">
-    
+  
+    <div class="comments" id="comments">
       <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
       </div>
-    
-  </div>
+    </div>
+
+  
+
 
 
         </div>
@@ -489,106 +600,211 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目錄
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            本站概覽
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
           </li>
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/plusaber.jpg"
-               alt="Plusaber" />
-          <p class="site-author-name" itemprop="name">Plusaber</p>
-          <p class="site-description motion-element" itemprop="description">Plusaber's Blog</p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">329</span>
-              <span class="site-state-item-name">文章</span>
-            </a>
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/plusaber.jpg" alt="Plusaber">
+            
+              <p class="site-author-name" itemprop="name">Plusaber</p>
+              <div class="site-description motion-element" itemprop="description">Plusaber's Blog</div>
           </div>
 
           
-            <div class="site-state-item site-state-categories">
-              <a href="/categories">
-                <span class="site-state-item-count">17</span>
-                <span class="site-state-item-name">分類</span>
-              </a>
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">82</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://jp.linkedin.com/in/zebangchen" title="https://jp.linkedin.com/in/zebangchen" rel="noopener" target="_blank">LinkedIn</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://indeed.com" title="https://indeed.com" rel="noopener" target="_blank">Indeed</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://baito.indeed.com" title="https://baito.indeed.com" rel="noopener" target="_blank">Baito</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.kaggle.com" title="https://www.kaggle.com" rel="noopener" target="_blank">Kaggle</a>
+                  </li>
+                
+              </ul>
             </div>
           
 
           
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">52</span>
-                <span class="site-state-item-name">標籤</span>
-              </a>
-            </div>
+            
+          
           
 
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
         </div>
-
-        
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              Links
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.kaggle.com" title="Kaggle" target="_blank">Kaggle</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.algolia.com" title="Algolia" target="_blank">Algolia</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://jp.linkedin.com/in/zebangchen" title="LinkedIn" target="_blank">LinkedIn</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://portal.qiniu.com" title="Qiniu" target="_blank">Qiniu</a>
-                </li>
-              
-            </ul>
-          </div>
-        
-
-      </section>
+      </div>
 
       
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
-              
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#适配器模式"><span class="nav-number">1.</span> <span class="nav-text">适配器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义适配器模式"><span class="nav-number">1.1.</span> <span class="nav-text">定义适配器模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象适配器和类适配器"><span class="nav-number">1.2.</span> <span class="nav-text">对象适配器和类适配器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java的枚举器"><span class="nav-number">1.3.</span> <span class="nav-text">Java的枚举器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#外观模式"><span class="nav-number">2.</span> <span class="nav-text">外观模式</span></a></li></ol></div>
             
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#适配器模式"><span class="nav-number">1.</span> <span class="nav-text"> 适配器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义适配器模式"><span class="nav-number">1.1.</span> <span class="nav-text"> 定义适配器模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象适配器和类适配器"><span class="nav-number">1.2.</span> <span class="nav-text"> 对象适配器和类适配器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java的枚举器"><span class="nav-number">1.3.</span> <span class="nav-text"> Java的枚举器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#外观模式"><span class="nav-number">2.</span> <span class="nav-text"> 外观模式</span></a></li></ol></div>
+            
+
           </div>
-        </section>
+        </div>
+      <!--/noindex-->
+      
+
       
 
     </div>
   </aside>
+  
 
 
         
@@ -597,41 +813,61 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2014 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Plusaber</span>
+
+  
+
+  
 </div>
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
-</div>
 
-<div class="theme-info">
-  主題 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.1</div>
+
+
+
 
         
+
+
+
+
+
+
+
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -645,112 +881,164 @@
 
 
 
-  
 
 
 
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
-  
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+
+
+
 
 
 
   
-  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
 
 
 
   
 
 
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
 
   
 
-    <script type="text/javascript">
-      var disqus_shortname = 'plusaber';
-      var disqus_identifier = '2015/03/10/Design Pattern_Adapter pattern/';
-      var disqus_title = "Adapter pattern";
-      var disqus_url = 'http://yoursite.com/2015/03/10/Design Pattern_Adapter pattern/';
+  
 
-      function run_disqus_script(disqus_script){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      }
+  
 
-      run_disqus_script('count.js');
+  
+  
+  <script id="dsq-count-scr" src="https://plusaber.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://yoursite.com/2015/03/10/Design Pattern_Adapter pattern/";
+    this.page.identifier = "2015/03/10/Design Pattern_Adapter pattern/";
+    this.page.title = 'Adapter pattern';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://plusaber.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
       
-        var disqus_config = function () {
-            this.page.url = disqus_url;
-            this.page.identifier = disqus_identifier;
-            this.page.title = disqus_title;
-        };
-        run_disqus_script('embed.js');
-      
-    </script>
-  
-
-
-
-
-  
-  
-
-  
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-  </script>
-
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-      for (i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-      }
-    });
-  </script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('Copy');
+      }, 300);
+    }).append(e);
+  })
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -764,7 +1052,7 @@
   });
 </script>
 
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
@@ -773,9 +1061,6 @@
   
 
   
-
-  
-
 
 </body>
 </html>
